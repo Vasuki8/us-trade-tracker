@@ -1,0 +1,2 @@
+import {readCurrentRelease} from './prepare-release';import {join} from 'node:path';
+try{const release=await readCurrentRelease(join(process.cwd(),'data/processed'));console.log(`Validated Census release: ${release.productCode}, ${release.reportingMonth}, ${release.observations.length} observations.`);}catch(error){console.error(error instanceof Error?error.message:'Validation failed');process.exitCode=1;}

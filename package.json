@@ -11,7 +11,9 @@
     "preview": "astro preview --host 127.0.0.1",
     "build": "astro build",
     "check": "astro check && tsc --noEmit -p tsconfig.tools.json",
-    "test": "vitest run"
+    "test": "vitest run",
+    "data:import": "node --env-file-if-exists=.env --import tsx scripts/import-product.ts",
+    "data:validate": "node --import tsx scripts/validate-data.ts"
   },
   "dependencies": {
     "astro": "7.3.8",
