@@ -39,3 +39,9 @@ it('rejects a partner exceeding the matching national total',()=>{
   release.observations.filter(r=>r.partnerCode==='1220').forEach(r=>{r.valueUsd=1000;});
   expect(()=>buildProfileView(release,selection)).toThrow(/world total/i);
 });
+it('can calculate the earlier fixture year using integer dollar observations',()=>{
+  const release=sampleRelease();release.reportingMonth='2024-12';
+  const view=buildProfileView(release,selection);
+  expect(view.trailingYear.current).toBe(600);
+  expect(view.partners.find(p=>p.code==='4280')?.valueUsd).toBe(168);
+});

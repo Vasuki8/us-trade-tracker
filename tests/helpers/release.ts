@@ -8,7 +8,7 @@ export function sampleRelease(): Release {
         month:`${year}-${String(month).padStart(2,'0')}`, partnerCode:code,
         partnerName:code==='-'?'TOTAL FOR ALL COUNTRIES':({'1220':'CANADA','4759':'ITALY','2010':'MEXICO','4280':'GERMANY'}[code] ?? code),
         geography:code==='-'?'world':'country', measure:direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO',
-        valueUsd:code==='-'?total:total/4, status:'reported'});
+        valueUsd:code==='-'?total:code==='4280'?total-3*Math.floor(total/4):Math.floor(total/4), status:'reported'});
     }
   }
   return {schemaVersion:1,productCode:'090121',reportingMonth:'2025-12',retrievedAt:'2026-01-01T00:00:00.000Z',
