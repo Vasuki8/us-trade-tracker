@@ -750,8 +750,8 @@
       "partnerName": "CANADA",
       "geography": "country",
       "measure": "GEN_VAL_MO",
-      "valueUsd": 12,
-      "status": "reported"
+      "valueUsd": null,
+      "status": "missing"
     },
     {
       "productCode": "090121",
