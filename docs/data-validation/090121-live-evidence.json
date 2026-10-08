@@ -1,0 +1,83 @@
+{
+  "reportingMonth": "2026-08",
+  "retrievedAt": "2026-10-08T23:11:35.139Z",
+  "codeVersion": "f819f6283d023fc42469d3586c03898405bb6ce7",
+  "releaseFile": "releases/2026-08-6e3642ed-9fb9-4893-80b5-4a7d77bf691b.json",
+  "sha256": "79955703ac1acb78e60b8e7d5d6dab9f46e4c873defaddb50424aa6981d9ddb3",
+  "rawFileCount": 240,
+  "observationCount": 9577,
+  "classificationIntervals": [
+    {
+      "from": "2021-09",
+      "to": "2026-08",
+      "evidenceUrl": "https://www.census.gov/foreign-trade/reference/index.html"
+    }
+  ],
+  "samples": [
+    {
+      "direction": "imports",
+      "month": "2026-08",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "value": 140980739,
+      "measure": "GEN_VAL_MO",
+      "query": "https://api.census.gov/data/timeseries/intltrade/imports/hs?get=I_COMMODITY_LDESC%2CGEN_VAL_MO%2CCTY_CODE%2CCTY_NAME%2CLAST_UPDATE&I_COMMODITY=090121&COMM_LVL=HS6&SUMMARY_LVL=DET&SUMMARY_LVL2=HS&time=2026-08"
+    },
+    {
+      "direction": "imports",
+      "month": "2026-08",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "value": 33155513,
+      "measure": "GEN_VAL_MO",
+      "query": "https://api.census.gov/data/timeseries/intltrade/imports/hs?get=I_COMMODITY_LDESC%2CGEN_VAL_MO%2CCTY_CODE%2CCTY_NAME%2CLAST_UPDATE&I_COMMODITY=090121&COMM_LVL=HS6&SUMMARY_LVL=DET&SUMMARY_LVL2=HSCY&time=2026-08"
+    },
+    {
+      "direction": "imports",
+      "month": "2026-08",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "value": 7467317,
+      "measure": "GEN_VAL_MO",
+      "query": "https://api.census.gov/data/timeseries/intltrade/imports/hs?get=I_COMMODITY_LDESC%2CGEN_VAL_MO%2CCTY_CODE%2CCTY_NAME%2CLAST_UPDATE&I_COMMODITY=090121&COMM_LVL=HS6&SUMMARY_LVL=DET&SUMMARY_LVL2=HSCY&time=2026-08"
+    },
+    {
+      "direction": "exports",
+      "month": "2026-08",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "value": 66393173,
+      "measure": "ALL_VAL_MO",
+      "query": "https://api.census.gov/data/timeseries/intltrade/exports/hs?get=E_COMMODITY_LDESC%2CALL_VAL_MO%2CCTY_CODE%2CCTY_NAME%2CLAST_UPDATE&E_COMMODITY=090121&COMM_LVL=HS6&SUMMARY_LVL=DET&SUMMARY_LVL2=HS&time=2026-08"
+    },
+    {
+      "direction": "exports",
+      "month": "2026-08",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "value": 36480679,
+      "measure": "ALL_VAL_MO",
+      "query": "https://api.census.gov/data/timeseries/intltrade/exports/hs?get=E_COMMODITY_LDESC%2CALL_VAL_MO%2CCTY_CODE%2CCTY_NAME%2CLAST_UPDATE&E_COMMODITY=090121&COMM_LVL=HS6&SUMMARY_LVL=DET&SUMMARY_LVL2=HSCY&time=2026-08"
+    }
+  ],
+  "totals": {
+    "imports": {
+      "current": 1692814074,
+      "previous": 2207669569
+    },
+    "exports": {
+      "current": 804440300,
+      "previous": 811100933
+    }
+  },
+  "canadaImports": {
+    "value": 389861804,
+    "world": 1692814074,
+    "sharePercent": 23.03039713503705
+  }
+}

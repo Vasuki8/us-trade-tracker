@@ -6,7 +6,7 @@ A commercial research website for understanding U.S. goods trade by product and 
 
 The planned website uses Astro, TypeScript, and React, starting on Cloudflare free hosting. Monthly Census releases will be processed into prepared pages and chart data. The initial hosting budget is US$0 to US$15 per month, excluding the domain and development work.
 
-The first local development profile is implemented: roasted coffee (HS 090121), import/export history, comparison of up to three partner countries, and sourced PNG/CSV downloads. It includes an importer with validated releases, refresh recovery, and revision tracking. Live Census values and classification continuity remain unverified; the development preview uses visibly labeled synthetic fixtures.
+The first local development profile is verified with real Census data: roasted coffee (HS 090121), five years of import/export history through August 2026, comparison of up to three partner countries, and sourced PNG/CSV downloads. It includes an importer with validated releases, refresh recovery, and revision tracking. Independent reviewers checked all 9,577 observations, annual totals, country share and six-digit classification continuity. Offline tests use visibly labeled synthetic fixtures. See the [recorded verification](docs/data-validation/090121.md).
 
 Read the [launch brief](docs/superpowers/specs/2026-10-08-us-trade-tracker-design.md) for features, data definitions, competition, and monetization.
 
@@ -44,7 +44,7 @@ npm run data:validate
 
 The reporting month is required; it is never guessed from today's date. Each request has a 30-second timeout and at most two retries on 429/5xx responses, with at most two requests in flight. Missing country rows remain unavailable rather than becoming zero. A failed import preserves the current release. A lock prevents overlapping local imports; after an interrupted process, confirm no import is running before removing its stale `data/processed/.import.lock`.
 
-See [live validation status](docs/data-validation/090121.md). Independently reviewed classification intervals can be supplied to the CLI with `--classification path.json`. Until such evidence is recorded, cross-period growth and totals across unverified intervals stay unavailable. The local real-data milestone also requires recorded source-value checks; public launch requires two successive official releases. R2 archives, broad product discovery, deployment, advertising and subscriptions remain later work.
+See [live validation status](docs/data-validation/090121.md). The manual coffee workflow supplies `data/classification/090121.json`, reviewed for September 2021–August 2026. The CLI clips evidence to an earlier reporting month and never extends it into unreviewed months. Cross-period growth and totals crossing an unverified interval stay unavailable. Public launch still requires two successive official releases. R2 archives, broad product discovery, deployment, advertising and subscriptions remain later work.
 
 CSV exports include classification verification and line-break fields. Formula-looking text is prefixed with an apostrophe for safer spreadsheet opening; numeric dollar values remain numeric.
 
