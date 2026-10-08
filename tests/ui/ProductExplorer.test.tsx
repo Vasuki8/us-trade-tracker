@@ -63,3 +63,13 @@ it('neutralizes spreadsheet formulas in downloaded text without changing numeric
   const csv=serializeCsv(view);
   expect(csv).toContain("'@SUM(1)");expect(csv).toContain("'=1+1,25,reported");
 });
+it('distinguishes all three comparison lines and their legends without relying on color',()=>{
+  const view=buildProfileView(sampleRelease(),{direction:'exports',months:12,countryCodes:['1220','4759','2010']});
+  const {container}=render(<TradeChart view={view}/>);
+  for(const svg of container.querySelectorAll('svg')){
+    const patterns=[...svg.querySelectorAll('path')].map(path=>path.getAttribute('stroke-dasharray'));
+    expect(new Set(patterns).size).toBe(3);
+    const legends=[...svg.querySelectorAll('line')].filter(line=>line.getAttribute('stroke-width')==='3');
+    expect(legends.map(line=>line.getAttribute('stroke-dasharray'))).toEqual(patterns);
+  }
+});

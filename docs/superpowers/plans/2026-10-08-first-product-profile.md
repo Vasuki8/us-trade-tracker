@@ -224,3 +224,11 @@ The local milestone is complete only when a genuine Census release drives the wo
 ## Execution updates
 
 The owner selected subagents for review; the main agent implements and fresh reviewers check each task plus the final branch. Sandbox writes to the app-created worktree were denied, so execution uses the authorized project directory on `codex/first-product-profile` and the unused worktree was archived. The owner prefers `CENSUS_API_KEY` as a GitHub Actions repository secret; Task 5 therefore includes a manual `import-census.yml` artifact workflow. It has no deployment or recurring trigger. Live values remain pending until the reviewed workflow can run on GitHub. `ProfileView` carries `productCode` so downloads identify the selected product explicitly.
+
+## Local review status
+
+The software has passed a clean `npm ci`, 47 unit/component tests, TypeScript/Astro checks with zero diagnostics, a three-page fixture build, and five Chromium acceptance tests. Desktop/mobile screenshots and a downloaded 1920×1080 PNG were inspected. Browser acceptance verifies actual keyboard navigation, the complete filtered CSV, missing values, mobile PNG export, conversion failure recovery, and research without JavaScript.
+
+Task reviewers' correctness findings were fixed and verified. The independent whole-branch reviewer found no blocking code issues in `3aa4ff2..4041cde`. Subsequent acceptance review fixes strengthen keyboard/CSV checks and add distinct solid/dashed/dotted comparison lines with matching legends; all checks passed again. There are no deferred code-review findings.
+
+The real-data milestone remains incomplete: the GitHub-secret workflow has not run, actual source values and classifications have not been verified, and no real-data build/preview has been accepted. A manual GitHub run produces an independent snapshot; persistence across hosted runs and two official releases remain later requirements. The reviewed branch is ready for an integration decision, with no site publication.
