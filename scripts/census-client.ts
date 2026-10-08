@@ -8,7 +8,8 @@ export async function fetchProductMonth(options:FetchOptions,fetchImpl:typeof fe
   const payloads:unknown[][][]=[];
   for(const summary of ['HS','HSCY']){
     const url=new URL(`https://api.census.gov/data/timeseries/intltrade/${options.direction}/hs`);
-    url.searchParams.set('get',[commodity,`${commodity}_LDESC`,measure,'CTY_CODE','CTY_NAME','COMM_LVL','SUMMARY_LVL','SUMMARY_LVL2','LAST_UPDATE'].join(','));
+    // Census appends predicate fields to its table; requesting them again duplicates headers.
+    url.searchParams.set('get',[`${commodity}_LDESC`,measure,'CTY_CODE','CTY_NAME','LAST_UPDATE'].join(','));
     url.searchParams.set(commodity,options.productCode);url.searchParams.set('COMM_LVL','HS6');
     url.searchParams.set('SUMMARY_LVL','DET');url.searchParams.set('SUMMARY_LVL2',summary);
     url.searchParams.set('time',options.month);

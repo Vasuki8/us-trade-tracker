@@ -44,3 +44,16 @@ it('reports only known header names when a response repeats query fields',async(
   const error=await fetchProductMonth(options,(async()=>Response.json(payload)) as typeof fetch).then(()=>null,error=>error as Error);
   expect(error?.message).toContain('known fields');expect(error?.message).not.toContain(options.apiKey);
 });
+it.each(['imports','exports'] as const)('normalizes %s when Census appends predicate columns to requested columns',async(direction)=>{
+  const fetcher=(async(input:RequestInfo|URL)=>{
+    const url=new URL(String(input));const commodity=direction==='imports'?'I_COMMODITY':'E_COMMODITY';
+    // Observed live API behavior: get columns, predicate columns, then time.
+    const headers=[...url.searchParams.get('get')!.split(','),commodity,'COMM_LVL','SUMMARY_LVL','SUMMARY_LVL2','time'];
+    const source=body(direction,url.searchParams.get('SUMMARY_LVL2')!);
+    return Response.json([headers,...source.slice(1).map(row=>headers.map(name=>{
+      const index=source[0].indexOf(name);return index>=0?row[index]:name==='LAST_UPDATE'?'2026-07-02':url.searchParams.get(name);
+    }))]);
+  }) as typeof fetch;
+  const rows=await fetchProductMonth({...options,direction},fetcher);
+  expect(rows.map(row=>row.valueUsd)).toEqual(direction==='imports'?[1000,600,400]:[800,800]);
+});
