@@ -1,0 +1,29 @@
+# Dependencies and generated website files
+node_modules/
+dist/
+.astro/
+.wrangler/
+.vercel/
+coverage/
+*.tsbuildinfo
+
+# Credentials and private local configuration
+.env
+.env.*
+!.env.example
+secrets/
+
+# Downloaded data, generated datasets, and local backups
+data/raw/
+data/processed/
+data/backups/
+.data/
+.cache/
+.tmp/
+
+# Logs and operating system files
+logs/
+*.log
+.DS_Store
+Thumbs.db
+Desktop.ini
