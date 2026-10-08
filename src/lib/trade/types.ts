@@ -15,7 +15,7 @@ export type Release = {
   classificationIntervals: {from: Month; to: Month; evidenceUrl: string}[];
 };
 export type ExplorerSelection = {direction: Direction; months: 12 | 60; countryCodes: string[]};
-export type ChartSeries = {code: string; name: string; points: {month: Month; valueUsd: number | null; breakBefore: boolean}[]};
+export type ChartSeries = {code: string; name: string; points: {month: Month; valueUsd: number | null; breakBefore: boolean; classificationVerified: boolean}[]};
 export type ProfileView = {
   productCode: string; title: string; selection: ExplorerSelection; reportingMonth: Month;
   latestMonth: Comparison; trailingYear: Comparison;

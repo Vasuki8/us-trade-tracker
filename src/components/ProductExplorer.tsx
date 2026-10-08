@@ -20,7 +20,7 @@ export function ProductExplorer({release}:{release:Release}){
     </div>
     <section className="research-grid"><div className="chart-card"><div className="section-heading"><div><p className="eyebrow">THE TREND</p><h2>Trade over time</h2></div><span className="measure-tag">{view.provenance.measure}</span></div>
       <TradeChart ref={svg} view={view}/><p className="chart-note">Available history: {view.series[0]?.points[0]?.month}–{release.reportingMonth}. Gaps mean unavailable data; classification boundaries break the line.</p>
-      {!release.classificationIntervals.length&&<p className="sample-banner">Classification continuity is unverified. Cross-period growth is unavailable.</p>}
+      {view.series.some(series=>series.points.some(point=>!point.classificationVerified))&&<p className="sample-banner">Classification continuity is unverified for part or all of this history. Growth comparisons across unverified periods are unavailable.</p>}
       <div className="download-actions"><button className="primary-button" disabled={busy} onClick={downloadPng}>{busy?'Creating image…':'Download chart PNG'}</button><button className="secondary-button" onClick={()=>downloadBlob(new Blob([serializeCsv(view)],{type:'text/csv;charset=utf-8'}),`hs-${release.productCode}-${direction}.csv`)}>Download data CSV</button></div>
       {downloadError&&<p role="alert" className="download-error">{downloadError}</p>}
     </div><aside className="comparison-card"><p className="eyebrow">PARTNER MARKETS</p><h2>Compare countries</h2><p>Choose up to three partners. With none selected, the chart shows the U.S. total.</p>

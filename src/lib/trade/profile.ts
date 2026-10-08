@@ -31,6 +31,7 @@ export function buildProfileView(release:Release,selection:ExplorerSelection):Pr
     const byMonth=new Map(observations.map(r=>[r.month,r]));
     return {code,name:code==='-'?'All partner countries':observations[0].partnerName,
       points:months.map((month,index)=>({month,valueUsd:byMonth.get(month)?.valueUsd??null,
+        classificationVerified:interval(month)>=0,
         breakBefore:index>0&&!comparable(months[index-1],month)}))};
   });
   const latestMonth=compareValues(latest,previous);

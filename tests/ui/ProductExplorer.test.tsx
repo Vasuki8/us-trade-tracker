@@ -7,6 +7,8 @@ import {sampleRelease} from '../helpers/release';
 import {ProductExplorer} from '../../src/components/ProductExplorer';
 import {serializeCsv} from '../../src/lib/trade/downloads';
 import {buildProfileView} from '../../src/lib/trade/profile';
+import {renderToStaticMarkup} from 'react-dom/server';
+import {TradeChart} from '../../src/components/TradeChart';
 afterEach(cleanup);
 it('switches direction and enforces three countries with accessible controls',async()=>{
   render(<ProductExplorer release={sampleRelease()}/>);const user=userEvent.setup();
@@ -33,4 +35,31 @@ it('exports active series and provenance with valid CSV quoting and no invented 
   expect(csv).toContain('"Coffee, ""roasted""\nline"');
   expect(csv).toContain('2025-01,090121');expect(csv).toContain(',unavailable,');
   expect(csv).toContain('Development sample data');
+});
+it('preserves classification boundaries and verification in downloaded CSV',()=>{
+  const release=sampleRelease();
+  const continuous=serializeCsv(buildProfileView(release,{direction:'imports',months:60,countryCodes:[]}));
+  release.classificationIntervals=[{from:'2024-01',to:'2024-12',evidenceUrl:'https://example.invalid/old'},{from:'2025-01',to:'2025-12',evidenceUrl:'https://example.invalid/new'}];
+  const split=serializeCsv(buildProfileView(release,{direction:'imports',months:60,countryCodes:[]}));
+  expect(split).not.toBe(continuous);
+  expect(split).toContain('classification_verified,classification_break_before');
+  release.classificationIntervals=[];
+  expect(serializeCsv(buildProfileView(release,{direction:'imports',months:12,countryCodes:[]}))).toContain(',false,true,');
+});
+it('warns when only part of the displayed history has verified classification',()=>{
+  const release=sampleRelease();release.classificationIntervals[0].from='2025-01';
+  render(<ProductExplorer release={release}/>);
+  expect(screen.getByText(/Classification continuity is unverified/)).toBeVisible();
+});
+it('keeps point tooltips and the classification explanation in server-rendered SVG',()=>{
+  const view=buildProfileView(sampleRelease(),{direction:'imports',months:60,countryCodes:[]});
+  const svg=renderToStaticMarkup(<TradeChart view={view}/>);
+  expect(svg).toContain('<title>Jan 2024: $50</title>');
+  expect(svg).toContain('incompatible or unverified classifications');
+});
+it('neutralizes spreadsheet formulas in downloaded text without changing numeric values',()=>{
+  const view=buildProfileView(sampleRelease(),{direction:'imports',months:12,countryCodes:['1220']});
+  view.series[0].name='=1+1';view.title='@SUM(1)';
+  const csv=serializeCsv(view);
+  expect(csv).toContain("'@SUM(1)");expect(csv).toContain("'=1+1,25,reported");
 });

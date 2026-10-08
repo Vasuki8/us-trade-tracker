@@ -1,9 +1,9 @@
 import type {ProfileView} from './types';
-const csvCell=(value:unknown)=>{const text=String(value??'');return /[",\r\n]/.test(text)?`"${text.replaceAll('"','""')}"`:text;};
+const csvCell=(value:unknown)=>{let text=String(value??'');if(typeof value==='string'&&/^(?:[=+@]|-(?!$)|[\t\r])/.test(text))text="'"+text;return /[",\r\n]/.test(text)?`"${text.replaceAll('"','""')}"`:text;};
 export function serializeCsv(view:ProfileView):string{
-  const headers=['month','product_code','product_description','direction','partner_code','partner_name','value_usd','value_status','measure','units','period_start','period_end','source','retrieved_at','code_version','revised','source_urls'];
+  const headers=['month','product_code','product_description','direction','partner_code','partner_name','value_usd','value_status','measure','units','period_start','period_end','source','retrieved_at','code_version','revised','classification_verified','classification_break_before','source_urls'];
   const period=view.series[0]?.points;
-  const rows=view.series.flatMap(series=>series.points.map(point=>[point.month,view.productCode,view.title,view.selection.direction,series.code,series.name,point.valueUsd,point.valueUsd===null?'unavailable':'reported',view.provenance.measure,'current USD, not seasonally adjusted',period?.[0]?.month,period?.at(-1)?.month,view.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau',view.provenance.retrievedAt,view.provenance.codeVersion,view.provenance.revised,view.provenance.sourceUrls.join(' | ')]));
+  const rows=view.series.flatMap(series=>series.points.map(point=>[point.month,view.productCode,view.title,view.selection.direction,series.code,series.name,point.valueUsd,point.valueUsd===null?'unavailable':'reported',view.provenance.measure,'current USD, not seasonally adjusted',period?.[0]?.month,period?.at(-1)?.month,view.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau',view.provenance.retrievedAt,view.provenance.codeVersion,view.provenance.revised,point.classificationVerified,point.breakBefore,view.provenance.sourceUrls.join(' | ')]));
   return [headers,...rows].map(row=>row.map(csvCell).join(',')).join('\r\n')+'\r\n';
 }
 export async function exportChartPng(svg:SVGSVGElement):Promise<Blob>{
