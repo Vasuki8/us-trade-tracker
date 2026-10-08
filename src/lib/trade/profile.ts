@@ -37,7 +37,7 @@ export function buildProfileView(release:Release,selection:ExplorerSelection):Pr
   if(!comparable(shiftMonth(end,-12),end)){latestMonth.changeUsd=null;latestMonth.changePercent=null;}
   const trailingYear=compareValues(currentYear,previousYear);
   if(!comparable(shiftMonth(end,-23),end)){trailingYear.changeUsd=null;trailingYear.changePercent=null;}
-  return {title:world[0].description,selection:{...selection,countryCodes:codes},reportingMonth:end,
+  return {productCode:release.productCode,title:world[0].description,selection:{...selection,countryCodes:codes},reportingMonth:end,
     latestMonth,trailingYear,partners,series,provenance:{source:release.source,
       measure:selection.direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO',retrievedAt:release.retrievedAt,
       codeVersion:release.codeVersion,sourceUrls:release.sourceUrls,revised:release.revisedKeys.length>0}};

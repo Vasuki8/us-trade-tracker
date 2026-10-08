@@ -17,7 +17,7 @@ export type Release = {
 export type ExplorerSelection = {direction: Direction; months: 12 | 60; countryCodes: string[]};
 export type ChartSeries = {code: string; name: string; points: {month: Month; valueUsd: number | null; breakBefore: boolean}[]};
 export type ProfileView = {
-  title: string; selection: ExplorerSelection; reportingMonth: Month;
+  productCode: string; title: string; selection: ExplorerSelection; reportingMonth: Month;
   latestMonth: Comparison; trailingYear: Comparison;
   partners: {code: string; name: string; valueUsd: number | null; sharePercent: number | null}[];
   series: ChartSeries[];
