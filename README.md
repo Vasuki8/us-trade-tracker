@@ -6,9 +6,47 @@ A commercial research website for understanding U.S. goods trade by product and 
 
 The planned website uses Astro, TypeScript, and React, starting on Cloudflare free hosting. Monthly Census releases will be processed into prepared pages and chart data. The initial hosting budget is US$0 to US$15 per month, excluding the domain and development work.
 
-The project currently contains the launch brief and repository configuration. Website code and deployment will follow the reviewed development plan.
+The first local development profile is implemented: roasted coffee (HS 090121), import/export history, comparison of up to three partner countries, and sourced PNG/CSV downloads. It includes an importer with validated releases, refresh recovery, and revision tracking. Live Census values and classification continuity remain unverified; the development preview uses visibly labeled synthetic fixtures.
 
 Read the [launch brief](docs/superpowers/specs/2026-10-08-us-trade-tracker-design.md) for features, data definitions, competition, and monetization.
+
+## Local development
+
+Use Node 24 and npm. Install with `npm ci`.
+
+For a labeled sample preview in PowerShell:
+
+```powershell
+$env:TRADE_DATA_MODE = 'fixture'
+npm run dev
+```
+
+Open the displayed localhost URL, then `/products/090121/`. On Bash, use `TRADE_DATA_MODE=fixture npm run dev`. No Census key is needed for fixture mode. Normal mode requires a validated release and fails clearly if one is absent; it never silently substitutes sample values.
+
+Run code checks with `npm test` and `npm run check`. For browser acceptance, install Chromium once with `npx playwright install chromium`, build using explicit fixture mode with `npm run build`, then run `npm run test:e2e`. Browser tests exercise real controls and downloads, mobile overflow, keyboard use, PNG failure recovery, and research without JavaScript.
+
+## Census key in GitHub
+
+The owner prefers a GitHub Actions repository secret. In repository **Settings → Secrets and variables → Actions → Secrets → New repository secret**, add `CENSUS_API_KEY` with the key as its value. Do not create an ordinary variable. See [GitHub's secret instructions](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets).
+
+The **Import Census data** workflow is manually triggered, retrieves only the coffee sample, and returns a downloadable public-data artifact. It does not publish a site, commit datasets, run on a monthly schedule, or expose the key to ordinary code-check jobs. GitHub requires this workflow file on the default branch before **Run workflow** becomes available ([manual workflow documentation](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)); merging remains a separate review decision.
+
+After the reviewed workflow is available, choose a reporting month confirmed by the [official release calendar](https://www.census.gov/foreign-trade/schedule.html) and current release information, run it, and download `census-coffee-release`. The artifact has `processed/` and `raw/` directories: extract those into the ignored local `data/` folder, then run `npm run data:validate`. Artifacts expire after seven days, so retain the public source/archive separately. Remove `TRADE_DATA_MODE` or set it to `census` to preview the actual release. The key stays in GitHub.
+
+This initial manual workflow starts from a fresh checkout on every run. It produces independent snapshots; revision comparisons require a previous local release and are tested in the CLI. Persisting earlier releases for scheduled GitHub imports remains later work.
+
+For an optional local import, put `CENSUS_API_KEY` in ignored `.env`, then run:
+
+```text
+npm run data:import -- --product 090121 --end YYYY-MM --months 60
+npm run data:validate
+```
+
+The reporting month is required; it is never guessed from today's date. Each request has a 30-second timeout and at most two retries on 429/5xx responses, with at most two requests in flight. Missing country rows remain unavailable rather than becoming zero. A failed import preserves the current release. A lock prevents overlapping local imports; after an interrupted process, confirm no import is running before removing its stale `data/processed/.import.lock`.
+
+See [live validation status](docs/data-validation/090121.md). Independently reviewed classification intervals can be supplied to the CLI with `--classification path.json`. Until such evidence is recorded, cross-period growth and totals across unverified intervals stay unavailable. The local real-data milestone also requires recorded source-value checks; public launch requires two successive official releases. R2 archives, broad product discovery, deployment, advertising and subscriptions remain later work.
+
+CSV exports include classification verification and line-break fields. Formula-looking text is prefixed with an apostrophe for safer spreadsheet opening; numeric dollar values remain numeric.
 
 ## File management
 

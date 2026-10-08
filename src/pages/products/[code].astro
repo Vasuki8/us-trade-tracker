@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {ProductExplorer} from '../../components/ProductExplorer';
+import {loadRelease} from '../../lib/trade/load-release';
+export async function getStaticPaths(){const release=await loadRelease();return [{params:{code:release.productCode},props:{release}}];}
+const {release}=Astro.props;
+const description=release.observations.find(row=>row.geography==='world')?.description??'Product profile';
+---
+<BaseLayout title={`HS ${release.productCode} product profile`}>
+  <div class="page-heading"><p class="eyebrow">PRODUCT RESEARCH / HS {release.productCode}</p><h1>{release.productCode==='090121'?'Roasted coffee':description}</h1><p class="heading-description">{description}</p><p>See how U.S. imports and exports are changing, and compare the partner markets behind them.</p></div>
+  <ProductExplorer release={release} client:load/>
+</BaseLayout>
