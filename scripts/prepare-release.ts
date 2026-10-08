@@ -49,16 +49,23 @@ export async function prepareRelease(options:PrepareOptions,fetchImpl:typeof fet
     const retrievedAt=new Date().toISOString();const id=`${options.end}-${randomUUID()}`;
     const rawDir=join(dirname(options.outputDir),'raw',id);await mkdir(rawDir,{recursive:true});
     const tasks=Array.from({length:options.months},(_,i)=>shiftMonth(options.end,i-options.months+1)).flatMap(month=>(['imports','exports'] as const).map(direction=>({month,direction})));
-    const batches:Release['observations'][]=new Array(tasks.length);let cursor=0;
-    await Promise.all(Array.from({length:2},async()=>{
-      while(cursor<tasks.length){const index=cursor++;const task=tasks[index];
-        batches[index]=await fetchProductMonth({...task,productCode:options.productCode,apiKey:options.apiKey,
+    const batches:Release['observations'][]=new Array(tasks.length);let cursor=0;const controller=new AbortController();
+    const workers=await Promise.allSettled(Array.from({length:2},async()=>{
+      try{while(cursor<tasks.length&&!controller.signal.aborted){const index=cursor++;const task=tasks[index];
+        batches[index]=await fetchProductMonth({...task,productCode:options.productCode,apiKey:options.apiKey,signal:controller.signal,
           onRaw:async(payload,url)=>{const summary=new URL(url).searchParams.get('SUMMARY_LVL2');await writeFile(join(rawDir,`${task.direction}-${task.month}-${summary}.json`),JSON.stringify({retrievedAt,requestUrl:url,payload}));}},fetchImpl);
-      }
+      }}catch(error){controller.abort();throw error;}
     }));
+    const failure=workers.find(result=>result.status==='rejected');if(failure?.status==='rejected')throw failure.reason;
     const observations=batches.flat();
     const oldByKey=new Map(previous?.observations.map(r=>[observationKey(r),r])??[]);
-    const revisedKeys=observations.filter(r=>{const old=oldByKey.get(observationKey(r));return old&&(old.valueUsd!==r.valueUsd||old.status!==r.status);}).map(observationKey);
+    const newByKey=new Map(observations.map(r=>[observationKey(r),r]));
+    const overlapFrom=previous?[previous.observations.map(r=>r.month).sort()[0],tasks[0].month].sort().at(-1)!:options.end;
+    const overlapTo=previous&&previous.reportingMonth<options.end?previous.reportingMonth:options.end;
+    const revisedKeys=previous?[...new Set([...oldByKey.keys(),...newByKey.keys()])].filter(key=>{
+      const old=oldByKey.get(key),next=newByKey.get(key);const month=(old??next)!.month;
+      return month>=overlapFrom&&month<=overlapTo&&(!old||!next||old.valueUsd!==next.valueUsd||old.status!==next.status);
+    }):[];
     const release:Release={schemaVersion:1,productCode:options.productCode,reportingMonth:options.end,retrievedAt,codeVersion:options.codeVersion,
       source:'census',sourceUrls:['imports','exports'].map(d=>`https://api.census.gov/data/timeseries/intltrade/${d}/hs`),observations,revisedKeys,
       classificationIntervals:options.classificationIntervals??[]};

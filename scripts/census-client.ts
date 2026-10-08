@@ -1,6 +1,6 @@
 import type {Direction,Observation} from '../src/lib/trade/types';
 import {normalizeCensusResponse,validMonth} from '../src/lib/trade/normalize';
-export type FetchOptions={productCode:string;month:string;direction:Direction;apiKey:string;onRaw?:(payload:unknown,url:string)=>Promise<void>};
+export type FetchOptions={productCode:string;month:string;direction:Direction;apiKey:string;signal?:AbortSignal;onRaw?:(payload:unknown,url:string)=>Promise<void>};
 export async function fetchProductMonth(options:FetchOptions,fetchImpl:typeof fetch=fetch):Promise<Observation[]> {
   if(!/^\d{6}$/.test(options.productCode)||!validMonth(options.month)||!options.apiKey.trim()||!['imports','exports'].includes(options.direction))throw new Error('Invalid Census request options');
   const commodity=options.direction==='imports'?'I_COMMODITY':'E_COMMODITY';
@@ -15,7 +15,8 @@ export async function fetchProductMonth(options:FetchOptions,fetchImpl:typeof fe
     const sanitized=url.toString();url.searchParams.set('key',options.apiKey);
     let response:Response|undefined;
     for(let attempt=0;attempt<3;attempt++){
-      try{response=await fetchImpl(url,{signal:AbortSignal.timeout(30_000)});}catch{throw new Error('Census request failed or timed out; the current release is unchanged');}
+      const signal=options.signal?AbortSignal.any([options.signal,AbortSignal.timeout(30_000)]):AbortSignal.timeout(30_000);
+      try{response=await fetchImpl(url,{signal});}catch{throw new Error('Census request failed or timed out; the current release is unchanged');}
       if(response.status!==429&&response.status<500)break;
       if(attempt<2)await new Promise(resolve=>setTimeout(resolve,500*2**attempt));
     }
@@ -26,6 +27,7 @@ export async function fetchProductMonth(options:FetchOptions,fetchImpl:typeof fe
     let payload:unknown;
     try{payload=await response.json();}catch{throw new Error('Invalid Census JSON');}
     if(!Array.isArray(payload)||!Array.isArray(payload[0]))throw new Error('Invalid Census table');
+    if(options.signal?.aborted)throw new Error('Data import canceled');
     await options.onRaw?.(payload,sanitized);
     payloads.push(payload);
   }

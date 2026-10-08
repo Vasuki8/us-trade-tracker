@@ -1,5 +1,5 @@
-import {afterEach,expect,it} from 'vitest';
-import {mkdtemp,readFile,rm} from 'node:fs/promises';
+import {afterEach,expect,it,vi} from 'vitest';
+import {access,mkdtemp,readFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';import {join} from 'node:path';
 import imports from '../fixtures/census-imports.json';import exports from '../fixtures/census-exports.json';
 import {prepareRelease,readCurrentRelease,validateRelease} from '../../scripts/prepare-release';
@@ -30,4 +30,31 @@ it('runtime validation rejects fixture promotion, duplicate keys and inconsisten
   expect(()=>validateRelease(release,true)).toThrow(/fixture/i);
   release.source='census'; release.observations.push(release.observations[0]);
   expect(()=>validateRelease(release)).toThrow(/duplicate/i);
+});
+it('records removed observations within the overlapping history as revisions',async()=>{
+  const outputDir=await mkdtemp(join(tmpdir(),'trade-release-'));dirs.push(outputDir);
+  const options={productCode:'090121',end:'2026-06',months:24,apiKey:'test-secret-key',outputDir,codeVersion:'test'};
+  await prepareRelease(options,fetcher());const base=fetcher();
+  const dropped=(async(input:RequestInfo|URL,init?:RequestInit)=>{
+    const response=await base(input,init);const payload:string[][]=await response.json();
+    const url=new URL(String(input));
+    if(url.pathname.includes('imports')&&url.searchParams.get('time')==='2026-06'){
+      const code=payload[0].indexOf('CTY_CODE');return Response.json([payload[0],...payload.slice(1).filter(r=>r[code]!=='1220')]);
+    }
+    return Response.json(payload);
+  }) as typeof fetch;
+  const next=await prepareRelease(options,dropped);
+  expect(next.revisedKeys).toContain('imports/090121/2026-06/country/1220/GEN_VAL_MO');
+});
+it('holds the import lock until a failed worker and its pending sibling have both stopped',async()=>{
+  const outputDir=await mkdtemp(join(tmpdir(),'trade-release-'));dirs.push(outputDir);
+  let unblock!:()=>void;let started!:()=>void;let failed=false;let settled=false;
+  const siblingStarted=new Promise<void>(resolve=>{started=resolve;});
+  const blocked=new Promise<void>(resolve=>{unblock=resolve;});const base=fetcher();
+  const controlled=(async(input:RequestInfo|URL,init?:RequestInit)=>{
+    if(new URL(String(input)).pathname.includes('imports')){await siblingStarted;failed=true;return new Response('unauthorized',{status:401});}
+    started();await blocked;return base(input,init);
+  }) as typeof fetch;
+  const pending=prepareRelease({productCode:'090121',end:'2026-06',months:24,apiKey:'test-secret-key',outputDir,codeVersion:'test'},controlled).then(()=>{settled=true;},()=>{settled=true;});
+  try{await vi.waitFor(()=>expect(failed).toBe(true));expect(settled).toBe(false);await expect(access(join(outputDir,'.import.lock'))).resolves.toBeUndefined();}finally{unblock();await pending;}
 });
