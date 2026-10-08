@@ -33,4 +33,16 @@ describe('Census observations', () => {
     expect(() => normalizeCensusResponse([imports[0], ['CANADA']], 'imports')).toThrow();
     expect(() => normalizeCensusResponse([['time', 'time'], ['2026-06', '2026-06']], 'imports')).toThrow();
   });
+  it.each(['HSCY?', '', null])('rejects an unknown summary level %s instead of accepting partial data', value => {
+    const payload: unknown[][] = structuredClone(imports);
+    payload[1][imports[0].indexOf('SUMMARY_LVL2')] = value;
+    expect(() => normalizeCensusResponse(payload, 'imports')).toThrow();
+  });
+  it('rejects null dimensions and non-string identifiers', () => {
+    for(const [field,value] of [['DISTRICT',null],['I_COMMODITY',['090121']],['CTY_CODE',['1220']]] as const){
+      const payload:unknown[][]=structuredClone(imports);
+      payload[1][imports[0].indexOf(field)]=value;
+      expect(()=>normalizeCensusResponse(payload,'imports')).toThrow();
+    }
+  });
 });

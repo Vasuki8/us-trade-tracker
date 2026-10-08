@@ -20,9 +20,15 @@ export function normalizeCensusResponse(payload: unknown, direction: Direction):
   for (const cells of rows) {
     if (!Array.isArray(cells) || cells.length !== headers.length) throw new Error('Incomplete row');
     const row = Object.fromEntries(headers.map((h, index) => [h, cells[index]]));
+    for(const field of [commodity, `${commodity}_LDESC`, 'CTY_CODE', 'CTY_NAME', 'time', 'COMM_LVL', 'SUMMARY_LVL', 'SUMMARY_LVL2']) {
+      if(typeof row[field] !== 'string' || row[field] === '') throw new Error('Invalid dimension type');
+    }
+    for(const field of ['DISTRICT','RP','DF','CTY_SUBCODE']) if(field in row && typeof row[field] !== 'string') throw new Error('Invalid dimension type');
+    const summary=String(row.SUMMARY_LVL2);
+    if(!/^HS(?:(?:CY|DT|CS|RP|DF))*$/.test(summary)) throw new Error('Unknown aggregation');
     if (row.SUMMARY_LVL === 'CGP') continue;
-    if (!['HS', 'HSCY'].includes(String(row.SUMMARY_LVL2))) continue;
-    if (['DISTRICT', 'RP', 'DF', 'CTY_SUBCODE'].some(h => h in row && row[h] !== '-')) continue;
+    if (!['HS', 'HSCY'].includes(summary)) continue;
+    if (['DISTRICT', 'RP', 'DF', 'CTY_SUBCODE'].some(h => h in row && row[h] !== '-')) throw new Error('Inconsistent national aggregation');
     if (row.SUMMARY_LVL !== 'DET' || row.COMM_LVL !== 'HS6' || !/^\d{6}$/.test(String(row[commodity])) || !validMonth(row.time)) throw new Error('Invalid HS6 dimensions');
     const partner = String(row.CTY_CODE);
     if (partner !== '-' && !/^[1-9]\d{3}$/.test(partner)) throw new Error('Invalid country code');
