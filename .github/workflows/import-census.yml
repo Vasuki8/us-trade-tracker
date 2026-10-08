@@ -29,7 +29,7 @@ jobs:
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
           REPORTING_MONTH: ${{ inputs.reporting_month }}
-        run: npm run data:import -- --product 090121 --end "$REPORTING_MONTH" --months 60
+        run: npm run data:import -- --product 090121 --end "$REPORTING_MONTH" --months 60 --classification data/classification/090121.json
       - run: npm run data:validate
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:

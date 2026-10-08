@@ -5,6 +5,7 @@ import {fetchProductMonth} from './census-client';
 import {observationKey,validMonth} from '../src/lib/trade/normalize';
 import {shiftMonth} from '../src/lib/trade/metrics';
 import {buildProfileView} from '../src/lib/trade/profile';
+import {validateClassificationIntervals} from './classification';
 export type PrepareOptions={productCode:string;end:string;months:number;apiKey:string;outputDir:string;codeVersion:string;classificationIntervals?:Release['classificationIntervals']};
 export function validateRelease(value:unknown,requireCensus=false):asserts value is Release {
   if(!value||typeof value!=='object')throw new Error('Invalid release');
@@ -13,11 +14,7 @@ export function validateRelease(value:unknown,requireCensus=false):asserts value
   if(r.schemaVersion!==1||!['census','fixture'].includes(r.source)||typeof r.productCode!=='string'||!/^\d{6}$/.test(r.productCode)||!validMonth(r.reportingMonth)||typeof r.retrievedAt!=='string'||!Number.isFinite(Date.parse(r.retrievedAt))||typeof r.codeVersion!=='string'||!r.codeVersion)throw new Error('Invalid release metadata');
   if(!Array.isArray(r.observations)||!r.observations.length||!Array.isArray(r.sourceUrls)||!r.sourceUrls.length||!Array.isArray(r.revisedKeys)||r.revisedKeys.some(k=>typeof k!=='string')||!Array.isArray(r.classificationIntervals))throw new Error('Invalid release arrays');
   for(const source of r.sourceUrls){const url=new URL(source);if(url.protocol!=='https:'||[...url.searchParams.keys()].some(k=>k.toLowerCase()==='key')||(r.source==='census'&&url.hostname!=='api.census.gov'))throw new Error('Invalid or private source URL');}
-  const intervals=[...r.classificationIntervals].sort((a,b)=>a.from.localeCompare(b.from));
-  for(let i=0;i<intervals.length;i++){
-    const interval=intervals[i];
-    if(!validMonth(interval.from)||!validMonth(interval.to)||interval.from>interval.to||interval.to>r.reportingMonth||typeof interval.evidenceUrl!=='string'||new URL(interval.evidenceUrl).protocol!=='https:'||(i>0&&intervals[i-1].to>=interval.from))throw new Error('Invalid classification intervals');
-  }
+  validateClassificationIntervals(r.classificationIntervals,r.reportingMonth);
   const seen=new Set<string>();
   for(const row of r.observations){
     if(!row||row.productCode!==r.productCode||!validMonth(row.month)||row.month>r.reportingMonth||!['imports','exports'].includes(row.direction)||row.measure!==(row.direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO')||typeof row.description!=='string'||!row.description||typeof row.partnerName!=='string'||!row.partnerName||typeof row.partnerCode!=='string'||!['world','country'].includes(row.geography)||(row.geography==='world'?row.partnerCode!=='-':!/^[1-9]\d{3}$/.test(row.partnerCode))||!['reported','missing','suppressed'].includes(row.status)||(row.status==='reported'?typeof row.valueUsd!=='number'||!Number.isSafeInteger(row.valueUsd)||row.valueUsd<0:row.valueUsd!==null))throw new Error('Invalid release observation');

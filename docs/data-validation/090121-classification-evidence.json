@@ -1,0 +1,290 @@
+[
+  {
+    "sha256": "5A1BD232B519CF7EC705BCAE41887792C64A70C38A8A6465B47C60CC1D827B17",
+    "year": 2021,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2021/imp-code.txt",
+    "direction": "imp",
+    "rows": [
+      {
+        "code": "0901210035",
+        "description": "COFFEE, CERTIFIED ORGANIC, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210045",
+        "description": "COFFEE, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210055",
+        "description": "COFFEE, CERTIFIED ORGANIC, ROASTED, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210065",
+        "description": "COFFEE, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+      }
+    ]
+  },
+  {
+    "sha256": "4258496D0338674CD4C28C9F5977DFC192B41DC154D5915DF3A2C91570181AE7",
+    "year": 2021,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2021/exp-code.txt",
+    "direction": "exp",
+    "rows": [
+      {
+        "code": "0901210010",
+        "description": "COFFEE, ROASTED, NOT DECAFFEINATED, CERTIFIED ORGANIC"
+      },
+      {
+        "code": "0901210050",
+        "description": "COFFEE, ROASTED, NOT DECAFFEINATED, OTHER THAN CERTIFIED ORGANIC"
+      }
+    ]
+  },
+  {
+    "sha256": "3C4353169AF40744AF812114087F66BC443D2AD08097439B6648AE5A89DEF186",
+    "year": 2022,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2022/imp-code.txt",
+    "direction": "imp",
+    "rows": [
+      {
+        "code": "0901210035",
+        "description": "COFFEE, CERTIFIED ORGANIC, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210045",
+        "description": "COFFEE, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210055",
+        "description": "COFFEE, CERTIFIED ORGANIC, ROASTED, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210065",
+        "description": "COFFEE, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+      }
+    ]
+  },
+  {
+    "sha256": "91E2A1152E7F59867DA5E376B49EEA8D56FA5EAD5C6187E6B38EA0BE3E02FFE2",
+    "year": 2022,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2022/exp-code.txt",
+    "direction": "exp",
+    "rows": [
+      {
+        "code": "0901210010",
+        "description": "COFFEE, ROASTED, NOT DECAFFEINATED, CERTIFIED ORGANIC"
+      },
+      {
+        "code": "0901210050",
+        "description": "COFFEE, ROASTED, NOT DECAFFEINATED, OTHER THAN CERTIFIED ORGANIC"
+      }
+    ]
+  },
+  {
+    "sha256": "409F073CD445210B11EAE058ECFC527A949DC012EAD62C777B8BEA32370D5495",
+    "year": 2023,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2023/imp-code.txt",
+    "direction": "imp",
+    "rows": [
+      {
+        "code": "0901210035",
+        "description": "COFFEE, CERTIFIED ORGANIC, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210045",
+        "description": "COFFEE, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210055",
+        "description": "COFFEE, CERTIFIED ORGANIC, ROASTED, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210065",
+        "description": "COFFEE, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+      }
+    ]
+  },
+  {
+    "sha256": "92B2E2C9F4365CE244CA14F7F3DE244B30A1B77B1C3ABCD0DC9321524A2FA4D2",
+    "year": 2023,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2023/exp-code.txt",
+    "direction": "exp",
+    "rows": [
+      {
+        "code": "0901210010",
+        "description": "COFFEE, ROASTED, NOT DECAFFEINATED, CERTIFIED ORGANIC"
+      },
+      {
+        "code": "0901210050",
+        "description": "COFFEE, ROASTED, NOT DECAFFEINATED, OTHER THAN CERTIFIED ORGANIC"
+      }
+    ]
+  },
+  {
+    "sha256": "A060BA5C692CAEFC03FA76904F366A4FA882885252435279DC8B6B34922F03E9",
+    "year": 2024,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2024/imp-code.txt",
+    "direction": "imp",
+    "rows": [
+      {
+        "code": "0901210035",
+        "description": "COFFEE, CERTIFIED ORGANIC, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210045",
+        "description": "COFFEE, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210055",
+        "description": "COFFEE, CERTIFIED ORGANIC, ROASTED, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210065",
+        "description": "COFFEE, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+      }
+    ]
+  },
+  {
+    "sha256": "79D57630A7F24AD4B1A63B62DC9F6F630707C05D058EC77289E0C97DD9CD6635",
+    "year": 2024,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2024/exp-code.txt",
+    "direction": "exp",
+    "rows": [
+      {
+        "code": "0901210010",
+        "description": "COFFEE, ROASTED, NOT DECAFFEINATED, CERTIFIED ORGANIC"
+      },
+      {
+        "code": "0901210050",
+        "description": "COFFEE, ROASTED, NOT DECAFFEINATED, OTHER THAN CERTIFIED ORGANIC"
+      }
+    ]
+  },
+  {
+    "sha256": "2B88ED21ECE50B0F0CD06F546DB0876E2EB286BB937FB5364EE729F9C1A6E1E1",
+    "year": 2025,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2025/imp-code.txt",
+    "direction": "imp",
+    "rows": [
+      {
+        "code": "0901210015",
+        "description": "COFFEE, CERTIFIED ORGANIC, ARABICA, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210020",
+        "description": "COFFEE, ARABICA, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210025",
+        "description": "COFFEE, CERTIFIED ORGANIC, ROBUSTA, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210029",
+        "description": "COFFEE, ROBUSTA, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210035",
+        "description": "COFFEE, CERTIFIED ORGANIC, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210040",
+        "description": "OTHER COFFEE, CERTIFIED ORGANIC, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210045",
+        "description": "COFFEE, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210049",
+        "description": "OTHER COFFEE, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210055",
+        "description": "COFFEE, CERTIFIED ORGANIC, ROASTED, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210065",
+        "description": "COFFEE, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+      }
+    ]
+  },
+  {
+    "sha256": "BE7D3BAB2ADAF3BC05110DAFE8EA333400897959A167F14B5EB314C74010B797",
+    "year": 2025,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2025/exp-code.txt",
+    "direction": "exp",
+    "rows": [
+      {
+        "code": "0901210010",
+        "description": "COFFEE, ROASTED, NOT DECAFFEINATED, CERTIFIED ORGANIC"
+      },
+      {
+        "code": "0901210050",
+        "description": "COFFEE, ROASTED, NOT DECAFFEINATED, OTHER THAN CERTIFIED ORGANIC"
+      }
+    ]
+  },
+  {
+    "sha256": "267137FFC87B819DFEA80859EC804940EA220A7C3B512D2D985F2B2E038FC31C",
+    "year": 2026,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2026/imp-code.txt",
+    "direction": "imp",
+    "rows": [
+      {
+        "code": "0901210015",
+        "description": "COFFEE, CERTIFIED ORGANIC, ARABICA, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210020",
+        "description": "COFFEE, ARABICA, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210025",
+        "description": "COFFEE, CERTIFIED ORGANIC, ROBUSTA, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210029",
+        "description": "COFFEE, ROBUSTA, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210035",
+        "description": "COFFEE, CERTIFIED ORGANIC, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210040",
+        "description": "OTHER COFFEE, CERTIFIED ORGANIC, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210045",
+        "description": "COFFEE, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210049",
+        "description": "OTHER COFFEE, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210055",
+        "description": "COFFEE, CERTIFIED ORGANIC, ROASTED, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+      },
+      {
+        "code": "0901210065",
+        "description": "COFFEE, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+      }
+    ]
+  },
+  {
+    "sha256": "6841A8573E408B11A8ADFCB49DB84B9038C40F8396DB4E11F00797138639BCE8",
+    "year": 2026,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+    "direction": "exp",
+    "rows": [
+      {
+        "code": "0901210010",
+        "description": "COFFEE, ROASTED, NOT DECAFFEINATED, CERTIFIED ORGANIC"
+      },
+      {
+        "code": "0901210050",
+        "description": "COFFEE, ROASTED, NOT DECAFFEINATED, OTHER THAN CERTIFIED ORGANIC"
+      }
+    ]
+  }
+]

@@ -8,7 +8,8 @@ export async function fetchProductMonth(options:FetchOptions,fetchImpl:typeof fe
   const payloads:unknown[][][]=[];
   for(const summary of ['HS','HSCY']){
     const url=new URL(`https://api.census.gov/data/timeseries/intltrade/${options.direction}/hs`);
-    url.searchParams.set('get',[commodity,`${commodity}_LDESC`,measure,'CTY_CODE','CTY_NAME','COMM_LVL','SUMMARY_LVL','SUMMARY_LVL2','LAST_UPDATE'].join(','));
+    // Census appends predicate fields to its table; requesting them again duplicates headers.
+    url.searchParams.set('get',[`${commodity}_LDESC`,measure,'CTY_CODE','CTY_NAME','LAST_UPDATE'].join(','));
     url.searchParams.set(commodity,options.productCode);url.searchParams.set('COMM_LVL','HS6');
     url.searchParams.set('SUMMARY_LVL','DET');url.searchParams.set('SUMMARY_LVL2',summary);
     url.searchParams.set('time',options.month);
@@ -32,9 +33,11 @@ export async function fetchProductMonth(options:FetchOptions,fetchImpl:typeof fe
     payloads.push(payload);
   }
   const headers=payloads[0][0];
+  const knownHeaders=new Set([commodity,`${commodity}_LDESC`,measure,'CTY_CODE','CTY_NAME','COMM_LVL','SUMMARY_LVL','SUMMARY_LVL2','LAST_UPDATE','time','DISTRICT','RP','CTY_SUBCODE']);
+  const safeHeaderNames=(names:unknown[])=>names.filter(name=>typeof name==='string'&&knownHeaders.has(name)).join(',');
   const combined=[headers];
   for(const payload of payloads){
-    if(new Set(payload[0]).size!==payload[0].length||payload[0].length!==headers.length||headers.some(h=>!payload[0].includes(h)))throw new Error('Inconsistent Census headers');
+    if(new Set(payload[0]).size!==payload[0].length||payload[0].length!==headers.length||headers.some(h=>!payload[0].includes(h)))throw new Error(`Inconsistent Census headers; known fields: [${safeHeaderNames(headers)}] versus [${safeHeaderNames(payload[0])}]`);
     for(const row of payload.slice(1)){
       if(!Array.isArray(row)||row.length!==headers.length)throw new Error('Incomplete Census row');
       combined.push(headers.map(h=>row[payload[0].indexOf(h)]));
