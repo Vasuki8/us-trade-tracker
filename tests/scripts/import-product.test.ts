@@ -38,3 +38,9 @@ it('bounds retries for rate limits and server failures',async()=>{
 it.each([new Response('<html>no</html>',{headers:{'content-type':'text/html'}}),new Response('bad json',{headers:{'content-type':'application/json'}})])('rejects a non-data response',async(response)=>{
   await expect(fetchProductMonth(options,(async()=>response) as typeof fetch)).rejects.toThrow();
 });
+it('reports only known header names when a response repeats query fields',async()=>{
+  const field=imports[0].indexOf('I_COMMODITY');
+  const payload=body('imports','HS').map(row=>[...row,row[field],options.apiKey]);
+  const error=await fetchProductMonth(options,(async()=>Response.json(payload)) as typeof fetch).then(()=>null,error=>error as Error);
+  expect(error?.message).toContain('known fields');expect(error?.message).not.toContain(options.apiKey);
+});
