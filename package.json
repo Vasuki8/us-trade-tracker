@@ -16,6 +16,7 @@
     "data:import": "node --env-file-if-exists=.env --import tsx scripts/import-product.ts",
     "data:validate": "node --import tsx scripts/validate-data.ts",
     "data:archive": "node --import tsx scripts/archive-product.ts",
+    "data:audit-duties": "node --import tsx scripts/audit-duties.ts",
     "test:e2e": "playwright test"
   },
   "dependencies": {

@@ -1,0 +1,41 @@
+name: Audit coffee estimated duties
+on:
+  workflow_dispatch:
+    inputs:
+      reporting_month:
+        description: Confirmed published reporting month (YYYY-MM), initially 2026-08
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: census-duty-audit
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci
+      - run: npm test
+      - run: npm run check
+      - name: Retrieve and reconcile 24 coffee duty months
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+          REPORTING_MONTH: ${{ inputs.reporting_month }}
+        run: npm run data:audit-duties -- --end "$REPORTING_MONTH"
+      - name: Retain audit evidence even when coverage fails
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: census-coffee-duty-audit
+          path: .tmp/duty-audit/
+          if-no-files-found: warn
+          retention-days: 7
