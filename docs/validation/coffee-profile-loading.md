@@ -20,16 +20,20 @@ Both builds use the same retained version 2 Census release, `2026-08-5f3c2606-06
 
 The product HTML is **95.3% smaller before compression** and **62.3% smaller with gzip**. The small decoder increases compressed JavaScript by 564 bytes. Every normal build continues to report its file count, raw total size and largest file.
 
-Five fresh Chromium contexts per variant and CPU setting were visited in alternating order on local Astro preview servers. Hydration timing was recorded when the island removed its server-rendered marker; long tasks used the browser PerformanceObserver. Viewport: 1280 × 1000. There was no network throttling. The browser ran on the development computer; these measurements do not establish deployed performance or real mobile-device timing.
+Five fresh Chromium contexts per variant and CPU setting were visited in alternating order on local Astro preview servers. A test-only React DevTools hook recorded the first root commit, then requested a direction change from Imports to Exports in the next task. A DOM observer recorded completion when the displayed merchandise measure changed to `ALL_VAL_MO`. Long tasks used PerformanceObserver, collected through the completed interaction and following animation frame. Viewport: 1280 × 1000. There was no network throttling. The browser ran on the development computer; these measurements do not establish deployed performance or real mobile-device timing.
 
 | Median local timing | Before | After |
 | --- | ---: | ---: |
-| Hydration complete, normal CPU | 268.9 ms | 126.0 ms |
-| Hydration complete, simulated 4× slower CPU | 1,057.6 ms | 636.0 ms |
-| Total long-task time, normal CPU | 63 ms | 0 ms |
-| Total long-task time, simulated 4× slower CPU | 638 ms | 497 ms |
+| First React commit, normal CPU | 355.5 ms | 222.1 ms |
+| First completed direction change, normal CPU | 404.4 ms | 270.8 ms |
+| First React commit, simulated 4× slower CPU | 1,599.1 ms | 1,214.3 ms |
+| First completed direction change, simulated 4× slower CPU | 1,887.7 ms | 1,493.1 ms |
+| Total long-task time, normal CPU | 106 ms | 0 ms |
+| Total long-task time, simulated 4× slower CPU | 983 ms | 648 ms |
 
-Normal-CPU median hydration improved by **53.1%**; the simulated slower-CPU median improved by **39.9%**. All 20 visits retained 1,456 DOM elements and produced no browser page errors. Compression and timing evidence is retained locally in ignored `.tmp/loading-comparison.json`; previous baseline output is retained separately.
+Normal-CPU median time through the first completed direction change improved by **33.0%**; the simulated slower-CPU median improved by **20.9%**. All 20 visits retained 1,456 initial DOM elements, completed the direction change and produced no browser page errors. Compression and corrected timing evidence is retained locally in ignored `.tmp/loading-interaction-comparison.json`.
+
+Independent review caught an incorrect boundary in the first timing report: removing Astro's server-rendered marker indicates hydration scheduling and can precede React's completed render. Those earlier scheduling timings and truncated long-task totals are superseded by the commit/interaction measurements above. The correction required no product-code change.
 
 ## Acceptance
 
