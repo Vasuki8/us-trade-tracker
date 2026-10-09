@@ -26,14 +26,14 @@ function ChangesTable({countries,movement,metric}:{countries:CountryChange[];mov
   </div>;
 }
 
-export function TradeChanges({view}:{view:ChangesView}) {
+export function TradeChanges({view,context='profile'}:{view:ChangesView;context?:'profile'|'standalone'}) {
   const [metric,setMetric]=useState<ChangeMetric>('dollars');
   const ranking=rankChanges(view,metric);
   const period=(value:{from:string;to:string})=>`${monthLabel(value.from)}–${monthLabel(value.to)}`;
   return <section className="changes-card" aria-labelledby="changes-heading">
     <div className="section-heading"><div><p className="eyebrow">COUNTRY COMPARISONS</p><h2 id="changes-heading">What changed?</h2></div><span className="measure-tag">{view.provenance.measure}</span></div>
     <p className="changes-period"><strong>{period(view.periods.current)}</strong> compared with <strong>{period(view.periods.previous)}</strong> · U.S. {view.direction}</p>
-    <p className="changes-description">Up to ten increases and ten decreases, ranked by dollar change or country-share change. Share of U.S. {view.direction} for this product uses the official world total for each period. These comparisons stay independent of chart selections and the history window.</p>
+    <p className="changes-description">Up to ten increases and ten decreases, ranked by dollar change or country-share change. Share of U.S. {view.direction} for this product uses the official world total for each period.{context==='profile'&&' These comparisons stay independent of chart selections and the history window.'}</p>
     <div className="changes-world"><span>U.S. total · current <strong>{usd(view.world.current)}</strong></span><span>previous <strong>{usd(view.world.previous)}</strong></span><span>change <strong>{dollars(view.world.changeUsd)}</strong> · {percent(view.world.changePercent)}</span></div>
     <div className="changes-controls"><label>Rank changes by<select value={metric} onChange={event=>setMetric(event.target.value as ChangeMetric)}><option value="dollars">Dollar change</option><option value="share">Country share change</option></select></label>
       <button className="secondary-button" disabled={ranking.increases.length+ranking.decreases.length===0} onClick={()=>downloadBlob(new Blob([serializeChangesCsv(view,metric)],{type:'text/csv;charset=utf-8'}),`hs-${view.productCode}-${view.direction}-changes-${metric}.csv`)}>Download changes CSV</button>

@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {MonthlyChanges} from '../components/MonthlyChanges';
+import {loadRelease} from '../lib/trade/load-release';
+import {buildChangesView} from '../lib/trade/changes';
+const release=await loadRelease();
+const views={imports:buildChangesView(release,'imports'),exports:buildChangesView(release,'exports')};
+const productName=release.productCode==='090121'?'Roasted coffee':views.imports.title;
+---
+<BaseLayout title="Monthly changes" description="Explore changes in U.S. coffee imports, exports and partner-country shares using sourced rolling twelve-month comparisons.">
+  <div class="page-heading"><p class="eyebrow">MONTHLY RELEASE RESEARCH</p><h1>Monthly changes</h1><p>Current pilot coverage: {productName} (HS {release.productCode}).</p><p>Updated with each monthly release. Compare the latest rolling twelve months with the preceding twelve months to see which partner markets are gaining or losing ground.</p><a href={`/products/${release.productCode}/`}>View the full product profile</a></div>
+  <MonthlyChanges data={JSON.stringify(views)} reportingMonth={release.reportingMonth} client:load/>
+</BaseLayout>
