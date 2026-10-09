@@ -12,7 +12,7 @@ test('active filters, downloads and research provenance stay aligned',async({pag
   await page.getByRole('radio',{name:'Exports'}).check();
   for(const name of ['CANADA','ITALY','MEXICO'])await page.getByRole('checkbox',{name}).check();
   await expect(page.getByRole('checkbox',{name:'GERMANY'})).toBeDisabled();
-  await page.getByLabel('History window').selectOption('12');await expect(page.getByRole('row')).toHaveCount(13);
+  await page.getByLabel('History window').selectOption('12');await expect(page.getByRole('table',{name:'Monthly trade values · current U.S. dollars'}).getByRole('row')).toHaveCount(13);
   const csvDownload=page.waitForEvent('download');await page.getByRole('button',{name:'Download data CSV'}).click();
   const csv=await readFile(await (await csvDownload).path(),'utf8');
   expect(csv).toContain('"COFFEE, ROASTED, NOT DECAFFEINATED",exports,1220,CANADA,50,reported,ALL_VAL_MO');
@@ -33,7 +33,7 @@ test('active filters, downloads and research provenance stay aligned',async({pag
 });
 test('mobile controls work without page overflow and are keyboard accessible',async({page})=>{
   await page.setViewportSize({width:375,height:812});await openProfile(page);
-  await expect(page.getByRole('table')).toBeVisible();
+  await expect(page.getByRole('table',{name:'Monthly trade values · current U.S. dollars'})).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
   const axis=page.locator('svg:visible text[text-anchor="end"]').first();
   expect(await axis.evaluate(element=>Number(element.getAttribute('font-size'))*(element as SVGGraphicsElement).getScreenCTM()!.a)).toBeGreaterThanOrEqual(10);
@@ -43,7 +43,7 @@ test('mobile controls work without page overflow and are keyboard accessible',as
   await expect(page.getByLabel('History window')).toHaveValue('12');
   for(const name of ['CANADA','GERMANY','ITALY']){await tabTo(page,page.getByRole('checkbox',{name}));await page.keyboard.press('Space');}
   await expect(page.getByRole('checkbox',{name:'MEXICO'})).toBeDisabled();
-  await expect(page.getByRole('row')).toHaveCount(13);
+  await expect(page.getByRole('table',{name:'Monthly trade values · current U.S. dollars'}).getByRole('row')).toHaveCount(13);
   await tabTo(page,page.getByRole('button',{name:'Download data CSV'}));const csvDownload=page.waitForEvent('download');await page.keyboard.press('Enter');
   expect((await csvDownload).suggestedFilename()).toBe('hs-090121-exports.csv');
   await page.screenshot({path:'test-results/visual/mobile.png',fullPage:true});
@@ -63,8 +63,57 @@ test('a PNG failure leaves CSV export usable',async({page})=>{
   const downloaded=page.waitForEvent('download');await page.getByRole('button',{name:'Download data CSV'}).click();
   expect((await downloaded).suggestedFilename()).toMatch(/\.csv$/);
 });
-test('initial research and methods remain available without JavaScript',async({browser})=>{
-  const context=await browser.newContext({javaScriptEnabled:false});const page=await context.newPage();
-  await page.goto('http://127.0.0.1:4321/products/090121/');await expect(page.getByRole('table')).toBeVisible();
+test('initial research and methods remain available without JavaScript',async({browser,baseURL})=>{
+  const context=await browser.newContext({javaScriptEnabled:false,baseURL});const page=await context.newPage();
+  await page.goto('/products/090121/');await expect(page.getByRole('table',{name:'Monthly trade values · current U.S. dollars'})).toBeVisible();
+  await expect(page.getByRole('region',{name:'What changed?',exact:true}).getByRole('table',{name:'Largest increases · dollar change'})).toBeVisible();
+  // Playwright's text locator deliberately excludes noscript elements.
+  await expect(page.locator('noscript p')).toBeVisible();
+  await expect(page.locator('noscript p')).toHaveText('Enable JavaScript to change the ranking, trade direction or download a CSV.');
   await page.getByRole('link',{name:'Source & methods'}).click();await expect(page.getByRole('heading',{name:'Sources & methods'})).toBeVisible();await context.close();
+});
+
+test('changes rankings and downloaded CSV match the direction and ranking measure',async({page})=>{
+  await openProfile(page);const changes=page.getByRole('region',{name:'What changed?',exact:true});
+  await expect(changes).toContainText('Jan 2025–Dec 2025 compared with Jan 2024–Dec 2024');
+  await expect(changes.getByRole('status')).toContainText('1 country excluded');
+  await expect(changes.getByRole('row',{name:/CANADA/})).toHaveCount(0);
+  await changes.getByLabel('Rank changes by').selectOption('share');
+  const decreases=changes.getByRole('table',{name:'Largest decreases · country share change'});
+  await expect(decreases.getByRole('row',{name:/GERMANY/})).toContainText('-3.0 pp');
+  const initial=await changes.getByRole('table').allTextContents();
+  await page.getByRole('checkbox',{name:'ITALY'}).check();await page.getByLabel('History window').selectOption('12');
+  expect(await changes.getByRole('table').allTextContents()).toEqual(initial);
+  const downloaded=page.waitForEvent('download');await changes.getByRole('button',{name:'Download changes CSV'}).click();
+  const file=await downloaded;expect(file.suggestedFilename()).toBe('hs-090121-imports-changes-share.csv');
+  const csv=await readFile(await file.path(),'utf8');
+  const [header,...lines]=csv.trim().split('\r\n');const columns=header.split(',');
+  const records=lines.map(line=>Object.fromEntries(line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map((value,i)=>[columns[i],value.replace(/^"|"$/g,'').replaceAll('""','"')])));
+  expect(records.map(row=>row.partner_code)).toEqual(['4759','2010','4280']);
+  expect(records.slice(0,2).map(row=>Number(row.share_change_percentage_points))).toEqual([1,1]);
+  expect(Number(records[2].share_change_percentage_points)).toBeCloseTo(-3);
+  for(const row of records){expect(row.ranking_metric).toBe('share');expect(row.direction).toBe('imports');expect(row.current_period_start).toBe('2025-01');expect(row.previous_period_end).toBe('2024-12');expect(row.source).toBe('Development sample data');expect(row.measure).toBe('GEN_VAL_MO');}
+  await page.getByRole('radio',{name:'Exports'}).check();await expect(changes.getByRole('button',{name:'Download changes CSV'})).toBeDisabled();
+  await expect(changes.getByRole('status')).toContainText('4 countries have no change');
+  await changes.getByLabel('Rank changes by').selectOption('dollars');
+  await expect(changes.getByRole('row',{name:/CANADA/})).toContainText('$600');
+  const exported=page.waitForEvent('download');await changes.getByRole('button',{name:'Download changes CSV'}).click();
+  const exportCsv=await readFile(await (await exported).path(),'utf8');
+  expect(exportCsv).toContain('exports,1220,CANADA,600,300,300,100,25,25,0');expect(exportCsv).toContain('ALL_VAL_MO');
+  await changes.screenshot({path:'test-results/visual/changes-desktop.png'});
+});
+
+test('changes controls and horizontal tables are usable by keyboard on mobile',async({page})=>{
+  await page.setViewportSize({width:375,height:812});await openProfile(page);
+  const changes=page.getByRole('region',{name:'What changed?',exact:true});
+  await tabTo(page,changes.getByLabel('Rank changes by'));await page.keyboard.press('ArrowDown');
+  await expect(changes.getByLabel('Rank changes by')).toHaveValue('share');
+  await tabTo(page,changes.getByRole('button',{name:'Download changes CSV'}));
+  const downloaded=page.waitForEvent('download');await page.keyboard.press('Enter');
+  expect((await downloaded).suggestedFilename()).toBe('hs-090121-imports-changes-share.csv');
+  const scrolling=changes.getByRole('region',{name:'Scrollable largest increases · country share change'});
+  await tabTo(page,scrolling);for(let i=0;i<10;i++)await page.keyboard.press('ArrowRight');
+  await expect.poll(()=>scrolling.evaluate(element=>element.scrollLeft)).toBeGreaterThan(0);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+  await changes.screenshot({path:'test-results/visual/changes-mobile.png'});
 });

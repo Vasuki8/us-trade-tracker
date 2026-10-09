@@ -1,11 +1,13 @@
-import {useRef,useState} from 'react';
+import {useMemo,useRef,useState} from 'react';
 import type {Release,Direction} from '../lib/trade/types';import {buildProfileView} from '../lib/trade/profile';
 import {usd,percent,monthLabel} from '../lib/trade/format';import {serializeCsv,downloadBlob,exportChartPng} from '../lib/trade/downloads';
 import {TradeChart} from './TradeChart';import {TradeTable} from './TradeTable';
+import {TradeChanges} from './TradeChanges';import {buildChangesView} from '../lib/trade/changes';
 export function ProductExplorer({release}:{release:Release}){
   const [direction,setDirection]=useState<Direction>('imports');const [months,setMonths]=useState<12|60>(60);
   const [countryCodes,setCountryCodes]=useState<string[]>([]);const [downloadError,setDownloadError]=useState('');const [busy,setBusy]=useState(false);
   const svg=useRef<SVGSVGElement>(null);const view=buildProfileView(release,{direction,months,countryCodes});
+  const changes=useMemo(()=>buildChangesView(release,direction),[release,direction]);
   const countries=[...view.partners].sort((a,b)=>a.name.localeCompare(b.name));
   const downloadPng=async()=>{setDownloadError('');setBusy(true);try{if(!svg.current)throw new Error('Chart unavailable');downloadBlob(await exportChartPng(svg.current),`hs-${release.productCode}-${direction}.png`);}catch{setDownloadError('PNG export failed. You can still download the displayed data as CSV.');}finally{setBusy(false);}};
   return <>
@@ -27,6 +29,7 @@ export function ProductExplorer({release}:{release:Release}){
       <fieldset className="country-list"><legend className="sr-only">Partner countries</legend>{countries.map(country=><label key={country.code}><input type="checkbox" checked={countryCodes.includes(country.code)} disabled={countryCodes.length===3&&!countryCodes.includes(country.code)} onChange={e=>setCountryCodes(e.target.checked?[...countryCodes,country.code]:countryCodes.filter(c=>c!==country.code))}/><span>{country.name}</span></label>)}</fieldset>
       <p className="selection-count" role="status">{countryCodes.length} of 3 selected</p>{countryCodes.length>0&&<button className="text-button" onClick={()=>setCountryCodes([])}>Show U.S. total</button>}
     </aside></section>
+    <TradeChanges view={changes}/>
     <section className="detail-grid"><div className="data-card"><p className="eyebrow">DISPLAYED DATA</p><h2>The numbers behind the chart</h2><TradeTable view={view}/></div>
       <aside className="partners-card"><p className="eyebrow">LATEST TWELVE MONTHS</p><h2>Leading partners</h2><p>Share of U.S. {direction} for this product.</p><ol className="partner-ranks">{view.partners.slice(0,10).map(partner=><li key={partner.code}><span>{partner.name}</span><strong>{usd(partner.valueUsd,true)}</strong><small>{partner.sharePercent===null?'Share unavailable':`${partner.sharePercent.toFixed(1)}% share`}</small></li>)}</ol><p className="chart-note">Ranked by dollar value. Incomplete periods remain unavailable. Export flows describe U.S. sales, not a destination’s total demand.</p></aside>
     </section>
