@@ -14,7 +14,9 @@ The coffee profile also includes “What changed?”: up to ten country increase
 
 The next approved scope is **Estimated duties** on imports: validate coffee's monthly Census duty and consumption-value coverage, extend aggregation and recovery while preserving existing archives, then show monthly figures and rolling twelve month comparisons. Duty shares use matching imports-for-consumption denominators and ratios of period sums, with reporting qualifications and unavailable comparisons where needed. This feature is planned; live coffee duty coverage and implementation remain pending. The [approved requirements](docs/superpowers/specs/2026-10-08-us-trade-tracker-design.md#approved-scope-additions) define its methods and acceptance checks.
 
-Pilot pages and chart data will stay on static hosting, and CSV/PNG downloads continue to generate in the browser. R2 remains private archive storage. Measure build file counts and payload sizes before adding public R2 delivery; see the [hosting direction](docs/superpowers/specs/2026-10-08-us-trade-tracker-design.md#launch-resources-and-hosting-direction).
+The agreed pilot hosting approach keeps pages and chart data on the same static host, with CSV/PNG downloads generated in the browser. R2 remains private archive storage. Each completed Astro build reports its file count, uncompressed total size and largest file in the build log and, on GitHub Actions, the job summary. At 15,000 files it issues a non-blocking planning warning. Public R2 delivery is reserved for selected large datasets or bulk downloads when measured growth justifies it; ordinary pages stay on static hosting. See the [hosting direction](docs/superpowers/specs/2026-10-08-us-trade-tracker-design.md#launch-resources-and-hosting-direction).
+
+Run `npm run build:report` to measure an existing `dist/` without rebuilding, or `npm run build:report -- --dir path/to/output` for another output directory. Reports stay outside deployment assets. Build sizes are raw bytes before network compression.
 
 ## Local development
 

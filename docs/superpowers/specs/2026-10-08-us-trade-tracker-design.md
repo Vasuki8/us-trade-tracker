@@ -112,7 +112,14 @@ The initial monthly hosting budget is US$0 to US$15, excluding the domain and de
 
 The agreed development direction is Astro with TypeScript and React for interactive charts, starting with Cloudflare free hosting. Prepare public pages and chart data during release processing so routine visits require little backend work. Keep pilot pages and chart data on the same static host, with CSV and PNG downloads generated in the browser. Private R2 Standard archiving and recovery are verified for the coffee merchandise release; public deployment and automatic monthly processing remain pending. Use GitHub Actions within its included allowance. [Cloudflare pricing](https://developers.cloudflare.com/workers/platform/pricing/), [R2 pricing](https://developers.cloudflare.com/r2/pricing/), [GitHub Actions allowances](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 
-Measure actual deployment files, total bytes and largest-file size in each build before expanding coverage. The coffee preview measured on October 9, 2026 contains seven files, with roughly 4.6 MB in the product HTML before compression. The [Cloudflare Pages Free limit](https://developers.cloudflare.com/pages/platform/limits/) is 20,000 files and 25 MiB per asset. Reduce large page payloads before broad coverage; use a planning alert around 15,000 files. Public R2 delivery is deferred until measured file counts, asset sizes or other requirements justify it. A stored file is not needed for every chart selection or generated download.
+The approved hosting approach is:
+
+1. Keep pages and chart data on the same static host, with private R2 backup storage.
+2. Generate CSV and PNG downloads in the browser rather than storing each country, period and chart combination.
+3. Measure every completed build: report file count, uncompressed total size and largest file in its log and GitHub Actions job summary. Issue a non-blocking planning warning at 15,000 files.
+4. Use public R2 selectively if measured growth requires it. Large datasets or bulk downloads are candidates; ordinary pages remain on static hosting.
+
+The coffee preview measured on October 9, 2026 contains seven files, with roughly 4.6 MB in the product HTML before compression. The [Cloudflare Pages Free limit](https://developers.cloudflare.com/pages/platform/limits/) is 20,000 files and 25 MiB per asset. Reduce large page payloads before broad coverage. The planning warning does not enforce provider limits or authorize a hosting upgrade; review actual counts and sizes before deployment. A stored file is not needed for every chart selection or generated download.
 
 Aim to launch a small pilot within free allowances and retain the budget as headroom. Measure a representative data import before committing to full coverage. Increase spending when processing, storage, performance, or personalized workflows require it; traffic growth alone is not an upgrade trigger. Paid services and publication require a separate deployment decision.
 
