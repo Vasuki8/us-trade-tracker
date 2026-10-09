@@ -2,6 +2,7 @@ import {expect,it} from 'vitest';
 import {buildDutyView} from '../../src/lib/trade/duties';
 import {sampleDutyRelease} from '../helpers/duties';
 import {sampleRelease} from '../helpers/release';
+import {serializeDutyCsv} from '../../src/lib/trade/downloads';
 const series=()=>buildDutyView(sampleDutyRelease(),[]).series[0];
 it('calculates rolling shares from matching sums, not monthly percentage averages',()=>{
  const {current,previous,change}=series().rolling;
@@ -40,4 +41,15 @@ it('keeps each selected country separate, without manufacturing missing country-
 it('returns explicit unavailability for v1 and rejects duplicate identities or unsafe totals',()=>{
  expect(buildDutyView(sampleRelease(),[])).toMatchObject({available:false,series:[]});const r=sampleDutyRelease();r.duties.observations.push(r.duties.observations[0]);expect(()=>buildDutyView(r,[])).toThrow(/duplicate/i);
  const huge=sampleDutyRelease();huge.duties.observations.forEach(row=>row.calculatedDuty.valueUsd=Number.MAX_SAFE_INTEGER);expect(()=>buildDutyView(huge,[])).toThrow(/precision|safe/i);
+});
+it('exports displayed monthly and rolling records, matching measures, qualifications and provenance',()=>{
+ const r=sampleDutyRelease();r.duties.observations[12].coverage.uncalculatedDutiableValueUsd=100;
+ const csv=serializeDutyCsv(buildDutyView(r,[]));expect(csv).toContain('CAL_DUT_MO,CON_VAL_MO,DUT_VAL_MO');expect(csv).toContain('Estimated duties');expect(csv).toContain('2026-01-01T00:00:00.000Z');expect(csv).toContain('Development sample data');expect(csv).toContain('2025-01,2025-12');
+ const lines=csv.trim().split('\r\n');expect(lines).toHaveLength(27);const header=lines[0].split(','),current=lines.find(line=>line.startsWith('rolling_current,'))!.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+ expect(current[header.indexOf('calculated_duty_usd')]).toBe('30');expect(current[header.indexOf('consumption_value_usd')]).toBe('400');expect(current[header.indexOf('duty_share_percent')]).toBe('7.5');expect(current[header.indexOf('affected_dutiable_value_usd')]).toBe('100');expect(current[header.indexOf('affected_dutiable_share_percent')]).toBe('25');
+ expect(current[header.indexOf('duty_share_change_percentage_points')]).toBe('2.5');
+});
+it('quotes CSV text safely, keeps numeric changes numeric and missing cells blank',()=>{
+ const view=buildDutyView(sampleDutyRelease(),[]);view.title='@Coffee, "roasted"\nline';view.series[0].name='=1+1';view.series[0].monthly[0].calculatedDutyUsd=null;view.series[0].monthly[0].statuses.calculatedDuty='suppressed';view.series[0].rolling.change.calculatedDutyUsd=-20;
+ const csv=serializeDutyCsv(view);expect(csv).toContain('"\'@Coffee, ""roasted""\nline"');expect(csv).toContain("'=1+1");expect(csv).toContain(',-20,');expect(csv).toContain(',suppressed,');expect(csv).not.toContain("'-20");
 });
