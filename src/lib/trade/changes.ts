@@ -15,6 +15,12 @@ export type ChangesView = {
   provenance:ProfileView['provenance'];
 };
 
+export function selectCountryChanges(view:ChangesView,countryCodes:string[]):CountryChange[]{
+  const countries=countryCodes.map(code=>view.countries.find(country=>country.code===code));
+  if(countryCodes.length>3||new Set(countryCodes).size!==countryCodes.length||countries.some(country=>!country))throw new Error('Choose up to three available countries');
+  return countries as CountryChange[];
+}
+
 // Each share difference has the same denominator within a view. Integer cross-products
 // preserve exact ties and signs even when decimal share subtraction loses precision.
 const shareNumerator=(current:number,previous:number,world:Comparison)=>BigInt(current)*BigInt(world.previous!)-BigInt(previous)*BigInt(world.current!);

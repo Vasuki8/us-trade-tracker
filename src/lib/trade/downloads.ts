@@ -1,7 +1,15 @@
 import type {ProfileView} from './types';
 import type {DutyView,DutyPeriod,DutyComparison} from './duty-types';
-import {rankChanges,type ChangeMetric,type ChangesView} from './changes';
+import {rankChanges,selectCountryChanges,type ChangeMetric,type ChangesView} from './changes';
 const csvCell=(value:unknown)=>{let text=String(value??'');if(typeof value==='string'&&/^(?:[=+@]|-(?!$)|[\t\r])/.test(text))text="'"+text;return /[",\r\n]/.test(text)?`"${text.replaceAll('"','""')}"`:text;};
+export function serializeSelectedCountriesCsv(view:ChangesView,countryCodes:string[]):string{
+  const headers=['feature','product_code','product_description','direction','partner_code','partner_name','current_value_usd','previous_value_usd','change_usd','growth_percent','current_share_percent','previous_share_percent','share_change_percentage_points','world_current_value_usd','world_previous_value_usd','current_period_start','current_period_end','previous_period_start','previous_period_end','measure','units','source','retrieved_at','code_version','revised','classification_comparable','source_urls'];
+  const rows=selectCountryChanges(view,countryCodes).map(country=>[
+    'Selected country comparison',view.productCode,view.title,view.direction,country.code,country.name,country.currentUsd,country.previousUsd,country.changeUsd,country.changePercent,country.currentSharePercent,country.previousSharePercent,country.shareChangePoints,view.world.current,view.world.previous,
+    view.periods.current.from,view.periods.current.to,view.periods.previous.from,view.periods.previous.to,view.provenance.measure,'current USD, not seasonally adjusted; shares in percent; share change in percentage points',view.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau',view.provenance.retrievedAt,view.provenance.codeVersion,view.provenance.revised,view.classificationComparable,view.provenance.sourceUrls.join(' | ')
+  ]);
+  return [headers,...rows].map(row=>row.map(csvCell).join(',')).join('\r\n')+'\r\n';
+}
 export function serializeDutyCsv(view:DutyView):string{
   const headers=['record_type','feature','product_code','product_description','direction','partner_code','partner_name','period_start','period_end','calculated_duty_usd','consumption_value_usd','dutiable_value_usd','duty_share_percent','calculated_duty_status','consumption_value_status','dutiable_value_status','period_complete','classification_compatible','coverage_status','affected_dutiable_value_usd','affected_dutiable_share_percent','qualified','comparison_period_start','comparison_period_end','comparison_coverage_status','comparison_affected_dutiable_value_usd','comparison_affected_dutiable_share_percent','comparison_available','calculated_duty_change_usd','duty_growth_percent','duty_share_change_percentage_points','numerator_measure','denominator_measure','coverage_measure','units','qualification','source','retrieved_at','code_version','revised','source_urls'];
   const rows=view.series.flatMap(series=>{

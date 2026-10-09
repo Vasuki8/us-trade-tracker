@@ -6,6 +6,7 @@ import {TradeChanges} from './TradeChanges';import {buildChangesView} from '../l
 import {EstimatedDuties} from './EstimatedDuties';import {buildDutyView} from '../lib/trade/duties';
 import {profileViewPath,readViewSelection} from '../lib/trade/view-link';
 import {CountryPicker} from './CountryPicker';
+import {SelectedCountryComparison} from './SelectedCountryComparison';
 export function ProductExplorer({release}:{release:Release}){
   const [selection,setSelection]=useState<ExplorerSelection>({direction:'imports',months:60,countryCodes:[]});
   const {direction,months,countryCodes}=selection;
@@ -47,8 +48,8 @@ export function ProductExplorer({release}:{release:Release}){
       {showLink&&<div className="view-link-fallback"><p role="status">Select and copy the view link below. Automatic copying is unavailable.</p><label>View link<input readOnly value={viewLink} onFocus={event=>event.currentTarget.select()}/></label></div>}
     </div>
     <noscript><p className="chart-note">Enable JavaScript to restore saved selections or copy a view link. JavaScript is also required to find and select countries. The initial view shows U.S. imports with up to five years of available history.</p></noscript>
-    <div className="summary-grid"><div className="stat"><span>Latest month · {direction}</span><strong>{usd(view.latestMonth.current,true)}</strong><small>{percent(view.latestMonth.changePercent)} year over year · {usd(view.latestMonth.changeUsd,true)} change</small></div>
-      <div className="stat"><span>Trailing twelve months</span><strong>{usd(view.trailingYear.current,true)}</strong><small>{percent(view.trailingYear.changePercent)} versus previous twelve months · {usd(view.trailingYear.changeUsd,true)} change</small></div>
+    <div className="summary-grid" role="region" aria-label="U.S. trade totals"><div className="stat"><span>U.S. total · latest month · {direction}</span><strong>{usd(view.latestMonth.current,true)}</strong><small>{percent(view.latestMonth.changePercent)} year over year · {usd(view.latestMonth.changeUsd,true)} change</small></div>
+      <div className="stat"><span>U.S. total · trailing twelve months</span><strong>{usd(view.trailingYear.current,true)}</strong><small>{percent(view.trailingYear.changePercent)} versus previous twelve months · {usd(view.trailingYear.changeUsd,true)} change</small></div>
       <div className="stat definition"><span>What this measures</span><strong>{direction==='imports'?'General imports':'Total exports'}</strong><small>{direction==='imports'?'Customs value of goods entering the U.S.':'U.S. goods exported to partner markets'} · current dollars, not seasonally adjusted</small></div>
     </div>
     <section className="research-grid"><div className="chart-card"><div className="section-heading"><div><p className="eyebrow">THE TREND</p><h2>Trade over time</h2></div><span className="measure-tag">{view.provenance.measure}</span></div>
@@ -59,6 +60,7 @@ export function ProductExplorer({release}:{release:Release}){
     </div><aside className="comparison-card"><p className="eyebrow">PARTNER MARKETS</p><h2>Compare countries</h2><p>Choose up to three partners. With none selected, the chart shows the U.S. total.</p>
       <CountryPicker key={direction} countries={countries} selectedCodes={countryCodes} ready={Boolean(viewLink)} onChange={codes=>changeSelection({...selection,countryCodes:codes})}/>
     </aside></section>
+    <SelectedCountryComparison view={changes} countryCodes={countryCodes}/>
     <TradeChanges view={changes}/>
     {direction==='imports'&&<EstimatedDuties view={buildDutyView(release,countryCodes)}/>}
     <section className="detail-grid"><div className="data-card"><p className="eyebrow">DISPLAYED DATA</p><h2>The numbers behind the chart</h2><TradeTable view={view}/></div>

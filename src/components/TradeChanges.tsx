@@ -1,12 +1,8 @@
 import {useState} from 'react';
 import {rankChanges,type ChangeMetric,type ChangesView,type CountryChange} from '../lib/trade/changes';
 import {downloadBlob,serializeChangesCsv} from '../lib/trade/downloads';
-import {monthLabel,percent,usd} from '../lib/trade/format';
+import {monthLabel,percent,usd,countryShare as share,percentagePoints as points,usdChange as dollars} from '../lib/trade/format';
 import {profileViewPath} from '../lib/trade/view-link';
-
-const share=(value:number|null)=>value===null?'Unavailable':`${value.toFixed(1)}%`;
-const points=(value:number|null)=>value===null?'Unavailable':`${value>0?'+':''}${value!==0&&Math.abs(value)<0.1?new Intl.NumberFormat('en-US',{maximumSignificantDigits:2}).format(value):value.toFixed(1)} pp`;
-const dollars=(value:number|null)=>`${value!==null&&value>0?'+':''}${usd(value)}`;
 
 function ChangesTable({countries,movement,metric,view}:{countries:CountryChange[];movement:'increases'|'decreases';metric:ChangeMetric;view:ChangesView}) {
   const title=`Largest ${movement} · ${metric==='dollars'?'dollar change':'country share change'}`;
