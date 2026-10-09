@@ -43,7 +43,11 @@ export function normalizeDutyMonth(parts:DutyRawPart[],context:{productCode:stri
   for(const total of totals.values()){
     const rows=components.get(total.partnerCode);
     if(!rows?.length)continue;
-    for(const key of moneyKeys)if(total[key].valueUsd!==null&&rows.every(row=>row[key].valueUsd!==null)&&sum(rows.map(row=>row[key].valueUsd!))!==total[key].valueUsd)throw new Error('Duty rate-provision breakdown does not reconcile');
+    for(const key of moneyKeys){
+      if(total[key].valueUsd===null||rows.some(row=>row[key].valueUsd===null))continue;
+      const breakdown=sum(rows.map(row=>row[key].valueUsd!));
+      if(breakdown!==total[key].valueUsd)throw new Error(`Duty rate-provision breakdown does not reconcile: product=${context.productCode}, month=${context.month}, partner=${total.partnerCode}, measure=${fields[key]}, total=${total[key].valueUsd} USD, breakdown=${breakdown} USD`);
+    }
     if(moneyKeys.some(key=>total[key].valueUsd===null||rows.some(row=>row[key].valueUsd===null)))continue;
     total.coverage={status:'verified',uncalculatedDutiableValueUsd:sum(rows.filter(row=>row.rp==='70'||row.rp==='79').map(row=>row.dutiableValue.valueUsd!))};
   }
@@ -53,7 +57,8 @@ export function normalizeDutyMonth(parts:DutyRawPart[],context:{productCode:stri
     if(!national?.length||world[key].valueUsd===null||countries.some(row=>row[key].valueUsd===null||!components.get(row.partnerCode)?.length)||[...national,...countryRows].some(row=>row[key].valueUsd===null))continue;
     if(sum(countries.map(row=>row[key].valueUsd!))!==world[key].valueUsd)continue; // The audit reports country-total mismatches separately.
     for(const rp of new Set([...national,...countryRows].map(row=>row.rp))){
-      if(sum(national.filter(row=>row.rp===rp).map(row=>row[key].valueUsd!))!==sum(countryRows.filter(row=>row.rp===rp).map(row=>row[key].valueUsd!)))throw new Error('Country rate-provision breakdown does not reconcile with national breakdown');
+      const nationalTotal=sum(national.filter(row=>row.rp===rp).map(row=>row[key].valueUsd!)),countryTotal=sum(countryRows.filter(row=>row.rp===rp).map(row=>row[key].valueUsd!));
+      if(nationalTotal!==countryTotal)throw new Error(`Country rate-provision breakdown does not reconcile with national breakdown: product=${context.productCode}, month=${context.month}, partner=-, measure=${fields[key]}, RP=${rp}, national=${nationalTotal} USD, countries=${countryTotal} USD`);
     }
   }
   return [...totals.values()].sort((a,b)=>a.partnerCode.localeCompare(b.partnerCode));

@@ -1,15 +1,20 @@
 import type {DutyView,DutyPeriod,DutyComparison} from '../lib/trade/duty-types';
 import {monthLabel,usd,percent} from '../lib/trade/format';
 import {downloadBlob,serializeDutyCsv} from '../lib/trade/downloads';
-const share=(value:number|null)=>value===null?'Unavailable':`${value.toFixed(3)}%`;
-const points=(value:number|null)=>value===null?'Unavailable':`${value>0?'+':''}${value.toFixed(3)} pp`;
+const share=(value:number|null)=>value===null?'Unavailable':value>0&&value<0.001?'<0.001%':`${value.toFixed(3)}%`;
+function points(comparison:DutyComparison){
+  const value=comparison.change.dutySharePercentagePoints;if(value===null)return 'Unavailable';
+  // Allow arithmetic noise from subtracting the two computed shares at the display boundary.
+  const tolerance=4*Number.EPSILON*Math.max(1,Math.abs(comparison.current.dutySharePercent??0),Math.abs(comparison.previous.dutySharePercent??0));
+  return value!==0&&Math.abs(value)<0.001-tolerance?`${value>0?'Increase':'Decrease'} <0.001 pp`:`${value>0?'+':''}${value.toFixed(3)} pp`;
+}
 const period=(value:DutyPeriod)=>value.from===value.to?monthLabel(value.from):`${monthLabel(value.from)}–${monthLabel(value.to)}`;
 function Coverage({value}:{value:DutyPeriod}){
   if(value.coverage.status==='unavailable')return <span>Coverage unavailable</span>;
   return <span>RP70/79: {usd(value.coverage.affectedDutiableValueUsd)} · {share(value.coverage.affectedSharePercent)} of dutiable value{value.coverage.qualified?' · Qualified reported figures':''}</span>;
 }
 function Change({value}:{value:DutyComparison}){
-  return <p className="duty-change">Duty change <strong>{usd(value.change.calculatedDutyUsd)}</strong> · {value.change.growthPercent===null?'Growth unavailable':`${percent(value.change.growthPercent)} growth`} · Duty-share change <strong>{points(value.change.dutySharePercentagePoints)}</strong></p>;
+  return <p className="duty-change">Duty change <strong>{usd(value.change.calculatedDutyUsd)}</strong> · {value.change.growthPercent===null?'Growth unavailable':`${percent(value.change.growthPercent)} growth`} · Duty-share change <strong>{points(value)}</strong></p>;
 }
 export function EstimatedDuties({view}:{view:DutyView}){
   return <section className="duties-card" aria-labelledby="duties-heading">
@@ -31,7 +36,7 @@ export function EstimatedDuties({view}:{view:DutyView}){
         <div className="table-scroll" role="region" aria-label={`Scrollable monthly estimated duties · ${series.name}`} tabIndex={0}><table aria-label={`Monthly estimated duties · ${series.name}`}><thead><tr><th scope="col">Month</th><th scope="col">Calculated duties (USD)</th><th scope="col">Consumption value (USD)</th><th scope="col">Duty share</th><th scope="col">Dutiable value (USD)</th><th scope="col">Reporting coverage</th></tr></thead><tbody>{series.monthly.map(value=><tr key={value.from}><th scope="row">{monthLabel(value.from)}</th><td>{usd(value.calculatedDutyUsd)}</td><td>{usd(value.consumptionValueUsd)}</td><td>{share(value.dutySharePercent)}</td><td>{usd(value.dutiableValueUsd)}</td><td className="duty-coverage"><Coverage value={value}/></td></tr>)}</tbody></table></div>
       </article>)}
       <div className="download-actions"><button className="secondary-button" onClick={()=>downloadBlob(new Blob([serializeDutyCsv(view)],{type:'text/csv;charset=utf-8'}),`hs-${view.productCode}-imports-estimated-duties.csv`)}>Download estimated duties CSV</button></div>
-      <p className="chart-note">Calculated duties can differ from amounts actually paid and exclude antidumping and countervailing duties. RP70/79 report dutiable value without calculating duties; reported zero duties are not proof of duty-free trade. Duty-share changes can reflect import mix and reporting coverage as well as tariff changes. Zero or missing consumption value has no duty share; zero prior duties have no percentage growth. Amounts are current USD, not seasonally adjusted.</p>
+      <p className="chart-note">Calculated duties can differ from amounts actually paid and exclude antidumping and countervailing duties. RP70/79 report dutiable value without calculating duties; reported zero duties are not proof of duty-free trade. Duty-share changes can reflect import mix and reporting coverage as well as tariff changes. Zero or missing consumption value has no duty share; zero prior duties have no percentage growth. Amounts are current USD, not seasonally adjusted. CSV values retain full precision.</p>
       <p className="duty-source">Source: {view.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau'} · retrieved {view.provenance.retrievedAt} · processing version {view.provenance.codeVersion} · duty revisions: {view.provenance.revised?'yes':'no'}. {view.provenance.sourceUrls.map(url=><a key={url} href={url}>{url}</a>)}</p>
       <noscript><p className="chart-note">Enable JavaScript to select countries, change trade direction or download the estimated duties CSV.</p></noscript>
     </>}
