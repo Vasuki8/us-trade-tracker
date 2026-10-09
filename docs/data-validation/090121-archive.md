@@ -1,6 +1,6 @@
 # Retained coffee releases
 
-The implementation adds optional private R2 persistence to the manual coffee workflow. Its transport, protocol and workflow boundaries are tested without provider credentials. Live bucket access, GitHub archive dispatch and cloud backup recovery have not been verified or activated. The website's validated August preview remains intact.
+The implementation adds optional private R2 persistence to the manual coffee workflow. Its transport, protocol and workflow boundaries are tested without provider credentials. After owner setup, live R2 archiving, fresh-runner restoration, conditional promotion and offline recovery of both GitHub backups passed for August 2026. The website's validated August preview remains intact. The live evidence is recorded below.
 
 ## Storage and acceptance
 
@@ -10,7 +10,7 @@ Archived imports run only on `main`. They restore and validate the accepted base
 
 An uploaded candidate is not evidence of acceptance. `census-coffee-promotion` retains the outcome and the backup artifact ID/digest. `acknowledged` and `confirmed_by_readback` establish acceptance at that point; another writer may subsequently supersede it. `conflict` records a failed precondition. `unconfirmed` means a lost write response could not be resolved; check remote evidence before retrying. A receipt-save/upload failure does not roll back a known accepted write; if local saving fails, the CLI reports the established outcome with `receiptPersisted: false`. Artifact digests describe the GitHub artifact archive, not the inner bundle checksum. Backups expire after seven days; retain downloaded bundles separately.
 
-## Activation requires a separate owner decision
+## Configure a new archive
 
 After review/merge and authorization for provider activation:
 
@@ -60,7 +60,9 @@ An isolated copy of 68 tracked working-tree files under `.tmp/archive-acceptance
 
 A fresh whole-branch reviewer examined immutable range `ec682bebd873968dd3c95c413880b6b69f6320e3..ebd7c11f4c3999d50aea9d3fca9203f4cb2d6e13`, deliberately checked all five plan review-focus classes, and independently unpacked the actual offline bundle. It reported no Critical, Important or Minor findings. [GitHub Code checks run 37873244445](https://github.com/Vasuki8/us-trade-tracker/actions/runs/37873244445) also passed install, tests, type checks, fixture build and browser acceptance for that implementation commit. [PR #3](https://github.com/Vasuki8/us-trade-tracker/pull/3) contains the implementation and this documentation-only results update. A subsequent localhost request returned HTTP 200 for the actual August profile, and its original pointer checksum still matched the value above.
 
-## Execution decisions and remaining evidence
+## Implementation execution decisions
+
+These decisions describe the implementation milestone before owner activation. The two deferred live checks were subsequently completed in the separately authorized runs recorded below.
 
 | Ruling | Reason | Cost if wrong |
 | --- | --- | --- |
@@ -74,4 +76,31 @@ A fresh whole-branch reviewer examined immutable range `ec682bebd873968dd3c95c41
 
 No minor review findings were deferred.
 
-A separately authorized live check must demonstrate initial archiving, fresh-runner restoration, a repeat import against that baseline and independent backup recovery. Same-month persistence does not satisfy the separate requirement for two successive official monthly releases before public launch.
+## Live R2 acceptance evidence
+
+On October 8, 2026 (America/Toronto), after the owner configured the R2 bucket and GitHub settings, two manual **Import Census data** runs completed successfully on `main` at `d68af0d3abae18219f829a96fe62fbcf86590b47`. Each run passed all 147 tests, retrieved and validated the 60-month Census window through August 2026, uploaded/read back an immutable candidate, backed it up to GitHub, conditionally promoted it and retained an `acknowledged` promotion receipt.
+
+| Evidence | Initial archive | Repeat import |
+| --- | --- | --- |
+| GitHub run | [37879833510](https://github.com/Vasuki8/us-trade-tracker/actions/runs/37879833510) | [37880534571](https://github.com/Vasuki8/us-trade-tracker/actions/runs/37880534571) |
+| Hosted job | `113656736091` | `113658966738` |
+| Initialize archive | `true` | `false` |
+| Release ID | `2026-08-824e2648-14cc-4821-a340-1deb4cc5d1fe` | `2026-08-b4463154-08a9-450c-9b49-d1c45a2d6b52` |
+| Bundle bytes | 4,658,362 | 4,658,527 |
+| Bundle SHA256 | `375360dc66f259a36659e22ead06063e2a5416167d24b4ab51f3be5841a1c02c` | `d998ec26cbb82456992e49ef41265ee3984c2894c580fefafe9dc22da4c1faf1` |
+| Prepared release SHA256 | `d5460ad50d7ead5e8a9402df526043175b259155b5f333bae1cbf841af5a83d7` | `112a539c6006b58189462279d0f04878cc18a764a66c3e08b9c736995a62c8f7` |
+| Candidate backup artifact | `11593704049` | `11594395544` |
+| Promotion receipt artifact | `11594057734` | `11594380616` |
+| Verified observations | 9,577 | 9,577 |
+| Recovered original files compared | 241 | 241 |
+| Revised value/status keys | 0 | 0 |
+
+The first restore recorded a null baseline. The second restore retrieved the first accepted bundle, verified its SHA256 and restored its prepared release with the exact first release ID and prepared-file SHA256 above. Its stage state retained the same baseline and the quoted ETag `"f60620486ca102785a633ba01f8358e8"` for conditional promotion. The second bundle's `previous` reference identifies the first bundle and its checksum exactly.
+
+Both candidate ZIP digests and both promotion ZIP digests matched GitHub's artifact metadata. Each receipt links the corresponding candidate artifact ID/digest and inner bundle checksum; the ZIP digest and inner bundle checksum are separate values. The official recovery CLI restored each downloaded bundle to a separate fresh directory without Census or R2 calls. An independent Python verifier checked the unique 241-file manifest, every declared length/hash, the complete 240-request grid, all source-derived observation fields, the exact 242-file recovered inventory including its local pointer, and every original retained file byte. These original files are the importer's retained JSON request records and prepared release, rather than raw HTTP response bytes.
+
+The independent comparison confirmed 120 reported world observations across 60 months. August world imports were $140,980,739 and exports were $66,393,173 in both releases. Zero revisions demonstrate an unchanged same-month comparison; these runs do not provide a positive live revision-detection example.
+
+Downloaded ZIPs, extracted bundles, receipts and verification evidence are retained outside GitHub's seven-day artifact window under ignored `data/backups/r2-2026-08/<run-id>/`. Working recovery directories and the independent verifier remain under ignored `.tmp/archive-live-2026-10-08/`. No credentials or signed download URLs are included in those evidence files. The original local August pointer and prepared-release checksums still match the earlier offline evidence, preserving the known preview data.
+
+Same-month persistence does not satisfy the separate requirement for two successive official monthly releases before public launch. Broader products, scheduling, deletion and deployment remain outside this milestone.
