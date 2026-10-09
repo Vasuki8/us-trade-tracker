@@ -34,4 +34,3 @@ test('without JavaScript the national figures remain explicit and saved selectio
   const context=await browser.newContext({baseURL,javaScriptEnabled:false,viewport:{width:375,height:812}}),page=await context.newPage();
   try{await page.goto('/products/090121/?direction=exports&months=12&countries=1220');await expect(page.getByRole('region',{name:'U.S. trade totals'})).toContainText('U.S. total · latest month · imports');await expect(page.getByRole('region',{name:'U.S. trade totals'})).toContainText('U.S. total · trailing twelve months');await expect(summary(page)).toHaveCount(0);await expect(page.locator('noscript p').first()).toContainText('initial view shows U.S. imports');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}finally{await context.close();}
 });
-
