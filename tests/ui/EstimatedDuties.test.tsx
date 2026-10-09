@@ -9,6 +9,10 @@ it.each([
  {name:'actual zero',currentDuty:0,currentValue:1000000,previousDuty:0,previousValue:1000000,share:'0.000%',change:'0.000 pp',coverage:'<0.001%'},
  {name:'positive precision boundary',currentDuty:1,currentValue:100000,previousDuty:0,previousValue:1000000,share:'0.001%',change:'+0.001 pp',coverage:'0.001%'},
  {name:'negative precision boundary',currentDuty:0,currentValue:100000,previousDuty:1,previousValue:100000,share:'0.000%',change:'-0.001 pp',coverage:'0.001%'},
+ {name:'positive boundary from nonzero shares',currentDuty:1001,currentValue:100000,previousDuty:1000,previousValue:100000,share:'1.001%',change:'+0.001 pp',coverage:'0.001%'},
+ {name:'negative boundary from nonzero shares',currentDuty:1000,currentValue:100000,previousDuty:1001,previousValue:100000,share:'1.000%',change:'-0.001 pp',coverage:'0.001%'},
+ {name:'positive boundary from larger nonzero shares',currentDuty:8001,currentValue:100000,previousDuty:8000,previousValue:100000,share:'8.001%',change:'+0.001 pp',coverage:'0.001%'},
+ {name:'negative boundary from larger nonzero shares',currentDuty:8000,currentValue:100000,previousDuty:8001,previousValue:100000,share:'8.000%',change:'-0.001 pp',coverage:'0.001%'},
 ])('distinguishes $name from rounded zero',({currentDuty,currentValue,previousDuty,previousValue,share,change,coverage})=>{
  const release=sampleDutyRelease(),current=release.duties.observations.find(row=>row.month==='2025-12')!,previous=release.duties.observations.find(row=>row.month==='2024-12')!;
  current.calculatedDuty.valueUsd=currentDuty;current.consumptionValue.valueUsd=currentValue;current.dutiableValue.valueUsd=currentValue;current.coverage.uncalculatedDutiableValueUsd=1;

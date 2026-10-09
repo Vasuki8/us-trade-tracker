@@ -2,14 +2,19 @@ import type {DutyView,DutyPeriod,DutyComparison} from '../lib/trade/duty-types';
 import {monthLabel,usd,percent} from '../lib/trade/format';
 import {downloadBlob,serializeDutyCsv} from '../lib/trade/downloads';
 const share=(value:number|null)=>value===null?'Unavailable':value>0&&value<0.001?'<0.001%':`${value.toFixed(3)}%`;
-const points=(value:number|null)=>value===null?'Unavailable':value!==0&&Math.abs(value)<0.001?`${value>0?'Increase':'Decrease'} <0.001 pp`:`${value>0?'+':''}${value.toFixed(3)} pp`;
+function points(comparison:DutyComparison){
+  const value=comparison.change.dutySharePercentagePoints;if(value===null)return 'Unavailable';
+  // Allow arithmetic noise from subtracting the two computed shares at the display boundary.
+  const tolerance=4*Number.EPSILON*Math.max(1,Math.abs(comparison.current.dutySharePercent??0),Math.abs(comparison.previous.dutySharePercent??0));
+  return value!==0&&Math.abs(value)<0.001-tolerance?`${value>0?'Increase':'Decrease'} <0.001 pp`:`${value>0?'+':''}${value.toFixed(3)} pp`;
+}
 const period=(value:DutyPeriod)=>value.from===value.to?monthLabel(value.from):`${monthLabel(value.from)}–${monthLabel(value.to)}`;
 function Coverage({value}:{value:DutyPeriod}){
   if(value.coverage.status==='unavailable')return <span>Coverage unavailable</span>;
   return <span>RP70/79: {usd(value.coverage.affectedDutiableValueUsd)} · {share(value.coverage.affectedSharePercent)} of dutiable value{value.coverage.qualified?' · Qualified reported figures':''}</span>;
 }
 function Change({value}:{value:DutyComparison}){
-  return <p className="duty-change">Duty change <strong>{usd(value.change.calculatedDutyUsd)}</strong> · {value.change.growthPercent===null?'Growth unavailable':`${percent(value.change.growthPercent)} growth`} · Duty-share change <strong>{points(value.change.dutySharePercentagePoints)}</strong></p>;
+  return <p className="duty-change">Duty change <strong>{usd(value.change.calculatedDutyUsd)}</strong> · {value.change.growthPercent===null?'Growth unavailable':`${percent(value.change.growthPercent)} growth`} · Duty-share change <strong>{points(value)}</strong></p>;
 }
 export function EstimatedDuties({view}:{view:DutyView}){
   return <section className="duties-card" aria-labelledby="duties-heading">
