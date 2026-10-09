@@ -6,6 +6,7 @@ import {observationKey,validMonth} from '../src/lib/trade/normalize';
 import {shiftMonth} from '../src/lib/trade/metrics';
 import {buildProfileView} from '../src/lib/trade/profile';
 import {validateClassificationIntervals} from './classification';
+import {findRevisedKeys} from '../src/lib/trade/revisions';
 export type PrepareOptions={productCode:string;end:string;months:number;apiKey:string;outputDir:string;codeVersion:string;classificationIntervals?:Release['classificationIntervals']};
 export function validateRelease(value:unknown,requireCensus=false):asserts value is Release {
   if(!value||typeof value!=='object')throw new Error('Invalid release');
@@ -55,17 +56,10 @@ export async function prepareRelease(options:PrepareOptions,fetchImpl:typeof fet
     }));
     const failure=workers.find(result=>result.status==='rejected');if(failure?.status==='rejected')throw failure.reason;
     const observations=batches.flat();
-    const oldByKey=new Map(previous?.observations.map(r=>[observationKey(r),r])??[]);
-    const newByKey=new Map(observations.map(r=>[observationKey(r),r]));
-    const overlapFrom=previous?[previous.observations.map(r=>r.month).sort()[0],tasks[0].month].sort().at(-1)!:options.end;
-    const overlapTo=previous&&previous.reportingMonth<options.end?previous.reportingMonth:options.end;
-    const revisedKeys=previous?[...new Set([...oldByKey.keys(),...newByKey.keys()])].filter(key=>{
-      const old=oldByKey.get(key),next=newByKey.get(key);const month=(old??next)!.month;
-      return month>=overlapFrom&&month<=overlapTo&&(!old||!next||old.valueUsd!==next.valueUsd||old.status!==next.status);
-    }):[];
     const release:Release={schemaVersion:1,productCode:options.productCode,reportingMonth:options.end,retrievedAt,codeVersion:options.codeVersion,
-      source:'census',sourceUrls:['imports','exports'].map(d=>`https://api.census.gov/data/timeseries/intltrade/${d}/hs`),observations,revisedKeys,
+      source:'census',sourceUrls:['imports','exports'].map(d=>`https://api.census.gov/data/timeseries/intltrade/${d}/hs`),observations,revisedKeys:[],
       classificationIntervals:options.classificationIntervals??[]};
+    release.revisedKeys=findRevisedKeys(previous,release);
     validateRelease(release,true);
     await mkdir(join(options.outputDir,'releases'),{recursive:true});
     const releaseFile=`releases/${id}.json`;await writeFile(join(options.outputDir,releaseFile),JSON.stringify(release));
