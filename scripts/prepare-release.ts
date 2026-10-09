@@ -50,6 +50,7 @@ export async function prepareRelease(options:PrepareOptions,fetchImpl:typeof fet
   try{
     let previous:Release|undefined;
     try{previous=await readCurrentRelease(options.outputDir);}catch(error){if((error as NodeJS.ErrnoException).code!=='ENOENT')throw error;}
+    if(previous?.schemaVersion===2&&!options.includeDuties)throw new Error('The accepted release includes duties; continue importing with --duties');
     const retrievedAt=new Date().toISOString();const id=`${options.end}-${randomUUID()}`;
     const rawDir=join(dirname(options.outputDir),'raw',id);await mkdir(rawDir,{recursive:true});
     const tasks:{month:string;direction:'imports'|'exports'|'duties'}[]=Array.from({length:options.months},(_,i)=>shiftMonth(options.end,i-options.months+1)).flatMap(month=>(['imports','exports'] as const).map(direction=>({month,direction})));

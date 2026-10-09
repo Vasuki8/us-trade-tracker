@@ -11,10 +11,10 @@ import {readCurrentRelease} from '../../scripts/prepare-release';
 const valid={REPORTING_MONTH:'2026-08',ARCHIVE_TO_R2:'false',INITIALIZE_ARCHIVE:'false',GITHUB_REF:'refs/heads/main'};
 const dirs:string[]=[];afterAll(async()=>{for(const dir of dirs)await rm(dir,{recursive:true,force:true});});
 it('defaults to artifact-only and needs neither R2 configuration nor a provider client',async()=>{
-  expect(parseArchiveDispatch(valid)).toEqual({reportingMonth:'2026-08',archive:false,initialize:false});
+  expect(parseArchiveDispatch(valid)).toEqual({reportingMonth:'2026-08',archive:false,initialize:false,includeDuties:false});
   let calls=0;expect(await runArchiveCommand(['preflight'],valid,()=>{calls++;throw new Error('unexpected provider');})).toMatchObject({archive:false});expect(calls).toBe(0);
 });
-it.each([{ARCHIVE_TO_R2:'yes'},{INITIALIZE_ARCHIVE:'1'},{REPORTING_MONTH:'2026-13'},{REPORTING_MONTH:'2026-08;echo'},{INITIALIZE_ARCHIVE:'true'},{ARCHIVE_TO_R2:'true',GITHUB_REF:'refs/heads/feature'}])('rejects invalid dispatch %j before any provider call',patch=>{expect(()=>parseArchiveDispatch({...valid,...patch})).toThrow();});
+it.each([{INCLUDE_DUTIES:'yes'},{ARCHIVE_TO_R2:'yes'},{INITIALIZE_ARCHIVE:'1'},{REPORTING_MONTH:'2026-13'},{REPORTING_MONTH:'2026-08;echo'},{INITIALIZE_ARCHIVE:'true'},{ARCHIVE_TO_R2:'true',GITHUB_REF:'refs/heads/feature'}])('rejects invalid dispatch %j before any provider call',patch=>{expect(()=>parseArchiveDispatch({...valid,...patch})).toThrow();});
 it('packs and recovers synthetic original data entirely offline without changing its source pointer',async()=>{
   const f=await createArchiveFixture();dirs.push(f.dataDir);const run=await mkdtemp(join(tmpdir(),'trade-cli-test-'));dirs.push(run);const original=await readFile(join(f.dataDir,'processed/current.json'));
   let calls=0;const factory=()=>{calls++;throw new Error('unexpected provider');};
@@ -40,4 +40,11 @@ it('keeps dispatch, credentials, backup ordering and promotion gates explicit in
   expect(steps[backup].with).toMatchObject({name:'census-coffee-candidate',path:'.tmp/archive/bundle.json','include-hidden-files':true,'if-no-files-found':'error','retention-days':7});
   const receipt=steps.find(s=>s.with?.name==='census-coffee-promotion');expect(receipt.if).toContain('always()');expect(receipt.if).toContain("hashFiles('.tmp/archive/outcome.json')");expect(receipt.with.path).toBe('.tmp/archive/outcome.json');expect(receipt.with['include-hidden-files']).toBe(true);
   expect(steps.find(s=>s.with?.name==='census-coffee-release').if).toContain('!inputs.archive_to_r2');
+});
+it('opts into duty retrieval and requires offline recovery after backup and before promotion',async()=>{
+ const w=parse(await readFile('.github/workflows/import-census.yml','utf8')),steps=w.jobs.import.steps as any[];
+ expect(w.on.workflow_dispatch.inputs.include_duties).toMatchObject({type:'boolean',default:false});
+ expect(steps.find(s=>s.id==='import').run).toContain('--duties');
+ const recovery=steps.findIndex(s=>s.id==='recovery');expect(recovery).toBeGreaterThan(steps.findIndex(s=>s.id==='backup'));expect(recovery).toBeLessThan(steps.findIndex(s=>s.id==='promote'));
+ expect(steps[recovery].run).toContain('verify');expect(steps[recovery].env).toBeUndefined();expect(steps.find(s=>s.id==='promote').if).toContain("steps.recovery.outcome == 'success'");
 });

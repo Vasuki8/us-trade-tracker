@@ -2,7 +2,7 @@ import {mkdir,readdir,writeFile,open} from 'node:fs/promises';
 import {join} from 'node:path';
 import {validateRelease} from './prepare-release';
 import {validMonth} from '../src/lib/trade/normalize';
-import {findRevisedKeys} from '../src/lib/trade/revisions';
+import {findRevisedKeys,findDutyRevisedKeys} from '../src/lib/trade/revisions';
 import {ArchiveStoreError,type ArchiveStore} from './archive-store';
 import {CURRENT_KEY,LIMITS,decodePointer,encodePointer,packBundle,unpackBundle,parseArchiveJson,releaseIdFromKey,sha256,validateReference,type BundleReference,type BundlePackage,type DecodedBundle} from './archive-bundle';
 export type ArchiveRunState={schemaVersion:1;reportingMonth:string;baseline:null|{reference:BundleReference;etag:string;releaseId:string;releaseSha256:string}};
@@ -62,9 +62,10 @@ export async function buildLocalBundle(dataDir:string,baseline:ArchiveRunState['
   }
   const revisions=findRevisedKeys(previous,release).sort();
   if(new Set(release.revisedKeys).size!==release.revisedKeys.length||JSON.stringify([...release.revisedKeys].sort())!==JSON.stringify(revisions))throw new Error('Candidate revisions differ from restored baseline');
+  if(release.schemaVersion===2){const keys=release.duties.revisedKeys,expected=findDutyRevisedKeys(previous?.schemaVersion===2?previous.duties:undefined,release.duties);if(new Set(keys).size!==keys.length||JSON.stringify([...keys].sort())!==JSON.stringify(expected))throw new Error('Candidate duty revisions differ from restored baseline');}
   const records=new Map<string,Buffer>();let total=releaseBytes.length;
-  const names=await readdir(join(dataDir,'raw',id));if(names.length!==240)throw new Error('Incomplete source request grid');
-  for(const name of names){if(!/^(imports|exports)-20\d{2}-(0[1-9]|1[0-2])-(HS|HSCY)\.json$/.test(name))throw new Error('Invalid raw file path');const bytes=await readLocalFileBounded(join(dataDir,'raw',id,name),Math.min(LIMITS.file,LIMITS.total-total));total+=bytes.length;records.set(`raw/${name}`,bytes);}
+  const names=await readdir(join(dataDir,'raw',id));if(names.length!==(release.schemaVersion===2?336:240))throw new Error('Incomplete source request grid');
+  for(const name of names){if(!/^(imports|exports)-20\d{2}-(0[1-9]|1[0-2])-(HS|HSCY)\.json$/.test(name)&&!(release.schemaVersion===2&&/^duties-20\d{2}-(0[1-9]|1[0-2])-(HS|HSCY|HSRP|HSCYRP)\.json$/.test(name)))throw new Error('Invalid raw file path');const bytes=await readLocalFileBounded(join(dataDir,'raw',id,name),Math.min(LIMITS.file,LIMITS.total-total));total+=bytes.length;records.set(`raw/${name}`,bytes);}
   return packBundle({releaseId:id,releaseBytes,rawRecords:records,previous:baseline?.reference??null});
 }
 export async function restoreForImport(context:ArchiveContext,request:{reportingMonth:string;initialize:boolean}):Promise<ArchiveRunState>{

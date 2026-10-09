@@ -22,6 +22,9 @@ it('prepares a separate 24-month duty dataset while retaining all 60 merchandise
   expect(buildChangesView(release,'exports')).toEqual(buildChangesView({...legacy,retrievedAt:release.retrievedAt},'exports'));
   const pointer=JSON.parse(await readFile(join(outputDir,'current.json'),'utf8'));const id=pointer.releaseFile.slice(9,-5);
   expect(await readdir(join(dataDir,'raw',id))).toHaveLength(336);expect(await readCurrentRelease(outputDir)).toEqual(release);
+  const acceptedPointer=await readFile(join(outputDir,'current.json'));
+  await expect(prepareRelease({...options,outputDir},syntheticDutyFetch())).rejects.toThrow(/duties/i);
+  expect(await readFile(join(outputDir,'current.json'))).toEqual(acceptedPointer);
 });
 it('accepts both formats and rejects malformed duty data, coverage and periods',()=>{
   expect(()=>validateRelease(sampleRelease())).not.toThrow();expect(()=>validateRelease(sampleDutyRelease())).not.toThrow();

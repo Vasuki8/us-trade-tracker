@@ -7,13 +7,17 @@ import {buildLocalBundle,restoreForImport,stageCandidate,promoteCandidate,recove
 import {parseArchiveJson,LIMITS} from './archive-bundle';
 export async function runArchiveCommand(args:string[],env:NodeJS.ProcessEnv,storeFactory:()=>ArchiveStore=()=>createR2Store(readR2Config(env))):Promise<unknown>{
   const [command,...rest]=args;
-  const allowed:Record<string,string[]>={preflight:[],restore:['data-dir','run-dir'],stage:['data-dir','run-dir'],promote:['data-dir','run-dir'],pack:['data-dir','run-dir'],recover:['bundle','sha256','data-dir']};
+  const allowed:Record<string,string[]>={preflight:[],restore:['data-dir','run-dir'],stage:['data-dir','run-dir'],promote:['data-dir','run-dir'],pack:['data-dir','run-dir'],verify:['data-dir','run-dir'],recover:['bundle','sha256','data-dir']};
   if(!Object.hasOwn(allowed,command??''))throw new Error('Unknown archive command');
   const options=new Map<string,string>();
   for(let i=0;i<rest.length;i+=2){const key=rest[i]?.slice(2),value=rest[i+1];if(!rest[i]?.startsWith('--')||!allowed[command].includes(key)||!value||value.startsWith('--')||options.has(key))throw new Error('Invalid archive command options');options.set(key,value);}
   if(options.size!==allowed[command].length)throw new Error('Missing archive command options');
   const dataDir=options.get('data-dir')!,runDir=options.get('run-dir')!;
   if(command==='recover')return recoverBundle(options.get('bundle')!,options.get('sha256')!,dataDir);
+  if(command==='verify'){
+    const candidate=parseCandidateState(parseArchiveJson(await readLocalFileBounded(join(runDir,'candidate.json'),LIMITS.pointer),LIMITS.pointer));
+    return recoverBundle(join(runDir,'bundle.json'),candidate.reference.sha256,dataDir);
+  }
   if(command==='pack'){
     const pkg=await buildLocalBundle(dataDir,null);await mkdir(runDir,{recursive:true});await writeFile(join(runDir,'bundle.json'),pkg.bytes,{flag:'wx'});
     return {bundleFile:join(runDir,'bundle.json'),sha256:pkg.reference.sha256,bytes:pkg.bytes.length,accepted:false};
