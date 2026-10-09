@@ -47,7 +47,8 @@ test('mobile controls work without page overflow and are keyboard accessible',as
   await tabTo(page,page.getByRole('button',{name:'Download data CSV'}));const csvDownload=page.waitForEvent('download');await page.keyboard.press('Enter');
   expect((await csvDownload).suggestedFilename()).toBe('hs-090121-exports.csv');
   await page.screenshot({path:'test-results/visual/mobile.png',fullPage:true});
-  await tabTo(page,page.getByRole('button',{name:'Download chart PNG'}));const download=page.waitForEvent('download');await page.keyboard.press('Enter');
+  // PNG is immediately before CSV; return to it without cycling through the entire page.
+  await page.keyboard.press('Shift+Tab');await expect(page.getByRole('button',{name:'Download chart PNG'})).toBeFocused();const download=page.waitForEvent('download');await page.keyboard.press('Enter');
   expect((await download).suggestedFilename()).toBe('hs-090121-exports.png');
 });
 test('missing partner data is unavailable and leaves a chart gap',async({page})=>{

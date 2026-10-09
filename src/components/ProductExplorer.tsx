@@ -5,6 +5,7 @@ import {TradeChart} from './TradeChart';import {TradeTable} from './TradeTable';
 import {TradeChanges} from './TradeChanges';import {buildChangesView} from '../lib/trade/changes';
 import {EstimatedDuties} from './EstimatedDuties';import {buildDutyView} from '../lib/trade/duties';
 import {profileViewPath,readViewSelection} from '../lib/trade/view-link';
+import {CountryPicker} from './CountryPicker';
 export function ProductExplorer({release}:{release:Release}){
   const [selection,setSelection]=useState<ExplorerSelection>({direction:'imports',months:60,countryCodes:[]});
   const {direction,months,countryCodes}=selection;
@@ -45,7 +46,7 @@ export function ProductExplorer({release}:{release:Release}){
       {linkNotice&&<p role="status">{linkNotice}</p>}{copied&&<p role="status">View link copied.</p>}
       {showLink&&<div className="view-link-fallback"><p role="status">Select and copy the view link below. Automatic copying is unavailable.</p><label>View link<input readOnly value={viewLink} onFocus={event=>event.currentTarget.select()}/></label></div>}
     </div>
-    <noscript><p className="chart-note">Enable JavaScript to restore saved selections or copy a view link. The initial view shows U.S. imports with up to five years of available history.</p></noscript>
+    <noscript><p className="chart-note">Enable JavaScript to restore saved selections or copy a view link. JavaScript is also required to find and select countries. The initial view shows U.S. imports with up to five years of available history.</p></noscript>
     <div className="summary-grid"><div className="stat"><span>Latest month · {direction}</span><strong>{usd(view.latestMonth.current,true)}</strong><small>{percent(view.latestMonth.changePercent)} year over year · {usd(view.latestMonth.changeUsd,true)} change</small></div>
       <div className="stat"><span>Trailing twelve months</span><strong>{usd(view.trailingYear.current,true)}</strong><small>{percent(view.trailingYear.changePercent)} versus previous twelve months · {usd(view.trailingYear.changeUsd,true)} change</small></div>
       <div className="stat definition"><span>What this measures</span><strong>{direction==='imports'?'General imports':'Total exports'}</strong><small>{direction==='imports'?'Customs value of goods entering the U.S.':'U.S. goods exported to partner markets'} · current dollars, not seasonally adjusted</small></div>
@@ -56,8 +57,7 @@ export function ProductExplorer({release}:{release:Release}){
       <div className="download-actions"><button className="primary-button" disabled={busy} onClick={downloadPng}>{busy?'Creating image…':'Download chart PNG'}</button><button className="secondary-button" onClick={()=>downloadBlob(new Blob([serializeCsv(view)],{type:'text/csv;charset=utf-8'}),`hs-${release.productCode}-${direction}.csv`)}>Download data CSV</button></div>
       {downloadError&&<p role="alert" className="download-error">{downloadError}</p>}
     </div><aside className="comparison-card"><p className="eyebrow">PARTNER MARKETS</p><h2>Compare countries</h2><p>Choose up to three partners. With none selected, the chart shows the U.S. total.</p>
-      <fieldset className="country-list"><legend className="sr-only">Partner countries</legend>{countries.map(country=><label key={country.code}><input type="checkbox" checked={countryCodes.includes(country.code)} disabled={countryCodes.length===3&&!countryCodes.includes(country.code)} onChange={e=>changeSelection({...selection,countryCodes:e.target.checked?[...countryCodes,country.code]:countryCodes.filter(c=>c!==country.code)})}/><span>{country.name}</span></label>)}</fieldset>
-      <p className="selection-count" role="status">{countryCodes.length} of 3 selected</p>{countryCodes.length>0&&<button className="text-button" onClick={()=>changeSelection({...selection,countryCodes:[]})}>Show U.S. total</button>}
+      <CountryPicker key={direction} countries={countries} selectedCodes={countryCodes} ready={Boolean(viewLink)} onChange={codes=>changeSelection({...selection,countryCodes:codes})}/>
     </aside></section>
     <TradeChanges view={changes}/>
     {direction==='imports'&&<EstimatedDuties view={buildDutyView(release,countryCodes)}/>}
