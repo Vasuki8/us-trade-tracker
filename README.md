@@ -33,7 +33,7 @@ The **Import Census data** workflow is manually triggered, retrieves only the co
 
 After the reviewed workflow is available, choose a reporting month confirmed by the [official release calendar](https://www.census.gov/foreign-trade/schedule.html) and current release information, run it, and download `census-coffee-release`. The artifact has `processed/` and `raw/` directories: extract those into the ignored local `data/` folder, then run `npm run data:validate`. Artifacts expire after seven days, so retain the public source/archive separately. Remove `TRADE_DATA_MODE` or set it to `census` to preview the actual release. The key stays in GitHub.
 
-This initial manual workflow starts from a fresh checkout on every run. It produces independent snapshots; revision comparisons require a previous local release and are tested in the CLI. Persisting earlier releases for scheduled GitHub imports remains later work.
+The default manual workflow produces independent snapshots. The opt-in retained-release implementation restores the accepted baseline before importing, checks revisions against its exact original bytes, backs up the candidate, and conditionally advances a private R2 pointer. It is ready for review and offline-tested; provider activation remains separate. See [archive setup, recovery and verification](docs/data-validation/090121-archive.md).
 
 For an optional local import, put `CENSUS_API_KEY` in ignored `.env`, then run:
 
@@ -44,7 +44,7 @@ npm run data:validate
 
 The reporting month is required; it is never guessed from today's date. Each request has a 30-second timeout and at most two retries on 429/5xx responses, with at most two requests in flight. Missing country rows remain unavailable rather than becoming zero. A failed import preserves the current release. A lock prevents overlapping local imports; after an interrupted process, confirm no import is running before removing its stale `data/processed/.import.lock`.
 
-See [live validation status](docs/data-validation/090121.md). The manual coffee workflow supplies `data/classification/090121.json`, reviewed for September 2021–August 2026. The CLI clips evidence to an earlier reporting month and never extends it into unreviewed months. Cross-period growth and totals crossing an unverified interval stay unavailable. Public launch still requires two successive official releases. R2 archives, broad product discovery, deployment, advertising and subscriptions remain later work.
+See [live validation status](docs/data-validation/090121.md). The manual coffee workflow supplies `data/classification/090121.json`, reviewed for September 2021–August 2026. The CLI clips evidence to an earlier reporting month and never extends it into unreviewed months. Cross-period growth and totals crossing an unverified interval stay unavailable. Public launch still requires two successive official releases. Live R2 activation, broad product discovery, deployment, advertising and subscriptions remain later work.
 
 CSV exports include classification verification and line-break fields. Formula-looking text is prefixed with an apostrophe for safer spreadsheet opening; numeric dollar values remain numeric.
 

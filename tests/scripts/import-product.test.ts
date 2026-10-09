@@ -22,7 +22,9 @@ it('retrieves exact HS6 national totals and partners with the correct direction 
 });
 it('treats an absent country response as unavailable data, preserving the world observation',async()=>{
   const fetcher=(async(input:RequestInfo|URL)=>new URL(String(input)).searchParams.get('SUMMARY_LVL2')==='HS'?Response.json(body('imports','HS')):new Response(null,{status:204})) as typeof fetch;
-  expect(await fetchProductMonth(options,fetcher)).toHaveLength(1);
+  const raw:{payload:unknown;httpStatus:unknown}[]=[];
+  expect(await fetchProductMonth({...options,onRaw:async(payload,_url,...status)=>{raw.push({payload,httpStatus:status[0]});}},fetcher)).toHaveLength(1);
+  expect(raw).toContainEqual({payload:null,httpStatus:204});
 });
 it.each([401,403])('fails authentication %s without exposing the request key',async(status)=>{
   await expect(fetchProductMonth(options,(async()=>new Response('private',{status})) as typeof fetch)).rejects.toThrow(`HTTP ${status}`);
