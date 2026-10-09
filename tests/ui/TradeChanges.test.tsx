@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
 import {sampleRelease} from '../helpers/release';
 import {ProductExplorer} from '../../src/components/ProductExplorer';
-afterEach(cleanup);
+afterEach(()=>{cleanup();window.history.replaceState(null,'','/');});
 
 it('shows both periods and direction-specific country totals and growth',async()=>{
   render(<ProductExplorer release={sampleRelease()}/>);

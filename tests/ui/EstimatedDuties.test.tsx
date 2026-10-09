@@ -2,7 +2,7 @@
 import {afterEach,expect,it,vi} from 'vitest';import {cleanup,render,screen,within} from '@testing-library/react';import userEvent from '@testing-library/user-event';import '@testing-library/jest-dom/vitest';
 import {EstimatedDuties} from '../../src/components/EstimatedDuties';import {buildDutyView} from '../../src/lib/trade/duties';import {sampleDutyRelease} from '../helpers/duties';import {sampleRelease} from '../helpers/release';
 import {ProductExplorer} from '../../src/components/ProductExplorer';import {renderToStaticMarkup} from 'react-dom/server';
-afterEach(cleanup);
+afterEach(()=>{cleanup();window.history.replaceState(null,'','/');});
 it.each([
  {name:'tiny increase',currentDuty:325,currentValue:202566133,previousDuty:1,previousValue:1000000,share:'<0.001%',change:'Increase <0.001 pp',coverage:'<0.001%'},
  {name:'tiny decrease',currentDuty:1,currentValue:1000000,previousDuty:325,previousValue:202566133,share:'<0.001%',change:'Decrease <0.001 pp',coverage:'<0.001%'},

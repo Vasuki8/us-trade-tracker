@@ -9,7 +9,7 @@ import {serializeCsv} from '../../src/lib/trade/downloads';
 import {buildProfileView} from '../../src/lib/trade/profile';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {TradeChart} from '../../src/components/TradeChart';
-afterEach(cleanup);
+afterEach(()=>{cleanup();window.history.replaceState(null,'','/');});
 it('switches direction and enforces three countries with accessible controls',async()=>{
   render(<ProductExplorer release={sampleRelease()}/>);const user=userEvent.setup();
   expect(screen.getByText('Development sample data')).toBeVisible();

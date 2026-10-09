@@ -6,6 +6,7 @@ import {buildChangesView,rankChanges} from '../lib/trade/changes';
 import {buildDutyView} from '../lib/trade/duties';
 import {shiftMonth} from '../lib/trade/metrics';
 import {monthLabel,usd,percent} from '../lib/trade/format';
+import {profileViewPath} from '../lib/trade/view-link';
 
 const period=(from:string,to:string)=>from===to?monthLabel(from):`${monthLabel(from)}–${monthLabel(to)}`;
 const share=(value:number|null)=>value===null?'Unavailable':value>0&&value<0.001?'<0.001%':`${value.toFixed(3)}%`;
@@ -28,8 +29,8 @@ function PartnerChanges({view}:{view:ChangesView}){
     <h3>{imports?'Import partners':'Export partners'}</h3>
     <p className="briefing-period">{period(view.periods.current.from,view.periods.current.to)} compared with {period(view.periods.previous.from,view.periods.previous.to)}</p>
     {!view.classificationComparable||available===0?<p>Country comparisons are unavailable for these periods. They require complete observations and verified classification continuity.</p>:<>
-      <p>{increase?<>Largest increase: <strong>{increase.name} · {usd(increase.changeUsd)}</strong></>:'No country increase among comparable observations.'}</p>
-      <p>{decrease?<>Largest decrease: <strong>{decrease.name} · {usd(decrease.changeUsd)}</strong></>:'No country decrease among comparable observations.'}</p>
+      <p>{increase?<>Largest increase: <strong><a href={profileViewPath(view.productCode,{direction:view.direction,months:12,countryCodes:[increase.code]})}>{increase.name}</a> · {usd(increase.changeUsd)}</strong></>:'No country increase among comparable observations.'}</p>
+      <p>{decrease?<>Largest decrease: <strong><a href={profileViewPath(view.productCode,{direction:view.direction,months:12,countryCodes:[decrease.code]})}>{decrease.name}</a> · {usd(decrease.changeUsd)}</strong></>:'No country decrease among comparable observations.'}</p>
     </>}
     <p className="chart-note">Ranked by dollar change · {available} countries with comparable data; {ranks.unavailableCount} unavailable. Missing country months remain unavailable.</p>
   </section>;
