@@ -18,6 +18,8 @@ The agreed pilot hosting approach keeps pages and chart data on the same static 
 
 Run `npm run build:report` to measure an existing `dist/` without rebuilding, or `npm run build:report -- --dir path/to/output` for another output directory. Reports stay outside deployment assets. Build sizes are raw bytes before network compression.
 
+The coffee profile uses a compact internal browser payload while preserving its canonical release and archive data. The verified local build reduced product HTML from 5.9 MB to 280 KB before compression and from 212 KB to 80 KB with gzip. Local median hydration improved from 269 ms to 126 ms; deployed performance remains to be measured. Calculations and browser CSV downloads stayed identical. See the [loading measurements and acceptance](docs/validation/coffee-profile-loading.md).
+
 ## Local development
 
 Use Node 24 and npm. Install with `npm ci`.
