@@ -16,7 +16,8 @@ export type ReleaseV1 = {
 };
 export type ReleaseV2 = Omit<ReleaseV1,'schemaVersion'> & {schemaVersion:2;duties:DutyDataset};
 export type Release = ReleaseV1 | ReleaseV2;
-export type ExplorerSelection = {direction: Direction; months: 12 | 60; countryCodes: string[]};
+export type ComparisonPeriod = 'annual' | 'monthly';
+export type ExplorerSelection = {direction: Direction; months: 12 | 60; countryCodes: string[]; comparisonPeriod?: ComparisonPeriod};
 export type ChartSeries = {code: string; name: string; points: {month: Month; valueUsd: number | null; breakBefore: boolean; classificationVerified: boolean}[]};
 export type ProfileView = {
   productCode: string; title: string; selection: ExplorerSelection; reportingMonth: Month;
