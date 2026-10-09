@@ -26,7 +26,7 @@ export function buildChangesView(release:Release,direction:Direction):ChangesVie
   const verifiedSpan=(from:string,to:string)=>release.classificationIntervals.some(interval=>interval.from<=from&&to<=interval.to);
   const classificationComparable=verifiedSpan(periods.previous.from,periods.current.to);
   const previousVerified=verifiedSpan(periods.previous.from,periods.previous.to);
-  const rows=release.observations.filter(row=>row.productCode===release.productCode&&row.direction===direction&&row.geography==='country');
+  const rows=release.observations.filter(row=>row.productCode===release.productCode&&row.direction===direction&&row.measure===(direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO')&&row.geography==='country');
   const countries=profile.partners.map(partner=>{
     const previousUsd=previousVerified?sumWindow(rows.filter(row=>row.partnerCode===partner.code),periods.previous.to,12):null;
     const comparison=compareValues(partner.valueUsd,previousUsd);

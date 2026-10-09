@@ -2,7 +2,7 @@ import type {Release,ExplorerSelection,ProfileView} from './types';
 import {compareValues,shiftMonth,sumWindow} from './metrics';
 export function buildProfileView(release:Release,selection:ExplorerSelection):ProfileView {
   if(!['imports','exports'].includes(selection.direction)||![12,60].includes(selection.months))throw new Error('Invalid selection');
-  const rows=release.observations.filter(r=>r.direction===selection.direction&&r.productCode===release.productCode);
+  const rows=release.observations.filter(r=>r.direction===selection.direction&&r.productCode===release.productCode&&r.measure===(selection.direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO'));
   const world=rows.filter(r=>r.geography==='world');
   if(!world.length)throw new Error('Missing world observations');
   const end=release.reportingMonth;

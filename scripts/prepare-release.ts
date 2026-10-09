@@ -2,20 +2,26 @@ import type {Release} from '../src/lib/trade/types';
 import {mkdir,readFile,writeFile,rename,open,unlink} from 'node:fs/promises';
 import {join,dirname} from 'node:path';import {randomUUID} from 'node:crypto';
 import {fetchProductMonth} from './census-client';
+import {fetchDutyMonth} from './census-duty-client';
+import {normalizeDutyMonth} from '../src/lib/trade/duty-normalize';
+import {validateDutyDataset} from '../src/lib/trade/duty-validation';
+import type {DutyObservation} from '../src/lib/trade/duty-types';
 import {observationKey,validMonth} from '../src/lib/trade/normalize';
 import {shiftMonth} from '../src/lib/trade/metrics';
 import {buildProfileView} from '../src/lib/trade/profile';
 import {validateClassificationIntervals} from './classification';
-import {findRevisedKeys} from '../src/lib/trade/revisions';
-export type PrepareOptions={productCode:string;end:string;months:number;apiKey:string;outputDir:string;codeVersion:string;classificationIntervals?:Release['classificationIntervals']};
+import {findRevisedKeys,findDutyRevisedKeys} from '../src/lib/trade/revisions';
+export type PrepareOptions={productCode:string;end:string;months:number;apiKey:string;outputDir:string;codeVersion:string;classificationIntervals?:Release['classificationIntervals'];includeDuties?:boolean};
 export function validateRelease(value:unknown,requireCensus=false):asserts value is Release {
   if(!value||typeof value!=='object')throw new Error('Invalid release');
   const r=value as Release;
   if(requireCensus&&r.source!=='census')throw new Error('Cannot promote fixture data');
-  if(r.schemaVersion!==1||!['census','fixture'].includes(r.source)||typeof r.productCode!=='string'||!/^\d{6}$/.test(r.productCode)||!validMonth(r.reportingMonth)||typeof r.retrievedAt!=='string'||!Number.isFinite(Date.parse(r.retrievedAt))||typeof r.codeVersion!=='string'||!r.codeVersion)throw new Error('Invalid release metadata');
+  if(![1,2].includes(r.schemaVersion)||!['census','fixture'].includes(r.source)||typeof r.productCode!=='string'||!/^\d{6}$/.test(r.productCode)||!validMonth(r.reportingMonth)||typeof r.retrievedAt!=='string'||!Number.isFinite(Date.parse(r.retrievedAt))||typeof r.codeVersion!=='string'||!r.codeVersion)throw new Error('Invalid release metadata');
   if(!Array.isArray(r.observations)||!r.observations.length||!Array.isArray(r.sourceUrls)||!r.sourceUrls.length||!Array.isArray(r.revisedKeys)||r.revisedKeys.some(k=>typeof k!=='string')||!Array.isArray(r.classificationIntervals))throw new Error('Invalid release arrays');
   for(const source of r.sourceUrls){const url=new URL(source);if(url.protocol!=='https:'||[...url.searchParams.keys()].some(k=>k.toLowerCase()==='key')||(r.source==='census'&&url.hostname!=='api.census.gov'))throw new Error('Invalid or private source URL');}
   validateClassificationIntervals(r.classificationIntervals,r.reportingMonth);
+  if(r.schemaVersion===2)validateDutyDataset(r.duties,r,requireCensus);
+  else if('duties' in r)throw new Error('Duty data requires release schema version 2');
   const seen=new Set<string>();
   for(const row of r.observations){
     if(!row||row.productCode!==r.productCode||!validMonth(row.month)||row.month>r.reportingMonth||!['imports','exports'].includes(row.direction)||row.measure!==(row.direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO')||typeof row.description!=='string'||!row.description||typeof row.partnerName!=='string'||!row.partnerName||typeof row.partnerCode!=='string'||!['world','country'].includes(row.geography)||(row.geography==='world'?row.partnerCode!=='-':!/^[1-9]\d{3}$/.test(row.partnerCode))||!['reported','missing','suppressed'].includes(row.status)||(row.status==='reported'?typeof row.valueUsd!=='number'||!Number.isSafeInteger(row.valueUsd)||row.valueUsd<0:row.valueUsd!==null))throw new Error('Invalid release observation');
@@ -37,28 +43,35 @@ export async function readCurrentRelease(dir:string):Promise<Release>{
   validateRelease(release,true);return release;
 }
 export async function prepareRelease(options:PrepareOptions,fetchImpl:typeof fetch=fetch):Promise<Release>{
-  if(!/^\d{6}$/.test(options.productCode)||!validMonth(options.end)||!Number.isInteger(options.months)||options.months<24||options.months>60||!options.apiKey.trim()||!options.codeVersion)throw new Error('Provide an HS6 product, reporting month, key, code version, and 24–60 months');
+  if(!/^\d{6}$/.test(options.productCode)||!validMonth(options.end)||!Number.isInteger(options.months)||options.months<24||options.months>60||!options.apiKey.trim()||!options.codeVersion||(options.includeDuties!==undefined&&typeof options.includeDuties!=='boolean'))throw new Error('Provide an HS6 product, reporting month, key, code version, and 24–60 months');
   await mkdir(options.outputDir,{recursive:true});
   const lockPath=join(options.outputDir,'.import.lock');
   let lock;try{lock=await open(lockPath,'wx');}catch{throw new Error('A data import is already running; current release is unchanged');}
   try{
     let previous:Release|undefined;
     try{previous=await readCurrentRelease(options.outputDir);}catch(error){if((error as NodeJS.ErrnoException).code!=='ENOENT')throw error;}
+    if(previous?.schemaVersion===2&&!options.includeDuties)throw new Error('The accepted release includes duties; continue importing with --duties');
     const retrievedAt=new Date().toISOString();const id=`${options.end}-${randomUUID()}`;
     const rawDir=join(dirname(options.outputDir),'raw',id);await mkdir(rawDir,{recursive:true});
-    const tasks=Array.from({length:options.months},(_,i)=>shiftMonth(options.end,i-options.months+1)).flatMap(month=>(['imports','exports'] as const).map(direction=>({month,direction})));
-    const batches:Release['observations'][]=new Array(tasks.length);let cursor=0;const controller=new AbortController();
+    const tasks:{month:string;direction:'imports'|'exports'|'duties'}[]=Array.from({length:options.months},(_,i)=>shiftMonth(options.end,i-options.months+1)).flatMap(month=>(['imports','exports'] as const).map(direction=>({month,direction})));
+    if(options.includeDuties)for(let i=-23;i<=0;i++)tasks.push({month:shiftMonth(options.end,i),direction:'duties'});
+    const batches:Release['observations'][]=new Array(tasks.length);const dutyBatches:DutyObservation[][]=new Array(tasks.length);let cursor=0;const controller=new AbortController();
     const workers=await Promise.allSettled(Array.from({length:2},async()=>{
       try{while(cursor<tasks.length&&!controller.signal.aborted){const index=cursor++;const task=tasks[index];
-        batches[index]=await fetchProductMonth({...task,productCode:options.productCode,apiKey:options.apiKey,signal:controller.signal,
+        if(task.direction==='duties'){
+          const parts=await fetchDutyMonth({productCode:options.productCode,month:task.month,apiKey:options.apiKey,retrievedAt,signal:controller.signal,onRaw:async({summary,...record})=>{await writeFile(join(rawDir,`duties-${task.month}-${summary}.json`),JSON.stringify(record));}},fetchImpl);
+          dutyBatches[index]=normalizeDutyMonth(parts,{productCode:options.productCode,month:task.month});
+        }else batches[index]=await fetchProductMonth({...task,direction:task.direction,productCode:options.productCode,apiKey:options.apiKey,signal:controller.signal,
           onRaw:async(payload,url,httpStatus)=>{const summary=new URL(url).searchParams.get('SUMMARY_LVL2');await writeFile(join(rawDir,`${task.direction}-${task.month}-${summary}.json`),JSON.stringify({retrievedAt,requestUrl:url,httpStatus,payload}));}},fetchImpl);
       }}catch(error){controller.abort();throw error;}
     }));
     const failure=workers.find(result=>result.status==='rejected');if(failure?.status==='rejected')throw failure.reason;
     const observations=batches.flat();
-    const release:Release={schemaVersion:1,productCode:options.productCode,reportingMonth:options.end,retrievedAt,codeVersion:options.codeVersion,
-      source:'census',sourceUrls:['imports','exports'].map(d=>`https://api.census.gov/data/timeseries/intltrade/${d}/hs`),observations,revisedKeys:[],
+    const base={productCode:options.productCode,reportingMonth:options.end,retrievedAt,codeVersion:options.codeVersion,
+      source:'census' as const,sourceUrls:['imports','exports'].map(d=>`https://api.census.gov/data/timeseries/intltrade/${d}/hs`),observations,revisedKeys:[],
       classificationIntervals:options.classificationIntervals??[]};
+    const release:Release=options.includeDuties?{...base,schemaVersion:2,duties:{schemaVersion:1,fromMonth:shiftMonth(options.end,-23),observations:dutyBatches.flat(),revisedKeys:[]}}:{...base,schemaVersion:1};
+    if(release.schemaVersion===2)release.duties.revisedKeys=findDutyRevisedKeys(previous?.schemaVersion===2?previous.duties:undefined,release.duties);
     release.revisedKeys=findRevisedKeys(previous,release);
     validateRelease(release,true);
     await mkdir(join(options.outputDir,'releases'),{recursive:true});
