@@ -184,13 +184,13 @@ The private archive pointer and object-key namespace stay unchanged; the bundle 
 **Files:**
 - Update: `docs/data-validation/090121-duties.md`, `docs/data-validation/090121-archive.md`, `README.md`
 
-- [ ] Verify each approved scope requirement against the completed artifacts: labels, monthly and rolling formulas, matching denominators, coverage qualifications, unavailable behavior, legacy recovery and new recovery.
-- [ ] Have fresh independent reviewers inspect calculation/data integrity and UI/download behavior; resolve material findings and rerun only affected checks.
+- [x] Verify each approved scope requirement against the completed artifacts: labels, monthly and rolling formulas, matching denominators, coverage qualifications, unavailable behavior, legacy recovery and new recovery.
+- [x] Have fresh independent reviewers inspect calculation/data integrity and UI/download behavior; resolve material findings and rerun only affected checks.
 - [ ] Obtain passing GitHub CI for the final head, then merge using the standing authorization and synchronize local main. Verify the merged tree matches the reviewed/tested head.
-- [ ] Open the real-data preview and report the live validation result, recovery evidence and any limitations. Two runs of the same reporting month verify recovery, not two successive official monthly releases; keep the public-launch gate distinct. Do not add a schedule or deploy the site.
+- [x] Open the real-data preview and report the live validation result, recovery evidence and any limitations. Two runs of the same reporting month verify recovery, not two successive official monthly releases; keep the public-launch gate distinct. Do not add a schedule or deploy the site.
 
 ## Review and Execution Status
 
-- The owner approved this implementation plan on October 9, 2026. Tasks 1–5 are complete, including both live archive formats and displayed comparisons; Task 6 final review and integration are in progress.
+- The owner approved this implementation plan on October 9, 2026. Tasks 1–5 are complete, including both live archive formats and displayed comparisons; Task 6 review and acceptance are complete; the final-head CI and merge gate is tracked in PR #10.
 - The main agent remains the implementer, with subagents used for independent reviews.
 - Live duty source data was audited using the existing GitHub secret; two duty-enabled releases have been backed up, recovered and promoted successfully. The evidence is recorded in `docs/data-validation/090121-duties.md`.
