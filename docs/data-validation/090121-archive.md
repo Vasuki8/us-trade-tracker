@@ -56,6 +56,22 @@ On October 8, 2026, the CLI packed the locally retained August release and recov
 
 Execution evidence is retained locally in `.tmp/archive-offline-2026-10-08/evidence.json`; the bundle/recovered datasets remain ignored. This proves the archive format and offline recovery of actual source bytes, not live R2 acceptance.
 
-An isolated copy of 68 tracked working-tree files under `.tmp/archive-acceptance/` passed a fresh `npm ci`, all 147 unit/component tests, `npm run check` with zero diagnostics, an explicit fixture build of three routes, and all five existing browser acceptance cases. Browser acceptance used `PLAYWRIGHT_PORT=4322` and `CI=true`, preserving the actual-data preview on port 4321. Independent task reviewers checked bundle integrity, SDK transport, restoration/promotion and workflow credential boundaries; their verified findings were fixed with failing-then-passing regressions. Whole-branch final review is pending.
+An isolated copy of 68 tracked working-tree files under `.tmp/archive-acceptance/` passed a fresh `npm ci`, all 147 unit/component tests, `npm run check` with zero diagnostics, an explicit fixture build of three routes, and all five existing browser acceptance cases. Browser acceptance used `PLAYWRIGHT_PORT=4322` and `CI=true`, preserving the actual-data preview on port 4321. Independent task reviewers checked bundle integrity, SDK transport, restoration/promotion and workflow credential boundaries; their verified findings were fixed with failing-then-passing regressions.
+
+A fresh whole-branch reviewer examined immutable range `ec682bebd873968dd3c95c413880b6b69f6320e3..ebd7c11f4c3999d50aea9d3fca9203f4cb2d6e13`, deliberately checked all five plan review-focus classes, and independently unpacked the actual offline bundle. It reported no Critical, Important or Minor findings. [GitHub Code checks run 37873244445](https://github.com/Vasuki8/us-trade-tracker/actions/runs/37873244445) also passed install, tests, type checks, fixture build and browser acceptance for that implementation commit. [PR #3](https://github.com/Vasuki8/us-trade-tracker/pull/3) contains the implementation and this documentation-only results update. A subsequent localhost request returned HTTP 200 for the actual August profile, and its original pointer checksum still matched the value above.
+
+## Execution decisions and remaining evidence
+
+| Ruling | Reason | Cost if wrong |
+| --- | --- | --- |
+| Use the authorized root on an isolated feature branch | The prior managed worktree path was outside writable roots; preserve the actual preview and local data | Weaker checkout isolation requires care during later branch changes |
+| Keep a Windows-native ledger in ignored `.tmp` | Execute the same verification directly rather than POSIX workflow helper scripts | Manual bookkeeping could omit a detail; committed checks and this record preserve the outcome |
+| Install the exact `yaml` dev dependency alongside the SDK pin | Avoid rebuilding the index solely to split related dependency edits; consume it in workflow tests | Slightly broader transport commit; no production runtime use of `yaml` |
+| Leave live provider compatibility/account permissions unverified | Provider configuration and calls require separate activation authorization | A provider-specific issue could surface in the live acceptance check |
+| Leave archived manual dispatch/artifact execution unverified | Code CI ran; the owner has not activated the archive workflow | Hosted import wiring still needs its live acceptance check |
+| Keep two successive official releases as a launch requirement | Same-month offline evidence cannot satisfy it | Launch remains gated until those releases are validated |
+| Keep broader products, scheduling, deletion and deployment outside this milestone | Approved scope is the manual coffee persistence implementation | Those capabilities require separate implementation and decisions |
+
+No minor review findings were deferred.
 
 A separately authorized live check must demonstrate initial archiving, fresh-runner restoration, a repeat import against that baseline and independent backup recovery. Same-month persistence does not satisfy the separate requirement for two successive official monthly releases before public launch.
