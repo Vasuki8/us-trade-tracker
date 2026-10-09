@@ -6,7 +6,7 @@ export async function fetchDutyMonth(options:FetchDutyOptions,fetchImpl:typeof f
   const parts:DutyRawPart[]=[];
   for(const summary of ['HS','HSCY','HSRP','HSCYRP'] as const){
     const url=new URL('https://api.census.gov/data/timeseries/intltrade/imports/hs');
-    url.searchParams.set('get','I_COMMODITY_LDESC,CAL_DUT_MO,CON_VAL_MO,DUT_VAL_MO,CTY_CODE,CTY_NAME,LAST_UPDATE');
+    url.searchParams.set('get','I_COMMODITY_LDESC,CAL_DUT_MO,CON_VAL_MO,DUT_VAL_MO,CTY_CODE,CTY_NAME,RP,LAST_UPDATE');
     url.searchParams.set('I_COMMODITY',options.productCode);url.searchParams.set('COMM_LVL','HS6');url.searchParams.set('SUMMARY_LVL','DET');url.searchParams.set('SUMMARY_LVL2',summary);url.searchParams.set('time',options.month);
     const requestUrl=url.toString();url.searchParams.set('key',options.apiKey);
     let response:Response|undefined;

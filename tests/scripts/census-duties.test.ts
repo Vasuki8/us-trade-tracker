@@ -54,9 +54,17 @@ describe('duty normalization',()=>{
     expect(normalizeDutyMonth(input,context)).toHaveLength(1);
   });
   it('rejects unreconciled RP totals',()=>{const input=parts();change(input[2],'CAL_DUT_MO','13');expect(()=>normalizeDutyMonth(input,context)).toThrow(/reconcil/i);});
+  it('checks each available measure even when an unrelated component measure is missing',()=>{
+    const input=parts();change(input[3],'CAL_DUT_MO','9');change(input[3],'DUT_VAL_MO',null);
+    expect(()=>normalizeDutyMonth(input,context)).toThrow(/reconcil/i);
+  });
   it('rejects inconsistent national and country rate-provision breakdowns even when every total matches',()=>{
     const input=parts();change(input[2],'CON_VAL_MO','170',1);change(input[2],'DUT_VAL_MO','90',1);
     change(input[2],'CON_VAL_MO','0',3);change(input[2],'DUT_VAL_MO','0',3);
+    expect(()=>normalizeDutyMonth(input,context)).toThrow(/country.*rate|rate.*country/i);
+  });
+  it('checks available national/country RP measures despite unrelated missing measures',()=>{
+    const input=parts();change(input[2],'CON_VAL_MO','170',1);change(input[2],'CON_VAL_MO','0',3);change(input[2],'DUT_VAL_MO',null,1);
     expect(()=>normalizeDutyMonth(input,context)).toThrow(/country.*rate|rate.*country/i);
   });
   it.each(['X','-1','1.5','9007199254740992'])('rejects unsupported dollar cell %s',value=>{const input=parts();change(input[0],'CAL_DUT_MO',value);expect(()=>normalizeDutyMonth(input,context)).toThrow(/dollar|value/i);});
@@ -78,6 +86,16 @@ describe('duty retrieval',()=>{
     expect(result.map(part=>part.summary)).toEqual(['HS','HSCY','HSRP','HSCYRP']);expect(saved).toEqual(result);
     for(const part of saved){expect(new URL(part.requestUrl).searchParams.has('key')).toBe(false);expect(JSON.stringify(part)).not.toContain(options.apiKey);}
     expect(normalizeDutyMonth(result,context)[0].calculatedDuty.valueUsd).toBe(12);
+  });
+  it('explicitly requests the rate-provision dimension required for live reconciliation',async()=>{
+    const projected=(async(input:RequestInfo|URL)=>{
+      const response=await censusFetch(input);const table=await response.json() as unknown[][];const url=new URL(String(input));
+      // Retained genuine Census tables project get fields and append predicate fields.
+      const headers=[...url.searchParams.get('get')!.split(','),...url.searchParams.keys()].filter(field=>field!=='get'&&field!=='key');
+      return Response.json([headers,...table.slice(1).map(row=>headers.map(header=>row[table[0].indexOf(header)]))]);
+    }) as typeof fetch;
+    const rows=normalizeDutyMonth(await fetchDutyMonth(options,projected),context);
+    expect(rows).toHaveLength(3);expect(rows.find(row=>row.geography==='world')!.coverage.uncalculatedDutiableValueUsd).toBe(40);
   });
   it('rejects HTML key pages and malformed JSON without exposing their contents',async()=>{
     for(const response of [new Response(options.apiKey,{headers:{'content-type':'text/html'}}),new Response(options.apiKey,{headers:{'content-type':'application/json'}})]){

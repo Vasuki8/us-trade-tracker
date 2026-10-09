@@ -42,15 +42,18 @@ export function normalizeDutyMonth(parts:DutyRawPart[],context:{productCode:stri
   for(const code of components.keys())if(!totals.has(code))throw new Error('Orphan rate-provision records without a country total');
   for(const total of totals.values()){
     const rows=components.get(total.partnerCode);
-    if(!rows?.length||moneyKeys.some(key=>total[key].valueUsd===null||rows.some(row=>row[key].valueUsd===null)))continue;
-    for(const key of moneyKeys)if(sum(rows.map(row=>row[key].valueUsd!))!==total[key].valueUsd)throw new Error('Duty rate-provision breakdown does not reconcile');
+    if(!rows?.length)continue;
+    for(const key of moneyKeys)if(total[key].valueUsd!==null&&rows.every(row=>row[key].valueUsd!==null)&&sum(rows.map(row=>row[key].valueUsd!))!==total[key].valueUsd)throw new Error('Duty rate-provision breakdown does not reconcile');
+    if(moneyKeys.some(key=>total[key].valueUsd===null||rows.some(row=>row[key].valueUsd===null)))continue;
     total.coverage={status:'verified',uncalculatedDutiableValueUsd:sum(rows.filter(row=>row.rp==='70'||row.rp==='79').map(row=>row.dutiableValue.valueUsd!))};
   }
   const world=totals.get('-')!;const countries=[...totals.values()].filter(row=>row.geography==='country');
-  if(world.coverage.status==='verified'&&countries.every(row=>row.coverage.status==='verified')&&moneyKeys.every(key=>sum(countries.map(row=>row[key].valueUsd!))===world[key].valueUsd)){
-    const national=components.get('-')!;const countryRows=[...components.entries()].filter(([code])=>code!=='-').flatMap(([,rows])=>rows);
+  const national=components.get('-');const countryRows=[...components.entries()].filter(([code])=>code!=='-').flatMap(([,rows])=>rows);
+  for(const key of moneyKeys){
+    if(!national?.length||world[key].valueUsd===null||countries.some(row=>row[key].valueUsd===null||!components.get(row.partnerCode)?.length)||[...national,...countryRows].some(row=>row[key].valueUsd===null))continue;
+    if(sum(countries.map(row=>row[key].valueUsd!))!==world[key].valueUsd)continue; // The audit reports country-total mismatches separately.
     for(const rp of new Set([...national,...countryRows].map(row=>row.rp))){
-      for(const key of moneyKeys)if(sum(national.filter(row=>row.rp===rp).map(row=>row[key].valueUsd!))!==sum(countryRows.filter(row=>row.rp===rp).map(row=>row[key].valueUsd!)))throw new Error('Country rate-provision breakdown does not reconcile with national breakdown');
+      if(sum(national.filter(row=>row.rp===rp).map(row=>row[key].valueUsd!))!==sum(countryRows.filter(row=>row.rp===rp).map(row=>row[key].valueUsd!)))throw new Error('Country rate-provision breakdown does not reconcile with national breakdown');
     }
   }
   return [...totals.values()].sort((a,b)=>a.partnerCode.localeCompare(b.partnerCode));
