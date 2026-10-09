@@ -50,7 +50,7 @@ export async function prepareRelease(options:PrepareOptions,fetchImpl:typeof fet
     const workers=await Promise.allSettled(Array.from({length:2},async()=>{
       try{while(cursor<tasks.length&&!controller.signal.aborted){const index=cursor++;const task=tasks[index];
         batches[index]=await fetchProductMonth({...task,productCode:options.productCode,apiKey:options.apiKey,signal:controller.signal,
-          onRaw:async(payload,url)=>{const summary=new URL(url).searchParams.get('SUMMARY_LVL2');await writeFile(join(rawDir,`${task.direction}-${task.month}-${summary}.json`),JSON.stringify({retrievedAt,requestUrl:url,payload}));}},fetchImpl);
+          onRaw:async(payload,url,httpStatus)=>{const summary=new URL(url).searchParams.get('SUMMARY_LVL2');await writeFile(join(rawDir,`${task.direction}-${task.month}-${summary}.json`),JSON.stringify({retrievedAt,requestUrl:url,httpStatus,payload}));}},fetchImpl);
       }}catch(error){controller.abort();throw error;}
     }));
     const failure=workers.find(result=>result.status==='rejected');if(failure?.status==='rejected')throw failure.reason;
