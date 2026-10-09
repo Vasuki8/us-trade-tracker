@@ -12,6 +12,10 @@ Read the [launch brief](docs/superpowers/specs/2026-10-08-us-trade-tracker-desig
 
 The coffee profile also includes “What changed?”: up to ten country increases and decreases over the latest twelve months versus the preceding twelve months, ranked by dollar change or country-share change in percentage points. It follows Imports/Exports and stays independent of chart country selections and history. Incomplete or classification-incompatible comparisons stay unavailable; a zero prior value has no growth percentage. The changes CSV includes the displayed rankings, both periods, units and source provenance.
 
+The next approved scope is **Estimated duties** on imports: validate coffee's monthly Census duty and consumption-value coverage, extend aggregation and recovery while preserving existing archives, then show monthly figures and rolling twelve month comparisons. Duty shares use matching imports-for-consumption denominators and ratios of period sums, with reporting qualifications and unavailable comparisons where needed. This feature is planned; live coffee duty coverage and implementation remain pending. The [approved requirements](docs/superpowers/specs/2026-10-08-us-trade-tracker-design.md#approved-scope-additions) define its methods and acceptance checks.
+
+Pilot pages and chart data will stay on static hosting, and CSV/PNG downloads continue to generate in the browser. R2 remains private archive storage. Measure build file counts and payload sizes before adding public R2 delivery; see the [hosting direction](docs/superpowers/specs/2026-10-08-us-trade-tracker-design.md#launch-resources-and-hosting-direction).
+
 ## Local development
 
 Use Node 24 and npm. Install with `npm ci`.
