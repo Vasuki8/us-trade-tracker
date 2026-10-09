@@ -104,3 +104,27 @@ The independent comparison confirmed 120 reported world observations across 60 m
 Downloaded ZIPs, extracted bundles, receipts and verification evidence are retained outside GitHub's seven-day artifact window under ignored `data/backups/r2-2026-08/<run-id>/`. Working recovery directories and the independent verifier remain under ignored `.tmp/archive-live-2026-10-08/`. No credentials or signed download URLs are included in those evidence files. The original local August pointer and prepared-release checksums still match the earlier offline evidence, preserving the known preview data.
 
 Same-month persistence does not satisfy the separate requirement for two successive official monthly releases before public launch. Broader products, scheduling, deletion and deployment remain outside this milestone.
+
+## Version 2 estimated-duty archive evidence
+
+Two approved duty-enabled runs on October 9, 2026 passed on `main` at `7f76e7c6f0fb1168906956ef8517095a5e49e103`. Both jobs restored the baseline, passed 204 tests, retrieved the 60-month merchandise and 24-month duty windows, verified immutable upload, backed up the candidate, recovered it offline, conditionally promoted it, and retained an `acknowledged` receipt. The new offline recovery step receives no Census or R2 credentials.
+
+| Evidence | First version 2 import | Fresh-runner repeat |
+| --- | --- | --- |
+| GitHub run | [37898525667](https://github.com/Vasuki8/us-trade-tracker/actions/runs/37898525667) | [37899540773](https://github.com/Vasuki8/us-trade-tracker/actions/runs/37899540773) |
+| Hosted job | `113715390551` | `113718618480` |
+| Release ID | `2026-08-f9577783-512d-4966-9ec2-7696b84c7df9` | `2026-08-5f3c2606-06a0-4c96-8fbc-a2332e0428ae` |
+| Bundle bytes | 6,518,765 | 6,518,765 |
+| Bundle SHA256 | `1cee5f3a9b2c53d81001c5b5e2687682b3b96fd78033c05b04f6c55da5de6c35` | `44c03004da6a76b031cd70997491c97221ecc9c0289cf7f9b426e42208394adf` |
+| Prepared SHA256 | `864249c836f67e9328edba5c690bd60705e3b5a6d9513b380a27d62bb7a55a4d` | `eaa8c1baa86bd3a8880dcda12db3b32625a38c221591c8c0e087b6af6a325727` |
+| Candidate artifact | `11601533302` | `11602250588` |
+| Candidate ZIP SHA256 | `6db96a56cbedc93a7908a9d87a816088e376d10f5de2fad5a9c21be58ef42027` | `fdb92aca763937693ea38dade94ece2220d97234c8f75c6a5723a0eabc7fe46e` |
+| Promotion artifact | `11601637680` | `11602430265` |
+| Promotion ZIP SHA256 | `38dfbcb4314a5b920c2eff96722f0dc3156cda45c50255b9bac83eeca00b01a0` | `663d0f4c7a2a1e7f06f351d064a6a99ab2903d380f572afc078eb39ef3f3b383` |
+| Original files recovered and byte-compared | 337 | 337 |
+| Merchandise / duty observations | 9,577 / 1,887 | 9,577 / 1,887 |
+| Merchandise / duty revisions | 0 / 0 | 0 / 0 |
+
+Both downloaded artifact digests matched GitHub metadata. Independent checks reproduced all original file lengths/hashes and recovery bytes, then every duty-source amount and rate-provision aggregation without importing production normalizers. The first bundle's predecessor is the accepted version 1 bundle `2026-08-b4463154-08a9-450c-9b49-d1c45a2d6b52`, checksum `d998ec26cbb82456992e49ef41265ee3984c2894c580fefafe9dc22da4c1faf1`. The repeat bundle identifies the first version 2 bundle and checksum exactly. Its matching source-derived values and empty revision lists independently confirm an unchanged same-month refresh.
+
+The updated recovery CLI also restored that real version 1 predecessor separately; all 241 original file bytes matched. Legacy bundles and the pointer namespace were preserved. Backups, receipts and independent evidence are retained under ignored `data/backups/duty-r2/<run-id>/`; recovery directories remain under ignored `.tmp/duty-live-recovered-<run-id>/`. These checks establish version 2 recovery and acceptance, not public launch or two successive official reporting months.

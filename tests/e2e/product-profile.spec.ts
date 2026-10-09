@@ -52,7 +52,7 @@ test('mobile controls work without page overflow and are keyboard accessible',as
 });
 test('missing partner data is unavailable and leaves a chart gap',async({page})=>{
   await openProfile(page);await page.getByRole('checkbox',{name:'CANADA'}).check();
-  await expect(page.getByRole('row').filter({hasText:'Jul 2024'})).toContainText('Unavailable');
+  await expect(page.getByRole('table',{name:'Monthly trade values · current U.S. dollars'}).getByRole('row').filter({hasText:'Jul 2024'})).toContainText('Unavailable');
   expect(await page.locator('svg:visible circle title').allTextContents()).not.toContain('Jul 2024: $0');
   await expect(page.locator('svg:visible circle')).toHaveCount(23);
 });
@@ -68,8 +68,8 @@ test('initial research and methods remain available without JavaScript',async({b
   await page.goto('/products/090121/');await expect(page.getByRole('table',{name:'Monthly trade values · current U.S. dollars'})).toBeVisible();
   await expect(page.getByRole('region',{name:'What changed?',exact:true}).getByRole('table',{name:'Largest increases · dollar change'})).toBeVisible();
   // Playwright's text locator deliberately excludes noscript elements.
-  await expect(page.locator('noscript p')).toBeVisible();
-  await expect(page.locator('noscript p')).toHaveText('Enable JavaScript to change the ranking, trade direction or download a CSV.');
+  await expect(page.locator('noscript p').first()).toBeVisible();
+  await expect(page.locator('noscript p')).toContainText(['Enable JavaScript to change the ranking, trade direction or download a CSV.','Enable JavaScript to select countries, change trade direction or download the estimated duties CSV.']);
   await page.getByRole('link',{name:'Source & methods'}).click();await expect(page.getByRole('heading',{name:'Sources & methods'})).toBeVisible();await context.close();
 });
 
@@ -116,4 +116,17 @@ test('changes controls and horizontal tables are usable by keyboard on mobile',a
   await expect.poll(()=>scrolling.evaluate(element=>element.scrollLeft)).toBeGreaterThan(0);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
   await changes.screenshot({path:'test-results/visual/changes-mobile.png'});
+});
+test('estimated duties use matching monthly and rolling consumption values and follow country selection',async({page})=>{
+ await openProfile(page);const duties=page.getByRole('region',{name:'Estimated duties',exact:true});await expect(duties).toContainText('7.500%');await expect(duties).toContainText('+2.500 pp');await expect(duties).toContainText('RP70/79');
+ await expect(duties.getByRole('table',{name:'Monthly estimated duties · All partner countries'}).getByRole('row')).toHaveCount(25);
+ const downloaded=page.waitForEvent('download');await duties.getByRole('button',{name:'Download estimated duties CSV'}).click();const csv=await readFile(await (await downloaded).path(),'utf8');
+ const [header,...lines]=csv.trim().split('\r\n'),columns=header.split(',');const records=lines.map(line=>Object.fromEntries(line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map((value,index)=>[columns[index],value.replace(/^"|"$/g,'').replaceAll('""','"')])));
+ expect(records).toHaveLength(26);const current=records.find(row=>row.record_type==='rolling_current')!;expect(current.calculated_duty_usd).toBe('30');expect(current.consumption_value_usd).toBe('400');expect(current.duty_share_percent).toBe('7.5');expect(current.affected_dutiable_value_usd).toBe('100');expect(current.duty_share_change_percentage_points).toBe('2.5');expect(current.denominator_measure).toBe('CON_VAL_MO');
+ await page.getByRole('checkbox',{name:'CANADA'}).check();await expect(duties.getByRole('heading',{name:'CANADA',exact:true})).toBeVisible();await expect(duties).toContainText('comparisons are unavailable');await page.getByRole('radio',{name:'Exports'}).check();await expect(duties).toHaveCount(0);
+});
+test('estimated duties tables and download are keyboard accessible on mobile without page overflow',async({page})=>{
+ await page.setViewportSize({width:375,height:812});await openProfile(page);const duties=page.getByRole('region',{name:'Estimated duties',exact:true});const scrolling=duties.getByRole('region',{name:'Scrollable monthly estimated duties · All partner countries'});
+ await tabTo(page,scrolling);for(let index=0;index<8;index++)await page.keyboard.press('ArrowRight');await expect.poll(()=>scrolling.evaluate(element=>element.scrollLeft)).toBeGreaterThan(0);
+ await tabTo(page,duties.getByRole('button',{name:'Download estimated duties CSV'}));const downloaded=page.waitForEvent('download');await page.keyboard.press('Enter');expect((await downloaded).suggestedFilename()).toBe('hs-090121-imports-estimated-duties.csv');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);await duties.screenshot({path:'test-results/visual/duties-mobile.png'});
 });

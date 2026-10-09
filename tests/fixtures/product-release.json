@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "productCode": "090121",
   "reportingMonth": "2025-12",
   "retrievedAt": "2026-01-01T00:00:00.000Z",
@@ -2897,5 +2897,2749 @@
       "to": "2025-12",
       "evidenceUrl": "https://example.invalid/synthetic"
     }
-  ]
+  ],
+  "duties": {
+    "schemaVersion": 1,
+    "fromMonth": "2024-01",
+    "observations": [
+      {
+        "productCode": "090121",
+        "month": "2024-01",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 90,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 90,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 40
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-02",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-03",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-04",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-05",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-06",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-07",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-08",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-09",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-10",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-11",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-12",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 10,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-01",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 19,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 180,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 180,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 100
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-02",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 1,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-03",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 1,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-04",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 1,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-05",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 1,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-06",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 1,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-07",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 1,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-08",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 1,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-09",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 1,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-10",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 1,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-11",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 1,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-12",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 1,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 20,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-01",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 22,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 22,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 10
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-02",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-03",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-04",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-05",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-06",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-08",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-09",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-10",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-11",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-12",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-01",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 4,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 45,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 45,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 25
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-02",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-03",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-04",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-05",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-06",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-07",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-08",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-09",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-10",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-11",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-12",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-01",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 22,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 22,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 10
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-02",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-03",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-04",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-05",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-06",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-07",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-08",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-09",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-10",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-11",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-12",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-01",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 4,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 45,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 45,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 25
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-02",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-03",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-04",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-05",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-06",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-07",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-08",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-09",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-10",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-11",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-12",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-01",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 22,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 22,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 10
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-02",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-03",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-04",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-05",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-06",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-07",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-08",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-09",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-10",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-11",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-12",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-01",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 4,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 45,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 45,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 25
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-02",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-03",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-04",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-05",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-06",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-07",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-08",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-09",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-10",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-11",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-12",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-01",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 22,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 22,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 10
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-02",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-03",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-04",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-05",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-06",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-07",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-08",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-09",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-10",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-11",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2024-12",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 2,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-01",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 4,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 45,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 45,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 25
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-02",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-03",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-04",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-05",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-06",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-07",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-08",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-09",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-10",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-11",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090121",
+        "month": "2025-12",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 5,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      }
+    ],
+    "revisedKeys": []
+  }
 }

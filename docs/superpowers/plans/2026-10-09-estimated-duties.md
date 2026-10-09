@@ -129,12 +129,12 @@ The private archive pointer and object-key namespace stay unchanged; the bundle 
 - Keeps: `packBundle`, `unpackBundle`, `recoverBundle`, `stageCandidate` and `promoteCandidate` public signatures, existing pointer/reference shape and conditional-write semantics.
 - Version 2 raw file paths add `raw/duties-{month}-{summary}.json` for the four duty summaries. Other source paths and exact legacy query definitions stay unchanged.
 
-- [ ] Write tests recovering a version 1 bundle byte-for-byte and a version 2 bundle containing 337 files. Tamper with a duty value, RP record, query scope, checksum or required file and assert rejection before pointer mutation. Restore the previous release after a failed candidate.
-- [ ] Run archive tests and observe failures for the new format.
-- [ ] Implement version dispatch in packing and recovery. Replay both source formats with their own strict query/file-grid validators; compare replayed prepared values and coverage with the saved release. Preserve original version 1 archives rather than rewriting them.
-- [ ] Add optional duty-enabled import input to the existing manual workflow, defaulting to false initially. Retain backup-before-promotion and main-only R2 mutation gates. A version 2 bundle can refer to the existing version 1 accepted predecessor.
-- [ ] Run archive and workflow tests, `npm test` and `npm run check`; obtain independent review and CI before merging the pipeline/archive extension.
-- [ ] Retain the current real version 1 bundle, create a real duty-enabled candidate, recover its backup offline and reproduce its processed figures before accepting it. Exercise fresh-runner restoration of the accepted version 2 archive. Keep current preview data in place until this validation succeeds. Record the live receipts and checksums; no public deployment occurs.
+- [x] Write tests recovering a version 1 bundle byte-for-byte and a version 2 bundle containing 337 files. Tamper with a duty value, RP record, query scope, checksum or required file and assert rejection before pointer mutation. Restore the previous release after a failed candidate.
+- [x] Run archive tests and observe failures for the new format.
+- [x] Implement version dispatch in packing and recovery. Replay both source formats with their own strict query/file-grid validators; compare replayed prepared values and coverage with the saved release. Preserve original version 1 archives rather than rewriting them.
+- [x] Add optional duty-enabled import input to the existing manual workflow, defaulting to false initially. Retain backup-before-promotion and main-only R2 mutation gates. A version 2 bundle can refer to the existing version 1 accepted predecessor.
+- [x] Run archive and workflow tests, `npm test` and `npm run check`; obtain independent review and CI before merging the pipeline/archive extension.
+- [x] Retain the current real version 1 bundle, create a real duty-enabled candidate, recover its backup offline and reproduce its processed figures before accepting it. Exercise fresh-runner restoration of the accepted version 2 archive. Keep current preview data in place until this validation succeeds. Record the live receipts and checksums; no public deployment occurs.
 
 ## Task 4: Calculate Monthly and Rolling Duty Comparisons
 
@@ -147,7 +147,7 @@ The private archive pointer and object-key namespace stay unchanged; the bundle 
 - Produces: `buildDutyView(release: Release, partnerCodes: string[]): DutyView`.
 - `DutyView` contains product/reporting metadata, available history, selected monthly series, latest month and its matching year-earlier comparison, current/prior twelve-month summaries, dollar and percentage-point changes, coverage qualifications and source provenance. A version 1 release returns an explicit not-available view. Each selected country is a separate series; do not pool the selected countries or replace world totals with their sum.
 
-- [ ] Write tests using unequal monthly consumption values so an average-of-percentages implementation fails. Include literal assertions:
+- [x] Write tests using unequal monthly consumption values so an average-of-percentages implementation fails. Include literal assertions:
   ```ts
   // Twelve current months total $30 duty on $400 consumption.
   expect(current.dutySharePercent).toBe(7.5);
@@ -156,10 +156,10 @@ The private archive pointer and object-key namespace stay unchanged; the bundle 
   expect(change.dutySharePercentagePoints).toBe(2.5);
   expect(change.calculatedDutyUsd).toBe(20);
   ```
-- [ ] Add missing-month, suppressed-cell, zero-denominator, zero-prior-duty, incompatible-classification and unverified-coverage cases. All complete-period comparisons require 24 matching months. Reported duty dollars can remain visible when the derived share or comparison is unavailable.
-- [ ] Pin monthly year-over-year behavior: a $6 duty on $100 consumption compared with $2 on $50 one year earlier gives a $4 duty increase, 200% duty growth and a 2-percentage-point duty-share increase. A missing intervening month does not invalidate this matching-month comparison, while a classification boundary between the two dates does.
-- [ ] Run focused tests, observe failures, then implement weighted sums with safe arithmetic and explicit null handling. For positive RP70/79 affected values, show qualified reported comparisons and both periods' coverage; with unavailable coverage, withhold the comparison. Do not introduce an unsupported percentage cutoff.
-- [ ] Run focused and complete suites; commit the calculation module.
+- [x] Add missing-month, suppressed-cell, zero-denominator, zero-prior-duty, incompatible-classification and unverified-coverage cases. All complete-period comparisons require 24 matching months. Reported duty dollars can remain visible when the derived share or comparison is unavailable.
+- [x] Pin monthly year-over-year behavior: a $6 duty on $100 consumption compared with $2 on $50 one year earlier gives a $4 duty increase, 200% duty growth and a 2-percentage-point duty-share increase. A missing intervening month does not invalidate this matching-month comparison, while a classification boundary between the two dates does.
+- [x] Run focused tests, observe failures, then implement weighted sums with safe arithmetic and explicit null handling. For positive RP70/79 affected values, show qualified reported comparisons and both periods' coverage; with unavailable coverage, withhold the comparison. Do not introduce an unsupported percentage cutoff.
+- [x] Run focused and complete suites; commit the calculation module.
 
 ## Task 5: Add the Profile Section and Browser-Generated CSV
 
@@ -173,24 +173,24 @@ The private archive pointer and object-key namespace stay unchanged; the bundle 
 - Consumes: `buildDutyView` and the profile's existing selected partner codes.
 - Produces: `EstimatedDuties({view}: {view: DutyView})` and `serializeDutyCsv(view: DutyView): string`.
 
-- [ ] Write tests for imports-only visibility, world totals when no partner is selected, the same selected countries as the profile, unavailable country history and version 1 releases, monthly/rolling period labels, RP70/79 qualifications and zero-prior behavior.
-- [ ] Run tests to observe failures, then add an Estimated duties section after the country changes section for Imports. Show the latest month, a current/prior rolling comparison table and monthly figures. Country selection follows the existing comparison controls; duty history shows its actual 24-month coverage. Existing Imports/Exports charts and rankings keep their current behavior.
-- [ ] Add a browser-generated CSV for the displayed monthly and rolling records, including duty and consumption amounts, shares, period boundaries, reporting qualifications and existing source/retrieval/version provenance. Test formula-looking names, quotes, line breaks and unavailable values without changing valid numeric fields.
-- [ ] Add mobile and keyboard acceptance for the section and download, plus an initial server-rendered world view without JavaScript. Explain that controls/downloads require JavaScript. Update methods and README only after live verification supports the stated status.
-- [ ] Run `npm test`, `npm run check`, the fixture build/browser suite and a separate retained-Census acceptance build/browser suite. Check CSV figures independently against restored source totals. Record the automatic build report; avoid writing fixture output over either active real-data preview.
+- [x] Write tests for imports-only visibility, world totals when no partner is selected, the same selected countries as the profile, unavailable country history and version 1 releases, monthly/rolling period labels, RP70/79 qualifications and zero-prior behavior.
+- [x] Run tests to observe failures, then add an Estimated duties section after the country changes section for Imports. Show the latest month, a current/prior rolling comparison table and monthly figures. Country selection follows the existing comparison controls; duty history shows its actual 24-month coverage. Existing Imports/Exports charts and rankings keep their current behavior.
+- [x] Add a browser-generated CSV for the displayed monthly and rolling records, including duty and consumption amounts, shares, period boundaries, reporting qualifications and existing source/retrieval/version provenance. Test formula-looking names, quotes, line breaks and unavailable values without changing valid numeric fields.
+- [x] Add mobile and keyboard acceptance for the section and download, plus an initial server-rendered world view without JavaScript. Explain that controls/downloads require JavaScript. Update methods and README only after live verification supports the stated status.
+- [x] Run `npm test`, `npm run check`, the fixture build/browser suite and a separate retained-Census acceptance build/browser suite. Check CSV figures independently against restored source totals. Record the automatic build report; avoid writing fixture output over either active real-data preview.
 
 ## Task 6: Final Acceptance and Integration
 
 **Files:**
 - Update: `docs/data-validation/090121-duties.md`, `docs/data-validation/090121-archive.md`, `README.md`
 
-- [ ] Verify each approved scope requirement against the completed artifacts: labels, monthly and rolling formulas, matching denominators, coverage qualifications, unavailable behavior, legacy recovery and new recovery.
-- [ ] Have fresh independent reviewers inspect calculation/data integrity and UI/download behavior; resolve material findings and rerun only affected checks.
+- [x] Verify each approved scope requirement against the completed artifacts: labels, monthly and rolling formulas, matching denominators, coverage qualifications, unavailable behavior, legacy recovery and new recovery.
+- [x] Have fresh independent reviewers inspect calculation/data integrity and UI/download behavior; resolve material findings and rerun only affected checks.
 - [ ] Obtain passing GitHub CI for the final head, then merge using the standing authorization and synchronize local main. Verify the merged tree matches the reviewed/tested head.
-- [ ] Open the real-data preview and report the live validation result, recovery evidence and any limitations. Two runs of the same reporting month verify recovery, not two successive official monthly releases; keep the public-launch gate distinct. Do not add a schedule or deploy the site.
+- [x] Open the real-data preview and report the live validation result, recovery evidence and any limitations. Two runs of the same reporting month verify recovery, not two successive official monthly releases; keep the public-launch gate distinct. Do not add a schedule or deploy the site.
 
 ## Review and Execution Status
 
-- The owner approved this implementation plan on October 9, 2026. Task 1 and its independent live audit are complete; Task 2 is in progress.
+- The owner approved this implementation plan on October 9, 2026. Tasks 1–5 are complete, including both live archive formats and displayed comparisons; Task 6 review and acceptance are complete; the final-head CI and merge gate is tracked in PR #10.
 - The main agent remains the implementer, with subagents used for independent reviews.
-- Live duty source data was audited using the existing GitHub secret; no duty-enabled release has been promoted yet. The evidence is recorded in `docs/data-validation/090121-duties.md`.
+- Live duty source data was audited using the existing GitHub secret; two duty-enabled releases have been backed up, recovered and promoted successfully. The evidence is recorded in `docs/data-validation/090121-duties.md`.
