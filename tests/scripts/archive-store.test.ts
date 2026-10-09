@@ -43,6 +43,10 @@ it('rejects invalid settings, keys and preconditions before sending',async()=>{
   for(const env of [{},{R2_ACCOUNT_ID:'../../bad'},{R2_BUCKET_NAME:'http://bad'}])expect(()=>readR2Config(env)).toThrow();
   const w=wire(()=>response());await expect(w.store.get('outside/key',1024)).rejects.toThrow();await expect(w.store.put(CURRENT_KEY,Buffer.from('{}'),{ifMatch:'bad\r\nHeader'})).rejects.toThrow();expect(w.requests).toHaveLength(0);
 });
+it('names a missing R2 setting without echoing its value or other credentials',()=>{
+  const env={R2_ACCOUNT_ID:config.accountId,R2_BUCKET_NAME:'',R2_ACCESS_KEY_ID:config.accessKeyId,R2_SECRET_ACCESS_KEY:config.secretAccessKey};
+  const error=(()=>{try{readR2Config(env);}catch(e){return e as Error;}throw new Error('Expected rejection');})();expect(error.message).toContain('R2_BUCKET_NAME');expect(error.message).not.toContain(config.secretAccessKey);
+});
 it.each([['GET',403],['PUT',200],['PUT',500]] as const)('bounds %s %s response before SDK buffering',async(method,status)=>{
   let consumed=0;const stream=Readable.from((async function*(){yield Buffer.from('<Error><Code>Failure</Code><Message>');for(let i=0;i<128;i++){consumed+=1024;yield Buffer.alloc(1024,120);}yield Buffer.from('</Message></Error>');})());
   const w=wire(()=>response(status,{'content-type':'application/xml',etag:'"etag"'},stream));

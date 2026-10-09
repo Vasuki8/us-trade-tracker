@@ -88,4 +88,4 @@ Deliver a focused reviewed PR, setup and recovery instructions, and a measured o
 
 Proposed code boundaries: `scripts/archive-store.ts` for transport, `scripts/archive-release.ts` for bundle/restore/promotion logic, a small archive CLI, focused tests under `tests/scripts/`, the narrow raw-retention extension in the importer, opt-in steps in `import-census.yml`, and README/setup evidence. No product UI or public deployment changes are needed for this milestone.
 
-Independent design review found no remaining architecture blocker after the bundle simplification and promotion/backup corrections. This is a design assessment, not verification of implementation or live R2 behavior. Owner design review is complete; the implementation plan must be reviewed before execution.
+Independent design review found no remaining architecture blocker after the bundle simplification and promotion/backup corrections. Owner design and implementation-plan review are complete; implementation began on October 8, 2026. See the separate archive validation record for executed checks; live R2 behavior remains unverified.

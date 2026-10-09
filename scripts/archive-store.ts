@@ -7,9 +7,13 @@ export interface ArchiveStore{get(key:string,maxBytes:number):Promise<StoredObje
 export type StoreErrorCode='conflict'|'unconfirmed_write'|'write_failed'|'read_failed';
 export class ArchiveStoreError extends Error{constructor(readonly code:StoreErrorCode){super(`Archive storage ${code}`);this.name='ArchiveStoreError';}}
 export type R2Config={accountId:string;bucketName:string;accessKeyId:string;secretAccessKey:string};
+export class R2ConfigurationError extends Error{constructor(setting:'R2_ACCOUNT_ID'|'R2_BUCKET_NAME'|'R2_ACCESS_KEY_ID'|'R2_SECRET_ACCESS_KEY'){super(`Missing or invalid R2 setting: ${setting}`);this.name='R2ConfigurationError';}}
 export function readR2Config(env:NodeJS.ProcessEnv):R2Config{
   const config={accountId:env.R2_ACCOUNT_ID??'',bucketName:env.R2_BUCKET_NAME??'',accessKeyId:env.R2_ACCESS_KEY_ID??'',secretAccessKey:env.R2_SECRET_ACCESS_KEY??''};
-  if(!/^[a-f0-9]{32}$/.test(config.accountId)||! /^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$/.test(config.bucketName)||! /^[a-f0-9]{32}$/.test(config.accessKeyId)||! /^[a-f0-9]{64}$/.test(config.secretAccessKey))throw new Error('Missing or invalid R2 settings');
+  if(!/^[a-f0-9]{32}$/.test(config.accountId))throw new R2ConfigurationError('R2_ACCOUNT_ID');
+  if(!/^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$/.test(config.bucketName))throw new R2ConfigurationError('R2_BUCKET_NAME');
+  if(!/^[a-f0-9]{32}$/.test(config.accessKeyId))throw new R2ConfigurationError('R2_ACCESS_KEY_ID');
+  if(!/^[a-f0-9]{64}$/.test(config.secretAccessKey))throw new R2ConfigurationError('R2_SECRET_ACCESS_KEY');
   return config;
 }
 function validEtag(value:unknown):value is string{return typeof value==='string'&&/^"[\x21\x23-\x7e]{1,510}"$/.test(value);}

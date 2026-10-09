@@ -6,6 +6,14 @@ on:
         description: Confirmed published reporting month (YYYY-MM)
         required: true
         type: string
+      archive_to_r2:
+        description: Retain the accepted release in the configured private R2 bucket (main only)
+        type: boolean
+        default: false
+      initialize_archive:
+        description: Initialize an archive only when its current pointer is absent
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -15,6 +23,10 @@ jobs:
   import:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      REPORTING_MONTH: ${{ inputs.reporting_month }}
+      ARCHIVE_TO_R2: ${{ inputs.archive_to_r2 }}
+      INITIALIZE_ARCHIVE: ${{ inputs.initialize_archive }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -25,13 +37,65 @@ jobs:
           package-manager-cache: false
       - run: npm ci
       - run: npm test
+      - name: Validate dispatch inputs
+        run: npm run data:archive -- preflight
+      - name: Restore the accepted baseline
+        id: restore
+        if: inputs.archive_to_r2 && github.ref == 'refs/heads/main'
+        env:
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: npm run data:archive -- restore --data-dir data --run-dir .tmp/archive
       - name: Retrieve and validate the coffee sample
+        id: import
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
           REPORTING_MONTH: ${{ inputs.reporting_month }}
         run: npm run data:import -- --product 090121 --end "$REPORTING_MONTH" --months 60 --classification data/classification/090121.json
       - run: npm run data:validate
+      - name: Upload and verify the immutable candidate
+        id: stage
+        if: inputs.archive_to_r2 && github.ref == 'refs/heads/main'
+        env:
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: npm run data:archive -- stage --data-dir data --run-dir .tmp/archive
+      - name: Back up the candidate before promotion
+        id: backup
+        if: inputs.archive_to_r2
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: census-coffee-candidate
+          path: .tmp/archive/bundle.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+      - name: Promote the backed-up candidate conditionally
+        id: promote
+        if: success() && inputs.archive_to_r2 && github.ref == 'refs/heads/main' && steps.backup.outcome == 'success'
+        env:
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          BACKUP_ARTIFACT_ID: ${{ steps.backup.outputs.artifact-id }}
+          BACKUP_ARTIFACT_DIGEST: ${{ steps.backup.outputs.artifact-digest }}
+        run: npm run data:archive -- promote --data-dir data --run-dir .tmp/archive
+      - name: Retain the promotion outcome
+        if: always() && inputs.archive_to_r2 && hashFiles('.tmp/archive/outcome.json') != ''
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: census-coffee-promotion
+          path: .tmp/archive/outcome.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: '!inputs.archive_to_r2'
         with:
           name: census-coffee-release
           path: |

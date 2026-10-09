@@ -223,4 +223,4 @@ Coverage: Task 1 owns schemas, sizes, original bytes and raw-source agreement; T
 
 The owner already selected inline implementation with reviewer subagents. Preserve that method; the main agent implements these four sequential tasks and independent reviewers assess each task and the complete branch. Before execution use `executing-plans` and `using-git-worktrees` to establish a suitable isolated branch/workspace while preserving the actual-data preview.
 
-**Status:** Design approved; plan written and self-reviewed; owner plan review pending. This document describes future checks, not passing test results or verified live R2 storage.
+**Status:** Owner approved design and implementation plan on October 8, 2026. All four implementation tasks have passed offline verification and independent task reviews; whole-branch final review and PR handoff are pending. Executed verification is recorded in `docs/data-validation/090121-archive.md`. Live R2 activation remains unverified and requires a separate decision.
