@@ -3,6 +3,22 @@ import {afterEach,expect,it,vi} from 'vitest';import {cleanup,render,screen,with
 import {EstimatedDuties} from '../../src/components/EstimatedDuties';import {buildDutyView} from '../../src/lib/trade/duties';import {sampleDutyRelease} from '../helpers/duties';import {sampleRelease} from '../helpers/release';
 import {ProductExplorer} from '../../src/components/ProductExplorer';import {renderToStaticMarkup} from 'react-dom/server';
 afterEach(cleanup);
+it.each([
+ {name:'tiny increase',currentDuty:325,currentValue:202566133,previousDuty:1,previousValue:1000000,share:'<0.001%',change:'Increase <0.001 pp',coverage:'<0.001%'},
+ {name:'tiny decrease',currentDuty:1,currentValue:1000000,previousDuty:325,previousValue:202566133,share:'<0.001%',change:'Decrease <0.001 pp',coverage:'<0.001%'},
+ {name:'actual zero',currentDuty:0,currentValue:1000000,previousDuty:0,previousValue:1000000,share:'0.000%',change:'0.000 pp',coverage:'<0.001%'},
+ {name:'positive precision boundary',currentDuty:1,currentValue:100000,previousDuty:0,previousValue:1000000,share:'0.001%',change:'+0.001 pp',coverage:'0.001%'},
+ {name:'negative precision boundary',currentDuty:0,currentValue:100000,previousDuty:1,previousValue:100000,share:'0.000%',change:'-0.001 pp',coverage:'0.001%'},
+])('distinguishes $name from rounded zero',({currentDuty,currentValue,previousDuty,previousValue,share,change,coverage})=>{
+ const release=sampleDutyRelease(),current=release.duties.observations.find(row=>row.month==='2025-12')!,previous=release.duties.observations.find(row=>row.month==='2024-12')!;
+ current.calculatedDuty.valueUsd=currentDuty;current.consumptionValue.valueUsd=currentValue;current.dutiableValue.valueUsd=currentValue;current.coverage.uncalculatedDutiableValueUsd=1;
+ previous.calculatedDuty.valueUsd=previousDuty;previous.consumptionValue.valueUsd=previousValue;previous.dutiableValue.valueUsd=previousValue;
+ render(<EstimatedDuties view={buildDutyView(release,[])}/>);
+ const region=screen.getByRole('region',{name:'Estimated duties'}),row=within(within(region).getByRole('table',{name:'Monthly estimated duties · All partner countries'})).getByRole('row',{name:/Dec 2025/});
+ expect(within(row).getByRole('cell',{name:share})).toBeVisible();
+ expect(region.querySelector('.duty-change')).toHaveTextContent(change);
+ expect(region.querySelector('.duty-coverage')).toHaveTextContent(`${coverage} of dutiable value`);
+});
 it('shows monthly and rolling amounts, the consumption denominator and coverage qualification',()=>{
  const r=sampleDutyRelease();r.duties.observations[12].coverage.uncalculatedDutiableValueUsd=100;render(<EstimatedDuties view={buildDutyView(r,[])}/>);
  const region=screen.getByRole('region',{name:'Estimated duties'});expect(region).toHaveTextContent('Jan 2025–Dec 2025');expect(region).toHaveTextContent('Jan 2024–Dec 2024');expect(region).toHaveTextContent('7.500%');expect(region).toHaveTextContent('+2.500 pp');expect(region).toHaveTextContent('RP70/79');expect(region).toHaveTextContent('imports for consumption');expect(region).toHaveTextContent('not proof of duty-free trade');

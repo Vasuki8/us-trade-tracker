@@ -54,6 +54,21 @@ describe('duty normalization',()=>{
     expect(normalizeDutyMonth(input,context)).toHaveLength(1);
   });
   it('rejects unreconciled RP totals',()=>{const input=parts();change(input[2],'CAL_DUT_MO','13');expect(()=>normalizeDutyMonth(input,context)).toThrow(/reconcil/i);});
+  it.each([
+    {name:'world',part:2,value:'13',partner:'-',total:12,breakdown:13},
+    {name:'country',part:3,value:'9',partner:'1220',total:8,breakdown:9},
+  ])('identifies the conflicting $name measure and totals in reconciliation errors',({part,value,partner,total,breakdown})=>{
+    const input=parts();change(input[part],'CAL_DUT_MO',value);let caught:unknown;
+    try{normalizeDutyMonth(input,context);}catch(error){caught=error;}
+    expect(caught).toBeInstanceOf(Error);const message=(caught as Error).message;
+    for(const detail of ['product=090121','month=2026-08',`partner=${partner}`,'measure=CAL_DUT_MO',`total=${total} USD`,`breakdown=${breakdown} USD`])expect(message).toContain(detail);
+  });
+  it('identifies the rate provision and conflicting national/country totals',()=>{
+    const input=parts();change(input[2],'CON_VAL_MO','170',1);change(input[2],'CON_VAL_MO','0',3);let caught:unknown;
+    try{normalizeDutyMonth(input,context);}catch(error){caught=error;}
+    expect(caught).toBeInstanceOf(Error);const message=(caught as Error).message;
+    for(const detail of ['product=090121','month=2026-08','partner=-','measure=CON_VAL_MO','RP=61','national=170 USD','countries=160 USD'])expect(message).toContain(detail);
+  });
   it('checks each available measure even when an unrelated component measure is missing',()=>{
     const input=parts();change(input[3],'CAL_DUT_MO','9');change(input[3],'DUT_VAL_MO',null);
     expect(()=>normalizeDutyMonth(input,context)).toThrow(/reconcil/i);
