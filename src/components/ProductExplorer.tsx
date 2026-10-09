@@ -2,14 +2,14 @@ import {useEffect,useMemo,useRef,useState} from 'react';
 import type {Release,ExplorerSelection} from '../lib/trade/types';import {buildProfileView} from '../lib/trade/profile';
 import {usd,percent,monthLabel} from '../lib/trade/format';import {serializeCsv,downloadBlob,exportChartPng} from '../lib/trade/downloads';
 import {TradeChart} from './TradeChart';import {TradeTable} from './TradeTable';
-import {TradeChanges} from './TradeChanges';import {buildChangesView} from '../lib/trade/changes';
+import {TradeChanges} from './TradeChanges';import {buildChangesView,buildMonthlyChangesView} from '../lib/trade/changes';
 import {EstimatedDuties} from './EstimatedDuties';import {buildDutyView} from '../lib/trade/duties';
 import {profileViewPath,readViewSelection} from '../lib/trade/view-link';
 import {CountryPicker} from './CountryPicker';
 import {SelectedCountryComparison} from './SelectedCountryComparison';
 export function ProductExplorer({release}:{release:Release}){
   const [selection,setSelection]=useState<ExplorerSelection>({direction:'imports',months:60,countryCodes:[]});
-  const {direction,months,countryCodes}=selection;
+  const {direction,months,countryCodes,comparisonPeriod='annual'}=selection;
   const [downloadError,setDownloadError]=useState('');const [busy,setBusy]=useState(false);
   const [viewLink,setViewLink]=useState(''),[linkNotice,setLinkNotice]=useState<string|null>(null);
   const [copied,setCopied]=useState(false),[showLink,setShowLink]=useState(false);
@@ -35,12 +35,13 @@ export function ProductExplorer({release}:{release:Release}){
   };
   const svg=useRef<SVGSVGElement>(null);const view=buildProfileView(release,selection);
   const changes=useMemo(()=>buildChangesView(release,direction),[release,direction]);
+  const selectedComparison=useMemo(()=>comparisonPeriod==='monthly'?buildMonthlyChangesView(release,direction):changes,[release,direction,comparisonPeriod,changes]);
   const countries=[...view.partners].sort((a,b)=>a.name.localeCompare(b.name));
   const downloadPng=async()=>{setDownloadError('');setBusy(true);try{if(!svg.current)throw new Error('Chart unavailable');downloadBlob(await exportChartPng(svg.current),`hs-${release.productCode}-${direction}.png`);}catch{setDownloadError('PNG export failed. You can still download the displayed data as CSV.');}finally{setBusy(false);}};
   return <>
     {release.source==='fixture'&&<div className="sample-banner"><strong>Development sample data</strong><span>These figures are synthetic and are for development checks.</span></div>}
     <div className="release-strip"><span>Reporting month <strong>{monthLabel(release.reportingMonth)}</strong></span><span>Retrieved {new Date(release.retrievedAt).toISOString().slice(0,10)}</span><a href="/methods/">Source &amp; methods ↗</a></div>
-    <div className="explorer-controls"><fieldset><legend>Trade direction</legend>{(['imports','exports'] as const).map(value=><label key={value}><input type="radio" name="direction" checked={direction===value} onChange={()=>changeSelection({direction:value,months,countryCodes:[]})}/>{value==='imports'?'Imports':'Exports'}</label>)}</fieldset>
+    <div className="explorer-controls"><fieldset><legend>Trade direction</legend>{(['imports','exports'] as const).map(value=><label key={value}><input type="radio" name="direction" checked={direction===value} onChange={()=>changeSelection({...selection,direction:value,countryCodes:[]})}/>{value==='imports'?'Imports':'Exports'}</label>)}</fieldset>
       <label className="window-label">History window<select aria-label="History window" value={months} onChange={e=>changeSelection({...selection,months:Number(e.target.value) as 12|60})}><option value="60">Up to 5 years</option><option value="12">Last 12 months</option></select></label>
     </div>
     <div className="view-link"><button className="secondary-button" disabled={!viewLink} onClick={copyViewLink}>Copy view link</button><p>Links reopen these filters using the latest available dataset.</p>
@@ -60,7 +61,7 @@ export function ProductExplorer({release}:{release:Release}){
     </div><aside className="comparison-card"><p className="eyebrow">PARTNER MARKETS</p><h2>Compare countries</h2><p>Choose up to three partners. With none selected, the chart shows the U.S. total.</p>
       <CountryPicker key={direction} countries={countries} selectedCodes={countryCodes} ready={Boolean(viewLink)} onChange={codes=>changeSelection({...selection,countryCodes:codes})}/>
     </aside></section>
-    <SelectedCountryComparison view={changes} countryCodes={countryCodes}/>
+    <SelectedCountryComparison view={selectedComparison} countryCodes={countryCodes} onPeriodChange={period=>changeSelection({...selection,comparisonPeriod:period})}/>
     <TradeChanges view={changes}/>
     {direction==='imports'&&<EstimatedDuties view={buildDutyView(release,countryCodes)}/>}
     <section className="detail-grid"><div className="data-card"><p className="eyebrow">DISPLAYED DATA</p><h2>The numbers behind the chart</h2><TradeTable view={view}/></div>

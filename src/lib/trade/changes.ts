@@ -1,4 +1,4 @@
-import type {Comparison,Direction,ProfileView,Release} from './types';
+import type {Comparison,ComparisonPeriod,Direction,ProfileView,Release} from './types';
 import {compareValues,shiftMonth,sumWindow} from './metrics';
 import {buildProfileView} from './profile';
 
@@ -12,6 +12,7 @@ export type ChangesView = {
   productCode:string; title:string; direction:Direction;
   periods:{current:{from:string;to:string};previous:{from:string;to:string}};
   world:Comparison; countries:CountryChange[]; classificationComparable:boolean;
+  periodType?:ComparisonPeriod;
   provenance:ProfileView['provenance'];
 };
 
@@ -19,6 +20,30 @@ export function selectCountryChanges(view:ChangesView,countryCodes:string[]):Cou
   const countries=countryCodes.map(code=>view.countries.find(country=>country.code===code));
   if(countryCodes.length>3||new Set(countryCodes).size!==countryCodes.length||countries.some(country=>!country))throw new Error('Choose up to three available countries');
   return countries as CountryChange[];
+}
+
+export function buildMonthlyChangesView(release:Release,direction:Direction):ChangesView{
+  const measure=direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO';
+  const rows=release.observations.filter(row=>row.productCode===release.productCode&&row.direction===direction&&row.measure===measure);
+  const worldRow=rows.find(row=>row.geography==='world');
+  if(!worldRow)throw new Error('Missing world observations');
+  const end=release.reportingMonth,previous=shiftMonth(end,-12);
+  const periods={current:{from:end,to:end},previous:{from:previous,to:previous}};
+  const classificationComparable=release.classificationIntervals.some(interval=>interval.from<=previous&&end<=interval.to);
+  const byMonth=new Map(rows.map(row=>[`${row.partnerCode}/${row.month}`,row]));
+  const value=(code:string,month:string)=>{const row=byMonth.get(`${code}/${month}`);return row?.status==='reported'?row.valueUsd:null;};
+  const world=compareValues(value('-',end),value('-',previous));
+  if(!classificationComparable){world.changeUsd=null;world.changePercent=null;}
+  const partners=new Map(rows.filter(row=>row.geography==='country').map(row=>[row.partnerCode,row.partnerName]));
+  const countries=[...partners].map(([code,name])=>{
+    const currentUsd=value(code,end),previousUsd=value(code,previous),comparison=compareValues(currentUsd,previousUsd);
+    const currentSharePercent=currentUsd!==null&&world.current!==null&&world.current>0?currentUsd/world.current*100:null;
+    const previousSharePercent=previousUsd!==null&&world.previous!==null&&world.previous>0?previousUsd/world.previous*100:null;
+    return {code,name,currentUsd,previousUsd,changeUsd:classificationComparable?comparison.changeUsd:null,changePercent:classificationComparable?comparison.changePercent:null,currentSharePercent,previousSharePercent,
+      shareChangePoints:classificationComparable&&currentSharePercent!==null&&previousSharePercent!==null?Number(shareNumerator(currentUsd!,previousUsd!,world))/Number(BigInt(world.current!)*BigInt(world.previous!))*100:null};
+  });
+  return {productCode:release.productCode,title:worldRow.description,direction,periodType:'monthly',periods,world,countries,classificationComparable,
+    provenance:{source:release.source,measure,retrievedAt:release.retrievedAt,codeVersion:release.codeVersion,sourceUrls:release.sourceUrls,revised:release.revisedKeys.length>0}};
 }
 
 // Each share difference has the same denominator within a view. Integer cross-products
