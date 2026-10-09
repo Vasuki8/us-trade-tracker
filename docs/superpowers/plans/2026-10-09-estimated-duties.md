@@ -77,7 +77,7 @@ The private archive pointer and object-key namespace stay unchanged; the bundle 
 - Produces: `runDutyAudit(options: {productCode: '090121'; end: Month; months: 24; outputDir: string; apiKey: string}, fetchImpl?: typeof fetch): Promise<DutyAuditReport>`.
 - `DutyAuditReport` records the month range, request checksums, available national/country months, reconciliation results and RP70/79 affected values. It does not promote a release.
 
-- [ ] Write tests against four real-shaped synthetic tables. Include total rows and component rows, an extra country grouping, reordered headers, unknown markers, missing tables and duplicate dimensions. Test JSON-only responses, secret-free source URLs/errors, timeouts and retry behavior.
+- [x] Write tests against four real-shaped synthetic tables. Include total rows and component rows, an extra country grouping, reordered headers, unknown markers, missing tables and duplicate dimensions. Test JSON-only responses, secret-free source URLs/errors, timeouts and retry behavior.
 
   Hand-checked assertions must include:
   ```ts
@@ -87,12 +87,12 @@ The private archive pointer and object-key namespace stay unchanged; the bundle 
   expect(world.coverage.status).toBe('verified');
   ```
   The input has $12 in calculated duty, $200 in consumption value, and $40 in RP70/79 dutiable value. The $40 stays a reporting qualification even when those duty cells are zero.
-- [ ] Run `npx vitest run tests/scripts/census-duties.test.ts`; observe failures for the missing behavior.
-- [ ] Implement the four scoped queries for `CAL_DUT_MO`, `CON_VAL_MO`, `DUT_VAL_MO` and their dimensions. Respect `SUMMARY_LVL=DET`, `COMM_LVL=HS6`; exclude country groupings. Validate the returned dimensions and values before accepting totals. Keep reported zeros distinct from missing cells; reject undocumented markers.
-- [ ] Reconcile each available total against its disjoint RP breakdown for all three measures. Never add totals to breakdown rows. Infer no RP70/79 contribution only when the breakdown is present and reconciles; an absent country-month stays absent. Missing/unreconciled breakdowns produce unavailable coverage or a failed audit, not a clean zero. Record discrepancies explicitly for investigation.
-- [ ] Add a manual, coffee-only audit workflow with a required confirmed reporting month, `contents: read`, no R2 credentials, pinned existing Actions versions, and seven-day artifact retention. Pass the Census secret only to retrieval. Retain raw source responses and the audit report without changing the accepted dataset or R2 pointer.
-- [ ] Run focused tests and `npm run check`, obtain independent review and passing CI, then merge this independently useful audit tool under standing merge authorization.
-- [ ] Run the workflow through August 2026, download and retain the artifact locally, independently verify all 24 months and record the findings. Confirm actual field population and aggregation before proceeding to Task 2. A failed audit is a reason to investigate and adjust the implementation, not to mark duty coverage verified.
+- [x] Run `npx vitest run tests/scripts/census-duties.test.ts`; observe failures for the missing behavior.
+- [x] Implement the four scoped queries for `CAL_DUT_MO`, `CON_VAL_MO`, `DUT_VAL_MO` and their dimensions. Respect `SUMMARY_LVL=DET`, `COMM_LVL=HS6`; exclude country groupings. Validate the returned dimensions and values before accepting totals. Keep reported zeros distinct from missing cells; reject undocumented markers.
+- [x] Reconcile each available total against its disjoint RP breakdown for all three measures. Never add totals to breakdown rows. Infer no RP70/79 contribution only when the breakdown is present and reconciles; an absent country-month stays absent. Missing/unreconciled breakdowns produce unavailable coverage or a failed audit, not a clean zero. Record discrepancies explicitly for investigation.
+- [x] Add a manual, coffee-only audit workflow with a required confirmed reporting month, `contents: read`, no R2 credentials, pinned existing Actions versions, and seven-day artifact retention. Pass the Census secret only to retrieval. Retain raw source responses and the audit report without changing the accepted dataset or R2 pointer.
+- [x] Run focused tests and `npm run check`, obtain independent review and passing CI, then merge this independently useful audit tool under standing merge authorization.
+- [x] Run the workflow through August 2026, download and retain the artifact locally, independently verify all 24 months and record the findings. Confirm actual field population and aggregation before proceeding to Task 2. A failed audit is a reason to investigate and adjust the implementation, not to mark duty coverage verified.
 
 ## Task 2: Prepare Version 2 Releases Without Merchandise Regressions
 
@@ -108,11 +108,11 @@ The private archive pointer and object-key namespace stay unchanged; the bundle 
 - Extends: `validateRelease` and `readCurrentRelease` to accept both release versions.
 - Produces: `findDutyRevisedKeys(previous: DutyDataset | undefined, next: DutyDataset): string[]`, using product/month/geography/partner/measure identity and overlapping history only. Track changed coverage as a distinct `coverage` key as well as the three money measures.
 
-- [ ] Write tests proving a version 2 release retains the original merchandise profile/rankings; an old version 1 release still loads; first-added duty coverage does not revise merchandise history; changed or removed overlapping duty values are tracked; malformed/misaligned duty rows fail validation.
-- [ ] Run the owning test files and observe the failures.
-- [ ] Add optional `--duties` CLI support. Fetch all duty and merchandise data into one candidate under the existing import lock. Validate the full candidate before atomically moving the local pointer. Keep the default importer behavior unchanged until the archive extension is ready.
-- [ ] Validate product, reporting month, 24-month duty window, unique total identities, value statuses, coverage metadata and classification compatibility. Allow missing country coverage to remain visible as unavailable; require a complete usable national duty window for a duty-enabled release.
-- [ ] Run the relevant suites, `npm test` and `npm run check`; commit the compatible release extension.
+- [x] Write tests proving a version 2 release retains the original merchandise profile/rankings; an old version 1 release still loads; first-added duty coverage does not revise merchandise history; changed or removed overlapping duty values are tracked; malformed/misaligned duty rows fail validation.
+- [x] Run the owning test files and observe the failures.
+- [x] Add optional `--duties` CLI support. Fetch all duty and merchandise data into one candidate under the existing import lock. Validate the full candidate before atomically moving the local pointer. Keep the default importer behavior unchanged until the archive extension is ready.
+- [x] Validate product, reporting month, 24-month duty window, unique total identities, value statuses, coverage metadata and classification compatibility. Allow missing country coverage to remain visible as unavailable; require a complete usable national duty window for a duty-enabled release.
+- [x] Run the relevant suites, `npm test` and `npm run check`; commit the compatible release extension.
 
 ## Task 3: Recover Both Archive Formats and Gate Promotion
 
@@ -191,6 +191,6 @@ The private archive pointer and object-key namespace stay unchanged; the bundle 
 
 ## Review and Execution Status
 
-- The owner approved this implementation plan on October 9, 2026. Task 1 is in progress.
+- The owner approved this implementation plan on October 9, 2026. Task 1 and its independent live audit are complete; Task 2 is in progress.
 - The main agent remains the implementer, with subagents used for independent reviews.
-- No duty data has been imported or promoted yet. A direct unkeyed sample request returned the Census Missing Key page, so Task 1 uses the existing GitHub secret.
+- Live duty source data was audited using the existing GitHub secret; no duty-enabled release has been promoted yet. The evidence is recorded in `docs/data-validation/090121-duties.md`.
