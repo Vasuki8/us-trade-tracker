@@ -10,6 +10,8 @@ The first local development profile is verified with real Census data: roasted c
 
 Read the [launch brief](docs/superpowers/specs/2026-10-08-us-trade-tracker-design.md) for features, data definitions, competition, and monetization.
 
+The coffee profile also includes “What changed?”: up to ten country increases and decreases over the latest twelve months versus the preceding twelve months, ranked by dollar change or country-share change in percentage points. It follows Imports/Exports and stays independent of chart country selections and history. Incomplete or classification-incompatible comparisons stay unavailable; a zero prior value has no growth percentage. The changes CSV includes the displayed rankings, both periods, units and source provenance.
+
 ## Local development
 
 Use Node 24 and npm. Install with `npm ci`.

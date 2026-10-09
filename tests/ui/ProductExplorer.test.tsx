@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import {afterEach,expect,it} from 'vitest';
-import {cleanup,render,screen} from '@testing-library/react';
+import {cleanup,render,screen,within} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
 import {sampleRelease} from '../helpers/release';
@@ -13,13 +13,13 @@ afterEach(cleanup);
 it('switches direction and enforces three countries with accessible controls',async()=>{
   render(<ProductExplorer release={sampleRelease()}/>);const user=userEvent.setup();
   expect(screen.getByText('Development sample data')).toBeVisible();
-  expect(screen.getByRole('table')).toBeVisible();
+  expect(screen.getByRole('table',{name:'Monthly trade values · current U.S. dollars'})).toBeVisible();
   await user.click(screen.getByRole('radio',{name:'Exports'}));
   expect(screen.getAllByText(/ALL_VAL_MO/).length).toBeGreaterThan(0);
   for(const name of ['CANADA','ITALY','MEXICO'])await user.click(screen.getByRole('checkbox',{name}));
   expect(screen.getByRole('checkbox',{name:'GERMANY'})).toBeDisabled();
   await user.selectOptions(screen.getByLabelText('History window'),'12');
-  expect(screen.getAllByRole('row')).toHaveLength(13);
+  expect(within(screen.getByRole('table',{name:'Monthly trade values · current U.S. dollars'})).getAllByRole('row')).toHaveLength(13);
 });
 it('shows missing data as unavailable in the matching table',()=>{
   const release=sampleRelease();release.observations.find(r=>r.direction==='imports'&&r.month==='2025-12'&&r.geography==='world')!.valueUsd=null;

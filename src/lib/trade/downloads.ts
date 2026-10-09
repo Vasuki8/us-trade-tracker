@@ -1,5 +1,15 @@
 import type {ProfileView} from './types';
+import {rankChanges,type ChangeMetric,type ChangesView} from './changes';
 const csvCell=(value:unknown)=>{let text=String(value??'');if(typeof value==='string'&&/^(?:[=+@]|-(?!$)|[\t\r])/.test(text))text="'"+text;return /[",\r\n]/.test(text)?`"${text.replaceAll('"','""')}"`:text;};
+export function serializeChangesCsv(view:ChangesView,metric:ChangeMetric):string{
+  const ranking=rankChanges(view,metric);
+  const headers=['ranking_metric','movement','rank','product_code','product_description','direction','partner_code','partner_name','current_value_usd','previous_value_usd','change_usd','growth_percent','current_share_percent','previous_share_percent','share_change_percentage_points','current_period_start','current_period_end','previous_period_start','previous_period_end','measure','units','source','retrieved_at','code_version','revised','classification_comparable','source_urls'];
+  const rows=([['increase',ranking.increases],['decrease',ranking.decreases]] as const).flatMap(([movement,countries])=>countries.map((country,index)=>[
+    metric,movement,index+1,view.productCode,view.title,view.direction,country.code,country.name,country.currentUsd,country.previousUsd,country.changeUsd,country.changePercent,country.currentSharePercent,country.previousSharePercent,country.shareChangePoints,
+    view.periods.current.from,view.periods.current.to,view.periods.previous.from,view.periods.previous.to,view.provenance.measure,'current USD, not seasonally adjusted; shares in percent; share change in percentage points',view.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau',view.provenance.retrievedAt,view.provenance.codeVersion,view.provenance.revised,view.classificationComparable,view.provenance.sourceUrls.join(' | ')
+  ]));
+  return [headers,...rows].map(row=>row.map(csvCell).join(',')).join('\r\n')+'\r\n';
+}
 export function serializeCsv(view:ProfileView):string{
   const headers=['month','product_code','product_description','direction','partner_code','partner_name','value_usd','value_status','measure','units','period_start','period_end','source','retrieved_at','code_version','revised','classification_verified','classification_break_before','source_urls'];
   const period=view.series[0]?.points;
