@@ -10,6 +10,7 @@
     "dev": "astro dev --host 127.0.0.1",
     "preview": "astro preview --host 127.0.0.1",
     "build": "astro build",
+    "build:report": "node --import tsx scripts/build-report.ts",
     "check": "astro check && tsc --noEmit -p tsconfig.tools.json",
     "test": "vitest run",
     "data:import": "node --env-file-if-exists=.env --import tsx scripts/import-product.ts",
