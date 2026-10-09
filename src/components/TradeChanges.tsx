@@ -2,19 +2,20 @@ import {useState} from 'react';
 import {rankChanges,type ChangeMetric,type ChangesView,type CountryChange} from '../lib/trade/changes';
 import {downloadBlob,serializeChangesCsv} from '../lib/trade/downloads';
 import {monthLabel,percent,usd} from '../lib/trade/format';
+import {profileViewPath} from '../lib/trade/view-link';
 
 const share=(value:number|null)=>value===null?'Unavailable':`${value.toFixed(1)}%`;
 const points=(value:number|null)=>value===null?'Unavailable':`${value>0?'+':''}${value!==0&&Math.abs(value)<0.1?new Intl.NumberFormat('en-US',{maximumSignificantDigits:2}).format(value):value.toFixed(1)} pp`;
 const dollars=(value:number|null)=>`${value!==null&&value>0?'+':''}${usd(value)}`;
 
-function ChangesTable({countries,movement,metric}:{countries:CountryChange[];movement:'increases'|'decreases';metric:ChangeMetric}) {
+function ChangesTable({countries,movement,metric,view}:{countries:CountryChange[];movement:'increases'|'decreases';metric:ChangeMetric;view:ChangesView}) {
   const title=`Largest ${movement} · ${metric==='dollars'?'dollar change':'country share change'}`;
   return <div className="changes-group">
     <h3>{title}</h3>
     <div className="table-scroll" role="region" aria-label={`Scrollable ${title.toLowerCase()}`} tabIndex={0}>
       <table aria-label={title}><thead><tr><th scope="col">Country</th><th scope="col">{metric==='dollars'?'Dollar change':'Share change (pp)'}</th><th scope="col">Current USD</th><th scope="col">Previous USD</th>{metric==='share'&&<th scope="col">Dollar change</th>}<th scope="col">Growth</th><th scope="col">Current share</th><th scope="col">Previous share</th>{metric==='dollars'&&<th scope="col">Share change (pp)</th>}</tr></thead>
         <tbody>{countries.map(country=><tr key={country.code}>
-          <th scope="row">{country.name} <small>{country.code}</small></th>
+          <th scope="row"><a href={profileViewPath(view.productCode,{direction:view.direction,months:12,countryCodes:[country.code]})}>{country.name}</a> <small>{country.code}</small></th>
           <td className="ranked-value">{metric==='dollars'?dollars(country.changeUsd):points(country.shareChangePoints)}</td>
           <td>{usd(country.currentUsd)}</td><td>{usd(country.previousUsd)}</td>
           {metric==='share'&&<td>{dollars(country.changeUsd)}</td>}<td>{percent(country.changePercent)}</td>
@@ -40,8 +41,8 @@ export function TradeChanges({view,context='profile'}:{view:ChangesView;context?
     </div>
     <p className="changes-status" role="status">{ranking.unavailableCount} {ranking.unavailableCount===1?'country':'countries'} excluded because this comparison is unavailable. {ranking.unchangedCount} {ranking.unchangedCount===1?'country has':'countries have'} no change in the selected measure.</p>
     {!view.classificationComparable&&<p className="sample-banner">Classification continuity is not verified across both periods. Changes are unavailable.</p>}
-    <ChangesTable countries={ranking.increases} movement="increases" metric={metric}/>
-    <ChangesTable countries={ranking.decreases} movement="decreases" metric={metric}/>
+    <ChangesTable countries={ranking.increases} movement="increases" metric={metric} view={view}/>
+    <ChangesTable countries={ranking.decreases} movement="decreases" metric={metric} view={view}/>
     <p className="chart-note">Values are current USD, not seasonally adjusted. Share change is measured in percentage points (pp). Incomplete periods stay unavailable; a zero prior value has no growth percentage. The CSV contains the displayed rankings, both periods and source details.</p>
     <noscript><p className="chart-note">Enable JavaScript to change the ranking, trade direction or download a CSV.</p></noscript>
   </section>;
