@@ -1,12 +1,12 @@
 # Retained Census releases
 
-Prepared October 8, 2026. **Status: proposed for owner review; implementation and Cloudflare activation have not started.**
+Prepared October 8, 2026. **Status: approved by the owner on October 8, 2026; the implementation plan is prepared for owner review. Cloudflare activation has not started.**
 
 ## Purpose and scope
 
 Make repeated hosted imports of the coffee sample reliable. A fresh GitHub runner must recover the last accepted release, compare revised observations against it, preserve the new source responses, and retain the prior current release if retrieval, validation or storage fails.
 
-The owner approved R2 as the storage direction in the launch brief. The first coffee milestone and its API correction are merged in PRs #1 and #2. This document proposes the next implementation milestone within that direction. It assumes the owner wants reliable refresh before broader product coverage; that priority remains open to correction.
+The owner approved R2 as the storage direction in the launch brief. The first coffee milestone and its API correction are merged in PRs #1 and #2. The owner subsequently approved this design as the next milestone, prioritizing reliable refresh before broader product coverage.
 
 Success means a tested storage integration ready for a separately authorized live check. Actual R2 verification requires account configuration and credentials. Offline tests cannot establish that a hosted archive works, and two imports of August 2026 cannot establish two successive official releases.
 
@@ -88,4 +88,4 @@ Deliver a focused reviewed PR, setup and recovery instructions, and a measured o
 
 Proposed code boundaries: `scripts/archive-store.ts` for transport, `scripts/archive-release.ts` for bundle/restore/promotion logic, a small archive CLI, focused tests under `tests/scripts/`, the narrow raw-retention extension in the importer, opt-in steps in `import-census.yml`, and README/setup evidence. No product UI or public deployment changes are needed for this milestone.
 
-Independent design review found no remaining architecture blocker after the bundle simplification and promotion/backup corrections. This is a design assessment, not verification of implementation or live R2 behavior. Owner review remains pending.
+Independent design review found no remaining architecture blocker after the bundle simplification and promotion/backup corrections. This is a design assessment, not verification of implementation or live R2 behavior. Owner design review is complete; the implementation plan must be reviewed before execution.
