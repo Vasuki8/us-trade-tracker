@@ -7,7 +7,7 @@ import {productChangeSample as sample} from '../helpers/product-changes';
 import {buildProductChangesView} from '../../src/lib/trade/product-changes';
 import {ProductChanges} from '../../src/components/ProductChanges';
 
-afterEach(cleanup);
+afterEach(()=>{cleanup();window.history.replaceState(null,'','/');});
 const data=(products:ReturnType<typeof sample>[])=>(JSON.stringify({imports:buildProductChangesView(products,'imports'),exports:buildProductChangesView(products,'exports')}));
 
 it('switches product ranking and trade direction while keeping periods and profile links',async()=>{

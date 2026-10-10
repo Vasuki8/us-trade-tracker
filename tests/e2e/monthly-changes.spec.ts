@@ -35,7 +35,7 @@ test('standalone initial comparisons and source information are readable without
   try{
     await page.goto('/changes/');await expect(page.getByRole('heading',{name:'Monthly changes',exact:true})).toBeVisible();
     await expect(page.getByRole('table',{name:'Largest increases · dollar change'})).toBeVisible();await expect(page.getByText(/Source: Development fixtures/)).toContainText('GEN_VAL_MO');
-    await expect(page.locator('noscript p')).toContainText('Enable JavaScript to change the ranking, trade direction or download a CSV.');
+    await expect(page.getByText('Enable JavaScript to change the ranking, trade direction or download a CSV.',{exact:true})).toBeVisible();
     await page.getByRole('link',{name:'View the full product profile'}).click();await expect(page.getByRole('heading',{name:'Roasted coffee',exact:true})).toBeVisible();
   }finally{await context.close();}
 });
