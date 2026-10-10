@@ -12,6 +12,14 @@ on:
         required: true
         type: string
         default: '2026-08'
+      audit_mode:
+        description: Full 24-month audit or six logical connectivity checks
+        required: true
+        type: choice
+        default: full
+        options:
+          - full
+          - connectivity-probe
 permissions:
   contents: read
 concurrency:
@@ -25,6 +33,7 @@ jobs:
     env:
       COUNTRY_CODE: ${{ inputs.country_code }}
       REPORTING_MONTH: ${{ inputs.reporting_month }}
+      AUDIT_MODE: ${{ inputs.audit_mode }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -38,13 +47,22 @@ jobs:
       - run: npm run check
       - name: Validate reviewed Canada pilot before key access
         id: preflight
-        run: npm run data:audit-country -- --preflight --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
+        run: |
+          case "$AUDIT_MODE" in full|connectivity-probe) ;; *) exit 1 ;; esac
+          npm run data:audit-country -- --preflight --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
       - name: Audit country totals and complete HS6 breakdowns
+        if: inputs.audit_mode == 'full'
         # Leave time for the always-run source artifact after a stalled retrieval.
         timeout-minutes: 15
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
         run: npm run data:audit-country -- --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
+      - name: Diagnose API connectivity with six logical checks
+        if: inputs.audit_mode == 'connectivity-probe'
+        timeout-minutes: 4
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+        run: npm run data:probe-country -- --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
       - name: Retain source evidence even on validation failure
         if: always() && steps.preflight.outcome == 'success'
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
