@@ -7,7 +7,7 @@ export async function getStaticPaths(){return (await loadPublishedReleases()).ma
 const {product,release}=Astro.props;
 const description=release.observations.find(row=>row.geography==='world')?.description??'Product profile';
 ---
-<BaseLayout title={`HS ${release.productCode} product profile`}>
+<BaseLayout title={`HS ${release.productCode} product profile`} productCode={release.productCode}>
   <div class="page-heading"><p class="eyebrow">PRODUCT RESEARCH / HS {release.productCode}</p><h1>{product.displayName}</h1><p class="heading-description">{description}</p><p>See how U.S. imports and exports are changing, and compare the partner markets behind them.</p></div>
   <ProductExplorerClient data={encodeBrowserRelease(release)} client:load/>
 </BaseLayout>
