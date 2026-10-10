@@ -52,6 +52,7 @@ export async function prepareRelease(options:PrepareOptions,fetchImpl:typeof fet
   try{
     let previous:Release|undefined;
     try{previous=await readCurrentRelease(options.outputDir,options.productCode);}catch(error){if((error as NodeJS.ErrnoException).code!=='ENOENT')throw error;}
+    if(previous&&options.end<previous.reportingMonth)throw new Error('Reporting month cannot regress; use a separate workspace for historical imports');
     if(previous?.schemaVersion===2&&!options.includeDuties)throw new Error('The accepted release includes duties; continue importing with --duties');
     const retrievedAt=new Date().toISOString();const id=`${options.end}-${randomUUID()}`;
     const rawDir=join(dirname(options.outputDir),'raw',id);await mkdir(rawDir,{recursive:true});
