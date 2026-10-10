@@ -12,7 +12,7 @@ it('rejects unknown modes and unreviewed product identities',async()=>{
  await expect(loadRelease('090122',{mode:'census'})).rejects.toThrow(/reviewed/i);await expect(loadPublishedReleases({mode:'mystery' as any})).rejects.toThrow(/mode/i);await expect(loadRelease('090124',{mode:'fixture'})).rejects.toThrow(/reviewed/i);
 });
 it('excludes an importable unpublished product without requiring its file',async()=>{
- const workspaceRoot=await root(),all=await loadPublishedReleases({workspaceRoot,mode:'fixture',registry:[registry[0],{...registry[1],published:false}]});expect(all.map(x=>x.product.code)).toEqual(['090121']);
+ const workspaceRoot=await root(),all=await loadPublishedReleases({workspaceRoot,mode:'fixture',registry:registry.map(product=>product.code==='090122'?{...product,published:false}:product)});expect(all.map(x=>x.product.code)).toEqual(['090121']);
 });
 it('fails the published set when a required Census release is missing or belongs to another product',async()=>{
  const workspaceRoot=await root();await save(workspaceRoot,'090121',forCode('090121'));await expect(loadPublishedReleases({workspaceRoot,mode:'census',registry})).rejects.toThrow(/090122/);
@@ -22,6 +22,6 @@ it('rejects fixture provenance in Census mode and wrong fixture product identity
  const workspaceRoot=await root(),a=await loadRelease('090121',{workspaceRoot,mode:'fixture'});await save(workspaceRoot,'090121',a);await expect(loadRelease('090121',{workspaceRoot,mode:'census'})).rejects.toThrow();await writeFile(join(workspaceRoot,'tests/fixtures/product-release-090122.json'),JSON.stringify(a));await expect(loadRelease('090122',{workspaceRoot,mode:'fixture'})).rejects.toThrow(/product/i);
 });
 it('requires acceptance for published v2 duties while preserving merchandise-only v1 profiles',async()=>{
- const workspaceRoot=await root(),restricted=[{...registry[1],dutiesAccepted:false}];await save(workspaceRoot,'090122',prepared);await expect(loadPublishedReleases({workspaceRoot,mode:'census',registry:restricted})).rejects.toThrow(/duties/i);
+ const workspaceRoot=await root(),restricted=[{...registry.find(product=>product.code==='090122')!,dutiesAccepted:false}];await save(workspaceRoot,'090122',prepared);await expect(loadPublishedReleases({workspaceRoot,mode:'census',registry:restricted})).rejects.toThrow(/duties/i);
  const v1=structuredClone(prepared);v1.schemaVersion=1;delete v1.duties;await save(workspaceRoot,'090122',v1);expect((await loadPublishedReleases({workspaceRoot,mode:'census',registry:restricted}))[0].release.schemaVersion).toBe(1);
 });

@@ -38,7 +38,7 @@ describe('reviewed product duty audits',()=>{
       expect(new URL(JSON.parse(text).requestUrl).searchParams.get('I_COMMODITY')).toBe('090122');
     }
     expect((await readdir(root)).sort()).toEqual(['audit.json','duty-dataset.json','raw']);
-    expect(registry[1]).toMatchObject({published:false,dutiesAccepted:false});
+    expect(registry.find(product=>product.code==='090122')).toMatchObject({published:false,dutiesAccepted:false});
   });
 
   it.each(['../090121','090121\n','09012','090124','090123'])('rejects unavailable or unsafe product %j before fetching or writing',async code=>{

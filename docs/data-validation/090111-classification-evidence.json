@@ -1,0 +1,250 @@
+[
+  {
+    "sha256": "5a1bd232b519cf7ec705bcae41887792c64a70c38a8a6465b47c60cc1d827b17",
+    "year": 2021,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2021/imp-code.txt",
+    "direction": "imp",
+    "rows": [
+      {
+        "code": "0901110015",
+        "description": "COFFEE, CERTIFIED ORGANIC, ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110025",
+        "description": "COFFEE, ARABICA, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110045",
+        "description": "COFFEE, CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110055",
+        "description": "COFFEE, OTHER THAN CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      }
+    ]
+  },
+  {
+    "sha256": "4258496d0338674cd4c28c9f5977dfc192b41dc154d5915df3a2c91570181ae7",
+    "year": 2021,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2021/exp-code.txt",
+    "direction": "exp",
+    "rows": [
+      {
+        "code": "0901110000",
+        "description": "COFFEE, NOT ROASTED, NOT DECAFFEINATED"
+      }
+    ]
+  },
+  {
+    "sha256": "3c4353169af40744af812114087f66bc443d2ad08097439b6648ae5a89def186",
+    "year": 2022,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2022/imp-code.txt",
+    "direction": "imp",
+    "rows": [
+      {
+        "code": "0901110015",
+        "description": "COFFEE, CERTIFIED ORGANIC, ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110025",
+        "description": "COFFEE, ARABICA, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110045",
+        "description": "COFFEE, CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110055",
+        "description": "COFFEE, OTHER THAN CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      }
+    ]
+  },
+  {
+    "sha256": "91e2a1152e7f59867da5e376b49eea8d56fa5ead5c6187e6b38ea0be3e02ffe2",
+    "year": 2022,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2022/exp-code.txt",
+    "direction": "exp",
+    "rows": [
+      {
+        "code": "0901110000",
+        "description": "COFFEE, NOT ROASTED, NOT DECAFFEINATED"
+      }
+    ]
+  },
+  {
+    "sha256": "409f073cd445210b11eae058ecfc527a949dc012ead62c777b8bea32370d5495",
+    "year": 2023,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2023/imp-code.txt",
+    "direction": "imp",
+    "rows": [
+      {
+        "code": "0901110015",
+        "description": "COFFEE, CERTIFIED ORGANIC, ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110025",
+        "description": "COFFEE, ARABICA, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110045",
+        "description": "COFFEE, CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110055",
+        "description": "COFFEE, OTHER THAN CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      }
+    ]
+  },
+  {
+    "sha256": "92b2e2c9f4365ce244ca14f7f3de244b30a1b77b1c3abcd0dc9321524a2fa4d2",
+    "year": 2023,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2023/exp-code.txt",
+    "direction": "exp",
+    "rows": [
+      {
+        "code": "0901110000",
+        "description": "COFFEE, NOT ROASTED, NOT DECAFFEINATED"
+      }
+    ]
+  },
+  {
+    "sha256": "a060ba5c692caefc03fa76904f366a4fa882885252435279dc8b6b34922f03e9",
+    "year": 2024,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2024/imp-code.txt",
+    "direction": "imp",
+    "rows": [
+      {
+        "code": "0901110015",
+        "description": "COFFEE, CERTIFIED ORGANIC, ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110025",
+        "description": "COFFEE, ARABICA, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110045",
+        "description": "COFFEE, CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110055",
+        "description": "COFFEE, OTHER THAN CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      }
+    ]
+  },
+  {
+    "sha256": "79d57630a7f24ad4b1a63b62dc9f6f630707c05d058ec77289e0c97dd9cd6635",
+    "year": 2024,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2024/exp-code.txt",
+    "direction": "exp",
+    "rows": [
+      {
+        "code": "0901110000",
+        "description": "COFFEE, NOT ROASTED, NOT DECAFFEINATED"
+      }
+    ]
+  },
+  {
+    "sha256": "2b88ed21ece50b0f0cd06f546db0876e2eb286bb937fb5364ee729f9c1a6e1e1",
+    "year": 2025,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2025/imp-code.txt",
+    "direction": "imp",
+    "rows": [
+      {
+        "code": "0901110015",
+        "description": "COFFEE, CERTIFIED ORGANIC, ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110025",
+        "description": "COFFEE, ARABICA, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110035",
+        "description": "COFFEE, CERTIFIED ORGANIC, ROBUSTA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110040",
+        "description": "COFFEE, OTHER THAN CERTIFIED ORGANIC, ROBUSTA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110045",
+        "description": "COFFEE, CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110050",
+        "description": "OTHER COFFEE, CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110055",
+        "description": "COFFEE, OTHER THAN CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110065",
+        "description": "OTHER COFFEE, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+      }
+    ]
+  },
+  {
+    "sha256": "be7d3bab2adaf3bc05110dafe8ea333400897959a167f14b5eb314c74010b797",
+    "year": 2025,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2025/exp-code.txt",
+    "direction": "exp",
+    "rows": [
+      {
+        "code": "0901110000",
+        "description": "COFFEE, NOT ROASTED, NOT DECAFFEINATED"
+      }
+    ]
+  },
+  {
+    "sha256": "267137ffc87b819dfea80859ec804940ea220a7c3b512d2d985f2b2e038fc31c",
+    "year": 2026,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2026/imp-code.txt",
+    "direction": "imp",
+    "rows": [
+      {
+        "code": "0901110015",
+        "description": "COFFEE, CERTIFIED ORGANIC, ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110025",
+        "description": "COFFEE, ARABICA, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110035",
+        "description": "COFFEE, CERTIFIED ORGANIC, ROBUSTA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110040",
+        "description": "COFFEE, OTHER THAN CERTIFIED ORGANIC, ROBUSTA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110045",
+        "description": "COFFEE, CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110050",
+        "description": "OTHER COFFEE, CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110055",
+        "description": "COFFEE, OTHER THAN CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+      },
+      {
+        "code": "0901110065",
+        "description": "OTHER COFFEE, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+      }
+    ]
+  },
+  {
+    "sha256": "6841a8573e408b11a8adfcb49db84b9038c40f8396db4e11f00797138639bce8",
+    "year": 2026,
+    "url": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+    "direction": "exp",
+    "rows": [
+      {
+        "code": "0901110000",
+        "description": "COFFEE, NOT ROASTED, NOT DECAFFEINATED"
+      }
+    ]
+  }
+]
