@@ -1,4 +1,10 @@
 import type {Release,ExplorerSelection} from './types';
+import {DEFAULT_PRODUCT_CODE,assertProductCode} from './product-registry';
+
+export function monthlyChangesPath(productCode:string=DEFAULT_PRODUCT_CODE):string{
+  assertProductCode(productCode);
+  return productCode===DEFAULT_PRODUCT_CODE?'/changes/':`/changes/${productCode}/`;
+}
 
 const defaultSelection=():ExplorerSelection=>({direction:'imports',months:60,countryCodes:[]});
 const validSelection=(selection:ExplorerSelection)=>
