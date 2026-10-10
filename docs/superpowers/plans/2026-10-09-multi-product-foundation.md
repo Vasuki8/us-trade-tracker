@@ -10,7 +10,7 @@
 
 **Spec:** [Approved multi-product specification](../specs/2026-10-09-multi-product-foundation-design.md).
 
-**Execution recommendation:** Native execution in this session, followed by one independent whole-branch reviewer. The tasks depend on the same identity interfaces; one implementer avoids repeated context and coordination. The user has already authorized review subagents and merging after review/checks. Written-plan review and execution-method selection remain pending.
+**Execution:** The user accepted this plan and the recommended native approach with “continue.” Implement in this session, followed by one independent whole-branch reviewer. The tasks depend on the same identity interfaces; one implementer avoids repeated context and coordination. Review subagents and merging after review/checks are already authorized.
 
 ## Global Constraints
 
@@ -148,4 +148,4 @@ Registry, local isolation and ignored generated storage map to Task 1. Archive r
 
 New helpers and signatures are defined above before their consumers. All five Review Focus cases have an owning test cycle. The plan changes the foundation only; real product selection, expanded discovery and deployment remain outside it.
 
-The written specification is approved. This plan is ready for user review and execution-method selection. Recommended choice: native implementation here, followed by independent subagent review of the complete branch.
+The written specification and this plan are approved. Use native implementation here, followed by independent subagent review of the complete branch.

@@ -1,6 +1,6 @@
 # Multi-product release foundation
 
-Prepared October 9, 2026. The conversational design was accepted with “continue development.” The written specification was approved with “approved what is recommended.” Implementation awaits review of the implementation plan and selection of its execution method.
+Prepared October 9, 2026. The conversational design was accepted with “continue development.” The written specification was approved with “approved what is recommended.” The implementation plan and recommended native execution were accepted with “continue.”
 
 ## Purpose and scope
 

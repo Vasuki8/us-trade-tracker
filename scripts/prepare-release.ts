@@ -11,6 +11,7 @@ import {shiftMonth} from '../src/lib/trade/metrics';
 import {buildProfileView} from '../src/lib/trade/profile';
 import {validateClassificationIntervals} from './classification';
 import {findRevisedKeys,findDutyRevisedKeys} from '../src/lib/trade/revisions';
+import {assertProductCode,DEFAULT_PRODUCT_CODE} from '../src/lib/trade/product-registry';
 export type PrepareOptions={productCode:string;end:string;months:number;apiKey:string;outputDir:string;codeVersion:string;classificationIntervals?:Release['classificationIntervals'];includeDuties?:boolean};
 export function validateRelease(value:unknown,requireCensus=false):asserts value is Release {
   if(!value||typeof value!=='object')throw new Error('Invalid release');
@@ -36,11 +37,12 @@ export function validateRelease(value:unknown,requireCensus=false):asserts value
     buildProfileView(r,{direction,months:60,countryCodes:[]});
   }
 }
-export async function readCurrentRelease(dir:string):Promise<Release>{
+export async function readCurrentRelease(dir:string,expectedProductCode:string=DEFAULT_PRODUCT_CODE):Promise<Release>{
+  assertProductCode(expectedProductCode);
   const pointer=JSON.parse(await readFile(join(dir,'current.json'),'utf8'));
   if(typeof pointer.releaseFile!=='string'||!/^releases\/[a-zA-Z0-9-]+\.json$/.test(pointer.releaseFile))throw new Error('Invalid current-release pointer');
   const release:unknown=JSON.parse(await readFile(join(dir,pointer.releaseFile),'utf8'));
-  validateRelease(release,true);return release;
+  validateRelease(release,true);if(release.productCode!==expectedProductCode)throw new Error(`Current release does not match product ${expectedProductCode}`);return release;
 }
 export async function prepareRelease(options:PrepareOptions,fetchImpl:typeof fetch=fetch):Promise<Release>{
   if(!/^\d{6}$/.test(options.productCode)||!validMonth(options.end)||!Number.isInteger(options.months)||options.months<24||options.months>60||!options.apiKey.trim()||!options.codeVersion||(options.includeDuties!==undefined&&typeof options.includeDuties!=='boolean'))throw new Error('Provide an HS6 product, reporting month, key, code version, and 24–60 months');
@@ -49,7 +51,7 @@ export async function prepareRelease(options:PrepareOptions,fetchImpl:typeof fet
   let lock;try{lock=await open(lockPath,'wx');}catch{throw new Error('A data import is already running; current release is unchanged');}
   try{
     let previous:Release|undefined;
-    try{previous=await readCurrentRelease(options.outputDir);}catch(error){if((error as NodeJS.ErrnoException).code!=='ENOENT')throw error;}
+    try{previous=await readCurrentRelease(options.outputDir,options.productCode);}catch(error){if((error as NodeJS.ErrnoException).code!=='ENOENT')throw error;}
     if(previous?.schemaVersion===2&&!options.includeDuties)throw new Error('The accepted release includes duties; continue importing with --duties');
     const retrievedAt=new Date().toISOString();const id=`${options.end}-${randomUUID()}`;
     const rawDir=join(dirname(options.outputDir),'raw',id);await mkdir(rawDir,{recursive:true});
