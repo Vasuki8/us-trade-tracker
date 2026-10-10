@@ -1,4 +1,9 @@
 import {test,expect} from '@playwright/test';import {readFile} from 'node:fs/promises';
+test('the homepage links each available profile without JavaScript',async({browser,baseURL})=>{
+ const context=await browser.newContext({baseURL,javaScriptEnabled:false}),page=await context.newPage();await page.goto('/');
+ const profiles=page.getByRole('navigation',{name:'Product profiles'});await expect(profiles.getByRole('link',{name:'Roasted coffee · HS 090121',exact:true})).toHaveAttribute('href','/products/090121/');
+ const second=profiles.getByRole('link',{name:'Synthetic second product · HS 090122',exact:true});await expect(second).toHaveAttribute('href','/products/090122/');await second.click();await expect(page.getByRole('heading',{name:'Synthetic second product',exact:true})).toBeVisible();await context.close();
+});
 test('second synthetic profile preserves product identity, selections and exports',async({page})=>{
  await page.goto('/products/090122/?direction=imports&months=12&countries=1220');await expect(page.locator('astro-island[ssr]')).toHaveCount(0);await expect(page.getByRole('heading',{name:'Synthetic second product',exact:true})).toBeVisible();await expect(page.locator('.heading-description')).toHaveText('SYNTHETIC PRODUCT 090122');await expect(page.getByText('Development sample data',{exact:true})).toBeVisible();await expect(page.getByRole('region',{name:'U.S. trade totals'})).toContainText('$300');await expect(page.getByRole('checkbox',{name:'CANADA',exact:true})).toBeChecked();
  await page.getByRole('radio',{name:'Exports',exact:true}).check();await expect(page.getByRole('region',{name:'U.S. trade totals'})).toContainText('$600');await page.getByRole('checkbox',{name:'CANADA',exact:true}).check();await expect(page).toHaveURL(/products\/090122\/\?direction=exports&months=12&countries=1220$/);

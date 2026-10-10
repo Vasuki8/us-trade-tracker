@@ -1,0 +1,127 @@
+{
+  "productCode": "090111",
+  "auditArtifact": {
+    "runId": 38025942193,
+    "runUrl": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38025942193",
+    "jobId": 114136693395,
+    "productCode": "090111",
+    "reportingMonth": "2026-08",
+    "headSha": "aff8fa4f5ff47664b49d9053a7e548f7915efe84",
+    "artifactId": 11659159147,
+    "artifactName": "census-090111-duty-audit",
+    "artifactBytes": 131713,
+    "artifactSha256": "f4a82005baed1416b8594ac29596cbc6b2d647885706d29b21e9df16cc885834",
+    "zipEntries": 98,
+    "conclusion": "success"
+  },
+  "releaseArtifact": {
+    "runId": 38025977483,
+    "runUrl": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38025977483",
+    "jobId": 114136800079,
+    "productCode": "090111",
+    "reportingMonth": "2026-08",
+    "headSha": "aff8fa4f5ff47664b49d9053a7e548f7915efe84",
+    "archiveToR2": false,
+    "initializeArchive": false,
+    "includeDuties": true,
+    "artifactId": 11660346216,
+    "artifactName": "census-090111-release",
+    "artifactBytes": 434579,
+    "artifactSha256": "f00b1fd5d672cbc6421b6c18344ba1c68c667f8150baf05aa3dc4786b3776130",
+    "zipEntries": 338,
+    "conclusion": "success"
+  },
+  "merchandise": {
+    "productCode": "090111",
+    "reportingMonth": "2026-08",
+    "retrievedAt": "2026-10-10T05:00:43.614Z",
+    "codeVersion": "aff8fa4f5ff47664b49d9053a7e548f7915efe84",
+    "releaseSha256": "ef5d56791ad85b1b7a199829818522389a792e82cee792665be61f8e78cba0f7",
+    "pointerSha256": "d93e6e11e48c540396fee4699a0a9e58cbde0e6f6a55e20e7ba7056fb3296a39",
+    "verifiedRawRecords": 240,
+    "observations": 6929,
+    "worldMonths": 120,
+    "totals": {
+      "imports": {
+        "prior": 9142281740,
+        "current": 9226121808
+      },
+      "exports": {
+        "prior": 257686581,
+        "current": 261173713
+      }
+    },
+    "latest": [
+      {
+        "productCode": "090111",
+        "direction": "exports",
+        "month": "2026-08",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "description": "COFFEE, NOT ROASTED, NOT DECAFFEINATED",
+        "geography": "world",
+        "valueUsd": 19387454,
+        "measure": "ALL_VAL_MO",
+        "status": "reported"
+      },
+      {
+        "productCode": "090111",
+        "direction": "imports",
+        "month": "2026-08",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "description": "COFFEE, NOT ROASTED, NOT DECAFFEINATED",
+        "geography": "world",
+        "valueUsd": 761982573,
+        "measure": "GEN_VAL_MO",
+        "status": "reported"
+      }
+    ]
+  },
+  "duties": {
+    "productCode": "090111",
+    "retrievedAt": "2026-10-10T05:00:43.614Z",
+    "codeVersion": "aff8fa4f5ff47664b49d9053a7e548f7915efe84",
+    "verifiedRawRecords": 96,
+    "observations": 1524,
+    "countryMonths": 1500,
+    "qualifiedCountryMonths": 49,
+    "latest": {
+      "month": "2026-08",
+      "calculatedDutyUsd": 107018,
+      "consumptionValueUsd": 761982573,
+      "dutiableValueUsd": 1042199,
+      "uncalculatedDutiableValueUsd": 211277
+    },
+    "prior": {
+      "from": "2024-09",
+      "to": "2025-08",
+      "calculatedDutyUsd": 325248304,
+      "consumptionValueUsd": 9113246490,
+      "dutiableValueUsd": 3168093720,
+      "uncalculatedDutiableValueUsd": 4928754,
+      "dutySharePercent": 3.5689619978664706,
+      "uncalculatedDutiableSharePercent": 0.15557475364081086
+    },
+    "current": {
+      "from": "2025-09",
+      "to": "2026-08",
+      "calculatedDutyUsd": 276010844,
+      "consumptionValueUsd": 9251021338,
+      "dutiableValueUsd": 1512133989,
+      "uncalculatedDutiableValueUsd": 9452053,
+      "dutySharePercent": 2.9835715854015255,
+      "uncalculatedDutiableSharePercent": 0.6250803876348817
+    }
+  },
+  "offlineRecovery": {
+    "productCode": "090111",
+    "archiveSchemaVersion": 2,
+    "bundleSha256": "b8fa946703702bcb8da29492bd63769331dafd4acb597a9d57606cf9def3b9ed",
+    "bundleBytes": 4999527,
+    "recoveredFiles": 338,
+    "providerCalls": 0,
+    "standaloneAuditMatchesRelease": true,
+    "coffeeOriginalBytesUnchanged": true
+  }
+}
