@@ -1,7 +1,18 @@
 import type {ProfileView} from './types';
 import type {DutyView,DutyPeriod,DutyComparison} from './duty-types';
 import {rankChanges,selectCountryChanges,type ChangeMetric,type ChangesView} from './changes';
+import {rankProductChanges,PRODUCT_GROWTH_THRESHOLD_USD,type ProductChangesView,type ProductChangeMetric} from './product-changes';
 const csvCell=(value:unknown)=>{let text=String(value??'');if(typeof value==='string'&&/^(?:[=+@]|-(?!$)|[\t\r])/.test(text))text="'"+text;return /[",\r\n]/.test(text)?`"${text.replaceAll('"','""')}"`:text;};
+export function serializeProductChangesCsv(view:ProductChangesView,metric:ProductChangeMetric):string{
+  const ranking=rankProductChanges(view,metric);
+  const headers=['ranking_metric','movement','rank','product_code','product_name','product_description','direction','current_value_usd','previous_value_usd','change_usd','growth_percent','current_period_start','current_period_end','previous_period_start','previous_period_end','measure','units','minimum_previous_value_usd','reviewed_product_count','unavailable_count','different_reporting_month_count','below_threshold_count','unchanged_count','source','retrieved_at','code_version','revised','source_urls'];
+  const rows=([['increase',ranking.increases],['decrease',ranking.decreases]] as const).flatMap(([movement,products])=>products.map((product,index)=>[
+    metric,movement,index+1,product.code,product.name,product.title,view.direction,product.comparison.current,product.comparison.previous,product.comparison.changeUsd,product.comparison.changePercent,
+    view.periods.current.from,view.periods.current.to,view.periods.previous.from,view.periods.previous.to,product.provenance.measure,'current USD, not seasonally adjusted; growth in percent',metric==='growth'?PRODUCT_GROWTH_THRESHOLD_USD:null,view.products.length,ranking.unavailableCount,ranking.differentMonthCount,ranking.belowThresholdCount,ranking.unchangedCount,
+    product.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau',product.provenance.retrievedAt,product.provenance.codeVersion,product.provenance.revised,product.provenance.sourceUrls.join(' | ')
+  ]));
+  return [headers,...rows].map(row=>row.map(csvCell).join(',')).join('\r\n')+'\r\n';
+}
 export function serializeSelectedCountriesCsv(view:ChangesView,countryCodes:string[]):string{
   const headers=['feature','comparison_period','product_code','product_description','direction','partner_code','partner_name','current_value_usd','previous_value_usd','change_usd','growth_percent','current_share_percent','previous_share_percent','share_change_percentage_points','world_current_value_usd','world_previous_value_usd','current_period_start','current_period_end','previous_period_start','previous_period_end','measure','units','source','retrieved_at','code_version','revised','classification_comparable','source_urls'];
   const rows=selectCountryChanges(view,countryCodes).map(country=>[

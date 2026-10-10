@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {ProductChanges} from '../../components/ProductChanges';
+import {loadPublishedReleases} from '../../lib/trade/load-release';
+import {buildProductChangesView} from '../../lib/trade/product-changes';
+const profiles=await loadPublishedReleases();
+const views={imports:buildProductChangesView(profiles,'imports'),exports:buildProductChangesView(profiles,'exports')};
+---
+<BaseLayout title="Product changes" description="Compare changes in U.S. imports and exports across reviewed pilot products using sourced rolling twelve-month values.">
+  <div class="page-heading"><p class="eyebrow">MONTHLY RELEASE RESEARCH</p><h1>Product changes</h1>
+    <p>Compare the reviewed pilot products by dollar change or percentage growth over two rolling twelve-month periods.</p>
+    <p>Use each product profile to investigate the partner countries and history behind a change.</p>
+    <a href="/products/">Browse reviewed product profiles</a>
+  </div>
+  <ProductChanges data={JSON.stringify(views)} client:load/>
+</BaseLayout>
