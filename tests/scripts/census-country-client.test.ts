@@ -4,8 +4,28 @@ import {countryTable as table} from '../helpers/country-data';
 
 export const context={countryCode:'1220',month:'2026-08',direction:'imports' as const,kind:'products' as const};
 const json=(payload:unknown)=>new Response(JSON.stringify(payload),{headers:{'content-type':'application/json'}});
+function calendarTable(kind:'total'|'products'='products',direction:'imports'|'exports'='imports'){
+  const payload=table(kind,direction);const index=payload[0].indexOf('time');
+  payload[0].splice(index,1,'YEAR','MONTH');payload.slice(1).forEach(row=>row.splice(index,1,'2026','08'));return payload;
+}
 
 describe('country source contracts',()=>{
+  it.each(['imports','exports'] as const)('requests exact YEAR/MONTH predicates for %s and validates their returned identity',async direction=>{
+    for(const kind of ['total','products'] as const){
+      const result=await client.fetchCountryPart({...context,direction,kind,apiKey:'fixture-key'},(async input=>{
+        const url=new URL(String(input));expect(url.searchParams.has('time')).toBe(false);expect(url.searchParams.get('YEAR')).toBe('2026');expect(url.searchParams.get('MONTH')).toBe('08');
+        const requested=url.searchParams.get('get')!.split(',');for(const field of ['time','YEAR','MONTH'])expect(requested).not.toContain(field);
+        return json(calendarTable(kind,direction));
+      }) as typeof fetch);expect(result.month).toBe('2026-08');expect(result.rows).toHaveLength(kind==='total'?1:2);
+    }
+  });
+  it('accepts either exact legacy time or paired calendar columns, never missing, crossed or mixed periods',()=>{
+    expect(client.normalizeCountryPart(calendarTable(),context).month).toBe(context.month);
+    expect(client.normalizeCountryPart(table(),context).month).toBe(context.month);
+    for(const [field,value] of [['YEAR','2025'],['MONTH','8'],['MONTH','09']]){const payload=calendarTable();payload[1][payload[0].indexOf(field)]=value;expect(()=>client.normalizeCountryPart(payload,context)).toThrow();}
+    const unpaired=calendarTable();const index=unpaired[0].indexOf('MONTH');unpaired.forEach(row=>row.splice(index,1));expect(()=>client.normalizeCountryPart(unpaired,context)).toThrow();
+    const mixed=calendarTable();mixed[0].push('time');mixed.slice(1).forEach(row=>row.push(context.month));expect(()=>client.normalizeCountryPart(mixed,context)).toThrow();
+  });
   it('keeps country all-goods total separate from HS6 products and special aggregates',()=>{
     expect(client.normalizeCountryPart(table('total'),{...context,kind:'total'})).toMatchObject({kind:'total',rows:[{code:'-',valueUsd:1000000}]});
     expect(client.normalizeCountryPart(table(),context).rows).toMatchObject([{code:'090121',valueUsd:900000,special:false},{code:'999995',valueUsd:100000,special:true}]);

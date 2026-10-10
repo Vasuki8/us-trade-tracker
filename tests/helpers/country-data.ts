@@ -14,7 +14,9 @@ export function countryFetch(transform?:(table:string[][],url:URL)=>void):typeof
   return (async input=>{
     const url=new URL(String(input));
     if(url.hostname==='www.census.gov')return new Response(referenceHtml(),{headers:{'content-type':'text/html'}});
-    const payload=countryTable(url.searchParams.get('SUMMARY_LVL2')==='CY'?'total':'products',url.pathname.includes('/imports/')?'imports':'exports',url.searchParams.get('time')!);
+    const month=url.searchParams.get('time')??`${url.searchParams.get('YEAR')}-${url.searchParams.get('MONTH')}`;
+    const payload=countryTable(url.searchParams.get('SUMMARY_LVL2')==='CY'?'total':'products',url.pathname.includes('/imports/')?'imports':'exports',month);
+    if(!url.searchParams.has('time')){const index=payload[0].indexOf('time');payload[0].splice(index,1,'YEAR','MONTH');payload.slice(1).forEach(row=>row.splice(index,1,month.slice(0,4),month.slice(5)));}
     transform?.(payload,url);return new Response(JSON.stringify(payload),{headers:{'content-type':'application/json'}});
   }) as typeof fetch;
 }

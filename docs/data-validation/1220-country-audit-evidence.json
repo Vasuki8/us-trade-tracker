@@ -49,5 +49,33 @@
       "releaseSha256": "ef5d56791ad85b1b7a199829818522389a792e82cee792665be61f8e78cba0f7"
     }
   },
-  "liveProbe": null
+  "liveProbe": {
+    "runId": 38095150145,
+    "runUrl": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38095150145",
+    "jobId": 114339428168,
+    "headSha": "259322fc56dd8315407699c976d2bbfe6c3e869d",
+    "mode": "connectivity-probe",
+    "countryTemporalPredicate": "time",
+    "conclusion": "failure",
+    "retrievedAt": "2026-10-10T23:30:44.322Z",
+    "artifactId": 11685927183,
+    "artifactBytes": 5104,
+    "artifactSha256": "9b37b82a9bc8d214c427129c8a15fe684aede2965e8788cb8c03e5f343710f9f",
+    "zipEntries": 7,
+    "independentlyMatchedFiles": 7,
+    "extractedBytes": 21478,
+    "logicalChecks": 6,
+    "httpAttempts": 6,
+    "rawManifestDigestsVerified": 6,
+    "metadataHttpStatus": 200,
+    "coffeeControlHttpStatus": 200,
+    "coffeeControlValueUsd": 140980739,
+    "countryResponses": 0,
+    "countryTimeouts": 4,
+    "countryElapsedMs": {"imports-total": 30002, "imports-products": 30001, "exports-total": 30000, "exports-products": 30001},
+    "underlyingCountryTimeoutCause": "unverified",
+    "probePassed": false,
+    "sourceCoverage": "unverified",
+    "releaseAccepted": false
+  }
 }

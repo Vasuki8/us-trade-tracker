@@ -26,7 +26,7 @@ describe('isolated Canada audit',()=>{
   });
   it('keeps absent products unavailable and ratios of sums rather than averaged shares',async()=>{
     const report=await audit.runCountryAudit(options(join(await workspace(),'audit')),countryFetch((payload,url)=>{
-      if(url.searchParams.get('time')==='2026-08'){if(url.searchParams.get('SUMMARY_LVL2')==='CY')payload[1][2]='2000000';else{payload[1][2]='1900000';payload.pop();}}
+      if(url.searchParams.get('YEAR')==='2026'&&url.searchParams.get('MONTH')==='08'){if(url.searchParams.get('SUMMARY_LVL2')==='CY')payload[1][2]='2000000';else{payload[1][2]='1900000';payload.pop();}}
     }));
     expect(report.candidates.find(row=>row.code==='090121'&&row.direction==='imports')!.currentSharePercent).toBeCloseTo(100*11800000/13000000);
     expect(report.candidates.find(row=>row.code==='999995')!).toMatchObject({complete:false,currentUsd:null,currentSharePercent:null,comparisonAvailable:false});
@@ -38,7 +38,7 @@ describe('isolated Canada audit',()=>{
     expect(report.candidates.find(row=>row.code==='090121')!).toMatchObject({currentUsd:0,currentSharePercent:null,previousSharePercent:null});expect(report.months[0].productSumUsd).toBeNull();
   });
   it('keeps evidence and a safe error after a malformed response without abandoning the remaining grid',async()=>{
-    const report=await audit.runCountryAudit(options(join(await workspace(),'audit')),countryFetch((payload,url)=>{if(url.searchParams.get('time')==='2024-09'&&url.searchParams.get('SUMMARY_LVL2')==='CY')payload[1][3]='2010';}));
+    const report=await audit.runCountryAudit(options(join(await workspace(),'audit')),countryFetch((payload,url)=>{if(url.searchParams.get('YEAR')==='2024'&&url.searchParams.get('MONTH')==='09'&&url.searchParams.get('SUMMARY_LVL2')==='CY')payload[1][3]='2010';}));
     expect(report.sourceCoverage).toBe('failed');expect(report.rawFiles).toHaveLength(97);expect(report.months[0].errors.length).toBe(1);expect(report.months[0].totalUsd).toBeNull();
   });
   it('refuses occupied output and concurrent reuse before fetching',async()=>{

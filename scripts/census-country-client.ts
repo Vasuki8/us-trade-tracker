@@ -7,20 +7,22 @@ function publicContext(context:CountryContext):CountryContext{return {countryCod
 function fields(direction:CountryContext['direction']){
   const commodity=direction==='imports'?'I_COMMODITY':'E_COMMODITY';
   const measure:CountryPart['measure']=direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO';
-  return {commodity,measure,columns:[commodity,`${commodity}_LDESC`,measure,'CTY_CODE','CTY_NAME','COMM_LVL','SUMMARY_LVL','SUMMARY_LVL2','time','DISTRICT',direction==='imports'?'RP':'DF',...(direction==='imports'?['CTY_SUBCODE']:[]),'LAST_UPDATE']};
+  return {commodity,measure,columns:[commodity,`${commodity}_LDESC`,measure,'CTY_CODE','CTY_NAME','COMM_LVL','SUMMARY_LVL','SUMMARY_LVL2','DISTRICT',direction==='imports'?'RP':'DF',...(direction==='imports'?['CTY_SUBCODE']:[]),'LAST_UPDATE']};
 }
 export function normalizeCountryPart(payload:unknown,context:CountryContext):CountryPart{
-  validateContext(context);const {commodity,measure,columns}=fields(context.direction);
+  validateContext(context);const {commodity,measure,columns:dimensions}=fields(context.direction);
   if(!Array.isArray(payload)||!Array.isArray(payload[0]))throw new Error('Invalid country Census table');
   const [headers,...cells]=payload as unknown[][];
   if(headers.some(header=>typeof header!=='string')||new Set(headers).size!==headers.length)throw new Error('Invalid country headers');
+  const calendar=!headers.includes('time');const columns=[...dimensions,...(calendar?['YEAR','MONTH']:['time'])];
   if(columns.some(column=>!headers.includes(column))||headers.some(header=>!columns.includes(String(header))))throw new Error('Unexpected country columns');
   const seen=new Set<string>();const rows:CountryPart['rows']=[];
   for(const cell of cells){
     if(!Array.isArray(cell)||cell.length!==headers.length)throw new Error('Incomplete country row');
     const row=Object.fromEntries(headers.map((header,index)=>[String(header),cell[index]]));
     if(columns.filter(column=>column!==measure).some(column=>typeof row[column]!=='string'))throw new Error('Invalid country dimension type');
-    if(row.CTY_CODE!==context.countryCode||row.CTY_NAME!=='CANADA'||row.time!==context.month||row.SUMMARY_LVL!=='DET'||row.SUMMARY_LVL2!==(context.kind==='total'?'CY':'HSCY'))throw new Error('Unexpected country identity or aggregation');
+    const periodMatches=calendar?row.YEAR===context.month.slice(0,4)&&row.MONTH===context.month.slice(5):row.time===context.month;
+    if(row.CTY_CODE!==context.countryCode||row.CTY_NAME!=='CANADA'||!periodMatches||row.SUMMARY_LVL!=='DET'||row.SUMMARY_LVL2!==(context.kind==='total'?'CY':'HSCY'))throw new Error('Unexpected country identity or aggregation');
     if(['DISTRICT','RP','DF','CTY_SUBCODE'].some(field=>field in row&&row[field]!=='-'))throw new Error('Unexpected country subdivision');
     const code=String(row[commodity]);
     if(context.kind==='total'?(code!=='-'||!['','-'].includes(String(row.COMM_LVL))):(row.COMM_LVL!=='HS6'||!/^\d{6}$/.test(code)))throw new Error('Unexpected country commodity level');
@@ -36,7 +38,9 @@ export async function fetchCountryPart(options:CountryFetchOptions,fetchImpl:typ
   validateContext(options);if(!options.apiKey.trim())throw new Error('Census key required');
   const {columns}=fields(options.direction);
   const url=new URL(`https://api.census.gov/data/timeseries/intltrade/${options.direction}/hs`);
-  url.searchParams.set('CTY_CODE',options.countryCode);url.searchParams.set('SUMMARY_LVL','DET');url.searchParams.set('SUMMARY_LVL2',options.kind==='total'?'CY':'HSCY');url.searchParams.set('time',options.month);
+  url.searchParams.set('CTY_CODE',options.countryCode);url.searchParams.set('SUMMARY_LVL','DET');url.searchParams.set('SUMMARY_LVL2',options.kind==='total'?'CY':'HSCY');
+  // Census recommends native calendar predicates to reduce monthly query processing.
+  url.searchParams.set('YEAR',options.month.slice(0,4));url.searchParams.set('MONTH',options.month.slice(5));
   if(options.kind==='products')url.searchParams.set('COMM_LVL','HS6');
   url.searchParams.set('get',columns.filter(column=>!url.searchParams.has(column)).join(','));
   const requestUrl=url.toString();url.searchParams.set('key',options.apiKey);
