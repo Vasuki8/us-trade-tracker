@@ -21,6 +21,7 @@ const views={imports:buildChangesView(release,'imports'),exports:buildChangesVie
     <p>Choose a reviewed product</p>
     <ul>{products.map(option=><li><a href={monthlyChangesPath(option.code)} aria-current={option.code===product.code?'page':undefined}>{option.displayName} · HS {option.code}</a></li>)}</ul>
     <p class="product-default-note">Changing product starts with imports ranked by dollar change.</p>
+    <p><a href="/changes/products/">Compare changes across reviewed products</a></p>
   </nav>
   <MonthlyChanges data={JSON.stringify(views)} reportingMonth={release.reportingMonth} client:load/>
 </BaseLayout>
