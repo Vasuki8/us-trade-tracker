@@ -80,6 +80,7 @@ it('manual country workflow validates inputs before key access, retains failures
   expect(workflow.on).toHaveProperty('workflow_dispatch');expect(workflow.on).not.toHaveProperty('schedule');expect(workflow.permissions).toEqual({contents:'read'});
   expect(workflow.jobs.audit.if).toContain('refs/heads/main');const steps=workflow.jobs.audit.steps;
   const preflight=steps.findIndex((step:{id?:string})=>step.id==='preflight');const retrieve=steps.findIndex((step:{env?:Record<string,string>})=>step.env?.CENSUS_API_KEY);expect(preflight).toBeGreaterThan(0);expect(retrieve).toBeGreaterThan(preflight);
+  expect(steps[retrieve]['timeout-minutes']).toBe(15);expect(workflow.jobs.audit['timeout-minutes']-steps[retrieve]['timeout-minutes']).toBeGreaterThanOrEqual(5);expect(steps[retrieve]['continue-on-error']).not.toBe(true);
   const upload=steps.find((step:{uses?:string})=>step.uses?.startsWith('actions/upload-artifact@'));expect(upload.if).toContain('always()');expect(upload.with['include-hidden-files']).toBe(true);expect(upload.with['retention-days']).toBe(7);
   expect(JSON.stringify(workflow)).not.toContain('R2_');expect(JSON.stringify(workflow)).not.toContain('data:archive');
 });
