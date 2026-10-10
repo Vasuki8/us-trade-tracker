@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "productCode": "090111",
+  "reportingMonth": "2026-08",
+  "verifiedDate": "2026-10-10",
+  "initialArchive": {
+    "runId": 38081943254,
+    "jobId": 114300502594,
+    "headSha": "1ef3dbb23ee478a188018fc1e5761be70090fc11",
+    "retrievedAt": "2026-10-10T20:00:19.513Z",
+    "releaseId": "2026-08-ce7cdc7d-10c7-4edd-81b5-f7eea307468f",
+    "reference": {
+      "key": "trade/v1/products/090111/releases/2026-08-ce7cdc7d-10c7-4edd-81b5-f7eea307468f.json",
+      "sha256": "9ac5e90fbf7852e94fa82af3e9c6e07033dd999f1037b69cb0f88b969164ad58"
+    },
+    "releaseSha256": "b363ec5ed0ecaf0f4cbbc1c667ce94f8d244d2a24e389a8b3cfefc36fca4d2d3",
+    "promotionOutcome": "acknowledged",
+    "artifacts": [
+      {
+        "id": 11681316296,
+        "name": "census-090111-promotion",
+        "sha256": "b9b0b423284d4409fd2e96cd6de22d18d848b77038d67c74ec2489c4003b3b27",
+        "zipBytes": 375,
+        "expiresAt": "2026-10-17T20:10:17Z"
+      },
+      {
+        "id": 11680942063,
+        "name": "census-090111-candidate",
+        "sha256": "4c01aa049afaeb3df49504ea1fa43ba9ecec4f87c9517b20b4ab24e83fa8f4f8",
+        "zipBytes": 332201,
+        "expiresAt": "2026-10-17T20:10:15Z"
+      }
+    ]
+  },
+  "freshRunnerVerification": {
+    "runId": 38083542577,
+    "jobId": 114305205733,
+    "headSha": "b5d9bf86a48e59c2be47280924830ce1d69560cb",
+    "receipt": {
+      "schemaVersion": 1,
+      "status": "verified",
+      "productCode": "090111",
+      "reportingMonth": "2026-08",
+      "retrievedAt": "2026-10-10T20:00:19.513Z",
+      "codeVersion": "1ef3dbb23ee478a188018fc1e5761be70090fc11",
+      "archive": {
+        "reference": {
+          "key": "trade/v1/products/090111/releases/2026-08-ce7cdc7d-10c7-4edd-81b5-f7eea307468f.json",
+          "sha256": "9ac5e90fbf7852e94fa82af3e9c6e07033dd999f1037b69cb0f88b969164ad58"
+        },
+        "etag": "\"00bbddef2b3d4aee1ad8d689c556604f\"",
+        "releaseId": "2026-08-ce7cdc7d-10c7-4edd-81b5-f7eea307468f",
+        "releaseSha256": "b363ec5ed0ecaf0f4cbbc1c667ce94f8d244d2a24e389a8b3cfefc36fca4d2d3"
+      },
+      "merchandiseObservations": 6929,
+      "dutyObservations": 1524,
+      "dutyFromMonth": "2024-09"
+    },
+    "artifacts": [
+      {
+        "id": 11681497496,
+        "name": "census-090111-restored",
+        "sha256": "682bcfda149394d641d31affc00fc7324fc49ac64593b655318d9297e4d2958e",
+        "zipBytes": 434193,
+        "expiresAt": "2026-10-17T20:23:29Z"
+      },
+      {
+        "id": 11680978375,
+        "name": "census-090111-verification",
+        "sha256": "4b7022df4aff68024b23a26002f9a3a9c17d3985dac8e06e1598441bcb7b72a5",
+        "zipBytes": 961,
+        "expiresAt": "2026-10-17T20:23:30Z"
+      }
+    ],
+    "originalFilesCompared": 337,
+    "allOriginalBytesMatchInitialBundle": true,
+    "receiptMatchesInitialPromotion": true,
+    "runBaselineMatchesReceipt": true,
+    "originalMetadataPreserved": true
+  },
+  "sourceChecks": {
+    "merchandiseObservations": 6929,
+    "dutyObservations": 1524,
+    "allObservationFieldsMatchCanonical": true,
+    "classificationMatchesCanonical": true,
+    "merchandiseRevisions": 0,
+    "dutyRevisions": 0,
+    "localPointerAndReleaseSha256": {
+      "data/processed/current.json": "5098efe55c5d712f097afaef140527c1c3636ebdd7dd0fe48b5521c5cf589bc8",
+      "data/processed/releases/2026-08-5f3c2606-06a0-4c96-8fbc-a2332e0428ae.json": "eaa8c1baa86bd3a8880dcda12db3b32625a38c221591c8c0e087b6af6a325727",
+      "data/products/090111/processed/current.json": "d93e6e11e48c540396fee4699a0a9e58cbde0e6f6a55e20e7ba7056fb3296a39",
+      "data/products/090111/processed/releases/2026-08-d6b1ed52-cd6c-4b7d-87ca-d52c9e338cae.json": "ef5d56791ad85b1b7a199829818522389a792e82cee792665be61f8e78cba0f7"
+    }
+  },
+  "successiveOfficialReleasesVerified": false
+}
