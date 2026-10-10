@@ -1,5 +1,8 @@
 import {syntheticCensusFetch} from './archive';
 import {syntheticDutyFetch} from './duties';
+import {mkdtemp,readFile,readdir} from 'node:fs/promises';import {join} from 'node:path';import {tmpdir} from 'node:os';
+import {prepareRelease} from '../../scripts/prepare-release';
+import type {BundleInput} from '../../scripts/archive-bundle';
 
 // Independent synthetic identities and amounts; this never contacts Census.
 export function syntheticProductFetch(productCode:string,{scale=1,worldDelta=0,duties=false}:{scale?:number;worldDelta?:number;duties?:boolean}={}):typeof fetch{
@@ -16,4 +19,12 @@ export function syntheticProductFetch(productCode:string,{scale=1,worldDelta=0,d
     }
     return Response.json(table);
   }) as typeof fetch;
+}
+export async function createProductArchiveFixture(productCode:string,{duties=false,scale=1}:{duties?:boolean;scale?:number}={}):Promise<{dataDir:string;input:BundleInput}>{
+  const dataDir=await mkdtemp(join(tmpdir(),'trade-product-archive-'));
+  await prepareRelease({productCode,end:'2026-08',months:60,apiKey:'synthetic',outputDir:join(dataDir,'processed'),codeVersion:'synthetic-product-fixture',includeDuties:duties,classificationIntervals:[{from:'2021-09',to:'2026-08',evidenceUrl:'https://example.invalid/synthetic'}]},syntheticProductFetch(productCode,{scale,duties}));
+  const pointer=JSON.parse(await readFile(join(dataDir,'processed/current.json'),'utf8')),releaseId=pointer.releaseFile.slice(9,-5);
+  const names=await readdir(join(dataDir,'raw',releaseId));
+  const rawRecords=new Map(await Promise.all(names.map(async name=>[`raw/${name}`,await readFile(join(dataDir,'raw',releaseId,name))] as [string,Buffer])));
+  return {dataDir,input:{releaseId,releaseBytes:await readFile(join(dataDir,'processed',pointer.releaseFile)),rawRecords,previous:null}};
 }
