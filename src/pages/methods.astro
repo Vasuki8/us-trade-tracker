@@ -2,10 +2,26 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {loadPublishedReleases} from '../lib/trade/load-release';
 import {monthLabel} from '../lib/trade/format';
+import {CENSUS_RELEASE_CALENDAR,nextScheduledRelease} from '../lib/trade/release-schedule';
 const profiles=await loadPublishedReleases();
+const preparedAt=new Date(),scheduled=nextScheduledRelease(preparedAt);
+const publicationDate=scheduled?new Intl.DateTimeFormat('en-US',{dateStyle:'long',timeZone:'America/New_York'}).format(new Date(scheduled.publishesAt)):null;
+const checkedDate=new Intl.DateTimeFormat('en-US',{dateStyle:'long',timeZone:'UTC'}).format(new Date(`${CENSUS_RELEASE_CALENDAR.checkedOn}T00:00:00Z`));
+const preparedLabel=new Intl.DateTimeFormat('en-US',{dateStyle:'long',timeStyle:'short',timeZone:'America/New_York'}).format(preparedAt);
 ---
 <BaseLayout title="Sources and methods"><div class="methods"><p class="eyebrow">RESEARCH NOTES</p><h1>Sources &amp; methods</h1>
 {profiles.some(({release})=>release.source==='fixture')&&<div class="sample-banner"><strong>Development sample data</strong><span>The current preview uses synthetic observations for development checks.</span></div>}
+<section class="release-schedule" aria-labelledby="schedule-heading">
+  <h2 id="schedule-heading">Official release schedule</h2>
+  {scheduled?<>
+    <p><strong>Next scheduled publication as of page preparation</strong></p>
+    <p class="publication-date"><time data-publication datetime={scheduled.publishesAt}>{publicationDate} at 8:30 a.m. Eastern</time></p>
+    <p>Reporting month: {monthLabel(scheduled.reportingMonth)}</p>
+  </>:<p>No future publication date is included in this reviewed schedule.</p>}
+  <p>Schedule checked: <time data-calendar-checked datetime={CENSUS_RELEASE_CALENDAR.checkedOn}>{checkedDate}</time>.<br/>Schedule evaluated: <time data-schedule-prepared datetime={preparedAt.toISOString()}>{preparedLabel} Eastern</time>.</p>
+  <p>Dates can change. Confirm them on the <a href={CENSUS_RELEASE_CALENDAR.sourceUrl}>official release calendar</a>.</p>
+  <p>Scheduled publication does not mean this website has accepted new data. Published reporting months are listed below.</p>
+</section>
 <h2>Published release information</h2>
 <p>Each published profile uses its own validated release. A failed refresh retains the last validated release and its date. Revision counts compare records with the previous retained release.</p>
 {profiles.map(({product,release})=><article class="release-details" aria-labelledby={`release-${product.code}`}>
@@ -22,7 +38,7 @@ const profiles=await loadPublishedReleases();
   </dl>
   <p><a href={`/products/${product.code}/`}>Open product profile</a></p>
 </article>)}
-<p>Source data comes from the <a href="https://www.census.gov/data/developers/data-sets/international-trade.html">Census monthly international trade API</a>. See the <a href="https://www.census.gov/foreign-trade/schedule.html">official release calendar</a> for upcoming publication dates.</p>
+<p>Source data comes from the <a href="https://www.census.gov/data/developers/data-sets/international-trade.html">Census monthly international trade API</a>.</p>
 <h2>Scope and dollar values</h2><p>These pages describe U.S. goods trade in current U.S. dollars, without seasonal adjustment. Imports use general import customs value (GEN_VAL_MO). Exports use total export value (ALL_VAL_MO), including domestic goods and re-exports. These figures have a different scope and basis from the national goods and services headline.</p>
 <h2>Products and partner countries</h2><p>Products use six-digit Harmonized System categories. The official description lets you check the match. World totals come directly from the source; they are never calculated by adding overlapping country groups. Partner selections contain individual countries, excluding world totals and regional groupings.</p>
 <h2>Comparisons and shares</h2><p>Year-over-year compares a month with the same month in the previous year. Trailing twelve months includes twelve consecutive calendar months and is compared with the preceding twelve months. Dollar changes accompany percentage changes. A zero or unavailable baseline has no percentage-growth value. A country share is its share of U.S. imports or exports for this product over the same complete twelve months. It is not a measure of worldwide demand or profitability.</p>
@@ -39,6 +55,10 @@ const profiles=await loadPublishedReleases();
 <h2>Revisions and downloads</h2><p>Each import refreshes retained history. Changed observations are recorded against the previous release. Chart downloads reproduce the current direction, selected countries and window. The changes CSV reproduces the displayed increase and decrease rankings for the selected direction and ranking measure. These CSVs include units, source, periods, retrieval date and processing version. An unavailable calculation has a blank CSV value. Dollar values are original Census observations; comparisons are calculations by US Trade Tracker.</p>
 <h2>Attribution</h2><p>This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.</p><p><a href="/products/">Browse published products</a></p></div></BaseLayout>
 <style>
+  .release-schedule{border:1px solid var(--border);background:#edf3f1;padding:24px;margin:28px 0}
+  .release-schedule h2{margin-top:0}.release-schedule p{font-size:13px}
+  .release-schedule .publication-date{font-size:22px;line-height:1.5;color:#172e35;margin:12px 0}
+  .release-schedule p:last-child{margin-bottom:0}
   .release-details{border:1px solid var(--border);background:white;padding:24px;margin:20px 0;min-width:0}
   .release-details h3{margin:0 0 16px;font-size:20px;font-weight:550;overflow-wrap:anywhere}
   .release-details p{font-size:13px}
@@ -46,5 +66,5 @@ const profiles=await loadPublishedReleases();
   .release-details dt{font-size:11px;color:var(--muted);margin-bottom:6px}
   .release-details dd{font-size:13px;margin:0;overflow-wrap:anywhere}
   .release-details p:last-child{margin-bottom:0}
-  @media(max-width:680px){.release-details{padding:20px}.release-details dl{grid-template-columns:1fr}}
+  @media(max-width:680px){.release-schedule,.release-details{padding:20px}.release-details dl{grid-template-columns:1fr}}
 </style>
