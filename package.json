@@ -19,6 +19,7 @@
     "data:verify-archive": "node --import tsx scripts/verify-archive.ts",
     "data:audit-duties": "node --import tsx scripts/audit-duties.ts",
     "data:audit-country": "node --import tsx scripts/audit-country.ts",
+    "data:probe-country": "node --import tsx scripts/probe-country.ts",
     "test:e2e": "playwright test"
   },
   "dependencies": {

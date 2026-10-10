@@ -1,0 +1,30 @@
+import {afterEach,expect,it} from 'vitest';import {mkdtemp,readFile,readdir,rm,mkdir} from 'node:fs/promises';import {join} from 'node:path';import {tmpdir} from 'node:os';import {createHash} from 'node:crypto';import {parse} from 'yaml';
+import {runCountryProbe} from '../../scripts/probe-country';import {countryFetch} from '../helpers/country-data';
+const dirs:string[]=[];afterEach(async()=>{for(const dir of dirs.splice(0))await rm(dir,{recursive:true,force:true});});
+async function options(){const root=await mkdtemp(join(tmpdir(),'country-probe-'));dirs.push(root);return {countryCode:'1220',end:'2026-08',outputDir:join(root,'new'),apiKey:'synthetic-key',codeVersion:'test-version'};}
+const fixture=(async(input,init)=>{const url=new URL(String(input));if(url.pathname.endsWith('/variables.json'))return new Response('{"variables":{}}',{headers:{'content-type':'application/json'}});if(url.searchParams.has('I_COMMODITY'))return new Response('[["GEN_VAL_MO"],["1000000"]]',{headers:{'content-type':'application/json'}});return countryFetch()(input,init);}) as typeof fetch;
+it('uses exactly six requests, at most two in flight, and retains digested credential-free evidence without accepting data',async()=>{
+ const o=await options();let active=0,max=0,calls=0;const fetcher=(async(input,init)=>{calls++;active++;max=Math.max(max,active);expect(init?.signal).toBeInstanceOf(AbortSignal);await new Promise(resolve=>setTimeout(resolve,2));try{return await fixture(input,init);}finally{active--;}}) as typeof fetch;
+ const report=await runCountryProbe(o,fetcher);expect(calls).toBe(6);expect(max).toBe(2);expect(report).toMatchObject({purpose:'connectivity-diagnostic',probePassed:true,sourceCoverage:'unverified',classificationStatus:'unverified',releaseAccepted:false,codeVersion:'test-version'});expect(report.results).toHaveLength(6);expect(report.rawFiles).toHaveLength(6);expect(report.events).toHaveLength(6);
+ for(const file of report.rawFiles){const bytes=await readFile(join(o.outputDir,file.path));expect(createHash('sha256').update(bytes).digest('hex')).toBe(file.sha256);expect(bytes.length).toBe(file.bytes);expect(bytes.toString()).not.toContain(o.apiKey);expect(JSON.parse(bytes.toString()).requestUrl).not.toContain('key=');}expect(await readdir(o.outputDir)).toEqual(['connectivity-probe.json','raw']);
+});
+it('finishes a bounded network-failure probe and records only allowlisted codes, never exception messages',async()=>{
+ const o=await options();let calls=0;const fetcher=(async()=>{calls++;throw Object.assign(new Error(`secret ${o.apiKey}`),{cause:{code:'UND_ERR_CONNECT_TIMEOUT'}});}) as typeof fetch;const report=await runCountryProbe(o,fetcher);expect(calls).toBe(6);expect(report.probePassed).toBe(false);expect(report.rawFiles).toHaveLength(6);expect(report.events.every(event=>event.errorCode==='UND_ERR_CONNECT_TIMEOUT')).toBe(true);const text=await readFile(join(o.outputDir,'connectivity-probe.json'),'utf8');expect(text).not.toContain(o.apiKey);expect(text).not.toContain('secret');
+});
+it('retains country responses that fail validation and leaves their contract unverified',async()=>{
+ const o=await options();const fetcher=(async(input,init)=>{const response=await fixture(input,init);const url=new URL(String(input));if(url.searchParams.get('CTY_CODE')==='1220')return new Response((await response.text()).replaceAll('CANADA','MEXICO'),{headers:{'content-type':'application/json'}});return response;}) as typeof fetch;
+ const report=await runCountryProbe(o,fetcher);expect(report.probePassed).toBe(false);expect(report.results.filter(row=>row.outcome==='failed')).toHaveLength(4);expect(report.rawFiles).toHaveLength(6);expect(report.events.every(row=>row.httpStatus===200)).toBe(true);
+});
+it('rejects credential-bearing bodies and suppresses unknown error codes',async()=>{
+ const o=await options();const fetcher=(async input=>{const url=new URL(String(input));if(url.pathname.endsWith('/variables.json'))throw Object.assign(new Error(o.apiKey),{cause:{code:o.apiKey}});return new Response(o.apiKey,{headers:{'content-type':'application/json'}});}) as typeof fetch;
+ const report=await runCountryProbe(o,fetcher);expect(report.probePassed).toBe(false);expect(report.rawFiles).toHaveLength(1);expect(report.events[0].errorCode).toBe('unknown');expect(await readFile(join(o.outputDir,'connectivity-probe.json'),'utf8')).not.toContain(o.apiKey);
+});
+it('refuses occupied output and invalid pilot inputs before network access',async()=>{
+ const o=await options();await mkdir(o.outputDir);let calls=0;const fetcher=(async()=>{calls++;throw new Error('unexpected');}) as typeof fetch;await expect(runCountryProbe(o,fetcher)).rejects.toThrow(/fresh|exists/);await expect(runCountryProbe({...o,countryCode:'2010'},fetcher)).rejects.toThrow();expect(calls).toBe(0);
+});
+it('rejects an echoed key before JSON escaping can hide it from the evidence guard',async()=>{
+ const o={...await options(),apiKey:'key"with\\slash'};const report=await runCountryProbe(o,(async()=>new Response(o.apiKey,{headers:{'content-type':'application/json'}})) as typeof fetch);expect(report.rawFiles).toHaveLength(0);expect(report.probePassed).toBe(false);
+});
+it('offers a bounded, manually selected probe after key-free preflight with no publication or provider access',async()=>{
+ const workflow=parse(await readFile('.github/workflows/audit-census-country.yml','utf8'));expect(workflow.on.workflow_dispatch.inputs.audit_mode).toMatchObject({type:'choice',default:'full',options:['full','connectivity-probe']});const steps=workflow.jobs.audit.steps;const probe=steps.find((step:{run?:string})=>step.run?.includes('data:probe-country'));expect(probe.if).toContain('connectivity-probe');expect(probe['timeout-minutes']).toBe(3);expect(probe.env.CENSUS_API_KEY).toContain('secrets.CENSUS_API_KEY');expect(steps.find((step:{id?:string})=>step.id==='preflight').run).toContain('AUDIT_MODE');expect(JSON.stringify(workflow)).not.toContain('R2_');expect(workflow.on).not.toHaveProperty('schedule');
+});

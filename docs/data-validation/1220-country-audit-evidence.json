@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "1220",
+  "reportingMonth": "2026-08",
+  "sourceCoverage": "unverified",
+  "classificationStatus": "unverified",
+  "releaseAccepted": false,
+  "failedAuditArtifact": {
+    "runId": 38093079916,
+    "runUrl": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38093079916",
+    "jobId": 114333329689,
+    "headSha": "2cec05736b7401d4f81b0d3d00b1d3c1e5b5b25c",
+    "conclusion": "cancelled",
+    "cause": "job-time-limit",
+    "artifactId": 11685760760,
+    "artifactName": "census-1220-country-audit",
+    "artifactBytes": 66630,
+    "artifactSha256": "df9a217d240a8d6e22f396676d5f51daef1eacbb44dbddbe9dfed24e79d2eb5f",
+    "zipEntries": 75,
+    "independentlyMatchedFiles": 75,
+    "extractedBytes": 269960,
+    "completedAuditReport": false,
+    "completedDataset": false,
+    "censusRecords": 74,
+    "censusObservations": 0,
+    "importParts": 38,
+    "exportParts": 36,
+    "firstRecordedMonth": "2024-09",
+    "lastRecordedMonth": "2026-03",
+    "allCensusAttemptStatusesNull": true,
+    "allCensusAttemptBodiesNull": true,
+    "allCensusAttemptCounts": 1,
+    "underlyingTransportCause": "unverified"
+  },
+  "officialTable": {
+    "url": "https://www.census.gov/foreign-trade/balance/c1220.html",
+    "retrievedAt": "2026-10-10T22:55:08.802Z",
+    "lastModified": "Tue, 06 Oct 2026 12:35:31 GMT",
+    "httpDate": "Sat, 10 Oct 2026 22:55:08 GMT",
+    "httpStatus": 200
+  },
+  "preservedProductHashes": {
+    "090121": {
+      "pointerSha256": "5098efe55c5d712f097afaef140527c1c3636ebdd7dd0fe48b5521c5cf589bc8",
+      "releaseSha256": "eaa8c1baa86bd3a8880dcda12db3b32625a38c221591c8c0e087b6af6a325727"
+    },
+    "090111": {
+      "pointerSha256": "d93e6e11e48c540396fee4699a0a9e58cbde0e6f6a55e20e7ba7056fb3296a39",
+      "releaseSha256": "ef5d56791ad85b1b7a199829818522389a792e82cee792665be61f8e78cba0f7"
+    }
+  },
+  "liveProbe": null
+}
