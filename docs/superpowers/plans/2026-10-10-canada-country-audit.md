@@ -62,3 +62,5 @@
 Native execution with one whole-branch reviewer follows the user's standing autonomous implementation and review preference. Routine implementation details do not require another approval.
 
 Ruling: use the existing authorized checkout on a feature branch, following the established sandbox worktree fallback. Ruling: use a fresh ignored `.tmp/country-audit/1220` evidence root; refuse an existing directory, even empty, to prevent concurrent reuse.
+
+Tasks 1–2 implemented. Client tests first failed for absent behavior, then passed. Audit tests first failed for absent behavior, then passed. A live public-table check exposed decimal floating-point conversion; a regression with `1,024.1` failed before exact integer conversion fixed it. The parser now reads 320 official monthly rows, including August 2026. The full suite passed 503 tests with two workers after a 47-worker Windows run timed out in two unchanged archive tests; the changed audit suites passed 35 focused tests after the parser fix. Actual API source coverage remains unverified until the GitHub audit.

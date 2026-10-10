@@ -4,3 +4,9 @@ export type CountryRow={code:string;description:string;valueUsd:number|null;spec
 export type CountryPart=CountryContext & {measure:Measure;rows:CountryRow[]};
 export type CountryRaw=CountryContext & {schemaVersion:1;requestUrl:string;retrievedAt:string;httpStatus:number;attempts:number;responseBody:string};
 export type CountryFetchOptions=CountryContext & {apiKey:string;onRaw?:(raw:CountryRaw)=>Promise<void>};
+export type CountryAuditOptions={countryCode:string;end:string;outputDir:string;apiKey:string;codeVersion?:string};
+export type CountryReferenceRow={month:string;importsUsd:number;exportsUsd:number};
+export type AuditFile={path:string;bytes:number;sha256:string};
+export type CountryMonthAudit={month:string;direction:Direction;totalUsd:number|null;productSumUsd:number|null;residualUsd:number|null;productRows:number;unavailableValues:number;specialRows:CountryRow[];referenceUsd:number|null;referenceCheck:'matched'|'mismatch'|'unavailable';errors:string[]};
+export type CountryCandidate={direction:Direction;code:string;description:string;special:boolean;currentUsd:number|null;previousUsd:number|null;currentSharePercent:number|null;previousSharePercent:number|null;shareChangePercentagePoints:number|null;currentReportedMonths:number;previousReportedMonths:number;complete:boolean;classificationStatus:'unverified';comparisonAvailable:false};
+export type CountryAuditReport={schemaVersion:1;countryCode:string;fromMonth:string;toMonth:string;retrievedAt:string;codeVersion:string;sourceCoverage:'verified'|'failed';classificationStatus:'unverified';rawFiles:AuditFile[];months:CountryMonthAudit[];candidates:CountryCandidate[];reference:{url:string;retrievedAt:string|null;lastModified:string|null;httpDate:string|null;error:string|null};};

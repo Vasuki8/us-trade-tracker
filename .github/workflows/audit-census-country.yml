@@ -1,0 +1,54 @@
+name: Audit Canada country data
+on:
+  workflow_dispatch:
+    inputs:
+      country_code:
+        description: Reviewed country code (1220 Canada)
+        required: true
+        type: string
+        default: '1220'
+      reporting_month:
+        description: Reviewed reporting month (2026-08)
+        required: true
+        type: string
+        default: '2026-08'
+permissions:
+  contents: read
+concurrency:
+  group: census-country-audit
+  cancel-in-progress: false
+jobs:
+  audit:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      COUNTRY_CODE: ${{ inputs.country_code }}
+      REPORTING_MONTH: ${{ inputs.reporting_month }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci
+      - run: npm test
+      - run: npm run check
+      - name: Validate reviewed Canada pilot before key access
+        id: preflight
+        run: npm run data:audit-country -- --preflight --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
+      - name: Audit country totals and complete HS6 breakdowns
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+        run: npm run data:audit-country -- --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
+      - name: Retain source evidence even on validation failure
+        if: always() && steps.preflight.outcome == 'success'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: census-1220-country-audit
+          path: .tmp/country-audit/1220/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 7

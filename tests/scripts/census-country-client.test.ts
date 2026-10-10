@@ -1,13 +1,8 @@
 import {describe,expect,it} from 'vitest';
 import * as client from '../../scripts/census-country-client';
+import {countryTable as table} from '../helpers/country-data';
 
 export const context={countryCode:'1220',month:'2026-08',direction:'imports' as const,kind:'products' as const};
-export function table(kind:'total'|'products'='products',direction:'imports'|'exports'='imports',month='2026-08',rows?:string[][]){
-  const commodity=direction==='imports'?'I_COMMODITY':'E_COMMODITY';
-  const headers=[commodity,`${commodity}_LDESC`,direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO','CTY_CODE','CTY_NAME','COMM_LVL','SUMMARY_LVL','SUMMARY_LVL2','time','DISTRICT',direction==='imports'?'RP':'DF',...(direction==='imports'?['CTY_SUBCODE']:[]),'LAST_UPDATE'];
-  const row=(code:string,value:string)=>[code,code==='-'?'ALL GOODS':code.startsWith('99')?'LOW VALUE ESTIMATE':'COFFEE',value,'1220','CANADA',kind==='total'?'':'HS6','DET',kind==='total'?'CY':'HSCY',month,'-','-',...(direction==='imports'?['-']:[]),'2026-10-10'];
-  return [headers,...(rows??(kind==='total'?[row('-','1000000')]:[row('090121','900000'),row('999995','100000')]))];
-}
 const json=(payload:unknown)=>new Response(JSON.stringify(payload),{headers:{'content-type':'application/json'}});
 
 describe('country source contracts',()=>{

@@ -6,7 +6,7 @@ function validateContext(context:CountryContext){
 function publicContext(context:CountryContext):CountryContext{return {countryCode:context.countryCode,month:context.month,direction:context.direction,kind:context.kind};}
 function fields(direction:CountryContext['direction']){
   const commodity=direction==='imports'?'I_COMMODITY':'E_COMMODITY';
-  const measure=direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO';
+  const measure:CountryPart['measure']=direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO';
   return {commodity,measure,columns:[commodity,`${commodity}_LDESC`,measure,'CTY_CODE','CTY_NAME','COMM_LVL','SUMMARY_LVL','SUMMARY_LVL2','time','DISTRICT',direction==='imports'?'RP':'DF',...(direction==='imports'?['CTY_SUBCODE']:[]),'LAST_UPDATE']};
 }
 export function normalizeCountryPart(payload:unknown,context:CountryContext):CountryPart{
