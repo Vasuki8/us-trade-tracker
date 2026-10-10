@@ -59,6 +59,8 @@
 
 ## Execution record
 
+Independent review found that retry attempts lost their earlier response bodies. A regression failed for 503→200; the fix now retains every credential-safe attempt inside its logical request record, including null-body/status transport-failure events. The 503→transport regression also passes. Both focused suites now pass 36 tests, and all 133 checked files have zero diagnostics. Per-attempt envelopes preserve the logical 96-request grid without changing file identities.
+
 Native execution with one whole-branch reviewer follows the user's standing autonomous implementation and review preference. Routine implementation details do not require another approval.
 
 Ruling: use the existing authorized checkout on a feature branch, following the established sandbox worktree fallback. Ruling: use a fresh ignored `.tmp/country-audit/1220` evidence root; refuse an existing directory, even empty, to prevent concurrent reuse.

@@ -40,19 +40,23 @@ export async function fetchCountryPart(options:CountryFetchOptions,fetchImpl:typ
   if(options.kind==='products')url.searchParams.set('COMM_LVL','HS6');
   url.searchParams.set('get',columns.filter(column=>!url.searchParams.has(column)).join(','));
   const requestUrl=url.toString();url.searchParams.set('key',options.apiKey);
-  let response:Response|undefined;let attempts=0;
-  try{
-    for(;attempts<3;){
-      attempts++;response=await fetchImpl(url,{signal:AbortSignal.timeout(30_000)});
-      if(response.status!==429&&response.status<500)break;
-      if(attempts<3)await new Promise(resolve=>setTimeout(resolve,500*2**(attempts-1)));
+  let response:Response|undefined;let attempts=0;let responseBody='';const responses:CountryRaw['responses']=[];
+  const persist=async()=>{const last=responses.at(-1)!;await options.onRaw?.({schemaVersion:1,...publicContext(options),requestUrl,retrievedAt:last.retrievedAt,httpStatus:last.httpStatus??0,attempts,responseBody:last.responseBody??'',responses});};
+  for(;attempts<3;){
+    attempts++;
+    try{response=await fetchImpl(url,{signal:AbortSignal.timeout(30_000)});}catch{
+      responses.push({attempt:attempts,httpStatus:null,responseBody:null,retrievedAt:new Date().toISOString()});await persist();throw new Error('Country Census request failed or timed out');
     }
-  }catch{throw new Error('Country Census request failed or timed out');}
+    try{responseBody=await response.text();}catch{
+      responses.push({attempt:attempts,httpStatus:response.status,responseBody:null,retrievedAt:new Date().toISOString()});await persist();throw new Error('Country Census body failed or timed out');
+    }
+    if(responseBody.includes(options.apiKey)||responseBody.includes(encodeURIComponent(options.apiKey)))throw new Error('Country response contains a credential');
+    responses.push({attempt:attempts,httpStatus:response.status,responseBody,retrievedAt:new Date().toISOString()});
+    if(response.status!==429&&response.status<500)break;
+    if(attempts<3)await new Promise(resolve=>setTimeout(resolve,500*2**(attempts-1)));
+  }
   if(!response)throw new Error('No country Census response');
-  let responseBody:string;try{responseBody=await response.text();}catch{throw new Error('Country Census body failed or timed out');}
-  if(responseBody.includes(options.apiKey)||responseBody.includes(encodeURIComponent(options.apiKey)))throw new Error('Country response contains a credential');
-  const raw:CountryRaw={schemaVersion:1,countryCode:options.countryCode,month:options.month,direction:options.direction,kind:options.kind,requestUrl,retrievedAt:new Date().toISOString(),httpStatus:response.status,attempts,responseBody};
-  await options.onRaw?.(raw);
+  await persist();
   if(response.status===204){if(options.kind==='total')throw new Error('Missing country total');return {...publicContext(options),measure:options.direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO',rows:[]};}
   if(!response.ok)throw new Error(`Country Census HTTP ${response.status}`);
   if(!response.headers.get('content-type')?.includes('application/json'))throw new Error('Country Census returned non-JSON data');

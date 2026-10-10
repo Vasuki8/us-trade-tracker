@@ -49,4 +49,12 @@ describe('country source contracts',()=>{
     let calls=0;await client.fetchCountryPart({...context,apiKey:'fixture-key'},(async()=>++calls===1?new Response('temporary',{status:503}):json(table())) as typeof fetch);expect(calls).toBe(2);
     let saved=false;await expect(client.fetchCountryPart({...context,apiKey:'fixture-key',onRaw:async()=>{saved=true;}},(async()=>new Response('fixture-key',{status:400})) as typeof fetch)).rejects.toThrow(/credential/);expect(saved).toBe(false);
   });
+  it('retains the original response for every retry and a safe transport failure event',async()=>{
+    const evidence:any[]=[];let calls=0;
+    await client.fetchCountryPart({...context,apiKey:'fixture-key',onRaw:async raw=>{evidence.push(raw);}},(async()=>++calls===1?new Response('temporary',{status:503}):json(table())) as typeof fetch);
+    expect(evidence[0].responses).toMatchObject([{attempt:1,httpStatus:503,responseBody:'temporary'},{attempt:2,httpStatus:200,responseBody:JSON.stringify(table())}]);
+    calls=0;evidence.length=0;
+    await expect(client.fetchCountryPart({...context,apiKey:'fixture-key',onRaw:async raw=>{evidence.push(raw);}},(async()=>{if(++calls===1)return new Response('first failure',{status:503});throw new Error('https://example.invalid/?key=fixture-key');}) as typeof fetch)).rejects.toThrow(/failed/);
+    expect(evidence[0].responses).toMatchObject([{attempt:1,httpStatus:503,responseBody:'first failure'},{attempt:2,httpStatus:null,responseBody:null}]);expect(JSON.stringify(evidence)).not.toContain('fixture-key');
+  });
 });
