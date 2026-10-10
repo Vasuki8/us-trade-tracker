@@ -4,11 +4,11 @@ The implementation adds optional private R2 persistence to the manual coffee wor
 
 ## Storage and acceptance
 
-The fixed namespace is `trade/v1/products/090121/`. Version 1 bundles retain their original 240 merchandise request records plus the prepared release. Version 2 adds 96 duty request records across 24 months, for 337 files, and declares both month scopes in its manifest. Both versions replay their own source queries and preserve original file bytes. The bounded mutable `current.json` pointer identifies the accepted bundle and its SHA256. HSCY HTTP 204 is an explicit null record; missing files cannot stand in for empty responses. Legacy successful records without a status remain readable.
+The coffee namespace is `trade/v1/products/090121/`. Version 1 bundles retain their original 240 merchandise request records plus the prepared release. Version 2 adds 96 duty request records across 24 months, for 337 files, and declares both month scopes in its manifest. Both versions replay their own source queries and preserve original file bytes. The bounded mutable `current.json` pointer identifies the accepted bundle and its SHA256. HSCY HTTP 204 is an explicit null record; missing files cannot stand in for empty responses. Legacy successful records without a status remain readable.
 
-Archived imports run only on `main`. They restore and validate the accepted baseline before making Census requests, retain its ETag and prepared-file checksum, and recompute merchandise and duty revisions against that exact baseline. Same-month refreshes are allowed; earlier months fail. Immutable upload is conditional and must read back identically. A successful `census-coffee-candidate` artifact backup and credential-free offline recovery precede one conditional pointer PUT. Conflicting writers cannot replace the restored pointer using a new ETag.
+Archived imports run only on `main`. They restore and validate the accepted baseline before making Census requests, retain its ETag and prepared-file checksum, and recompute merchandise and duty revisions against that exact baseline. Same-month refreshes are allowed; earlier months fail. Immutable upload is conditional and must read back identically. A successful `census-090121-candidate` artifact backup and credential-free offline recovery precede one conditional pointer PUT. Conflicting writers cannot replace the restored pointer using a new ETag.
 
-An uploaded candidate is not evidence of acceptance. `census-coffee-promotion` retains the outcome and the backup artifact ID/digest. `acknowledged` and `confirmed_by_readback` establish acceptance at that point; another writer may subsequently supersede it. `conflict` records a failed precondition. `unconfirmed` means a lost write response could not be resolved; check remote evidence before retrying. A receipt-save/upload failure does not roll back a known accepted write; if local saving fails, the CLI reports the established outcome with `receiptPersisted: false`. Artifact digests describe the GitHub artifact archive, not the inner bundle checksum. Backups expire after seven days; retain downloaded bundles separately.
+An uploaded candidate is not evidence of acceptance. `census-090121-promotion` retains the outcome and the backup artifact ID/digest. `acknowledged` and `confirmed_by_readback` establish acceptance at that point; another writer may subsequently supersede it. `conflict` records a failed precondition. `unconfirmed` means a lost write response could not be resolved; check remote evidence before retrying. A receipt-save/upload failure does not roll back a known accepted write; if local saving fails, the CLI reports the established outcome with `receiptPersisted: false`. Artifact digests describe the GitHub artifact archive, not the inner bundle checksum. Backups expire after seven days; retain downloaded bundles separately.
 
 ## Configure a new archive
 
@@ -28,7 +28,7 @@ The measured bundle is 4.65 MB; twelve similar bundles would be about 56 MB, wit
 Extract `bundle.json` from the selected candidate artifact and independently confirm its expected inner SHA256. The recovery command requires an empty destination and does not contact Census/R2 or change the remote pointer:
 
 ```text
-npm run data:archive -- recover --bundle PATH_TO_BUNDLE --sha256 EXPECTED_BUNDLE_SHA256 --data-dir .tmp/selected-recovery
+npm run data:archive -- recover --product 090121 --bundle PATH_TO_BUNDLE --sha256 EXPECTED_BUNDLE_SHA256 --data-dir .tmp/selected-recovery
 ```
 
 Recovery creates `processed/current.json`, `processed/releases/<release-id>.json` and `raw/<release-id>/*.json` beneath that destination. Validate the chosen recovered release before selecting it for a preview. Keep the known local data separately; never overwrite it to investigate an uncertain remote outcome.
@@ -36,7 +36,7 @@ Recovery creates `processed/current.json`, `processed/releases/<release-id>.json
 For an unaccepted local archive of an initial release with empty `revisedKeys`:
 
 ```text
-npm run data:archive -- pack --data-dir data --run-dir .tmp/local-bundle
+npm run data:archive -- pack --product 090121 --data-dir data --run-dir .tmp/local-bundle
 ```
 
 This verifies the source grid and reports the bundle checksum. A release with recorded revisions requires its retained baseline through the archived import protocol; the offline pack command cannot invent that history.
@@ -128,3 +128,7 @@ Two approved duty-enabled runs on October 9, 2026 passed on `main` at `7f76e7c6f
 Both downloaded artifact digests matched GitHub metadata. Independent checks reproduced all original file lengths/hashes and recovery bytes, then every duty-source amount and rate-provision aggregation without importing production normalizers. The first bundle's predecessor is the accepted version 1 bundle `2026-08-b4463154-08a9-450c-9b49-d1c45a2d6b52`, checksum `d998ec26cbb82456992e49ef41265ee3984c2894c580fefafe9dc22da4c1faf1`. The repeat bundle identifies the first version 2 bundle and checksum exactly. Its matching source-derived values and empty revision lists independently confirm an unchanged same-month refresh.
 
 The updated recovery CLI also restored that real version 1 predecessor separately; all 241 original file bytes matched. Legacy bundles and the pointer namespace were preserved. Backups, receipts and independent evidence are retained under ignored `data/backups/duty-r2/<run-id>/`; recovery directories remain under ignored `.tmp/duty-live-recovered-<run-id>/`. These checks establish version 2 recovery and acceptance, not public launch or two successive official reporting months.
+
+## Product selection update
+
+The multi-product foundation keeps coffee's original paths, objects and both bundle formats. New manual runs select product_code=090121 and use code-bearing artifact names; previously downloaded artifacts retain their historical names. Legacy run/candidate state is validated only as coffee. Offline recovery rejects wrong product identity and occupied destinations, including coffee roots containing products/. Other reviewed products use separate local roots and private archive namespaces; coffee remains the only real enabled product. See [foundation acceptance](../validation/multi-product-foundation.md).

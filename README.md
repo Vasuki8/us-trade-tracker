@@ -41,7 +41,7 @@ $env:TRADE_DATA_MODE = 'fixture'
 npm run dev
 ```
 
-Open the displayed localhost URL, then `/products/090121/`. On Bash, use `TRADE_DATA_MODE=fixture npm run dev`. No Census key is needed for fixture mode. Normal mode requires a validated release and fails clearly if one is absent; it never silently substitutes sample values.
+Open the displayed localhost URL, then `/products/090121/`. Explicit fixture mode also includes `/products/090122/`, labeled **Synthetic second product**, to check shared profiles. On Bash, use `TRADE_DATA_MODE=fixture npm run dev`. No Census key is needed. Normal mode builds the published registry and requires each product's own validated release; it never silently substitutes sample values. Coffee remains the only real enabled product. See the [multi-product foundation acceptance](docs/validation/multi-product-foundation.md).
 
 Run code checks with `npm test` and `npm run check`. For browser acceptance, install Chromium once with `npx playwright install chromium`, build using explicit fixture mode with `npm run build`, then run `npm run test:e2e`. Browser tests exercise real controls and downloads, mobile overflow, keyboard use, PNG failure recovery, and research without JavaScript.
 
@@ -49,9 +49,9 @@ Run code checks with `npm test` and `npm run check`. For browser acceptance, ins
 
 The owner prefers a GitHub Actions repository secret. In repository **Settings → Secrets and variables → Actions → Secrets → New repository secret**, add `CENSUS_API_KEY` with the key as its value. Do not create an ordinary variable. See [GitHub's secret instructions](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets).
 
-The **Import Census data** workflow is manually triggered, retrieves only the coffee sample, and returns a downloadable public-data artifact. It does not publish a site, commit datasets, run on a monthly schedule, or expose the key to ordinary code-check jobs. GitHub requires this workflow file on the default branch before **Run workflow** becomes available ([manual workflow documentation](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)); merging remains a separate review decision.
+The **Import Census data** workflow is manually triggered and accepts a reviewed `product_code`, defaulting to `090121`; coffee is currently the only enabled real product. It returns a downloadable public-data artifact. It does not publish a site, commit datasets, run on a monthly schedule, or expose the key to ordinary code-check jobs. GitHub requires this workflow file on the default branch before **Run workflow** becomes available ([manual workflow documentation](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)).
 
-After the reviewed workflow is available, choose a reporting month confirmed by the [official release calendar](https://www.census.gov/foreign-trade/schedule.html) and current release information, run it, and download `census-coffee-release`. The artifact has `processed/` and `raw/` directories: extract those into the ignored local `data/` folder, then run `npm run data:validate`. Artifacts expire after seven days, so retain the public source/archive separately. Remove `TRADE_DATA_MODE` or set it to `census` to preview the actual release. The key stays in GitHub.
+Choose a reporting month confirmed by the [official release calendar](https://www.census.gov/foreign-trade/schedule.html) and current release information, run with `product_code=090121`, and download `census-090121-release`. The artifact has `processed/` and `raw/` directories: extract those into ignored `data/`, then run `npm run data:validate -- --product 090121`. Future reviewed products use `data/products/<code>/`; keep their files separate. Artifacts expire after seven days, so retain the public source/archive separately. Remove `TRADE_DATA_MODE` or set it to `census` to preview the actual release. The key stays in GitHub.
 
 The default manual workflow produces independent snapshots. The opt-in retained-release workflow restores the accepted baseline before importing, checks revisions against its exact original bytes, backs up the candidate, and conditionally advances a private R2 pointer. Owner setup and live August 2026 validation are complete: initial archiving, fresh-runner restoration, conditional promotion and recovery of both GitHub backups passed. See [archive setup, recovery and verification](docs/data-validation/090121-archive.md).
 
@@ -74,7 +74,7 @@ CSV exports include classification verification and line-break fields. Formula-l
 
 Track website code, import scripts, project documents, public assets, dependency lockfiles, and small test fixtures in Git. Store large source datasets and prepared data archives in Cloudflare R2, with a separate backup.
 
-Local downloads belong in `data/raw/`, generated datasets in `data/processed/`, and local archive backups in `data/backups/`. These folders are ignored by Git. Add sample data needed for accuracy checks under `tests/fixtures/` so it can be versioned.
+Coffee downloads belong in `data/raw/`, generated datasets in `data/processed/`, and local backups in `data/backups/`. Other reviewed products have separate generated roots under `data/products/<code>/`. These folders are ignored by Git. Add accuracy-check samples under `tests/fixtures/` so they can be versioned.
 
 Store actual local credentials in `.env`, which is ignored by Git. An `.env.example` file can document required setting names without values. Automated jobs use GitHub Actions secrets; deployed backend functions use Cloudflare secrets. The Census key remains in the data processing environment.
 
