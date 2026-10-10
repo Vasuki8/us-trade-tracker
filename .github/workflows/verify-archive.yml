@@ -1,0 +1,68 @@
+name: Verify private archive recovery
+on:
+  workflow_dispatch:
+    inputs:
+      product_code:
+        description: Reviewed HS6 product code
+        required: true
+        type: string
+        default: '090121'
+      reporting_month:
+        description: Expected accepted reporting month (YYYY-MM)
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: census-data-import
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PRODUCT_CODE: ${{ inputs.product_code }}
+      REPORTING_MONTH: ${{ inputs.reporting_month }}
+      ARCHIVE_TO_R2: 'true'
+      INITIALIZE_ARCHIVE: 'false'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci
+      - name: Validate the selected archive and derived paths
+        id: preflight
+        run: npm run data:archive -- preflight
+      - name: Restore and verify the accepted archive without provider writes
+        id: restore
+        env:
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: npm run data:verify-archive -- --product "$PRODUCT_CODE" --month "$REPORTING_MONTH"
+      - name: Retain the recovered source and prepared files
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: census-${{ steps.preflight.outputs.product_code }}-restored
+          path: |
+            ${{ steps.preflight.outputs.processed_dir }}/current.json
+            ${{ steps.preflight.outputs.processed_dir }}/releases/*.json
+            ${{ steps.preflight.outputs.data_dir }}/raw/**/*.json
+          if-no-files-found: error
+          retention-days: 7
+      - name: Retain the archive identity and successful verification receipt
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: census-${{ steps.preflight.outputs.product_code }}-verification
+          path: |
+            .tmp/archive-verification/run.json
+            .tmp/archive-verification/verification.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
