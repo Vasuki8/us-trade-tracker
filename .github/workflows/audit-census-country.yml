@@ -40,6 +40,8 @@ jobs:
         id: preflight
         run: npm run data:audit-country -- --preflight --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
       - name: Audit country totals and complete HS6 breakdowns
+        # Leave time for the always-run source artifact after a stalled retrieval.
+        timeout-minutes: 15
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
         run: npm run data:audit-country -- --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
