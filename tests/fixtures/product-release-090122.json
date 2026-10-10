@@ -1,0 +1,5645 @@
+{
+  "schemaVersion": 2,
+  "productCode": "090122",
+  "reportingMonth": "2025-12",
+  "retrievedAt": "2026-01-01T00:00:00.000Z",
+  "codeVersion": "synthetic",
+  "source": "fixture",
+  "sourceUrls": [
+    "https://api.census.gov/data/timeseries/intltrade/imports/hs"
+  ],
+  "observations": [
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-01",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-01",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-01",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-01",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-01",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 42,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-01",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-01",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-01",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-01",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-01",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-02",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-02",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-02",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-02",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-02",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 42,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-02",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-02",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-02",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-02",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-02",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-03",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-03",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-03",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-03",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-03",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 42,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-03",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-03",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-03",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-03",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-03",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-04",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-04",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-04",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-04",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-04",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 42,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-04",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-04",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-04",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-04",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-04",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-05",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-05",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-05",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-05",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-05",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 42,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-05",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-05",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-05",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-05",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-05",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-06",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-06",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-06",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-06",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-06",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 42,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-06",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-06",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-06",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-06",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-06",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-07",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-07",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": null,
+      "status": "missing"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-07",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-07",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-07",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 42,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-07",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-07",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-07",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-07",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-07",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-08",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-08",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-08",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-08",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-08",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 42,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-08",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-08",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-08",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-08",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-08",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-09",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-09",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-09",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-09",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-09",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 42,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-09",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-09",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-09",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-09",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-09",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-10",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-10",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-10",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-10",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-10",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 42,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-10",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-10",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-10",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-10",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-10",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-11",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-11",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-11",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-11",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-11",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 42,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-11",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-11",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-11",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-11",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-11",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-12",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-12",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-12",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-12",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 36,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2024-12",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 42,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-12",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-12",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-12",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-12",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2024-12",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-01",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-01",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-01",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-01",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-01",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-01",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 600,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-01",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-01",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-01",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-01",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-02",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-02",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-02",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-02",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-02",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-02",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 600,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-02",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-02",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-02",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-02",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-03",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-03",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-03",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-03",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-03",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-03",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 600,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-03",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-03",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-03",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-03",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-04",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-04",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-04",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-04",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-04",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-04",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 600,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-04",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-04",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-04",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-04",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-05",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-05",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-05",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-05",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-05",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-05",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 600,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-05",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-05",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-05",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-05",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-06",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-06",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-06",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-06",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-06",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-06",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 600,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-06",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-06",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-06",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-06",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-07",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-07",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-07",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-07",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-07",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-07",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 600,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-07",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-07",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-07",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-07",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-08",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-08",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-08",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-08",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-08",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-08",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 600,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-08",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-08",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-08",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-08",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-09",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-09",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-09",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-09",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-09",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-09",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 600,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-09",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-09",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-09",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-09",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-10",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-10",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-10",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-10",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-10",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-10",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 600,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-10",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-10",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-10",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-10",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-11",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-11",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-11",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-11",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-11",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-11",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 600,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-11",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-11",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-11",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-11",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-12",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 300,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-12",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-12",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-12",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "imports",
+      "month": "2025-12",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "GEN_VAL_MO",
+      "valueUsd": 75,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-12",
+      "partnerCode": "-",
+      "partnerName": "TOTAL FOR ALL COUNTRIES",
+      "geography": "world",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 600,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-12",
+      "partnerCode": "1220",
+      "partnerName": "CANADA",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-12",
+      "partnerCode": "4759",
+      "partnerName": "ITALY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-12",
+      "partnerCode": "2010",
+      "partnerName": "MEXICO",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    },
+    {
+      "productCode": "090122",
+      "description": "SYNTHETIC PRODUCT 090122",
+      "direction": "exports",
+      "month": "2025-12",
+      "partnerCode": "4280",
+      "partnerName": "GERMANY",
+      "geography": "country",
+      "measure": "ALL_VAL_MO",
+      "valueUsd": 150,
+      "status": "reported"
+    }
+  ],
+  "revisedKeys": [],
+  "classificationIntervals": [
+    {
+      "from": "2024-01",
+      "to": "2025-12",
+      "evidenceUrl": "https://example.invalid/synthetic"
+    }
+  ],
+  "duties": {
+    "schemaVersion": 1,
+    "fromMonth": "2024-01",
+    "observations": [
+      {
+        "productCode": "090122",
+        "month": "2024-01",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 270,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 270,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 120
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-02",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-03",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-04",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-05",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-06",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-07",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-08",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-09",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-10",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-11",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-12",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 30,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-01",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 57,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 540,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 540,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 300
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-02",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 3,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-03",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 3,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-04",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 3,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-05",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 3,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-06",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 3,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-07",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 3,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-08",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 3,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-09",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 3,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-10",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 3,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-11",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 3,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-12",
+        "geography": "world",
+        "partnerCode": "-",
+        "partnerName": "TOTAL FOR ALL COUNTRIES",
+        "calculatedDuty": {
+          "valueUsd": 3,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 60,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-01",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 66,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 66,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 30
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-02",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-03",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-04",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-05",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-06",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-08",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-09",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-10",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-11",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-12",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-01",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 12,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 135,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 135,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 75
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-02",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-03",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-04",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-05",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-06",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-07",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-08",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-09",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-10",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-11",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-12",
+        "geography": "country",
+        "partnerCode": "1220",
+        "partnerName": "CANADA",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-01",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 66,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 66,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 30
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-02",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-03",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-04",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-05",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-06",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-07",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-08",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-09",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-10",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-11",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-12",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-01",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 12,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 135,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 135,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 75
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-02",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-03",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-04",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-05",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-06",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-07",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-08",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-09",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-10",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-11",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-12",
+        "geography": "country",
+        "partnerCode": "4759",
+        "partnerName": "ITALY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-01",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 66,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 66,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 30
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-02",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-03",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-04",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-05",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-06",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-07",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-08",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-09",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-10",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-11",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-12",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-01",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 12,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 135,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 135,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 75
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-02",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-03",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-04",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-05",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-06",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-07",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-08",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-09",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-10",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-11",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-12",
+        "geography": "country",
+        "partnerCode": "2010",
+        "partnerName": "MEXICO",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-01",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 66,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 66,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 30
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-02",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-03",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-04",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-05",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-06",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-07",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-08",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-09",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-10",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-11",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2024-12",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 6,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-01",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 12,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 135,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 135,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 75
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-02",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-03",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-04",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-05",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-06",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-07",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-08",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-09",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-10",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-11",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      },
+      {
+        "productCode": "090122",
+        "month": "2025-12",
+        "geography": "country",
+        "partnerCode": "4280",
+        "partnerName": "GERMANY",
+        "calculatedDuty": {
+          "valueUsd": 0,
+          "status": "reported"
+        },
+        "consumptionValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "dutiableValue": {
+          "valueUsd": 15,
+          "status": "reported"
+        },
+        "coverage": {
+          "status": "verified",
+          "uncalculatedDutiableValueUsd": 0
+        }
+      }
+    ],
+    "revisedKeys": []
+  }
+}
