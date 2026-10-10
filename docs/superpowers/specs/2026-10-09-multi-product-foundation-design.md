@@ -1,6 +1,6 @@
 # Multi-product release foundation
 
-Prepared October 9, 2026. The conversational design was accepted with “continue development.” This written specification awaits review; it does not authorize implementation until the architectural design and planning checkpoints are complete.
+Prepared October 9, 2026. The conversational design was accepted with “continue development.” The written specification was approved with “approved what is recommended.” Implementation awaits review of the implementation plan and selection of its execution method.
 
 ## Purpose and scope
 
@@ -119,4 +119,4 @@ Synthetic checks establish isolation and implementation behavior. They do not es
 
 ## Next steps and review status
 
-This specification is the reviewable result of the approved conversational design. After written-spec approval, prepare a focused implementation plan and present its execution method. Implement the foundation only after that plan is accepted. Selection and audit of one more real product, product discovery, public launch and verification across two successive official releases remain separate work.
+The conversational design and this written specification are approved. Prepare a focused implementation plan and present its execution method. Implement the foundation only after that plan is accepted. Selection and audit of one more real product, product discovery, public launch and verification across two successive official releases remain separate work.
