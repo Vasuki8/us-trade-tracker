@@ -1,7 +1,12 @@
-name: Audit coffee estimated duties
+name: Audit product estimated duties
 on:
   workflow_dispatch:
     inputs:
+      product_code:
+        description: Reviewed HS6 product code (coffee remains the only enabled real product)
+        required: true
+        type: string
+        default: '090121'
       reporting_month:
         description: Confirmed published reporting month (YYYY-MM), initially 2026-08
         required: true
@@ -15,6 +20,9 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      PRODUCT_CODE: ${{ inputs.product_code }}
+      REPORTING_MONTH: ${{ inputs.reporting_month }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -26,16 +34,18 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run check
-      - name: Retrieve and reconcile 24 coffee duty months
+      - name: Validate the reviewed product and reporting month
+        id: preflight
+        run: npm run data:archive -- preflight
+      - name: Retrieve and reconcile 24 product duty months
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
-          REPORTING_MONTH: ${{ inputs.reporting_month }}
-        run: npm run data:audit-duties -- --end "$REPORTING_MONTH"
+        run: npm run data:audit-duties -- --product "$PRODUCT_CODE" --end "$REPORTING_MONTH"
       - name: Retain audit evidence even when coverage fails
-        if: always()
+        if: always() && steps.preflight.outcome == 'success'
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
-          name: census-coffee-duty-audit
-          path: .tmp/duty-audit/
+          name: census-${{ steps.preflight.outputs.product_code }}-duty-audit
+          path: .tmp/duty-audit/${{ steps.preflight.outputs.product_code }}/
           if-no-files-found: warn
           retention-days: 7

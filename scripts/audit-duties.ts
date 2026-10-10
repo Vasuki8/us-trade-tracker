@@ -9,9 +9,22 @@ import {validMonth} from '../src/lib/trade/normalize';
 import {shiftMonth} from '../src/lib/trade/metrics';
 import {normalizeDutyMonth} from '../src/lib/trade/duty-normalize';
 import {fetchDutyMonth} from './census-duty-client';
-export type DutyAuditOptions={productCode:'090121';end:string;months:24;outputDir:string;apiKey:string;codeVersion?:string};
-export async function runDutyAudit(options:DutyAuditOptions,fetchImpl:typeof fetch=fetch):Promise<DutyAuditReport>{
-  if(options.productCode!=='090121'||!validMonth(options.end)||options.months!==24||!options.apiKey.trim())throw new Error('Duty audit requires coffee, 24 months, a valid reporting month and a Census key');
+import {DEFAULT_PRODUCT_CODE,getProduct,PRODUCTS,type ProductDefinition} from '../src/lib/trade/product-registry';
+export type DutyAuditOptions={productCode:string;end:string;months:24;outputDir:string;apiKey:string;codeVersion?:string};
+function validateAuditOptions(options:DutyAuditOptions,registry:readonly ProductDefinition[]){
+  if(!getProduct(options.productCode,registry).importable)throw new Error('Product is not available for audit');
+  if(!validMonth(options.end)||options.months!==24||!options.apiKey.trim())throw new Error('Duty audit requires 24 months, a valid reporting month and a Census key');
+}
+export function resolveDutyAuditOptions(args:string[],env:NodeJS.ProcessEnv,registry:readonly ProductDefinition[]=PRODUCTS):DutyAuditOptions{
+  const {values,tokens}=parseArgs({args,options:{product:{type:'string',default:DEFAULT_PRODUCT_CODE},end:{type:'string'},output:{type:'string'}},tokens:true});
+  const seen=new Set<string>();
+  for(const token of tokens)if(token.kind==='option'){if(seen.has(token.name))throw new Error('Repeated duty audit option');seen.add(token.name);}
+  if(!values.end)throw new Error('Usage: npm run data:audit-duties -- --end YYYY-MM [--product HS6] [--output directory]');
+  const options:DutyAuditOptions={productCode:values.product!,end:values.end,months:24,outputDir:values.output??join('.tmp','duty-audit',values.product!),apiKey:env.CENSUS_API_KEY??''};
+  validateAuditOptions(options,registry);return options;
+}
+export async function runDutyAudit(options:DutyAuditOptions,fetchImpl:typeof fetch=fetch,registry:readonly ProductDefinition[]=PRODUCTS):Promise<DutyAuditReport>{
+  validateAuditOptions(options,registry);
   const report:DutyAuditReport={schemaVersion:1,productCode:options.productCode,fromMonth:shiftMonth(options.end,-23),toMonth:options.end,retrievedAt:new Date().toISOString(),codeVersion:options.codeVersion??'unspecified',sourceUrls:['https://api.census.gov/data/timeseries/intltrade/imports/hs'],eligibleForRelease:true,rawFiles:[],months:[]};
   const dataset:DutyDataset={schemaVersion:1,fromMonth:report.fromMonth,observations:[],revisedKeys:[]};
   await mkdir(join(options.outputDir,'raw'),{recursive:true});
@@ -44,10 +57,9 @@ export async function runDutyAudit(options:DutyAuditOptions,fetchImpl:typeof fet
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
   try{
-    const {values}=parseArgs({options:{end:{type:'string'},output:{type:'string',default:'.tmp/duty-audit'}}});
-    if(!values.end)throw new Error('Usage: npm run data:audit-duties -- --end YYYY-MM [--output directory]');
-    const report=await runDutyAudit({productCode:'090121',end:values.end,months:24,outputDir:values.output!,apiKey:process.env.CENSUS_API_KEY??'',codeVersion:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()});
-    console.log(`Coffee duty audit ${report.fromMonth}–${report.toMonth}: ${report.rawFiles.length} source records; eligible for release: ${report.eligibleForRelease}. No release promoted.`);
+    const options=resolveDutyAuditOptions(process.argv.slice(2),process.env);
+    const report=await runDutyAudit({...options,codeVersion:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()});
+    console.log(`Estimated-duty audit HS ${report.productCode} ${report.fromMonth}–${report.toMonth}: ${report.rawFiles.length} source records; eligible for release: ${report.eligibleForRelease}. No release promoted.`);
     if(!report.eligibleForRelease)process.exitCode=1;
   }catch(error){console.error(error instanceof Error?error.message:'Duty audit failed');process.exitCode=1;}
 }

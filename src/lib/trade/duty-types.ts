@@ -22,7 +22,7 @@ export type DutyView={
 export type DutySummary='HS'|'HSCY'|'HSRP'|'HSCYRP';
 export type DutyRawPart={summary:DutySummary;httpStatus:200|204;payload:unknown;requestUrl:string;retrievedAt:string};
 export type DutyAuditReport={
-  schemaVersion:1;productCode:'090121';fromMonth:Month;toMonth:Month;retrievedAt:string;codeVersion:string;sourceUrls:string[];eligibleForRelease:boolean;
+  schemaVersion:1;productCode:string;fromMonth:Month;toMonth:Month;retrievedAt:string;codeVersion:string;sourceUrls:string[];eligibleForRelease:boolean;
   rawFiles:{path:string;bytes:number;sha256:string}[];
   months:{month:Month;worldAvailable:boolean;countryCount:number;unavailableCountryCoverage:number;countryReconciliation:'verified'|'mismatch'|'unavailable';uncalculatedDutiableValueUsd:number|null;error?:string}[];
 };
