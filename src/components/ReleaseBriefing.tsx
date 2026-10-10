@@ -6,7 +6,7 @@ import {buildChangesView,rankChanges} from '../lib/trade/changes';
 import {buildDutyView} from '../lib/trade/duties';
 import {shiftMonth} from '../lib/trade/metrics';
 import {monthLabel,usd,percent} from '../lib/trade/format';
-import {profileViewPath} from '../lib/trade/view-link';
+import {profileViewPath,monthlyChangesPath} from '../lib/trade/view-link';
 
 const period=(from:string,to:string)=>from===to?monthLabel(from):`${monthLabel(from)}–${monthLabel(to)}`;
 const share=(value:number|null)=>value===null?'Unavailable':value>0&&value<0.001?'<0.001%':`${value.toFixed(3)}%`;
@@ -61,9 +61,9 @@ export function ReleaseBriefing({release}:{release:Release}){
     </section>
     <section className="briefing-section" aria-labelledby="partner-movements-heading">
       <h2 id="partner-movements-heading">Partner markets over the latest twelve months</h2>
-      <p>These highlights compare two rolling annual periods. They describe changes in recorded U.S. flows for coffee; they do not establish worldwide demand or profitability.</p>
+      <p>These highlights compare two rolling annual periods. They describe changes in recorded U.S. flows for this product; they do not establish worldwide demand or profitability.</p>
       <div className="briefing-grid"><PartnerChanges view={buildChangesView(release,'imports')}/><PartnerChanges view={buildChangesView(release,'exports')}/></div>
-      <p><a href="/changes/">See all country changes</a></p>
+      <p><a href={monthlyChangesPath(release.productCode)}>See all country changes</a></p>
     </section>
     <section className="briefing-section" aria-labelledby="briefing-duties-heading">
       <h2 id="briefing-duties-heading">Estimated duties</h2>
@@ -80,7 +80,7 @@ export function ReleaseBriefing({release}:{release:Release}){
       <p>Merchandise observations revised: {release.revisedKeys.length}. Duty revisions: {release.schemaVersion===2?release.duties.revisedKeys.length:'no retained duty history'}.</p>
       <p>Dollar values are {release.source==='fixture'?'synthetic development observations':'reported Census observations'}; comparisons are calculations by US Trade Tracker. Revision counts compare this snapshot with the previous retained snapshot.</p>
       {[...new Set(release.sourceUrls)].map(url=><a key={url} href={url}>{url}</a>)}
-      <p><a href={`/products/${release.productCode}/`}>Explore the full coffee profile</a></p>
+      <p><a href={`/products/${release.productCode}/`}>Explore the full product profile</a></p>
     </section>
   </div>;
 }
