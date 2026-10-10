@@ -59,7 +59,7 @@ jobs:
         run: npm run data:audit-country -- --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
       - name: Diagnose API connectivity with six logical checks
         if: inputs.audit_mode == 'connectivity-probe'
-        timeout-minutes: 3
+        timeout-minutes: 4
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
         run: npm run data:probe-country -- --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
