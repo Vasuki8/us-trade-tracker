@@ -33,10 +33,10 @@
 
 **Interfaces:** `fetchCountryPart({countryCode, month, direction, kind, apiKey, onRaw}, fetchImpl)` returns a validated `CountryPart` with total or HS6 rows. `normalizeCountryPart(payload, context)` checks response dimensions; total commodity is the documented dash aggregate and total aggregation metadata is observed explicitly. Source bodies remain retained even if normalization fails.
 
-- [ ] Write tests for correct CY total/HSCY products, request predicates without duplicate headers, reported zero/missing, special codes, duplicates, unknown fields, wrong dimensions, retry/HTTP failures, and credential-safe evidence.
-- [ ] Run focused tests; confirm missing implementation fails.
-- [ ] Implement the client and dedicated types with existing request safeguards. Do not change product normalizers or releases. Total metadata not fitting the aggregate contract is an audit diagnostic, not silently coerced.
-- [ ] Run focused tests to green and commit.
+- [x] Write tests for correct CY total/HSCY products, request predicates without duplicate headers, reported zero/missing, special codes, duplicates, unknown fields, wrong dimensions, retry/HTTP failures, and credential-safe evidence.
+- [x] Run focused tests; confirm missing implementation fails.
+- [x] Implement the client and dedicated types with existing request safeguards. Do not change product normalizers or releases. Total metadata not fitting the aggregate contract is an audit diagnostic, not silently coerced.
+- [x] Run focused tests to green and commit.
 
 ## Task 2: Isolated audit, reference check and manual workflow
 
@@ -44,15 +44,15 @@
 
 **Interfaces:** `resolveCountryAuditOptions(args, env)` validates the restricted pilot and output; `runCountryAudit(options, fetchImpl)` creates a fresh evidence directory, retrieves all 96 logical parts and the official country-table HTML, then writes `audit.json` and `country-dataset.json`. Report exact sums/residuals, availability, special rows, rounded-reference checks and candidate monthly completeness; all candidate classification status starts `unverified`.
 
-- [ ] Write failing tests for complete 24-month grid, nonzero residual, sparse series, missing/unsafe values, country-table rounding and vintage, product share ratios, zero denominators, occupied/concurrent output, safe partial-failure evidence and unchanged accepted data.
-- [ ] Implement audit/reference parser; keep every successful original body and per-part failure. Nonempty or existing output fails before requests. Use exclusive writes and no accepted-release paths.
-- [ ] Add command `data:audit-country` and manual workflow, main-only preflight with country/month validation before accessing the key. Keep secret in retrieval step only; evidence artifact on failure, seven-day retention, no R2/schedule. Source/coverage failures produce nonzero status with retained diagnostics; incomplete/classification-unverified product candidates remain explicit findings.
-- [ ] Run focused suite plus `npm test` and `npm run check`; inspect every result. Commit implementation and usage docs.
+- [x] Write failing tests for complete 24-month grid, nonzero residual, sparse series, missing/unsafe values, country-table rounding and vintage, product share ratios, zero denominators, occupied/concurrent output, safe partial-failure evidence and unchanged accepted data.
+- [x] Implement audit/reference parser; keep every successful original body and per-part failure. Nonempty or existing output fails before requests. Use exclusive writes and no accepted-release paths.
+- [x] Add command `data:audit-country` and manual workflow, main-only preflight with country/month validation before accessing the key. Keep secret in retrieval step only; evidence artifact on failure, seven-day retention, no R2/schedule. Source/coverage failures produce nonzero status with retained diagnostics; incomplete/classification-unverified product candidates remain explicit findings.
+- [x] Run focused suite plus `npm test` and `npm run check`; inspect every result. Commit implementation and usage docs.
 
 ## Task 3: Review, integration and actual source acceptance
 
-- [ ] Run independent immutable-commit review against baseline; address substantive findings with regression tests.
-- [ ] Push, create/attach PR, wait for exact-head CI, merge under standing permission, update local main.
+- [x] Run independent immutable-commit review against baseline; address substantive findings with regression tests.
+- [x] Push, create/attach PR, wait for exact-head CI, merge under standing permission, update local main.
 - [ ] Dispatch the audit manually through August 2026 using existing GitHub secret. Download artifacts, verify archive digest and original-file hashes, independently replay every retained response and compare totals/reference/candidate figures.
 - [ ] Resolve actual source-contract failures with focused tested changes if needed; never reinterpret unexpected totals or suppress a gap to pass.
 - [ ] Record live evidence and remaining classification/sparse-series questions. Do not proceed into a country-release/archive or page subsystem without the resulting design.
@@ -66,3 +66,8 @@ Native execution with one whole-branch reviewer follows the user's standing auto
 Ruling: use the existing authorized checkout on a feature branch, following the established sandbox worktree fallback. Ruling: use a fresh ignored `.tmp/country-audit/1220` evidence root; refuse an existing directory, even empty, to prevent concurrent reuse.
 
 Tasks 1–2 implemented. Client tests first failed for absent behavior, then passed. Audit tests first failed for absent behavior, then passed. A live public-table check exposed decimal floating-point conversion; a regression with `1,024.1` failed before exact integer conversion fixed it. The parser now reads 320 official monthly rows, including August 2026. The full suite passed 503 tests with two workers after a 47-worker Windows run timed out in two unchanged archive tests; the changed audit suites passed 35 focused tests after the parser fix. Actual API source coverage remains unverified until the GitHub audit.
+
+
+The first full run (38093079916) retained 75 files after the job limit, but all 74 API records had null attempt status/body and no observations. Independent replay and review verified the partial artifact; actual source acceptance remains incomplete. PRs #36–#38 are merged after independent review and exact-head CI. PR #37 bounded full retrieval to 15 minutes; PR #38 introduced a four-minute diagnostic covering the permitted 213-second retry schedule.
+
+The first short probe (38095150145) retained seven independently matched files. Public metadata and the existing keyed coffee query returned HTTP 200; all four country queries timed out at about 30 seconds. This narrows the failure to country retrieval without proving a cause. The next documented, controlled hypothesis changes country temporal predicates from time to exact YEAR/MONTH, preserving all other source dimensions. Three regressions failed before implementation; the complete suite then passed 514 tests and all 135 checked files had zero diagnostics. Full source reconciliation and classification eligibility remain pending.
