@@ -1,6 +1,9 @@
 export type ProductDefinition={code:string;displayName:string;importable:boolean;published:boolean;dutiesAccepted:boolean};
 export const DEFAULT_PRODUCT_CODE='090121';
-export const PRODUCTS:readonly ProductDefinition[]=[{code:DEFAULT_PRODUCT_CODE,displayName:'Roasted coffee',importable:true,published:true,dutiesAccepted:true}];
+export const PRODUCTS:readonly ProductDefinition[]=[
+  {code:DEFAULT_PRODUCT_CODE,displayName:'Roasted coffee',importable:true,published:true,dutiesAccepted:true},
+  {code:'090111',displayName:'Green coffee (not decaffeinated)',importable:true,published:false,dutiesAccepted:false},
+];
 export function assertProductCode(value:unknown):asserts value is string{
   if(typeof value!=='string'||value.length!==6||!/^\d{6}$/.test(value))throw new Error('Invalid HS6 product code');
 }
