@@ -131,4 +131,31 @@ The updated recovery CLI also restored that real version 1 predecessor separatel
 
 ## Product selection update
 
-The multi-product foundation keeps coffee's original paths, objects and both bundle formats. New manual runs select product_code=090121 and use code-bearing artifact names; previously downloaded artifacts retain their historical names. Legacy run/candidate state is validated only as coffee. Offline recovery rejects wrong product identity and occupied destinations, including coffee roots containing products/. Other reviewed products use separate local roots and private archive namespaces; coffee remains the only real enabled product. See [foundation acceptance](../validation/multi-product-foundation.md).
+The multi-product foundation keeps coffee's original paths, objects and both bundle formats. New manual runs select product_code=090121 and use code-bearing artifact names; previously downloaded artifacts retain their historical names. Legacy run/candidate state is validated only as coffee. Offline recovery rejects wrong product identity and occupied destinations, including coffee roots containing products/. Other reviewed products use separate local roots and private archive namespaces. Roasted coffee was the only real enabled product at the foundation milestone; green coffee subsequently passed its own [source acceptance](090111.md) and [private archive recovery](090111-archive.md). See [foundation acceptance](../validation/multi-product-foundation.md).
+
+## October 10 read-only recovery workflow
+
+The new manual **Verify private archive recovery** workflow passed its roasted-coffee default on a fresh GitHub runner, using `main`, product `090121` and expected accepted month `2026-08`. This complements the green-coffee run and verifies the original `data/` restoration and artifact paths. It uses the existing private R2 configuration, supplies no Census key and permits only GETs through the verifier's write-blocking wrapper. No initialization, import, staging or promotion steps run.
+
+| Evidence | Value |
+| --- | --- |
+| Recovery run | [38090726807](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38090726807) |
+| Hosted job | `114326433567` |
+| Workflow commit on `main` | `ea22910d339c85ba2992732e1240495dafe6613d` |
+| Receipt result | `verified` |
+| Accepted release ID | `2026-08-5f3c2606-06a0-4c96-8fbc-a2332e0428ae` |
+| Accepted bundle SHA256 | `44c03004da6a76b031cd70997491c97221ecc9c0289cf7f9b426e42208394adf` |
+| Prepared SHA256 | `eaa8c1baa86bd3a8880dcda12db3b32625a38c221591c8c0e087b6af6a325727` |
+| Pointer ETag | `"a25bd98e6927ab36d7ceb863c495bcb3"` |
+| Restored artifact | `11682968676` (`census-090121-restored`) |
+| Restored ZIP SHA256 | `54245e158899f960f3caed9ae47e1b496ac24074c1c9f3292f38362fbde45a7f` |
+| Verification artifact | `11683932925` (`census-090121-verification`) |
+| Verification ZIP SHA256 | `ab66e3a4096159f9476bb6f6e71154cd853ca414dd60409dd7eadc7abdf42452` |
+| Originals independently byte-compared | 337 |
+| Merchandise / duty observations | 9,577 / 1,887 |
+
+Both downloaded ZIPs matched GitHub's digests before extraction. Strict inventory checks found exactly 338 restored files, including the local pointer, and exactly `run.json` and `verification.json` in the receipt artifact. Duplicate entries and unexpected paths were rejected before extraction. Independent comparison checked all 337 original files (336 retained JSON request records and the prepared release) against the accepted October 9 bundle's unique manifest, declared lengths, SHA256s and original contents. The restored prepared file also matches the canonical profile file byte for byte.
+
+The receipt and run baseline match the accepted promotion reference from [run 37899540773](https://github.com/Vasuki8/us-trade-tracker/actions/runs/37899540773). They preserve the original retrieval timestamp `2026-10-09T07:32:29.685Z`, original processing version `7f76e7c6f0fb1168906956ef8517095a5e49e103` and duty start month `2024-09`; the verification workflow's newer commit does not replace those metadata. All four canonical local pointer/release hashes for roasted and green coffee were rechecked and remain unchanged.
+
+Downloaded artifacts, extracted files and independent results remain under ignored `data/backups/roasted-coffee-recovery/38090726807/`. The small [recovery evidence index](090121-recovery-evidence.json) retains run/artifact identities and checksums after GitHub's seven-day artifact expiry. This proves recovery of the accepted pointer observed during this run, not indefinite remote immutability or acceptance of two successive official reporting months. The original preview data remain intact.
