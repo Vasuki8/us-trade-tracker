@@ -2,7 +2,7 @@
 
 On October 10, 2026, the existing manual import workflow initialized the private **HS 090111** namespace in the owner's already configured R2 bucket. The run retained merchandise and estimated duties through August 2026, backed up the candidate to GitHub, verified offline recovery and conditionally accepted the pointer. This extends the approved private backup role to the second reviewed product; public delivery, hosting and scheduling are unchanged.
 
-Initial live acceptance and downloaded-backup recovery passed. Independent source replay and comparison by observation identity found no changes from the original green-coffee profile. The separate read-only fresh-runner verification remains pending until its workflow is merged and dispatched; initial promotion alone does not prove that subsequent restoration.
+Initial live acceptance, downloaded-backup recovery and separate read-only fresh-runner restoration passed. Independent source replay and comparison by observation identity found no changes from the original green-coffee profile. The fresh-runner check restored the exact accepted reference; initial promotion alone did not establish that subsequent restoration.
 
 ## Initial live acceptance
 
@@ -35,6 +35,29 @@ Independent replay checked all **6,929 merchandise observations** and all **1,52
 
 The original green-coffee profile retains its earlier source timestamp and processing version. Its local pointer SHA256 remains `d93e6e11e48c540396fee4699a0a9e58cbde0e6f6a55e20e7ba7056fb3296a39` and release SHA256 remains `ef5d56791ad85b1b7a199829818522389a792e82cee792665be61f8e78cba0f7`. Roasted coffee's pointer remains `5098efe55c5d712f097afaef140527c1c3636ebdd7dd0fe48b5521c5cf589bc8`, and its release remains `eaa8c1baa86bd3a8880dcda12db3b32625a38c221591c8c0e087b6af6a325727`. The preview continues using these original validated local releases.
 
+## Read-only fresh-runner restoration
+
+After [PR #33](https://github.com/Vasuki8/us-trade-tracker/pull/33) merged, the new [read-only verification workflow](../validation/private-archive-verification.md) restored the accepted green-coffee reference on a fresh GitHub runner. The workflow's only provider operations are GETs through a wrapper that throws on writes; it supplies no Census key and runs no import, staging or promotion steps. It preserves the originally accepted source metadata rather than assigning the verification run's commit as the processing version.
+
+| Evidence | Value |
+| --- | --- |
+| Recovery run | [38083542577](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38083542577) |
+| Job | `114305205733` |
+| Workflow commit on `main` | `b5d9bf86a48e59c2be47280924830ce1d69560cb` |
+| Product / expected accepted month | `090111` / `2026-08` |
+| Result | `verified` |
+| Pointer ETag | `"00bbddef2b3d4aee1ad8d689c556604f"` |
+| Restored artifact | `11681497496` (`census-090111-restored`) |
+| Restored ZIP SHA256 | `682bcfda149394d641d31affc00fc7324fc49ac64593b655318d9297e4d2958e` |
+| Verification artifact | `11680978375` (`census-090111-verification`) |
+| Verification ZIP SHA256 | `4b7022df4aff68024b23a26002f9a3a9c17d3985dac8e06e1598441bcb7b72a5` |
+| Originals independently compared | 337; all byte-identical to the initial accepted bundle |
+| Restored observation counts | 6,929 merchandise / 1,524 duties |
+
+Both artifact ZIPs were downloaded and matched GitHub's digests before extraction. The restored archive has exactly 338 files, including its local pointer; the verification archive has exactly `run.json` and `verification.json`. Independent comparison checked every recovered original file against the initial bundle's manifest length/hash and original bytes. The successful receipt and run baseline identify the exact initial release, bundle SHA256 and prepared checksum in the first table. They retain `2026-10-10T20:00:19.513Z`, original processing version `1ef3dbb23ee478a188018fc1e5761be70090fc11` and duty start month `2024-09`. This proves restoration of the accepted pointer observed during this run, not indefinite remote immutability.
+
+Downloaded ZIPs, extracted files, byte checks and receipt comparison remain under ignored `data/backups/green-coffee-r2/38083542577/`. The small [committed evidence index](090111-archive-evidence.json) retains the run/artifact identities and checksums after seven-day GitHub artifact expiry. Original local pointer and release hashes for both products were rechecked and still match the values above.
+
 ## Remaining boundary
 
-The [read-only verification workflow](../validation/private-archive-verification.md) will establish fresh-runner restoration of this accepted reference without a second Census import or R2 promotion. A same-August archive check does not establish successful processing of two successive official reporting releases; that public-launch requirement remains open.
+A same-August archive check does not establish successful processing of two successive official reporting releases; that public-launch requirement remains open.
