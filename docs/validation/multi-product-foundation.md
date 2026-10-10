@@ -55,4 +55,10 @@ Use `--product <code>` explicitly for archive pack/verify/recover and validation
 - Two local workers replaced default parallelism after an existing file-heavy baseline test timed out. Isolated and controlled full runs passed without relaxing assertions or timeouts; the cost is longer local runs.
 - Separate ignored browser configs used Astro's installed `--ignore-lock` option to preserve previews. Only startup differed from the normal config. Loader tests established failure before implementation; new browser cases were checked against the completed fixture build.
 
-Independent whole-branch review and exact-head GitHub checks are required before integration. Their final result is recorded in the integration update.
+The reviewer also set aside three explicit later milestones. Real second-product coverage still requires its own audit (unseen coverage gaps could emerge then); discovery and generalized entry points await broader coverage (future products need navigation work); new live provider acceptance, deployment and successive official-month validation remain separate (integration issues could emerge in the next authorized live run).
+
+## Review and integration
+
+An independent fresh-context reviewer examined immutable range `71874bdb48722d9f9727bef62d556aff9436f4a7..34702121c41657fb40d6d3052f8a6588e5318e82`, deliberately checked all five plan review-focus cases and reported no Critical, Important or Minor findings. It inspected the verification logs and independently checked the canonical coffee pointer/checksum. No fixes or minor deferrals were required. Subsequent edits only record this review and plan status.
+
+[PR #19](https://github.com/Vasuki8/us-trade-tracker/pull/19) carries this implementation. Merge requires passing GitHub Code checks for its exact final head; the PR records the final check and integration state. The source checklist predates the merge; completion is established by the PR's merged state and the local merge-tree comparison, not a prospective checkmark. Integration authorizes no provider activation or public deployment.
