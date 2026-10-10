@@ -8,7 +8,7 @@ import {buildChangesView} from '../../src/lib/trade/changes';
 import {MonthlyChanges} from '../../src/components/MonthlyChanges';
 import type {Release} from '../../src/lib/trade/types';
 
-afterEach(cleanup);
+afterEach(()=>{cleanup();window.history.replaceState(null,'','/');});
 const props=(release:Release)=>({reportingMonth:release.reportingMonth,data:JSON.stringify({imports:buildChangesView(release,'imports'),exports:buildChangesView(release,'exports')})});
 
 it('shows reporting and comparison periods with explicit sample provenance',()=>{

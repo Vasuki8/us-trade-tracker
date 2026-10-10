@@ -24,7 +24,7 @@ test('pilot import rankings and product links remain available without JavaScrip
   try{
     await page.goto('/changes/');await page.getByRole('link',{name:'Compare changes across reviewed products',exact:true}).click();
     await expect(page.getByRole('table',{name:'Largest product increases · dollar change'})).toContainText('+$1,800');
-    await expect(page.locator('noscript p')).toHaveText('Enable JavaScript to change direction or ranking and download a CSV.');
+    await expect(page.getByText('Enable JavaScript to change direction or ranking and download a CSV.',{exact:true})).toBeVisible();
     await page.getByRole('table',{name:'Largest product increases · dollar change'}).getByRole('link',{name:'Roasted coffee',exact:true}).click();await expect(page).toHaveURL(/\/products\/090121\/\?direction=imports&months=12$/);
   }finally{await context.close();}
 });

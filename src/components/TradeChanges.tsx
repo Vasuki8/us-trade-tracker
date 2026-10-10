@@ -23,8 +23,9 @@ function ChangesTable({countries,movement,metric,view}:{countries:CountryChange[
   </div>;
 }
 
-export function TradeChanges({view,context='profile'}:{view:ChangesView;context?:'profile'|'standalone'}) {
-  const [metric,setMetric]=useState<ChangeMetric>('dollars');
+export function TradeChanges({view,context='profile',metric:controlledMetric,onMetricChange}:{view:ChangesView;context?:'profile'|'standalone';metric?:ChangeMetric;onMetricChange?:(metric:ChangeMetric)=>void}) {
+  const [localMetric,setLocalMetric]=useState<ChangeMetric>('dollars');
+  const metric=controlledMetric??localMetric,setMetric=onMetricChange??setLocalMetric;
   const ranking=rankChanges(view,metric);
   const period=(value:{from:string;to:string})=>`${monthLabel(value.from)}–${monthLabel(value.to)}`;
   return <section className="changes-card" aria-labelledby="changes-heading">
