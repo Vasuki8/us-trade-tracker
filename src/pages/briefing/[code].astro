@@ -1,0 +1,11 @@
+---
+import ReleaseBriefingPage from '../../components/ReleaseBriefingPage.astro';
+import {loadPublishedReleases} from '../../lib/trade/load-release';
+import {DEFAULT_PRODUCT_CODE} from '../../lib/trade/product-registry';
+export async function getStaticPaths(){
+  const profiles=await loadPublishedReleases();
+  return profiles.filter(({product})=>product.code!==DEFAULT_PRODUCT_CODE).map(({product,release})=>({params:{code:product.code},props:{product,release,products:profiles.map(({product})=>product)}}));
+}
+const {product,release,products}=Astro.props;
+---
+<ReleaseBriefingPage {product} {release} {products}/>

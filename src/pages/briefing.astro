@@ -1,11 +1,8 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import {ReleaseBriefing} from '../components/ReleaseBriefing';
-import {loadRelease} from '../lib/trade/load-release';
-import {monthLabel} from '../lib/trade/format';
-const release=await loadRelease();
+import ReleaseBriefingPage from '../components/ReleaseBriefingPage.astro';
+import {loadPublishedReleases} from '../lib/trade/load-release';
+import {DEFAULT_PRODUCT_CODE} from '../lib/trade/product-registry';
+const profiles=await loadPublishedReleases(),profile=profiles.find(({product})=>product.code===DEFAULT_PRODUCT_CODE);
+if(!profile)throw new Error('Default briefing product is not published');
 ---
-<BaseLayout title={`Coffee release briefing · ${monthLabel(release.reportingMonth)}`} description="A sourced briefing on U.S. roasted coffee imports, exports, partner changes and estimated duties.">
-  <div class="page-heading"><p class="eyebrow">COFFEE / HS 090121</p><h1>Coffee release briefing</h1><p>Current pilot coverage: Roasted coffee (HS 090121).</p><p>A factual summary of the latest retained release, with links to the figures behind it.</p></div>
-  <ReleaseBriefing release={release}/>
-</BaseLayout>
+<ReleaseBriefingPage {...profile} products={profiles.map(({product})=>product)}/>

@@ -13,7 +13,7 @@ test('coffee briefing links to the research and separates monthly and annual com
   await expect(page.getByRole('article',{name:'Rolling estimated duties'})).toContainText('Duty share: 7.500%');
   await expect(page.getByRole('region',{name:'Sources and release'})).toContainText('Merchandise observations revised: 0');
   await expect(page.locator('astro-island')).toHaveCount(0);
-  await page.getByRole('link',{name:'Explore the full coffee profile',exact:true}).click();await expect(page).toHaveURL(/\/products\/090121\/$/);
+  await page.getByRole('link',{name:'Explore the full product profile',exact:true}).click();await expect(page).toHaveURL(/\/products\/090121\/$/);
   await page.getByRole('navigation',{name:'Main'}).getByRole('link',{name:'Briefing',exact:true}).click();await expect(page).toHaveURL(/\/briefing\/$/);
   await page.getByRole('link',{name:'See all country changes',exact:true}).click();await expect(page).toHaveURL(/\/changes\/$/);
   await page.goto('/');await page.getByRole('link',{name:'Read the coffee briefing',exact:true}).click();await expect(page).toHaveURL(/\/briefing\/$/);

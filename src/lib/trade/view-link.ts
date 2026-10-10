@@ -6,6 +6,11 @@ export function monthlyChangesPath(productCode:string=DEFAULT_PRODUCT_CODE):stri
   return productCode===DEFAULT_PRODUCT_CODE?'/changes/':`/changes/${productCode}/`;
 }
 
+export function releaseBriefingPath(productCode:string=DEFAULT_PRODUCT_CODE):string{
+  assertProductCode(productCode);
+  return productCode===DEFAULT_PRODUCT_CODE?'/briefing/':`/briefing/${productCode}/`;
+}
+
 const defaultSelection=():ExplorerSelection=>({direction:'imports',months:60,countryCodes:[]});
 const validSelection=(selection:ExplorerSelection)=>
   (selection.direction==='imports'||selection.direction==='exports')&&(selection.months===12||selection.months===60)&&
