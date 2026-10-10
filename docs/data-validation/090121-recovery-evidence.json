@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "productCode": "090121",
+  "reportingMonth": "2026-08",
+  "verifiedDate": "2026-10-10",
+  "runId": 38090726807,
+  "jobId": 114326433567,
+  "workflowHeadSha": "ea22910d339c85ba2992732e1240495dafe6613d",
+  "acceptedArchiveRunId": 37899540773,
+  "receipt": {
+    "schemaVersion": 1,
+    "status": "verified",
+    "productCode": "090121",
+    "reportingMonth": "2026-08",
+    "retrievedAt": "2026-10-09T07:32:29.685Z",
+    "codeVersion": "7f76e7c6f0fb1168906956ef8517095a5e49e103",
+    "archive": {
+      "reference": {
+        "key": "trade/v1/products/090121/releases/2026-08-5f3c2606-06a0-4c96-8fbc-a2332e0428ae.json",
+        "sha256": "44c03004da6a76b031cd70997491c97221ecc9c0289cf7f9b426e42208394adf"
+      },
+      "etag": "\"a25bd98e6927ab36d7ceb863c495bcb3\"",
+      "releaseId": "2026-08-5f3c2606-06a0-4c96-8fbc-a2332e0428ae",
+      "releaseSha256": "eaa8c1baa86bd3a8880dcda12db3b32625a38c221591c8c0e087b6af6a325727"
+    },
+    "merchandiseObservations": 9577,
+    "dutyObservations": 1887,
+    "dutyFromMonth": "2024-09"
+  },
+  "artifacts": [
+    {
+      "id": 11682968676,
+      "name": "census-090121-restored",
+      "sha256": "54245e158899f960f3caed9ae47e1b496ac24074c1c9f3292f38362fbde45a7f",
+      "zipBytes": 538746,
+      "createdAt": "2026-10-10T22:15:45Z",
+      "expiresAt": "2026-10-17T22:15:43Z"
+    },
+    {
+      "id": 11683932925,
+      "name": "census-090121-verification",
+      "sha256": "ab66e3a4096159f9476bb6f6e71154cd853ca414dd60409dd7eadc7abdf42452",
+      "zipBytes": 965,
+      "createdAt": "2026-10-10T22:15:47Z",
+      "expiresAt": "2026-10-17T22:15:45Z"
+    }
+  ],
+  "originalFilesCompared": 337,
+  "allOriginalBytesMatchAcceptedBundle": true,
+  "preparedBytesMatchCanonical": true,
+  "receiptMatchesAcceptedPromotion": true,
+  "runBaselineMatchesReceipt": true,
+  "originalMetadataPreserved": true,
+  "localPointerAndReleaseSha256": {
+    "data/processed/current.json": "5098efe55c5d712f097afaef140527c1c3636ebdd7dd0fe48b5521c5cf589bc8",
+    "data/processed/releases/2026-08-5f3c2606-06a0-4c96-8fbc-a2332e0428ae.json": "eaa8c1baa86bd3a8880dcda12db3b32625a38c221591c8c0e087b6af6a325727",
+    "data/products/090111/processed/current.json": "d93e6e11e48c540396fee4699a0a9e58cbde0e6f6a55e20e7ba7056fb3296a39",
+    "data/products/090111/processed/releases/2026-08-d6b1ed52-cd6c-4b7d-87ca-d52c9e338cae.json": "ef5d56791ad85b1b7a199829818522389a792e82cee792665be61f8e78cba0f7"
+  },
+  "successiveOfficialReleasesVerified": false,
+  "hostedConclusion": "success"
+}
