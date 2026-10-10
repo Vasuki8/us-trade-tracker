@@ -10,6 +10,11 @@ const fetcher=(change=0)=>(async(input:RequestInfo|URL)=>{
   const rows=payload.slice(1).filter(r=>r[summary]===url.searchParams.get('SUMMARY_LVL2')).map(r=>{r[time]=url.searchParams.get('time')!;if(r[payload[0].indexOf('CTY_CODE')]==='-'&&change)r[payload[0].findIndex(h=>h.endsWith('_VAL_MO'))]=String(1000+change);return r;});
   return Response.json([payload[0],...rows]);
 }) as typeof fetch;
+it('does not read a current release as a different requested product',async()=>{
+  const outputDir=await mkdtemp(join(tmpdir(),'trade-identity-'));dirs.push(outputDir);
+  await prepareRelease({productCode:'090121',end:'2026-06',months:24,apiKey:'synthetic',outputDir,codeVersion:'test'},fetcher());
+  await expect(readCurrentRelease(outputDir,'090122')).rejects.toThrow(/product/i);
+});
 it('promotes only a complete release and preserves it after failed refresh',async()=>{
   const outputDir=await mkdtemp(join(tmpdir(),'trade-release-'));dirs.push(outputDir);
   const options={productCode:'090121',end:'2026-06',months:24,apiKey:'test-secret-key',outputDir,codeVersion:'test-commit'};

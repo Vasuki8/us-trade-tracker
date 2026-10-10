@@ -18,6 +18,7 @@ secrets/
 # Downloaded data, generated datasets, and local backups
 data/raw/
 data/processed/
+data/products/
 data/backups/
 .data/
 .cache/

@@ -1,5 +1,7 @@
 import {S3Client,GetObjectCommand,PutObjectCommand,type S3ClientConfig} from '@aws-sdk/client-s3';
-import {CURRENT_KEY,LIMITS,releaseIdFromKey} from './archive-bundle';
+import {LIMITS,releaseIdFromKey} from './archive-bundle';
+import {DEFAULT_PRODUCT_CODE} from '../src/lib/trade/product-registry';
+import {productArchiveKeys} from './product-paths';
 import {Readable} from 'node:stream';
 export type WriteCondition={ifNoneMatch:'*'}|{ifMatch:string};
 export type StoredObject={bytes:Buffer;etag:string};
@@ -17,7 +19,7 @@ export function readR2Config(env:NodeJS.ProcessEnv):R2Config{
   return config;
 }
 function validEtag(value:unknown):value is string{return typeof value==='string'&&/^"[\x21\x23-\x7e]{1,510}"$/.test(value);}
-function validateKey(key:string):void{if(key!==CURRENT_KEY)releaseIdFromKey(key);}
+function validateKey(key:string,productCode:string,currentKey:string):void{if(key!==currentKey)releaseIdFromKey(key,productCode);}
 function boundResponse(command:GetObjectCommand|PutObjectCommand,maxBytes:number,setBody:(body:any)=>void):void{
   // This inner middleware sees the raw HTTP stream before SDK error/XML buffering.
   command.middlewareStack.addRelativeTo((next:(args:any)=>Promise<any>)=>async (args:any)=>{
@@ -36,13 +38,14 @@ async function bounded<T>(operation:(signal:AbortSignal,setBody:(body:any)=>void
   try{return await Promise.race([operation(controller.signal,value=>{bodies.add(value);if(controller.signal.aborted)value?.destroy?.();}),deadline]);}
   finally{clearTimeout(timer!);for(const body of bodies)body?.destroy?.();}
 }
-export function createR2Store(config:R2Config,options:Pick<S3ClientConfig,'requestHandler'>={}):ArchiveStore{
+export function createR2Store(config:R2Config,options:Pick<S3ClientConfig,'requestHandler'>&{productCode?:string}={}):ArchiveStore{
+  const productCode=options.productCode??DEFAULT_PRODUCT_CODE,{currentKey}=productArchiveKeys(productCode);
   readR2Config({R2_ACCOUNT_ID:config.accountId,R2_BUCKET_NAME:config.bucketName,R2_ACCESS_KEY_ID:config.accessKeyId,R2_SECRET_ACCESS_KEY:config.secretAccessKey});
   const client=new S3Client({region:'auto',endpoint:`https://${config.accountId}.r2.cloudflarestorage.com`,forcePathStyle:true,credentials:{accessKeyId:config.accessKeyId,secretAccessKey:config.secretAccessKey},maxAttempts:1,requestChecksumCalculation:'WHEN_REQUIRED',responseChecksumValidation:'WHEN_REQUIRED',requestHandler:options.requestHandler});
   return {
     async get(key,maxBytes){
       try{
-        validateKey(key);if(!Number.isSafeInteger(maxBytes)||maxBytes<1||maxBytes>LIMITS.bundle)throw new Error('Invalid read bound');
+        validateKey(key,productCode,currentKey);if(!Number.isSafeInteger(maxBytes)||maxBytes<1||maxBytes>LIMITS.bundle)throw new Error('Invalid read bound');
         return await bounded(async(signal,setBody)=>{
           const command=new GetObjectCommand({Bucket:config.bucketName,Key:key});boundResponse(command,maxBytes,setBody);
           const object=await client.send(command,{abortSignal:signal});
@@ -56,7 +59,7 @@ export function createR2Store(config:R2Config,options:Pick<S3ClientConfig,'reque
       }catch(error){const e=error as {name?:string;$metadata?:{httpStatusCode?:number}};if(e.name==='NoSuchKey'&&e.$metadata?.httpStatusCode===404)return null;throw new ArchiveStoreError('read_failed');}
     },
     async put(key,bytes,condition){
-      try{validateKey(key);const limit=key===CURRENT_KEY?LIMITS.pointer:LIMITS.bundle;if(bytes.length>limit||!condition||Object.keys(condition).length!==1||!('ifNoneMatch' in condition&&condition.ifNoneMatch==='*'||'ifMatch' in condition&&validEtag(condition.ifMatch)))throw new Error('Invalid conditional write');}
+      try{validateKey(key,productCode,currentKey);const limit=key===currentKey?LIMITS.pointer:LIMITS.bundle;if(bytes.length>limit||!condition||Object.keys(condition).length!==1||!('ifNoneMatch' in condition&&condition.ifNoneMatch==='*'||'ifMatch' in condition&&validEtag(condition.ifMatch)))throw new Error('Invalid conditional write');}
       catch{throw new ArchiveStoreError('write_failed');}
       try{await bounded(async(signal,setBody)=>{const command=new PutObjectCommand({Bucket:config.bucketName,Key:key,Body:bytes,ContentType:'application/json',...('ifMatch' in condition?{IfMatch:condition.ifMatch}:{IfNoneMatch:condition.ifNoneMatch})});boundResponse(command,LIMITS.pointer,setBody);await client.send(command,{abortSignal:signal});});}
       catch(error){const status=(error as {$metadata?:{httpStatusCode?:number}}).$metadata?.httpStatusCode;throw new ArchiveStoreError(status===412?'conflict':status!==undefined&&status>=400&&status<500?'write_failed':'unconfirmed_write');}

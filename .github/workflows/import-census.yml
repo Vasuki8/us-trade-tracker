@@ -2,6 +2,11 @@ name: Import Census data
 on:
   workflow_dispatch:
     inputs:
+      product_code:
+        description: Reviewed HS6 product code
+        required: true
+        type: string
+        default: '090121'
       reporting_month:
         description: Confirmed published reporting month (YYYY-MM)
         required: true
@@ -28,6 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
+      PRODUCT_CODE: ${{ inputs.product_code }}
       REPORTING_MONTH: ${{ inputs.reporting_month }}
       ARCHIVE_TO_R2: ${{ inputs.archive_to_r2 }}
       INITIALIZE_ARCHIVE: ${{ inputs.initialize_archive }}
@@ -43,42 +49,49 @@ jobs:
       - run: npm ci
       - run: npm test
       - name: Validate dispatch inputs
+        id: preflight
         run: npm run data:archive -- preflight
       - name: Restore the accepted baseline
         id: restore
         if: inputs.archive_to_r2 && github.ref == 'refs/heads/main'
         env:
+          DATA_DIR: ${{ steps.preflight.outputs.data_dir }}
           R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
           R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-        run: npm run data:archive -- restore --data-dir data --run-dir .tmp/archive
-      - name: Retrieve and validate the coffee sample
+        run: npm run data:archive -- restore --product "$PRODUCT_CODE" --data-dir "$DATA_DIR" --run-dir .tmp/archive
+      - name: Retrieve and validate the reviewed product
         id: import
         env:
+          CLASSIFICATION_FILE: ${{ steps.preflight.outputs.classification_file }}
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
           REPORTING_MONTH: ${{ inputs.reporting_month }}
           INCLUDE_DUTIES: ${{ inputs.include_duties }}
         run: |
           duty_args=()
           if [[ "$INCLUDE_DUTIES" == "true" ]]; then duty_args+=(--duties); fi
-          npm run data:import -- --product 090121 --end "$REPORTING_MONTH" --months 60 --classification data/classification/090121.json "${duty_args[@]}"
-      - run: npm run data:validate
+          classification_args=()
+          if [[ -f "$CLASSIFICATION_FILE" ]]; then classification_args+=(--classification "$CLASSIFICATION_FILE"); fi
+          npm run data:import -- --product "$PRODUCT_CODE" --end "$REPORTING_MONTH" --months 60 "${classification_args[@]}" "${duty_args[@]}"
+      - id: validate
+        run: npm run data:validate -- --product "$PRODUCT_CODE"
       - name: Upload and verify the immutable candidate
         id: stage
         if: inputs.archive_to_r2 && github.ref == 'refs/heads/main'
         env:
+          DATA_DIR: ${{ steps.preflight.outputs.data_dir }}
           R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
           R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-        run: npm run data:archive -- stage --data-dir data --run-dir .tmp/archive
+        run: npm run data:archive -- stage --product "$PRODUCT_CODE" --data-dir "$DATA_DIR" --run-dir .tmp/archive
       - name: Back up the candidate before promotion
         id: backup
         if: inputs.archive_to_r2
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
-          name: census-coffee-candidate
+          name: census-${{ steps.preflight.outputs.product_code }}-candidate
           path: .tmp/archive/bundle.json
           include-hidden-files: true
           if-no-files-found: error
@@ -86,23 +99,24 @@ jobs:
       - name: Recover the backed-up candidate offline
         id: recovery
         if: success() && inputs.archive_to_r2 && steps.backup.outcome == 'success'
-        run: npm run data:archive -- verify --data-dir .tmp/recovery/data --run-dir .tmp/archive
+        run: npm run data:archive -- verify --product "$PRODUCT_CODE" --data-dir .tmp/recovery/data --run-dir .tmp/archive
       - name: Promote the backed-up candidate conditionally
         id: promote
         if: success() && inputs.archive_to_r2 && github.ref == 'refs/heads/main' && steps.backup.outcome == 'success' && steps.recovery.outcome == 'success'
         env:
+          DATA_DIR: ${{ steps.preflight.outputs.data_dir }}
           R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
           R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           BACKUP_ARTIFACT_ID: ${{ steps.backup.outputs.artifact-id }}
           BACKUP_ARTIFACT_DIGEST: ${{ steps.backup.outputs.artifact-digest }}
-        run: npm run data:archive -- promote --data-dir data --run-dir .tmp/archive
+        run: npm run data:archive -- promote --product "$PRODUCT_CODE" --data-dir "$DATA_DIR" --run-dir .tmp/archive
       - name: Retain the promotion outcome
         if: always() && inputs.archive_to_r2 && hashFiles('.tmp/archive/outcome.json') != ''
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
-          name: census-coffee-promotion
+          name: census-${{ steps.preflight.outputs.product_code }}-promotion
           path: .tmp/archive/outcome.json
           include-hidden-files: true
           if-no-files-found: error
@@ -110,10 +124,10 @@ jobs:
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         if: '!inputs.archive_to_r2'
         with:
-          name: census-coffee-release
+          name: census-${{ steps.preflight.outputs.product_code }}-release
           path: |
-            data/processed/current.json
-            data/processed/releases/*.json
-            data/raw/**/*.json
+            ${{ steps.preflight.outputs.processed_dir }}/current.json
+            ${{ steps.preflight.outputs.processed_dir }}/releases/*.json
+            ${{ steps.preflight.outputs.data_dir }}/raw/**/*.json
           if-no-files-found: error
           retention-days: 7

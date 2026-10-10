@@ -6,6 +6,8 @@ These files contain synthetic observations shaped like the Census HS API. Their 
 
 The browser preview's `product-release.json` includes one deliberately missing Canada import observation in July 2024. Its table cell is unavailable and its chart line has a gap; the later twelve-month partner totals remain complete.
 
+The explicit fixture registry adds HS 090122 as **Synthetic second product**, using `product-release-090122.json`. Its invented merchandise, duty and coverage dollar amounts are three times the coffee fixture, with latest world imports of $300 and exports of $600. All product identities and descriptions are synthetic. This verifies shared profiles and filenames; it does not validate this HS product for real publication. The production registry still contains only coffee.
+
 ## Estimated-duty audit fixtures
 
 The four `census-duty-*.json` tables are entirely synthetic. They contain $12 in national duty, $200 in consumption value, $120 in dutiable value and $40 in RP70/79 dutiable value. Canada and Italy partition those totals; the European Union grouping is excluded. They prove aggregation and missing-data behavior, not live coffee coverage.

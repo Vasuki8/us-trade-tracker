@@ -11,7 +11,7 @@ import {readCurrentRelease} from '../../scripts/prepare-release';
 const valid={REPORTING_MONTH:'2026-08',ARCHIVE_TO_R2:'false',INITIALIZE_ARCHIVE:'false',GITHUB_REF:'refs/heads/main'};
 const dirs:string[]=[];afterAll(async()=>{for(const dir of dirs)await rm(dir,{recursive:true,force:true});});
 it('defaults to artifact-only and needs neither R2 configuration nor a provider client',async()=>{
-  expect(parseArchiveDispatch(valid)).toEqual({reportingMonth:'2026-08',archive:false,initialize:false,includeDuties:false});
+  expect(parseArchiveDispatch(valid)).toEqual({productCode:'090121',reportingMonth:'2026-08',archive:false,initialize:false,includeDuties:false});
   let calls=0;expect(await runArchiveCommand(['preflight'],valid,()=>{calls++;throw new Error('unexpected provider');})).toMatchObject({archive:false});expect(calls).toBe(0);
 });
 it.each([{INCLUDE_DUTIES:'yes'},{ARCHIVE_TO_R2:'yes'},{INITIALIZE_ARCHIVE:'1'},{REPORTING_MONTH:'2026-13'},{REPORTING_MONTH:'2026-08;echo'},{INITIALIZE_ARCHIVE:'true'},{ARCHIVE_TO_R2:'true',GITHUB_REF:'refs/heads/feature'}])('rejects invalid dispatch %j before any provider call',patch=>{expect(()=>parseArchiveDispatch({...valid,...patch})).toThrow();});
@@ -37,9 +37,9 @@ it('keeps dispatch, credentials, backup ordering and promotion gates explicit in
   expect(restore).toBeGreaterThan(-1);expect(stage).toBeGreaterThan(restore);expect(backup).toBeGreaterThan(stage);expect(promote).toBeGreaterThan(backup);
   for(const step of steps){const credentials=Object.keys(step.env??{}).filter(k=>k.includes('KEY'));if(['restore','stage','promote'].includes(step.id)){expect(credentials.sort()).toEqual(['R2_ACCESS_KEY_ID','R2_SECRET_ACCESS_KEY']);expect(step.if).toContain('inputs.archive_to_r2');expect(step.if).toContain('refs/heads/main');}else expect(credentials).toEqual(step.id==='import'?['CENSUS_API_KEY']:[]);if(step.run)expect(step.run).not.toContain('${{');}
   expect(steps[promote].if).toContain('success()');expect(steps[promote].if).toContain("steps.backup.outcome == 'success'");expect(steps[promote].env.BACKUP_ARTIFACT_ID).toBe('${{ steps.backup.outputs.artifact-id }}');expect(steps[promote].env.BACKUP_ARTIFACT_DIGEST).toBe('${{ steps.backup.outputs.artifact-digest }}');
-  expect(steps[backup].with).toMatchObject({name:'census-coffee-candidate',path:'.tmp/archive/bundle.json','include-hidden-files':true,'if-no-files-found':'error','retention-days':7});
-  const receipt=steps.find(s=>s.with?.name==='census-coffee-promotion');expect(receipt.if).toContain('always()');expect(receipt.if).toContain("hashFiles('.tmp/archive/outcome.json')");expect(receipt.with.path).toBe('.tmp/archive/outcome.json');expect(receipt.with['include-hidden-files']).toBe(true);
-  expect(steps.find(s=>s.with?.name==='census-coffee-release').if).toContain('!inputs.archive_to_r2');
+  expect(steps[backup].with).toMatchObject({name:'census-${{ steps.preflight.outputs.product_code }}-candidate',path:'.tmp/archive/bundle.json','include-hidden-files':true,'if-no-files-found':'error','retention-days':7});
+  const receipt=steps.find(s=>s.with?.name==='census-${{ steps.preflight.outputs.product_code }}-promotion');expect(receipt.if).toContain('always()');expect(receipt.if).toContain("hashFiles('.tmp/archive/outcome.json')");expect(receipt.with.path).toBe('.tmp/archive/outcome.json');expect(receipt.with['include-hidden-files']).toBe(true);
+  expect(steps.find(s=>s.with?.name==='census-${{ steps.preflight.outputs.product_code }}-release').if).toContain('!inputs.archive_to_r2');
 });
 it('opts into duty retrieval and requires offline recovery after backup and before promotion',async()=>{
  const w=parse(await readFile('.github/workflows/import-census.yml','utf8')),steps=w.jobs.import.steps as any[];
