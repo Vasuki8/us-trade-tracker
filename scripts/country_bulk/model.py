@@ -75,6 +75,39 @@ class PublicationPin:
     reviewed: dict
 
 
+@dataclass(frozen=True)
+class RequestSpec:
+    id: str
+    kind: str
+    url: str | None
+    filename: str
+    context_id: str | None
+    maximum_bytes: int
+
+
+@dataclass
+class OriginalRecord:
+    id: str
+    kind: str
+    source_url: str | None
+    context_id: str | None
+    processing_commit: str
+    attempted: bool = False
+    outcome: str = 'unattempted'
+    reason: str | None = None
+    started_at: str | None = None
+    retrieved_at: str | None = None
+    status: int | None = None
+    content_type: str | None = None
+    content_length: int | None = None
+    last_modified: str | None = None
+    http_date: str | None = None
+    bytes: int = 0
+    sha256: str | None = None
+    file: str | None = None
+    elapsed_seconds: float = 0
+
+
 def validate_projection(payload: dict) -> tuple[PublicationPin, ...]:
     require(type(payload) is dict and set(payload) == {'schemaVersion', 'countryCode', 'publications'}, 'invalid-projection')
     require(type(payload['schemaVersion']) is int and payload['schemaVersion'] == 1 and payload['countryCode'] == '1220', 'invalid-projection')
