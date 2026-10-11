@@ -473,5 +473,254 @@
     "classificationStatus": "unverified",
     "comparisonsAvailable": 0,
     "releaseAccepted": false
+  },
+  "sourceFollowup": {
+    "runId": 38098594901,
+    "runUrl": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38098594901",
+    "jobId": 114349620370,
+    "headSha": "5ea158b79c0409bb64678db7a3bfe6db07cf2be4",
+    "mode": "source-followup",
+    "baselineAuditRunId": 38096086464,
+    "countryTemporalPredicate": "YEAR/MONTH",
+    "conclusion": "failure",
+    "cause": "source-check-failure",
+    "retrievedAt": "2026-10-11T00:32:42.359Z",
+    "artifactId": 11687068303,
+    "artifactName": "census-1220-country-audit",
+    "artifactBytes": 37405,
+    "artifactSha256": "915ab060f10c8f1700ca47c65d1b7094bc33ce39aa67f438813a17d98b32b3c0",
+    "zipEntries": 12,
+    "independentlyMatchedFiles": 12,
+    "extractedBytes": 244586,
+    "completedDiagnosticReport": true,
+    "diagnosticReportSha256": "e55c888c4c66ae037f9438be8dc87a1ccf7bc0cf0ebda59ed22918d5ffbc7c65",
+    "independentReplaySha256": "41fbf85b33caf635917e5a29b63d6443d8201964ae8e492f28a784dc32c7e569",
+    "evidenceConsistencyVerified": true,
+    "independentReview": "matched",
+    "sourceRecords": 11,
+    "rawManifestDigestsVerified": 11,
+    "logicalRequests": 11,
+    "httpAttempts": 11,
+    "validatedImportParts": 2,
+    "usableImportParts": 2,
+    "originalImportHs6Rows": 0,
+    "recoveredImportTotals": [
+      {
+        "month": "2026-03",
+        "totalUsd": 34089317327,
+        "baselineProductSumUsd": 34089317327,
+        "baselineProductRows": 4035,
+        "crossRunResidualUsd": 0,
+        "referenceUsd": 34089300000,
+        "referenceCheck": "matched",
+        "meaning": "Cross-run corroboration only; original audit remains unchanged"
+      },
+      {
+        "month": "2026-06",
+        "totalUsd": 37216785546,
+        "baselineProductSumUsd": 37216785546,
+        "baselineProductRows": 4311,
+        "crossRunResidualUsd": 0,
+        "referenceUsd": 37216800000,
+        "referenceCheck": "matched",
+        "meaning": "Cross-run corroboration only; original audit remains unchanged"
+      }
+    ],
+    "failedImportParts": [
+      "imports-2025-05-total",
+      "imports-2025-06-products",
+      "imports-2025-06-total",
+      "imports-2025-08-total",
+      "imports-2025-09-products",
+      "imports-2025-12-total",
+      "imports-2026-04-total"
+    ],
+    "events": [
+      {
+        "label": "canada-reference",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T00:30:34.037Z",
+        "elapsedMs": 226
+      },
+      {
+        "label": "imports-2025-05-total",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T00:31:04.046Z",
+        "elapsedMs": 30000
+      },
+      {
+        "label": "imports-2025-06-total",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T00:31:04.048Z",
+        "elapsedMs": 30000
+      },
+      {
+        "label": "imports-2025-06-products",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T00:31:34.050Z",
+        "elapsedMs": 30001
+      },
+      {
+        "label": "imports-2025-08-total",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T00:31:34.051Z",
+        "elapsedMs": 30001
+      },
+      {
+        "label": "imports-2025-09-products",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T00:32:04.054Z",
+        "elapsedMs": 30001
+      },
+      {
+        "label": "imports-2025-12-total",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T00:32:04.054Z",
+        "elapsedMs": 30000
+      },
+      {
+        "label": "imports-2026-03-total",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T00:32:10.006Z",
+        "elapsedMs": 5950
+      },
+      {
+        "label": "imports-2026-04-total",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T00:32:34.057Z",
+        "elapsedMs": 30000
+      },
+      {
+        "label": "exports-2026-08-cumulative",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T00:32:37.742Z",
+        "elapsedMs": 3681
+      },
+      {
+        "label": "imports-2026-06-total",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T00:32:42.354Z",
+        "elapsedMs": 8294
+      }
+    ],
+    "results": [
+      {
+        "label": "canada-reference",
+        "outcome": "received"
+      },
+      {
+        "label": "exports-2026-08-cumulative",
+        "outcome": "validated",
+        "rows": 1,
+        "amountUsd": 30289552895,
+        "yearToDateUsd": 234176187252
+      },
+      {
+        "label": "imports-2025-05-total",
+        "outcome": "failed"
+      },
+      {
+        "label": "imports-2025-06-products",
+        "outcome": "failed"
+      },
+      {
+        "label": "imports-2025-06-total",
+        "outcome": "failed"
+      },
+      {
+        "label": "imports-2025-08-total",
+        "outcome": "failed"
+      },
+      {
+        "label": "imports-2025-09-products",
+        "outcome": "failed"
+      },
+      {
+        "label": "imports-2025-12-total",
+        "outcome": "failed"
+      },
+      {
+        "label": "imports-2026-03-total",
+        "outcome": "validated",
+        "rows": 1,
+        "amountUsd": 34089317327
+      },
+      {
+        "label": "imports-2026-04-total",
+        "outcome": "failed"
+      },
+      {
+        "label": "imports-2026-06-total",
+        "outcome": "validated",
+        "rows": 1,
+        "amountUsd": 37216785546
+      }
+    ],
+    "officialTable": {
+      "url": "https://www.census.gov/foreign-trade/balance/c1220.html",
+      "retrievedAt": "2026-10-11T00:30:34.037Z",
+      "lastModified": "Tue, 06 Oct 2026 12:35:31 GMT",
+      "httpDate": "Sun, 11 Oct 2026 00:30:34 GMT",
+      "error": null,
+      "httpStatus": 200,
+      "rawRecordSha256": "a7024aca6b6674f1d1b6c5c2cb7cb36915e46cd8e3e8d385c1d1b4b4b21e0779",
+      "exportMonthsMatchingBaselineReference": 8
+    },
+    "cumulativeComparison": {
+      "status": "outside-rounding-bound",
+      "referenceMonths": 8,
+      "apiYearToDateUsd": 234176187252,
+      "referenceMonthlySumUsd": 235972400000,
+      "differenceUsd": -1796212748,
+      "roundingBoundUsd": 400000,
+      "meaning": "Cumulative corroboration only; does not resolve monthly differences or establish product eligibility"
+    },
+    "baselineComparison": {
+      "auditRunId": 38096086464,
+      "reportSha256": "4bc7a7518e6f38232b054902e593f0f6c2a49bda6619c0af09f1b6e3d3d2224e",
+      "monthlySumUsd": 234176187252,
+      "cumulativeMinusBaselineMonthlySumUsd": 0
+    },
+    "cumulativeFieldFixSupported": false,
+    "underlyingRetrievalFailureCause": "unverified",
+    "underlyingReferenceMismatchCause": "unverified",
+    "diagnosticPassed": false,
+    "sourceCoverage": "unverified",
+    "classificationStatus": "unverified",
+    "releaseAccepted": false,
+    "recommendation": "Retain failed full audit; isolate a narrowed aggregate query for remaining import failures, and investigate the common API/public-table source vintage before any acceptance retry. ALL_VAL_YR is not a supported monthly correction."
   }
 }
