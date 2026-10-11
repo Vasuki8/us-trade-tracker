@@ -1170,5 +1170,329 @@
     "acceptanceGateChanged": false,
     "classificationStatus": "unverified",
     "releaseAccepted": false
+  },
+  "totalEndpointProbe": {
+    "runId": 38103215096,
+    "runUrl": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38103215096",
+    "jobId": 114363264757,
+    "headSha": "8dcfff4e43d520f7c01d97e08c174adce43528a9",
+    "mode": "total-probe",
+    "baselineAuditRunId": 38096086464,
+    "conclusion": "success",
+    "cause": "all-fixed-checks-passed",
+    "retrievedAt": "2026-10-11T01:52:47.695Z",
+    "artifactId": 11688821449,
+    "artifactName": "census-1220-country-audit",
+    "artifactBytes": 35524,
+    "artifactSha256": "e49e17146e458662647ce0c6320fdf1ad5e4e60fe7c8b4d07467782d76c6b163",
+    "zipEntries": 8,
+    "independentlyMatchedFiles": 8,
+    "extractedBytes": 244320,
+    "completedDiagnosticReport": true,
+    "diagnosticReportSha256": "463cd1a76785e77aaf4f0b30f6aab22f9537f70c368961c375009281424458ed",
+    "independentReplaySha256": "82ed574801b44dafd6e5141af52476824dd47469fddb3d49a8243d9e12c209d8",
+    "evidenceConsistencyVerified": true,
+    "independentReview": "matched",
+    "sourceRecords": 7,
+    "rawManifestDigestsVerified": 7,
+    "logicalRequests": 7,
+    "httpAttempts": 7,
+    "usableApiParts": 6,
+    "events": [
+      {
+        "label": "canada-reference",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T01:52:13.783Z",
+        "elapsedMs": 284
+      },
+      {
+        "label": "imports-2025-05-total-enduse",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T01:52:14.519Z",
+        "elapsedMs": 723
+      },
+      {
+        "label": "imports-2025-05-total-hs",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T01:52:26.424Z",
+        "elapsedMs": 12630
+      },
+      {
+        "label": "imports-2025-06-total-enduse",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T01:52:26.880Z",
+        "elapsedMs": 454
+      },
+      {
+        "label": "imports-2025-06-total-hs",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T01:52:37.991Z",
+        "elapsedMs": 11566
+      },
+      {
+        "label": "imports-2026-08-total-enduse",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T01:52:38.388Z",
+        "elapsedMs": 396
+      },
+      {
+        "label": "imports-2026-08-total-hs",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T01:52:47.690Z",
+        "elapsedMs": 9698
+      }
+    ],
+    "results": [
+      {
+        "label": "canada-reference",
+        "outcome": "received"
+      },
+      {
+        "label": "imports-2025-05-total-enduse",
+        "outcome": "validated",
+        "rows": 1,
+        "amountUsd": 29977446512
+      },
+      {
+        "label": "imports-2025-05-total-hs",
+        "outcome": "validated",
+        "rows": 1,
+        "amountUsd": 29977446512
+      },
+      {
+        "label": "imports-2025-06-total-enduse",
+        "outcome": "validated",
+        "rows": 1,
+        "amountUsd": 29645029011
+      },
+      {
+        "label": "imports-2025-06-total-hs",
+        "outcome": "validated",
+        "rows": 1,
+        "amountUsd": 29645029011
+      },
+      {
+        "label": "imports-2026-08-total-enduse",
+        "outcome": "validated",
+        "rows": 1,
+        "amountUsd": 35980039950
+      },
+      {
+        "label": "imports-2026-08-total-hs",
+        "outcome": "validated",
+        "rows": 1,
+        "amountUsd": 35980039950
+      }
+    ],
+    "totalComparisons": [
+      {
+        "month": "2025-05",
+        "direction": "imports",
+        "hsTotalUsd": 29977446512,
+        "enduseTotalUsd": 29977446512,
+        "differenceUsd": 0,
+        "status": "equivalent"
+      },
+      {
+        "month": "2025-06",
+        "direction": "imports",
+        "hsTotalUsd": 29645029011,
+        "enduseTotalUsd": 29645029011,
+        "differenceUsd": 0,
+        "status": "equivalent"
+      },
+      {
+        "month": "2026-08",
+        "direction": "imports",
+        "hsTotalUsd": 35980039950,
+        "enduseTotalUsd": 35980039950,
+        "differenceUsd": 0,
+        "status": "equivalent"
+      }
+    ],
+    "importReferenceChecks": [
+      {
+        "month": "2025-05",
+        "direction": "imports",
+        "endpoint": "hs",
+        "apiTotalUsd": 29977446512,
+        "referenceUsd": 29977400000,
+        "differenceUsd": 46512,
+        "precisionUsd": 100000,
+        "status": "matched"
+      },
+      {
+        "month": "2025-05",
+        "direction": "imports",
+        "endpoint": "enduse",
+        "apiTotalUsd": 29977446512,
+        "referenceUsd": 29977400000,
+        "differenceUsd": 46512,
+        "precisionUsd": 100000,
+        "status": "matched"
+      },
+      {
+        "month": "2025-06",
+        "direction": "imports",
+        "endpoint": "hs",
+        "apiTotalUsd": 29645029011,
+        "referenceUsd": 29645000000,
+        "differenceUsd": 29011,
+        "precisionUsd": 100000,
+        "status": "matched"
+      },
+      {
+        "month": "2025-06",
+        "direction": "imports",
+        "endpoint": "enduse",
+        "apiTotalUsd": 29645029011,
+        "referenceUsd": 29645000000,
+        "differenceUsd": 29011,
+        "precisionUsd": 100000,
+        "status": "matched"
+      },
+      {
+        "month": "2026-08",
+        "direction": "imports",
+        "endpoint": "hs",
+        "apiTotalUsd": 35980039950,
+        "referenceUsd": 35980000000,
+        "differenceUsd": 39950,
+        "precisionUsd": 100000,
+        "status": "matched"
+      },
+      {
+        "month": "2026-08",
+        "direction": "imports",
+        "endpoint": "enduse",
+        "apiTotalUsd": 35980039950,
+        "referenceUsd": 35980000000,
+        "differenceUsd": 39950,
+        "precisionUsd": 100000,
+        "status": "matched"
+      }
+    ],
+    "crossRunCorroboration": [
+      {
+        "label": "imports-2025-05-total-enduse",
+        "amountUsd": 29977446512,
+        "baselineTotalUsd": null,
+        "baselineProductSumUsd": 29977446512,
+        "baselineTotalDifferenceUsd": null,
+        "baselineProductSumDifferenceUsd": 0,
+        "aggregateProductSums": [],
+        "meaning": "Supporting cross-run corroboration only; no observations are combined into an accepted audit"
+      },
+      {
+        "label": "imports-2025-05-total-hs",
+        "amountUsd": 29977446512,
+        "baselineTotalUsd": null,
+        "baselineProductSumUsd": 29977446512,
+        "baselineTotalDifferenceUsd": null,
+        "baselineProductSumDifferenceUsd": 0,
+        "aggregateProductSums": [],
+        "meaning": "Supporting cross-run corroboration only; no observations are combined into an accepted audit"
+      },
+      {
+        "label": "imports-2025-06-total-enduse",
+        "amountUsd": 29645029011,
+        "baselineTotalUsd": null,
+        "baselineProductSumUsd": null,
+        "baselineTotalDifferenceUsd": null,
+        "baselineProductSumDifferenceUsd": null,
+        "aggregateProductSums": [
+          {
+            "label": "imports-2025-06-products-baseline",
+            "amountUsd": 29645029011,
+            "differenceUsd": 0
+          },
+          {
+            "label": "imports-2025-06-products-explicit",
+            "amountUsd": 29645029011,
+            "differenceUsd": 0
+          }
+        ],
+        "meaning": "Supporting cross-run corroboration only; no observations are combined into an accepted audit"
+      },
+      {
+        "label": "imports-2025-06-total-hs",
+        "amountUsd": 29645029011,
+        "baselineTotalUsd": null,
+        "baselineProductSumUsd": null,
+        "baselineTotalDifferenceUsd": null,
+        "baselineProductSumDifferenceUsd": null,
+        "aggregateProductSums": [
+          {
+            "label": "imports-2025-06-products-baseline",
+            "amountUsd": 29645029011,
+            "differenceUsd": 0
+          },
+          {
+            "label": "imports-2025-06-products-explicit",
+            "amountUsd": 29645029011,
+            "differenceUsd": 0
+          }
+        ],
+        "meaning": "Supporting cross-run corroboration only; no observations are combined into an accepted audit"
+      },
+      {
+        "label": "imports-2026-08-total-enduse",
+        "amountUsd": 35980039950,
+        "baselineTotalUsd": 35980039950,
+        "baselineProductSumUsd": 35980039950,
+        "baselineTotalDifferenceUsd": 0,
+        "baselineProductSumDifferenceUsd": 0,
+        "aggregateProductSums": [],
+        "meaning": "Supporting cross-run corroboration only; no observations are combined into an accepted audit"
+      },
+      {
+        "label": "imports-2026-08-total-hs",
+        "amountUsd": 35980039950,
+        "baselineTotalUsd": 35980039950,
+        "baselineProductSumUsd": 35980039950,
+        "baselineTotalDifferenceUsd": 0,
+        "baselineProductSumDifferenceUsd": 0,
+        "aggregateProductSums": [],
+        "meaning": "Supporting cross-run corroboration only; no observations are combined into an accepted audit"
+      }
+    ],
+    "officialTable": {
+      "url": "https://www.census.gov/foreign-trade/balance/c1220.html",
+      "retrievedAt": "2026-10-11T01:52:13.783Z",
+      "lastModified": "Tue, 06 Oct 2026 13:08:40 GMT",
+      "httpDate": "Sun, 11 Oct 2026 01:52:13 GMT",
+      "error": null,
+      "httpStatus": 200,
+      "rawRecordSha256": "354832efad0ff16bb3601915e684e6c39e316dc304e6c461f1541fd7c8b588a6"
+    },
+    "probePassed": true,
+    "sourceCoverage": "unverified",
+    "classificationStatus": "unverified",
+    "releaseAccepted": false,
+    "defaultAuditQueryChanged": false,
+    "acceptanceGateChanged": false,
+    "underlyingRetrievalFailureCause": "unverified",
+    "meaning": "Fixed endpoint diagnostic only; does not establish complete 24-month coverage or classification eligibility"
   }
 }
