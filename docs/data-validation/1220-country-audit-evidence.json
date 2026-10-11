@@ -8807,5 +8807,5168 @@
     "rollingComparisonsAvailable": false,
     "defaultAuditRetrievalChanged": false,
     "recommendation": "Review the archive inventory budget against the 106/113-member structure and design an explicit reference-vintage policy before another acceptance attempt. Neither change is adopted; do not redownload unchanged originals to seek a pass."
+  },
+  "bulkInventoryReplay": {
+    "schemaVersion": 1,
+    "recordedDate": "2026-10-11",
+    "countryCode": "1220",
+    "endMonth": "2026-08",
+    "months": 24,
+    "scope": "Bounded inventory-limit change and network-free retained-source replay; no source adoption or country acceptance.",
+    "inventoryLimitChange": {
+      "pullRequest": "https://github.com/Vasuki8/us-trade-tracker/pull/60",
+      "reviewedCommit": "29d117e1c0daa2f843815826918220a8bd331242",
+      "mergedCommit": "92d2606cffe14497232af36466b9ce114ccaa903",
+      "tree": "fab884d9115d2ac059a82a0b469e745101b4dae0",
+      "previousLimit": 100,
+      "newLimit": 128,
+      "observedMaximumMembers": 113,
+      "allOtherLimitsAndAcceptanceRulesUnchanged": true,
+      "localPythonTests": 50,
+      "projectTests": 574,
+      "checkedFiles": 150,
+      "diagnostics": 0,
+      "ciBrowserTests": 52,
+      "ciRun": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38170118101",
+      "inventoryReview": {
+        "path": ".tmp/canada-inventory-budget-review-20261011/inventory-review.json",
+        "bytes": 889114,
+        "sha256": "b1d91b4ae94b80e94d7e8b8327e77f3dfa949fc1ed9cfcc71d27132d506a791f"
+      },
+      "independentInventoryReview": {
+        "path": ".tmp/canada-inventory-budget-independent-review-20261011/independent-inventory-receipt.json",
+        "bytes": 62990,
+        "sha256": "67a89660949683a749e377df239caa7e8b8ae3d82b3adcf5b5a495b568be2310"
+      },
+      "procedureReview": {
+        "path": ".tmp/canada-inventory-budget-independent-review-20261011/procedure-review-receipt.json",
+        "bytes": 2750,
+        "sha256": "8a99d709dcbbbb3fb8da72c52e5a87cd04a791bc6e24aa111f960987bc1f1ef3"
+      }
+    },
+    "retainedInputs": {
+      "sourceReport": {
+        "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1/bulk-report.json",
+        "bytes": 91396,
+        "sha256": "7a306222bf6be80eae1c938341661e353b08cb4a5ab4e50c6466702f704ad00c"
+      },
+      "sourceManifest": {
+        "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1/original-manifest.json",
+        "bytes": 51828,
+        "sha256": "66acdc59057211575cf8b659f853460e1d279d624677f41fd880da6827865535"
+      },
+      "priorReplayReport": {
+        "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1-offline-padding-fix/offline-replay.json",
+        "bytes": 111648,
+        "sha256": "cb9f15cf7feae2be3464695abe64718f3dc6a74c6571db713e2dfa376a115d7c"
+      },
+      "sourceFileCount": 132,
+      "priorReplayFileCount": 101,
+      "sourceReportPreserved": true,
+      "priorReplayPreserved": true
+    },
+    "offlineReplay": {
+      "receipt": {
+        "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1-offline-inventory-128/offline-replay.json",
+        "bytes": 139962,
+        "sha256": "9157869192cef9b14d542de8ce772ddea146167dbe7d510aa45eb4919735ca6d"
+      },
+      "script": {
+        "path": ".tmp/canada-bulk-inventory-offline.py",
+        "bytes": 13631,
+        "sha256": "f8892e7a48f204fec78a9ad94b5088c4860c80bcfec6b4cfdfd8c5ebcfcf4e84"
+      },
+      "outputRoot": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1-offline-inventory-128",
+      "sourceProcessingCommit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+      "parserProcessingCommit": "92d2606cffe14497232af36466b9ce114ccaa903",
+      "networkRequests": 0,
+      "inputReuse": "Same-volume ZIP hard links; small layouts copied; no input writes or attribute changes.",
+      "contextCounts": {
+        "validated": 48
+      },
+      "retainedFileCount": 147,
+      "snapshotStability": "matched",
+      "resources": {
+        "limits": {
+          "original_bytes": 12884901888,
+          "generated_bytes": 134217728,
+          "final_reserve": 8388608,
+          "preflight_free": 17179869184,
+          "disk_guard": 2147483648,
+          "zip_bytes": 402653184,
+          "html_bytes": 1048576,
+          "pdf_bytes": 4194304,
+          "header_seconds": 30,
+          "body_seconds": 120,
+          "work_seconds": 3300,
+          "overall_seconds": 3600,
+          "worker_seconds": 60,
+          "sample_seconds": 0.25,
+          "working_set_bytes": 1073741824,
+          "archive_members": 128,
+          "archive_uncompressed_bytes": 3221225472,
+          "detail_keys": 5000000
+        },
+        "logicalOriginalBytes": 7672898570,
+        "linkedOriginalBytes": 7672722440,
+        "copiedOriginalBytes": 176130,
+        "generatedBytes": 39176448,
+        "newlyWrittenBytes": 39352578,
+        "elapsedSeconds": 384.86000000004424,
+        "stops": [],
+        "peakWorkerWorkingSetBytes": 402092032,
+        "selectedBytes": 45597170967
+      },
+      "contexts": [
+        {
+          "id": "imports-2024-09",
+          "month": "2024-09",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4475,
+          "sumUsd": 34532022027,
+          "countryTotalUsd": 34532022027,
+          "residualUsd": 0,
+          "selectedBytes": 1517936034,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 22027,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 22027,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 2197609,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "afbcccf1efdd1acb29c73be7108c1444ca2c5b4ea7832bd612ba581c0e2e17d6",
+              "crc32": "6fef1dba",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 1516350210,
+              "records": 2197609,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "7634b557647fa9b21564ba15ec341a002787749353978b49d48ac3188da3ea72",
+              "crc32": "ff50c3c5",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 76,
+            "declaredUncompressedBytes": 1750481857,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 50591,
+              "01": 1,
+              "C ": 1102,
+              "K ": 32,
+              "S ": 22754,
+              "S+": 985
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 42762,
+            "zeroHS6Rows": 901,
+            "canadaDetailRecords": 75465,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2024-09-hs6.json",
+              "bytes": 779965,
+              "sha256": "ba971a4efda4201ec37c33c997bad9a1e406c92b93ba5d62d7df0181cda7db85"
+            },
+            "receipt": {
+              "path": "imports-2024-09-receipt.json",
+              "bytes": 1380,
+              "sha256": "bf5bc89761cdd00178bace68125adf041f40b321829cb61437cd03ea7fd043f7"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2024-09-independent-hs6.json",
+            "bytes": 779966,
+            "sha256": "ef89cdef30a46cff5f3af78fd61e1739fcb399c9a27ef1c36db777dc282d0066"
+          },
+          "workerElapsedSeconds": 11.047000000020489,
+          "workerPeakWorkingSetBytes": 240013312
+        },
+        {
+          "id": "exports-2024-09",
+          "month": "2024-09",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5199,
+          "sumUsd": 29381533587,
+          "countryTotalUsd": 29381533587,
+          "residualUsd": 0,
+          "selectedBytes": 444274492,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 33587,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 33587,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1362334,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "e55acfda42a6dc7e59fa0131aa15335776ed71bf654485e3ff6c2c1d27fd92d4",
+              "crc32": "c33ac1b7",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 442758550,
+              "records": 1362334,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "500566d95fa90752fd03a20ddeb9ebb4e6e9d32e0d970b835827b2b24aa55e60",
+              "crc32": "0f05f629",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 75,
+            "declaredUncompressedBytes": 588009484,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 50476,
+              "2": 34726
+            },
+            "exportDfTotals": {
+              "1": 24277983550,
+              "2": 5103550037
+            },
+            "zeroDetailRecords": 35581,
+            "zeroHS6Rows": 515,
+            "canadaDetailRecords": 85202,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2024-09-hs6.json",
+              "bytes": 907495,
+              "sha256": "fe1f6e94913f8b2acc908be55d7faf0fa4ff23321d7864aaa556b3239b4b44db"
+            },
+            "receipt": {
+              "path": "exports-2024-09-receipt.json",
+              "bytes": 1371,
+              "sha256": "2e8cc66eff5d75a2760dcecb12294541bb6cc339bdf0b26158a84c4fc6b73301"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/exports-2024-09-independent-hs6.json",
+            "bytes": 907496,
+            "sha256": "4072ff10b59fc65ad4a64c47dd4f49500842af385a7c202d71c171ca5f3f6f9e"
+          },
+          "workerElapsedSeconds": 4.9689999999827705,
+          "workerPeakWorkingSetBytes": 213417984
+        },
+        {
+          "id": "imports-2024-10",
+          "month": "2024-10",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4511,
+          "sumUsd": 34413502802,
+          "countryTotalUsd": 34413502802,
+          "residualUsd": 0,
+          "selectedBytes": 1611532464,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 2802,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 2802,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 2333256,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "f5524bd0f24f3a830efe53ed9d76e6fadd7745bbd8ee06e5a45dd62519359b4b",
+              "crc32": "6d67abdd",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 1609946640,
+              "records": 2333256,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "8827f5940da6417ebbad408b2199dc1ff35f7fd948e72ea78181c24d0bf0a532",
+              "crc32": "1375ea97",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 76,
+            "declaredUncompressedBytes": 1851384040,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 53059,
+              "01": 1,
+              "C ": 1175,
+              "K ": 37,
+              "S ": 23665,
+              "S+": 1051
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 45792,
+            "zeroHS6Rows": 924,
+            "canadaDetailRecords": 78988,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2024-10-hs6.json",
+              "bytes": 785807,
+              "sha256": "ec6209c512ac0d23b1e9b55f3d45363834d0d372a3b6f6594115f9f4d83a23c5"
+            },
+            "receipt": {
+              "path": "imports-2024-10-receipt.json",
+              "bytes": 1381,
+              "sha256": "1fcf1551b66af093af27ce269117b4cac4f6325e7aa7b5c5146ffe2bfd402fbb"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2024-10-independent-hs6.json",
+            "bytes": 785808,
+            "sha256": "7872bf1a326f9609d7451648d2371a83a58d89427fc4995d51fd114543f9b0e7"
+          },
+          "workerElapsedSeconds": 12.14000000001397,
+          "workerPeakWorkingSetBytes": 248467456
+        },
+        {
+          "id": "exports-2024-10",
+          "month": "2024-10",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5210,
+          "sumUsd": 30344153485,
+          "countryTotalUsd": 30344153485,
+          "residualUsd": 0,
+          "selectedBytes": 467131417,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -46515,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -46515,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1432663,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "051088caac8d0b86fab72eb9d85d27752de771ea8bf02d82e1403e42308f9cf5",
+              "crc32": "00121880",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 465615475,
+              "records": 1432663,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "310c713a6e34823a8d511c77ed9c2bc764210841c97159a039195eca3a0c1a42",
+              "crc32": "0129f219",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 75,
+            "declaredUncompressedBytes": 614441365,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 51613,
+              "2": 35523
+            },
+            "exportDfTotals": {
+              "1": 25261867461,
+              "2": 5082286024
+            },
+            "zeroDetailRecords": 37887,
+            "zeroHS6Rows": 532,
+            "canadaDetailRecords": 87136,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2024-10-hs6.json",
+              "bytes": 909526,
+              "sha256": "12096b485f302511d6e0cd4f0944501374ee38628d6690c69e7987e53f28fd6d"
+            },
+            "receipt": {
+              "path": "exports-2024-10-receipt.json",
+              "bytes": 1371,
+              "sha256": "a6bb0759b5bec1bf78a991d4094a3b188abc079596cc83c44d2f12565c4c96f3"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/exports-2024-10-independent-hs6.json",
+            "bytes": 909527,
+            "sha256": "83768e816d68b7f2dc0916390fe94eb70e0f3bdf9f0e18e4a324d9e8304ef73c"
+          },
+          "workerElapsedSeconds": 4.921999999962281,
+          "workerPeakWorkingSetBytes": 212430848
+        },
+        {
+          "id": "imports-2024-11",
+          "month": "2024-11",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4544,
+          "sumUsd": 33446477024,
+          "countryTotalUsd": 33446477024,
+          "residualUsd": 0,
+          "selectedBytes": 1692851724,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -22976,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -22976,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 2451110,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "966b2af1f848805a41a3b4e58c727ca6c613abd7381b2d1edf19618934007710",
+              "crc32": "5994b4d7",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 1691265900,
+              "records": 2451110,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "ffeb9be50138f022f631e1e9a884bf220ec5e3dc922c6a53a67a1e65c8d73fc2",
+              "crc32": "3e4a1c95",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 76,
+            "declaredUncompressedBytes": 1939022678,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 55229,
+              "01": 4,
+              "C ": 1224,
+              "K ": 39,
+              "S ": 24422,
+              "S+": 1089
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 49909,
+            "zeroHS6Rows": 986,
+            "canadaDetailRecords": 82007,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2024-11-hs6.json",
+              "bytes": 790940,
+              "sha256": "85d652b02b5d0c9892c0c7c53fcc2474844bc015fafe32deaf932f46d9002dff"
+            },
+            "receipt": {
+              "path": "imports-2024-11-receipt.json",
+              "bytes": 1381,
+              "sha256": "094233b74d960dce1dcebfacbd1d924b4c0c2197f80b1bf0ee2549ddff82789e"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2024-11-independent-hs6.json",
+            "bytes": 790941,
+            "sha256": "c5683dafb8e63b21dc8d30801446ae4a4120b991b12043562430b462ef1b7876"
+          },
+          "workerElapsedSeconds": 12.327999999979511,
+          "workerPeakWorkingSetBytes": 256327680
+        },
+        {
+          "id": "exports-2024-11",
+          "month": "2024-11",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5219,
+          "sumUsd": 29113642001,
+          "countryTotalUsd": 29113642001,
+          "residualUsd": 0,
+          "selectedBytes": 488302567,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 42001,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 42001,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1497805,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "72e519ad050416dafdc37475c39acec9f1ddda93ce0da682fe236754eda8ab14",
+              "crc32": "8174885e",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 486786625,
+              "records": 1497805,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "2e13cbcf9570ee1c81c7aa1a69df899ce253f567ecfc72d34e3626fda460c3f1",
+              "crc32": "4c9744bd",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 75,
+            "declaredUncompressedBytes": 638907378,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 52494,
+              "2": 36181
+            },
+            "exportDfTotals": {
+              "1": 24379525818,
+              "2": 4734116183
+            },
+            "zeroDetailRecords": 41038,
+            "zeroHS6Rows": 580,
+            "canadaDetailRecords": 88675,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2024-11-hs6.json",
+              "bytes": 910643,
+              "sha256": "f50a3764ca73dc148f1202dea405addb6ad0374bc45532571275e47c9d51cf33"
+            },
+            "receipt": {
+              "path": "exports-2024-11-receipt.json",
+              "bytes": 1371,
+              "sha256": "53f7c406f3c083350816b0e093a25a75de96fe7699a3ed3f2e29afcc6a0f9d79"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/exports-2024-11-independent-hs6.json",
+            "bytes": 910644,
+            "sha256": "fda54df60889605ff413c04a3b8708712d3bd785465d59ce2df57fc75d15c8b6"
+          },
+          "workerElapsedSeconds": 5.094000000040978,
+          "workerPeakWorkingSetBytes": 212598784
+        },
+        {
+          "id": "imports-2024-12",
+          "month": "2024-12",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4573,
+          "sumUsd": 35825700666,
+          "countryTotalUsd": 35825700666,
+          "residualUsd": 0,
+          "selectedBytes": 1770954204,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 666,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 666,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 2564302,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "de49abe016e4c7db6548aee00fd691556af3df4895bccd2a1b9c539511d2b815",
+              "crc32": "6a2f51cd",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 1769368380,
+              "records": 2564302,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "2c8dc0d2c4927c3818d3e51c90e1f05813ff3347e5c80204d67f843c1888fb6d",
+              "crc32": "4dccf04e",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 76,
+            "declaredUncompressedBytes": 2023186304,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 57262,
+              "01": 4,
+              "C ": 1280,
+              "K ": 41,
+              "S ": 25068,
+              "S+": 1121
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 53559,
+            "zeroHS6Rows": 1045,
+            "canadaDetailRecords": 84776,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2024-12-hs6.json",
+              "bytes": 795691,
+              "sha256": "977fa68e37b24e573769ce53fb182f90df4527426f2a1122673260fc197c4f55"
+            },
+            "receipt": {
+              "path": "imports-2024-12-receipt.json",
+              "bytes": 1382,
+              "sha256": "579d1702a27e077d9a62ad3a9cd59d5ef3545b3664803e7602e5ff0f6a92c47d"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2024-12-independent-hs6.json",
+            "bytes": 795692,
+            "sha256": "7e39d674259a0308aa295acda446eaa7875a07715da1c242d019d90baae5a20b"
+          },
+          "workerElapsedSeconds": 12.703000000037719,
+          "workerPeakWorkingSetBytes": 394158080
+        },
+        {
+          "id": "exports-2024-12",
+          "month": "2024-12",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5227,
+          "sumUsd": 26321773216,
+          "countryTotalUsd": 26321773216,
+          "residualUsd": 0,
+          "selectedBytes": 506610792,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -26784,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -26784,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1554138,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "b0dbe08f29100f8d72d828461d14e51c6fdcec0488b98e870ab15611aeeab643",
+              "crc32": "2e1850ef",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 505094850,
+              "records": 1554138,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "0b3d9b40889407d8169d8549189eb3e896db063053db0d832af2413d33e05d46",
+              "crc32": "fdb26266",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 75,
+            "declaredUncompressedBytes": 660053427,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 53185,
+              "2": 36758
+            },
+            "exportDfTotals": {
+              "1": 21693263291,
+              "2": 4628509925
+            },
+            "zeroDetailRecords": 43637,
+            "zeroHS6Rows": 614,
+            "canadaDetailRecords": 89943,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2024-12-hs6.json",
+              "bytes": 911861,
+              "sha256": "10f74aadfdd021c412522aff33ce08fab3a68a50a340854eb88a64f78b9767a1"
+            },
+            "receipt": {
+              "path": "exports-2024-12-receipt.json",
+              "bytes": 1371,
+              "sha256": "edab9bcfaf9e2b997974027ee1d98ead4a1e1ddb91137d6fe1244021d76a35d5"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/exports-2024-12-independent-hs6.json",
+            "bytes": 911862,
+            "sha256": "870a633688e3f76e7d6bfa8db622374bdc6e580638ca602d84fe408ca44468f0"
+          },
+          "workerElapsedSeconds": 5.155999999959022,
+          "workerPeakWorkingSetBytes": 212660224
+        },
+        {
+          "id": "imports-2025-01",
+          "month": "2025-01",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 3582,
+          "sumUsd": 38949656278,
+          "countryTotalUsd": 38949656278,
+          "residualUsd": 0,
+          "selectedBytes": 503387268,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -43722,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -43722,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 727251,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 133278,
+              "records": 229,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "bffc0bd63dee1e8d85720c8fcb2443b8d6d1be31bc9a7616d9fc13ac8f6c0018",
+              "crc32": "7e575d13",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 501803190,
+              "records": 727251,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "ac4fb5168f15a70fa7063ced98097f3826f4caeba121eccb647b32034526879d",
+              "crc32": "0627182b",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 106,
+            "declaredUncompressedBytes": 726845224,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 20649,
+              "C ": 379,
+              "K ": 10,
+              "L ": 1,
+              "S ": 10982,
+              "S+": 494
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 205,
+            "zeroHS6Rows": 2,
+            "canadaDetailRecords": 32515,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2025-01-hs6.json",
+              "bytes": 628182,
+              "sha256": "8513704ebc277653469eca2467fb62f88b008f4efdd6ba9e1a0eb2e637a5b254"
+            },
+            "receipt": {
+              "path": "imports-2025-01-receipt.json",
+              "bytes": 1372,
+              "sha256": "89be33f381d865f5e87c13220c018367b94d5940c246e4da3608f46fb5394604"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/imports-2025-01-independent-hs6.json",
+            "bytes": 628182,
+            "sha256": "8513704ebc277653469eca2467fb62f88b008f4efdd6ba9e1a0eb2e637a5b254"
+          },
+          "workerElapsedSeconds": 3.8280000000377186,
+          "workerPeakWorkingSetBytes": 122253312
+        },
+        {
+          "id": "exports-2025-01",
+          "month": "2025-01",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4667,
+          "sumUsd": 27246249213,
+          "countryTotalUsd": 27246249213,
+          "residualUsd": 0,
+          "selectedBytes": 145165918,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 49213,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 49213,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 442006,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 63168,
+              "records": 224,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "13830581bcaa861c97d35faec07ad419a3f2746d4d4b115eab5fc0517b8330a8",
+              "crc32": "eaa4a1d2",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 143651950,
+              "records": 442006,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "168c36f689f2ba3b53abff71301eda283bebfca2bd0b42ae8b886951fe03a5e7",
+              "crc32": "1270989e",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 113,
+            "declaredUncompressedBytes": 312806023,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 30195,
+              "2": 17570
+            },
+            "exportDfTotals": {
+              "1": 22646557604,
+              "2": 4599691609
+            },
+            "zeroDetailRecords": 0,
+            "zeroHS6Rows": 0,
+            "canadaDetailRecords": 47765,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2025-01-hs6.json",
+              "bytes": 815976,
+              "sha256": "235efd6c65a88ec7fc7d9e8f07cca63123d82aac04e708fe846b047058ebe372"
+            },
+            "receipt": {
+              "path": "exports-2025-01-receipt.json",
+              "bytes": 1364,
+              "sha256": "4b5c9bb166609fc9a3d6f676b742f256045a4512f0f918879d63b5d73c99cc9d"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/exports-2025-01-independent-hs6.json",
+            "bytes": 815976,
+            "sha256": "235efd6c65a88ec7fc7d9e8f07cca63123d82aac04e708fe846b047058ebe372"
+          },
+          "workerElapsedSeconds": 1.952999999979511,
+          "workerPeakWorkingSetBytes": 76967936
+        },
+        {
+          "id": "imports-2025-02",
+          "month": "2025-02",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 3874,
+          "sumUsd": 34787423872,
+          "countryTotalUsd": 34787423872,
+          "residualUsd": 0,
+          "selectedBytes": 724560450,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 23872,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 23872,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1047791,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 133860,
+              "records": 230,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "291db34c6dc32a2350c2aaafe63c9469a58b0c13eedeec5cb0e3145f5a5afaae",
+              "crc32": "6e6cd3a7",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 722975790,
+              "records": 1047791,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "fce52c82fad5ebb79dd4f4a4e3f1e67aab1ca504433dacf36f18109aaa8b55ce",
+              "crc32": "6d3c89de",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 76,
+            "declaredUncompressedBytes": 892863409,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 27015,
+              "C ": 510,
+              "K ": 17,
+              "L ": 1,
+              "S ": 13539,
+              "S+": 601
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 10474,
+            "zeroHS6Rows": 336,
+            "canadaDetailRecords": 41683,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2025-02-hs6.json",
+              "bytes": 678028,
+              "sha256": "cdd4eda3b817eabb944d13e852979927566c7fb26a63b09e0df143569936ff30"
+            },
+            "receipt": {
+              "path": "imports-2025-02-receipt.json",
+              "bytes": 1377,
+              "sha256": "308da3d33dc0383b4062641e20abc2e114291310f0a8413896d27be13daab253"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2025-02-independent-hs6.json",
+            "bytes": 678029,
+            "sha256": "a62d22489629d06db418c2aef2f77b5afbec615438ffc9b027fa8dedfa165223"
+          },
+          "workerElapsedSeconds": 5.4060000000172295,
+          "workerPeakWorkingSetBytes": 132538368
+        },
+        {
+          "id": "exports-2025-02",
+          "month": "2025-02",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4859,
+          "sumUsd": 28406495865,
+          "countryTotalUsd": 28406495865,
+          "residualUsd": 0,
+          "selectedBytes": 210728364,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -4135,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -4135,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 643734,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 64014,
+              "records": 227,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "38cf770e38335844c2a6b8cfe56ba28a8a7c191ede2cdf74c83dceb0ec2564ab",
+              "crc32": "d4bb0bad",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 209213550,
+              "records": 643734,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "510b0082cfce4e9fe0f9ececdbc2b9293430e6103cf519d2485090df2005c1df",
+              "crc32": "c69d6084",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 113,
+            "declaredUncompressedBytes": 389141113,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 35613,
+              "2": 22051
+            },
+            "exportDfTotals": {
+              "1": 23959093155,
+              "2": 4447402710
+            },
+            "zeroDetailRecords": 9892,
+            "zeroHS6Rows": 197,
+            "canadaDetailRecords": 57664,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2025-02-hs6.json",
+              "bytes": 849267,
+              "sha256": "a03d906e6bb4a48a2e3f5ac80d5f0104fc5a60ad4794553b11d9adb302d9577c"
+            },
+            "receipt": {
+              "path": "exports-2025-02-receipt.json",
+              "bytes": 1369,
+              "sha256": "3ee4dfd152e2b823422edb029e8e063ef8bd7f75c20a590154caad47cc5bc46f"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/exports-2025-02-independent-hs6.json",
+            "bytes": 849267,
+            "sha256": "a03d906e6bb4a48a2e3f5ac80d5f0104fc5a60ad4794553b11d9adb302d9577c"
+          },
+          "workerElapsedSeconds": 2.6410000000032596,
+          "workerPeakWorkingSetBytes": 122470400
+        },
+        {
+          "id": "imports-2025-03",
+          "month": "2025-03",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4040,
+          "sumUsd": 34967520099,
+          "countryTotalUsd": 34967520099,
+          "residualUsd": 0,
+          "selectedBytes": 954565050,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 20099,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 20099,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 1381131,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 133860,
+              "records": 230,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "7c59733aa5889c43cdf648f3f2c5581c10622cfa342f3cc8fdd4a9834972f30f",
+              "crc32": "c9cb23c9",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 952980390,
+              "records": 1381131,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "153b49ea50d29d76c07d41a23383639ea79b93b921a50f00d14d4df76b1591b1",
+              "crc32": "fd4ece7c",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 106,
+            "declaredUncompressedBytes": 1215240318,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 39797,
+              "C ": 611,
+              "K ": 19,
+              "L ": 1,
+              "S ": 37260,
+              "S+": 1135
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 25622,
+            "zeroHS6Rows": 483,
+            "canadaDetailRecords": 78823,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2025-03-hs6.json",
+              "bytes": 707203,
+              "sha256": "f88ab00fb228d0db6edeb429490fd2de22a302744514a37ef01230ce5452bebf"
+            },
+            "receipt": {
+              "path": "imports-2025-03-receipt.json",
+              "bytes": 1380,
+              "sha256": "83662d058d741c501f94faa6999c4f9df1c11a5310cc24272691ac8eea11c583"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/imports-2025-03-independent-hs6.json",
+            "bytes": 707203,
+            "sha256": "f88ab00fb228d0db6edeb429490fd2de22a302744514a37ef01230ce5452bebf"
+          },
+          "workerElapsedSeconds": 7.01600000000326,
+          "workerPeakWorkingSetBytes": 212336640
+        },
+        {
+          "id": "exports-2025-03",
+          "month": "2025-03",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4954,
+          "sumUsd": 32433182812,
+          "countryTotalUsd": 32433182812,
+          "residualUsd": 0,
+          "selectedBytes": 264089139,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -17188,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -17188,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 807921,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 64014,
+              "records": 227,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "39a4bd60f4237115c71b9a425827abb8c4231d9f62671f441bb49369e12182ba",
+              "crc32": "d0c435d9",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 262574325,
+              "records": 807921,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "37efaa8d66721392a75e8f6408a44faf04e0c04d3b8d4ca76ae1546df9cd2296",
+              "crc32": "e4f64cf7",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 113,
+            "declaredUncompressedBytes": 451044975,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 39304,
+              "2": 25162
+            },
+            "exportDfTotals": {
+              "1": 27219794303,
+              "2": 5213388509
+            },
+            "zeroDetailRecords": 15142,
+            "zeroHS6Rows": 265,
+            "canadaDetailRecords": 64466,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2025-03-hs6.json",
+              "bytes": 865747,
+              "sha256": "6e69ef0265dc13155c47615ec0437d1ccba84ec11ff7c8f37945a4deeffaa179"
+            },
+            "receipt": {
+              "path": "exports-2025-03-receipt.json",
+              "bytes": 1370,
+              "sha256": "f09cac11cfd6acf6460366f7c5db2950029c416f4e7786ea01b5ca0020c1f5c1"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/exports-2025-03-independent-hs6.json",
+            "bytes": 865747,
+            "sha256": "6e69ef0265dc13155c47615ec0437d1ccba84ec11ff7c8f37945a4deeffaa179"
+          },
+          "workerElapsedSeconds": 3.0310000000172295,
+          "workerPeakWorkingSetBytes": 121479168
+        },
+        {
+          "id": "imports-2025-04",
+          "month": "2025-04",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4141,
+          "sumUsd": 29101655844,
+          "countryTotalUsd": 29101655844,
+          "residualUsd": 0,
+          "selectedBytes": 1346010222,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -44156,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -44156,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 1948442,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 134442,
+              "records": 231,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "f0d5f65f733147a2df11c1c1b24923cc574aed39b17eb2fa9c1ab0522dfdd1a3",
+              "crc32": "50242880",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 1344424980,
+              "records": 1948442,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "4cc5f05e3448bac5582a2e65e3ed4cd43cf20dfbc8f6d1d7e9da5ee31caf0278",
+              "crc32": "b1e4371e",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 106,
+            "declaredUncompressedBytes": 1636728445,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 46790,
+              "C ": 695,
+              "K ": 21,
+              "L ": 1,
+              "S ": 43186,
+              "S+": 1329
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 53051,
+            "zeroHS6Rows": 726,
+            "canadaDetailRecords": 92022,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2025-04-hs6.json",
+              "bytes": 723203,
+              "sha256": "f5e3a673bc9b14fdf14ecfd4ddef6b50ca880678c7fa58eb55e1b31095d2acb5"
+            },
+            "receipt": {
+              "path": "imports-2025-04-receipt.json",
+              "bytes": 1381,
+              "sha256": "e4a64af3862f9a6e008e91ec5dbceb25f4fb6ae2f231905e4be8e7b12bab9144"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/imports-2025-04-independent-hs6.json",
+            "bytes": 723203,
+            "sha256": "f5e3a673bc9b14fdf14ecfd4ddef6b50ca880678c7fa58eb55e1b31095d2acb5"
+          },
+          "workerElapsedSeconds": 9.5,
+          "workerPeakWorkingSetBytes": 223637504
+        },
+        {
+          "id": "exports-2025-04",
+          "month": "2025-04",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5020,
+          "sumUsd": 27407840353,
+          "countryTotalUsd": 27407840353,
+          "residualUsd": 0,
+          "selectedBytes": 303708589,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 40353,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 40353,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 929827,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 64014,
+              "records": 227,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "d3603f3066b294dbe7a7468cee80e4a38c6c3bdbddc402242ebba6d49abb0494",
+              "crc32": "0fc4a47f",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 302193775,
+              "records": 929827,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "5181699c1be03056e66d108a0d7ad552b8abdda1d32dfc3913f12693a2f1250b",
+              "crc32": "1ededb39",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 113,
+            "declaredUncompressedBytes": 496927375,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 41482,
+              "2": 27259
+            },
+            "exportDfTotals": {
+              "1": 21771870285,
+              "2": 5635970068
+            },
+            "zeroDetailRecords": 21332,
+            "zeroHS6Rows": 376,
+            "canadaDetailRecords": 68741,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2025-04-hs6.json",
+              "bytes": 877233,
+              "sha256": "92707a4f840c74e533d624dd6b57bfa9f9e96abaed61cfc9851dc847c1299025"
+            },
+            "receipt": {
+              "path": "exports-2025-04-receipt.json",
+              "bytes": 1370,
+              "sha256": "e8d7d8ab94d802a9c51424f429acf3f8dbc8db7c94516fbf1d8beedd61ac077f"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/exports-2025-04-independent-hs6.json",
+            "bytes": 877233,
+            "sha256": "92707a4f840c74e533d624dd6b57bfa9f9e96abaed61cfc9851dc847c1299025"
+          },
+          "workerElapsedSeconds": 3.422000000020489,
+          "workerPeakWorkingSetBytes": 125198336
+        },
+        {
+          "id": "imports-2025-05",
+          "month": "2025-05",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4243,
+          "sumUsd": 29977446512,
+          "countryTotalUsd": 29977446512,
+          "residualUsd": 0,
+          "selectedBytes": 1585591332,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 46512,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 46512,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 2295661,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 134442,
+              "records": 231,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "ac8ad469a6d700664b264e9267d8200cffb6e24ebf4e5519e585fc8ccbe46a63",
+              "crc32": "2c5c9202",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 1584006090,
+              "records": 2295661,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "7bfe137d61afaf2065798046845b7528321727456c615e48a66255a6209437e6",
+              "crc32": "5f7c1d51",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 106,
+            "declaredUncompressedBytes": 1894829594,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 51468,
+              "C ": 771,
+              "K ": 24,
+              "L ": 1,
+              "S ": 47458,
+              "S+": 1508
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 62703,
+            "zeroHS6Rows": 759,
+            "canadaDetailRecords": 101230,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2025-05-hs6.json",
+              "bytes": 740532,
+              "sha256": "3efec1aaf1e92e21c610217f0601c0ff28fcd56605d208eaf233b042f0133ab7"
+            },
+            "receipt": {
+              "path": "imports-2025-05-receipt.json",
+              "bytes": 1382,
+              "sha256": "c4e524a4f4f9ad0ef5ad012279a215ff12dfbb379f247837f0fb26198d1f996b"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/imports-2025-05-independent-hs6.json",
+            "bytes": 740532,
+            "sha256": "3efec1aaf1e92e21c610217f0601c0ff28fcd56605d208eaf233b042f0133ab7"
+          },
+          "workerElapsedSeconds": 11.28100000001723,
+          "workerPeakWorkingSetBytes": 246370304
+        },
+        {
+          "id": "exports-2025-05",
+          "month": "2025-05",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5073,
+          "sumUsd": 28275621286,
+          "countryTotalUsd": 28275621286,
+          "residualUsd": 0,
+          "selectedBytes": 338118160,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 21286,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 21286,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 1035700,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 64860,
+              "records": 230,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "cd97c315293033f29b48f6739ee2832562cff1e21615c4f3bf94bd545c2115c9",
+              "crc32": "cb6104ea",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 336602500,
+              "records": 1035700,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "6779c86016fc58a99156c93a77d5ce9812c1ff83bc96891e07bfe91407dfd709",
+              "crc32": "8550e656",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 113,
+            "declaredUncompressedBytes": 536730268,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 43419,
+              "2": 28865
+            },
+            "exportDfTotals": {
+              "1": 23114705110,
+              "2": 5160916176
+            },
+            "zeroDetailRecords": 24904,
+            "zeroHS6Rows": 417,
+            "canadaDetailRecords": 72284,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2025-05-hs6.json",
+              "bytes": 886243,
+              "sha256": "10fdd517907081c469885c87f7e2537a67cd0dd41db9e93fec958e7caf9f0da4"
+            },
+            "receipt": {
+              "path": "exports-2025-05-receipt.json",
+              "bytes": 1372,
+              "sha256": "7363f98261c347956bd8ddafa62cf1a8641b7ab2cfe01355582953c07c38e3ba"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/exports-2025-05-independent-hs6.json",
+            "bytes": 886243,
+            "sha256": "10fdd517907081c469885c87f7e2537a67cd0dd41db9e93fec958e7caf9f0da4"
+          },
+          "workerElapsedSeconds": 3.7820000000065193,
+          "workerPeakWorkingSetBytes": 132198400
+        },
+        {
+          "id": "imports-2025-06",
+          "month": "2025-06",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4302,
+          "sumUsd": 29645029011,
+          "countryTotalUsd": 29645029011,
+          "residualUsd": 0,
+          "selectedBytes": 1753445562,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 29011,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 29011,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 2538928,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 134442,
+              "records": 231,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "e5b1c18e47178bc2b8e4493d81d509bc8390c924593f40ebef9f418a1d9e8bbf",
+              "crc32": "31ac9dad",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 1751860320,
+              "records": 2538928,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "435c8abe3b3e0e853bcbe6cd56255594db87cf29b48ed860b16b03942978b73b",
+              "crc32": "7cb41f76",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 106,
+            "declaredUncompressedBytes": 2075701797,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 55289,
+              "C ": 837,
+              "K ": 26,
+              "L ": 1,
+              "S ": 51067,
+              "S+": 1612
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 70575,
+            "zeroHS6Rows": 823,
+            "canadaDetailRecords": 108832,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2025-06-hs6.json",
+              "bytes": 750525,
+              "sha256": "e70c27b05fd2ff8fb06e57c060925da974f2fa56c7563936d63da0610f53806e"
+            },
+            "receipt": {
+              "path": "imports-2025-06-receipt.json",
+              "bytes": 1382,
+              "sha256": "58535785464826230f81650e1c2f5f728151eec134a22328b088bab755a233d1"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/imports-2025-06-independent-hs6.json",
+            "bytes": 750525,
+            "sha256": "e70c27b05fd2ff8fb06e57c060925da974f2fa56c7563936d63da0610f53806e"
+          },
+          "workerElapsedSeconds": 12.71899999998277,
+          "workerPeakWorkingSetBytes": 393699328
+        },
+        {
+          "id": "exports-2025-06",
+          "month": "2025-06",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5108,
+          "sumUsd": 28847532304,
+          "countryTotalUsd": 28847532304,
+          "residualUsd": 0,
+          "selectedBytes": 367188760,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 32304,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 32304,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 1125148,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 64860,
+              "records": 230,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "766dc27617965cd2281e1f853521dca366f99591e697a68f29e31f8306f6e8ab",
+              "crc32": "30dbd407",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 365673100,
+              "records": 1125148,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "7ff93a6f6d38475305fdc5a3fc22705ac58b8c4d6189bc1c2e61411b2682ff77",
+              "crc32": "39af1794",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 113,
+            "declaredUncompressedBytes": 571574861,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 44935,
+              "2": 30212
+            },
+            "exportDfTotals": {
+              "1": 24298423015,
+              "2": 4549109289
+            },
+            "zeroDetailRecords": 27944,
+            "zeroHS6Rows": 444,
+            "canadaDetailRecords": 75147,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2025-06-hs6.json",
+              "bytes": 892111,
+              "sha256": "8a499d210a919b1e6d1c744312694a6daa3a8d6de58afcbc286a39b096758045"
+            },
+            "receipt": {
+              "path": "exports-2025-06-receipt.json",
+              "bytes": 1372,
+              "sha256": "bcbd5dfb3460767477f489462c103c94bb6bd8a6fbba3de19697a41c93de8ef4"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/exports-2025-06-independent-hs6.json",
+            "bytes": 892111,
+            "sha256": "8a499d210a919b1e6d1c744312694a6daa3a8d6de58afcbc286a39b096758045"
+          },
+          "workerElapsedSeconds": 3.9679999999934807,
+          "workerPeakWorkingSetBytes": 138055680
+        },
+        {
+          "id": "imports-2025-07",
+          "month": "2025-07",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4348,
+          "sumUsd": 32195874058,
+          "countryTotalUsd": 32195874058,
+          "residualUsd": 0,
+          "selectedBytes": 1920895452,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -25942,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -25942,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 2781609,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 134442,
+              "records": 231,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "0fee08bdff9121814aa769d80fe9ad8bc52e9445482a86ff787047afe0eee53e",
+              "crc32": "e1017c09",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 1919310210,
+              "records": 2781609,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "7eb83c3be2570999040e19328687abeb872062590f6e899d84e4db69e48b3f24",
+              "crc32": "192d14f3",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 106,
+            "declaredUncompressedBytes": 2256203194,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 58633,
+              "01": 3,
+              "C ": 909,
+              "K ": 28,
+              "L ": 1,
+              "S ": 57636,
+              "S+": 1758
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 79467,
+            "zeroHS6Rows": 872,
+            "canadaDetailRecords": 118968,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2025-07-hs6.json",
+              "bytes": 758569,
+              "sha256": "25bb6da74b60350e76e8a89d81b21bde505ab70fa28f23385afa78846d7c2e26"
+            },
+            "receipt": {
+              "path": "imports-2025-07-receipt.json",
+              "bytes": 1389,
+              "sha256": "b33ebdc9c1a665f9236dd4e159053ec9c5d45d7b4b971519c533cf61177047f6"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/imports-2025-07-independent-hs6.json",
+            "bytes": 758569,
+            "sha256": "25bb6da74b60350e76e8a89d81b21bde505ab70fa28f23385afa78846d7c2e26"
+          },
+          "workerElapsedSeconds": 13.5,
+          "workerPeakWorkingSetBytes": 393703424
+        },
+        {
+          "id": "exports-2025-07",
+          "month": "2025-07",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5128,
+          "sumUsd": 27040258760,
+          "countryTotalUsd": 27040258760,
+          "residualUsd": 0,
+          "selectedBytes": 394119560,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -41240,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -41240,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 1208012,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 64860,
+              "records": 230,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "c5c377d6c19f3921e6f5d6611f1d0047365d7c9601eea9dbd2859b3b5e8b356c",
+              "crc32": "503dbdcf",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 392603900,
+              "records": 1208012,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "449c38b693fd352dc4a2af59d3dd2d1100fd65d6f912aa6317e2e32450b169db",
+              "crc32": "6b37bcd8",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 113,
+            "declaredUncompressedBytes": 602753631,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 46225,
+              "2": 31455
+            },
+            "exportDfTotals": {
+              "1": 22671891582,
+              "2": 4368367178
+            },
+            "zeroDetailRecords": 30665,
+            "zeroHS6Rows": 514,
+            "canadaDetailRecords": 77680,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2025-07-hs6.json",
+              "bytes": 895473,
+              "sha256": "3ba5070c991ca0910c1c80ef014bd2364139770e5d96dea370250e4f907641e6"
+            },
+            "receipt": {
+              "path": "exports-2025-07-receipt.json",
+              "bytes": 1372,
+              "sha256": "52ae55de812b2938d040e15ec752ecd79a4bdebb1ad3d68c0e0891deb71b96c9"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/exports-2025-07-independent-hs6.json",
+            "bytes": 895473,
+            "sha256": "3ba5070c991ca0910c1c80ef014bd2364139770e5d96dea370250e4f907641e6"
+          },
+          "workerElapsedSeconds": 4.25,
+          "workerPeakWorkingSetBytes": 143486976
+        },
+        {
+          "id": "imports-2025-08",
+          "month": "2025-08",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4403,
+          "sumUsd": 29140363978,
+          "countryTotalUsd": 29140363978,
+          "residualUsd": 0,
+          "selectedBytes": 2059793142,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -36022,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -36022,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 2982910,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 134442,
+              "records": 231,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "a561d97de59224d008f70f1398060a90608138d6e9d0655e07d2fc7ae6be3bf4",
+              "crc32": "cc850542",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 2058207900,
+              "records": 2982910,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "62278ecae955c11928fecdfe98afa4fe55b499f8d484bae52dad0c98ea5357c3",
+              "crc32": "03452b61",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 106,
+            "declaredUncompressedBytes": 2405841315,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 61199,
+              "01": 5,
+              "C ": 961,
+              "K ": 29,
+              "L ": 1,
+              "S ": 62166,
+              "S+": 1839
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 88046,
+            "zeroHS6Rows": 947,
+            "canadaDetailRecords": 126200,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2025-08-hs6.json",
+              "bytes": 767832,
+              "sha256": "bdab73b0417f71a447283db7e0cea57e448370f0b99d804fe60f8aa805f6b6ad"
+            },
+            "receipt": {
+              "path": "imports-2025-08-receipt.json",
+              "bytes": 1389,
+              "sha256": "3f9e4e4508af136243b6de687c519cc88a55f5dabe9eb0ff8e37b89f96efd4d2"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/imports-2025-08-independent-hs6.json",
+            "bytes": 767832,
+            "sha256": "bdab73b0417f71a447283db7e0cea57e448370f0b99d804fe60f8aa805f6b6ad"
+          },
+          "workerElapsedSeconds": 14.422000000020489,
+          "workerPeakWorkingSetBytes": 394977280
+        },
+        {
+          "id": "exports-2025-08",
+          "month": "2025-08",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5146,
+          "sumUsd": 27222228217,
+          "countryTotalUsd": 27222228217,
+          "residualUsd": 0,
+          "selectedBytes": 419396717,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 28217,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 28217,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 1285787,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "9fdd733fefff681f6403da4e886e921e7532a1e807fc7364e9676eabca225632",
+              "crc32": "8e36bab2",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 417880775,
+              "records": 1285787,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "e43868763797703cf8a18e38d253c1e9969f90d98fd2b7e19f253bd49da9c22c",
+              "crc32": "0badfe75",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 113,
+            "declaredUncompressedBytes": 632017322,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 47291,
+              "2": 32561
+            },
+            "exportDfTotals": {
+              "1": 22938976013,
+              "2": 4283252204
+            },
+            "zeroDetailRecords": 33141,
+            "zeroHS6Rows": 495,
+            "canadaDetailRecords": 79852,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2025-08-hs6.json",
+              "bytes": 898949,
+              "sha256": "91230d15367f51cc76ad3e3916abef96407a4733cbfacdd3ecd7b97ce07b1148"
+            },
+            "receipt": {
+              "path": "exports-2025-08-receipt.json",
+              "bytes": 1372,
+              "sha256": "2a662d65086507bb26db92dbf4eadd0bf9beb843441302436bbd4de021096b71"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/exports-2025-08-independent-hs6.json",
+            "bytes": 898949,
+            "sha256": "91230d15367f51cc76ad3e3916abef96407a4733cbfacdd3ecd7b97ce07b1148"
+          },
+          "workerElapsedSeconds": 4.514999999955762,
+          "workerPeakWorkingSetBytes": 213053440
+        },
+        {
+          "id": "imports-2025-09",
+          "month": "2025-09",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4455,
+          "sumUsd": 31749010166,
+          "countryTotalUsd": 31749010166,
+          "residualUsd": 0,
+          "selectedBytes": 2190695802,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 10166,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 10166,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 3172624,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 134442,
+              "records": 231,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "4dbd0aca6a9e819590299a96b34332037f564cc4f79902e3e7aa6bcc997027f7",
+              "crc32": "d79e3596",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 2189110560,
+              "records": 3172624,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "1bea5b5b74db3b5ce6ce965cadb5f3d1b68535a35b5ee7116e74f406bb3407c2",
+              "crc32": "d79310bc",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 106,
+            "declaredUncompressedBytes": 2543678021,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 64191,
+              "01": 5,
+              "C ": 1002,
+              "K ": 31,
+              "L ": 1,
+              "S ": 66715,
+              "S+": 1972
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 92803,
+            "zeroHS6Rows": 897,
+            "canadaDetailRecords": 133917,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2025-09-hs6.json",
+              "bytes": 777256,
+              "sha256": "7a02b52b4c350b8c05e658d2e059d0f20a5fd865be2bf8e0e6593a2a745d66ab"
+            },
+            "receipt": {
+              "path": "imports-2025-09-receipt.json",
+              "bytes": 1390,
+              "sha256": "0c83f0aa8589f3e2d866402b24ab651c8acb3324fceebff96eb667d090cc3708"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/imports-2025-09-independent-hs6.json",
+            "bytes": 777256,
+            "sha256": "7a02b52b4c350b8c05e658d2e059d0f20a5fd865be2bf8e0e6593a2a745d66ab"
+          },
+          "workerElapsedSeconds": 15.594000000040978,
+          "workerPeakWorkingSetBytes": 393940992
+        },
+        {
+          "id": "exports-2025-09",
+          "month": "2025-09",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5159,
+          "sumUsd": 26623525449,
+          "countryTotalUsd": 26623525449,
+          "residualUsd": 0,
+          "selectedBytes": 441504517,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 25449,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 25449,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 1353811,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "a8904e97b93cb8af43981ca5396dfbe5542c04edec10bb5cac3cbd0162855e5d",
+              "crc32": "5be6144d",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 439988575,
+              "records": 1353811,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "9c0d21000876d0e3f8fa72910738039917967cd0f0b797fb9a9dc402e6cb1144",
+              "crc32": "6d55d774",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 113,
+            "declaredUncompressedBytes": 657593075,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 48271,
+              "2": 33447
+            },
+            "exportDfTotals": {
+              "1": 22415687307,
+              "2": 4207838142
+            },
+            "zeroDetailRecords": 35799,
+            "zeroHS6Rows": 567,
+            "canadaDetailRecords": 81718,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2025-09-hs6.json",
+              "bytes": 901069,
+              "sha256": "efd783f191547b7bbbf4df992cb8b7782dd11d37a945c82e6418ba3303929fae"
+            },
+            "receipt": {
+              "path": "exports-2025-09-receipt.json",
+              "bytes": 1372,
+              "sha256": "25cf48e56181d2e57de4222b9c26fff1b6b1194e584a972f35dea17fdc36d5d2"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/exports-2025-09-independent-hs6.json",
+            "bytes": 901069,
+            "sha256": "efd783f191547b7bbbf4df992cb8b7782dd11d37a945c82e6418ba3303929fae"
+          },
+          "workerElapsedSeconds": 4.719000000040978,
+          "workerPeakWorkingSetBytes": 212344832
+        },
+        {
+          "id": "imports-2025-10",
+          "month": "2025-10",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4500,
+          "sumUsd": 31235491687,
+          "countryTotalUsd": 31235491687,
+          "residualUsd": 0,
+          "selectedBytes": 2315881122,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -8313,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -8313,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 3354052,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 134442,
+              "records": 231,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "01fe5f1ccc7fa157a74ee68151e2d205930c4e7e6730b555adc3eb147241dded",
+              "crc32": "c06bddaa",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 2314295880,
+              "records": 3354052,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "3579c3542e3265e1b4504a11acfa8122caad2d16c326a4764b2b2900c422c94e",
+              "crc32": "7d848a7c",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 106,
+            "declaredUncompressedBytes": 2668781687,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 67150,
+              "01": 5,
+              "C ": 1048,
+              "K ": 34,
+              "L ": 1,
+              "S ": 71063,
+              "S+": 2110
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 98469,
+            "zeroHS6Rows": 908,
+            "canadaDetailRecords": 141411,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2025-10-hs6.json",
+              "bytes": 785244,
+              "sha256": "8b73cf59a54ea72799c117a8a4de0968a095201e3e3ef1dbf9d526d7bfdf9060"
+            },
+            "receipt": {
+              "path": "imports-2025-10-receipt.json",
+              "bytes": 1390,
+              "sha256": "d6173996626725f765a428e2a7b0ae91c9aa51a96725b84fbc67b1d5cced9550"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/imports-2025-10-independent-hs6.json",
+            "bytes": 785244,
+            "sha256": "8b73cf59a54ea72799c117a8a4de0968a095201e3e3ef1dbf9d526d7bfdf9060"
+          },
+          "workerElapsedSeconds": 16.92199999996228,
+          "workerPeakWorkingSetBytes": 393969664
+        },
+        {
+          "id": "exports-2025-10",
+          "month": "2025-10",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5171,
+          "sumUsd": 29282080357,
+          "countryTotalUsd": 29282080357,
+          "residualUsd": 0,
+          "selectedBytes": 464346817,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -19643,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -19643,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 1424095,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "5d8db5312b49dca906db63cedf32d0dec923be1624bb37a97a10a54455afdcc7",
+              "crc32": "6d0d44d6",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 462830875,
+              "records": 1424095,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "c70b9836308a1d102bba291ecd29e44634f1455378099001f33c34309c777135",
+              "crc32": "c34ff748",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 113,
+            "declaredUncompressedBytes": 684007917,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 49303,
+              "2": 34367
+            },
+            "exportDfTotals": {
+              "1": 24281086717,
+              "2": 5000993640
+            },
+            "zeroDetailRecords": 35515,
+            "zeroHS6Rows": 483,
+            "canadaDetailRecords": 83670,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2025-10-hs6.json",
+              "bytes": 903707,
+              "sha256": "5b679db7f66d8cd41d1d94249430ac5f410025a9a498b192a413edfa9aa5120e"
+            },
+            "receipt": {
+              "path": "exports-2025-10-receipt.json",
+              "bytes": 1372,
+              "sha256": "faa6f215d4d2aa3908fa9fdd83bd0b498f9c937e9a967ea35ab893e0b7f0bfe7"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/exports-2025-10-independent-hs6.json",
+            "bytes": 903707,
+            "sha256": "5b679db7f66d8cd41d1d94249430ac5f410025a9a498b192a413edfa9aa5120e"
+          },
+          "workerElapsedSeconds": 4.89100000000326,
+          "workerPeakWorkingSetBytes": 213430272
+        },
+        {
+          "id": "imports-2025-11",
+          "month": "2025-11",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4525,
+          "sumUsd": 28513696440,
+          "countryTotalUsd": 28513696440,
+          "residualUsd": 0,
+          "selectedBytes": 2424818322,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -3560,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -3560,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 3511932,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 134442,
+              "records": 231,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "4deebe01feb2b5bd1dd217a76906d8dbe443d36fec70a1a8e56df0a8f9546a01",
+              "crc32": "f92a120d",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 2423233080,
+              "records": 3511932,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "c0793de7e21c665fafaf3f08f034da9bc09236cddf0050f58d12029e0472771f",
+              "crc32": "c70c042c",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 106,
+            "declaredUncompressedBytes": 2777611715,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 69613,
+              "01": 5,
+              "C ": 1099,
+              "K ": 35,
+              "L ": 1,
+              "S ": 74532,
+              "S+": 2210
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 106545,
+            "zeroHS6Rows": 984,
+            "canadaDetailRecords": 147495,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2025-11-hs6.json",
+              "bytes": 789388,
+              "sha256": "f22f332779bfcbb01210ff8f3e78cf2a67822c6278d6a7a4018ffc186e2307fc"
+            },
+            "receipt": {
+              "path": "imports-2025-11-receipt.json",
+              "bytes": 1391,
+              "sha256": "6b7364315f1d253908271a33a61beeeb3f3bde3f0391edae96042389a883512f"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/imports-2025-11-independent-hs6.json",
+            "bytes": 789388,
+            "sha256": "f22f332779bfcbb01210ff8f3e78cf2a67822c6278d6a7a4018ffc186e2307fc"
+          },
+          "workerElapsedSeconds": 17.29599999997299,
+          "workerPeakWorkingSetBytes": 394117120
+        },
+        {
+          "id": "exports-2025-11",
+          "month": "2025-11",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5187,
+          "sumUsd": 25410938561,
+          "countryTotalUsd": 25410938561,
+          "residualUsd": 0,
+          "selectedBytes": 484142567,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 38561,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 38561,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 1485005,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "acf8f5661ec853205ffd27b42ab6c814808bcd89961c86aa3ecd1992a225dc24",
+              "crc32": "525d0f9f",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 482626625,
+              "records": 1485005,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "6ad817a84e3efcea64645da4f382165ba114c80d3cd563f4f76ad17f0a13c07a",
+              "crc32": "774a8d28",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 113,
+            "declaredUncompressedBytes": 706899192,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 50107,
+              "2": 35127
+            },
+            "exportDfTotals": {
+              "1": 20947545850,
+              "2": 4463392711
+            },
+            "zeroDetailRecords": 39469,
+            "zeroHS6Rows": 562,
+            "canadaDetailRecords": 85234,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2025-11-hs6.json",
+              "bytes": 905873,
+              "sha256": "0480b8609703c2fb191d535591b1b0bc5112fa2fbd2014dacb03ed79013e44b7"
+            },
+            "receipt": {
+              "path": "exports-2025-11-receipt.json",
+              "bytes": 1372,
+              "sha256": "de6fb703d9431e4347d52c7cd3017cff9d255fc325dc5e948ef7fa1c4b9580c0"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/exports-2025-11-independent-hs6.json",
+            "bytes": 905873,
+            "sha256": "0480b8609703c2fb191d535591b1b0bc5112fa2fbd2014dacb03ed79013e44b7"
+          },
+          "workerElapsedSeconds": 5.0310000000172295,
+          "workerPeakWorkingSetBytes": 212598784
+        },
+        {
+          "id": "imports-2025-12",
+          "month": "2025-12",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4557,
+          "sumUsd": 31658890347,
+          "countryTotalUsd": 31658890347,
+          "residualUsd": 0,
+          "selectedBytes": 2535903492,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -9653,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -9653,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 3672925,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 134442,
+              "records": 231,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "ef8377fec6319d840350ea4e86c1023c040cd0f77480000af53bab5b0dcd9520",
+              "crc32": "8472dc44",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 2534318250,
+              "records": 3672925,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "60d20d7db5c49c9ce2c3d1bc1ad550a20271a45a140aaeda384f6a728014144e",
+              "crc32": "2a2f1458",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 106,
+            "declaredUncompressedBytes": 2888577543,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 71980,
+              "01": 5,
+              "C ": 1140,
+              "K ": 35,
+              "L ": 1,
+              "S ": 77583,
+              "S+": 2323
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 112516,
+            "zeroHS6Rows": 1038,
+            "canadaDetailRecords": 153067,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2025-12-hs6.json",
+              "bytes": 795082,
+              "sha256": "dd7b9f775b703af4b19a67a237d522be5a3eebe8d12d868952269375d677f698"
+            },
+            "receipt": {
+              "path": "imports-2025-12-receipt.json",
+              "bytes": 1392,
+              "sha256": "343fd4c1ef28b22d81469993cb4d897137a0c356d70c012997467b1a99cfe283"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/imports-2025-12-independent-hs6.json",
+            "bytes": 795082,
+            "sha256": "dd7b9f775b703af4b19a67a237d522be5a3eebe8d12d868952269375d677f698"
+          },
+          "workerElapsedSeconds": 17.90600000001723,
+          "workerPeakWorkingSetBytes": 402092032
+        },
+        {
+          "id": "exports-2025-12",
+          "month": "2025-12",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5191,
+          "sumUsd": 25423759199,
+          "countryTotalUsd": 25423759199,
+          "residualUsd": 0,
+          "selectedBytes": 502400742,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -40801,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -40801,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "new23",
+          "globalDetailRecords": 1541184,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "182073dc09eb662faf1fbb36b52f23b85677d21279829e692b3bd9ce9279e2bd",
+              "crc32": "ea893422",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 500884800,
+              "records": 1541184,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "dda7651c9f5e3df450b13cf0c021065cfa34b2629c9a185471c69fb6312da62f",
+              "crc32": "fa494712",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 113,
+            "declaredUncompressedBytes": 727998865,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 50784,
+              "2": 35760
+            },
+            "exportDfTotals": {
+              "1": 20693465009,
+              "2": 4730294190
+            },
+            "zeroDetailRecords": 41362,
+            "zeroHS6Rows": 583,
+            "canadaDetailRecords": 86544,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2025-12-hs6.json",
+              "bytes": 906422,
+              "sha256": "a6e2d25953009bad32b7272ac3d00ad3c0fa3554194ee9b9a8964338dfef5587"
+            },
+            "receipt": {
+              "path": "exports-2025-12-receipt.json",
+              "bytes": 1372,
+              "sha256": "3ec818b5fd772bd786055643ba98e70dfb824b9d9e24111afd03abec215c8c1e"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-inventory-independent-review-20261011/exports-2025-12-independent-hs6.json",
+            "bytes": 906422,
+            "sha256": "a6e2d25953009bad32b7272ac3d00ad3c0fa3554194ee9b9a8964338dfef5587"
+          },
+          "workerElapsedSeconds": 5.219000000040978,
+          "workerPeakWorkingSetBytes": 212615168
+        },
+        {
+          "id": "imports-2026-01",
+          "month": "2026-01",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 3507,
+          "sumUsd": 28330595475,
+          "countryTotalUsd": 28330595475,
+          "residualUsd": 0,
+          "selectedBytes": 533806350,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -4525,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -4525,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 771340,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 130950,
+              "records": 225,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "2be011b43ecd3f6bf9910c67fa2fef5769e219c7cc0040301fd3d810d6e4953f",
+              "crc32": "41c05973",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 532224600,
+              "records": 771340,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "3beb902efbc6f8a00c1cab2dec4eebdc6f7ff0873e4f58313f851002c4c5b49d",
+              "crc32": "866d3b50",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 68,
+            "declaredUncompressedBytes": 675560617,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 11633,
+              "C ": 309,
+              "K ": 3,
+              "S ": 27785,
+              "S+": 575
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 203,
+            "zeroHS6Rows": 1,
+            "canadaDetailRecords": 40305,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2026-01-hs6.json",
+              "bytes": 617771,
+              "sha256": "35a08bf4a96ed348e4f735b9c1f892e12f63548a5d5dd48edeabfd5f449fd991"
+            },
+            "receipt": {
+              "path": "imports-2026-01-receipt.json",
+              "bytes": 1363,
+              "sha256": "74f62ac1f43aa8d08f33f8477e441d700cf647570f8639493fc24048e6521b0c"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2026-01-independent-hs6.json",
+            "bytes": 617772,
+            "sha256": "d5552d2a8b8000ab551a20aaf6fc32bed6968f486f5da7ebbff1cc5493e74c35"
+          },
+          "workerElapsedSeconds": 4.061999999976251,
+          "workerPeakWorkingSetBytes": 121958400
+        },
+        {
+          "id": "exports-2026-01",
+          "month": "2026-01",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4599,
+          "sumUsd": 24510292823,
+          "countryTotalUsd": 24510292823,
+          "residualUsd": 0,
+          "selectedBytes": 143892697,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": 49092823,
+            "publicationDifferenceUsd": -7177
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": 49092823,
+            "publicationDifferenceUsd": -7177
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 438091,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 62322,
+              "records": 221,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "62fb5d7f94e8a7479734cc442894f42838cd9d1ce392da1f09b6ef1de2aca561",
+              "crc32": "252c9122",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 142379575,
+              "records": 438091,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "09579a52701dd326a060c351bc0eab0c5786e19f6a54c8623a14d3f4690f2e31",
+              "crc32": "933cec81",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 75,
+            "declaredUncompressedBytes": 254511750,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 28674,
+              "2": 16571
+            },
+            "exportDfTotals": {
+              "1": 20132178372,
+              "2": 4378114451
+            },
+            "zeroDetailRecords": 0,
+            "zeroHS6Rows": 0,
+            "canadaDetailRecords": 45245,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2026-01-hs6.json",
+              "bytes": 804955,
+              "sha256": "ff489aa0545774f92078ae0a71109144301ad263d65e39d3333158e3fa216be1"
+            },
+            "receipt": {
+              "path": "exports-2026-01-receipt.json",
+              "bytes": 1363,
+              "sha256": "e941400e7d03b5324f7703e2d2deec354826756677fc0215e0647ba40327f96d"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/exports-2026-01-independent-hs6.json",
+            "bytes": 804956,
+            "sha256": "6487b704949c7f86acb65b198053abffb71bc9678761d7ff6a98f68fbf687bcf"
+          },
+          "workerElapsedSeconds": 1.8910000000032596,
+          "workerPeakWorkingSetBytes": 76345344
+        },
+        {
+          "id": "imports-2026-02",
+          "month": "2026-02",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 3824,
+          "sumUsd": 29172287264,
+          "countryTotalUsd": 29172287264,
+          "residualUsd": 0,
+          "selectedBytes": 812032440,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -12736,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -12736,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1174562,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 133860,
+              "records": 230,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "6d9104a7c2750eaff0b9bde3fbdafbde30ca004b4d281f9f2150f02078ff8803",
+              "crc32": "4c947cd0",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 810447780,
+              "records": 1174562,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "0fd03baac42f37bc3b8f9fe8e5d7ee2ed300317f1a729a1ddd36d43bbb4a2bd3",
+              "crc32": "b90fde26",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 68,
+            "declaredUncompressedBytes": 977470262,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 17604,
+              "C ": 458,
+              "K ": 8,
+              "S ": 37387,
+              "S+": 757
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 14892,
+            "zeroHS6Rows": 289,
+            "canadaDetailRecords": 56214,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2026-02-hs6.json",
+              "bytes": 671016,
+              "sha256": "ab3758a3fea5eed0e67a90aecb6d35dc4f3b744456f29182613eb7ee40c414c6"
+            },
+            "receipt": {
+              "path": "imports-2026-02-receipt.json",
+              "bytes": 1369,
+              "sha256": "8af7283a40d4e1f106d8ba6c32b48fb1fb492c99751c759840c69f7849cf26d2"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2026-02-independent-hs6.json",
+            "bytes": 671017,
+            "sha256": "52e37b95cdcec757c3953b7450f7588c8e1975ae816fa1080e13454a8a25a499"
+          },
+          "workerElapsedSeconds": 6.092999999993481,
+          "workerPeakWorkingSetBytes": 140578816
+        },
+        {
+          "id": "exports-2026-02",
+          "month": "2026-02",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4807,
+          "sumUsd": 28371311032,
+          "countryTotalUsd": 28371311032,
+          "residualUsd": 0,
+          "selectedBytes": 208200600,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -46488968,
+            "publicationDifferenceUsd": 11032
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -46488968,
+            "publicationDifferenceUsd": 11032
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 635958,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 63450,
+              "records": 225,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "1a0cecd5596c8da980befe2b181a6c04a268b8721ff7198b0c9456c219c1c294",
+              "crc32": "fbe768f9",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 206686350,
+              "records": 635958,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "0d96205df43e8462538e79960775c4322d4f73e3d2411f84e029d82718e4d4b3",
+              "crc32": "dc4d4a42",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 75,
+            "declaredUncompressedBytes": 329431138,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 34195,
+              "2": 21199
+            },
+            "exportDfTotals": {
+              "1": 23658020776,
+              "2": 4713290256
+            },
+            "zeroDetailRecords": 9263,
+            "zeroHS6Rows": 188,
+            "canadaDetailRecords": 55394,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2026-02-hs6.json",
+              "bytes": 841026,
+              "sha256": "fd507bcbc73b563bc1b5f13569aeceffbb72638c315611bbfe820c0fc4b8690b"
+            },
+            "receipt": {
+              "path": "exports-2026-02-receipt.json",
+              "bytes": 1368,
+              "sha256": "269e85a50ea93bc56335a9c56fca4bfdca8cf74a012113850069a991aaf3d32b"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/exports-2026-02-independent-hs6.json",
+            "bytes": 841027,
+            "sha256": "5c36894f41c78d587ac8a1741d80d6b25df3e3cd7dc40c4c361c33775c5336a1"
+          },
+          "workerElapsedSeconds": 2.5939999999827705,
+          "workerPeakWorkingSetBytes": 121511936
+        },
+        {
+          "id": "imports-2026-03",
+          "month": "2026-03",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4035,
+          "sumUsd": 34089317327,
+          "countryTotalUsd": 34089317327,
+          "residualUsd": 0,
+          "selectedBytes": 1050994512,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 17327,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 17327,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1520883,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 134442,
+              "records": 231,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "f9ed581cb129c2a923a3a9904a981838e11869499c7b56c6268b15be05cce46e",
+              "crc32": "4a5109ac",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 1049409270,
+              "records": 1520883,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "5249f276f4382418c73bf58feda9e44d29694454576e4d85833a8c6d49cf8d1d",
+              "crc32": "0c2294d4",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 68,
+            "declaredUncompressedBytes": 1235618795,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 23597,
+              "C ": 618,
+              "K ": 13,
+              "S ": 45200,
+              "S+": 899
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 25278,
+            "zeroHS6Rows": 426,
+            "canadaDetailRecords": 70327,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2026-03-hs6.json",
+              "bytes": 707592,
+              "sha256": "f88d2a99a9acb59cb246664b325ba8cb4218dabe84ceec347ca3ceb1df8a2148"
+            },
+            "receipt": {
+              "path": "imports-2026-03-receipt.json",
+              "bytes": 1372,
+              "sha256": "98558b191ab80b324b7ac703908ebb38437a6dbaa25708e816b8dd9b3644a131"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2026-03-independent-hs6.json",
+            "bytes": 707593,
+            "sha256": "ac7e894c4a11962dd1fc382f36759d443ec1399ffa8f02675036fbcd67be1f03"
+          },
+          "workerElapsedSeconds": 7.73399999999674,
+          "workerPeakWorkingSetBytes": 212041728
+        },
+        {
+          "id": "exports-2026-03",
+          "month": "2026-03",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4915,
+          "sumUsd": 31438946691,
+          "countryTotalUsd": 31438946691,
+          "residualUsd": 0,
+          "selectedBytes": 259553807,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -215853309,
+            "publicationDifferenceUsd": 46691
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -215853309,
+            "publicationDifferenceUsd": 46691
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 793967,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 63732,
+              "records": 226,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "8d686a25ede21035146730f03157db26d88d6eb3ac15cfd22affd05c3b617062",
+              "crc32": "e2bb9694",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 258039275,
+              "records": 793967,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "5c5075b0bbc249a0a94d74dd28863266a212d03db367db26c1cb540ccba909e2",
+              "crc32": "06edc0b8",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 75,
+            "declaredUncompressedBytes": 389017094,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 38012,
+              "2": 24400
+            },
+            "exportDfTotals": {
+              "1": 26269342521,
+              "2": 5169604170
+            },
+            "zeroDetailRecords": 14415,
+            "zeroHS6Rows": 273,
+            "canadaDetailRecords": 62412,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2026-03-hs6.json",
+              "bytes": 859357,
+              "sha256": "0b0cf6a968ee7f2dba6b9f9db561fd1948dd5b34764d0f356f55032c8dcd5403"
+            },
+            "receipt": {
+              "path": "exports-2026-03-receipt.json",
+              "bytes": 1369,
+              "sha256": "5d3b1d2746445f41e6c9ca9c5812ac3f69adaebfd66dfef1ba493cb2ebd60900"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/exports-2026-03-independent-hs6.json",
+            "bytes": 859358,
+            "sha256": "bcc9fce243e9f981a5cadb2b24d99d861fc84895ea12e6a348c38a8a12396083"
+          },
+          "workerElapsedSeconds": 3.047000000020489,
+          "workerPeakWorkingSetBytes": 121413632
+        },
+        {
+          "id": "imports-2026-04",
+          "month": "2026-04",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4148,
+          "sumUsd": 35028144854,
+          "countryTotalUsd": 35028144854,
+          "residualUsd": 0,
+          "selectedBytes": 1223710374,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 44854,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 44854,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1771195,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "af1bd3fd34cd197ae556f86b5ef63c8d875aa2e3e8c63e9bc74a7a72321a9789",
+              "crc32": "b5b1d736",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 1222124550,
+              "records": 1771195,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "7628bc41c3cd906bffe3b363ac847a1f2ae8ad8d6cb0e6c3b58e240289c2e8a0",
+              "crc32": "7df83533",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 68,
+            "declaredUncompressedBytes": 1422068883,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 27929,
+              "C ": 722,
+              "K ": 15,
+              "S ": 51044,
+              "S+": 993
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 37949,
+            "zeroHS6Rows": 542,
+            "canadaDetailRecords": 80703,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2026-04-hs6.json",
+              "bytes": 726092,
+              "sha256": "cbac3943061da7e216244752602f77f6a7ed8447c2d4c16fabc57e1ed2c45c43"
+            },
+            "receipt": {
+              "path": "imports-2026-04-receipt.json",
+              "bytes": 1372,
+              "sha256": "65c389c8a0ff12ddbfa7995a10df90bf45845b4350c18466792ddd8db41c5ac3"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2026-04-independent-hs6.json",
+            "bytes": 726093,
+            "sha256": "c8b3f6baa57675ae11e9665061cc56bf19b096b8f458bd9bdd977e6d6f4021f4"
+          },
+          "workerElapsedSeconds": 8.811999999976251,
+          "workerPeakWorkingSetBytes": 212180992
+        },
+        {
+          "id": "exports-2026-04",
+          "month": "2026-04",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4982,
+          "sumUsd": 29741092873,
+          "countryTotalUsd": 29741092873,
+          "residualUsd": 0,
+          "selectedBytes": 299106914,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -456007127,
+            "publicationDifferenceUsd": -7127
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -456007127,
+            "publicationDifferenceUsd": -7127
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 915668,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 64014,
+              "records": 227,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "c98a1c04f3279953ed0353b2f0f5ec3335a971481b152b9724c1bac7113705b8",
+              "crc32": "89a5cbe9",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 297592100,
+              "records": 915668,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "ee09d56cc92a58e40ee363e0ce6a73952b1a9e0a516fcf0053ffa58a41cba715",
+              "crc32": "6ea8fa32",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 75,
+            "declaredUncompressedBytes": 434824848,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 40660,
+              "2": 26590
+            },
+            "exportDfTotals": {
+              "1": 25095429332,
+              "2": 4645663541
+            },
+            "zeroDetailRecords": 19743,
+            "zeroHS6Rows": 331,
+            "canadaDetailRecords": 67250,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2026-04-hs6.json",
+              "bytes": 871068,
+              "sha256": "c7799f2c3a5b66c0446b9968fc2d1abbc8b42424daede5236737e81714f2bd60"
+            },
+            "receipt": {
+              "path": "exports-2026-04-receipt.json",
+              "bytes": 1369,
+              "sha256": "848043f8790f782319107c81c2a6f1dce13e99ddf7d8f1f57fe933a401194fa1"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/exports-2026-04-independent-hs6.json",
+            "bytes": 871069,
+            "sha256": "2cfc4c448431586dd3c782e1f5688b9f04b57e03515f133cb1a7564257ffc9d7"
+          },
+          "workerElapsedSeconds": 3.3589999999967404,
+          "workerPeakWorkingSetBytes": 124956672
+        },
+        {
+          "id": "imports-2026-05",
+          "month": "2026-05",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4231,
+          "sumUsd": 36337153960,
+          "countryTotalUsd": 36337153960,
+          "residualUsd": 0,
+          "selectedBytes": 1377687324,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -46040,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -46040,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1994350,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "101fcd0bb0df0a452a307c651813fdeedd0da465b325b4e7fac12fa1b6385145",
+              "crc32": "5ecaa046",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 1376101500,
+              "records": 1994350,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "dda721b8bd388617b0416dd6c031427e37d3f95c8b7f468ac7f5e904df97335e",
+              "crc32": "4709945d",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 68,
+            "declaredUncompressedBytes": 1588227344,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 32058,
+              "01": 1,
+              "C ": 810,
+              "K ": 19,
+              "S ": 55610,
+              "S+": 1106
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 47182,
+            "zeroHS6Rows": 645,
+            "canadaDetailRecords": 89604,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2026-05-hs6.json",
+              "bytes": 740578,
+              "sha256": "056ca1622950e0d758c8bdde172cb7ae9c4873ff5112755aeaf9660a7b9cdf5e"
+            },
+            "receipt": {
+              "path": "imports-2026-05-receipt.json",
+              "bytes": 1380,
+              "sha256": "e8badcbe8d6f0e262ff7a8db70e07d688df8d50e6e91f274f389d088f7b7d272"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2026-05-independent-hs6.json",
+            "bytes": 740579,
+            "sha256": "3625d2129422d37826632a2f47e9e8c672474ada880c92e26b677160711f3cb4"
+          },
+          "workerElapsedSeconds": 9.875,
+          "workerPeakWorkingSetBytes": 226607104
+        },
+        {
+          "id": "exports-2026-05",
+          "month": "2026-05",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5031,
+          "sumUsd": 29790835759,
+          "countryTotalUsd": 29790835759,
+          "residualUsd": 0,
+          "selectedBytes": 333757028,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -608164241,
+            "publicationDifferenceUsd": 35759
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -608164241,
+            "publicationDifferenceUsd": 35759
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1022282,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 64578,
+              "records": 229,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "e628481c282f6a0208027408b4e429aef54838a15891fcd66e113c621ce4df8c",
+              "crc32": "acf82a7d",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 332241650,
+              "records": 1022282,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "49e220592dcb7585d2c1a1979a8a3f5f34f9069f7fc6d8162e38f438874cfe6f",
+              "crc32": "7e039aff",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 75,
+            "declaredUncompressedBytes": 474896286,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 42728,
+              "2": 28280
+            },
+            "exportDfTotals": {
+              "1": 25151855736,
+              "2": 4638980023
+            },
+            "zeroDetailRecords": 23591,
+            "zeroHS6Rows": 386,
+            "canadaDetailRecords": 71008,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2026-05-hs6.json",
+              "bytes": 879056,
+              "sha256": "b8f94ae752335fe08b0c30f6df502adc8a75d3e80e05df20292aa903e139e329"
+            },
+            "receipt": {
+              "path": "exports-2026-05-receipt.json",
+              "bytes": 1371,
+              "sha256": "6a984f961585304ed6a3c5830c402885b90549d7e86814e8e31aaba0ab294207"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/exports-2026-05-independent-hs6.json",
+            "bytes": 879057,
+            "sha256": "c149894f1f88d44c6182fce7aea0e78db4b953eb95576ae182cbc0105f488cc2"
+          },
+          "workerElapsedSeconds": 3.6560000000172295,
+          "workerPeakWorkingSetBytes": 131633152
+        },
+        {
+          "id": "imports-2026-06",
+          "month": "2026-06",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4311,
+          "sumUsd": 37216785546,
+          "countryTotalUsd": 37216785546,
+          "residualUsd": 0,
+          "selectedBytes": 1515251934,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -14454,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -14454,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 2193719,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "b836b371129a3819d753347db3a20b5af8ba3d62caa9f70c239803ae2798ffa4",
+              "crc32": "8c64f2ef",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 1513666110,
+              "records": 2193719,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "59544e9d4ccf458d7e11912fdca6af58e94e20d683cf2ff8efc8d10820d43c22",
+              "crc32": "a8111f8d",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 68,
+            "declaredUncompressedBytes": 1736614841,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 35536,
+              "01": 1,
+              "C ": 921,
+              "K ": 21,
+              "S ": 59850,
+              "S+": 1230
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 55019,
+            "zeroHS6Rows": 724,
+            "canadaDetailRecords": 97559,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2026-06-hs6.json",
+              "bytes": 754559,
+              "sha256": "16a27adc48b86f5bbe07b54c96aa0e85412058c82010c1c053da1c53ae577a55"
+            },
+            "receipt": {
+              "path": "imports-2026-06-receipt.json",
+              "bytes": 1380,
+              "sha256": "41ef573143309d1fce9a408f5d394e7c5aa7deb95a76b43302807f67bc53d594"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2026-06-independent-hs6.json",
+            "bytes": 754560,
+            "sha256": "13998196315f9319255229fb1475efda477af327ac69f4f9bc7c070c2df69ddd"
+          },
+          "workerElapsedSeconds": 10.78200000000652,
+          "workerPeakWorkingSetBytes": 239308800
+        },
+        {
+          "id": "exports-2026-06",
+          "month": "2026-06",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5062,
+          "sumUsd": 30695510012,
+          "countryTotalUsd": 30695510012,
+          "residualUsd": 0,
+          "selectedBytes": 364105853,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -311589988,
+            "publicationDifferenceUsd": 10012
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -311589988,
+            "publicationDifferenceUsd": 10012
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1115663,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 64578,
+              "records": 229,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "553907b650c160067d9d11bbb95b704b3deeea5cb73a0932ce9a758dd65514ff",
+              "crc32": "44fc83b7",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 362590475,
+              "records": 1115663,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "a03e89e8fc42c454511904d87ccdcadc1c8d423b5c798168169418fe6d0126e9",
+              "crc32": "e551e065",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 75,
+            "declaredUncompressedBytes": 511200500,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 44386,
+              "2": 29744
+            },
+            "exportDfTotals": {
+              "1": 26027770294,
+              "2": 4667739718
+            },
+            "zeroDetailRecords": 26757,
+            "zeroHS6Rows": 414,
+            "canadaDetailRecords": 74130,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2026-06-hs6.json",
+              "bytes": 884569,
+              "sha256": "1187ead465b1186b7774535ac65faa2600955b9d132c2048f731d7168f9c96ca"
+            },
+            "receipt": {
+              "path": "exports-2026-06-receipt.json",
+              "bytes": 1371,
+              "sha256": "2da4af148e05c74f043ab27cf359d7521b90b24141019da77403ee5404e6ee20"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/exports-2026-06-independent-hs6.json",
+            "bytes": 884570,
+            "sha256": "d40061c7420141086921cb1e0091b6608a324620bb8766d392fa49aa3aeb77ec"
+          },
+          "workerElapsedSeconds": 3.922000000020489,
+          "workerPeakWorkingSetBytes": 136781824
+        },
+        {
+          "id": "imports-2026-07",
+          "month": "2026-07",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4371,
+          "sumUsd": 33491125060,
+          "countryTotalUsd": 33491125060,
+          "residualUsd": 0,
+          "selectedBytes": 1680326844,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 25060,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 25060,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 2432958,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "0e0826e4ce902e515230de94befa61ed3790f1db1c20a68bc546eb89387f3142",
+              "crc32": "d8985acd",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 1678741020,
+              "records": 2432958,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "75f55e564acbb149d943e90c0c07230fd0a4249d3c90c9bea6e94f487ddec5f5",
+              "crc32": "8aa63c43",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 68,
+            "declaredUncompressedBytes": 1914774357,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 39006,
+              "01": 323,
+              "C ": 1028,
+              "K ": 21,
+              "S ": 65404,
+              "S+": 1316
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 63014,
+            "zeroHS6Rows": 815,
+            "canadaDetailRecords": 107098,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2026-07-hs6.json",
+              "bytes": 764632,
+              "sha256": "661782345608244def57e118de258ca00a99087b62e3fc0159a9ada491372ef7"
+            },
+            "receipt": {
+              "path": "imports-2026-07-receipt.json",
+              "bytes": 1384,
+              "sha256": "6761ac434d90d699b959ec341e928e896687054e4f4dfe9693a3b663289a96f6"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2026-07-independent-hs6.json",
+            "bytes": 764633,
+            "sha256": "1d1d53a4b58e96642d757387eee6cd0a0ee5a9c25fb98ce94ddd0f0f0d6bbeb7"
+          },
+          "workerElapsedSeconds": 12.014999999955762,
+          "workerPeakWorkingSetBytes": 256016384
+        },
+        {
+          "id": "exports-2026-07",
+          "month": "2026-07",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5087,
+          "sumUsd": 29338645167,
+          "countryTotalUsd": 29338645167,
+          "residualUsd": 0,
+          "selectedBytes": 392383453,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -207154833,
+            "publicationDifferenceUsd": 45167
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -207154833,
+            "publicationDifferenceUsd": 45167
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1202671,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 64578,
+              "records": 229,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "c2e6a0216fdd5f198ad130468bb6167d026348da87b167ce6a747508cd9f1a4a",
+              "crc32": "475ad9bc",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 390868075,
+              "records": 1202671,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "831ccef440a8b7f476bfc0f52f0c553d12251f7391ee9b725b3936a358a30fe1",
+              "crc32": "4ca586e5",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 75,
+            "declaredUncompressedBytes": 543986495,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 45831,
+              "2": 30994
+            },
+            "exportDfTotals": {
+              "1": 24481850130,
+              "2": 4856795037
+            },
+            "zeroDetailRecords": 29782,
+            "zeroHS6Rows": 450,
+            "canadaDetailRecords": 76825,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2026-07-hs6.json",
+              "bytes": 888722,
+              "sha256": "67a77edd62110126de6c03b3948d558bf4ba38ed544ab7e9789d7ac2afe2ad09"
+            },
+            "receipt": {
+              "path": "exports-2026-07-receipt.json",
+              "bytes": 1371,
+              "sha256": "9add90f2cd6042b34584738761031552ff1c2d792c0d2d804bc0b538857e7c8f"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/exports-2026-07-independent-hs6.json",
+            "bytes": 888723,
+            "sha256": "9d671189c55bb17fc990531c976e79f5254e22d4fb153585e076b7c0a441f5b0"
+          },
+          "workerElapsedSeconds": 4.188000000023749,
+          "workerPeakWorkingSetBytes": 142843904
+        },
+        {
+          "id": "imports-2026-08",
+          "month": "2026-08",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 4437,
+          "sumUsd": 35980039950,
+          "countryTotalUsd": 35980039950,
+          "residualUsd": 0,
+          "selectedBytes": 1834581174,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 39950,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 39950,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 2656515,
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "f6de65bbbfb93bb59d7e69da2530d0f87a7c2ff06e34fcab73ba030b01113d4e",
+              "crc32": "55384da4",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 1832995350,
+              "records": 2656515,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "570be0cee87bae9b20f347cff8fc434f801f6183b2aa863d04bed7db4ff6ed71",
+              "crc32": "b478cd9d",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 68,
+            "declaredUncompressedBytes": 2080988906,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "00": 42342,
+              "01": 567,
+              "C ": 1121,
+              "K ": 27,
+              "S ": 69815,
+              "S+": 1422
+            },
+            "exportDfTotals": {},
+            "zeroDetailRecords": 71441,
+            "zeroHS6Rows": 869,
+            "canadaDetailRecords": 115294,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "imports-2026-08-hs6.json",
+              "bytes": 775754,
+              "sha256": "edd712ec8d7e6b9008fe82c9e80a8f48b3367359b6a7d31fc7593b0b085bf74b"
+            },
+            "receipt": {
+              "path": "imports-2026-08-receipt.json",
+              "bytes": 1384,
+              "sha256": "642707970771c3adca241d1ffd121b2050310fae66267e0b493210ef180df3c3"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/imports-2026-08-independent-hs6.json",
+            "bytes": 775755,
+            "sha256": "531819905be579849ed5c63f69f32ad3c023667f45c705626df5cad7c8dca5c6"
+          },
+          "workerElapsedSeconds": 13.046999999962281,
+          "workerPeakWorkingSetBytes": 394178560
+        },
+        {
+          "id": "exports-2026-08",
+          "month": "2026-08",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "hs6Rows": 5111,
+          "sumUsd": 30289552895,
+          "countryTotalUsd": 30289552895,
+          "residualUsd": 0,
+          "selectedBytes": 417728903,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -47105,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -47105,
+            "publicationDifferenceUsd": null
+          },
+          "validationBasis": "old25",
+          "globalDetailRecords": 1280657,
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 64578,
+              "records": 229,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "925f14ede60d5a03a7e1fe75b1245ab3a35502990a46b454a643a39e249e308b",
+              "crc32": "db681a20",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 416213525,
+              "records": 1280657,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "ff9d15d20cce95da593a2bb3914106b146252e4bf3962ceb3424f0225dcdd697",
+              "crc32": "4c21164b",
+              "CRCVerifiedAtEOF": true
+            }
+          },
+          "observations": {
+            "archiveMembers": 75,
+            "declaredUncompressedBytes": 573324899,
+            "descriptionCountsByCodeLength": {
+              "2": 98,
+              "4": 1243,
+              "6": 5634
+            },
+            "dimensions": {
+              "1": 47048,
+              "2": 32036
+            },
+            "exportDfTotals": {
+              "1": 25355631932,
+              "2": 4933920963
+            },
+            "zeroDetailRecords": 32224,
+            "zeroHS6Rows": 462,
+            "canadaDetailRecords": 79084,
+            "missingDescriptionCodes": []
+          },
+          "allNormalizedRowsMatched": true,
+          "files": {
+            "rows": {
+              "path": "exports-2026-08-hs6.json",
+              "bytes": 892668,
+              "sha256": "b3a3ee8b84815acf5d1e2ba2d1487891c78b09e9a0ff3acabe7bf76804ecfc0f"
+            },
+            "receipt": {
+              "path": "exports-2026-08-receipt.json",
+              "bytes": 1371,
+              "sha256": "fd49e39ebb4f7cd351e80f829a53d036c7624f926676bed9c49a7973a278a857"
+            }
+          },
+          "independentRowsFile": {
+            "path": ".tmp/canada-bulk-independent-review-20261011/exports-2026-08-independent-hs6.json",
+            "bytes": 892669,
+            "sha256": "4f46eb9985fd960ae85319b7adf78c3c631be64403980aca5a3e17edad3260ca"
+          },
+          "workerElapsedSeconds": 4.51500000001397,
+          "workerPeakWorkingSetBytes": 212348928
+        }
+      ],
+      "storageInterpretation": "ZIP bodies share retained originals through same-volume hard links. Newly written file-content bytes are copied layouts plus generated outputs; allocated filesystem blocks and metadata are not measured."
+    },
+    "independentVerification": {
+      "receipt": {
+        "path": ".tmp/canada-inventory-independent-review-20261011/independent-inventory128-receipt.json",
+        "bytes": 228778,
+        "sha256": "0279468121f2164f007b0338f0ff5cd9babc49c67e16cf31cfbd6e28c3d20927"
+      },
+      "verdict": "all48-arithmetic-verified-source-coverage-still-failed",
+      "findings": [],
+      "counts": {
+        "contexts": 48,
+        "old25Contexts": 25,
+        "old25HS6Rows": 115290,
+        "old25SelectedBytes": 21671274351,
+        "hs6Rows": 223049,
+        "selectedBytes": 45597170967,
+        "selectedMembers": 144,
+        "globalDetailRecords": 80011182,
+        "canadaDetailRecords": 4017572,
+        "zeroHS6Rows": 26590,
+        "zeroDetailRecords": 1936559,
+        "specialHS6Rows": 294,
+        "missingDescriptionOccurrences": 0,
+        "selectedRecords": 80357013,
+        "new23Contexts": 23,
+        "new23HS6Rows": 107759,
+        "new23SelectedBytes": 23925896616
+      },
+      "newRawResources": {
+        "contexts": [
+          {
+            "id": "imports-2025-01",
+            "exitCode": 0,
+            "elapsedSeconds": 7.824654900003225,
+            "peakWorkingSetBytes": 124256256,
+            "stop": null
+          },
+          {
+            "id": "exports-2025-01",
+            "exitCode": 0,
+            "elapsedSeconds": 3.041369399987161,
+            "peakWorkingSetBytes": 68562944,
+            "stop": null
+          },
+          {
+            "id": "exports-2025-02",
+            "exitCode": 0,
+            "elapsedSeconds": 4.57522409997182,
+            "peakWorkingSetBytes": 114151424,
+            "stop": null
+          },
+          {
+            "id": "imports-2025-03",
+            "exitCode": 0,
+            "elapsedSeconds": 14.28988009999739,
+            "peakWorkingSetBytes": 224894976,
+            "stop": null
+          },
+          {
+            "id": "exports-2025-03",
+            "exitCode": 0,
+            "elapsedSeconds": 5.382679899979848,
+            "peakWorkingSetBytes": 114057216,
+            "stop": null
+          },
+          {
+            "id": "imports-2025-04",
+            "exitCode": 0,
+            "elapsedSeconds": 20.56175400002394,
+            "peakWorkingSetBytes": 246648832,
+            "stop": null
+          },
+          {
+            "id": "exports-2025-04",
+            "exitCode": 0,
+            "elapsedSeconds": 6.448007899976801,
+            "peakWorkingSetBytes": 115052544,
+            "stop": null
+          },
+          {
+            "id": "imports-2025-05",
+            "exitCode": 0,
+            "elapsedSeconds": 24.84424399997806,
+            "peakWorkingSetBytes": 273911808,
+            "stop": null
+          },
+          {
+            "id": "exports-2025-05",
+            "exitCode": 0,
+            "elapsedSeconds": 7.0042895000078715,
+            "peakWorkingSetBytes": 124870656,
+            "stop": null
+          },
+          {
+            "id": "imports-2025-06",
+            "exitCode": 0,
+            "elapsedSeconds": 26.59685079997871,
+            "peakWorkingSetBytes": 426622976,
+            "stop": null
+          },
+          {
+            "id": "exports-2025-06",
+            "exitCode": 0,
+            "elapsedSeconds": 7.596796100027859,
+            "peakWorkingSetBytes": 130863104,
+            "stop": null
+          },
+          {
+            "id": "imports-2025-07",
+            "exitCode": 0,
+            "elapsedSeconds": 28.90509239997482,
+            "peakWorkingSetBytes": 426860544,
+            "stop": null
+          },
+          {
+            "id": "exports-2025-07",
+            "exitCode": 0,
+            "elapsedSeconds": 8.165649999980815,
+            "peakWorkingSetBytes": 134598656,
+            "stop": null
+          },
+          {
+            "id": "imports-2025-08",
+            "exitCode": 0,
+            "elapsedSeconds": 32.00290890003089,
+            "peakWorkingSetBytes": 426713088,
+            "stop": null
+          },
+          {
+            "id": "exports-2025-08",
+            "exitCode": 0,
+            "elapsedSeconds": 8.453108299989253,
+            "peakWorkingSetBytes": 204939264,
+            "stop": null
+          },
+          {
+            "id": "imports-2025-09",
+            "exitCode": 0,
+            "elapsedSeconds": 32.96698169998126,
+            "peakWorkingSetBytes": 426651648,
+            "stop": null
+          },
+          {
+            "id": "exports-2025-09",
+            "exitCode": 0,
+            "elapsedSeconds": 9.049765200004913,
+            "peakWorkingSetBytes": 204828672,
+            "stop": null
+          },
+          {
+            "id": "imports-2025-10",
+            "exitCode": 0,
+            "elapsedSeconds": 36.24978720000945,
+            "peakWorkingSetBytes": 428613632,
+            "stop": null
+          },
+          {
+            "id": "exports-2025-10",
+            "exitCode": 0,
+            "elapsedSeconds": 9.66607739997562,
+            "peakWorkingSetBytes": 204890112,
+            "stop": null
+          },
+          {
+            "id": "imports-2025-11",
+            "exitCode": 0,
+            "elapsedSeconds": 36.372080600005575,
+            "peakWorkingSetBytes": 441212928,
+            "stop": null
+          },
+          {
+            "id": "exports-2025-11",
+            "exitCode": 0,
+            "elapsedSeconds": 9.975524099951144,
+            "peakWorkingSetBytes": 204951552,
+            "stop": null
+          },
+          {
+            "id": "imports-2025-12",
+            "exitCode": 0,
+            "elapsedSeconds": 38.477568899979815,
+            "peakWorkingSetBytes": 454356992,
+            "stop": null
+          },
+          {
+            "id": "exports-2025-12",
+            "exitCode": 0,
+            "elapsedSeconds": 10.300783900020178,
+            "peakWorkingSetBytes": 204861440,
+            "stop": null
+          }
+        ],
+        "elapsedSeconds": 389.16103939997265,
+        "stops": []
+      },
+      "longestNewRawChildSeconds": 38.477568899979815,
+      "peakNewRawWorkingSetBytes": 454356992,
+      "verificationLimits": [
+        "All23 newly eligible contexts were independently decompressed through the three selected members only; all25 earlier contexts reuse finalized independent rows/member/control results without redundant decompression.",
+        "New23 complete observation distributions were independently compared. Supplemental old25 dimension and description-level distributions are consistency-only because the original independent receipt retained totals rather than every distribution.",
+        "Unselected-member CRC/payload validation, PDF re-extraction, classification continuity and detailed revision-vintage attribution are outside scope. Fresh publication pins and complete current snapshots were verified previously and their original bytes are preserved.",
+        "Historical maintained worker runtime/memory and zero-network observations are reconciled reports and reviewed local-only procedure evidence, not retrospective independent process or packet monitoring.",
+        "Byte accounting measures file content, distinguishing reused hard links from new bytes; it does not measure allocated filesystem blocks."
+      ],
+      "verificationPrograms": [
+        {
+          "path": ".tmp/canada-inventory-independent-review-20261011/prepare.py",
+          "bytes": 3831,
+          "sha256": "f1fb229908879b6eb34bd22dbd8e01e547bb0f4e36fa545485b4d5dc608c9f8f"
+        },
+        {
+          "path": ".tmp/canada-inventory-independent-review-20261011/validate_new_context.py",
+          "bytes": 13879,
+          "sha256": "c5c7b6d537569b141bd1c640407ec15c605c79516c1c34780e34aae40ac7dbe6"
+        },
+        {
+          "path": ".tmp/canada-inventory-independent-review-20261011/supervise_new_contexts.py",
+          "bytes": 3460,
+          "sha256": "7061c5f6345aaf2d63051ad574d987f65dd152de01beec709cffafa37134c2ae"
+        },
+        {
+          "path": ".tmp/canada-inventory-independent-review-20261011/compare_final.py",
+          "bytes": 17292,
+          "sha256": "edd9ec1599e379567e35fe0386445c6cf5b274e725c9c1d775c95309e3f3a519"
+        }
+      ],
+      "priorIndependentReceipts": [
+        {
+          "path": ".tmp/canada-bulk-independent-review-20261011/independent-receipt.json",
+          "bytes": 184295,
+          "sha256": "c089fdbc75cdcb806c81b1e220ebb596654eabc6d576753c9005c46426814bd1"
+        },
+        {
+          "path": ".tmp/canada-bulk-independent-review-20261011/offline-comparison-receipt.json",
+          "bytes": 94089,
+          "sha256": "6e21f24aa4258b1aa062735231390a64548df79e24f78427f9ef92aad3b4a4e3"
+        }
+      ]
+    },
+    "referenceComparisons": {
+      "beforeAndAfter": {
+        "referenceCheck": {
+          "matched": 41,
+          "mismatch": 7
+        },
+        "publicationCheck": {
+          "not-reviewed": 41,
+          "matched": 7
+        },
+        "referenceCorroboration": {
+          "current-reference": 41,
+          "original-publication-only": 7
+        }
+      },
+      "new23CurrentMatches": 23,
+      "knownSevenCurrentFailuresPreserved": true,
+      "may": {
+        "referenceCheck": "mismatch",
+        "publicationCheck": "matched",
+        "referenceCorroboration": "original-publication-only",
+        "currentDifferenceUsd": -608164241,
+        "publicationDifferenceUsd": 35759
+      }
+    },
+    "sourceCoverage": "failed",
+    "classificationStatus": "unverified",
+    "releaseAccepted": false,
+    "rollingComparisonsAvailable": false,
+    "defaultAuditRetrievalChanged": false,
+    "recommendation": "Inventory and exact 48-context arithmetic verification are complete. Review an explicit reference-vintage protocol and classification continuity before country acceptance; current mismatches remain failures. Do not redownload unchanged originals to seek a passing verdict."
   }
 }
