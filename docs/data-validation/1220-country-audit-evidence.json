@@ -1494,5 +1494,629 @@
     "acceptanceGateChanged": false,
     "underlyingRetrievalFailureCause": "unverified",
     "meaning": "Fixed endpoint diagnostic only; does not establish complete 24-month coverage or classification eligibility"
+  },
+  "publicationPartialAudit": {
+    "runId": 38105445755,
+    "runUrl": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38105445755",
+    "jobId": 114369880759,
+    "headSha": "92f79e90b316c073cf4b2ccf7bed8148207cada9",
+    "mode": "full",
+    "baselineAuditRunId": 38096086464,
+    "conclusion": "failure",
+    "cause": "retrieval-step-time-limit",
+    "stepLimitMinutes": 15,
+    "stepStartedAt": "2026-10-11T02:32:47.249Z",
+    "stepTimedOutAt": "2026-10-11T02:47:59.749Z",
+    "evidenceUpload": "success",
+    "artifactId": 11689967061,
+    "artifactName": "census-1220-country-audit",
+    "artifactBytes": 19782754,
+    "artifactSha256": "58de22423f5fabd86cb2bb0088e3d3999d0cdaea683713fbbe4148c68db6dc78",
+    "artifactCreatedAt": "2026-10-11T02:48:02Z",
+    "artifactExpiresAt": "2026-10-18T02:47:59Z",
+    "zipEntries": 95,
+    "independentlyMatchedFiles": 95,
+    "extractedBytes": 55804616,
+    "completedAuditReport": false,
+    "completedDataset": false,
+    "rawManifestAvailable": false,
+    "independentReplaySha256": "04d8a0786b95aeed454f619f2163f097abd9062137704f927a96dcc2fc33e3ae",
+    "evidenceConsistencyVerified": true,
+    "independentReview": "matched",
+    "replayControls": {
+      "valid": 1,
+      "rejectedMutations": 6
+    },
+    "sourceFiles": 95,
+    "sourceFileInventory": {
+      "apiRecords": 80,
+      "officialTable": 1,
+      "publicationBodies": 7,
+      "publicationMetadata": 7
+    },
+    "expectedApiParts": 96,
+    "retainedApiParts": 80,
+    "retainedApiAttempts": 80,
+    "allRetainedApiAttemptCounts": 1,
+    "usableApiParts": 50,
+    "noUsableResponseApiParts": 30,
+    "apiStatuses": {
+      "exports/products/200": 20,
+      "exports/total/200": 20,
+      "imports/products/0": 16,
+      "imports/total/0": 14,
+      "imports/total/200": 6,
+      "imports/products/200": 4
+    },
+    "originalHs6Rows": 115824,
+    "firstRetainedApiMonth": "2024-09",
+    "lastRetainedApiMonth": "2026-04",
+    "notRetainedApiParts": [
+      "raw/imports-2026-05-total.json",
+      "raw/imports-2026-05-products.json",
+      "raw/exports-2026-05-total.json",
+      "raw/exports-2026-05-products.json",
+      "raw/imports-2026-06-total.json",
+      "raw/imports-2026-06-products.json",
+      "raw/exports-2026-06-total.json",
+      "raw/exports-2026-06-products.json",
+      "raw/imports-2026-07-total.json",
+      "raw/imports-2026-07-products.json",
+      "raw/exports-2026-07-total.json",
+      "raw/exports-2026-07-products.json",
+      "raw/imports-2026-08-total.json",
+      "raw/imports-2026-08-products.json",
+      "raw/exports-2026-08-total.json",
+      "raw/exports-2026-08-products.json"
+    ],
+    "notRetainedDoesNotEstablishUnrequested": true,
+    "expectedMonthDirectionPairs": 48,
+    "retainedMonthDirectionPairs": 40,
+    "zeroResidualMonths": 22,
+    "incompleteRetainedPairs": 18,
+    "notRetainedPairs": 8,
+    "nonzeroResiduals": [],
+    "referenceCountBasis": "48 expected month/direction contexts; missing totals are unavailable",
+    "referenceCounts": {
+      "matched": 22,
+      "mismatch": 4,
+      "unavailable": 22
+    },
+    "retainedReferenceCounts": {
+      "matched": 22,
+      "mismatch": 4,
+      "unavailable": 14
+    },
+    "publicationSourcesVerified": 7,
+    "publicationChecks": {
+      "matched": 4,
+      "mismatch": 0,
+      "unavailable": 3,
+      "not-reviewed": 41
+    },
+    "referenceCorroboration": {
+      "current-table": 22,
+      "original-publication-only": 4,
+      "none": 22
+    },
+    "referenceMismatches": [
+      {
+        "month": "2026-01",
+        "direction": "exports",
+        "totalUsd": 24510292823,
+        "productSumUsd": 24510292823,
+        "residualUsd": 0,
+        "productRows": 4599,
+        "referenceUsd": 24461200000,
+        "referenceCheck": "mismatch",
+        "publicationReferenceUsd": 24510300000,
+        "publicationCheck": "matched",
+        "referenceCorroboration": "original-publication-only"
+      },
+      {
+        "month": "2026-02",
+        "direction": "exports",
+        "totalUsd": 28371311032,
+        "productSumUsd": 28371311032,
+        "residualUsd": 0,
+        "productRows": 4807,
+        "referenceUsd": 28417800000,
+        "referenceCheck": "mismatch",
+        "publicationReferenceUsd": 28371300000,
+        "publicationCheck": "matched",
+        "referenceCorroboration": "original-publication-only"
+      },
+      {
+        "month": "2026-03",
+        "direction": "exports",
+        "totalUsd": 31438946691,
+        "productSumUsd": 31438946691,
+        "residualUsd": 0,
+        "productRows": 4915,
+        "referenceUsd": 31654800000,
+        "referenceCheck": "mismatch",
+        "publicationReferenceUsd": 31438900000,
+        "publicationCheck": "matched",
+        "referenceCorroboration": "original-publication-only"
+      },
+      {
+        "month": "2026-04",
+        "direction": "exports",
+        "totalUsd": 29741092873,
+        "productSumUsd": 29741092873,
+        "residualUsd": 0,
+        "productRows": 4982,
+        "referenceUsd": 30197100000,
+        "referenceCheck": "mismatch",
+        "publicationReferenceUsd": 29741100000,
+        "publicationCheck": "matched",
+        "referenceCorroboration": "original-publication-only"
+      }
+    ],
+    "publications": [
+      {
+        "reviewed": {
+          "countryCode": "1220",
+          "month": "2026-01",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2601.pdf",
+          "publicationDate": "2026-03-12",
+          "pdfPage": 56,
+          "table": "FT900 supplement, Exhibit 4",
+          "printedPage": "- 5 -",
+          "column": "January exports, domestic and foreign, FAS",
+          "units": "nominal USD millions, not seasonally adjusted",
+          "quantumUsd": 100000,
+          "valueUsd": 24510300000,
+          "bytes": 1719702,
+          "sha256": "3c18b43ee3e6e91a9a90dc159ef44f33972745ea38b892ebbc77823b1bf418d9"
+        },
+        "retrievedAt": "2026-10-11T02:32:49.925Z",
+        "httpStatus": 200,
+        "contentType": "application/pdf",
+        "lastModified": "Thu, 12 Mar 2026 12:32:31 GMT",
+        "httpDate": "Sun, 11 Oct 2026 02:32:47 GMT",
+        "bytes": 1719702,
+        "sha256": "3c18b43ee3e6e91a9a90dc159ef44f33972745ea38b892ebbc77823b1bf418d9",
+        "verification": "verified",
+        "referenceUsd": 24510300000,
+        "error": null
+      },
+      {
+        "reviewed": {
+          "countryCode": "1220",
+          "month": "2026-02",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2602.pdf",
+          "publicationDate": "2026-04-02",
+          "pdfPage": 55,
+          "table": "FT900 supplement, Exhibit 4",
+          "printedPage": "- 5 -",
+          "column": "February exports, domestic and foreign, FAS",
+          "units": "nominal USD millions, not seasonally adjusted",
+          "quantumUsd": 100000,
+          "valueUsd": 28371300000,
+          "bytes": 1741412,
+          "sha256": "96c04f834b91c12887264c81590e5bc614f4d6f6b6b2d3bcd9345365de79a2d0"
+        },
+        "retrievedAt": "2026-10-11T02:32:50.771Z",
+        "httpStatus": 200,
+        "contentType": "application/pdf",
+        "lastModified": "Thu, 02 Apr 2026 12:32:00 GMT",
+        "httpDate": "Sun, 11 Oct 2026 02:32:48 GMT",
+        "bytes": 1741412,
+        "sha256": "96c04f834b91c12887264c81590e5bc614f4d6f6b6b2d3bcd9345365de79a2d0",
+        "verification": "verified",
+        "referenceUsd": 28371300000,
+        "error": null
+      },
+      {
+        "reviewed": {
+          "countryCode": "1220",
+          "month": "2026-03",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2603.pdf",
+          "publicationDate": "2026-05-05",
+          "pdfPage": 54,
+          "table": "FT900 supplement, Exhibit 4",
+          "printedPage": "- 5 -",
+          "column": "March exports, domestic and foreign, FAS",
+          "units": "nominal USD millions, not seasonally adjusted",
+          "quantumUsd": 100000,
+          "valueUsd": 31438900000,
+          "bytes": 1745935,
+          "sha256": "9f71de167044d2d4c5d3d81271a5311173be1e67c9eda4c52779b2bf8de22b72"
+        },
+        "retrievedAt": "2026-10-11T02:32:53.332Z",
+        "httpStatus": 200,
+        "contentType": "application/pdf",
+        "lastModified": "Tue, 05 May 2026 12:31:31 GMT",
+        "httpDate": "Sun, 11 Oct 2026 02:32:51 GMT",
+        "bytes": 1745935,
+        "sha256": "9f71de167044d2d4c5d3d81271a5311173be1e67c9eda4c52779b2bf8de22b72",
+        "verification": "verified",
+        "referenceUsd": 31438900000,
+        "error": null
+      },
+      {
+        "reviewed": {
+          "countryCode": "1220",
+          "month": "2026-04",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2604.pdf",
+          "publicationDate": "2026-06-09",
+          "pdfPage": 55,
+          "table": "FT900 supplement, Exhibit 4",
+          "printedPage": "- 5 -",
+          "column": "April exports, domestic and foreign, FAS",
+          "units": "nominal USD millions, not seasonally adjusted",
+          "quantumUsd": 100000,
+          "valueUsd": 29741100000,
+          "bytes": 1754536,
+          "sha256": "11947b2eed8dc87414cfc2ec89b73d7f01282a1d10c70452684b9736ee284b87"
+        },
+        "retrievedAt": "2026-10-11T02:32:53.130Z",
+        "httpStatus": 200,
+        "contentType": "application/pdf",
+        "lastModified": "Tue, 09 Jun 2026 12:31:08 GMT",
+        "httpDate": "Sun, 11 Oct 2026 02:32:51 GMT",
+        "bytes": 1754536,
+        "sha256": "11947b2eed8dc87414cfc2ec89b73d7f01282a1d10c70452684b9736ee284b87",
+        "verification": "verified",
+        "referenceUsd": 29741100000,
+        "error": null
+      },
+      {
+        "reviewed": {
+          "countryCode": "1220",
+          "month": "2026-05",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2605.pdf",
+          "publicationDate": "2026-07-07",
+          "pdfPage": 53,
+          "table": "FT900 supplement, Exhibit 4",
+          "printedPage": "- 5 -",
+          "column": "May exports, domestic and foreign, FAS",
+          "units": "nominal USD millions, not seasonally adjusted",
+          "quantumUsd": 100000,
+          "valueUsd": 29790800000,
+          "bytes": 1798284,
+          "sha256": "9ab9737e0c84a679dec653de9ca1223de3004e0d0d074ef3a2dec33cb63c70ec"
+        },
+        "retrievedAt": "2026-10-11T02:32:55.489Z",
+        "httpStatus": 200,
+        "contentType": "application/pdf",
+        "lastModified": "Tue, 07 Jul 2026 12:32:03 GMT",
+        "httpDate": "Sun, 11 Oct 2026 02:32:53 GMT",
+        "bytes": 1798284,
+        "sha256": "9ab9737e0c84a679dec653de9ca1223de3004e0d0d074ef3a2dec33cb63c70ec",
+        "verification": "verified",
+        "referenceUsd": 29790800000,
+        "error": null
+      },
+      {
+        "reviewed": {
+          "countryCode": "1220",
+          "month": "2026-06",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2606.pdf",
+          "publicationDate": "2026-08-04",
+          "pdfPage": 53,
+          "table": "FT900 supplement, Exhibit 4",
+          "printedPage": "- 5 -",
+          "column": "June exports, domestic and foreign, FAS",
+          "units": "nominal USD millions, not seasonally adjusted",
+          "quantumUsd": 100000,
+          "valueUsd": 30695500000,
+          "bytes": 1817223,
+          "sha256": "a67052e2f6f97dcd8a4fb46530464dc093eea26251b9ca153f658a09957e7eef"
+        },
+        "retrievedAt": "2026-10-11T02:32:55.572Z",
+        "httpStatus": 200,
+        "contentType": "application/pdf",
+        "lastModified": "Tue, 04 Aug 2026 12:31:02 GMT",
+        "httpDate": "Sun, 11 Oct 2026 02:32:53 GMT",
+        "bytes": 1817223,
+        "sha256": "a67052e2f6f97dcd8a4fb46530464dc093eea26251b9ca153f658a09957e7eef",
+        "verification": "verified",
+        "referenceUsd": 30695500000,
+        "error": null
+      },
+      {
+        "reviewed": {
+          "countryCode": "1220",
+          "month": "2026-07",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2607.pdf",
+          "publicationDate": "2026-09-03",
+          "pdfPage": 54,
+          "table": "FT900 supplement, Exhibit 4",
+          "printedPage": "- 5 -",
+          "column": "July exports, domestic and foreign, FAS",
+          "units": "nominal USD millions, not seasonally adjusted",
+          "quantumUsd": 100000,
+          "valueUsd": 29338600000,
+          "bytes": 1826911,
+          "sha256": "c122b8ccee947c58859597a7549bb5dcb6691add3e405180ab915d43f6c43aa0"
+        },
+        "retrievedAt": "2026-10-11T02:32:57.613Z",
+        "httpStatus": 200,
+        "contentType": "application/pdf",
+        "lastModified": "Thu, 03 Sep 2026 12:32:00 GMT",
+        "httpDate": "Sun, 11 Oct 2026 02:32:55 GMT",
+        "bytes": 1826911,
+        "sha256": "c122b8ccee947c58859597a7549bb5dcb6691add3e405180ab915d43f6c43aa0",
+        "verification": "verified",
+        "referenceUsd": 29338600000,
+        "error": null
+      }
+    ],
+    "apiFailures": [
+      {
+        "file": "raw/imports-2024-09-products.json",
+        "direction": "imports",
+        "month": "2024-09",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2024-09-total.json",
+        "direction": "imports",
+        "month": "2024-09",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2024-10-products.json",
+        "direction": "imports",
+        "month": "2024-10",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2024-10-total.json",
+        "direction": "imports",
+        "month": "2024-10",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2024-11-products.json",
+        "direction": "imports",
+        "month": "2024-11",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2024-12-products.json",
+        "direction": "imports",
+        "month": "2024-12",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2024-12-total.json",
+        "direction": "imports",
+        "month": "2024-12",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-01-total.json",
+        "direction": "imports",
+        "month": "2025-01",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-04-products.json",
+        "direction": "imports",
+        "month": "2025-04",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-04-total.json",
+        "direction": "imports",
+        "month": "2025-04",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-05-products.json",
+        "direction": "imports",
+        "month": "2025-05",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-05-total.json",
+        "direction": "imports",
+        "month": "2025-05",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-06-products.json",
+        "direction": "imports",
+        "month": "2025-06",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-06-total.json",
+        "direction": "imports",
+        "month": "2025-06",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-07-products.json",
+        "direction": "imports",
+        "month": "2025-07",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-07-total.json",
+        "direction": "imports",
+        "month": "2025-07",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-08-products.json",
+        "direction": "imports",
+        "month": "2025-08",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-09-products.json",
+        "direction": "imports",
+        "month": "2025-09",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-09-total.json",
+        "direction": "imports",
+        "month": "2025-09",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-10-products.json",
+        "direction": "imports",
+        "month": "2025-10",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-10-total.json",
+        "direction": "imports",
+        "month": "2025-10",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-11-products.json",
+        "direction": "imports",
+        "month": "2025-11",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-11-total.json",
+        "direction": "imports",
+        "month": "2025-11",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-12-products.json",
+        "direction": "imports",
+        "month": "2025-12",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2026-01-total.json",
+        "direction": "imports",
+        "month": "2026-01",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2026-02-products.json",
+        "direction": "imports",
+        "month": "2026-02",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2026-02-total.json",
+        "direction": "imports",
+        "month": "2026-02",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2026-03-products.json",
+        "direction": "imports",
+        "month": "2026-03",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2026-03-total.json",
+        "direction": "imports",
+        "month": "2026-03",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2026-04-products.json",
+        "direction": "imports",
+        "month": "2026-04",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      }
+    ],
+    "officialTable": {
+      "url": "https://www.census.gov/foreign-trade/balance/c1220.html",
+      "retrievedAt": "2026-10-11T02:32:47.601Z",
+      "lastModified": "Tue, 06 Oct 2026 12:31:32 GMT",
+      "httpDate": "Sun, 11 Oct 2026 02:32:47 GMT",
+      "httpStatus": 200,
+      "rawRecordSha256": "2410348ec7cc8cc4b7423ec9f41cf913b8801c7505beb5775aebaede52b8d964"
+    },
+    "sourceCoverage": "unverified",
+    "classificationStatus": "unverified",
+    "releaseAccepted": false,
+    "rollingComparisonAvailable": false,
+    "defaultAuditQueryChanged": false,
+    "acceptanceGateChanged": false,
+    "perRequestTransportCause": "unverified; null status/body establishes no usable response, not its cause",
+    "apiObservationRevisionDates": "unverified; LAST_UPDATE=0 provides no useful date",
+    "meaning": "Timed-out full run with independently verified partial originals, seven pinned PDFs and four live historical matches. No completed audit/candidate report or full coverage; prior full audit remains failed. Historical corroboration does not replace the current-table gate.",
+    "nextRecommendation": "No unchanged full rerun. First diagnose failed import HS6 breakdown contexts against a previously received control under existing request deadlines and concurrency; a total-endpoint switch alone cannot repair breakdown failures."
   }
 }
