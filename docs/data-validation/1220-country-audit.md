@@ -1,6 +1,6 @@
 # Canada country audit evidence
 
-**Latest verdict:** the completed 24-month audit failed source acceptance. A separately retained followup retrieved two of its nine missing import parts; seven still timed out. The export cumulative value equals the original API monthly sum and remains $1,796,212,748 below the followup's official reference sum, so substituting `ALL_VAL_YR` does not resolve the discrepancy. Independent replay and review verify both runs' evidence, not source acceptance. No Canada release or country comparison is accepted. Earlier runs below are historical checkpoints.
+**Latest verdict:** the completed 24-month API audit remains failed. The independently replayed five-context bulk validation reconciles all five breakdowns exactly; four match their own current table, while May exports remain $608,164,241 below it and match the pinned original publication within rounding. Full bulk coverage, compatible detailed revisions and classification remain unverified; no Canada release or country comparison is accepted. The [proposed local diagnostic design](../superpowers/specs/2026-10-11-canada-bulk-diagnostic-design.md) separates these checks and defines bounded original retention before implementation. Earlier runs below are historical checkpoints.
 
 ## October 10 first live run: incomplete, no source acceptance
 
