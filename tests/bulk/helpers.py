@@ -19,6 +19,15 @@ def fixed_record(width, fields):
     return bytes(record) + b'\r\n'
 
 
+def table_fixture(value='1.0'):
+    import calendar
+    rows=[]
+    for i in range(24):
+        year,month=divmod(2024*12+8+i,12)
+        rows.append(f'<tr><td>{calendar.month_name[month+1]} {year}</td><td>{value}</td><td>{value}</td><td>0.0</td></tr>')
+    return ('<h1>Trade in Goods with Canada</h1><p>All figures are in millions of U.S. dollars on a nominal basis, not seasonally adjusted.</p><table><tr><th>Month</th><th>Exports</th><th>Imports</th><th>Balance</th></tr>'+''.join(rows)+'</table>').encode()
+
+
 def archive_fixture(direction):
     importing = direction == 'imports'
     width, prefix = (688, 'IMP') if importing else (323, 'EXP')
