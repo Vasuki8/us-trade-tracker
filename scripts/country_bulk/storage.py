@@ -48,7 +48,7 @@ class BoundedWriter:
         self.hasher = hashlib.sha256()
         self.path = store.path(name)
         try:
-            self.stream = self.path.open('xb')
+            self.stream = self.path.open('xb',buffering=0)
         except OSError as error:
             raise ValueError('occupied-or-unwritable-evidence') from error
 

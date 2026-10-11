@@ -65,13 +65,13 @@ class Comparison:
     publication_difference_usd: int | None
 
 
-def compare_references(total,current,publication,verified):
+def compare_references(total,current,publication,verified,reviewed=False):
     if total is not None: safe_integer(total)
     if current is not None: safe_integer(current)
     if publication is not None: safe_integer(publication)
     rounded=None if total is None else (total+50000)//100000
     current_check='unavailable' if rounded is None or current is None else 'matched' if rounded==current//100000 else 'mismatch'
-    publication_check='unavailable' if rounded is None or publication is None or not verified else 'matched' if rounded==publication//100000 else 'mismatch'
+    publication_check='not-reviewed' if not reviewed and publication is None else 'unavailable' if rounded is None or publication is None or not verified else 'matched' if rounded==publication//100000 else 'mismatch'
     corroboration='current-reference' if current_check=='matched' else 'original-publication-only' if publication_check=='matched' else 'unavailable'
     return Comparison(current_check,publication_check,corroboration,None if total is None or current is None else total-current,None if total is None or publication is None or not verified else total-publication)
 
@@ -97,8 +97,9 @@ def build_report(outcomes,records,before,after,publications,contracts,budget,com
         validated=outcome.get('state')=='validated' and by_id.get(context.id) is not None and by_id[context.id].outcome=='complete'
         total=outcome.get('countryTotalUsd') if validated else None
         publication=publications.get(context.id)
-        prior=compare_references(total,None if before is None else before[context.id],publication,publication is not None)
-        following=compare_references(total,None if after is None else after[context.id],publication,publication is not None)
+        reviewed=context.direction=='exports' and context.month in {f'2026-{month:02d}' for month in range(1,8)}
+        prior=compare_references(total,None if before is None else before[context.id],publication,publication is not None,reviewed)
+        following=compare_references(total,None if after is None else after[context.id],publication,publication is not None,reviewed)
         rows.append({'id':context.id,'month':context.month,'direction':context.direction,'measure':context.measure,'state':outcome.get('state','unattempted'),'reason':outcome.get('reason'),'sumUsd':outcome.get('sumUsd') if validated else None,'countryTotalUsd':total,'residualUsd':outcome.get('residualUsd') if validated else None,'beforeComparison':comparison_json(prior),'afterComparison':comparison_json(following),'files':outcome.get('files'),'worker':outcome.get('worker')})
     coverage=stability=='matched' and set(outcomes)=={c.id for c in contexts()} and all(row['state']=='validated' and row['residualUsd']==0 and row['beforeComparison']['referenceCheck']==row['afterComparison']['referenceCheck']=='matched' for row in rows)
     diagnostic=coverage and requests_unique and all(record.outcome=='complete' and contracts.get(record.id) is True for record in records) and not budget.stops

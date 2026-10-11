@@ -32,7 +32,7 @@ def retrieve(spec: RequestSpec, store: EvidenceStore, budget: Budget, transport,
             return record
         require(allowed_url(spec.url), 'http-contract')
         remaining = remaining_time()
-        if remaining <= 0 or (budget.stops and not final):
+        if remaining <= 0 or (budget.stops and not final) or 'child-cleanup-failed' in budget.stops:
             record.reason = 'work-deadline' if remaining <= 0 else 'resource-stop'
             if remaining <= 0:
                 budget.stop('work-deadline')
@@ -109,13 +109,23 @@ def retrieve(spec: RequestSpec, store: EvidenceStore, budget: Budget, transport,
         record.outcome = 'partial' if writer and writer.bytes else 'failed' if record.attempted else 'unattempted'
     finally:
         if child is not None:
-            child.stop_and_join()
+            try: child.stop_and_join()
+            except (OSError,ValueError):
+                budget.stop('child-cleanup-failed');record.reason='child-cleanup-failed';record.outcome='partial' if writer and writer.bytes else 'failed'
             record.sampled_working_set=getattr(child,'sampled_working_set',0)
             record.peak_working_set=getattr(child,'peak_working_set',0)
         if writer is not None:
-            writer.close()
             record.bytes = writer.bytes
             record.sha256 = writer.hasher.hexdigest()
+            try: writer.close()
+            except OSError:
+                budget.stop('evidence-close-failed');record.reason='evidence-close-failed'
+                record.outcome='partial' if writer.bytes else 'failed'
+                try:
+                    identity=store.identity(spec.filename)
+                    budget.original_bytes+=identity.bytes-record.bytes
+                    record.bytes,record.sha256=identity.bytes,identity.sha256
+                except (OSError,ValueError): record.sha256=None
         record.retrieved_at = utcnow() if record.attempted else None
         record.elapsed_seconds = budget.clock()-start
         if body_started is None: record.header_seconds=record.elapsed_seconds

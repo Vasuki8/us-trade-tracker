@@ -193,6 +193,20 @@ class SourcesTransportTests(unittest.TestCase):
         self.assertGreater(summary.bytes, 0)
         self.assertLessEqual(store.budget.generated_bytes, 256)
 
+    def test_original_close_error_preserves_attempted_record_and_partial_identity(self):
+        from unittest.mock import patch
+        from scripts.country_bulk.storage import BoundedWriter
+        close=BoundedWriter.close
+        def failed_close(writer):
+            close(writer)
+            if writer.category=='original': raise OSError('simulated close failure')
+        with patch.object(BoundedWriter,'close',failed_close):
+            try: result,store,transport=self.run_transfer([headers(),(0,'body',b'abc'),(0,'end',None)])
+            except OSError: self.fail('Close failure must preserve an attempted failure record')
+        self.assertTrue(result.attempted);self.assertEqual(result.outcome,'partial');self.assertEqual(result.reason,'evidence-close-failed')
+        self.assertEqual(result.bytes,3);self.assertEqual(result.sha256,store.identity(result.file).sha256)
+        self.assertTrue((store.root/(result.file+'.request.json')).exists());self.assertTrue(transport.child.closed)
+
     def test_layout_contract_rejects_shifted_value_and_keeps_full_grain(self):
         for direction in ('imports', 'exports'):
             html = layout_fixture(direction)

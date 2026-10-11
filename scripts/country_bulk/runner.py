@@ -20,6 +20,8 @@ from .sources import planned_requests, discover_archive_url, validate_layout, al
 from .transport import retrieve
 from .references import parse_table, validate_publication, build_report, markdown_summary
 
+WORKER_FAILURE_REASONS={'crossed-archive-context','invalid-monthly-value','unsafe-integer','archive-member-cap','archive-size-cap','unsafe-member-name','ambiguous-member-name','encrypted-member','missing-selected-root-member','invalid-record-framing','member-byte-mismatch','country-identity-or-calendar','duplicate-country-total','country-name-mismatch','missing-country-total','invalid-description-identity','duplicate-description','detail-identity-or-calendar','invalid-program-subcode','duplicate-global-detail-key','detail-key-cap','invalid-zip','generated-budget','invalid-output-grant','incomplete-original','original-identity-mismatch','required-layout-member-missing','incompatible-layout-contract','duplicate-layout-field','duplicate-layout-member','occupied-or-unwritable-evidence','evidence-write-failed','file-byte-cap','worker-io-failed','worker-contract-failed'}
+
 
 class BasicLimits(ctypes.Structure):
     _fields_=[('PerProcessUserTimeLimit',ctypes.c_longlong),('PerJobUserTimeLimit',ctypes.c_longlong),('LimitFlags',wintypes.DWORD),('MinimumWorkingSetSize',ctypes.c_size_t),('MaximumWorkingSetSize',ctypes.c_size_t),('ActiveProcessLimit',wintypes.DWORD),('Affinity',ctypes.c_size_t),('PriorityClass',wintypes.DWORD),('SchedulingClass',wintypes.DWORD)]
@@ -112,8 +114,9 @@ def child_entry(connection,mode):
                 send_event(connection,'end',None)
             finally: connection_http.close()
         else: raise ValueError('invalid-private-mode')
-    except (OSError,ValueError,EOFError,KeyError,TypeError,http.client.HTTPException):
-        try: send_event(connection,'error',None)
+    except (OSError,ValueError,EOFError,KeyError,TypeError,http.client.HTTPException) as error:
+        reason=str(error) if isinstance(error,ValueError) and str(error) in WORKER_FAILURE_REASONS else 'worker-io-failed' if isinstance(error,OSError) else 'worker-contract-failed'
+        try: send_event(connection,'error',{'reason':reason} if mode=='worker' else None)
         except (OSError,ValueError): pass
     finally: connection.close()
 
@@ -211,13 +214,16 @@ def run_worker(context,original,store,budget,controls):
             event=child.poll(min(budget.limits.sample_seconds,deadline-budget.clock()))
             if event is None: continue
             require(budget.clock()<deadline,'worker-deadline')
+            if event[0]=='error':
+                require(type(event[1]) is dict and set(event[1])=={'reason'} and event[1]['reason'] in WORKER_FAILURE_REASONS,'worker-contract-failed')
+                raise ValueError(event[1]['reason'])
             require(event[0]=='result','worker-contract-failed')
             child.stop_and_join();files=event[1];validate_worker_files(context,files,store)
             outcome.state='validated';outcome.files=files;break
     except (OSError,ValueError,EOFError,KeyError,TypeError) as error:
         reason=str(error)
         allowed={'worker-deadline','working-set-cap','memory-measurement-failed','disk-guard','generated-budget'}
-        outcome.reason=reason if reason in allowed else 'worker-contract-failed'
+        outcome.reason=reason if reason in allowed|WORKER_FAILURE_REASONS else 'worker-contract-failed'
         outcome.state='stopped' if reason in allowed else 'failed'
         if reason in allowed: budget.stop(reason)
     except KeyboardInterrupt:
@@ -261,7 +267,7 @@ def run_diagnostic(options,projection,controls,budget=None):
     budget=budget or Budget();pins=validate_projection(projection);requests=planned_requests(pins)
     require(controls.free_space(options.output.parent if options.output.parent.exists() else options.repository)>=budget.limits.preflight_free,'insufficient-preflight-disk')
     store=EvidenceStore.create(options.output,budget,repo_root=options.repository)
-    store.write_json('publication-projection.json',projection)
+    projection_identity=store.write_json('publication-projection.json',projection)
     records=[];outcomes={};contracts={};pages={};tables={};publications={};cancelled=False
     try:
         for spec in requests[:-1]:
@@ -296,6 +302,7 @@ def run_diagnostic(options,projection,controls,budget=None):
         if table is not None: tables[final.id]=table
         budget.final_report_deadline=budget.clock()+min(150,budget.remaining_overall())
         report=build_report(outcomes,records,tables.get('canada-before'),tables.get('canada-after'),publications,contracts,budget,options.processing_commit)
+        report['publicationProjectionFile']=asdict(projection_identity)
         report['snapshotFiles']={name:asdict(store.identity(name+'.html')) if store.path(name+'.html').exists() else None for name in ('canada-before','canada-after')}
         report['resources']['freeDiskBytes']=controls.free_space(store.root)
         report['resources']['peakChildWorkingSetBytes']=max([r.peak_working_set for r in records]+[o.get('worker',{}).get('peak_working_set',0) for o in outcomes.values()])

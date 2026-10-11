@@ -67,6 +67,13 @@ class RunnerTests(unittest.TestCase):
         result=run_worker(contexts()[0],original,store,budget,controls)
         self.assertEqual(result.state,'failed');self.assertTrue(controls.child.closed)
 
+    def test_specific_worker_failure_reason_survives_bounded_ipc(self):
+        budget=Budget(clock=lambda:self.now[0]);store=EvidenceStore.create(self.repo/'data/backups/canada-country-audit/run',budget,repo_root=self.repo)
+        controls=FakeControls(self.now,events=[('error',{'reason':'duplicate-global-detail-key'})])
+        original=OriginalRecord(contexts()[0].id,'zip',None,contexts()[0].id,'test',outcome='complete',file='original.zip')
+        result=run_worker(contexts()[0],original,store,budget,controls)
+        self.assertEqual(result.reason,'duplicate-global-detail-key');self.assertEqual(result.state,'failed')
+
     def test_exhausted_work_preserves_full_grid_and_only_final_request_can_start(self):
         class Transfer:
             def __init__(self): self.events=iter([('headers',{'status':200,'contentType':'text/html','contentLength':None,'lastModified':None,'httpDate':None}),('body',table_fixture()),('end',None)])
@@ -126,7 +133,11 @@ class RunnerTests(unittest.TestCase):
         for name,data,cap in [('original.zip',buffer.getvalue(),Limits().zip_bytes),('imports-layout.html',layout_fixture('imports'),Limits().html_bytes)]:
             with store.open_bounded(name,'original',cap) as writer: writer.write(data)
         identity=store.identity('original.zip');original=OriginalRecord(contexts()[0].id,'zip',None,contexts()[0].id,'test',outcome='complete',file='original.zip',bytes=identity.bytes,sha256=identity.sha256)
-        with WindowsJob() as job: result=run_worker(contexts()[0],original,store,budget,Controls(job,'test'))
+        with WindowsJob() as job:
+            controls=Controls(job,'test')
+            rejected=run_worker(contexts()[0],replace(original,sha256='b'*64),store,budget,controls)
+            self.assertEqual(rejected.reason,'original-identity-mismatch');self.assertEqual(rejected.state,'failed')
+            result=run_worker(contexts()[0],original,store,budget,controls)
         self.assertEqual(result.state,'validated');self.assertGreater(result.peak_working_set,0)
         self.assertEqual(budget.generated_bytes,sum(p.stat().st_size for p in root.glob('*.json')))
         self.assertEqual(json.loads((root/result.files['receipt']['path']).read_text())['residual_usd'],0)

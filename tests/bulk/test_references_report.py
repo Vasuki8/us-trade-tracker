@@ -35,6 +35,14 @@ class ReferencesTests(unittest.TestCase):
         self.assertEqual(compare_references(29790750000,29790800000,None,False).reference_check,'matched')
         self.assertEqual(compare_references(None,100000,None,False).reference_check,'unavailable')
 
+    def test_unreviewed_and_missing_reviewed_publications_differ(self):
+        self.assertEqual(compare_references(100000,100000,None,False).publication_check,'not-reviewed')
+        outcomes,records,table,contracts=self.good_report()
+        report=build_report(outcomes,records,table,table,{},contracts,Budget(),'test')
+        checks={row['id']:row['beforeComparison']['publicationCheck'] for row in report['contexts']}
+        self.assertEqual(checks['exports-2026-01'],'unavailable');self.assertEqual(checks['imports-2026-01'],'not-reviewed')
+        self.assertEqual(sum(value=='not-reviewed' for value in checks.values()),41)
+
     def test_publication_requires_complete_fresh_exact_pdf_identity(self):
         import hashlib
         raw=b'%PDF-1.7\nsynthetic'
