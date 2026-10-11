@@ -75,6 +75,16 @@ describe('country source contracts',()=>{
     expect(client.normalizeCountryPart(table('total'),{...context,kind:'total'})).toMatchObject({kind:'total',rows:[{code:'-',valueUsd:1000000}]});
     expect(client.normalizeCountryPart(table(),context).rows).toMatchObject([{code:'090121',valueUsd:900000,special:false},{code:'999995',valueUsd:100000,special:true}]);
   });
+  it.each(['imports','exports'] as const)('keeps the aircraft pseudo classification direction-specific for %s',direction=>{
+    for(const code of ['880000','880240','880001']){
+      const payload=table('products',direction);payload[1][0]=code;
+      payload[1][1]='AIRCRAFT CATEGORY';
+      const part=client.normalizeCountryPart(payload,{...context,direction});
+      expect(part.rows[0]).toMatchObject({code,description:'AIRCRAFT CATEGORY',valueUsd:900000,special:direction==='exports'&&code==='880000'});
+      expect(part.rows.reduce((sum,row)=>sum+row.valueUsd!,0)).toBe(1000000);
+      expect(part.rows[1]).toMatchObject({code:'999995',valueUsd:100000,special:true});
+    }
+  });
   it('preserves zero versus unavailable value',()=>{
     const payload=table();payload[1][2]='0';payload[2][2]='';
     expect(client.normalizeCountryPart(payload,context).rows.map(row=>row.valueUsd)).toEqual([0,null]);

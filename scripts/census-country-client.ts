@@ -29,7 +29,8 @@ export function normalizeCountryPart(payload:unknown,context:CountryContext):Cou
     if(seen.has(code))throw new Error('Duplicate country commodity');seen.add(code);
     const raw=row[measure];const missing=raw===null||raw===''||raw==='null';
     if(!missing&&(typeof raw!=='string'||!/^\d+$/.test(raw)||!Number.isSafeInteger(Number(raw))))throw new Error('Invalid country dollar value');
-    rows.push({code,description:String(row[`${commodity}_LDESC`]),valueUsd:missing?null:Number(raw),special:/^(98|99)/.test(code)});
+    // Census publishes civilian aircraft exports under pseudo code 880000.
+    rows.push({code,description:String(row[`${commodity}_LDESC`]),valueUsd:missing?null:Number(raw),special:/^(98|99)/.test(code)||(context.direction==='exports'&&code==='880000')});
   }
   if(context.kind==='total'&&rows.length!==1)throw new Error('Missing or duplicate country total');
   return {...publicContext(context),measure,rows};
