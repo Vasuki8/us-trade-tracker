@@ -38,3 +38,10 @@ def archive_fixture(direction):
     countries = [fixed_record(580 if importing else 280, {0:code,4:'Canada' if code=='1220' else 'Other',34:'2024',38:'09',130 if importing else 55:f'{value:15d}'}) for code,value in [('1220',12),('2010',100)]]
     descriptions = [fixed_record(206,{0:'090121',6:'Coffee'}),fixed_record(206,{0:'090111',6:''}), fixed_record(206,{0:'09    ',6:'Chapter'})]
     return {prefix+'_DETL.TXT': b''.join(lines), prefix+'_CTY.TXT': b''.join(countries), 'HSDESC.TXT': b''.join(descriptions)}
+
+
+def archive_inventory_fixture(direction, count):
+    members = archive_fixture(direction)
+    for index in range(count - 3):
+        members[f'OTHER_{index:03d}.TXT'] = b''
+    return members

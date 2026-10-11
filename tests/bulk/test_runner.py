@@ -6,7 +6,7 @@ import sys
 import tempfile
 import unittest
 import zipfile
-from helpers import archive_fixture, layout_fixture, publication_projection, table_fixture
+from helpers import archive_fixture, archive_inventory_fixture, layout_fixture, publication_projection, table_fixture
 REPO=Path(__file__).resolve().parents[2];sys.path.insert(0,str(REPO))
 from scripts.country_bulk.model import Budget, Limits, OriginalRecord, contexts
 from scripts.country_bulk.storage import EvidenceStore
@@ -141,5 +141,34 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual(result.state,'validated');self.assertGreater(result.peak_working_set,0)
         self.assertEqual(budget.generated_bytes,sum(p.stat().st_size for p in root.glob('*.json')))
         self.assertEqual(json.loads((root/result.files['receipt']['path']).read_text())['residual_usd'],0)
+
+    @unittest.skipUnless(sys.platform=='win32','Actual Windows inventory boundary test')
+    def test_actual_worker_enforces_128_member_boundary_in_both_directions(self):
+        for direction in ('imports', 'exports'):
+            for count, expected in ((128, 'validated'), (129, 'failed')):
+                with self.subTest(direction=direction, count=count):
+                    context = contexts()[0 if direction == 'imports' else 1]
+                    root = REPO/'data/backups/canada-country-audit'/f'synthetic-{Path(self.tmp.name).name}-{direction}-{count}'
+                    budget = Budget(); store = EvidenceStore.create(root, budget)
+                    self.addCleanup(lambda path=root: __import__('shutil').rmtree(path))
+                    buffer = io.BytesIO()
+                    with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED) as archive:
+                        for name, data in archive_inventory_fixture(direction, count).items():
+                            archive.writestr(name, data)
+                    for name, data, cap in [('original.zip', buffer.getvalue(), Limits().zip_bytes), (direction+'-layout.html', layout_fixture(direction), Limits().html_bytes)]:
+                        with store.open_bounded(name, 'original', cap) as writer: writer.write(data)
+                    identity = store.identity('original.zip')
+                    original = OriginalRecord(context.id, 'zip', None, context.id, 'test', outcome='complete', file='original.zip', bytes=identity.bytes, sha256=identity.sha256)
+                    with WindowsJob() as job:
+                        result = run_worker(context, original, store, budget, Controls(job, 'test'))
+                    self.assertEqual(result.state, expected, result.reason)
+                    self.assertEqual(budget.generated_bytes, sum(p.stat().st_size for p in root.glob('*.json')))
+                    if count == 129:
+                        self.assertEqual(result.reason, 'archive-member-cap')
+                        self.assertIsNone(result.files)
+                    else:
+                        receipt = json.loads((root/result.files['receipt']['path']).read_bytes())
+                        self.assertEqual(receipt['observations']['archiveMembers'], 128)
+                        self.assertEqual((receipt['sum_usd'], receipt['country_total_usd'], receipt['residual_usd']), (12, 12, 0))
 
 if __name__=='__main__': unittest.main()

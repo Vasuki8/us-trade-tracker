@@ -5,7 +5,7 @@ import sys
 import tempfile
 import unittest
 import zipfile
-from helpers import archive_fixture, layout_fixture
+from helpers import archive_fixture, archive_inventory_fixture, layout_fixture
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(REPO))
 from scripts.country_bulk.model import Limits, contexts
@@ -93,6 +93,22 @@ class ContractsTests(unittest.TestCase):
         members=archive_fixture('imports')
         data=bytearray(members['IMP_DETL.TXT']); data[178:193]=b'               ';members['IMP_DETL.TXT']=bytes(data)
         with self.assertRaises(ValueError): self.parse(members=members)
+
+    def test_128_member_archives_reconcile_under_default_limits(self):
+        for direction in ('imports', 'exports'):
+            with self.subTest(direction=direction):
+                try:
+                    result = self.parse(direction, archive_inventory_fixture(direction, 128))
+                except ValueError as error:
+                    self.fail(f'Valid 128-member {direction} archive rejected: {error}')
+                self.assertEqual(result.observations['archiveMembers'], 128)
+                self.assertEqual((result.sum_usd, result.country_total_usd, result.residual_usd), (12, 12, 0))
+                self.assertEqual(len(result.members), 3)
+
+    def test_129_member_archives_are_rejected_under_default_limits(self):
+        for direction in ('imports', 'exports'):
+            with self.subTest(direction=direction), self.assertRaisesRegex(ValueError, 'archive-member-cap'):
+                self.parse(direction, archive_inventory_fixture(direction, 129))
 
     def test_exact_residual_is_reported_separately(self):
         members=archive_fixture('imports');data=bytearray(members['IMP_CTY.TXT']);data[130:145]=b'000000000000013';members['IMP_CTY.TXT']=bytes(data)
