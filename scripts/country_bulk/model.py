@@ -35,7 +35,7 @@ class Limits:
     worker_seconds: float = 60
     sample_seconds: float = 0.25
     working_set_bytes: int = 1024**3
-    archive_members: int = 100
+    archive_members: int = 128
     archive_uncompressed_bytes: int = 3 * 1024**3
     detail_keys: int = 5_000_000
 
