@@ -13,7 +13,8 @@ describe('isolated Canada audit',()=>{
     const root=await workspace();await mkdir(join(root,'data'));await writeFile(join(root,'data','accepted.json'),'unchanged');
     const output=join(root,'audit');const report=await audit.runCountryAudit(options(output),countryFetch());
     expect(report).toMatchObject({countryCode:'1220',fromMonth:'2024-09',toMonth:'2026-08',sourceCoverage:'verified',classificationStatus:'unverified'});
-    expect(report.months).toHaveLength(48);expect(report.rawFiles).toHaveLength(97);expect(report.months.every(row=>row.residualUsd===0&&row.referenceCheck==='matched')).toBe(true);
+    expect(report.months).toHaveLength(48);expect(report.rawFiles).toHaveLength(111);expect(report.months.every(row=>row.residualUsd===0&&row.referenceCheck==='matched')).toBe(true);
+    expect(report.publications).toHaveLength(7);expect(report.months.every(row=>row.referenceCorroboration==='current-table')).toBe(true);
     const candidate=report.candidates.find(row=>row.direction==='imports'&&row.code==='090121')!;
     expect(candidate).toMatchObject({currentUsd:10800000,previousUsd:10800000,currentSharePercent:90,previousSharePercent:90,shareChangePercentagePoints:0,complete:true,classificationStatus:'unverified',comparisonAvailable:false});
     expect(await readFile(join(root,'data','accepted.json'),'utf8')).toBe('unchanged');
@@ -39,13 +40,13 @@ describe('isolated Canada audit',()=>{
   });
   it('keeps evidence and a safe error after a malformed response without abandoning the remaining grid',async()=>{
     const report=await audit.runCountryAudit(options(join(await workspace(),'audit')),countryFetch((payload,url)=>{if(url.searchParams.get('YEAR')==='2024'&&url.searchParams.get('MONTH')==='09'&&url.searchParams.get('SUMMARY_LVL2')==='CY')payload[1][3]='2010';}));
-    expect(report.sourceCoverage).toBe('failed');expect(report.rawFiles).toHaveLength(97);expect(report.months[0].errors.length).toBe(1);expect(report.months[0].totalUsd).toBeNull();
+    expect(report.sourceCoverage).toBe('failed');expect(report.rawFiles).toHaveLength(111);expect(report.months[0].errors.length).toBe(1);expect(report.months[0].totalUsd).toBeNull();
   });
   it('refuses occupied output and concurrent reuse before fetching',async()=>{
     const root=await workspace();let calls=0;const fetcher=(async(input,init)=>{calls++;return countryFetch()(input,init);}) as typeof fetch;
     await expect(audit.runCountryAudit(options(root),fetcher)).rejects.toThrow(/exists/);expect(calls).toBe(0);
     const output=join(root,'new');const results=await Promise.allSettled([audit.runCountryAudit(options(output),fetcher),audit.runCountryAudit(options(output),fetcher)]);
-    expect(results.filter(result=>result.status==='fulfilled')).toHaveLength(1);expect(calls).toBe(97);
+    expect(results.filter(result=>result.status==='fulfilled')).toHaveLength(1);expect(calls).toBe(104);
   });
   it.each([{countryCode:'../1220'},{countryCode:'2010'},{end:'2026-09'},{end:'2026-8'},{apiKey:''}])('validates pilot inputs before writing %j',async override=>{
     const output=join(await workspace(),'new');let calls=0;
@@ -58,6 +59,20 @@ describe('isolated Canada audit',()=>{
 });
 
 describe('official country-table checks',()=>{
+  it('does not trust changed publication bytes or replace a current-table mismatch with an unchecked ledger figure',async()=>{
+    const fetcher=(async(input,init)=>{
+      const url=new URL(String(input));
+      if(url.pathname.endsWith('.pdf'))return new Response('%PDF-1.7\nchanged original',{headers:{'content-type':'application/pdf'}});
+      if(url.hostname==='www.census.gov')return new Response(referenceHtml().replace('May 2026</td><td>1.0','May 2026</td><td>30,399.0'),{headers:{'content-type':'text/html'}});
+      return countryFetch((payload,source)=>{if(source.pathname.includes('/exports/')&&source.searchParams.get('YEAR')==='2026'&&source.searchParams.get('MONTH')==='05'){payload[1][2]=source.searchParams.get('SUMMARY_LVL2')==='CY'?'29790835759':'29790735759';}})(input,init);
+    }) as typeof fetch;
+    const output=join(await workspace(),'audit');const report=await audit.runCountryAudit(options(output),fetcher);
+    expect(report.months.find(row=>row.month==='2026-05'&&row.direction==='exports')).toMatchObject({totalUsd:29790835759,residualUsd:0,referenceCheck:'mismatch',publicationCheck:'unavailable',publicationReferenceUsd:null,referenceCorroboration:'none'});
+    expect(report.publications.every(row=>row.verification==='unavailable'&&row.referenceUsd===null)).toBe(true);
+    expect(report.sourceCoverage).toBe('failed');expect(report.classificationStatus).toBe('unverified');expect(report.candidates.every(row=>row.comparisonAvailable===false)).toBe(true);
+    expect(await readFile(join(output,'raw','ft900-2026-05.pdf'),'utf8')).toBe('%PDF-1.7\nchanged original');
+    expect(report.rawFiles).toHaveLength(111);
+  });
   it('parses nominal millions and checks one tenth of a million precision',()=>{
     expect(parseCountryReference(referenceHtml()).find(row=>row.month==='2026-08')).toEqual({month:'2026-08',importsUsd:1000000,exportsUsd:1000000});
     expect(()=>parseCountryReference(referenceHtml().replace('Canada','Mexico'))).toThrow(/Canada/);
