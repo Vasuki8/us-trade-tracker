@@ -34,7 +34,8 @@ export function normalizeCountryPart(payload:unknown,context:CountryContext):Cou
   if(context.kind==='total'&&rows.length!==1)throw new Error('Missing or duplicate country total');
   return {...publicContext(context),measure,rows};
 }
-export async function fetchCountryPart(options:CountryFetchOptions,fetchImpl:typeof fetch=fetch):Promise<CountryPart>{
+const noContent=Symbol('country-no-content');
+async function fetchCountryTable(options:CountryFetchOptions,fetchImpl:typeof fetch,cumulative=false):Promise<unknown>{
   validateContext(options);if(!options.apiKey.trim())throw new Error('Census key required');
   const {columns}=fields(options.direction);
   const url=new URL(`https://api.census.gov/data/timeseries/intltrade/${options.direction}/hs`);
@@ -42,7 +43,7 @@ export async function fetchCountryPart(options:CountryFetchOptions,fetchImpl:typ
   // Census recommends native calendar predicates to reduce monthly query processing.
   url.searchParams.set('YEAR',options.month.slice(0,4));url.searchParams.set('MONTH',options.month.slice(5));
   if(options.kind==='products')url.searchParams.set('COMM_LVL','HS6');
-  url.searchParams.set('get',columns.filter(column=>!url.searchParams.has(column)).join(','));
+  url.searchParams.set('get',[...columns,...(cumulative?['ALL_VAL_YR']:[])].filter(column=>!url.searchParams.has(column)).join(','));
   const requestUrl=url.toString();url.searchParams.set('key',options.apiKey);
   let response:Response|undefined;let attempts=0;let responseBody='';const responses:CountryRaw['responses']=[];
   const persist=async()=>{const last=responses.at(-1)!;await options.onRaw?.({schemaVersion:1,...publicContext(options),requestUrl,retrievedAt:last.retrievedAt,httpStatus:last.httpStatus??0,attempts,responseBody:last.responseBody??'',responses});};
@@ -61,9 +62,29 @@ export async function fetchCountryPart(options:CountryFetchOptions,fetchImpl:typ
   }
   if(!response)throw new Error('No country Census response');
   await persist();
-  if(response.status===204){if(options.kind==='total')throw new Error('Missing country total');return {...publicContext(options),measure:options.direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO',rows:[]};}
+  if(response.status===204){if(options.kind==='total')throw new Error('Missing country total');return noContent;}
   if(!response.ok)throw new Error(`Country Census HTTP ${response.status}`);
   if(!response.headers.get('content-type')?.includes('application/json'))throw new Error('Country Census returned non-JSON data');
   let payload:unknown;try{payload=JSON.parse(responseBody);}catch{throw new Error('Invalid country Census JSON');}
-  return normalizeCountryPart(payload,options);
+  return payload;
+}
+export async function fetchCountryPart(options:CountryFetchOptions,fetchImpl:typeof fetch=fetch):Promise<CountryPart>{
+  const payload=await fetchCountryTable(options,fetchImpl);
+  return payload===noContent?{...publicContext(options),measure:options.direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO',rows:[]}:normalizeCountryPart(payload,options);
+}
+export function normalizeCountryExportCumulativeTotal(payload:unknown,context:CountryContext){
+  validateContext(context);if(context.direction!=='exports'||context.kind!=='total')throw new Error('Cumulative diagnostic requires an export total');
+  if(!Array.isArray(payload)||!Array.isArray(payload[0]))throw new Error('Invalid cumulative table');
+  const table=payload as unknown[][],headers=table[0],index=headers.indexOf('ALL_VAL_YR');
+  if(index<0||headers.lastIndexOf('ALL_VAL_YR')!==index)throw new Error('Missing or duplicate cumulative column');
+  if(table.some(row=>!Array.isArray(row)||row.length!==headers.length))throw new Error('Incomplete cumulative table');
+  // Validate the ordinary total dimensions without changing the original retained body.
+  const part=normalizeCountryPart(table.map(row=>row.filter((_,column)=>column!==index)),context);
+  const raw=table[1][index],missing=raw===null||raw===''||raw==='null';
+  if(!missing&&(typeof raw!=='string'||!/^\d+$/.test(raw)||!Number.isSafeInteger(Number(raw))))throw new Error('Invalid cumulative dollar value');
+  return {part,yearToDateUsd:missing?null:Number(raw)};
+}
+export async function fetchCountryExportCumulativeTotal(options:CountryFetchOptions,fetchImpl:typeof fetch=fetch){
+  validateContext(options);if(options.direction!=='exports'||options.kind!=='total')throw new Error('Cumulative diagnostic requires an export total');
+  return normalizeCountryExportCumulativeTotal(await fetchCountryTable(options,fetchImpl,true),options);
 }
