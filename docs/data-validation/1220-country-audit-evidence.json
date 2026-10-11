@@ -4368,5 +4368,4444 @@
     "releaseAccepted": false,
     "defaultAuditRetrievalChanged": false,
     "earlierCompletedFullAuditVerdict": "failed"
+  },
+  "bulkDiagnostic": {
+    "schemaVersion": 1,
+    "recordedDate": "2026-10-11",
+    "countryCode": "1220",
+    "endMonth": "2026-08",
+    "months": 24,
+    "scope": "Local bounded diagnostic and separate corrected-parser offline verification; no source adoption or release.",
+    "liveDiagnostic": {
+      "processingCommit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+      "outputRoot": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1",
+      "diagnosticOutcome": "failed",
+      "sourceCoverage": "failed",
+      "requestCounts": {
+        "planned": 64,
+        "attempted": 64,
+        "complete": 64,
+        "partial": 0,
+        "failed": 0,
+        "unattempted": 0
+      },
+      "contextFailureCounts": {
+        "invalid-monthly-value": 25,
+        "archive-member-cap": 23
+      },
+      "resources": {
+        "limits": {
+          "original_bytes": 12884901888,
+          "generated_bytes": 134217728,
+          "final_reserve": 8388608,
+          "preflight_free": 17179869184,
+          "disk_guard": 2147483648,
+          "zip_bytes": 402653184,
+          "html_bytes": 1048576,
+          "pdf_bytes": 4194304,
+          "header_seconds": 30,
+          "body_seconds": 120,
+          "work_seconds": 3299.9522981,
+          "overall_seconds": 3599.9522981,
+          "worker_seconds": 60,
+          "sample_seconds": 0.25,
+          "working_set_bytes": 1073741824,
+          "archive_members": 100,
+          "archive_uncompressed_bytes": 3221225472,
+          "detail_keys": 5000000
+        },
+        "originalBytes": 7686772987,
+        "generatedBytes": 201993,
+        "elapsedSeconds": 2551.6410000000033,
+        "stops": [],
+        "freeDiskBytes": 130167345152,
+        "peakChildWorkingSetBytes": 34746368,
+        "selectedBytes": 0
+      },
+      "retainedFileCount": 132,
+      "report": {
+        "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1/bulk-report.json",
+        "bytes": 91396,
+        "sha256": "7a306222bf6be80eae1c938341661e353b08cb4a5ab4e50c6466702f704ad00c"
+      },
+      "manifest": {
+        "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1/original-manifest.json",
+        "bytes": 51828,
+        "sha256": "66acdc59057211575cf8b659f853460e1d279d624677f41fd880da6827865535"
+      },
+      "summary": {
+        "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1/summary.md",
+        "bytes": 3386,
+        "sha256": "297a7c2aa281c4d4b68cfb0d6cf99b05eb63a2aa8f2a6dff82e2ca47f5bfab0a"
+      },
+      "projection": {
+        "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1/publication-projection.json",
+        "bytes": 3650,
+        "sha256": "34e4fbcb70a7549804566f24a0ad3211dd0ef8ab4123a8401bffc0e3a3a18e47"
+      },
+      "snapshots": {
+        "canada-before": {
+          "path": "canada-before.html",
+          "bytes": 217300,
+          "sha256": "7b977801098529c4dacd6cf45cee395be31cafa0e33f0ee1be6cdf174383f7dd"
+        },
+        "canada-after": {
+          "path": "canada-after.html",
+          "bytes": 217300,
+          "sha256": "5526fef0f219ff2481bd1a3b824ac2a2283f03c313060187fdd1291743711267"
+        }
+      },
+      "originals": [
+        {
+          "id": "data-products",
+          "kind": "html",
+          "source_url": "https://www.census.gov/foreign-trade/data/dataproducts.html",
+          "context_id": null,
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:12.489394+00:00",
+          "retrieved_at": "2026-10-11T17:07:13.334645+00:00",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "content_length": null,
+          "last_modified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:12 GMT",
+          "bytes": 80586,
+          "sha256": "18cb3e8b5988320e7e79ae1ab7140c1fd82eaad63b8ca533a12125af87b86c2c",
+          "file": "data-products.html",
+          "elapsed_seconds": 0.8440000000409782,
+          "header_seconds": 0.7660000000032596,
+          "body_seconds": 0.07800000003771856,
+          "sampled_working_set": 33607680,
+          "peak_working_set": 33607680
+        },
+        {
+          "id": "imports-history",
+          "kind": "html",
+          "source_url": "https://www.census.gov/foreign-trade/data/IMDB.html",
+          "context_id": null,
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:13.423322+00:00",
+          "retrieved_at": "2026-10-11T17:07:14.249539+00:00",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "content_length": null,
+          "last_modified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:13 GMT",
+          "bytes": 356979,
+          "sha256": "4622916fe16740d0b7cb92533447fa862772c43349acad1bf9092b304366b31a",
+          "file": "imports-history.html",
+          "elapsed_seconds": 0.8279999999795109,
+          "header_seconds": 0.5939999999827705,
+          "body_seconds": 0.23399999999674037,
+          "sampled_working_set": 33730560,
+          "peak_working_set": 33734656
+        },
+        {
+          "id": "exports-history",
+          "kind": "html",
+          "source_url": "https://www.census.gov/foreign-trade/data/EXDB.html",
+          "context_id": null,
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:14.337793+00:00",
+          "retrieved_at": "2026-10-11T17:07:15.166859+00:00",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "content_length": null,
+          "last_modified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:14 GMT",
+          "bytes": 356894,
+          "sha256": "8a0fd521d1cfc70ec56e824eb9f417aaf03ebfb12fa2f1eb91b0f091095ea4d7",
+          "file": "exports-history.html",
+          "elapsed_seconds": 0.8439999999827705,
+          "header_seconds": 0.5779999999795109,
+          "body_seconds": 0.26600000000325963,
+          "sampled_working_set": 33460224,
+          "peak_working_set": 33460224
+        },
+        {
+          "id": "imports-layout",
+          "kind": "html",
+          "source_url": "https://www.census.gov/foreign-trade/reference/products/layouts/imdb.html",
+          "context_id": null,
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:15.258061+00:00",
+          "retrieved_at": "2026-10-11T17:07:15.993110+00:00",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "content_length": null,
+          "last_modified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:15 GMT",
+          "bytes": 97056,
+          "sha256": "eac6144c4b6379f7f2ffd143e4cda7b96453295f68e7b2c7d55bb431d3cd6b78",
+          "file": "imports-layout.html",
+          "elapsed_seconds": 0.7339999999967404,
+          "header_seconds": 0.7030000000377186,
+          "body_seconds": 0.030999999959021807,
+          "sampled_working_set": 33984512,
+          "peak_working_set": 33984512
+        },
+        {
+          "id": "exports-layout",
+          "kind": "html",
+          "source_url": "https://www.census.gov/foreign-trade/reference/products/layouts/exdb.html",
+          "context_id": null,
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:16.092177+00:00",
+          "retrieved_at": "2026-10-11T17:07:16.605113+00:00",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "content_length": null,
+          "last_modified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:15 GMT",
+          "bytes": 79074,
+          "sha256": "da68a64fe7f83fa0781fecd5ef3f6ba449bedc8ab23d2fe631cfbffa03692077",
+          "file": "exports-layout.html",
+          "elapsed_seconds": 0.5149999999557622,
+          "header_seconds": 0.4529999999795109,
+          "body_seconds": 0.061999999976251274,
+          "sampled_working_set": 33583104,
+          "peak_working_set": 33583104
+        },
+        {
+          "id": "country-subcodes",
+          "kind": "html",
+          "source_url": "https://www.census.gov/foreign-trade/reference/codes/csc.html",
+          "context_id": null,
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:16.702199+00:00",
+          "retrieved_at": "2026-10-11T17:07:17.123148+00:00",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "content_length": null,
+          "last_modified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:16 GMT",
+          "bytes": 66774,
+          "sha256": "86e88883ba257e87f3fdfc51adcf5b9c48079d52b381472cb9fb34f50882d375",
+          "file": "country-subcodes.html",
+          "elapsed_seconds": 0.42199999996228144,
+          "header_seconds": 0.39100000000325963,
+          "body_seconds": 0.030999999959021807,
+          "sampled_working_set": 33693696,
+          "peak_working_set": 33693696
+        },
+        {
+          "id": "statistical-guide",
+          "kind": "html",
+          "source_url": "https://www.census.gov/foreign-trade/guide/sec2.html",
+          "context_id": null,
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:17.210138+00:00",
+          "retrieved_at": "2026-10-11T17:07:17.793912+00:00",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "content_length": null,
+          "last_modified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:16 GMT",
+          "bytes": 174581,
+          "sha256": "8996c8cf99d848669097bd7369b8705894121dbf6c6e26bb4f941211caaeeea2",
+          "file": "statistical-guide.html",
+          "elapsed_seconds": 0.5939999999827705,
+          "header_seconds": 0.43799999996554106,
+          "body_seconds": 0.15600000001722947,
+          "sampled_working_set": 33411072,
+          "peak_working_set": 33411072
+        },
+        {
+          "id": "canada-before",
+          "kind": "html",
+          "source_url": "https://www.census.gov/foreign-trade/balance/c1220.html",
+          "context_id": null,
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:17.880127+00:00",
+          "retrieved_at": "2026-10-11T17:07:18.345400+00:00",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:33:29 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:17 GMT",
+          "bytes": 217300,
+          "sha256": "7b977801098529c4dacd6cf45cee395be31cafa0e33f0ee1be6cdf174383f7dd",
+          "file": "canada-before.html",
+          "elapsed_seconds": 0.4690000000409782,
+          "header_seconds": 0.45300000003771856,
+          "body_seconds": 0.01600000000325963,
+          "sampled_working_set": 33771520,
+          "peak_working_set": 33771520
+        },
+        {
+          "id": "publication-2026-01",
+          "kind": "pdf",
+          "source_url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2601.pdf",
+          "context_id": "exports-2026-01",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:18.481385+00:00",
+          "retrieved_at": "2026-10-11T17:07:19.713734+00:00",
+          "status": 200,
+          "content_type": "application/pdf",
+          "content_length": null,
+          "last_modified": "Thu, 12 Mar 2026 12:32:31 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:18 GMT",
+          "bytes": 1719702,
+          "sha256": "3c18b43ee3e6e91a9a90dc159ef44f33972745ea38b892ebbc77823b1bf418d9",
+          "file": "ft900-2026-01.pdf",
+          "elapsed_seconds": 1.2350000000442378,
+          "header_seconds": 0.5320000000065193,
+          "body_seconds": 0.7030000000377186,
+          "sampled_working_set": 33701888,
+          "peak_working_set": 33701888
+        },
+        {
+          "id": "publication-2026-02",
+          "kind": "pdf",
+          "source_url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2602.pdf",
+          "context_id": "exports-2026-02",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:19.734910+00:00",
+          "retrieved_at": "2026-10-11T17:07:21.175360+00:00",
+          "status": 200,
+          "content_type": "application/pdf",
+          "content_length": null,
+          "last_modified": "Thu, 02 Apr 2026 12:32:00 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:19 GMT",
+          "bytes": 1741412,
+          "sha256": "96c04f834b91c12887264c81590e5bc614f4d6f6b6b2d3bcd9345365de79a2d0",
+          "file": "ft900-2026-02.pdf",
+          "elapsed_seconds": 1.4380000000237487,
+          "header_seconds": 0.6570000000065193,
+          "body_seconds": 0.7810000000172295,
+          "sampled_working_set": 33705984,
+          "peak_working_set": 33705984
+        },
+        {
+          "id": "publication-2026-03",
+          "kind": "pdf",
+          "source_url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2603.pdf",
+          "context_id": "exports-2026-03",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:21.195845+00:00",
+          "retrieved_at": "2026-10-11T17:07:21.970059+00:00",
+          "status": 200,
+          "content_type": "application/pdf",
+          "content_length": null,
+          "last_modified": "Tue, 05 May 2026 12:31:31 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:20 GMT",
+          "bytes": 1745935,
+          "sha256": "9f71de167044d2d4c5d3d81271a5311173be1e67c9eda4c52779b2bf8de22b72",
+          "file": "ft900-2026-03.pdf",
+          "elapsed_seconds": 0.7810000000172295,
+          "header_seconds": 0.5,
+          "body_seconds": 0.28100000001722947,
+          "sampled_working_set": 33292288,
+          "peak_working_set": 33292288
+        },
+        {
+          "id": "publication-2026-04",
+          "kind": "pdf",
+          "source_url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2604.pdf",
+          "context_id": "exports-2026-04",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:22.029086+00:00",
+          "retrieved_at": "2026-10-11T17:07:23.090683+00:00",
+          "status": 200,
+          "content_type": "application/pdf",
+          "content_length": null,
+          "last_modified": "Tue, 09 Jun 2026 12:31:08 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:21 GMT",
+          "bytes": 1754536,
+          "sha256": "11947b2eed8dc87414cfc2ec89b73d7f01282a1d10c70452684b9736ee284b87",
+          "file": "ft900-2026-04.pdf",
+          "elapsed_seconds": 1.0630000000237487,
+          "header_seconds": 0.5,
+          "body_seconds": 0.5630000000237487,
+          "sampled_working_set": 34045952,
+          "peak_working_set": 34045952
+        },
+        {
+          "id": "publication-2026-05",
+          "kind": "pdf",
+          "source_url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2605.pdf",
+          "context_id": "exports-2026-05",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:23.110643+00:00",
+          "retrieved_at": "2026-10-11T17:07:24.210924+00:00",
+          "status": 200,
+          "content_type": "application/pdf",
+          "content_length": null,
+          "last_modified": "Tue, 07 Jul 2026 12:32:03 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:22 GMT",
+          "bytes": 1798284,
+          "sha256": "9ab9737e0c84a679dec653de9ca1223de3004e0d0d074ef3a2dec33cb63c70ec",
+          "file": "ft900-2026-05.pdf",
+          "elapsed_seconds": 1.0940000000409782,
+          "header_seconds": 0.4380000000237487,
+          "body_seconds": 0.6560000000172295,
+          "sampled_working_set": 34131968,
+          "peak_working_set": 34131968
+        },
+        {
+          "id": "publication-2026-06",
+          "kind": "pdf",
+          "source_url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2606.pdf",
+          "context_id": "exports-2026-06",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:24.231465+00:00",
+          "retrieved_at": "2026-10-11T17:07:25.280723+00:00",
+          "status": 200,
+          "content_type": "application/pdf",
+          "content_length": null,
+          "last_modified": "Tue, 04 Aug 2026 12:31:02 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:23 GMT",
+          "bytes": 1817223,
+          "sha256": "a67052e2f6f97dcd8a4fb46530464dc093eea26251b9ca153f658a09957e7eef",
+          "file": "ft900-2026-06.pdf",
+          "elapsed_seconds": 1.047000000020489,
+          "header_seconds": 0.39100000000325963,
+          "body_seconds": 0.6560000000172295,
+          "sampled_working_set": 33357824,
+          "peak_working_set": 33357824
+        },
+        {
+          "id": "publication-2026-07",
+          "kind": "pdf",
+          "source_url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2607.pdf",
+          "context_id": "exports-2026-07",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:25.300366+00:00",
+          "retrieved_at": "2026-10-11T17:07:26.349987+00:00",
+          "status": 200,
+          "content_type": "application/pdf",
+          "content_length": null,
+          "last_modified": "Thu, 03 Sep 2026 12:32:00 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:25 GMT",
+          "bytes": 1826911,
+          "sha256": "c122b8ccee947c58859597a7549bb5dcb6691add3e405180ab915d43f6c43aa0",
+          "file": "ft900-2026-07.pdf",
+          "elapsed_seconds": 1.047000000020489,
+          "header_seconds": 0.4220000000204891,
+          "body_seconds": 0.625,
+          "sampled_working_set": 33624064,
+          "peak_working_set": 33624064
+        },
+        {
+          "id": "imports-2024-09",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2024/Merch/im_m/IMDB2409.ZIP",
+          "context_id": "imports-2024-09",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:07:26.408631+00:00",
+          "retrieved_at": "2026-10-11T17:08:24.810529+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 19:14:14 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:07:26 GMT",
+          "bytes": 156371524,
+          "sha256": "0b749e3af3da7ca6191e0f3f08da7efe10702ff0c16eda1dfa764f26b8aed841",
+          "file": "imports-2024-09.zip",
+          "elapsed_seconds": 58.40700000000652,
+          "header_seconds": 0.39100000000325963,
+          "body_seconds": 58.01600000000326,
+          "sampled_working_set": 33869824,
+          "peak_working_set": 33878016
+        },
+        {
+          "id": "exports-2024-09",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2024/Merch/ex_m/EXDB2409.ZIP",
+          "context_id": "exports-2024-09",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:08:25.182507+00:00",
+          "retrieved_at": "2026-10-11T17:08:49.170025+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 19:14:09 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:08:24 GMT",
+          "bytes": 72005838,
+          "sha256": "10b189273857231d6b822dded6f4a2a68f77fad920308d5696032076c3e79cf2",
+          "file": "exports-2024-09.zip",
+          "elapsed_seconds": 23.98399999999674,
+          "header_seconds": 0.39000000001396984,
+          "body_seconds": 23.59399999998277,
+          "sampled_working_set": 34156544,
+          "peak_working_set": 34156544
+        },
+        {
+          "id": "imports-2024-10",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2024/Merch/im_m/IMDB2410.ZIP",
+          "context_id": "imports-2024-10",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:08:49.452109+00:00",
+          "retrieved_at": "2026-10-11T17:09:15.482207+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 19:14:14 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:08:49 GMT",
+          "bytes": 163557597,
+          "sha256": "baf800b92922a28e69b9de91e4e3bbf9835ca1733324f6eb47427744d61b8474",
+          "file": "imports-2024-10.zip",
+          "elapsed_seconds": 26.030999999959022,
+          "header_seconds": 0.34399999998277053,
+          "body_seconds": 25.68699999997625,
+          "sampled_working_set": 33714176,
+          "peak_working_set": 33714176
+        },
+        {
+          "id": "exports-2024-10",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2024/Merch/ex_m/EXDB2410.ZIP",
+          "context_id": "exports-2024-10",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:09:15.814013+00:00",
+          "retrieved_at": "2026-10-11T17:09:40.911046+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 19:14:10 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:09:15 GMT",
+          "bytes": 74498455,
+          "sha256": "cb70b2948e37b0df92c88ebeeaaafd2177f972ca99160dba64be177c2d74e03e",
+          "file": "exports-2024-10.zip",
+          "elapsed_seconds": 25.09299999999348,
+          "header_seconds": 0.375,
+          "body_seconds": 24.71799999999348,
+          "sampled_working_set": 33599488,
+          "peak_working_set": 33599488
+        },
+        {
+          "id": "imports-2024-11",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2024/Merch/im_m/IMDB2411.ZIP",
+          "context_id": "imports-2024-11",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:09:41.195851+00:00",
+          "retrieved_at": "2026-10-11T17:10:34.124536+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 19:14:15 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:09:40 GMT",
+          "bytes": 168878635,
+          "sha256": "49eb58123594ed5eb7a432e5f7089fcf005b1e9d71fee921988176388838a667",
+          "file": "imports-2024-11.zip",
+          "elapsed_seconds": 52.93699999997625,
+          "header_seconds": 0.39000000001396984,
+          "body_seconds": 52.54699999996228,
+          "sampled_working_set": 33976320,
+          "peak_working_set": 33976320
+        },
+        {
+          "id": "exports-2024-11",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2024/Merch/ex_m/EXDB2411.ZIP",
+          "context_id": "exports-2024-11",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:10:34.497870+00:00",
+          "retrieved_at": "2026-10-11T17:10:48.977586+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 19:14:10 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:10:34 GMT",
+          "bytes": 76728847,
+          "sha256": "ff4fff77a465fb2e805b84d866e8ea5925123346503dd21b9fa186de1109c7d4",
+          "file": "exports-2024-11.zip",
+          "elapsed_seconds": 14.469000000040978,
+          "header_seconds": 0.375,
+          "body_seconds": 14.094000000040978,
+          "sampled_working_set": 33579008,
+          "peak_working_set": 33579008
+        },
+        {
+          "id": "imports-2024-12",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2024/Merch/im_m/IMDB2412.ZIP",
+          "context_id": "imports-2024-12",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:10:49.305020+00:00",
+          "retrieved_at": "2026-10-11T17:11:47.241746+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 19:14:15 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:10:48 GMT",
+          "bytes": 174664430,
+          "sha256": "92646690747882900a3747b9548d5d72d55e6f002c758aad134002740ab404df",
+          "file": "imports-2024-12.zip",
+          "elapsed_seconds": 57.93699999997625,
+          "header_seconds": 0.34399999998277053,
+          "body_seconds": 57.59299999999348,
+          "sampled_working_set": 33640448,
+          "peak_working_set": 33640448
+        },
+        {
+          "id": "exports-2024-12",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2024/Merch/ex_m/EXDB2412.ZIP",
+          "context_id": "exports-2024-12",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:11:47.615498+00:00",
+          "retrieved_at": "2026-10-11T17:12:16.071779+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 19:14:10 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:11:47 GMT",
+          "bytes": 78410456,
+          "sha256": "04f4df056082b8873af17a8413f7c4900f639ad934b66fe6e63691a1d9666672",
+          "file": "exports-2024-12.zip",
+          "elapsed_seconds": 28.45400000002701,
+          "header_seconds": 0.4690000000409782,
+          "body_seconds": 27.98499999998603,
+          "sampled_working_set": 33828864,
+          "peak_working_set": 33828864
+        },
+        {
+          "id": "imports-2025-01",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2501.ZIP",
+          "context_id": "imports-2025-01",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:12:16.362563+00:00",
+          "retrieved_at": "2026-10-11T17:13:06.712207+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:18 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:12:16 GMT",
+          "bytes": 138816157,
+          "sha256": "3ef6ae71d00e40398d03482a96a1b8d691df3887bf537392854de1b65c5117ef",
+          "file": "imports-2025-01.zip",
+          "elapsed_seconds": 50.34400000004098,
+          "header_seconds": 0.4380000000237487,
+          "body_seconds": 49.90600000001723,
+          "sampled_working_set": 33636352,
+          "peak_working_set": 33636352
+        },
+        {
+          "id": "exports-2025-01",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2501.ZIP",
+          "context_id": "exports-2025-01",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:13:07.037586+00:00",
+          "retrieved_at": "2026-10-11T17:13:47.306042+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:11 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:13:06 GMT",
+          "bytes": 108411238,
+          "sha256": "7911606c0190c39cf336070e8a8a4285ee350f4fe38bcf9e0df849892eda3867",
+          "file": "exports-2025-01.zip",
+          "elapsed_seconds": 40.26600000000326,
+          "header_seconds": 0.4220000000204891,
+          "body_seconds": 39.84399999998277,
+          "sampled_working_set": 34004992,
+          "peak_working_set": 34004992
+        },
+        {
+          "id": "imports-2025-02",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2502.ZIP",
+          "context_id": "imports-2025-02",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:13:47.624958+00:00",
+          "retrieved_at": "2026-10-11T17:14:21.368486+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:18 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:13:47 GMT",
+          "bytes": 94295787,
+          "sha256": "38a5245913f727c96b9a243c406efcba9b8980a8d65aa58789977e9a3210c238",
+          "file": "imports-2025-02.zip",
+          "elapsed_seconds": 33.73399999999674,
+          "header_seconds": 0.5,
+          "body_seconds": 33.23399999999674,
+          "sampled_working_set": 33492992,
+          "peak_working_set": 33492992
+        },
+        {
+          "id": "exports-2025-02",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2502.ZIP",
+          "context_id": "exports-2025-02",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:14:21.670214+00:00",
+          "retrieved_at": "2026-10-11T17:15:08.393619+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:12 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:14:21 GMT",
+          "bytes": 118490027,
+          "sha256": "7668a5aefa439aa65d1e0fa719debcecaffc65b58ef9c1a29969fb3882261385",
+          "file": "exports-2025-02.zip",
+          "elapsed_seconds": 46.71899999998277,
+          "header_seconds": 0.4220000000204891,
+          "body_seconds": 46.29699999996228,
+          "sampled_working_set": 33738752,
+          "peak_working_set": 33738752
+        },
+        {
+          "id": "imports-2025-03",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2503.ZIP",
+          "context_id": "imports-2025-03",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:15:08.724276+00:00",
+          "retrieved_at": "2026-10-11T17:16:02.841715+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": 184041295,
+          "last_modified": "Tue, 30 Jun 2026 18:55:19 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:15:08 GMT",
+          "bytes": 184041295,
+          "sha256": "b0bf50cc4c39bb56023d288efc6a6dd022093d3b1b31399cf1e2a3220af3f5a1",
+          "file": "imports-2025-03.zip",
+          "elapsed_seconds": 54.125,
+          "header_seconds": 0.4059999999590218,
+          "body_seconds": 53.71900000004098,
+          "sampled_working_set": 34734080,
+          "peak_working_set": 34746368
+        },
+        {
+          "id": "exports-2025-03",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2503.ZIP",
+          "context_id": "exports-2025-03",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:16:03.259203+00:00",
+          "retrieved_at": "2026-10-11T17:16:50.065955+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:12 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:16:03 GMT",
+          "bytes": 125002773,
+          "sha256": "f5e19b295a2288a242c8a37b2420dfaf032627597c6f808c30ad2d2d8054414b",
+          "file": "exports-2025-03.zip",
+          "elapsed_seconds": 46.81300000002375,
+          "header_seconds": 0.45300000003771856,
+          "body_seconds": 46.35999999998603,
+          "sampled_working_set": 33857536,
+          "peak_working_set": 33857536
+        },
+        {
+          "id": "imports-2025-04",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2504.ZIP",
+          "context_id": "imports-2025-04",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:16:50.412801+00:00",
+          "retrieved_at": "2026-10-11T17:18:08.467215+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:20 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:16:50 GMT",
+          "bytes": 208290536,
+          "sha256": "035acc164e919fefc45b7ca7b7d85b05a461f527f60da781b7d00ace58906503",
+          "file": "imports-2025-04.zip",
+          "elapsed_seconds": 78.06300000002375,
+          "header_seconds": 0.46899999998277053,
+          "body_seconds": 77.59400000004098,
+          "sampled_working_set": 33722368,
+          "peak_working_set": 33722368
+        },
+        {
+          "id": "exports-2025-04",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2504.ZIP",
+          "context_id": "exports-2025-04",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:18:08.870654+00:00",
+          "retrieved_at": "2026-10-11T17:18:57.331334+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:13 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:18:08 GMT",
+          "bytes": 129402633,
+          "sha256": "69b02f3c854b46f205282908462f58f17b8932c53def36e91164ab54b9faa7a1",
+          "file": "exports-2025-04.zip",
+          "elapsed_seconds": 48.45300000003772,
+          "header_seconds": 0.45300000003771856,
+          "body_seconds": 48.0,
+          "sampled_working_set": 33923072,
+          "peak_working_set": 33923072
+        },
+        {
+          "id": "imports-2025-05",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2505.ZIP",
+          "context_id": "imports-2025-05",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:18:57.710079+00:00",
+          "retrieved_at": "2026-10-11T17:20:14.316442+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": 226816449,
+          "last_modified": "Tue, 30 Jun 2026 18:55:21 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:18:57 GMT",
+          "bytes": 226816449,
+          "sha256": "24818243d93c889972ae78ec8cdf1c6c581621998d9b83eaf8a169f232ae6fa7",
+          "file": "imports-2025-05.zip",
+          "elapsed_seconds": 76.60999999998603,
+          "header_seconds": 0.42199999996228144,
+          "body_seconds": 76.18800000002375,
+          "sampled_working_set": 34672640,
+          "peak_working_set": 34672640
+        },
+        {
+          "id": "exports-2025-05",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2505.ZIP",
+          "context_id": "exports-2025-05",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:20:14.745647+00:00",
+          "retrieved_at": "2026-10-11T17:20:59.219160+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:13 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:20:14 GMT",
+          "bytes": 133291860,
+          "sha256": "c4bbee47db7f779246487c51c44724794174dafa649c9664388590ed2326b7ea",
+          "file": "exports-2025-05.zip",
+          "elapsed_seconds": 44.46900000004098,
+          "header_seconds": 0.5780000000377186,
+          "body_seconds": 43.89100000000326,
+          "sampled_working_set": 33378304,
+          "peak_working_set": 33378304
+        },
+        {
+          "id": "imports-2025-06",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2506.ZIP",
+          "context_id": "imports-2025-06",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:20:59.587016+00:00",
+          "retrieved_at": "2026-10-11T17:22:08.337229+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:22 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:20:59 GMT",
+          "bytes": 240434788,
+          "sha256": "4a55c8101bdb0810cfaa646da2d9c274d7033e22ab5a3b119c9efe24e270bf13",
+          "file": "imports-2025-06.zip",
+          "elapsed_seconds": 68.75,
+          "header_seconds": 0.375,
+          "body_seconds": 68.375,
+          "sampled_working_set": 33591296,
+          "peak_working_set": 33591296
+        },
+        {
+          "id": "exports-2025-06",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2506.ZIP",
+          "context_id": "exports-2025-06",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:22:08.719089+00:00",
+          "retrieved_at": "2026-10-11T17:22:56.462492+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:14 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:22:08 GMT",
+          "bytes": 135617540,
+          "sha256": "7c86f6b41f9d02d21f0ea2c3c0fef10371d0f6945ee0163145ff3654b1ad4c34",
+          "file": "exports-2025-06.zip",
+          "elapsed_seconds": 47.73399999999674,
+          "header_seconds": 0.4529999999795109,
+          "body_seconds": 47.28100000001723,
+          "sampled_working_set": 33841152,
+          "peak_working_set": 33841152
+        },
+        {
+          "id": "imports-2025-07",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2507.ZIP",
+          "context_id": "imports-2025-07",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:22:56.793877+00:00",
+          "retrieved_at": "2026-10-11T17:24:20.071525+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:22 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:22:56 GMT",
+          "bytes": 254137265,
+          "sha256": "7d72cf07b9a1696fe8f054d8bbc25ce45bf6fb9ef0b5b8e893c6be9a10c1215a",
+          "file": "imports-2025-07.zip",
+          "elapsed_seconds": 83.28200000000652,
+          "header_seconds": 0.39100000000325963,
+          "body_seconds": 82.89100000000326,
+          "sampled_working_set": 33476608,
+          "peak_working_set": 33476608
+        },
+        {
+          "id": "exports-2025-07",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2507.ZIP",
+          "context_id": "exports-2025-07",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:24:20.474775+00:00",
+          "retrieved_at": "2026-10-11T17:25:12.831752+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:14 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:24:20 GMT",
+          "bytes": 138533757,
+          "sha256": "3c57a1b8e30d2b137e4385839e8fd23053da1b806e6f8d629b6cc9decea9c5ca",
+          "file": "exports-2025-07.zip",
+          "elapsed_seconds": 52.35899999999674,
+          "header_seconds": 0.46899999998277053,
+          "body_seconds": 51.89000000001397,
+          "sampled_working_set": 33628160,
+          "peak_working_set": 33628160
+        },
+        {
+          "id": "imports-2025-08",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2508.ZIP",
+          "context_id": "imports-2025-08",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:25:13.191750+00:00",
+          "retrieved_at": "2026-10-11T17:26:47.106712+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:24 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:25:12 GMT",
+          "bytes": 264168323,
+          "sha256": "4fd343e4b33fdbe013329db1f46264abe93363e1c04216855fc27fd6f76da022",
+          "file": "imports-2025-08.zip",
+          "elapsed_seconds": 93.93699999997625,
+          "header_seconds": 0.4369999999762513,
+          "body_seconds": 93.5,
+          "sampled_working_set": 33865728,
+          "peak_working_set": 33865728
+        },
+        {
+          "id": "exports-2025-08",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2508.ZIP",
+          "context_id": "exports-2025-08",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:26:47.530782+00:00",
+          "retrieved_at": "2026-10-11T17:27:34.060840+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:15 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:26:47 GMT",
+          "bytes": 141228868,
+          "sha256": "6728b6afe647f66ca5bc7bd2a022e91b7b8c8de106f4ce0fe99a2aee2143128c",
+          "file": "exports-2025-08.zip",
+          "elapsed_seconds": 46.54700000002049,
+          "header_seconds": 0.32800000003771856,
+          "body_seconds": 46.21899999998277,
+          "sampled_working_set": 34021376,
+          "peak_working_set": 34021376
+        },
+        {
+          "id": "imports-2025-09",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2509.ZIP",
+          "context_id": "imports-2025-09",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:27:34.392102+00:00",
+          "retrieved_at": "2026-10-11T17:29:16.329504+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:25 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:27:34 GMT",
+          "bytes": 273226744,
+          "sha256": "8d84ce467c4613d1c1d40a64b9c206cd126a65a1f93907cbe0efa585f5352df9",
+          "file": "imports-2025-09.zip",
+          "elapsed_seconds": 101.93700000003446,
+          "header_seconds": 0.43700000003445894,
+          "body_seconds": 101.5,
+          "sampled_working_set": 33677312,
+          "peak_working_set": 33677312
+        },
+        {
+          "id": "exports-2025-09",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2509.ZIP",
+          "context_id": "exports-2025-09",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:29:16.734684+00:00",
+          "retrieved_at": "2026-10-11T17:30:08.971976+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:15 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:29:16 GMT",
+          "bytes": 143419300,
+          "sha256": "6fa159d73eb5850d01d1fba6dd59f5bf9fd14bba63e56710f91f5d9f479d12db",
+          "file": "exports-2025-09.zip",
+          "elapsed_seconds": 52.23500000004424,
+          "header_seconds": 0.3130000000237487,
+          "body_seconds": 51.92200000002049,
+          "sampled_working_set": 33951744,
+          "peak_working_set": 33951744
+        },
+        {
+          "id": "imports-2025-10",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2510.ZIP",
+          "context_id": "imports-2025-10",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:30:09.300517+00:00",
+          "retrieved_at": "2026-10-11T17:31:47.847347+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:26 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:30:09 GMT",
+          "bytes": 280502699,
+          "sha256": "29d00dfaf0cc2106e31470feb5752b669580d9faa6c243053542461a338a2cd2",
+          "file": "imports-2025-10.zip",
+          "elapsed_seconds": 98.54700000002049,
+          "header_seconds": 0.46899999998277053,
+          "body_seconds": 98.07800000003772,
+          "sampled_working_set": 33431552,
+          "peak_working_set": 33435648
+        },
+        {
+          "id": "exports-2025-10",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2510.ZIP",
+          "context_id": "exports-2025-10",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:31:48.300859+00:00",
+          "retrieved_at": "2026-10-11T17:32:48.510756+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:16 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:31:50 GMT",
+          "bytes": 146090234,
+          "sha256": "8f6f4013917b91253e7038194617bf6f4faf0e8f0fa6b39990e61821cc9cce22",
+          "file": "exports-2025-10.zip",
+          "elapsed_seconds": 60.21899999998277,
+          "header_seconds": 2.672000000020489,
+          "body_seconds": 57.54699999996228,
+          "sampled_working_set": 33660928,
+          "peak_working_set": 33660928
+        },
+        {
+          "id": "imports-2025-11",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2511.ZIP",
+          "context_id": "imports-2025-11",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:32:48.844569+00:00",
+          "retrieved_at": "2026-10-11T17:34:41.073745+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:27 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:32:48 GMT",
+          "bytes": 285618368,
+          "sha256": "7172f2b90090c23ad8d634da08711ec2491e43ca96603643e16ceafde29a9453",
+          "file": "imports-2025-11.zip",
+          "elapsed_seconds": 112.23399999999674,
+          "header_seconds": 0.42199999996228144,
+          "body_seconds": 111.81200000003446,
+          "sampled_working_set": 33533952,
+          "peak_working_set": 33533952
+        },
+        {
+          "id": "exports-2025-11",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2511.ZIP",
+          "context_id": "exports-2025-11",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:34:41.485651+00:00",
+          "retrieved_at": "2026-10-11T17:35:33.158746+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:17 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:34:41 GMT",
+          "bytes": 147930174,
+          "sha256": "2fab9a4490b55dc5162b628ed6a38310d39e96e209476e54efc33c3abfc954d9",
+          "file": "exports-2025-11.zip",
+          "elapsed_seconds": 51.67200000002049,
+          "header_seconds": 0.32900000002700835,
+          "body_seconds": 51.34299999999348,
+          "sampled_working_set": 33808384,
+          "peak_working_set": 33808384
+        },
+        {
+          "id": "imports-2025-12",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2512.ZIP",
+          "context_id": "imports-2025-12",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:35:33.498862+00:00",
+          "retrieved_at": "2026-10-11T17:36:57.102442+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:29 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:35:33 GMT",
+          "bytes": 292255561,
+          "sha256": "c6f1c92d5c6fc35ac1957db788276b6112a169545415338b3a0d045ed9125480",
+          "file": "imports-2025-12.zip",
+          "elapsed_seconds": 83.59400000004098,
+          "header_seconds": 0.39100000000325963,
+          "body_seconds": 83.20300000003772,
+          "sampled_working_set": 33767424,
+          "peak_working_set": 33767424
+        },
+        {
+          "id": "exports-2025-12",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2512.ZIP",
+          "context_id": "exports-2025-12",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:36:57.512314+00:00",
+          "retrieved_at": "2026-10-11T17:37:55.338067+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 30 Jun 2026 18:55:17 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:36:57 GMT",
+          "bytes": 149741951,
+          "sha256": "06e25d7b2842773feb73f17105ae567d05a200de389ab4d9480cb4ce9abf102b",
+          "file": "exports-2025-12.zip",
+          "elapsed_seconds": 57.82800000003772,
+          "header_seconds": 0.4220000000204891,
+          "body_seconds": 57.40600000001723,
+          "sampled_working_set": 33964032,
+          "peak_working_set": 33964032
+        },
+        {
+          "id": "imports-2026-01",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/im_m/IMDB2601.ZIP",
+          "context_id": "imports-2026-01",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:37:55.672476+00:00",
+          "retrieved_at": "2026-10-11T17:38:33.888951+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:37:30 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:37:55 GMT",
+          "bytes": 117668938,
+          "sha256": "f45ba6917e0aa4269146053927b3a764b796ae3f80c4d3ea6881fac863feeac4",
+          "file": "imports-2026-01.zip",
+          "elapsed_seconds": 38.21899999998277,
+          "header_seconds": 0.4529999999795109,
+          "body_seconds": 37.76600000000326,
+          "sampled_working_set": 33783808,
+          "peak_working_set": 33783808
+        },
+        {
+          "id": "exports-2026-01",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2601.ZIP",
+          "context_id": "exports-2026-01",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:38:34.221968+00:00",
+          "retrieved_at": "2026-10-11T17:39:04.873754+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": 90731611,
+          "last_modified": "Tue, 06 Oct 2026 12:34:07 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:38:33 GMT",
+          "bytes": 90731611,
+          "sha256": "ea3dab9b8dc6601ed17163fe304de09f41d97c1bce506e887c8c37c89566a962",
+          "file": "exports-2026-01.zip",
+          "elapsed_seconds": 30.655999999959022,
+          "header_seconds": 0.3899999999557622,
+          "body_seconds": 30.26600000000326,
+          "sampled_working_set": 34250752,
+          "peak_working_set": 34250752
+        },
+        {
+          "id": "imports-2026-02",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/im_m/IMDB2602.ZIP",
+          "context_id": "imports-2026-02",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:39:05.196025+00:00",
+          "retrieved_at": "2026-10-11T17:39:29.888763+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:37:30 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:39:04 GMT",
+          "bytes": 148710401,
+          "sha256": "1c43d47e7c34003be8dd24ecbe9ee81d3761c6ab7bd6d5a36ac81db8fad97f4e",
+          "file": "imports-2026-02.zip",
+          "elapsed_seconds": 24.70299999997951,
+          "header_seconds": 0.34299999999348074,
+          "body_seconds": 24.35999999998603,
+          "sampled_working_set": 33849344,
+          "peak_working_set": 33849344
+        },
+        {
+          "id": "exports-2026-02",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2602.ZIP",
+          "context_id": "exports-2026-02",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:39:30.222279+00:00",
+          "retrieved_at": "2026-10-11T17:40:04.505457+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:34:02 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:39:29 GMT",
+          "bytes": 100600285,
+          "sha256": "f49c1d5c08ce35e972da52693067faa1bb30a64ce110ae55f2f1f7691bcb2b59",
+          "file": "exports-2026-02.zip",
+          "elapsed_seconds": 34.28099999995902,
+          "header_seconds": 0.3119999999762513,
+          "body_seconds": 33.96899999998277,
+          "sampled_working_set": 33452032,
+          "peak_working_set": 33452032
+        },
+        {
+          "id": "imports-2026-03",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/im_m/IMDB2603.ZIP",
+          "context_id": "imports-2026-03",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:40:04.854557+00:00",
+          "retrieved_at": "2026-10-11T17:41:05.166034+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:37:24 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:40:04 GMT",
+          "bytes": 169228219,
+          "sha256": "a263062b3b95ba083475393663c71adbab2ae973311b69ffd5570011f040a92e",
+          "file": "imports-2026-03.zip",
+          "elapsed_seconds": 60.31300000002375,
+          "header_seconds": 0.4220000000204891,
+          "body_seconds": 59.89100000000326,
+          "sampled_working_set": 33624064,
+          "peak_working_set": 33624064
+        },
+        {
+          "id": "exports-2026-03",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2603.ZIP",
+          "context_id": "exports-2026-03",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:41:05.506235+00:00",
+          "retrieved_at": "2026-10-11T17:41:44.408492+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:34:03 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:41:05 GMT",
+          "bytes": 106843243,
+          "sha256": "5383e5117403c87c53130809f11f2c5f174f0aedfd787a1cdb220def97c8b636",
+          "file": "exports-2026-03.zip",
+          "elapsed_seconds": 38.90600000001723,
+          "header_seconds": 0.5470000000204891,
+          "body_seconds": 38.35899999999674,
+          "sampled_working_set": 33345536,
+          "peak_working_set": 33345536
+        },
+        {
+          "id": "imports-2026-04",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/im_m/IMDB2604.ZIP",
+          "context_id": "imports-2026-04",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:41:44.742332+00:00",
+          "retrieved_at": "2026-10-11T17:42:56.704893+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:37:32 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:41:44 GMT",
+          "bytes": 182353228,
+          "sha256": "7f2075efb381a5229e8ffc7e1e8a797ca886af5841a84f09cbb4250091b566fe",
+          "file": "imports-2026-04.zip",
+          "elapsed_seconds": 71.96900000004098,
+          "header_seconds": 0.4380000000237487,
+          "body_seconds": 71.53100000001723,
+          "sampled_working_set": 33914880,
+          "peak_working_set": 33914880
+        },
+        {
+          "id": "exports-2026-04",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2604.ZIP",
+          "context_id": "exports-2026-04",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:42:57.056768+00:00",
+          "retrieved_at": "2026-10-11T17:43:30.773564+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:34:03 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:42:56 GMT",
+          "bytes": 111257688,
+          "sha256": "0f9555aeac90aef60725273e7df12d34fdb3eb91ee5b20f7e1948ae6153f6a0b",
+          "file": "exports-2026-04.zip",
+          "elapsed_seconds": 33.70299999997951,
+          "header_seconds": 0.42099999997299165,
+          "body_seconds": 33.28200000000652,
+          "sampled_working_set": 33583104,
+          "peak_working_set": 33583104
+        },
+        {
+          "id": "imports-2026-05",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/im_m/IMDB2605.ZIP",
+          "context_id": "imports-2026-05",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:43:31.075824+00:00",
+          "retrieved_at": "2026-10-11T17:44:27.391357+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:37:32 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:43:30 GMT",
+          "bytes": 194276249,
+          "sha256": "7b9ae6411e2504241277422ecd928e4d4f2362916f237bf191c83a84758f8200",
+          "file": "imports-2026-05.zip",
+          "elapsed_seconds": 56.31299999996554,
+          "header_seconds": 0.3279999999795109,
+          "body_seconds": 55.98499999998603,
+          "sampled_working_set": 33943552,
+          "peak_working_set": 33943552
+        },
+        {
+          "id": "exports-2026-05",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2605.ZIP",
+          "context_id": "exports-2026-05",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:44:27.812664+00:00",
+          "retrieved_at": "2026-10-11T17:45:05.941893+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:34:08 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:44:27 GMT",
+          "bytes": 115183679,
+          "sha256": "d3f3aca2f0325ddc24610c41db8dc9a79c649decec7e1660df4cb3f95b2e14a7",
+          "file": "exports-2026-05.zip",
+          "elapsed_seconds": 38.125,
+          "header_seconds": 0.39000000001396984,
+          "body_seconds": 37.73499999998603,
+          "sampled_working_set": 33333248,
+          "peak_working_set": 33333248
+        },
+        {
+          "id": "imports-2026-06",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/im_m/IMDB2606.ZIP",
+          "context_id": "imports-2026-06",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:45:06.305025+00:00",
+          "retrieved_at": "2026-10-11T17:46:31.130100+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:37:33 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:45:05 GMT",
+          "bytes": 204721869,
+          "sha256": "a074a5e31da8b005ffd65e2be756ee9d9888f68a4ad2f5c1a6e704160779012d",
+          "file": "imports-2026-06.zip",
+          "elapsed_seconds": 84.82799999997951,
+          "header_seconds": 0.34399999998277053,
+          "body_seconds": 84.48399999999674,
+          "sampled_working_set": 34029568,
+          "peak_working_set": 34029568
+        },
+        {
+          "id": "exports-2026-06",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2606.ZIP",
+          "context_id": "exports-2026-06",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:46:31.498563+00:00",
+          "retrieved_at": "2026-10-11T17:47:12.931131+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:34:09 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:46:31 GMT",
+          "bytes": 117661020,
+          "sha256": "803e64811b986a70192b10bb219450d601013664a50b1cc972071e5ccc7a629a",
+          "file": "exports-2026-06.zip",
+          "elapsed_seconds": 41.42200000002049,
+          "header_seconds": 0.625,
+          "body_seconds": 40.79700000002049,
+          "sampled_working_set": 33595392,
+          "peak_working_set": 33595392
+        },
+        {
+          "id": "imports-2026-07",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/im_m/IMDB2607.ZIP",
+          "context_id": "imports-2026-07",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:47:13.279050+00:00",
+          "retrieved_at": "2026-10-11T17:48:28.356063+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:37:41 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:47:12 GMT",
+          "bytes": 217007159,
+          "sha256": "55274118bcdbf4e2e6585322069d795d3f24d1b29ef8256d73c4058c2acf6997",
+          "file": "imports-2026-07.zip",
+          "elapsed_seconds": 75.07799999997951,
+          "header_seconds": 0.4529999999795109,
+          "body_seconds": 74.625,
+          "sampled_working_set": 33894400,
+          "peak_working_set": 33894400
+        },
+        {
+          "id": "exports-2026-07",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2607.ZIP",
+          "context_id": "exports-2026-07",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:48:28.734879+00:00",
+          "retrieved_at": "2026-10-11T17:48:50.611395+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:34:04 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:48:28 GMT",
+          "bytes": 120709344,
+          "sha256": "cf102c8f01f0f286ba8b364e39dcf2a187b7dd5b97532425b4e07b23a63c871d",
+          "file": "exports-2026-07.zip",
+          "elapsed_seconds": 21.875,
+          "header_seconds": 0.3440000000409782,
+          "body_seconds": 21.530999999959022,
+          "sampled_working_set": 33624064,
+          "peak_working_set": 33624064
+        },
+        {
+          "id": "imports-2026-08",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/im_m/IMDB2608.ZIP",
+          "context_id": "imports-2026-08",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:48:50.925511+00:00",
+          "retrieved_at": "2026-10-11T17:49:26.339166+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:37:34 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:48:50 GMT",
+          "bytes": 227480759,
+          "sha256": "78c41b5f75f474f4973c174233c54d6d7cba62ce78bef3ebfb3ef7e3026ffbbd",
+          "file": "imports-2026-08.zip",
+          "elapsed_seconds": 35.42200000002049,
+          "header_seconds": 0.3279999999795109,
+          "body_seconds": 35.09400000004098,
+          "sampled_working_set": 33624064,
+          "peak_working_set": 33624064
+        },
+        {
+          "id": "exports-2026-08",
+          "kind": "zip",
+          "source_url": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2608.ZIP",
+          "context_id": "exports-2026-08",
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:49:26.736988+00:00",
+          "retrieved_at": "2026-10-11T17:49:43.278254+00:00",
+          "status": 200,
+          "content_type": "application/zip",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:34:05 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:49:26 GMT",
+          "bytes": 123408639,
+          "sha256": "89db9a73dbd85a65d2078e0047c2592b38149d2403cf47425efe291cdf881052",
+          "file": "exports-2026-08.zip",
+          "elapsed_seconds": 16.54700000002049,
+          "header_seconds": 0.3130000000237487,
+          "body_seconds": 16.23399999999674,
+          "sampled_working_set": 33677312,
+          "peak_working_set": 33677312
+        },
+        {
+          "id": "canada-after",
+          "kind": "html",
+          "source_url": "https://www.census.gov/foreign-trade/balance/c1220.html",
+          "context_id": null,
+          "processing_commit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+          "attempted": true,
+          "outcome": "complete",
+          "reason": null,
+          "started_at": "2026-10-11T17:49:43.576933+00:00",
+          "retrieved_at": "2026-10-11T17:49:43.910984+00:00",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "content_length": null,
+          "last_modified": "Tue, 06 Oct 2026 12:35:31 GMT",
+          "http_date": "Sun, 11 Oct 2026 17:49:43 GMT",
+          "bytes": 217300,
+          "sha256": "5526fef0f219ff2481bd1a3b824ac2a2283f03c313060187fdd1291743711267",
+          "file": "canada-after.html",
+          "elapsed_seconds": 0.3279999999795109,
+          "header_seconds": 0.29699999996228144,
+          "body_seconds": 0.031000000017229468,
+          "sampled_working_set": 33648640,
+          "peak_working_set": 33648640
+        }
+      ],
+      "selectedBytesInterpretation": "The maintained selectedBytes=0 counts only validated selected-member receipts. Failed padding workers read country-member prefixes but do not retain measured partial-member byte receipts; 0 must not be described as zero actual decompression. Independent selected bytes above are exact full CRC-verified reads for the 25 independently replayed contexts."
+    },
+    "parserCorrection": {
+      "pullRequest": "https://github.com/Vasuki8/us-trade-tracker/pull/58",
+      "reviewedCommit": "713ef427335bd097e2db00343dafff3ec128c3ce",
+      "mergedCommit": "f2fca3c27b16a20ee05f06d998ca3f5b03f8cb37",
+      "tree": "c738490972a6fb1f4241584d654df36063f1a100",
+      "change": "Trim only ASCII spaces around nonempty decimal monthly integers; preserve width15 and safe integer checks.",
+      "localPythonTests": 47,
+      "projectTests": 574,
+      "checkedFiles": 150,
+      "diagnostics": 0,
+      "ciBrowserTests": 52,
+      "ciRun": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38161502218"
+    },
+    "correctedOfflineReplay": {
+      "receipt": {
+        "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1-offline-padding-fix/offline-replay.json",
+        "bytes": 111648,
+        "sha256": "cb9f15cf7feae2be3464695abe64718f3dc6a74c6571db713e2dfa376a115d7c"
+      },
+      "outputRoot": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1-offline-padding-fix",
+      "sourceProcessingCommit": "ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809",
+      "parserProcessingCommit": "f2fca3c27b16a20ee05f06d998ca3f5b03f8cb37",
+      "script": {
+        "path": ".tmp/canada-bulk-padding-offline.py",
+        "bytes": 12533,
+        "sha256": "5157b241f38a0212b1d94e4b246da03e54e6615b889cbe0f48e7db8a55946c01"
+      },
+      "networkRequests": 0,
+      "sourceReportPreserved": true,
+      "inputReuse": "Same-volume ZIP hard links; small layouts copied; no input writes or attribute changes.",
+      "contextCounts": {
+        "validated": 25,
+        "failed": 23
+      },
+      "resources": {
+        "limits": {
+          "original_bytes": 12884901888,
+          "generated_bytes": 134217728,
+          "final_reserve": 8388608,
+          "preflight_free": 17179869184,
+          "disk_guard": 2147483648,
+          "zip_bytes": 402653184,
+          "html_bytes": 1048576,
+          "pdf_bytes": 4194304,
+          "header_seconds": 30,
+          "body_seconds": 120,
+          "work_seconds": 3300,
+          "overall_seconds": 3600,
+          "worker_seconds": 60,
+          "sample_seconds": 0.25,
+          "working_set_bytes": 1073741824,
+          "archive_members": 100,
+          "archive_uncompressed_bytes": 3221225472,
+          "detail_keys": 5000000
+        },
+        "logicalOriginalBytes": 7672898570,
+        "linkedOriginalBytes": 7672722440,
+        "copiedOriginalBytes": 176130,
+        "generatedBytes": 20295361,
+        "newlyWrittenBytes": 20471491,
+        "elapsedSeconds": 198.875,
+        "stops": [],
+        "peakWorkerWorkingSetBytes": 393740288,
+        "selectedBytes": 21671274351
+      },
+      "retainedFileCount": 101,
+      "storageInterpretation": "Linked ZIP bytes share the existing originals. Newly written file-content bytes are copied layouts plus generated outputs; directory metadata is not measured.",
+      "snapshotStability": "matched",
+      "contexts": [
+        {
+          "id": "imports-2024-09",
+          "month": "2024-09",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 34532022027,
+          "countryTotalUsd": 34532022027,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 22027,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 22027,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 4475,
+          "files": {
+            "rows": {
+              "path": "imports-2024-09-hs6.json",
+              "bytes": 779965,
+              "sha256": "ba971a4efda4201ec37c33c997bad9a1e406c92b93ba5d62d7df0181cda7db85"
+            },
+            "receipt": {
+              "path": "imports-2024-09-receipt.json",
+              "bytes": 1380,
+              "sha256": "bf5bc89761cdd00178bace68125adf041f40b321829cb61437cd03ea7fd043f7"
+            }
+          },
+          "workerElapsedSeconds": 11.23499999998603,
+          "workerPeakWorkingSetBytes": 239644672,
+          "independentNormalizedFile": {
+            "file": "imports-2024-09-independent-hs6.json",
+            "bytes": 779966,
+            "sha256": "ef89cdef30a46cff5f3af78fd61e1739fcb399c9a27ef1c36db777dc282d0066"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "afbcccf1efdd1acb29c73be7108c1444ca2c5b4ea7832bd612ba581c0e2e17d6",
+              "crc32": "6fef1dba",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 1516350210,
+              "records": 2197609,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "7634b557647fa9b21564ba15ec341a002787749353978b49d48ac3188da3ea72",
+              "crc32": "ff50c3c5",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2024-09",
+          "month": "2024-09",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 29381533587,
+          "countryTotalUsd": 29381533587,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 33587,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 33587,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 5199,
+          "files": {
+            "rows": {
+              "path": "exports-2024-09-hs6.json",
+              "bytes": 907495,
+              "sha256": "fe1f6e94913f8b2acc908be55d7faf0fa4ff23321d7864aaa556b3239b4b44db"
+            },
+            "receipt": {
+              "path": "exports-2024-09-receipt.json",
+              "bytes": 1371,
+              "sha256": "2e8cc66eff5d75a2760dcecb12294541bb6cc339bdf0b26158a84c4fc6b73301"
+            }
+          },
+          "workerElapsedSeconds": 4.827999999979511,
+          "workerPeakWorkingSetBytes": 212492288,
+          "independentNormalizedFile": {
+            "file": "exports-2024-09-independent-hs6.json",
+            "bytes": 907496,
+            "sha256": "4072ff10b59fc65ad4a64c47dd4f49500842af385a7c202d71c171ca5f3f6f9e"
+          },
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "e55acfda42a6dc7e59fa0131aa15335776ed71bf654485e3ff6c2c1d27fd92d4",
+              "crc32": "c33ac1b7",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 442758550,
+              "records": 1362334,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "500566d95fa90752fd03a20ddeb9ebb4e6e9d32e0d970b835827b2b24aa55e60",
+              "crc32": "0f05f629",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "imports-2024-10",
+          "month": "2024-10",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 34413502802,
+          "countryTotalUsd": 34413502802,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 2802,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 2802,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 4511,
+          "files": {
+            "rows": {
+              "path": "imports-2024-10-hs6.json",
+              "bytes": 785807,
+              "sha256": "ec6209c512ac0d23b1e9b55f3d45363834d0d372a3b6f6594115f9f4d83a23c5"
+            },
+            "receipt": {
+              "path": "imports-2024-10-receipt.json",
+              "bytes": 1381,
+              "sha256": "1fcf1551b66af093af27ce269117b4cac4f6325e7aa7b5c5146ffe2bfd402fbb"
+            }
+          },
+          "workerElapsedSeconds": 11.795999999972992,
+          "workerPeakWorkingSetBytes": 248926208,
+          "independentNormalizedFile": {
+            "file": "imports-2024-10-independent-hs6.json",
+            "bytes": 785808,
+            "sha256": "7872bf1a326f9609d7451648d2371a83a58d89427fc4995d51fd114543f9b0e7"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "f5524bd0f24f3a830efe53ed9d76e6fadd7745bbd8ee06e5a45dd62519359b4b",
+              "crc32": "6d67abdd",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 1609946640,
+              "records": 2333256,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "8827f5940da6417ebbad408b2199dc1ff35f7fd948e72ea78181c24d0bf0a532",
+              "crc32": "1375ea97",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2024-10",
+          "month": "2024-10",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 30344153485,
+          "countryTotalUsd": 30344153485,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -46515,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -46515,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 5210,
+          "files": {
+            "rows": {
+              "path": "exports-2024-10-hs6.json",
+              "bytes": 909526,
+              "sha256": "12096b485f302511d6e0cd4f0944501374ee38628d6690c69e7987e53f28fd6d"
+            },
+            "receipt": {
+              "path": "exports-2024-10-receipt.json",
+              "bytes": 1371,
+              "sha256": "a6bb0759b5bec1bf78a991d4094a3b188abc079596cc83c44d2f12565c4c96f3"
+            }
+          },
+          "workerElapsedSeconds": 4.954000000027008,
+          "workerPeakWorkingSetBytes": 212299776,
+          "independentNormalizedFile": {
+            "file": "exports-2024-10-independent-hs6.json",
+            "bytes": 909527,
+            "sha256": "83768e816d68b7f2dc0916390fe94eb70e0f3bdf9f0e18e4a324d9e8304ef73c"
+          },
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "051088caac8d0b86fab72eb9d85d27752de771ea8bf02d82e1403e42308f9cf5",
+              "crc32": "00121880",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 465615475,
+              "records": 1432663,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "310c713a6e34823a8d511c77ed9c2bc764210841c97159a039195eca3a0c1a42",
+              "crc32": "0129f219",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "imports-2024-11",
+          "month": "2024-11",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 33446477024,
+          "countryTotalUsd": 33446477024,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -22976,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -22976,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 4544,
+          "files": {
+            "rows": {
+              "path": "imports-2024-11-hs6.json",
+              "bytes": 790940,
+              "sha256": "85d652b02b5d0c9892c0c7c53fcc2474844bc015fafe32deaf932f46d9002dff"
+            },
+            "receipt": {
+              "path": "imports-2024-11-receipt.json",
+              "bytes": 1381,
+              "sha256": "094233b74d960dce1dcebfacbd1d924b4c0c2197f80b1bf0ee2549ddff82789e"
+            }
+          },
+          "workerElapsedSeconds": 12.405999999959022,
+          "workerPeakWorkingSetBytes": 256483328,
+          "independentNormalizedFile": {
+            "file": "imports-2024-11-independent-hs6.json",
+            "bytes": 790941,
+            "sha256": "c5683dafb8e63b21dc8d30801446ae4a4120b991b12043562430b462ef1b7876"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "966b2af1f848805a41a3b4e58c727ca6c613abd7381b2d1edf19618934007710",
+              "crc32": "5994b4d7",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 1691265900,
+              "records": 2451110,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "ffeb9be50138f022f631e1e9a884bf220ec5e3dc922c6a53a67a1e65c8d73fc2",
+              "crc32": "3e4a1c95",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2024-11",
+          "month": "2024-11",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 29113642001,
+          "countryTotalUsd": 29113642001,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 42001,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 42001,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 5219,
+          "files": {
+            "rows": {
+              "path": "exports-2024-11-hs6.json",
+              "bytes": 910643,
+              "sha256": "f50a3764ca73dc148f1202dea405addb6ad0374bc45532571275e47c9d51cf33"
+            },
+            "receipt": {
+              "path": "exports-2024-11-receipt.json",
+              "bytes": 1371,
+              "sha256": "53f7c406f3c083350816b0e093a25a75de96fe7699a3ed3f2e29afcc6a0f9d79"
+            }
+          },
+          "workerElapsedSeconds": 5.10899999999674,
+          "workerPeakWorkingSetBytes": 212246528,
+          "independentNormalizedFile": {
+            "file": "exports-2024-11-independent-hs6.json",
+            "bytes": 910644,
+            "sha256": "fda54df60889605ff413c04a3b8708712d3bd785465d59ce2df57fc75d15c8b6"
+          },
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "72e519ad050416dafdc37475c39acec9f1ddda93ce0da682fe236754eda8ab14",
+              "crc32": "8174885e",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 486786625,
+              "records": 1497805,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "2e13cbcf9570ee1c81c7aa1a69df899ce253f567ecfc72d34e3626fda460c3f1",
+              "crc32": "4c9744bd",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "imports-2024-12",
+          "month": "2024-12",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 35825700666,
+          "countryTotalUsd": 35825700666,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 666,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 666,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 4573,
+          "files": {
+            "rows": {
+              "path": "imports-2024-12-hs6.json",
+              "bytes": 795691,
+              "sha256": "977fa68e37b24e573769ce53fb182f90df4527426f2a1122673260fc197c4f55"
+            },
+            "receipt": {
+              "path": "imports-2024-12-receipt.json",
+              "bytes": 1382,
+              "sha256": "579d1702a27e077d9a62ad3a9cd59d5ef3545b3664803e7602e5ff0f6a92c47d"
+            }
+          },
+          "workerElapsedSeconds": 13.063000000023749,
+          "workerPeakWorkingSetBytes": 393601024,
+          "independentNormalizedFile": {
+            "file": "imports-2024-12-independent-hs6.json",
+            "bytes": 795692,
+            "sha256": "7e39d674259a0308aa295acda446eaa7875a07715da1c242d019d90baae5a20b"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "de49abe016e4c7db6548aee00fd691556af3df4895bccd2a1b9c539511d2b815",
+              "crc32": "6a2f51cd",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 1769368380,
+              "records": 2564302,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "2c8dc0d2c4927c3818d3e51c90e1f05813ff3347e5c80204d67f843c1888fb6d",
+              "crc32": "4dccf04e",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2024-12",
+          "month": "2024-12",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 26321773216,
+          "countryTotalUsd": 26321773216,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -26784,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -26784,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 5227,
+          "files": {
+            "rows": {
+              "path": "exports-2024-12-hs6.json",
+              "bytes": 911861,
+              "sha256": "10f74aadfdd021c412522aff33ce08fab3a68a50a340854eb88a64f78b9767a1"
+            },
+            "receipt": {
+              "path": "exports-2024-12-receipt.json",
+              "bytes": 1371,
+              "sha256": "edab9bcfaf9e2b997974027ee1d98ead4a1e1ddb91137d6fe1244021d76a35d5"
+            }
+          },
+          "workerElapsedSeconds": 5.26600000000326,
+          "workerPeakWorkingSetBytes": 211972096,
+          "independentNormalizedFile": {
+            "file": "exports-2024-12-independent-hs6.json",
+            "bytes": 911862,
+            "sha256": "870a633688e3f76e7d6bfa8db622374bdc6e580638ca602d84fe408ca44468f0"
+          },
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.txt",
+              "bytes": 65142,
+              "records": 231,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "b0dbe08f29100f8d72d828461d14e51c6fdcec0488b98e870ab15611aeeab643",
+              "crc32": "2e1850ef",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.txt",
+              "bytes": 505094850,
+              "records": 1554138,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "0b3d9b40889407d8169d8549189eb3e896db063053db0d832af2413d33e05d46",
+              "crc32": "fdb26266",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "imports-2025-01",
+          "month": "2025-01",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.3130000000237487,
+          "workerPeakWorkingSetBytes": 29380608,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "exports-2025-01",
+          "month": "2025-01",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.2970000000204891,
+          "workerPeakWorkingSetBytes": 29372416,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "imports-2025-02",
+          "month": "2025-02",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 34787423872,
+          "countryTotalUsd": 34787423872,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 23872,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 23872,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 3874,
+          "files": {
+            "rows": {
+              "path": "imports-2025-02-hs6.json",
+              "bytes": 678028,
+              "sha256": "cdd4eda3b817eabb944d13e852979927566c7fb26a63b09e0df143569936ff30"
+            },
+            "receipt": {
+              "path": "imports-2025-02-receipt.json",
+              "bytes": 1377,
+              "sha256": "308da3d33dc0383b4062641e20abc2e114291310f0a8413896d27be13daab253"
+            }
+          },
+          "workerElapsedSeconds": 5.561999999976251,
+          "workerPeakWorkingSetBytes": 132366336,
+          "independentNormalizedFile": {
+            "file": "imports-2025-02-independent-hs6.json",
+            "bytes": 678029,
+            "sha256": "a62d22489629d06db418c2aef2f77b5afbec615438ffc9b027fa8dedfa165223"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "imp_CTY.txt",
+              "bytes": 133860,
+              "records": 230,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "291db34c6dc32a2350c2aaafe63c9469a58b0c13eedeec5cb0e3145f5a5afaae",
+              "crc32": "6e6cd3a7",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.txt",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.txt",
+              "bytes": 722975790,
+              "records": 1047791,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "fce52c82fad5ebb79dd4f4a4e3f1e67aab1ca504433dacf36f18109aaa8b55ce",
+              "crc32": "6d3c89de",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2025-02",
+          "month": "2025-02",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.2970000000204891,
+          "workerPeakWorkingSetBytes": 29036544,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "imports-2025-03",
+          "month": "2025-03",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.375,
+          "workerPeakWorkingSetBytes": 29491200,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "exports-2025-03",
+          "month": "2025-03",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.29699999996228144,
+          "workerPeakWorkingSetBytes": 29388800,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "imports-2025-04",
+          "month": "2025-04",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.39000000001396984,
+          "workerPeakWorkingSetBytes": 29257728,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "exports-2025-04",
+          "month": "2025-04",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.46899999998277053,
+          "workerPeakWorkingSetBytes": 28684288,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "imports-2025-05",
+          "month": "2025-05",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.48399999999674037,
+          "workerPeakWorkingSetBytes": 29679616,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "exports-2025-05",
+          "month": "2025-05",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.3600000000442378,
+          "workerPeakWorkingSetBytes": 29122560,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "imports-2025-06",
+          "month": "2025-06",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.42199999996228144,
+          "workerPeakWorkingSetBytes": 29052928,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "exports-2025-06",
+          "month": "2025-06",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.31200000003445894,
+          "workerPeakWorkingSetBytes": 29093888,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "imports-2025-07",
+          "month": "2025-07",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.4059999999590218,
+          "workerPeakWorkingSetBytes": 29073408,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "exports-2025-07",
+          "month": "2025-07",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.32900000002700835,
+          "workerPeakWorkingSetBytes": 29286400,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "imports-2025-08",
+          "month": "2025-08",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.42099999997299165,
+          "workerPeakWorkingSetBytes": 29560832,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "exports-2025-08",
+          "month": "2025-08",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.3130000000237487,
+          "workerPeakWorkingSetBytes": 29327360,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "imports-2025-09",
+          "month": "2025-09",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.4369999999762513,
+          "workerPeakWorkingSetBytes": 28946432,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "exports-2025-09",
+          "month": "2025-09",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.32900000002700835,
+          "workerPeakWorkingSetBytes": 29499392,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "imports-2025-10",
+          "month": "2025-10",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.43799999996554106,
+          "workerPeakWorkingSetBytes": 29343744,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "exports-2025-10",
+          "month": "2025-10",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.2970000000204891,
+          "workerPeakWorkingSetBytes": 28860416,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "imports-2025-11",
+          "month": "2025-11",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.4529999999795109,
+          "workerPeakWorkingSetBytes": 29147136,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "exports-2025-11",
+          "month": "2025-11",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.3130000000237487,
+          "workerPeakWorkingSetBytes": 28844032,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "imports-2025-12",
+          "month": "2025-12",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.46899999998277053,
+          "workerPeakWorkingSetBytes": 29265920,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "exports-2025-12",
+          "month": "2025-12",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "failed",
+          "reason": "archive-member-cap",
+          "sumUsd": null,
+          "countryTotalUsd": null,
+          "residualUsd": null,
+          "beforeComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "unavailable",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "unavailable",
+            "currentDifferenceUsd": null,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": null,
+          "files": null,
+          "workerElapsedSeconds": 0.3119999999762513,
+          "workerPeakWorkingSetBytes": 29081600,
+          "independentNormalizedFile": null,
+          "selectedMembers": null
+        },
+        {
+          "id": "imports-2026-01",
+          "month": "2026-01",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 28330595475,
+          "countryTotalUsd": 28330595475,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -4525,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -4525,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 3507,
+          "files": {
+            "rows": {
+              "path": "imports-2026-01-hs6.json",
+              "bytes": 617771,
+              "sha256": "35a08bf4a96ed348e4f735b9c1f892e12f63548a5d5dd48edeabfd5f449fd991"
+            },
+            "receipt": {
+              "path": "imports-2026-01-receipt.json",
+              "bytes": 1363,
+              "sha256": "74f62ac1f43aa8d08f33f8477e441d700cf647570f8639493fc24048e6521b0c"
+            }
+          },
+          "workerElapsedSeconds": 4.125,
+          "workerPeakWorkingSetBytes": 121421824,
+          "independentNormalizedFile": {
+            "file": "imports-2026-01-independent-hs6.json",
+            "bytes": 617772,
+            "sha256": "d5552d2a8b8000ab551a20aaf6fc32bed6968f486f5da7ebbff1cc5493e74c35"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 130950,
+              "records": 225,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "2be011b43ecd3f6bf9910c67fa2fef5769e219c7cc0040301fd3d810d6e4953f",
+              "crc32": "41c05973",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 532224600,
+              "records": 771340,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "3beb902efbc6f8a00c1cab2dec4eebdc6f7ff0873e4f58313f851002c4c5b49d",
+              "crc32": "866d3b50",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2026-01",
+          "month": "2026-01",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 24510292823,
+          "countryTotalUsd": 24510292823,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": 49092823,
+            "publicationDifferenceUsd": -7177
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": 49092823,
+            "publicationDifferenceUsd": -7177
+          },
+          "hs6Rows": 4599,
+          "files": {
+            "rows": {
+              "path": "exports-2026-01-hs6.json",
+              "bytes": 804955,
+              "sha256": "ff489aa0545774f92078ae0a71109144301ad263d65e39d3333158e3fa216be1"
+            },
+            "receipt": {
+              "path": "exports-2026-01-receipt.json",
+              "bytes": 1363,
+              "sha256": "e941400e7d03b5324f7703e2d2deec354826756677fc0215e0647ba40327f96d"
+            }
+          },
+          "workerElapsedSeconds": 1.9689999999827705,
+          "workerPeakWorkingSetBytes": 76599296,
+          "independentNormalizedFile": {
+            "file": "exports-2026-01-independent-hs6.json",
+            "bytes": 804956,
+            "sha256": "6487b704949c7f86acb65b198053abffb71bc9678761d7ff6a98f68fbf687bcf"
+          },
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 62322,
+              "records": 221,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "62fb5d7f94e8a7479734cc442894f42838cd9d1ce392da1f09b6ef1de2aca561",
+              "crc32": "252c9122",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 142379575,
+              "records": 438091,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "09579a52701dd326a060c351bc0eab0c5786e19f6a54c8623a14d3f4690f2e31",
+              "crc32": "933cec81",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "imports-2026-02",
+          "month": "2026-02",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 29172287264,
+          "countryTotalUsd": 29172287264,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -12736,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -12736,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 3824,
+          "files": {
+            "rows": {
+              "path": "imports-2026-02-hs6.json",
+              "bytes": 671016,
+              "sha256": "ab3758a3fea5eed0e67a90aecb6d35dc4f3b744456f29182613eb7ee40c414c6"
+            },
+            "receipt": {
+              "path": "imports-2026-02-receipt.json",
+              "bytes": 1369,
+              "sha256": "8af7283a40d4e1f106d8ba6c32b48fb1fb492c99751c759840c69f7849cf26d2"
+            }
+          },
+          "workerElapsedSeconds": 6.172000000020489,
+          "workerPeakWorkingSetBytes": 140427264,
+          "independentNormalizedFile": {
+            "file": "imports-2026-02-independent-hs6.json",
+            "bytes": 671017,
+            "sha256": "52e37b95cdcec757c3953b7450f7588c8e1975ae816fa1080e13454a8a25a499"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 133860,
+              "records": 230,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "6d9104a7c2750eaff0b9bde3fbdafbde30ca004b4d281f9f2150f02078ff8803",
+              "crc32": "4c947cd0",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 810447780,
+              "records": 1174562,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "0fd03baac42f37bc3b8f9fe8e5d7ee2ed300317f1a729a1ddd36d43bbb4a2bd3",
+              "crc32": "b90fde26",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2026-02",
+          "month": "2026-02",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 28371311032,
+          "countryTotalUsd": 28371311032,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -46488968,
+            "publicationDifferenceUsd": 11032
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -46488968,
+            "publicationDifferenceUsd": 11032
+          },
+          "hs6Rows": 4807,
+          "files": {
+            "rows": {
+              "path": "exports-2026-02-hs6.json",
+              "bytes": 841026,
+              "sha256": "fd507bcbc73b563bc1b5f13569aeceffbb72638c315611bbfe820c0fc4b8690b"
+            },
+            "receipt": {
+              "path": "exports-2026-02-receipt.json",
+              "bytes": 1368,
+              "sha256": "269e85a50ea93bc56335a9c56fca4bfdca8cf74a012113850069a991aaf3d32b"
+            }
+          },
+          "workerElapsedSeconds": 2.6089999999967404,
+          "workerPeakWorkingSetBytes": 121577472,
+          "independentNormalizedFile": {
+            "file": "exports-2026-02-independent-hs6.json",
+            "bytes": 841027,
+            "sha256": "5c36894f41c78d587ac8a1741d80d6b25df3e3cd7dc40c4c361c33775c5336a1"
+          },
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 63450,
+              "records": 225,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "1a0cecd5596c8da980befe2b181a6c04a268b8721ff7198b0c9456c219c1c294",
+              "crc32": "fbe768f9",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 206686350,
+              "records": 635958,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "0d96205df43e8462538e79960775c4322d4f73e3d2411f84e029d82718e4d4b3",
+              "crc32": "dc4d4a42",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "imports-2026-03",
+          "month": "2026-03",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 34089317327,
+          "countryTotalUsd": 34089317327,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 17327,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 17327,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 4035,
+          "files": {
+            "rows": {
+              "path": "imports-2026-03-hs6.json",
+              "bytes": 707592,
+              "sha256": "f88d2a99a9acb59cb246664b325ba8cb4218dabe84ceec347ca3ceb1df8a2148"
+            },
+            "receipt": {
+              "path": "imports-2026-03-receipt.json",
+              "bytes": 1372,
+              "sha256": "98558b191ab80b324b7ac703908ebb38437a6dbaa25708e816b8dd9b3644a131"
+            }
+          },
+          "workerElapsedSeconds": 8.438000000023749,
+          "workerPeakWorkingSetBytes": 212525056,
+          "independentNormalizedFile": {
+            "file": "imports-2026-03-independent-hs6.json",
+            "bytes": 707593,
+            "sha256": "ac7e894c4a11962dd1fc382f36759d443ec1399ffa8f02675036fbcd67be1f03"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 134442,
+              "records": 231,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "f9ed581cb129c2a923a3a9904a981838e11869499c7b56c6268b15be05cce46e",
+              "crc32": "4a5109ac",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 1049409270,
+              "records": 1520883,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "5249f276f4382418c73bf58feda9e44d29694454576e4d85833a8c6d49cf8d1d",
+              "crc32": "0c2294d4",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2026-03",
+          "month": "2026-03",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 31438946691,
+          "countryTotalUsd": 31438946691,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -215853309,
+            "publicationDifferenceUsd": 46691
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -215853309,
+            "publicationDifferenceUsd": 46691
+          },
+          "hs6Rows": 4915,
+          "files": {
+            "rows": {
+              "path": "exports-2026-03-hs6.json",
+              "bytes": 859357,
+              "sha256": "0b0cf6a968ee7f2dba6b9f9db561fd1948dd5b34764d0f356f55032c8dcd5403"
+            },
+            "receipt": {
+              "path": "exports-2026-03-receipt.json",
+              "bytes": 1369,
+              "sha256": "5d3b1d2746445f41e6c9ca9c5812ac3f69adaebfd66dfef1ba493cb2ebd60900"
+            }
+          },
+          "workerElapsedSeconds": 3.077999999979511,
+          "workerPeakWorkingSetBytes": 122269696,
+          "independentNormalizedFile": {
+            "file": "exports-2026-03-independent-hs6.json",
+            "bytes": 859358,
+            "sha256": "bcc9fce243e9f981a5cadb2b24d99d861fc84895ea12e6a348c38a8a12396083"
+          },
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 63732,
+              "records": 226,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "8d686a25ede21035146730f03157db26d88d6eb3ac15cfd22affd05c3b617062",
+              "crc32": "e2bb9694",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 258039275,
+              "records": 793967,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "5c5075b0bbc249a0a94d74dd28863266a212d03db367db26c1cb540ccba909e2",
+              "crc32": "06edc0b8",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "imports-2026-04",
+          "month": "2026-04",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 35028144854,
+          "countryTotalUsd": 35028144854,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 44854,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 44854,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 4148,
+          "files": {
+            "rows": {
+              "path": "imports-2026-04-hs6.json",
+              "bytes": 726092,
+              "sha256": "cbac3943061da7e216244752602f77f6a7ed8447c2d4c16fabc57e1ed2c45c43"
+            },
+            "receipt": {
+              "path": "imports-2026-04-receipt.json",
+              "bytes": 1372,
+              "sha256": "65c389c8a0ff12ddbfa7995a10df90bf45845b4350c18466792ddd8db41c5ac3"
+            }
+          },
+          "workerElapsedSeconds": 9.10999999998603,
+          "workerPeakWorkingSetBytes": 212168704,
+          "independentNormalizedFile": {
+            "file": "imports-2026-04-independent-hs6.json",
+            "bytes": 726093,
+            "sha256": "c8b3f6baa57675ae11e9665061cc56bf19b096b8f458bd9bdd977e6d6f4021f4"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "af1bd3fd34cd197ae556f86b5ef63c8d875aa2e3e8c63e9bc74a7a72321a9789",
+              "crc32": "b5b1d736",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 1222124550,
+              "records": 1771195,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "7628bc41c3cd906bffe3b363ac847a1f2ae8ad8d6cb0e6c3b58e240289c2e8a0",
+              "crc32": "7df83533",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2026-04",
+          "month": "2026-04",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 29741092873,
+          "countryTotalUsd": 29741092873,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -456007127,
+            "publicationDifferenceUsd": -7127
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -456007127,
+            "publicationDifferenceUsd": -7127
+          },
+          "hs6Rows": 4982,
+          "files": {
+            "rows": {
+              "path": "exports-2026-04-hs6.json",
+              "bytes": 871068,
+              "sha256": "c7799f2c3a5b66c0446b9968fc2d1abbc8b42424daede5236737e81714f2bd60"
+            },
+            "receipt": {
+              "path": "exports-2026-04-receipt.json",
+              "bytes": 1369,
+              "sha256": "848043f8790f782319107c81c2a6f1dce13e99ddf7d8f1f57fe933a401194fa1"
+            }
+          },
+          "workerElapsedSeconds": 3.3910000000032596,
+          "workerPeakWorkingSetBytes": 123961344,
+          "independentNormalizedFile": {
+            "file": "exports-2026-04-independent-hs6.json",
+            "bytes": 871069,
+            "sha256": "2cfc4c448431586dd3c782e1f5688b9f04b57e03515f133cb1a7564257ffc9d7"
+          },
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 64014,
+              "records": 227,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "c98a1c04f3279953ed0353b2f0f5ec3335a971481b152b9724c1bac7113705b8",
+              "crc32": "89a5cbe9",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 297592100,
+              "records": 915668,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "ee09d56cc92a58e40ee363e0ce6a73952b1a9e0a516fcf0053ffa58a41cba715",
+              "crc32": "6ea8fa32",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "imports-2026-05",
+          "month": "2026-05",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 36337153960,
+          "countryTotalUsd": 36337153960,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -46040,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -46040,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 4231,
+          "files": {
+            "rows": {
+              "path": "imports-2026-05-hs6.json",
+              "bytes": 740578,
+              "sha256": "056ca1622950e0d758c8bdde172cb7ae9c4873ff5112755aeaf9660a7b9cdf5e"
+            },
+            "receipt": {
+              "path": "imports-2026-05-receipt.json",
+              "bytes": 1380,
+              "sha256": "e8badcbe8d6f0e262ff7a8db70e07d688df8d50e6e91f274f389d088f7b7d272"
+            }
+          },
+          "workerElapsedSeconds": 10.312999999965541,
+          "workerPeakWorkingSetBytes": 227065856,
+          "independentNormalizedFile": {
+            "file": "imports-2026-05-independent-hs6.json",
+            "bytes": 740579,
+            "sha256": "3625d2129422d37826632a2f47e9e8c672474ada880c92e26b677160711f3cb4"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "101fcd0bb0df0a452a307c651813fdeedd0da465b325b4e7fac12fa1b6385145",
+              "crc32": "5ecaa046",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 1376101500,
+              "records": 1994350,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "dda721b8bd388617b0416dd6c031427e37d3f95c8b7f468ac7f5e904df97335e",
+              "crc32": "4709945d",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2026-05",
+          "month": "2026-05",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 29790835759,
+          "countryTotalUsd": 29790835759,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -608164241,
+            "publicationDifferenceUsd": 35759
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -608164241,
+            "publicationDifferenceUsd": 35759
+          },
+          "hs6Rows": 5031,
+          "files": {
+            "rows": {
+              "path": "exports-2026-05-hs6.json",
+              "bytes": 879056,
+              "sha256": "b8f94ae752335fe08b0c30f6df502adc8a75d3e80e05df20292aa903e139e329"
+            },
+            "receipt": {
+              "path": "exports-2026-05-receipt.json",
+              "bytes": 1371,
+              "sha256": "6a984f961585304ed6a3c5830c402885b90549d7e86814e8e31aaba0ab294207"
+            }
+          },
+          "workerElapsedSeconds": 3.7189999999827705,
+          "workerPeakWorkingSetBytes": 130748416,
+          "independentNormalizedFile": {
+            "file": "exports-2026-05-independent-hs6.json",
+            "bytes": 879057,
+            "sha256": "c149894f1f88d44c6182fce7aea0e78db4b953eb95576ae182cbc0105f488cc2"
+          },
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 64578,
+              "records": 229,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "e628481c282f6a0208027408b4e429aef54838a15891fcd66e113c621ce4df8c",
+              "crc32": "acf82a7d",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 332241650,
+              "records": 1022282,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "49e220592dcb7585d2c1a1979a8a3f5f34f9069f7fc6d8162e38f438874cfe6f",
+              "crc32": "7e039aff",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "imports-2026-06",
+          "month": "2026-06",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 37216785546,
+          "countryTotalUsd": 37216785546,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -14454,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -14454,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 4311,
+          "files": {
+            "rows": {
+              "path": "imports-2026-06-hs6.json",
+              "bytes": 754559,
+              "sha256": "16a27adc48b86f5bbe07b54c96aa0e85412058c82010c1c053da1c53ae577a55"
+            },
+            "receipt": {
+              "path": "imports-2026-06-receipt.json",
+              "bytes": 1380,
+              "sha256": "41ef573143309d1fce9a408f5d394e7c5aa7deb95a76b43302807f67bc53d594"
+            }
+          },
+          "workerElapsedSeconds": 11.172000000020489,
+          "workerPeakWorkingSetBytes": 239960064,
+          "independentNormalizedFile": {
+            "file": "imports-2026-06-independent-hs6.json",
+            "bytes": 754560,
+            "sha256": "13998196315f9319255229fb1475efda477af327ac69f4f9bc7c070c2df69ddd"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "b836b371129a3819d753347db3a20b5af8ba3d62caa9f70c239803ae2798ffa4",
+              "crc32": "8c64f2ef",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 1513666110,
+              "records": 2193719,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "59544e9d4ccf458d7e11912fdca6af58e94e20d683cf2ff8efc8d10820d43c22",
+              "crc32": "a8111f8d",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2026-06",
+          "month": "2026-06",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 30695510012,
+          "countryTotalUsd": 30695510012,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -311589988,
+            "publicationDifferenceUsd": 10012
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -311589988,
+            "publicationDifferenceUsd": 10012
+          },
+          "hs6Rows": 5062,
+          "files": {
+            "rows": {
+              "path": "exports-2026-06-hs6.json",
+              "bytes": 884569,
+              "sha256": "1187ead465b1186b7774535ac65faa2600955b9d132c2048f731d7168f9c96ca"
+            },
+            "receipt": {
+              "path": "exports-2026-06-receipt.json",
+              "bytes": 1371,
+              "sha256": "2da4af148e05c74f043ab27cf359d7521b90b24141019da77403ee5404e6ee20"
+            }
+          },
+          "workerElapsedSeconds": 4.26500000001397,
+          "workerPeakWorkingSetBytes": 137117696,
+          "independentNormalizedFile": {
+            "file": "exports-2026-06-independent-hs6.json",
+            "bytes": 884570,
+            "sha256": "d40061c7420141086921cb1e0091b6608a324620bb8766d392fa49aa3aeb77ec"
+          },
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 64578,
+              "records": 229,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "553907b650c160067d9d11bbb95b704b3deeea5cb73a0932ce9a758dd65514ff",
+              "crc32": "44fc83b7",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 362590475,
+              "records": 1115663,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "a03e89e8fc42c454511904d87ccdcadc1c8d423b5c798168169418fe6d0126e9",
+              "crc32": "e551e065",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "imports-2026-07",
+          "month": "2026-07",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 33491125060,
+          "countryTotalUsd": 33491125060,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 25060,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 25060,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 4371,
+          "files": {
+            "rows": {
+              "path": "imports-2026-07-hs6.json",
+              "bytes": 764632,
+              "sha256": "661782345608244def57e118de258ca00a99087b62e3fc0159a9ada491372ef7"
+            },
+            "receipt": {
+              "path": "imports-2026-07-receipt.json",
+              "bytes": 1384,
+              "sha256": "6761ac434d90d699b959ec341e928e896687054e4f4dfe9693a3b663289a96f6"
+            }
+          },
+          "workerElapsedSeconds": 12.655999999959022,
+          "workerPeakWorkingSetBytes": 254824448,
+          "independentNormalizedFile": {
+            "file": "imports-2026-07-independent-hs6.json",
+            "bytes": 764633,
+            "sha256": "1d1d53a4b58e96642d757387eee6cd0a0ee5a9c25fb98ce94ddd0f0f0d6bbeb7"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "0e0826e4ce902e515230de94befa61ed3790f1db1c20a68bc546eb89387f3142",
+              "crc32": "d8985acd",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 1678741020,
+              "records": 2432958,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "75f55e564acbb149d943e90c0c07230fd0a4249d3c90c9bea6e94f487ddec5f5",
+              "crc32": "8aa63c43",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2026-07",
+          "month": "2026-07",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 29338645167,
+          "countryTotalUsd": 29338645167,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -207154833,
+            "publicationDifferenceUsd": 45167
+          },
+          "afterComparison": {
+            "referenceCheck": "mismatch",
+            "publicationCheck": "matched",
+            "referenceCorroboration": "original-publication-only",
+            "currentDifferenceUsd": -207154833,
+            "publicationDifferenceUsd": 45167
+          },
+          "hs6Rows": 5087,
+          "files": {
+            "rows": {
+              "path": "exports-2026-07-hs6.json",
+              "bytes": 888722,
+              "sha256": "67a77edd62110126de6c03b3948d558bf4ba38ed544ab7e9789d7ac2afe2ad09"
+            },
+            "receipt": {
+              "path": "exports-2026-07-receipt.json",
+              "bytes": 1371,
+              "sha256": "9add90f2cd6042b34584738761031552ff1c2d792c0d2d804bc0b538857e7c8f"
+            }
+          },
+          "workerElapsedSeconds": 4.312000000034459,
+          "workerPeakWorkingSetBytes": 143036416,
+          "independentNormalizedFile": {
+            "file": "exports-2026-07-independent-hs6.json",
+            "bytes": 888723,
+            "sha256": "9d671189c55bb17fc990531c976e79f5254e22d4fb153585e076b7c0a441f5b0"
+          },
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 64578,
+              "records": 229,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "c2e6a0216fdd5f198ad130468bb6167d026348da87b167ce6a747508cd9f1a4a",
+              "crc32": "475ad9bc",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 390868075,
+              "records": 1202671,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "831ccef440a8b7f476bfc0f52f0c553d12251f7391ee9b725b3936a358a30fe1",
+              "crc32": "4ca586e5",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "imports-2026-08",
+          "month": "2026-08",
+          "direction": "imports",
+          "measure": "GEN_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 35980039950,
+          "countryTotalUsd": 35980039950,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 39950,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": 39950,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 4437,
+          "files": {
+            "rows": {
+              "path": "imports-2026-08-hs6.json",
+              "bytes": 775754,
+              "sha256": "edd712ec8d7e6b9008fe82c9e80a8f48b3367359b6a7d31fc7593b0b085bf74b"
+            },
+            "receipt": {
+              "path": "imports-2026-08-receipt.json",
+              "bytes": 1384,
+              "sha256": "642707970771c3adca241d1ffd121b2050310fae66267e0b493210ef180df3c3"
+            }
+          },
+          "workerElapsedSeconds": 13.702999999979511,
+          "workerPeakWorkingSetBytes": 393740288,
+          "independentNormalizedFile": {
+            "file": "imports-2026-08-independent-hs6.json",
+            "bytes": 775755,
+            "sha256": "531819905be579849ed5c63f69f32ad3c023667f45c705626df5cad7c8dca5c6"
+          },
+          "selectedMembers": {
+            "IMP_CTY.TXT": {
+              "actualMember": "IMP_CTY.TXT",
+              "bytes": 135024,
+              "records": 232,
+              "recordWidthExcludingCRLF": 580,
+              "sha256": "f6de65bbbfb93bb59d7e69da2530d0f87a7c2ff06e34fcab73ba030b01113d4e",
+              "crc32": "55384da4",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "IMP_DETL.TXT": {
+              "actualMember": "IMP_DETL.TXT",
+              "bytes": 1832995350,
+              "records": 2656515,
+              "recordWidthExcludingCRLF": 688,
+              "sha256": "570be0cee87bae9b20f347cff8fc434f801f6183b2aa863d04bed7db4ff6ed71",
+              "crc32": "b478cd9d",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        },
+        {
+          "id": "exports-2026-08",
+          "month": "2026-08",
+          "direction": "exports",
+          "measure": "ALL_VAL_MO",
+          "state": "validated",
+          "reason": null,
+          "sumUsd": 30289552895,
+          "countryTotalUsd": 30289552895,
+          "residualUsd": 0,
+          "beforeComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -47105,
+            "publicationDifferenceUsd": null
+          },
+          "afterComparison": {
+            "referenceCheck": "matched",
+            "publicationCheck": "not-reviewed",
+            "referenceCorroboration": "current-reference",
+            "currentDifferenceUsd": -47105,
+            "publicationDifferenceUsd": null
+          },
+          "hs6Rows": 5111,
+          "files": {
+            "rows": {
+              "path": "exports-2026-08-hs6.json",
+              "bytes": 892668,
+              "sha256": "b3a3ee8b84815acf5d1e2ba2d1487891c78b09e9a0ff3acabe7bf76804ecfc0f"
+            },
+            "receipt": {
+              "path": "exports-2026-08-receipt.json",
+              "bytes": 1371,
+              "sha256": "fd49e39ebb4f7cd351e80f829a53d036c7624f926676bed9c49a7973a278a857"
+            }
+          },
+          "workerElapsedSeconds": 4.577999999979511,
+          "workerPeakWorkingSetBytes": 212594688,
+          "independentNormalizedFile": {
+            "file": "exports-2026-08-independent-hs6.json",
+            "bytes": 892669,
+            "sha256": "4f46eb9985fd960ae85319b7adf78c3c631be64403980aca5a3e17edad3260ca"
+          },
+          "selectedMembers": {
+            "EXP_CTY.TXT": {
+              "actualMember": "EXP_CTY.TXT",
+              "bytes": 64578,
+              "records": 229,
+              "recordWidthExcludingCRLF": 280,
+              "sha256": "925f14ede60d5a03a7e1fe75b1245ab3a35502990a46b454a643a39e249e308b",
+              "crc32": "db681a20",
+              "CRCVerifiedAtEOF": true
+            },
+            "HSDESC.TXT": {
+              "actualMember": "HSDESC.TXT",
+              "bytes": 1450800,
+              "records": 6975,
+              "recordWidthExcludingCRLF": 206,
+              "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+              "crc32": "a4d5f2c3",
+              "CRCVerifiedAtEOF": true
+            },
+            "EXP_DETL.TXT": {
+              "actualMember": "EXP_DETL.TXT",
+              "bytes": 416213525,
+              "records": 1280657,
+              "recordWidthExcludingCRLF": 323,
+              "sha256": "ff9d15d20cce95da593a2bb3914106b146252e4bf3962ceb3424f0225dcdd697",
+              "crc32": "4c21164b",
+              "CRCVerifiedAtEOF": true
+            }
+          }
+        }
+      ]
+    },
+    "independentVerification": {
+      "liveReceipt": {
+        "path": ".tmp/canada-bulk-independent-review-20261011/independent-receipt.json",
+        "bytes": 184295,
+        "sha256": "c089fdbc75cdcb806c81b1e220ebb596654eabc6d576753c9005c46426814bd1"
+      },
+      "offlineComparisonReceipt": {
+        "path": ".tmp/canada-bulk-independent-review-20261011/offline-comparison-receipt.json",
+        "bytes": 94089,
+        "sha256": "6e21f24aa4258b1aa062735231390a64548df79e24f78427f9ef92aad3b4a4e3"
+      },
+      "replayedContexts": 25,
+      "rejectedContexts": 23,
+      "hs6Rows": 115290,
+      "globalDetailRecords": 38361487,
+      "canadaDetailRecords": 1902327,
+      "selectedBytes": 21671274351,
+      "selectedReplayElapsedSeconds": 372.2041662997799,
+      "peakReviewerWorkingSetBytes": 427954176,
+      "longestSupervisedReviewerSeconds": 30.301630200003274,
+      "allMaintainedRowsAndSelectedReceiptsMatched": true,
+      "limitations": [
+        "Retained HTTP metadata is checked for consistency; this offline replay cannot independently observe remote transfers, redirects, concurrency, process ownership or historic disk samples.",
+        "Worker peak/time are recorded observations reconciled across retained records, not independently monitored original-run measurements.",
+        "Only selected member CRCs verified; no CRC claim for unselected members.",
+        "PDF reviewed extraction is corroborated by fresh exact pins, not newly extracted with a PDF dependency.",
+        "Stable rows and exact aggregates do not establish detail revision vintage or classification continuity."
+      ],
+      "offlineComparisonLimits": [
+        "Reused finalized independent selected-member replay results; no complete raw decompression was repeated. Original bytes were hashed once to verify source preservation; hard-link identity avoids hashing the same ZIP bytes twice.",
+        "Every normalized row and selected-member receipt, global grain count, control and reference comparison matched. Supplemental per-dimension and description-level distributions were checked for internal consistency, because the first independent receipt retained their totals but not each distribution.",
+        "Worker elapsed/memory samples are recorded observations reconciled across receipts, not measurements taken independently during the offline run.",
+        "Unselected-member CRCs and arithmetic for the 23 inventory-cap failures remain outside the validated evidence."
+      ],
+      "offlineNetworkClaimReview": "Reviewed one-off script invokes bounded local workers and no retrieval operation; no retrospective packet capture is available."
+    },
+    "referenceComparisons": {
+      "currentBeforeAndAfter": {
+        "matched": 18,
+        "unavailable": 23,
+        "mismatch": 7
+      },
+      "publications": {
+        "not-reviewed": 41,
+        "matched": 7
+      },
+      "corroboration": {
+        "current-reference": 18,
+        "unavailable": 23,
+        "original-publication-only": 7
+      },
+      "snapshotParsedMonthCounts": {
+        "canada-before": 320,
+        "canada-after": 320
+      },
+      "publicationPins": [
+        {
+          "month": "2026-01",
+          "verified": true,
+          "valueUsd": 24510300000,
+          "bytes": 1719702,
+          "sha256": "3c18b43ee3e6e91a9a90dc159ef44f33972745ea38b892ebbc77823b1bf418d9"
+        },
+        {
+          "month": "2026-02",
+          "verified": true,
+          "valueUsd": 28371300000,
+          "bytes": 1741412,
+          "sha256": "96c04f834b91c12887264c81590e5bc614f4d6f6b6b2d3bcd9345365de79a2d0"
+        },
+        {
+          "month": "2026-03",
+          "verified": true,
+          "valueUsd": 31438900000,
+          "bytes": 1745935,
+          "sha256": "9f71de167044d2d4c5d3d81271a5311173be1e67c9eda4c52779b2bf8de22b72"
+        },
+        {
+          "month": "2026-04",
+          "verified": true,
+          "valueUsd": 29741100000,
+          "bytes": 1754536,
+          "sha256": "11947b2eed8dc87414cfc2ec89b73d7f01282a1d10c70452684b9736ee284b87"
+        },
+        {
+          "month": "2026-05",
+          "verified": true,
+          "valueUsd": 29790800000,
+          "bytes": 1798284,
+          "sha256": "9ab9737e0c84a679dec653de9ca1223de3004e0d0d074ef3a2dec33cb63c70ec"
+        },
+        {
+          "month": "2026-06",
+          "verified": true,
+          "valueUsd": 30695500000,
+          "bytes": 1817223,
+          "sha256": "a67052e2f6f97dcd8a4fb46530464dc093eea26251b9ca153f658a09957e7eef"
+        },
+        {
+          "month": "2026-07",
+          "verified": true,
+          "valueUsd": 29338600000,
+          "bytes": 1826911,
+          "sha256": "c122b8ccee947c58859597a7549bb5dcb6691add3e405180ab915d43f6c43aa0"
+        }
+      ],
+      "mayRemainsCurrentMismatch": true
+    },
+    "sourceCoverage": "failed",
+    "classificationStatus": "unverified",
+    "releaseAccepted": false,
+    "rollingComparisonsAvailable": false,
+    "defaultAuditRetrievalChanged": false,
+    "recommendation": "Review the archive inventory budget against the 106/113-member structure and design an explicit reference-vintage policy before another acceptance attempt. Neither change is adopted; do not redownload unchanged originals to seek a pass."
   }
 }
