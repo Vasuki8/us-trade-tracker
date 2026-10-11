@@ -118,11 +118,44 @@ All original bodies, attempt phases, safe codes, query identities and hashes sta
 
 Older diagnostic modes keep their original queries and validation. This probe does not combine runs, change accepted data, access R2, schedule retrieval or publish a country page. Live evidence must be independently replayed before changing the source strategy; full acceptance and classification remain unresolved.
 
+### Live aggregate probe: equivalent returned data; no supported filter fix
+
+[PR #43](https://github.com/Vasuki8/us-trade-tracker/pull/43) merged after independent review and [checks for its reviewed commit](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38100802335): 532 tests, zero diagnostics across 139 files and 52 browser cases. [Aggregate probe 38101045210](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38101045210) used main commit `9cdc827a11ed61555340498b6d04367e20cfe134`. Software checks passed before source retrieval. Nine logical requests made nine attempts, finishing retrieval in about 102 seconds within the seven-minute step; source checks failed and evidence upload succeeded.
+
+The 548,324-byte ZIP matches GitHub's SHA-256 `6adc288cb2b88f39e42bc374f669e0630e899658af54455655e0fd1b1b829022`. Independent verification matched all **10 members** (3,529,166 extracted bytes), all **nine original-record manifest digests**, exact original/explicit queries, returned dimensions, row digests, sums and attempt/event identities. The report and independent replay hashes are in the [machine-readable record](1220-country-audit-evidence.json). This verifies evidence consistency, not source acceptance.
+
+| Fixed context | Original query | Explicit aggregate query | Pair verdict |
+| --- | --- | --- | --- |
+| May 2025 import total | Header timeout, 30,001 ms | Header timeout, 30,000 ms | Unavailable |
+| June 2025 import HS6 breakdown | 4,302 rows, $29,645,029,011; 21,890 ms | Same full rows and sum; 21,312 ms | Equivalent |
+| August 2026 import total control | Header timeout, 30,001 ms | Header timeout, 30,000 ms | Unavailable |
+| May 2026 export total | $29,790,835,759; 3,126 ms | Same full row; 19,457 ms | Equivalent |
+
+The June breakdown was unavailable in both earlier runs, but both strategies returned it here. Their complete normalized rows match, including commodity identities, descriptions, values and special flags. Its sum rounds to the probe's own June import reference of $29,645.0 million; no separate June total was requested, so this is supporting corroboration rather than complete monthly API reconciliation. The August control had worked previously and failed here, showing that availability varies across runs. These results do not establish the transport failure's cause or support changing the default strategy to explicit subdivision filters. There were no HTTP 429/5xx retry responses.
+
+Both May export rows equal the original audit's total and product sum exactly. Each remains $608,164,241 below this probe's own current-reference value of $30,399.0 million. The historical-publication checks below clarify that discrepancy without altering the failed gate. The probe reference was retrieved `2026-10-11T01:14:04.376Z`, with `Last-Modified: Tue, 06 Oct 2026 13:08:40 GMT` and `Date: Sun, 11 Oct 2026 01:14:04 GMT`; retain this original alongside both older references.
+
+**Recommendation:** retain the original query strategy. Review a reference protocol that accounts for the documented publication revisions, and investigate an independently justified alternative for import totals before another full retrieval. Repeating this probe or widening deadlines is not justified by these results. The original full audit remains failed; this diagnostic remains unverified for source/classification acceptance. No country release, comparison or archive is accepted. Both coffee pointers and accepted releases retain their recorded hashes.
+
 ## Primary-source revision lead
 
 The [May 2026 FT900 release](https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2605.pdf#page=53), issued July 7, reports Canada exports of **$29,790.8 million** in its appended country exhibit (PDF page 53). The retained May API total, $29,790,835,759, rounds to that original published amount at $100,000 precision. The [June release](https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2606.pdf#page=35), issued August 4, marks May Canada exports as revised to **$30,399 million** in Exhibit 14 (PDF page 35, $1 million precision). That revised figure agrees at its displayed precision with the current HTML reference's $30,399.0 million, rather than the API amount.
 
 Census's [Canadian Estimates explanation](https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2606.pdf#page=7) says current-month Canada exports include estimated late arrivals/corrections; the following month's news-release exhibits replace that estimate with actual receipts/corrections. This documents a publication revision for May and makes the revision/vintage explanation stronger. Inferring that this policy explains the entire API difference remains an inference: these exhibits do not identify every retained API record's vintage or account for all seven discrepancies. Historical releases used for this research are supporting references, not replacements for either audit's retained reference.
+
+Extending that check across the seven disputed months finds **all seven retained API totals match their own original monthly FT900 releases** at $100,000 precision. The appended Exhibit 4 reports domestic and foreign exports on an FAS basis, not seasonally adjusted, in millions of dollars. Monthly values, rather than year-to-date columns, are used below. Each link points to the PDF page containing Canada's row.
+
+| Export month | Original publication USD | Retained API minus original publication USD | Supporting release |
+| --- | ---: | ---: | --- |
+| 2026-01 | 24,510,300,000 | -7,177 | [January, PDF page 56](https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2601.pdf#page=56) |
+| 2026-02 | 28,371,300,000 | +11,032 | [February, PDF page 55](https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2602.pdf#page=55) |
+| 2026-03 | 31,438,900,000 | +46,691 | [March, PDF page 54](https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2603.pdf#page=54) |
+| 2026-04 | 29,741,100,000 | -7,127 | [April, PDF page 55](https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2604.pdf#page=55) |
+| 2026-05 | 29,790,800,000 | +35,759 | [May, PDF page 53](https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2605.pdf#page=53) |
+| 2026-06 | 30,695,500,000 | +10,012 | [June, PDF page 53](https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2606.pdf#page=53) |
+| 2026-07 | 29,338,600,000 | +45,167 | [July, PDF page 54](https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2607.pdf#page=54) |
+
+This corroborates the retained monthly API amounts against an appropriate historical publication; it does not assign a revision timestamp to the API or establish full coverage/classification. Those PDFs were inspected as primary-source research, rather than archived and independently replayed as audit inputs. The current HTML mismatch remains recorded under the existing gate. A prospective vintage-compatible reference protocol, preserving originals and distinguishing published revisions from product arithmetic, needs review before changing acceptance.
 
 The current-reference mismatch is real, but it does not by itself prove the API arithmetic is wrong. A future acceptance design must establish compatible reference vintages and explain Canada-specific revisions before changing that gate. Do not rescale products, widen tolerances, substitute revised totals as product denominators or mark acceptance from this research alone. The bounded query probe above continues to measure retrieval and equivalence separately.
 
