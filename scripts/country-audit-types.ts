@@ -3,7 +3,7 @@ export type CountryContext={countryCode:string;month:string;direction:Direction;
 export type CountryRow={code:string;description:string;valueUsd:number|null;special:boolean};
 export type CountryPart=CountryContext & {measure:Measure;rows:CountryRow[]};
 export type CountryRaw=CountryContext & {schemaVersion:1;requestUrl:string;retrievedAt:string;httpStatus:number;attempts:number;responseBody:string;responses:{attempt:number;httpStatus:number|null;responseBody:string|null;retrievedAt:string}[]};
-export type CountryFetchOptions=CountryContext & {apiKey:string;onRaw?:(raw:CountryRaw)=>Promise<void>};
+export type CountryFetchOptions=CountryContext & {apiKey:string;explicitAggregates?:boolean;onRaw?:(raw:CountryRaw)=>Promise<void>};
 export type CountryAuditOptions={countryCode:string;end:string;outputDir:string;apiKey:string;codeVersion?:string};
 export type CountryReferenceRow={month:string;importsUsd:number;exportsUsd:number};
 export type AuditFile={path:string;bytes:number;sha256:string};
