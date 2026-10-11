@@ -1,5 +1,6 @@
 import {describe,expect,it} from 'vitest';
 import * as client from '../../scripts/census-country-client';
+import type {CountryRaw} from '../../scripts/country-audit-types';
 import {countryTable as table} from '../helpers/country-data';
 
 export const context={countryCode:'1220',month:'2026-08',direction:'imports' as const,kind:'products' as const};
@@ -9,7 +10,35 @@ function calendarTable(kind:'total'|'products'='products',direction:'imports'|'e
   payload[0].splice(index,1,'YEAR','MONTH');payload.slice(1).forEach(row=>row.splice(index,1,'2026','08'));return payload;
 }
 
+describe('diagnostic export cumulative total',()=>{
+  const exportContext={...context,direction:'exports' as const,kind:'total' as const};
+  const cumulativeTable=()=>{const payload=calendarTable('total','exports');payload[0].push('ALL_VAL_YR');payload[1].push('8000000');return payload;};
+  it('retains the original cumulative field while keeping the ordinary total contract strict',async()=>{
+    const evidence:CountryRaw[]=[];
+    const payload=cumulativeTable();
+    const result=await client.fetchCountryExportCumulativeTotal({...exportContext,apiKey:'fixture-key',onRaw:async raw=>{evidence.push(raw);}},(async input=>{
+      const url=new URL(String(input));expect(url.searchParams.get('get')!.split(',')).toContain('ALL_VAL_YR');expect(url.searchParams.get('SUMMARY_LVL2')).toBe('CY');expect(url.searchParams.get('YEAR')).toBe('2026');expect(url.searchParams.get('MONTH')).toBe('08');return json(payload);
+    }) as typeof fetch);
+    expect(result).toMatchObject({part:{measure:'ALL_VAL_MO',rows:[{code:'-',valueUsd:1000000}]},yearToDateUsd:8000000});
+    expect(JSON.parse(evidence[0].responseBody)).toEqual(payload);expect(evidence[0].requestUrl).not.toContain('key=');
+    expect(()=>client.normalizeCountryPart(payload,exportContext)).toThrow(/column/);
+  });
+  it('rejects duplicate, absent, unsafe or crossed cumulative data and preserves an explicit zero',()=>{
+    const zero=cumulativeTable();zero[1][zero[0].indexOf('ALL_VAL_YR')]='0';expect(client.normalizeCountryExportCumulativeTotal(zero,exportContext).yearToDateUsd).toBe(0);
+    const missing=cumulativeTable();missing[1][missing[0].indexOf('ALL_VAL_YR')]='';expect(client.normalizeCountryExportCumulativeTotal(missing,exportContext).yearToDateUsd).toBeNull();
+    for(const value of ['-1','(D)','9007199254740992']){const payload=cumulativeTable();payload[1][payload[0].indexOf('ALL_VAL_YR')]=value;expect(()=>client.normalizeCountryExportCumulativeTotal(payload,exportContext)).toThrow();}
+    const duplicate=cumulativeTable();duplicate[0].push('ALL_VAL_YR');duplicate[1].push('8000000');expect(()=>client.normalizeCountryExportCumulativeTotal(duplicate,exportContext)).toThrow();
+    expect(()=>client.normalizeCountryExportCumulativeTotal(calendarTable('total','exports'),exportContext)).toThrow();
+    const crossed=cumulativeTable();crossed[1][crossed[0].indexOf('MONTH')]='07';expect(()=>client.normalizeCountryExportCumulativeTotal(crossed,exportContext)).toThrow();
+    expect(()=>client.normalizeCountryExportCumulativeTotal(cumulativeTable(),context)).toThrow();
+  });
+});
+
 describe('country source contracts',()=>{
+  it('rejects JSON null from HTTP 200 instead of confusing it with a 204 empty breakdown',async()=>{
+    await expect(client.fetchCountryPart({...context,apiKey:'fixture-key'},(async()=>json(null)) as typeof fetch)).rejects.toThrow(/table/);
+    expect((await client.fetchCountryPart({...context,apiKey:'fixture-key'},(async()=>new Response(null,{status:204})) as typeof fetch)).rows).toEqual([]);
+  });
   it.each(['imports','exports'] as const)('requests exact YEAR/MONTH predicates for %s and validates their returned identity',async direction=>{
     for(const kind of ['total','products'] as const){
       const result=await client.fetchCountryPart({...context,direction,kind,apiKey:'fixture-key'},(async input=>{

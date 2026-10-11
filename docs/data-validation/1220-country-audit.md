@@ -79,6 +79,14 @@ There are **10,255 provisional candidates**: 4,916 imports, all incomplete, and 
 
 **Recommendation:** retain this failed audit as the baseline. Diagnose import retrieval with bounded, focused requests and investigate the export revision/vintage discrepancy before another acceptance attempt. Any retry must preserve its own original records and reference vintage. Increasing timeouts, repeating all requests blindly or relaxing validation is not justified by this evidence. Country release/archive and page work should wait. Both accepted coffee releases and pointers retain their recorded hashes; no R2 operation, publication or schedule was added. Exact run, artifact, report and replay hashes are in the [machine-readable evidence](1220-country-audit-evidence.json).
 
+## Fixed source followup
+
+The manual `source-followup` diagnostic tests the two observed problems separately. It retries only the nine unavailable import identities from full run 38096086464, preserving their exact reviewed calendar queries, and requests the August export CY total with both `ALL_VAL_MO` and `ALL_VAL_YR`. A fresh official reference runs first; ten API calls then run in five pairs, with the existing 30-second deadline and HTTP 429/5xx retry rule. The worst permitted reference/API schedule is 487.5 seconds, within a nine-minute step and the unchanged 20-minute job budget. There are eleven logical requests and at most 31 attempts, not another 96-part audit.
+
+Original credential-safe bodies and every attempt remain retained, with header/body failure phase, elapsed time and allowlisted transport codes. The cumulative comparison requires all eight January–August 2026 reference rows. It reports the signed difference from their rounded sum with a $400,000 accumulated rounding bound; an unavailable input remains unavailable. Agreement within that bound corroborates cumulative values only. It cannot repair the seven monthly discrepancies, prove a revision cause, substitute monthly denominators or establish classification compatibility.
+
+The followup writes an isolated diagnostic report, not a country release or combined accepted dataset. It never overwrites the original failed audit. Its source and classification statuses stay unverified regardless of diagnostic outcome. Live followup findings will be recorded after exact-head code checks and independent source replay; the latest full-audit verdict above remains failed.
+
 ## Product eligibility questions retained for the next design
 
 - Review dated import HTS and export Schedule B definitions across 2024–2026, including splits, mergers and within-year changes. Matching HS6 strings or descriptions do not prove comparability.
