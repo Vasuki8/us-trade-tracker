@@ -22,6 +22,7 @@
     "data:probe-country": "node --import tsx scripts/probe-country.ts",
     "data:diagnose-country": "node --import tsx scripts/diagnose-country.ts",
     "data:probe-aggregates": "node --import tsx scripts/probe-country-aggregates.ts",
+    "data:probe-totals": "node --import tsx scripts/probe-country-totals.ts",
     "test:e2e": "playwright test"
   },
   "dependencies": {
