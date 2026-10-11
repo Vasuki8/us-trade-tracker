@@ -182,7 +182,8 @@ def validate_worker_files(context,files,store):
         require(type(row) is dict and set(row)=={'commodity','description','value_usd','detail_record_count','special'},'invalid-worker-output')
         code=row['commodity'];require(type(code) is str and len(code)==6 and code.isascii() and code.isdigit(),'invalid-worker-output');codes.append(code)
         total=safe_integer(total+safe_integer(row['value_usd']))
-        require(type(row['detail_record_count']) is int and row['detail_record_count']>0 and row['special']==code.startswith(('98','99')) and (row['description'] is None or type(row['description']) is str and len(row['description'])<=150),'invalid-worker-output')
+        expected_special=code.startswith(('98','99')) or (context.direction=='exports' and code=='880000')
+        require(type(row['detail_record_count']) is int and row['detail_record_count']>0 and row['special']==expected_special and (row['description'] is None or type(row['description']) is str and len(row['description'])<=150),'invalid-worker-output')
     require(codes==sorted(set(codes)) and total==safe_integer(receipt['sum_usd']) and receipt['residual_usd']==total-safe_integer(receipt['country_total_usd']),'invalid-worker-output')
     require(set(receipt['members'])=={'HSDESC.TXT',('IMP' if context.direction=='imports' else 'EXP')+'_CTY.TXT',('IMP' if context.direction=='imports' else 'EXP')+'_DETL.TXT'} and all(m['CRCVerifiedAtEOF'] is True for m in receipt['members'].values()),'invalid-worker-output')
     return receipt

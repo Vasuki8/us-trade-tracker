@@ -5,7 +5,7 @@ import sys
 import tempfile
 import unittest
 import zipfile
-from helpers import archive_fixture, archive_inventory_fixture, layout_fixture
+from helpers import archive_fixture, archive_inventory_fixture, fixed_record, layout_fixture
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(REPO))
 from scripts.country_bulk.model import Limits, contexts
@@ -46,6 +46,23 @@ class ContractsTests(unittest.TestCase):
     def test_ascii_space_padding_preserves_nonempty_monthly_integers(self):
         for raw, expected in ((b'        1776057',1776057),(b'              0',0),(b'12             ',12),(b' 12            ',12),(b'000000000000012',12)):
             with self.subTest(raw=raw): self.assertEqual(amount(raw),expected)
+
+    def test_aircraft_pseudo_classification_is_export_only_without_changing_aggregation(self):
+        for direction in ('imports','exports'):
+            for code in ('880000','880240','880001'):
+                members=archive_fixture(direction)
+                prefix='IMP' if direction=='imports' else 'EXP'
+                members[prefix+'_DETL.TXT']=members[prefix+'_DETL.TXT'].replace(b'090121',code.encode('ascii'))
+                members['HSDESC.TXT']=fixed_record(206,{0:code,6:'Aircraft category'})+members['HSDESC.TXT'][208:]
+                with self.subTest(direction=direction,code=code):
+                    result=self.parse(direction,members)
+                    aircraft=next(row for row in result.rows if row.commodity==code)
+                    self.assertEqual((aircraft.description,aircraft.value_usd,aircraft.detail_record_count),('Aircraft category',10,2))
+                    self.assertEqual(aircraft.special,direction=='exports' and code=='880000')
+                    self.assertEqual((result.sum_usd,result.country_total_usd,result.residual_usd),(12,12,0))
+                    self.assertEqual(result.full_key_count,6)
+                    self.assertEqual(len(result.members),3)
+                    self.assertTrue(all(row.special for row in result.rows if row.commodity.startswith(('98','99'))))
 
     def test_numeric_padding_does_not_admit_blank_signed_or_malformed_fields(self):
         for raw in (b' '*15,b'             -1',b'             +1',b'           1 23',b'            1.2',b'\t             1',b'\xff             1',b'1'*14,b'1'*16):

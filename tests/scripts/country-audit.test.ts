@@ -25,6 +25,20 @@ describe('isolated Canada audit',()=>{
     const report=await audit.runCountryAudit(options(join(await workspace(),'audit')),countryFetch((payload,url)=>{if(url.searchParams.get('SUMMARY_LVL2')==='CY')payload[1][2]='1000050';}));
     expect(report.sourceCoverage).toBe('failed');expect(report.months[0].residualUsd).toBe(50);expect(report.candidates.some(row=>row.code==='other')).toBe(false);
   });
+  it('retains the aircraft aggregate in totals and candidates without approving classification',async()=>{
+    const report=await audit.runCountryAudit(options(join(await workspace(),'audit')),countryFetch((payload,url)=>{
+      if(url.pathname.includes('/exports/')&&url.searchParams.get('SUMMARY_LVL2')==='HSCY'){
+        payload[1][0]='880000';payload[1][1]='CIVILIAN AIRCRAFT, ENGINES, AND PARTS';
+      }
+    }));
+    const months=report.months.filter(row=>row.direction==='exports');
+    expect(months).toHaveLength(24);
+    expect(months.every(row=>row.totalUsd===1000000&&row.productSumUsd===1000000&&row.residualUsd===0&&row.referenceCheck==='matched')).toBe(true);
+    expect(months.every(row=>row.specialRows.some(product=>product.code==='880000'&&product.valueUsd===900000))).toBe(true);
+    expect(report.candidates.find(row=>row.direction==='exports'&&row.code==='880000')).toMatchObject({special:true,currentUsd:10800000,previousUsd:10800000,complete:true,classificationStatus:'unverified',comparisonAvailable:false});
+    expect(report.classificationStatus).toBe('unverified');
+    expect(report.candidates.every(row=>row.comparisonAvailable===false)).toBe(true);
+  });
   it('keeps absent products unavailable and ratios of sums rather than averaged shares',async()=>{
     const report=await audit.runCountryAudit(options(join(await workspace(),'audit')),countryFetch((payload,url)=>{
       if(url.searchParams.get('YEAR')==='2026'&&url.searchParams.get('MONTH')==='08'){if(url.searchParams.get('SUMMARY_LVL2')==='CY')payload[1][2]='2000000';else{payload[1][2]='1900000';payload.pop();}}

@@ -79,7 +79,8 @@ def parse_archive(path, context, layout, limits):
                     values[code]=safe_integer(values[code]+value);counts[code]+=1;dimensions[dimension]+=1;zeros+=value==0
                     if context.direction=='exports': df_values[dimension]=safe_integer(df_values[dimension]+value)
             total=safe_integer(sum(values.values()))
-            rows=tuple(HS6Row(code,descriptions.get(code),value,counts[code],code.startswith(('98','99'))) for code,value in sorted(values.items()))
+            # Census civilian aircraft exports use pseudo code 880000, outside chapters 98/99.
+            rows=tuple(HS6Row(code,descriptions.get(code),value,counts[code],code.startswith(('98','99')) or (context.direction=='exports' and code=='880000')) for code,value in sorted(values.items()))
             return ArchiveResult(context,rows,total,totals[0],total-totals[0],receipts,len(keys),{'archiveMembers':len(inventory),'declaredUncompressedBytes':sum(e.file_size for e in inventory),'descriptionCountsByCodeLength':dict(levels),'dimensions':dict(sorted(dimensions.items())),'exportDfTotals':dict(sorted(df_values.items())),'zeroDetailRecords':zeros,'zeroHS6Rows':sum(r.value_usd==0 for r in rows),'canadaDetailRecords':sum(counts.values()),'missingDescriptionCodes':[r.commodity for r in rows if r.description is None]})
     except (zipfile.BadZipFile, NotImplementedError, RuntimeError, EOFError) as error:
         raise ValueError('invalid-zip') from error
