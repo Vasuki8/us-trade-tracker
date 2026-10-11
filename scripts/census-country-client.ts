@@ -1,4 +1,4 @@
-import type {CountryContext,CountryPart,CountryFetchOptions,CountryRaw} from './country-audit-types';
+import type {CountryContext,CountryPart,CountryFetchOptions,CountryRaw,CountryPrefixFetchOptions,CountryPrefixPart} from './country-audit-types';
 import {validMonth} from '../src/lib/trade/normalize';
 function validateContext(context:CountryContext){
   if(context.countryCode!=='1220'||!validMonth(context.month)||!['imports','exports'].includes(context.direction)||!['total','products'].includes(context.kind))throw new Error('Invalid country request context');
@@ -35,7 +35,7 @@ export function normalizeCountryPart(payload:unknown,context:CountryContext):Cou
   return {...publicContext(context),measure,rows};
 }
 const noContent=Symbol('country-no-content');
-async function fetchCountryTable(options:CountryFetchOptions,fetchImpl:typeof fetch,mode:'hs'|'export-cumulative'|'import-enduse-total'='hs'):Promise<unknown>{
+async function fetchCountryTable(options:CountryFetchOptions,fetchImpl:typeof fetch,mode:'hs'|'export-cumulative'|'import-enduse-total'='hs',commodityPrefix?:string):Promise<unknown>{
   validateContext(options);if(!options.apiKey.trim())throw new Error('Census key required');
   const columns=mode==='import-enduse-total'?['I_ENDUSE','I_ENDUSE_LDESC','GEN_VAL_MO','CTY_CODE','CTY_NAME','COMM_LVL','SUMMARY_LVL','SUMMARY_LVL2','DISTRICT','LAST_UPDATE']:fields(options.direction).columns;
   const url=new URL(`https://api.census.gov/data/timeseries/intltrade/${options.direction}/${mode==='import-enduse-total'?'enduse':'hs'}`);
@@ -43,6 +43,7 @@ async function fetchCountryTable(options:CountryFetchOptions,fetchImpl:typeof fe
   // Census recommends native calendar predicates to reduce monthly query processing.
   url.searchParams.set('YEAR',options.month.slice(0,4));url.searchParams.set('MONTH',options.month.slice(5));
   if(options.kind==='products')url.searchParams.set('COMM_LVL','HS6');
+  if(commodityPrefix!==undefined)url.searchParams.set('I_COMMODITY',`${commodityPrefix}*`);
   // Opt-in diagnostic strategy; returned dimensions still pass the same strict validator.
   if(options.explicitAggregates)for(const field of options.direction==='imports'?['DISTRICT','RP','CTY_SUBCODE']:['DISTRICT','DF'])url.searchParams.set(field,'-');
   url.searchParams.set('get',[...columns,...(mode==='export-cumulative'?['ALL_VAL_YR']:[])].filter(column=>!url.searchParams.has(column)).join(','));
@@ -73,6 +74,19 @@ async function fetchCountryTable(options:CountryFetchOptions,fetchImpl:typeof fe
 export async function fetchCountryPart(options:CountryFetchOptions,fetchImpl:typeof fetch=fetch):Promise<CountryPart>{
   const payload=await fetchCountryTable(options,fetchImpl);
   return payload===noContent?{...publicContext(options),measure:options.direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO',rows:[]}:normalizeCountryPart(payload,options);
+}
+function validatePrefixContext(context:CountryContext & {commodityPrefix:string}){
+  validateContext(context);if(context.direction!=='imports'||context.kind!=='products'||typeof context.commodityPrefix!=='string'||!/^\d$/.test(context.commodityPrefix))throw new Error('Prefix diagnostic requires an import HS6 single-digit prefix');
+}
+export function normalizeCountryImportPrefix(payload:unknown,context:CountryContext & {commodityPrefix:string}):CountryPrefixPart{
+  validatePrefixContext(context);const part=normalizeCountryPart(payload,context);
+  if(part.rows.some(row=>!row.code.startsWith(context.commodityPrefix)))throw new Error('Unexpected out-of-prefix commodity');
+  return {...part,commodityPrefix:context.commodityPrefix,completeCountryBreakdown:false};
+}
+export async function fetchCountryImportPrefix(options:CountryPrefixFetchOptions,fetchImpl:typeof fetch=fetch):Promise<CountryPrefixPart>{
+  validatePrefixContext(options);if(options.explicitAggregates)throw new Error('Prefix diagnostic does not combine subdivision query changes');
+  const payload=await fetchCountryTable({...options,onRaw:async raw=>{await options.onRaw?.({...raw,commodityPrefix:options.commodityPrefix,completeCountryBreakdown:false});}},fetchImpl,'hs',options.commodityPrefix);
+  return payload===noContent?{...publicContext(options),measure:'GEN_VAL_MO',rows:[],commodityPrefix:options.commodityPrefix,completeCountryBreakdown:false}:normalizeCountryImportPrefix(payload,options);
 }
 export function normalizeCountryExportCumulativeTotal(payload:unknown,context:CountryContext){
   validateContext(context);if(context.direction!=='exports'||context.kind!=='total')throw new Error('Cumulative diagnostic requires an export total');

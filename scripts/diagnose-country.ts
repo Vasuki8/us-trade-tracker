@@ -1,17 +1,19 @@
 import {mkdir,writeFile} from 'node:fs/promises';import {dirname,join,resolve} from 'node:path';import {pathToFileURL} from 'node:url';import {createHash} from 'node:crypto';import {execFileSync} from 'node:child_process';
-import {resolveCountryAuditOptions,validateCountryAuditOptions} from './audit-country';import {fetchCountryPart,fetchCountryExportCumulativeTotal,fetchCountryImportEnduseTotal} from './census-country-client';import {parseCountryReference} from './country-reference';import type {CountryAuditOptions,CountryAuditReport,CountryReferenceRow,CountryRaw} from './country-audit-types';
+import {resolveCountryAuditOptions,validateCountryAuditOptions} from './audit-country';import {fetchCountryPart,fetchCountryExportCumulativeTotal,fetchCountryImportEnduseTotal,fetchCountryImportPrefix} from './census-country-client';import {parseCountryReference} from './country-reference';import type {CountryAuditOptions,CountryAuditReport,CountryReferenceRow,CountryRaw} from './country-audit-types';
 
 // Fixed failed identities from retained audit 38096086464; this is not a resume/acceptance path.
 const missingImports=[['2025-05','total'],['2025-06','total'],['2025-06','products'],['2025-08','total'],['2025-09','products'],['2025-12','total'],['2026-03','total'],['2026-04','total'],['2026-06','total']] as const;
 type Event={label:string;attempt:number;phase:'complete'|'headers'|'body';retrievedAt:string;elapsedMs:number;httpStatus:number|null;errorCode:string|null};
-type Result={label:string;outcome:'received'|'validated'|'failed';rows?:number;amountUsd?:number|null;yearToDateUsd?:number|null;normalizedRowsSha256?:string};
+type Result={label:string;outcome:'received'|'validated'|'failed';rows?:number;amountUsd?:number|null;yearToDateUsd?:number|null;normalizedRowsSha256?:string;baselineSubsetRows?:number;baselineSubsetAmountUsd?:number|null;baselineSubsetRowsSha256?:string};
 const aggregateContexts=[{direction:'imports',month:'2025-05',kind:'total'},{direction:'imports',month:'2025-06',kind:'products'},{direction:'imports',month:'2026-08',kind:'total'},{direction:'exports',month:'2026-05',kind:'total'}] as const;
 const totalMonths=['2025-05','2025-06','2026-08'] as const;
+const prefixMonths=['2024-09','2026-04','2025-02'] as const;
+const commodityPrefix='0';
 const safeCodes=new Set(['UND_ERR_CONNECT_TIMEOUT','UND_ERR_HEADERS_TIMEOUT','UND_ERR_BODY_TIMEOUT','ECONNRESET','ETIMEDOUT','ENOTFOUND','ECONNREFUSED','ENETUNREACH','EHOSTUNREACH','ABORT_ERR']);
 function safeErrorCode(error:unknown){const cause=error as {cause?:{code?:unknown};name?:string}|null;const code=String(cause?.cause?.code??'');return safeCodes.has(code)?code:cause?.name==='TimeoutError'?'timeout':'unknown';}
 function safeSum(values:(number|null)[]){if(!values.length||values.some(value=>value===null))return null;const value=values.reduce<bigint>((sum,value)=>sum+BigInt(value!),0n);return value>BigInt(Number.MAX_SAFE_INTEGER)?null:Number(value);}
 
-async function runCountryDiagnostic(options:CountryAuditOptions,fetchImpl:typeof fetch,mode:'followup'|'aggregate'|'total'){
+async function runCountryDiagnostic(options:CountryAuditOptions,fetchImpl:typeof fetch,mode:'followup'|'aggregate'|'total'|'prefix'){
  const aggregateProbe=mode==='aggregate';
  validateCountryAuditOptions(options);await mkdir(dirname(resolve(options.outputDir)),{recursive:true});try{await mkdir(options.outputDir);}catch{throw new Error('Followup requires fresh output; directory already exists or cannot be created');}await mkdir(join(options.outputDir,'raw'));
  const events:Event[]=[],results:Result[]=[],rawFiles:CountryAuditReport['rawFiles']=[],attempts=new Map<string,number>();
@@ -38,7 +40,16 @@ async function runCountryDiagnostic(options:CountryAuditOptions,fetchImpl:typeof
 
  const tasks=missingImports.map(([month,kind])=>{const label=`imports-${month}-${kind}`;return {label,run:async()=>{const part=await fetchCountryPart({countryCode:options.countryCode,month,direction:'imports',kind,apiKey:options.apiKey,onRaw:raw=>save(label,raw)},instrument(label));return {label,outcome:'validated' as const,rows:part.rows.length,amountUsd:safeSum(part.rows.map(row=>row.valueUsd))};}};});
  const cumulativeLabel='exports-2026-08-cumulative';let cumulativeUsd:number|null=null;
- const allTasks:{label:string;run:()=>Promise<Result>}[]=mode==='total'?totalMonths.flatMap(month=>(['hs','enduse'] as const).map(endpoint=>{
+ const allTasks:{label:string;run:()=>Promise<Result>}[]=mode==='prefix'?prefixMonths.flatMap(month=>(['full','prefix-0'] as const).map(strategy=>{
+  const label=`imports-${month}-products-${strategy}`;
+  return {label,run:async()=>{
+   const request={countryCode:options.countryCode,month,direction:'imports' as const,kind:'products' as const,apiKey:options.apiKey,onRaw:(raw:CountryRaw)=>save(label,raw)};
+   const part=strategy==='full'?await fetchCountryPart(request,instrument(label)):await fetchCountryImportPrefix({...request,commodityPrefix},instrument(label));
+   const normalizedRows=[...part.rows].sort((a,b)=>a.code.localeCompare(b.code));
+   const subset=normalizedRows.filter(row=>row.code.startsWith(commodityPrefix));
+   return {label,outcome:'validated' as const,rows:part.rows.length,amountUsd:safeSum(part.rows.map(row=>row.valueUsd)),normalizedRowsSha256:createHash('sha256').update(JSON.stringify(normalizedRows)).digest('hex'),...(strategy==='full'?{baselineSubsetRows:subset.length,baselineSubsetAmountUsd:safeSum(subset.map(row=>row.valueUsd)),baselineSubsetRowsSha256:createHash('sha256').update(JSON.stringify(subset)).digest('hex')}:{})};
+  }};
+ })):mode==='total'?totalMonths.flatMap(month=>(['hs','enduse'] as const).map(endpoint=>{
   const label=`imports-${month}-total-${endpoint}`;
   return {label,run:async()=>{
    const request={countryCode:options.countryCode,month,direction:'imports' as const,kind:'total' as const,apiKey:options.apiKey,onRaw:(raw:CountryRaw)=>save(label,raw)};
@@ -78,8 +89,13 @@ async function runCountryDiagnostic(options:CountryAuditOptions,fetchImpl:typeof
   const apiTotalUsd=results.find(row=>row.label===`imports-${month}-total-${endpoint}`)?.amountUsd??null,referenceUsd=referenceRows.find(row=>row.month===month)?.importsUsd??null;
   return {month,direction:'imports',endpoint,apiTotalUsd,referenceUsd,differenceUsd:apiTotalUsd===null||referenceUsd===null?null:apiTotalUsd-referenceUsd,precisionUsd:100000,status:apiTotalUsd===null||referenceUsd===null?'unavailable':Math.round(apiTotalUsd/100000)*100000===referenceUsd?'matched':'mismatch'};
  })):[];
- const common={schemaVersion:1,baselineAuditRunId:38096086464,countryCode:options.countryCode,reportingMonth:options.end,codeVersion:options.codeVersion??'unspecified',retrievedAt:new Date().toISOString(),sourceCoverage:'unverified',classificationStatus:'unverified',releaseAccepted:false,logicalRequests:allTasks.length+1,events,results,rawFiles,reference};
- return {common,allUsable,pairedComparisons,exportReferenceChecks,totalComparisons,importReferenceChecks,cumulativeComparison:{status,referenceMonths:yearRows.length,apiYearToDateUsd:cumulativeUsd,referenceMonthlySumUsd,differenceUsd,roundingBoundUsd,meaning:'Cumulative corroboration only; does not resolve monthly differences or establish product eligibility'}};
+ const prefixComparisons=mode==='prefix'?prefixMonths.map(month=>{
+  const full=results.find(row=>row.label===`imports-${month}-products-full`)!,prefix=results.find(row=>row.label===`imports-${month}-products-prefix-0`)!;
+  const usable=full.outcome==='validated'&&full.amountUsd!==null&&full.baselineSubsetAmountUsd!==null&&prefix.outcome==='validated'&&prefix.amountUsd!==null;
+  return {month,direction:'imports',commodityPrefix,baselineRows:full.rows??null,baselineAmountUsd:full.amountUsd??null,baselineSubsetRows:full.baselineSubsetRows??null,baselineSubsetAmountUsd:full.baselineSubsetAmountUsd??null,prefixRows:prefix.rows??null,prefixAmountUsd:prefix.amountUsd??null,status:!usable?'unavailable':full.baselineSubsetRowsSha256===prefix.normalizedRowsSha256?'equivalent':'mismatch'};
+ }):[];
+ const common={schemaVersion:1,baselineAuditRunId:mode==='prefix'?38105445755:38096086464,countryCode:options.countryCode,reportingMonth:options.end,codeVersion:options.codeVersion??'unspecified',retrievedAt:new Date().toISOString(),sourceCoverage:'unverified',classificationStatus:'unverified',releaseAccepted:false,logicalRequests:allTasks.length+1,events,results,rawFiles,reference};
+ return {common,allUsable,pairedComparisons,exportReferenceChecks,totalComparisons,importReferenceChecks,prefixComparisons,cumulativeComparison:{status,referenceMonths:yearRows.length,apiYearToDateUsd:cumulativeUsd,referenceMonthlySumUsd,differenceUsd,roundingBoundUsd,meaning:'Cumulative corroboration only; does not resolve monthly differences or establish product eligibility'}};
 }
 export async function runCountryFollowup(options:CountryAuditOptions,fetchImpl:typeof fetch=fetch){
  const {common,allUsable,cumulativeComparison}=await runCountryDiagnostic(options,fetchImpl,'followup');
@@ -95,5 +111,10 @@ export async function runCountryTotalProbe(options:CountryAuditOptions,fetchImpl
  const {common,allUsable,totalComparisons,importReferenceChecks}=await runCountryDiagnostic(options,fetchImpl,'total');
  const report={...common,purpose:'total-endpoint-diagnostic',probePassed:allUsable&&totalComparisons.every(row=>row.status==='equivalent')&&importReferenceChecks.every(row=>row.status==='matched'),totalComparisons,importReferenceChecks,meaning:'Fixed import total endpoint evidence only; an available alternate does not replace missing HS totals or establish full coverage, compatible classifications or release acceptance'};
  await writeFile(join(options.outputDir,'total-probe.json'),JSON.stringify(report,null,2),{flag:'wx'});return report;
+}
+export async function runCountryPrefixProbe(options:CountryAuditOptions,fetchImpl:typeof fetch=fetch){
+ const {common,allUsable,prefixComparisons}=await runCountryDiagnostic(options,fetchImpl,'prefix');
+ const report={...common,purpose:'prefix-query-diagnostic',commodityPrefix,probePassed:allUsable&&prefixComparisons.every(row=>row.status==='equivalent'),prefixComparisons,meaning:'Single-prefix retrieval and exact subset equivalence only; a received subset is not a complete country breakdown. No partition assembly, default query change, classification verification or release acceptance.'};
+ await writeFile(join(options.outputDir,'prefix-probe.json'),JSON.stringify(report,null,2),{flag:'wx'});return report;
 }
 if(process.argv[1]&&pathToFileURL(resolve(process.argv[1])).href===import.meta.url){try{const options=resolveCountryAuditOptions(process.argv.slice(2),process.env);const report=await runCountryFollowup({...options,codeVersion:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()});console.log(`Canada source followup: ${report.results.length} logical checks, ${report.events.length} attempts; ${report.diagnosticPassed?'passed':'failed'}. Coverage and classification remain unverified; no release accepted.`);if(!report.diagnosticPassed)process.exitCode=1;}catch{console.error('Canada source followup failed; inspect retained evidence.');process.exitCode=1;}}
