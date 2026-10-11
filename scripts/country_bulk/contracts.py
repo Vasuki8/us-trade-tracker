@@ -8,8 +8,9 @@ from .model import ArchiveResult, HS6Row, safe_integer, contexts, require
 
 
 def amount(raw):
-    require(len(raw)==15 and raw.isdigit(), 'invalid-monthly-value')
-    return safe_integer(int(raw))
+    digits=raw.strip(b' ')
+    require(len(raw)==15 and digits.isdigit(), 'invalid-monthly-value')
+    return safe_integer(int(digits))
 
 
 def parse_archive(path, context, layout, limits):

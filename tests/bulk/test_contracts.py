@@ -13,9 +13,9 @@ from scripts.country_bulk.sources import validate_layout
 from scripts.country_bulk.model import Budget
 from scripts.country_bulk.storage import EvidenceStore
 try:
-    from scripts.country_bulk.contracts import parse_archive
+    from scripts.country_bulk.contracts import amount, parse_archive
 except ImportError:
-    parse_archive = None
+    amount = parse_archive = None
 
 class ContractsTests(unittest.TestCase):
     def setUp(self):
@@ -42,6 +42,24 @@ class ContractsTests(unittest.TestCase):
             self.assertIsNone(result.rows[-1].description)
             self.assertTrue(result.rows[-1].special)
             self.assertEqual(len(result.members),3)
+
+    def test_ascii_space_padding_preserves_nonempty_monthly_integers(self):
+        for raw, expected in ((b'        1776057',1776057),(b'              0',0),(b'12             ',12),(b' 12            ',12),(b'000000000000012',12)):
+            with self.subTest(raw=raw): self.assertEqual(amount(raw),expected)
+
+    def test_numeric_padding_does_not_admit_blank_signed_or_malformed_fields(self):
+        for raw in (b' '*15,b'             -1',b'             +1',b'           1 23',b'            1.2',b'\t             1',b'\xff             1',b'1'*14,b'1'*16):
+            with self.subTest(raw=raw), self.assertRaisesRegex(ValueError,'invalid-monthly-value'): amount(raw)
+
+    def test_invalid_monthly_values_outside_canada_still_fail_the_archive(self):
+        for direction in ('imports','exports'):
+            prefix='IMP' if direction=='imports' else 'EXP'
+            for member,width,start in ((prefix+'_DETL.TXT',688 if direction=='imports' else 323,178 if direction=='imports' else 68),(prefix+'_CTY.TXT',580 if direction=='imports' else 280,130 if direction=='imports' else 55)):
+                members=archive_fixture(direction);data=bytearray(members[member])
+                # The last record belongs to the other country, not Canada.
+                offset=len(data)-(width+2)+start;data[offset:offset+15]=b' '*15;members[member]=bytes(data)
+                with self.subTest(direction=direction,member=member), self.assertRaisesRegex(ValueError,'invalid-monthly-value'):
+                    self.parse(direction,members)
 
     def test_global_duplicates_other_countries_and_context_drift_fail(self):
         for name, change in [('duplicate',lambda data:data+data[-690:]),('month',lambda data:data[:26]+b'10'+data[28:]),('identity',lambda data:b'X'+data[1:]),('negative',lambda data:data[:178]+b'-00000000000001'+data[193:])]:
