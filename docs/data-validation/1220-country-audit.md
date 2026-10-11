@@ -184,3 +184,25 @@ The reference runs alone; then at most two API requests run concurrently. Seven 
 ### Reference-vintage protocol direction
 
 The seven original-publication matches remain supporting research. Before an original FT900 figure can become a validation input, retain its original publication bytes and digest, identify the release, country, measure, month, table/page and displayed precision, and independently verify the extraction. Keep current-table checks alongside original-publication checks so revisions stay visible. Never substitute revised totals into an unrevised product denominator, scale products, or widen rounding to hide a disagreement. A matched original publication can corroborate vintage; it does not prove HS6 completeness or classification continuity. No gate has changed and no original-publication ledger is accepted yet.
+
+## Live total probe: recovered totals and equivalent endpoints
+
+[Run 38103215096](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38103215096), job `114363264757`, ran manual `total-probe` on merged main commit `8dcfff4e43d520f7c01d97e08c174adce43528a9`. It passed all seven logical checks in seven attempts. The workflow's 540 tests and 141 checked files passed before secret access; source retrieval took about 34 seconds within the six-minute step, and evidence upload succeeded. PR #45 had independently passed 52 browser checks and immutable-commit review.
+
+All six API requests returned HTTP 200 and exactly one validated national Canada import total. No HTTP retry or transport failure occurred. Each pair agrees in exact dollars, and both endpoints match this run's own official reference at its displayed $100,000 precision:
+
+| Month | HS total (USD) | End-use total (USD) | Own reference (USD) | API minus rounded reference |
+| --- | ---: | ---: | ---: | ---: |
+| May 2025 | 29,977,446,512 | 29,977,446,512 | 29,977,400,000 | +46,512 |
+| June 2025 | 29,645,029,011 | 29,645,029,011 | 29,645,000,000 | +29,011 |
+| August 2026 | 35,980,039,950 | 35,980,039,950 | 35,980,000,000 | +39,950 |
+
+The raw end-use rows satisfy their own `I_ENDUSE=-`, national `DET/CY`, exact calendar and `GEN_VAL_MO` contract without unsupported HS subdivision fields. End-use requests completed in 723, 454 and 396 ms; matching HS requests took 12,630, 11,566 and 9,698 ms. This run supplies a tested alternative total endpoint, but the original HS route also recovered. The cause of earlier timeouts and reliability outside these three observations remain unverified; the default audit query has not changed.
+
+Supporting cross-run corroboration is exact: May's totals equal the original full audit's 4,243-row HS6 sum; June's totals equal the aggregate probe's 4,302-row HS6 sum; August equals the original full audit's total and 4,437-row HS6 sum. These checks do not combine separate runs into an accepted audit. The original 24-month audit retains its failed coverage verdict, all classifications remain unverified, and no country release or comparison is accepted.
+
+The official reference was retrieved at `2026-10-11T01:52:13.783Z`, with HTTP Date `Sun, 11 Oct 2026 01:52:13 GMT` and Last-Modified `Tue, 06 Oct 2026 13:08:40 GMT`. Its original raw-record SHA-256 is `354832efad0ff16bb3601915e684e6c39e316dc304e6c461f1541fd7c8b588a6`.
+
+Artifact `11688821449` contains eight files, including seven original source records and the diagnostic report: **35,524 ZIP bytes**, **244,320 extracted bytes**, SHA-256 `e49e17146e458662647ce0c6320fdf1ad5e4e60fe7c8b4d07467782d76c6b163`. Independent replay verifies every raw-manifest digest, exact endpoint/query/aggregation identity, attempt/event, total, rounded-reference comparison and withheld release/classification flags. Report SHA-256 is `463cd1a76785e77aaf4f0b30f6aab22f9537f70c368961c375009281424458ed`; the separate replay receipt is `82ed574801b44dafd6e5141af52476824dd47469fddb3d49a8243d9e12c209d8`. Its verifier passed four valid controls and rejected six hash-consistent mutations before use. Separate read-only review independently matched the ZIP members, raw identities, totals, reference precision, cross-run corroboration and unchanged gates. All six API rows have LAST_UPDATE="0", which provides no useful revision date.
+
+The next source-resolution step is the retained original-publication reference protocol above. Import-total adoption and a new full acceptance attempt should follow reviewed compatible references; country classification/release/page design remains later work. Existing coffee pointer/release hashes remain unchanged, with no R2 operation, schedule, dependency or publication.
