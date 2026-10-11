@@ -43,6 +43,8 @@ async function fetchCountryTable(options:CountryFetchOptions,fetchImpl:typeof fe
   // Census recommends native calendar predicates to reduce monthly query processing.
   url.searchParams.set('YEAR',options.month.slice(0,4));url.searchParams.set('MONTH',options.month.slice(5));
   if(options.kind==='products')url.searchParams.set('COMM_LVL','HS6');
+  // Opt-in diagnostic strategy; returned dimensions still pass the same strict validator.
+  if(options.explicitAggregates)for(const field of options.direction==='imports'?['DISTRICT','RP','CTY_SUBCODE']:['DISTRICT','DF'])url.searchParams.set(field,'-');
   url.searchParams.set('get',[...columns,...(cumulative?['ALL_VAL_YR']:[])].filter(column=>!url.searchParams.has(column)).join(','));
   const requestUrl=url.toString();url.searchParams.set('key',options.apiKey);
   let response:Response|undefined;let attempts=0;let responseBody='';const responses:CountryRaw['responses']=[];

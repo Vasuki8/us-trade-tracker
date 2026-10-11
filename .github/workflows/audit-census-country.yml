@@ -13,7 +13,7 @@ on:
         type: string
         default: '2026-08'
       audit_mode:
-        description: Full audit, connectivity probe, or fixed source-failure followup
+        description: Full audit, connectivity probe, source followup, or aggregate query probe
         required: true
         type: choice
         default: full
@@ -21,6 +21,7 @@ on:
           - full
           - connectivity-probe
           - source-followup
+          - aggregate-probe
 permissions:
   contents: read
 concurrency:
@@ -49,7 +50,7 @@ jobs:
       - name: Validate reviewed Canada pilot before key access
         id: preflight
         run: |
-          case "$AUDIT_MODE" in full|connectivity-probe|source-followup) ;; *) exit 1 ;; esac
+          case "$AUDIT_MODE" in full|connectivity-probe|source-followup|aggregate-probe) ;; *) exit 1 ;; esac
           npm run data:audit-country -- --preflight --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
       - name: Audit country totals and complete HS6 breakdowns
         if: inputs.audit_mode == 'full'
@@ -71,6 +72,13 @@ jobs:
         env:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
         run: npm run data:diagnose-country -- --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
+      - name: Compare fixed original and explicit aggregate queries
+        if: inputs.audit_mode == 'aggregate-probe'
+        # Reference alone, then four API pairs: permitted retry schedule <= 396s.
+        timeout-minutes: 7
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+        run: npm run data:probe-aggregates -- --country "$COUNTRY_CODE" --end "$REPORTING_MONTH"
       - name: Retain source evidence even on validation failure
         if: always() && steps.preflight.outcome == 'success'
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7

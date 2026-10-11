@@ -35,6 +35,22 @@ describe('diagnostic export cumulative total',()=>{
 });
 
 describe('country source contracts',()=>{
+  it.each(['imports','exports'] as const)('explicitly filters aggregate subdivisions for the %s diagnostic without weakening returned contracts',async direction=>{
+    for(const kind of ['total','products'] as const){
+      const evidence:CountryRaw[]=[],urls:URL[]=[];
+      const result=await client.fetchCountryPart({...context,direction,kind,apiKey:'fixture-key',explicitAggregates:true,onRaw:async raw=>{evidence.push(raw);}},(async input=>{
+        urls.push(new URL(String(input)));
+        return json(calendarTable(kind,direction));
+      }) as typeof fetch);
+      const url=urls[0],subdivisions=direction==='imports'?['DISTRICT','RP','CTY_SUBCODE']:['DISTRICT','DF'];
+      for(const field of subdivisions){expect(url.searchParams.getAll(field)).toEqual(['-']);expect(url.searchParams.get('get')!.split(',')).not.toContain(field);}
+      expect(url.searchParams.has(direction==='imports'?'I_COMMODITY':'E_COMMODITY')).toBe(false);
+      expect(url.searchParams.get('SUMMARY_LVL2')).toBe(kind==='total'?'CY':'HSCY');expect(url.searchParams.get('MONTH')).toBe('08');
+      expect(result.rows).toHaveLength(kind==='total'?1:2);expect(evidence).toHaveLength(1);expect(evidence[0].requestUrl).not.toContain('key=');
+      const wrong=calendarTable(kind,direction);wrong[1][wrong[0].indexOf('DISTRICT')]='10';
+      await expect(client.fetchCountryPart({...context,direction,kind,apiKey:'fixture-key',explicitAggregates:true},(async()=>json(wrong)) as typeof fetch)).rejects.toThrow(/subdivision/);
+    }
+  });
   it('rejects JSON null from HTTP 200 instead of confusing it with a 204 empty breakdown',async()=>{
     await expect(client.fetchCountryPart({...context,apiKey:'fixture-key'},(async()=>json(null)) as typeof fetch)).rejects.toThrow(/table/);
     expect((await client.fetchCountryPart({...context,apiKey:'fixture-key'},(async()=>new Response(null,{status:204})) as typeof fetch)).rows).toEqual([]);
