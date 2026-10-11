@@ -300,3 +300,46 @@ The probe's own HTML reference was retrieved `2026-10-11T04:09:48.452Z`, with `L
 **Recommendation:** do not adopt ten-way partitioning for the 24-month audit, rerun the unchanged full grid, or immediately add a finer-prefix variant. Three usable scopes do not prove complete or reliable partition retrieval. Before another implementation, assess whether an official documented bulk/download route supplies the required monthly Canada HS6 values, separate totals, measures, classification detail and reproducible source provenance within existing cost/access limits. This is a feasibility investigation, not a claim that a suitable replacement exists or authorization to adopt one. If no compatible source is available, surface that limitation before further pipeline work.
 
 Evidence consistency is verified; this diagnostic's source coverage and classification remain **unverified**, and release acceptance and rolling comparisons remain **false**. The earlier completed full audit retains its failed verdict. Existing accepted coffee releases remain unchanged. No country release/archive/page, R2 change, schedule, new service or deployment was introduced. See the [machine-readable evidence](1220-country-audit-evidence.json).
+
+## Official bulk-source feasibility: one import month reconciled
+
+**Finding:** the official monthly download route supplies a usable September 2024 Canada import breakdown and a separate exact country total. This verifies one import source contract, without adopting a replacement pipeline or accepting the 24-month dataset.
+
+The current [Census Data Products page](https://www.census.gov/foreign-trade/data/dataproducts.html) states that its formerly subscription-based trade products are now public at no cost. Its current-year links and the historical [imports](https://www.census.gov/foreign-trade/data/IMDB.html) and [exports](https://www.census.gov/foreign-trade/data/EXDB.html) indexes list all 24 approved months, September 2024–August 2026, in both directions. Those 48 links were verified in retained HTML; listed links do not prove the remaining archives can be retrieved or satisfy their contracts. No Census key or additional account was needed for this public download.
+
+The [September 2024 import ZIP](https://www.census.gov/trade/downloads/2024/Merch/im_m/IMDB2409.ZIP) returned HTTP 200 and was retained locally at `2026-10-11T14:28:00.2751647Z`. Its **156,371,524 bytes** have SHA-256 `0b749e3af3da7ca6191e0f3f08da7efe10702ff0c16eda1dfa764f26b8aed841`. The response reports Last-Modified `Tue, 30 Jun 2026 19:14:14 GMT` and HTTP Date `Sun, 11 Oct 2026 14:26:56 GMT`; neither header proves the revision date of an individual observation. This was local public-source research against main `fe49727c3da3a727a61fe3d0086904babb8893a6`, not a GitHub audit run or an accepted release.
+
+The archive contains **76 members**, totaling 1,750,481,857 uncompressed bytes. Only three root text members were streamed under the documented [import layout](https://www.census.gov/foreign-trade/reference/products/layouts/imdb.html):
+
+| Member | Record width, excluding CRLF | Records | Uncompressed bytes |
+| --- | ---: | ---: | ---: |
+| `imp_CTY.txt` | 580 | 232 | 135,024 |
+| `IMP_DETL.txt` | 688 | 2,197,609 | 1,516,350,210 |
+| `HSDESC.txt` | 206 | 6,975 | 1,450,800 |
+
+Both replay implementations verified the ZIP digest, selected-member CRCs and hashes, ASCII framing, record widths, applicable calendars and monthly general-import integers. All **2,197,609 full detail keys** are unique across countries. Their grain includes HTS10, country, country subcode, entry district, unlading district, rate provision, year and month. For country `1220`, the replay sums monthly general-import values at positions 179–193 across every such record by the first six HTS10 digits. It compares that sum with the single matching country record's monthly general-import value at positions 131–145. Description lookup uses only exact six-digit entries, excluding two- and four-digit parents. Other summary files and duplicate DBF copies are not added; archive executables and installers were only inventoried, never run or extracted.
+
+One source detail matters for later implementation: the layout calls the subcode a two-digit field, but the live records include alphabetic programs. The retained [Census subcode reference](https://www.census.gov/foreign-trade/reference/codes/csc.html) documents them. Canada's observed values are `00`, `01`, `C `, `K `, `S ` and `S+`; keeping the original two characters preserves the detail grain. A digits-only rule or filtering to `00` would exclude legitimate records.
+
+| Canada September 2024 imports | Independently reproduced result |
+| --- | ---: |
+| Detail records | 75,465 |
+| Detail records with explicit zero monthly value | 42,762 |
+| Aggregated HS6 rows | 4,475 |
+| HS6 rows with explicit zero monthly value | 901 |
+| Missing six-digit descriptions | 0 |
+| HS6 general-import sum | $34,532,022,027 |
+| Separate country general-import total | $34,532,022,027 |
+| Exact residual | $0 |
+
+All seven returned special categories remain in the sum: `980100`, `980200`, `980800`, `981000`, `981200`, `981700` and low-value estimate `999995`. The separate country total is a reconciliation control from the **same archive**, not an independent statistical source. The sample's own retained [Canada HTML table](https://www.census.gov/foreign-trade/balance/c1220.html), retrieved at `2026-10-11T14:27:44.6849058Z`, reports $34,532,000,000 at $100,000 precision. The exact total is $22,027 higher, within its $50,000 rounding bound. The HTML amount is not used as the exact denominator.
+
+The earlier partition probe's three usable API scopes corroborate the bulk sample by **every commodity code and monthly value**, with no missing codes, extra rows or value mismatches: `0*` has 358 rows/$1,311,255,054; `1*` has 201 rows/$1,744,239,709; `5*` has 289 rows/$71,783,616. Those 848 prior observations are comparison inputs only. They do not fill any bulk gap or become part of the aggregation, and they do not prove that all source vintages agree.
+
+The ignored local evidence directory is `data/backups/canada-country-audit/bulk-feasibility-2026-10-11/`. The root replay receipt has SHA-256 `99896ba11e7029989f740a7333781d7a2742b4fc780aa017864892d3c8b3d604`; its complete HS6 output has SHA-256 `557b21274eb58c4ebadaf9a0bddf1e1701f9ed566fa919c0cf6a638386b046fb`. A reviewer using a separate parser independently reproduced every output row, selected-member identity, exact total, special category, rounding comparison and prior API map. The separate review receipt has SHA-256 `3d4bf9112beb693eb6fee8c7ff669833d6ed08128db892e42127e5bda7e2dbd6`. The [machine-readable evidence](1220-country-audit-evidence.json) adds `bulkSourceFeasibility`, including original metadata, source-page digests, parser/receipt identities and explicit limitations, while preserving all nineteen earlier root fields.
+
+Observed download time was about **63.5 seconds** and the local research replay took **10.8 seconds**. Twenty-four import ZIPs at this sample size would be about **3.75 GB compressed**, an estimate that excludes exports and varies by month. The 1.75 GB member inventory was not extracted; a production candidate should stream selected records and explicitly budget download size, processing memory/time and retained artifact storage. This local measurement does not establish GitHub runner limits or website hosting costs.
+
+**Recommendation:** assess the bulk route with a bounded five-context validation before 24-month adoption: September 2024 imports/exports, August 2026 imports/exports and May 2026 exports. The documented [export layout](https://www.census.gov/foreign-trade/reference/products/layouts/exdb.html) has a different record grain and monthly measure, so it needs its own tested contract. May is a previously disputed export month; an August-only control would not test the known January–July revision question. Retain fresh originals and their own provenance, reconcile each archive exactly, preserve statistical categories and zero/missing distinctions, and show current-reference checks separately from verified original-publication corroboration. Review resource limits and live evidence before changing full-audit retrieval. This follow-up is recommended, not implemented by this evidence change.
+
+Only one import archive has been downloaded. Exports, remaining months, revision compatibility, classification continuity and omitted-product semantics remain unverified. An explicit zero in this archive stays zero; an omitted product-month is not inferred to be zero merely because other records carry year-to-date measures. The earlier completed audit retains its **failed** verdict; 24-month source coverage and classification stay **unverified**, and Canada release acceptance and rolling comparisons remain **false**. Accepted coffee releases and existing retrieval workflows remain unchanged.
