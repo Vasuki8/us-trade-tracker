@@ -88,6 +88,25 @@ export async function fetchCountryImportPrefix(options:CountryPrefixFetchOptions
   const payload=await fetchCountryTable({...options,onRaw:async raw=>{await options.onRaw?.({...raw,commodityPrefix:options.commodityPrefix,completeCountryBreakdown:false});}},fetchImpl,'hs',options.commodityPrefix);
   return payload===noContent?{...publicContext(options),measure:'GEN_VAL_MO',rows:[],commodityPrefix:options.commodityPrefix,completeCountryBreakdown:false}:normalizeCountryImportPrefix(payload,options);
 }
+// Diagnostic assembly only. The caller supplies this invocation's validated parts;
+// an assembled sum still requires a separate same-run all-goods reconciliation.
+export function assembleCountryImportPrefixes(parts:CountryPrefixPart[],month:string){
+  if(!validMonth(month)||!Array.isArray(parts)||parts.length!==10)throw new Error('Incomplete prefix coverage');
+  const prefixes=new Set<string>(),codes=new Set<string>(),rows:CountryPart['rows']=[];let sum=0n;
+  for(const part of parts){
+    if(part.countryCode!=='1220'||part.month!==month||part.direction!=='imports'||part.kind!=='products'||part.measure!=='GEN_VAL_MO'||part.completeCountryBreakdown!==false||typeof part.commodityPrefix!=='string'||!/^\d$/.test(part.commodityPrefix)||prefixes.has(part.commodityPrefix))throw new Error('Invalid or duplicate prefix identity');
+    prefixes.add(part.commodityPrefix);
+    // Conservative for this experiment: an empty response cannot prove coverage.
+    if(!Array.isArray(part.rows)||!part.rows.length)throw new Error('Unavailable prefix rows');
+    for(const row of part.rows){
+      if(typeof row.code!=='string'||!/^\d{6}$/.test(row.code)||!row.code.startsWith(part.commodityPrefix)||codes.has(row.code)||typeof row.description!=='string'||row.special!==/^(98|99)/.test(row.code)||typeof row.valueUsd!=='number'||!Number.isSafeInteger(row.valueUsd)||row.valueUsd<0)throw new Error('Invalid, duplicate or unavailable prefix row');
+      codes.add(row.code);rows.push({...row});sum+=BigInt(row.valueUsd);
+    }
+  }
+  if(sum>BigInt(Number.MAX_SAFE_INTEGER))throw new Error('Unsafe assembled sum');
+  rows.sort((a,b)=>a.code.localeCompare(b.code));
+  return {rows,amountUsd:Number(sum),specialRows:rows.filter(row=>row.special)};
+}
 export function normalizeCountryExportCumulativeTotal(payload:unknown,context:CountryContext){
   validateContext(context);if(context.direction!=='exports'||context.kind!=='total')throw new Error('Cumulative diagnostic requires an export total');
   if(!Array.isArray(payload)||!Array.isArray(payload[0]))throw new Error('Invalid cumulative table');

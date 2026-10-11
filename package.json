@@ -24,6 +24,7 @@
     "data:probe-aggregates": "node --import tsx scripts/probe-country-aggregates.ts",
     "data:probe-totals": "node --import tsx scripts/probe-country-totals.ts",
     "data:probe-prefix": "node --import tsx scripts/probe-country-prefix.ts",
+    "data:probe-partitions": "node --import tsx scripts/probe-country-partitions.ts",
     "test:e2e": "playwright test"
   },
   "dependencies": {
