@@ -1,5 +1,7 @@
 # Canada country audit evidence
 
+**Latest verdict:** the completed 24-month audit failed source acceptance. Independent replay verifies the retained evidence and calculations, but nine import parts are unavailable and seven export totals disagree with the retained official table. No Canada release or country comparison is accepted. Earlier runs below are historical checkpoints.
+
 ## October 10 first live run: incomplete, no source acceptance
 
 [PR #36](https://github.com/Vasuki8/us-trade-tracker/pull/36) added the isolated Canada audit after independent review. Exact-head [code checks](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38092795364) passed 504 tests, zero diagnostics across 133 files, a measured 19-file fixture build and 52 browser cases.
@@ -28,4 +30,61 @@ This rules out a blanket claim that this runner could not reach the API or that 
 
 The [Census API guide, page 7](https://www.census.gov/foreign-trade/reference/guides/Guide_to_International_Trade_Datasets.pdf) warns that native `time` uses additional processing resources and recommends `YEAR`/`MONTH` for larger requests. The next controlled change uses these exact calendar predicates for country requests while keeping country, aggregation, returned subdivisions, timeout and concurrency checks intact. Both legacy `time` evidence and paired `YEAR`/`MONTH` evidence require an exact matching month; mixed or incomplete temporal columns are rejected. This is a documented hypothesis test, not a proven explanation. A short probe must establish usable responses before a full audit retry.
 
-The full audit should resume after the diagnostic provides a concrete basis for retrying or correcting retrieval. Classification compatibility also needs separate reviewed evidence using dated [Census commodity concordances](https://www.census.gov/foreign-trade/data/dataproducts/concordance); matching numeric codes alone does not establish it.
+## Calendar probe: usable August contracts, full coverage pending
+
+[PR #39](https://github.com/Vasuki8/us-trade-tracker/pull/39) passed independent review and [exact-head checks](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38095661373): 514 tests, zero diagnostics across 135 checked files and 52 browser cases. [Calendar probe 38095866518](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38095866518) then used main commit `2cd1b077387b8cd4ee22acf24ee13986493609d1` and passed all six checks with six HTTP 200 responses.
+
+The 708,137-byte ZIP matches GitHub's SHA-256 `61ae69a54ccef22ce877a740c536bf32842aeecbaee080ff210d6ae4e5d9f15e`. Independent review matched all seven members (3,612,699 extracted bytes), all six manifest digests, event/result identities and original country dimensions. August rows have exact `YEAR=2026`, `MONTH=08`, Canada identity, DET/CY or DET/HSCY aggregation, and aggregate `-` subdivisions. Total rows have commodity `-` and `COMM_LVL=-`.
+
+Independent integer sums of 4,437 import HS6 rows equal the separate total of **$35,980,039,950**. The 5,111 export rows equal the separate total of **$30,289,552,895**. Both August residuals are exactly $0. The result supports retaining the documented calendar query change, but different runs do not prove the earlier timeout's underlying cause. A successful one-month probe establishes neither 24-month source coverage nor classification compatibility.
+
+The August breakdown explicitly reports 869 zero-valued import rows and 462 zero-valued export rows, with no unavailable value markers in returned rows. An omitted product/month still remains unavailable. Special rows include import code `999995` (estimated low-valued transactions, $250,245,952) and export code `988000` (low-value shipments/Canadian estimated late receipts, $1,533,311,008). These are retained for reconciliation and flagged as special; ordinary product eligibility cannot be inferred from them.
+
+## Full calendar audit: complete evidence, source acceptance failed
+
+[Full audit 38096086464](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38096086464) used the same reviewed main commit for September 2024–August 2026. It completed retrieval within the 15-minute step cutoff and wrote both reports. The workflow failed on source checks, rather than a job or step timeout; artifact upload succeeded. All 514 code tests and type checks passed before retrieval. Passing software checks do not establish source acceptance.
+
+The 23,117,921-byte ZIP matches GitHub's SHA-256 `2acbe7419576b9e19f1c574b78c4e65f798b664f3fac35b552f5e7826ad1550c`. Independent verification matched all **99 members** (117,546,289 extracted bytes) and all **97 original-record manifest digests**. Independent replay and separate review matched the original response dimensions, integer sums, 48 monthly checks, every candidate period sum/share/completeness flag and dataset contents. Evidence consistency is verified; source coverage is **failed**.
+
+Of 96 logical API parts and 96 attempts, **87 parts were usable**: 41 total responses and 46 HS6 breakdowns, containing 214,292 product/month observations. Exports returned all 24 totals and breakdowns. Imports returned 17 totals and 22 breakdowns. Eight import parts had no retained HTTP response; the June 2025 import breakdown had HTTP 200 but no retained body. Those nine parts stay unavailable. The underlying retrieval failure cause is unverified.
+
+| Import month | Unavailable part |
+| --- | --- |
+| May 2025 | Total |
+| June 2025 | Total and HS6 breakdown |
+| August 2025 | Total |
+| September 2025 | HS6 breakdown |
+| December 2025 | Total |
+| March 2026 | Total |
+| April 2026 | Total |
+| June 2026 | Total |
+
+The independent integer sums equal separate API totals in **40 month/direction pairs**, with exactly $0 residual. Eight import pairs are incomplete; their residuals are unavailable, not zero. No available pair has a nonzero residual. Against the retained official table, **34 totals match at its displayed $100,000 precision, seven export totals mismatch and seven missing import totals are unavailable**. September 2025 imports match the table but lack a product breakdown.
+
+The full run's own reference was retrieved `2026-10-10T23:45:54.735Z`, with `Last-Modified: Tue, 06 Oct 2026 13:08:40 GMT` and `Date: Sat, 10 Oct 2026 23:45:54 GMT`. Its original HTML, not a replacement fetched later or another run's reference, underlies these checks. Differences below are API total minus the rounded official reference, in dollars; each affected API product sum independently equals its API total.
+
+| Export month | API total USD | Official reference USD | Difference USD |
+| --- | ---: | ---: | ---: |
+| 2026-01 | 24,510,292,823 | 24,461,200,000 | +49,092,823 |
+| 2026-02 | 28,371,311,032 | 28,417,800,000 | -46,488,968 |
+| 2026-03 | 31,438,946,691 | 31,654,800,000 | -215,853,309 |
+| 2026-04 | 29,741,092,873 | 30,197,100,000 | -456,007,127 |
+| 2026-05 | 29,790,835,759 | 30,399,000,000 | -608,164,241 |
+| 2026-06 | 30,695,510,012 | 31,007,100,000 | -311,589,988 |
+| 2026-07 | 29,338,645,167 | 29,545,800,000 | -207,154,833 |
+
+These gaps exceed display rounding and must not be hidden with a wider tolerance, normalized product values or substituted denominators. [Census's revision procedure](https://www.census.gov/foreign-trade/guide/revisions.html) says revisions received from Canada can correct cumulative export totals while detailed revisions wait for the annual revision release. The [2026 annual revision notice](https://www.census.gov/foreign-trade/Press-Release/final_revisions/index.html) documents corrections to Census-basis goods statistics. This makes source revision/vintage a plausible lead, **not a demonstrated cause of these seven differences**. The retained API rows do not establish a revision date.
+
+There are **10,255 provisional candidates**: 4,916 imports, all incomplete, and 5,339 exports, of which 4,427 have complete arithmetic and reported observations. All import period shares are unavailable because both 12-month country denominators contain gaps. Arithmetic completeness does not override failed source acceptance. Every candidate retains `classificationStatus: unverified` and `comparisonAvailable: false`; matching numeric codes alone does not establish compatibility across dated [Census commodity concordances](https://www.census.gov/foreign-trade/data/dataproducts/concordance).
+
+**Recommendation:** retain this failed audit as the baseline. Diagnose import retrieval with bounded, focused requests and investigate the export revision/vintage discrepancy before another acceptance attempt. Any retry must preserve its own original records and reference vintage. Increasing timeouts, repeating all requests blindly or relaxing validation is not justified by this evidence. Country release/archive and page work should wait. Both accepted coffee releases and pointers retain their recorded hashes; no R2 operation, publication or schedule was added. Exact run, artifact, report and replay hashes are in the [machine-readable evidence](1220-country-audit-evidence.json).
+
+## Product eligibility questions retained for the next design
+
+- Review dated import HTS and export Schedule B definitions across 2024–2026, including splits, mergers and within-year changes. Matching HS6 strings or descriptions do not prove comparability.
+- Require an explicitly reported value in every required month for provisional rolling product sums. Missing rows are unavailable, even when the overall breakdown reconciles; a reported zero is a valid observation.
+- Keep 98/99 rows visible in audit reconciliation, but review each category's meaning separately. Returned goods, repairs and special provisions are not all estimates. Codes `999995` and `988000` specifically identify statistical low-value/late-receipt categories.
+- Consider disclosure and combined or pseudo classifications when interpreting omissions, using the [Census methodology](https://www.census.gov/foreign-trade/guide/sec2.html). An absent commodity is not proof of absent trade.
+- Retain the full run's own API retrieval times and Canada-table retrieval/version. August product `LAST_UPDATE` values are all `"0"`, which gives no useful revision date. Rounded official-table agreement corroborates monthly totals, not product continuity or classification eligibility.
+
+Until those questions have reviewed evidence, every product candidate remains `classificationStatus: unverified` and `comparisonAvailable: false`, even if its arithmetic and monthly observations are complete.
