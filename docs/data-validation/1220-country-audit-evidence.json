@@ -2118,5 +2118,210 @@
     "apiObservationRevisionDates": "unverified; LAST_UPDATE=0 provides no useful date",
     "meaning": "Timed-out full run with independently verified partial originals, seven pinned PDFs and four live historical matches. No completed audit/candidate report or full coverage; prior full audit remains failed. Historical corroboration does not replace the current-table gate.",
     "nextRecommendation": "No unchanged full rerun. First diagnose failed import HS6 breakdown contexts against a previously received control under existing request deadlines and concurrency; a total-endpoint switch alone cannot repair breakdown failures."
+  },
+  "prefixProbe": {
+    "runId": 38108488071,
+    "runUrl": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38108488071",
+    "jobId": 114378938280,
+    "headSha": "cef6af90a50c447eea11491301d743e9fca74785",
+    "mode": "prefix-probe",
+    "baselineAuditRunId": 38105445755,
+    "conclusion": "failure",
+    "retrievedAt": "2026-10-11T03:31:39.290Z",
+    "artifactId": 11691505160,
+    "artifactName": "census-1220-country-audit",
+    "artifactBytes": 324398,
+    "artifactSha256": "131c752e165543c8bf0e2478a8c16f904c86eaf2233b7e8646bc8da49837a1a7",
+    "zipEntries": 8,
+    "independentlyMatchedFiles": 8,
+    "extractedBytes": 2078192,
+    "reportSha256": "0c3a187701529e94c5956cd0d1230cec00f7a840448a316720ac132810f115e6",
+    "independentReplaySha256": "f687b3245f89cd38400ac4b867beae728af1069aafa2fec0d9e887db2cba8ca2",
+    "evidenceConsistencyVerified": true,
+    "independentReview": "matched",
+    "sourceFiles": 7,
+    "rawManifestDigestsVerified": 7,
+    "replayControls": {
+      "valid": 4,
+      "rejectedMutations": 6
+    },
+    "logicalRequests": 7,
+    "httpAttempts": 7,
+    "validatedApiParts": 4,
+    "usableApiParts": 4,
+    "returnedRowsAcrossRequests": 4840,
+    "rowCountMeaning": "Sum of original returned rows across requests; full and prefix requests overlap, so this is not a distinct dataset row count",
+    "commodityPrefix": "0",
+    "probePassed": false,
+    "prefixComparisons": [
+      {
+        "month": "2024-09",
+        "direction": "imports",
+        "commodityPrefix": "0",
+        "baselineRows": null,
+        "baselineAmountUsd": null,
+        "baselineSubsetRows": null,
+        "baselineSubsetAmountUsd": null,
+        "prefixRows": 358,
+        "prefixAmountUsd": 1311255054,
+        "status": "unavailable"
+      },
+      {
+        "month": "2026-04",
+        "direction": "imports",
+        "commodityPrefix": "0",
+        "baselineRows": null,
+        "baselineAmountUsd": null,
+        "baselineSubsetRows": null,
+        "baselineSubsetAmountUsd": null,
+        "prefixRows": 317,
+        "prefixAmountUsd": 1434820529,
+        "status": "unavailable"
+      },
+      {
+        "month": "2025-02",
+        "direction": "imports",
+        "commodityPrefix": "0",
+        "baselineRows": 3874,
+        "baselineAmountUsd": 34787423872,
+        "baselineSubsetRows": 291,
+        "baselineSubsetAmountUsd": 1098894051,
+        "prefixRows": 291,
+        "prefixAmountUsd": 1098894051,
+        "status": "equivalent"
+      }
+    ],
+    "results": [
+      {
+        "label": "canada-reference",
+        "outcome": "received"
+      },
+      {
+        "label": "imports-2024-09-products-full",
+        "outcome": "failed"
+      },
+      {
+        "label": "imports-2024-09-products-prefix-0",
+        "outcome": "validated",
+        "rows": 358,
+        "amountUsd": 1311255054,
+        "normalizedRowsSha256": "ecbe65eb3214f1539e95928fb26c4179cc79e2987327a45ba33613f7a2ea5ba4"
+      },
+      {
+        "label": "imports-2025-02-products-full",
+        "outcome": "validated",
+        "rows": 3874,
+        "amountUsd": 34787423872,
+        "normalizedRowsSha256": "bbb303ed44f80975819a14bb04f0c7aec11b552f1ea7eca7eda1a865cb3975dc",
+        "baselineSubsetRows": 291,
+        "baselineSubsetAmountUsd": 1098894051,
+        "baselineSubsetRowsSha256": "8d55a0da52efb24e0815b06049d97e489df5515ac0321dc326039456656961e6"
+      },
+      {
+        "label": "imports-2025-02-products-prefix-0",
+        "outcome": "validated",
+        "rows": 291,
+        "amountUsd": 1098894051,
+        "normalizedRowsSha256": "8d55a0da52efb24e0815b06049d97e489df5515ac0321dc326039456656961e6"
+      },
+      {
+        "label": "imports-2026-04-products-full",
+        "outcome": "failed"
+      },
+      {
+        "label": "imports-2026-04-products-prefix-0",
+        "outcome": "validated",
+        "rows": 317,
+        "amountUsd": 1434820529,
+        "normalizedRowsSha256": "b9f8865597819a0a1ad85b6e686a940e2eb26a9554ef96f03e72caf4cf04f11a"
+      }
+    ],
+    "events": [
+      {
+        "label": "canada-reference",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T03:30:11.870Z",
+        "elapsedMs": 419
+      },
+      {
+        "label": "imports-2024-09-products-prefix-0",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T03:30:18.749Z",
+        "elapsedMs": 6858
+      },
+      {
+        "label": "imports-2024-09-products-full",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T03:30:41.888Z",
+        "elapsedMs": 30000
+      },
+      {
+        "label": "imports-2026-04-products-prefix-0",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T03:30:46.187Z",
+        "elapsedMs": 4295
+      },
+      {
+        "label": "imports-2026-04-products-full",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T03:31:11.891Z",
+        "elapsedMs": 30000
+      },
+      {
+        "label": "imports-2025-02-products-prefix-0",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T03:31:17.904Z",
+        "elapsedMs": 6009
+      },
+      {
+        "label": "imports-2025-02-products-full",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T03:31:39.249Z",
+        "elapsedMs": 27355
+      }
+    ],
+    "failedLabels": [
+      "imports-2024-09-products-full",
+      "imports-2026-04-products-full"
+    ],
+    "officialTable": {
+      "url": "https://www.census.gov/foreign-trade/balance/c1220.html",
+      "retrievedAt": "2026-10-11T03:30:11.870Z",
+      "lastModified": "Tue, 06 Oct 2026 12:35:31 GMT",
+      "httpDate": "Sun, 11 Oct 2026 03:30:11 GMT",
+      "error": null,
+      "httpStatus": 200,
+      "rawRecordSha256": "6018c9781b9e56b79922e9cbde4c1241da16b455aadba26fc3ddc52342efd35d"
+    },
+    "sourceCoverage": "unverified",
+    "classificationStatus": "unverified",
+    "releaseAccepted": false,
+    "rollingComparisonAvailable": false,
+    "defaultAuditQueryChanged": false,
+    "acceptanceGateChanged": false,
+    "partitionAssemblyImplemented": false,
+    "perRequestTransportCause": "unverified; retained phases and allowlisted codes do not by themselves establish a cause",
+    "meaning": "Fixed single-prefix retrieval and exact same-run subset comparison only. A prefix response does not establish full country coverage or an accepted release; older audits keep their existing verdicts."
   }
 }
