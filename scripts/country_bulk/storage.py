@@ -53,6 +53,8 @@ class BoundedWriter:
             raise ValueError('occupied-or-unwritable-evidence') from error
 
     def write(self, data: bytes) -> None:
+        if self.final and hasattr(self.store.budget,'final_report_deadline'):
+            require(self.store.budget.clock()<self.store.budget.final_report_deadline,'report-deadline')
         require(type(data) is bytes and self.bytes + len(data) <= self.maximum_bytes, 'file-byte-cap')
         self.store.budget.ensure(self.category, len(data), self.final)
         view = memoryview(data)

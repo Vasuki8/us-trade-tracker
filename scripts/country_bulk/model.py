@@ -106,6 +106,10 @@ class OriginalRecord:
     sha256: str | None = None
     file: str | None = None
     elapsed_seconds: float = 0
+    header_seconds: float = 0
+    body_seconds: float = 0
+    sampled_working_set: int = 0
+    peak_working_set: int = 0
 
 
 @dataclass(frozen=True)
@@ -137,6 +141,7 @@ class WorkerOutcome:
     peak_working_set: int = 0
     elapsed_seconds: float = 0
     files: dict | None = None
+    staging_files: list = field(default_factory=list)
 
 
 def validate_projection(payload: dict) -> tuple[PublicationPin, ...]:

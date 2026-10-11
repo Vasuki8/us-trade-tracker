@@ -5,7 +5,7 @@ from .model import Budget, OriginalRecord, RequestSpec, require
 from .sources import allowed_url
 from .storage import EvidenceStore
 
-ERRORS = {'header-deadline','body-deadline','work-deadline','disk-guard','file-byte-cap','original-budget','generated-budget','invalid-ipc','unsafe-metadata','http-contract','content-length-mismatch','empty-original','transfer-error','evidence-write-failed'}
+ERRORS = {'header-deadline','body-deadline','work-deadline','disk-guard','file-byte-cap','original-budget','generated-budget','invalid-ipc','unsafe-metadata','http-contract','content-length-mismatch','empty-original','transfer-error','evidence-write-failed','working-set-cap','memory-measurement-failed'}
 
 
 def utcnow():
@@ -21,13 +21,17 @@ def retrieve(spec: RequestSpec, store: EvidenceStore, budget: Budget, transport,
     record = OriginalRecord(spec.id, spec.kind, spec.url, spec.context_id, transport.processing_commit)
     start = budget.clock()
     child = writer = None
+    body_started=None
+    def remaining_time():
+        if not final: return budget.remaining_work()
+        return min(budget.remaining_overall(),max(0,getattr(budget,'final_transfer_deadline',budget.clock()+150)-budget.clock()))
     try:
         require(spec.kind in ('zip','html','pdf') and spec.maximum_bytes > 0, 'invalid-ipc')
         if spec.url is None:
             record.reason = 'unverified-link'
             return record
         require(allowed_url(spec.url), 'http-contract')
-        remaining = budget.remaining_overall() if final else budget.remaining_work()
+        remaining = remaining_time()
         if remaining <= 0 or (budget.stops and not final):
             record.reason = 'work-deadline' if remaining <= 0 else 'resource-stop'
             if remaining <= 0:
@@ -50,7 +54,7 @@ def retrieve(spec: RequestSpec, store: EvidenceStore, budget: Budget, transport,
         deadline = start + min(budget.limits.header_seconds, remaining)
         saw_headers = False
         while True:
-            remaining = budget.remaining_overall() if final else budget.remaining_work()
+            remaining = remaining_time()
             if remaining <= 0:
                 budget.stop('work-deadline')
                 raise ValueError('work-deadline')
@@ -77,7 +81,8 @@ def retrieve(spec: RequestSpec, store: EvidenceStore, budget: Budget, transport,
                 record.content_type, record.last_modified, record.http_date = texts
                 record.content_length = length
                 saw_headers,phase = True,'body'
-                deadline = budget.clock() + min(budget.limits.body_seconds, budget.remaining_overall() if final else budget.remaining_work())
+                body_started=budget.clock();record.header_seconds=body_started-start
+                deadline = budget.clock() + min(budget.limits.body_seconds, remaining_time())
                 if length is not None:
                     require(length <= spec.maximum_bytes, 'file-byte-cap')
             elif kind == 'body':
@@ -97,16 +102,24 @@ def retrieve(spec: RequestSpec, store: EvidenceStore, budget: Budget, transport,
     except (OSError, ValueError, EOFError) as error:
         reason = str(error)
         record.reason = reason if reason in ERRORS else 'transfer-error'
+        if record.reason in ('working-set-cap','memory-measurement-failed'): budget.stop(record.reason)
+        record.outcome = 'partial' if writer and writer.bytes else 'failed' if record.attempted else 'unattempted'
+    except KeyboardInterrupt:
+        budget.stop('cancelled');record.reason='cancelled'
         record.outcome = 'partial' if writer and writer.bytes else 'failed' if record.attempted else 'unattempted'
     finally:
         if child is not None:
             child.stop_and_join()
+            record.sampled_working_set=getattr(child,'sampled_working_set',0)
+            record.peak_working_set=getattr(child,'peak_working_set',0)
         if writer is not None:
             writer.close()
             record.bytes = writer.bytes
             record.sha256 = writer.hasher.hexdigest()
         record.retrieved_at = utcnow() if record.attempted else None
         record.elapsed_seconds = budget.clock()-start
+        if body_started is None: record.header_seconds=record.elapsed_seconds
+        else: record.body_seconds=budget.clock()-body_started
         # Each request's bounded metadata is generated evidence, including failures/skips.
         try:
             store.write_json(spec.filename+'.request.json', asdict(record), final=final)

@@ -142,6 +142,30 @@ class SourcesTransportTests(unittest.TestCase):
         result, _, transport = self.run_transfer([], free=2*1024**3-1)
         self.assertEqual(result.outcome, 'unattempted')
         self.assertEqual(transport.starts, [])
+
+    def test_cancellation_and_mid_transfer_disk_guard_preserve_partial(self):
+        for kind in ('cancel','disk'):
+            with self.subTest(kind=kind):
+                self.now[0]=0
+                self.repo=Path(self.tmp.name)/kind
+                budget=Budget(clock=lambda:self.now[0]);store=EvidenceStore.create(self.repo/'data/backups/canada-country-audit/run',budget,repo_root=self.repo)
+                request=planned_requests(validate_projection(publication_projection()))[0]
+                transport=FakeTransport([headers(),(0,'body',b'abc')],self.now)
+                old_start=transport.start
+                def start(spec):
+                    child=old_start(spec);old_poll=child.poll
+                    def poll(seconds):
+                        if child.now[0]>=1:
+                            if kind=='cancel': raise KeyboardInterrupt()
+                            transport.free=0
+                        event=old_poll(seconds)
+                        if event and event[0]=='body': child.now[0]=1
+                        return event
+                    child.poll=poll;return child
+                transport.start=start
+                result=retrieve(request,store,budget,transport)
+                self.assertEqual(result.outcome,'partial');self.assertEqual(result.bytes,3);self.assertTrue(transport.child.closed)
+                self.assertIn(result.reason,('cancelled','disk-guard'))
         self.repo = Path(self.tmp.name) / 'deadline'
         result, _, transport = self.run_transfer([], limits=replace(Limits(), work_seconds=0))
         self.assertEqual(result.outcome, 'unattempted')
