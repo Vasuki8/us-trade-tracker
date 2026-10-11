@@ -381,3 +381,49 @@ The serial downloader bounded each request to 30 seconds for headers and 120 sec
 **Recommendation:** use these verified record contracts to design an isolated 24-month bulk diagnostic with explicit download, processing and retained-original limits. Address reference-vintage compatibility in a separately reviewed protocol before another country acceptance attempt; the May test shows changing retrieval routes alone cannot pass that gate. Continue to report exact reconciliation, current-reference agreement and original-publication corroboration separately. This evidence change does not implement the diagnostic, change the default API workflow or loosen any gate.
 
 Five tested contexts do not establish all 48 archives, classification continuity, sparse-series eligibility or compatible revisions across the period. The earlier completed audit stays **failed**, overall source coverage and classification stay **unverified**, and Canada release acceptance and rolling comparisons stay **false**. The two accepted coffee releases remain unchanged.
+
+## Bounded 24-month bulk diagnostic: retrieval complete, acceptance withheld
+
+The approved local diagnostic retrieved all 48 September 2024–August 2026 import/export ZIPs and all 16 supporting originals without retries or a Census key. That establishes retrieval completion. The immutable live processing report remains failed: 25 archive contexts encountered a numeric-padding bug, while 23 exceeded the approved 100-member limit. A separate independent parser validates the 25 replayable contexts; it does not override the remaining contract failures or the current-reference mismatches.
+
+The optional maintained command was reviewed and merged in [PR #57](https://github.com/Vasuki8/us-trade-tracker/pull/57). The one fresh run used main ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809 and retained its own official indexes, layouts, guide/subcode reference, seven pinned PDFs and both Canada HTML snapshots. Every ZIP URL was uniquely observed in those same-run indexes. All 64 attempts returned complete HTTP 200 originals, with no partial, failed-transfer or unattempted requests. The output is data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1/; it remains local and ignored by Git.
+
+| Live measurement | Recorded result |
+| --- | ---: |
+| Original bodies | 7,686,772,987 bytes |
+| Generated files | 201,993 bytes |
+| Retained files | 132 |
+| Elapsed | 2,551.641 seconds |
+| Peak owned child working set | 34,746,368 bytes |
+| Final free disk | 130,167,345,152 bytes |
+| Resource stops | 0 |
+
+The report has 91,396 bytes/SHA-256 7a306222bf6be80eae1c938341661e353b08cb4a5ab4e50c6466702f704ad00c; the original manifest has 51,828 bytes/SHA-256 66acdc59057211575cf8b659f853460e1d279d624677f41fd880da6827865535. Their failed outcome is preserved. The report's selectedBytes=0 means no validated maintained selected-member receipts; failed workers did read country-member prefixes, whose partial decompressed bytes were not recorded. It must not be read as zero actual decompression.
+
+Census monthly fields use ASCII spaces around decimal digits. The original synthetic samples used leading zeros, so the maintained parser incorrectly rejected 25 otherwise replayable archives. [PR #58](https://github.com/Vasuki8/us-trade-tracker/pull/58) corrects this specific defect while retaining the 15-byte field width, nonempty ASCII digits and safe nonnegative integers. Revised import/export fixtures use space padding; blank, signs, internal spaces, tabs, non-ASCII, decimals, wrong widths and invalid values outside Canada stay rejected. All 47 local Python checks, 574 project tests, zero diagnostics across 150 files and 52 GitHub browser checks passed before merge. Neither the resource caps nor the reference policy changed.
+
+A separate **offline replay** on merged main `f2fca3c27b16a20ee05f06d998ca3f5b03f8cb37` reused only these finalized originals, through the maintained bounded Windows worker. ZIPs were hard-linked on the same volume and the two small layouts copied; input content was never written or attributes changed. It made **zero network requests**, validated **25 contexts**, and retained **23 `archive-member-cap` failures**, with no stops or unattempted contexts. The new directory is `data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1-offline-padding-fix/`. Generated evidence totals **20,295,361 bytes**; copied layouts **176,130 bytes** make **20,471,491 newly written file-content bytes**. The **7,672,722,440 logical linked ZIP bytes** share existing file contents rather than creating another ZIP-body copy. Directory metadata allocation is not measured. Replay recorded **198.875 seconds**, **393,740,288 bytes** peak worker working set and **21,671,274,351 selected-member bytes**.
+
+The offline receipt has **111,648 bytes**, SHA-256 `cb9f15cf7feae2be3464695abe64718f3dc6a74c6571db713e2dfa376a115d7c`. Its final verification confirms every one of the original run's 132 file identities and both source reports are preserved. A separate read-only reviewer compared all **115,290 maintained HS6 rows**, descriptions, values, detail counts, special flags, all **75 selected-member receipts** including hashes/CRCs, grain counts, controls, exact residuals and both reference checks with its retained independent raw results; all matched, and all cap failures stayed failed. Its separate comparison receipt has **94,089 bytes**, SHA-256 `6e21f24aa4258b1aa062735231390a64548df79e24f78427f9ef92aad3b4a4e3`. Supplemental dimension and description-level distributions received consistency checks, because the initial independent receipt did not retain each distribution. Historical elapsed/memory and network observations cannot be independently re-observed afterward; the reviewer checked the local-only script and reconciled recorded worker measurements. This is subsequent processing of the same bytes, not a new live diagnostic or acceptance attempt.
+
+The 23 cap failures are every 2025 export ZIP (113 members) and every 2025 import ZIP except February (106 members). Their totals remain unavailable under the approved contract. No higher member cap or parsing of rejected selected members was used to obtain success.
+
+Independent raw replay validates all selected-member CRCs at EOF, hashes, widths, ASCII framing, requested calendar identities, safe monthly values and full-grain detail-key uniqueness across all countries. Across the 25 eligible contexts it reproduces 115,290 HS6 rows, 1,902,327 Canada detail records and 38,361,487 global detail records. The selected members contain 21,671,274,351 streamed bytes; none were extracted. All 25 HS6 sums equal the separate same-ZIP Canada total exactly, retaining 13,248 explicit-zero HS6 rows, 831,392 zero detail records and all 159 returned 98/99 rows. There are no missing-description occurrences; this does not establish classification continuity. The independent replay took 372.204 seconds cumulatively, with largest observed reviewer working set 427,954,176 bytes and longest supervised child 30.302 seconds. Those measurements are separate from the failed live workers.
+
+Both complete current tables independently parse to 320 monthly rows. The 48 requested figures are stable despite different whole-page hashes. Eighteen replayed contexts match both current snapshots; seven export months mismatch both. All seven fresh PDFs match their reviewed byte/hash pins, and those seven export totals match the pinned original publications at the approved nonnegative half-up precision.
+
+| Exports | Exact archive total USD | Current figure USD | Signed difference USD |
+| --- | ---: | ---: | ---: |
+| January 2026 | 24,510,292,823 | 24,461,200,000 | +49,092,823 |
+| February 2026 | 28,371,311,032 | 28,417,800,000 | -46,488,968 |
+| March 2026 | 31,438,946,691 | 31,654,800,000 | -215,853,309 |
+| April 2026 | 29,741,092,873 | 30,197,100,000 | -456,007,127 |
+| May 2026 | 29,790,835,759 | 30,399,000,000 | -608,164,241 |
+| June 2026 | 30,695,510,012 | 31,007,100,000 | -311,589,988 |
+| July 2026 | 29,338,645,167 | 29,545,800,000 | -207,154,833 |
+
+May remains a current-reference failure, with original-publication-only corroboration and a +$35,759 publication difference. Historical agreement does not replace the current comparator. No failed context or missing product-month is inferred to be zero, and no partial sum becomes a denominator or rolling series.
+
+Recommendation: review the archive inventory budget against the measured 106/113-member structure and design an explicit reference-vintage policy before another acceptance attempt. Neither change is adopted here, and unchanged sources should not be redownloaded just to seek a pass. The bounded diagnostic substep is complete; the original country's Task 3 source/reference/classification resolution remains open. Source coverage stays failed, classification unverified, and release, rolling comparisons and default retrieval remain withheld. Existing evidence, accepted coffee releases, retrieval workflows, private R2 storage and website delivery are preserved.
+
+The [machine-readable evidence](1220-country-audit-evidence.json) adds only `bulkDiagnostic`, preserving all 21 earlier root fields and the four accepted coffee files. The original independent live receipt is **184,295 bytes**, SHA-256 `c089fdbc75cdcb806c81b1e220ebb596654eabc6d576753c9005c46426814bd1`; it remains separate from the later worker comparison.
