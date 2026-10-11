@@ -3071,5 +3071,1302 @@
     "releaseAccepted": false,
     "defaultAuditRetrievalChanged": false,
     "earlierCompletedFullAuditVerdict": "failed"
+  },
+  "bulkBoundaryValidation": {
+    "purpose": "bounded-five-context-source-validation-only",
+    "assessment": "Five monthly record contracts and exact archive totals verified; May current-reference mismatch retained; adoption withheld",
+    "localEvidenceDirectory": "data/backups/canada-country-audit/bulk-boundary-validation-2026-10-11-r2",
+    "baselineCommit": "8cea29600602954f3088402d8bbb57c5a894a843",
+    "researchTools": [
+      {
+        "file": "download-canada-bulk-boundary.ps1",
+        "bytes": 8047,
+        "sha256": "261848027a52a7bcc9fdf5c52cb31dfa8ed295cac9a3f96e6c31a9ab454b77e0",
+        "path": ".tmp/download-canada-bulk-boundary.ps1",
+        "tracked": false
+      },
+      {
+        "file": "census_bulk_boundary.py",
+        "bytes": 15584,
+        "sha256": "9f402c2a2cfa7f4e085446193e32bbdef639c79fe062e967ec3f798d9b5be607",
+        "path": ".tmp/census_bulk_boundary.py",
+        "tracked": false
+      },
+      {
+        "file": "test_census_bulk_boundary.py",
+        "bytes": 5999,
+        "sha256": "6ba30a362fe703a4114193003adc6092afc20480333a856233d34c2b7aff5556",
+        "path": ".tmp/test_census_bulk_boundary.py",
+        "tracked": false
+      }
+    ],
+    "syntheticControls": {
+      "count": 13,
+      "verdict": "passed",
+      "scope": "Separate research parser controls, not live observations or production tests",
+      "cases": [
+        "Retain alphabetic import subcodes and explicit zero HS6 values",
+        "Combine domestic and foreign exports exactly once",
+        "Visible nonzero residual without rescaling",
+        "Retain special code without description",
+        "Reject global duplicate detail keys, including outside Canada",
+        "Reject mismatched detail calendar",
+        "Reject mismatched country-total calendar",
+        "Reject blank value instead of making zero",
+        "Reject unsafe aggregate",
+        "Reject unknown export domestic/foreign flag",
+        "Reject duplicate country total",
+        "Reject case-ambiguous members",
+        "Reject invalid record width"
+      ]
+    },
+    "retrieval": {
+      "purpose": "bounded-five-context-source-validation",
+      "baselineCommit": "8cea29600602954f3088402d8bbb57c5a894a843",
+      "countryCode": "1220",
+      "retrievalBudgetSeconds": 1020,
+      "maxInFlight": 1,
+      "maxTotalDownloadedBytes": 1073741824,
+      "observedTotalDownloadedBytes": 697503386,
+      "elapsedSeconds": 108.9865672,
+      "records": [
+        {
+          "file": "data-products.html",
+          "sourceUrl": "https://www.census.gov/foreign-trade/data/dataproducts.html",
+          "kind": "source-page",
+          "context": null,
+          "startedAt": "2026-10-11T15:03:32.5421447Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 1048576,
+          "httpStatus": 200,
+          "contentType": "text/html; charset=utf-8",
+          "contentLength": null,
+          "lastModified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:03:32 GMT",
+          "completed": true,
+          "bytes": 80586,
+          "sha256": "60b5ebd59c73650a988a90564935bb5af9902ef732d2e7525ed5a4e881de793b",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:03:32.8643785Z",
+          "elapsedSeconds": 0.3222338
+        },
+        {
+          "file": "imports-history.html",
+          "sourceUrl": "https://www.census.gov/foreign-trade/data/IMDB.html",
+          "kind": "source-page",
+          "context": null,
+          "startedAt": "2026-10-11T15:03:32.8941122Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 1048576,
+          "httpStatus": 200,
+          "contentType": "text/html; charset=utf-8",
+          "contentLength": null,
+          "lastModified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:03:32 GMT",
+          "completed": true,
+          "bytes": 356979,
+          "sha256": "9ecf489e7d6b1070a4f2aa639610b67621f5322ad770dbca012f6b81f821314e",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:03:33.1583568Z",
+          "elapsedSeconds": 0.2642446
+        },
+        {
+          "file": "exports-history.html",
+          "sourceUrl": "https://www.census.gov/foreign-trade/data/EXDB.html",
+          "kind": "source-page",
+          "context": null,
+          "startedAt": "2026-10-11T15:03:33.1603856Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 1048576,
+          "httpStatus": 200,
+          "contentType": "text/html; charset=utf-8",
+          "contentLength": null,
+          "lastModified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:03:32 GMT",
+          "completed": true,
+          "bytes": 356894,
+          "sha256": "65273dc990966f6ed90ee87ac456a42722123e2ccf6b0e2723e27e2fe7531602",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:03:33.4390115Z",
+          "elapsedSeconds": 0.2786259
+        },
+        {
+          "file": "imports-layout.html",
+          "sourceUrl": "https://www.census.gov/foreign-trade/reference/products/layouts/imdb.html",
+          "kind": "source-page",
+          "context": null,
+          "startedAt": "2026-10-11T15:03:33.4422854Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 1048576,
+          "httpStatus": 200,
+          "contentType": "text/html; charset=utf-8",
+          "contentLength": null,
+          "lastModified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:03:33 GMT",
+          "completed": true,
+          "bytes": 97056,
+          "sha256": "e18feab2cf377623cbc8b0b8400ff3571b6b289cb20c7b4868732e2ac73010fa",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:03:33.6792873Z",
+          "elapsedSeconds": 0.2370019
+        },
+        {
+          "file": "exports-layout.html",
+          "sourceUrl": "https://www.census.gov/foreign-trade/reference/products/layouts/exdb.html",
+          "kind": "source-page",
+          "context": null,
+          "startedAt": "2026-10-11T15:03:33.6817928Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 1048576,
+          "httpStatus": 200,
+          "contentType": "text/html; charset=utf-8",
+          "contentLength": null,
+          "lastModified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:03:33 GMT",
+          "completed": true,
+          "bytes": 79074,
+          "sha256": "28f37c175b15d36192540d74a5c7e052931a395f77775871f141f8283dc7d2c3",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:03:33.8993564Z",
+          "elapsedSeconds": 0.2175636
+        },
+        {
+          "file": "canada-reference.html",
+          "sourceUrl": "https://www.census.gov/foreign-trade/balance/c1220.html",
+          "kind": "source-page",
+          "context": null,
+          "startedAt": "2026-10-11T15:03:33.9023941Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 1048576,
+          "httpStatus": 200,
+          "contentType": "text/html; charset=utf-8",
+          "contentLength": null,
+          "lastModified": "Tue, 06 Oct 2026 12:35:31 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:03:33 GMT",
+          "completed": true,
+          "bytes": 217300,
+          "sha256": "6dcc3201675bd2a7efa6a100e36c392509abd947df35255784f3135ba1cde017",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:03:34.0914666Z",
+          "elapsedSeconds": 0.1890725
+        },
+        {
+          "file": "country-subcodes.html",
+          "sourceUrl": "https://www.census.gov/foreign-trade/reference/codes/csc.html",
+          "kind": "source-page",
+          "context": null,
+          "startedAt": "2026-10-11T15:03:34.0938638Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 1048576,
+          "httpStatus": 200,
+          "contentType": "text/html; charset=utf-8",
+          "contentLength": null,
+          "lastModified": "Thu, 08 Oct 2026 13:36:46 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:03:33 GMT",
+          "completed": true,
+          "bytes": 66774,
+          "sha256": "19a321b4d293da1cc7f3a5b8c04e80f862e68dcc5d7e660b2bf54529d84a1ad7",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:03:34.2597143Z",
+          "elapsedSeconds": 0.1658505
+        },
+        {
+          "file": "ft900-2026-05.pdf",
+          "sourceUrl": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2605.pdf",
+          "kind": "original-publication",
+          "context": {
+            "direction": "exports",
+            "month": "2026-05"
+          },
+          "startedAt": "2026-10-11T15:03:34.2627714Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 4194304,
+          "httpStatus": 200,
+          "contentType": "application/pdf",
+          "contentLength": null,
+          "lastModified": "Tue, 07 Jul 2026 12:32:03 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:03:34 GMT",
+          "completed": true,
+          "bytes": 1798284,
+          "sha256": "9ab9737e0c84a679dec653de9ca1223de3004e0d0d074ef3a2dec33cb63c70ec",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:03:34.7541405Z",
+          "elapsedSeconds": 0.4913691
+        },
+        {
+          "file": "imports-2024-09.ZIP",
+          "sourceUrl": "https://www.census.gov/trade/downloads/2024/Merch/im_m/IMDB2409.ZIP",
+          "kind": "archive",
+          "context": {
+            "basename": "IMDB2409.ZIP",
+            "month": "2024-09",
+            "direction": "imports",
+            "index": "imports-history.html"
+          },
+          "startedAt": "2026-10-11T15:03:34.8234256Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 402653184,
+          "httpStatus": 200,
+          "contentType": "application/zip",
+          "contentLength": null,
+          "lastModified": "Tue, 30 Jun 2026 19:14:14 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:03:34 GMT",
+          "completed": true,
+          "bytes": 156371524,
+          "sha256": "0b749e3af3da7ca6191e0f3f08da7efe10702ff0c16eda1dfa764f26b8aed841",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:03:58.4165526Z",
+          "elapsedSeconds": 23.593127
+        },
+        {
+          "file": "exports-2024-09.ZIP",
+          "sourceUrl": "https://www.census.gov/trade/downloads/2024/Merch/ex_m/EXDB2409.ZIP",
+          "kind": "archive",
+          "context": {
+            "basename": "EXDB2409.ZIP",
+            "month": "2024-09",
+            "direction": "exports",
+            "index": "exports-history.html"
+          },
+          "startedAt": "2026-10-11T15:03:58.4369700Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 402653184,
+          "httpStatus": 200,
+          "contentType": "application/zip",
+          "contentLength": null,
+          "lastModified": "Tue, 30 Jun 2026 19:14:09 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:03:58 GMT",
+          "completed": true,
+          "bytes": 72005838,
+          "sha256": "10b189273857231d6b822dded6f4a2a68f77fad920308d5696032076c3e79cf2",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:04:09.7645610Z",
+          "elapsedSeconds": 11.327591
+        },
+        {
+          "file": "imports-2026-08.ZIP",
+          "sourceUrl": "https://www.census.gov/trade/downloads/2026/Merch/im_m/IMDB2608.ZIP",
+          "kind": "archive",
+          "context": {
+            "basename": "IMDB2608.ZIP",
+            "month": "2026-08",
+            "direction": "imports",
+            "index": "data-products.html"
+          },
+          "startedAt": "2026-10-11T15:04:09.7789519Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 402653184,
+          "httpStatus": 200,
+          "contentType": "application/zip",
+          "contentLength": 227480759,
+          "lastModified": "Tue, 06 Oct 2026 12:37:28 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:04:09 GMT",
+          "completed": true,
+          "bytes": 227480759,
+          "sha256": "78c41b5f75f474f4973c174233c54d6d7cba62ce78bef3ebfb3ef7e3026ffbbd",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:04:45.0020528Z",
+          "elapsedSeconds": 35.2231009
+        },
+        {
+          "file": "exports-2026-08.ZIP",
+          "sourceUrl": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2608.ZIP",
+          "kind": "archive",
+          "context": {
+            "basename": "EXDB2608.ZIP",
+            "month": "2026-08",
+            "direction": "exports",
+            "index": "data-products.html"
+          },
+          "startedAt": "2026-10-11T15:04:45.0103504Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 402653184,
+          "httpStatus": 200,
+          "contentType": "application/zip",
+          "contentLength": null,
+          "lastModified": "Tue, 06 Oct 2026 12:34:05 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:04:44 GMT",
+          "completed": true,
+          "bytes": 123408639,
+          "sha256": "89db9a73dbd85a65d2078e0047c2592b38149d2403cf47425efe291cdf881052",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:05:03.8649662Z",
+          "elapsedSeconds": 18.8546158
+        },
+        {
+          "file": "exports-2026-05.ZIP",
+          "sourceUrl": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2605.ZIP",
+          "kind": "archive",
+          "context": {
+            "basename": "EXDB2605.ZIP",
+            "month": "2026-05",
+            "direction": "exports",
+            "index": "data-products.html"
+          },
+          "startedAt": "2026-10-11T15:05:03.8725616Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 402653184,
+          "httpStatus": 200,
+          "contentType": "application/zip",
+          "contentLength": null,
+          "lastModified": "Tue, 06 Oct 2026 12:34:03 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:05:03 GMT",
+          "completed": true,
+          "bytes": 115183679,
+          "sha256": "d3f3aca2f0325ddc24610c41db8dc9a79c649decec7e1660df4cb3f95b2e14a7",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:05:21.4947167Z",
+          "elapsedSeconds": 17.6221551
+        }
+      ],
+      "sourceCoverage": "unverified",
+      "classificationStatus": "unverified",
+      "releaseAccepted": false
+    },
+    "retrievalManifest": {
+      "file": "retrieval-manifest.json",
+      "bytes": 11663,
+      "sha256": "bb028170f8b35a9991fc8f7c72adaa234068fb2518611f4bf1fa3e388ea0e317"
+    },
+    "retainedFailedInitialAttempt": {
+      "localEvidenceDirectory": "data/backups/canada-country-audit/bulk-boundary-validation-2026-10-11",
+      "manifest": {
+        "file": "retrieval-manifest.json",
+        "bytes": 1233,
+        "sha256": "91d75f68f0af6f02ecf632f68ae22af0b8099fcb11dcbe2da33250591e7faa98"
+      },
+      "observedBodyBytes": 0,
+      "cause": "Local PowerShell DateTimeOffset metadata accessor exception after HTTP 200 headers; corrected before fresh-r2 retrieval",
+      "limitation": "This local research-tool failure does not establish a Census source failure"
+    },
+    "archiveContracts": {
+      "imports": {
+        "detailRecordWidth": 688,
+        "countryRecordWidth": 580,
+        "detailMeasurePositionsOneBased": "179-193",
+        "countryMeasurePositionsOneBased": "131-145",
+        "measure": "GEN_VAL_MO",
+        "fullDetailKey": "HTS10 + country4 + source subcode2 + entry district2 + unlading district2 + rate provision2 + year4 + month2",
+        "aggregation": "Filter country1220; sum every detail record by first six HTS10 digits; preserve alphabetic two-character subcodes"
+      },
+      "exports": {
+        "detailRecordWidth": 323,
+        "countryRecordWidth": 280,
+        "detailMeasurePositionsOneBased": "69-83",
+        "countryMeasurePositionsOneBased": "56-70",
+        "measure": "ALL_VAL_MO",
+        "fullDetailKey": "domestic/foreign1 + ScheduleB10 + country4 + district2 + year4 + month2",
+        "aggregation": "Filter country1220; sum every domestic1/foreign2 detail once by first six ScheduleB10 digits"
+      },
+      "descriptionRecordWidth": 206,
+      "descriptionLookup": "Unique exact six-digit entries; exclude two/four-digit parent descriptions",
+      "sameArchiveControlLimitation": "Separate CTY total is a reconciliation control from the same archive, not an independent statistical source",
+      "validation": "Original ZIP identity; unique safe unencrypted inventory; selected-member CRC/SHA256, ASCII/CRLF widths, calendars, safe known monthly integers, and globally unique full-grain detail keys",
+      "excluded": "No extraction or execution; no summary, executable, installer or duplicate DBF contributes"
+    },
+    "contexts": [
+      {
+        "validated": true,
+        "countryCode": "1220",
+        "direction": "imports",
+        "month": "2024-09",
+        "measure": "GEN_VAL_MO",
+        "archiveMemberCount": 76,
+        "archiveUncompressedBytes": 1750481857,
+        "selectedMembers": {
+          "IMP_CTY.TXT": {
+            "actualMember": "imp_CTY.txt",
+            "records": 232,
+            "bytes": 135024,
+            "recordWidthExcludingCRLF": 580,
+            "sha256": "afbcccf1efdd1acb29c73be7108c1444ca2c5b4ea7832bd612ba581c0e2e17d6",
+            "crc32": "6fef1dba",
+            "CRCVerifiedAtEOF": true
+          },
+          "HSDESC.TXT": {
+            "actualMember": "HSDESC.txt",
+            "records": 6975,
+            "bytes": 1450800,
+            "recordWidthExcludingCRLF": 206,
+            "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+            "crc32": "a4d5f2c3",
+            "CRCVerifiedAtEOF": true
+          },
+          "IMP_DETL.TXT": {
+            "actualMember": "IMP_DETL.txt",
+            "records": 2197609,
+            "bytes": 1516350210,
+            "recordWidthExcludingCRLF": 688,
+            "sha256": "7634b557647fa9b21564ba15ec341a002787749353978b49d48ac3188da3ea72",
+            "crc32": "ff50c3c5",
+            "CRCVerifiedAtEOF": true
+          }
+        },
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "uniqueGlobalDetailKeys": 2197609,
+        "duplicateGlobalDetailKeys": 0,
+        "canadaDetailRecords": 75465,
+        "zeroCanadaDetailRecords": 42762,
+        "dimensions": {
+          "00": 50591,
+          "01": 1,
+          "C ": 1102,
+          "K ": 32,
+          "S ": 22754,
+          "S+": 985
+        },
+        "exportDfTotals": {},
+        "HS6Rows": 4475,
+        "zeroHS6Rows": 901,
+        "missingDescriptionCodes": [],
+        "sum": 34532022027,
+        "countryTotal": 34532022027,
+        "residual": 0,
+        "reconciliation": "matched",
+        "specialRows": [
+          {
+            "commodity": "980100",
+            "description": "IMPORTS OF ARTICLES EXPORTED AND RETURNED, NOT ADVANCED IN VALUE OR CONDITION; IMPORTS OF ANIMALS EXPORTED AND RETURNED WITHIN 8 MONTHS",
+            "value": 1325462936,
+            "detailRecordCount": 1543,
+            "special": true
+          },
+          {
+            "commodity": "980200",
+            "description": "IMPORTS OF ARTICLES EXPORTED AND RETURNED AFTER BEING ADVANCED OR IMPROVED ABROAD, EXCEPT REPAIRS OR ALTERATIONS MADE PERSUANT TO A WARRANTY",
+            "value": 116743953,
+            "detailRecordCount": 129,
+            "special": true
+          },
+          {
+            "commodity": "980800",
+            "description": "IMPORTATIONS OF THE UNITED STATES GOVERNMENT",
+            "value": 1957952,
+            "detailRecordCount": 6,
+            "special": true
+          },
+          {
+            "commodity": "981000",
+            "description": "IMPORTATIONS OF RELIGIOUS, EDUCATIONAL, SCIENTIFIC AND OTHER INSTITUTIONS",
+            "value": 255017,
+            "detailRecordCount": 27,
+            "special": true
+          },
+          {
+            "commodity": "981200",
+            "description": "IMPORTS OF ARTICLES ADMITTED FREE OF DUTY UNDER BOND FOR PERMANENT EXHIBITION",
+            "value": 220874,
+            "detailRecordCount": 15,
+            "special": true
+          },
+          {
+            "commodity": "981700",
+            "description": "IMPORTS OF ARTICLES ADMITTED FREE OF DUTY UNDER SPECIAL CLASSIFICATION PROVISIONS, NESOI",
+            "value": 5317918,
+            "detailRecordCount": 23,
+            "special": true
+          },
+          {
+            "commodity": "999995",
+            "description": "ESTIMATED IMPORTS OF LOW VALUED TRANSACTIONS",
+            "value": 233990301,
+            "detailRecordCount": 1,
+            "special": true
+          }
+        ],
+        "processingSeconds": 12.215,
+        "peakProcessWorkingSetBytes": 232247296,
+        "HS6File": {
+          "file": "imports-2024-09-hs6.json",
+          "bytes": 914216,
+          "sha256": "557b21274eb58c4ebadaf9a0bddf1e1701f9ed566fa919c0cf6a638386b046fb"
+        },
+        "originalArchive": {
+          "file": "imports-2024-09.ZIP",
+          "sourceUrl": "https://www.census.gov/trade/downloads/2024/Merch/im_m/IMDB2409.ZIP",
+          "kind": "archive",
+          "context": {
+            "basename": "IMDB2409.ZIP",
+            "month": "2024-09",
+            "direction": "imports",
+            "index": "imports-history.html"
+          },
+          "startedAt": "2026-10-11T15:03:34.8234256Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 402653184,
+          "httpStatus": 200,
+          "contentType": "application/zip",
+          "contentLength": null,
+          "lastModified": "Tue, 30 Jun 2026 19:14:14 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:03:34 GMT",
+          "completed": true,
+          "bytes": 156371524,
+          "sha256": "0b749e3af3da7ca6191e0f3f08da7efe10702ff0c16eda1dfa764f26b8aed841",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:03:58.4165526Z",
+          "elapsedSeconds": 23.593127
+        },
+        "ownCurrentReference": {
+          "displayedMillions": "34532.0",
+          "referenceUSD": 34532000000,
+          "differenceUSD": 22027,
+          "displayPrecisionUSD": 100000,
+          "roundingBoundUSD": 50000,
+          "check": "matched"
+        },
+        "classificationStatus": "unverified",
+        "releaseAccepted": false,
+        "rootContextReceipt": {
+          "file": "imports-2024-09.ZIP.replay.json",
+          "bytes": 4686,
+          "sha256": "3e62dff45135ca97d9031aa954be9f84d98eacb104ef065de97db31d08e00fb7"
+        }
+      },
+      {
+        "validated": true,
+        "countryCode": "1220",
+        "direction": "exports",
+        "month": "2024-09",
+        "measure": "ALL_VAL_MO",
+        "archiveMemberCount": 75,
+        "archiveUncompressedBytes": 588009484,
+        "selectedMembers": {
+          "EXP_CTY.TXT": {
+            "actualMember": "EXP_CTY.txt",
+            "records": 231,
+            "bytes": 65142,
+            "recordWidthExcludingCRLF": 280,
+            "sha256": "e55acfda42a6dc7e59fa0131aa15335776ed71bf654485e3ff6c2c1d27fd92d4",
+            "crc32": "c33ac1b7",
+            "CRCVerifiedAtEOF": true
+          },
+          "HSDESC.TXT": {
+            "actualMember": "HSDESC.txt",
+            "records": 6975,
+            "bytes": 1450800,
+            "recordWidthExcludingCRLF": 206,
+            "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+            "crc32": "a4d5f2c3",
+            "CRCVerifiedAtEOF": true
+          },
+          "EXP_DETL.TXT": {
+            "actualMember": "EXP_DETL.txt",
+            "records": 1362334,
+            "bytes": 442758550,
+            "recordWidthExcludingCRLF": 323,
+            "sha256": "500566d95fa90752fd03a20ddeb9ebb4e6e9d32e0d970b835827b2b24aa55e60",
+            "crc32": "0f05f629",
+            "CRCVerifiedAtEOF": true
+          }
+        },
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "uniqueGlobalDetailKeys": 1362334,
+        "duplicateGlobalDetailKeys": 0,
+        "canadaDetailRecords": 85202,
+        "zeroCanadaDetailRecords": 35581,
+        "dimensions": {
+          "1": 50476,
+          "2": 34726
+        },
+        "exportDfTotals": {
+          "1": 24277983550,
+          "2": 5103550037
+        },
+        "HS6Rows": 5199,
+        "zeroHS6Rows": 515,
+        "missingDescriptionCodes": [],
+        "sum": 29381533587,
+        "countryTotal": 29381533587,
+        "residual": 0,
+        "reconciliation": "matched",
+        "specialRows": [
+          {
+            "commodity": "980110",
+            "description": "VALUE OF REPAIRS OR ALTERATIONS OF PREVIOUSLY IMPORTED ARTICLES, REPAIRED OR ALTERED PRIOR TO EXPORTATION FROM UNITED STATES",
+            "value": 20642172,
+            "detailRecordCount": 33,
+            "special": true
+          },
+          {
+            "commodity": "980230",
+            "description": "EXPORTS OF ALL WEARING APPAREL DONATED FOR RELIEF OR CHARITY BY INDIVIDUALS OR PRIVATE AGENCIES, AND USED WEARING APPAREL GIVEN BY GOVERNMENT AGENCIES",
+            "value": 309343,
+            "detailRecordCount": 18,
+            "special": true
+          },
+          {
+            "commodity": "980320",
+            "description": "EXPORTS OF MILITARY EQUIPMENT NOT IDENTIFIED BY KIND",
+            "value": 0,
+            "detailRecordCount": 2,
+            "special": true
+          },
+          {
+            "commodity": "987000",
+            "description": "ITEMS IMPORTED FROM CANADA AND RETURNED TO CANADA; EXHIBITS FOR CANADIAN PUBLIC MUSEUMS AND INSTITUTIONS; AND ITEMS FOR THE CANADIAN GOVERNOR GENERAL",
+            "value": 8430125,
+            "detailRecordCount": 42,
+            "special": true
+          },
+          {
+            "commodity": "988000",
+            "description": "LOW VALUE EXPORT SHIPMENTS; CANADIAN ESTIMATED LATE RECEIPTS",
+            "value": 1000937222,
+            "detailRecordCount": 2,
+            "special": true
+          }
+        ],
+        "processingSeconds": 4.267,
+        "peakProcessWorkingSetBytes": 205500416,
+        "HS6File": {
+          "file": "exports-2024-09-hs6.json",
+          "bytes": 1063466,
+          "sha256": "d6c58d2117ac32be21169760aec6c00315bb0599ebcf8c7744a24e645115c4ea"
+        },
+        "originalArchive": {
+          "file": "exports-2024-09.ZIP",
+          "sourceUrl": "https://www.census.gov/trade/downloads/2024/Merch/ex_m/EXDB2409.ZIP",
+          "kind": "archive",
+          "context": {
+            "basename": "EXDB2409.ZIP",
+            "month": "2024-09",
+            "direction": "exports",
+            "index": "exports-history.html"
+          },
+          "startedAt": "2026-10-11T15:03:58.4369700Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 402653184,
+          "httpStatus": 200,
+          "contentType": "application/zip",
+          "contentLength": null,
+          "lastModified": "Tue, 30 Jun 2026 19:14:09 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:03:58 GMT",
+          "completed": true,
+          "bytes": 72005838,
+          "sha256": "10b189273857231d6b822dded6f4a2a68f77fad920308d5696032076c3e79cf2",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:04:09.7645610Z",
+          "elapsedSeconds": 11.327591
+        },
+        "ownCurrentReference": {
+          "displayedMillions": "29381.5",
+          "referenceUSD": 29381500000,
+          "differenceUSD": 33587,
+          "displayPrecisionUSD": 100000,
+          "roundingBoundUSD": 50000,
+          "check": "matched"
+        },
+        "classificationStatus": "unverified",
+        "releaseAccepted": false,
+        "rootContextReceipt": {
+          "file": "exports-2024-09.ZIP.replay.json",
+          "bytes": 4302,
+          "sha256": "70684a79e5779778df4af4ce7c5c3f4caa5b3137345fcd4916873016bbe71b2b"
+        }
+      },
+      {
+        "validated": true,
+        "countryCode": "1220",
+        "direction": "imports",
+        "month": "2026-08",
+        "measure": "GEN_VAL_MO",
+        "archiveMemberCount": 68,
+        "archiveUncompressedBytes": 2080988906,
+        "selectedMembers": {
+          "IMP_CTY.TXT": {
+            "actualMember": "IMP_CTY.TXT",
+            "records": 232,
+            "bytes": 135024,
+            "recordWidthExcludingCRLF": 580,
+            "sha256": "f6de65bbbfb93bb59d7e69da2530d0f87a7c2ff06e34fcab73ba030b01113d4e",
+            "crc32": "55384da4",
+            "CRCVerifiedAtEOF": true
+          },
+          "HSDESC.TXT": {
+            "actualMember": "HSDESC.TXT",
+            "records": 6975,
+            "bytes": 1450800,
+            "recordWidthExcludingCRLF": 206,
+            "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+            "crc32": "a4d5f2c3",
+            "CRCVerifiedAtEOF": true
+          },
+          "IMP_DETL.TXT": {
+            "actualMember": "IMP_DETL.TXT",
+            "records": 2656515,
+            "bytes": 1832995350,
+            "recordWidthExcludingCRLF": 688,
+            "sha256": "570be0cee87bae9b20f347cff8fc434f801f6183b2aa863d04bed7db4ff6ed71",
+            "crc32": "b478cd9d",
+            "CRCVerifiedAtEOF": true
+          }
+        },
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "uniqueGlobalDetailKeys": 2656515,
+        "duplicateGlobalDetailKeys": 0,
+        "canadaDetailRecords": 115294,
+        "zeroCanadaDetailRecords": 71441,
+        "dimensions": {
+          "00": 42342,
+          "01": 567,
+          "C ": 1121,
+          "K ": 27,
+          "S ": 69815,
+          "S+": 1422
+        },
+        "exportDfTotals": {},
+        "HS6Rows": 4437,
+        "zeroHS6Rows": 869,
+        "missingDescriptionCodes": [],
+        "sum": 35980039950,
+        "countryTotal": 35980039950,
+        "residual": 0,
+        "reconciliation": "matched",
+        "specialRows": [
+          {
+            "commodity": "980100",
+            "description": "IMPORTS OF ARTICLES EXPORTED AND RETURNED, NOT ADVANCED IN VALUE OR CONDITION; IMPORTS OF ANIMALS EXPORTED AND RETURNED WITHIN 8 MONTHS",
+            "value": 1166732651,
+            "detailRecordCount": 2024,
+            "special": true
+          },
+          {
+            "commodity": "980200",
+            "description": "IMPORTS OF ARTICLES EXPORTED AND RETURNED AFTER BEING ADVANCED OR IMPROVED ABROAD, EXCEPT REPAIRS OR ALTERATIONS MADE PERSUANT TO A WARRANTY",
+            "value": 168654813,
+            "detailRecordCount": 308,
+            "special": true
+          },
+          {
+            "commodity": "980800",
+            "description": "IMPORTATIONS OF THE UNITED STATES GOVERNMENT",
+            "value": 130711,
+            "detailRecordCount": 16,
+            "special": true
+          },
+          {
+            "commodity": "981000",
+            "description": "IMPORTATIONS OF RELIGIOUS, EDUCATIONAL, SCIENTIFIC AND OTHER INSTITUTIONS",
+            "value": 371646,
+            "detailRecordCount": 28,
+            "special": true
+          },
+          {
+            "commodity": "981200",
+            "description": "IMPORTS OF ARTICLES ADMITTED FREE OF DUTY UNDER BOND FOR PERMANENT EXHIBITION",
+            "value": 940374,
+            "detailRecordCount": 13,
+            "special": true
+          },
+          {
+            "commodity": "981700",
+            "description": "IMPORTS OF ARTICLES ADMITTED FREE OF DUTY UNDER SPECIAL CLASSIFICATION PROVISIONS, NESOI",
+            "value": 36063910,
+            "detailRecordCount": 41,
+            "special": true
+          },
+          {
+            "commodity": "999900",
+            "description": "SALVAGE; A VESSEL SUNK 2 YEARS IN TERRITORIAL WATERS OF U.S. & ABANDONED, DUTIABLE MERCHANDISE RECOVERED MAY BE BROUGHT INTO NEAREST PORT DUTY FREE",
+            "value": 0,
+            "detailRecordCount": 1,
+            "special": true
+          },
+          {
+            "commodity": "999995",
+            "description": "ESTIMATED IMPORTS OF LOW VALUED TRANSACTIONS",
+            "value": 250245952,
+            "detailRecordCount": 1,
+            "special": true
+          }
+        ],
+        "processingSeconds": 14.757,
+        "peakProcessWorkingSetBytes": 387104768,
+        "HS6File": {
+          "file": "imports-2026-08-hs6.json",
+          "bytes": 908865,
+          "sha256": "da83131fa359a4b7c78102910fb0868ed7b2f9bc54654b73200c5f178683767e"
+        },
+        "originalArchive": {
+          "file": "imports-2026-08.ZIP",
+          "sourceUrl": "https://www.census.gov/trade/downloads/2026/Merch/im_m/IMDB2608.ZIP",
+          "kind": "archive",
+          "context": {
+            "basename": "IMDB2608.ZIP",
+            "month": "2026-08",
+            "direction": "imports",
+            "index": "data-products.html"
+          },
+          "startedAt": "2026-10-11T15:04:09.7789519Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 402653184,
+          "httpStatus": 200,
+          "contentType": "application/zip",
+          "contentLength": 227480759,
+          "lastModified": "Tue, 06 Oct 2026 12:37:28 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:04:09 GMT",
+          "completed": true,
+          "bytes": 227480759,
+          "sha256": "78c41b5f75f474f4973c174233c54d6d7cba62ce78bef3ebfb3ef7e3026ffbbd",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:04:45.0020528Z",
+          "elapsedSeconds": 35.2231009
+        },
+        "ownCurrentReference": {
+          "displayedMillions": "35980.0",
+          "referenceUSD": 35980000000,
+          "differenceUSD": 39950,
+          "displayPrecisionUSD": 100000,
+          "roundingBoundUSD": 50000,
+          "check": "matched"
+        },
+        "classificationStatus": "unverified",
+        "releaseAccepted": false,
+        "rootContextReceipt": {
+          "file": "imports-2026-08.ZIP.replay.json",
+          "bytes": 4979,
+          "sha256": "b877bfad58b0f8731e7318465b84813fc2f2721bd56d0c0b55e8e4add19dbd63"
+        }
+      },
+      {
+        "validated": true,
+        "countryCode": "1220",
+        "direction": "exports",
+        "month": "2026-08",
+        "measure": "ALL_VAL_MO",
+        "archiveMemberCount": 75,
+        "archiveUncompressedBytes": 573324899,
+        "selectedMembers": {
+          "EXP_CTY.TXT": {
+            "actualMember": "EXP_CTY.TXT",
+            "records": 229,
+            "bytes": 64578,
+            "recordWidthExcludingCRLF": 280,
+            "sha256": "925f14ede60d5a03a7e1fe75b1245ab3a35502990a46b454a643a39e249e308b",
+            "crc32": "db681a20",
+            "CRCVerifiedAtEOF": true
+          },
+          "HSDESC.TXT": {
+            "actualMember": "HSDESC.TXT",
+            "records": 6975,
+            "bytes": 1450800,
+            "recordWidthExcludingCRLF": 206,
+            "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+            "crc32": "a4d5f2c3",
+            "CRCVerifiedAtEOF": true
+          },
+          "EXP_DETL.TXT": {
+            "actualMember": "EXP_DETL.TXT",
+            "records": 1280657,
+            "bytes": 416213525,
+            "recordWidthExcludingCRLF": 323,
+            "sha256": "ff9d15d20cce95da593a2bb3914106b146252e4bf3962ceb3424f0225dcdd697",
+            "crc32": "4c21164b",
+            "CRCVerifiedAtEOF": true
+          }
+        },
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "uniqueGlobalDetailKeys": 1280657,
+        "duplicateGlobalDetailKeys": 0,
+        "canadaDetailRecords": 79084,
+        "zeroCanadaDetailRecords": 32224,
+        "dimensions": {
+          "1": 47048,
+          "2": 32036
+        },
+        "exportDfTotals": {
+          "1": 25355631932,
+          "2": 4933920963
+        },
+        "HS6Rows": 5111,
+        "zeroHS6Rows": 462,
+        "missingDescriptionCodes": [],
+        "sum": 30289552895,
+        "countryTotal": 30289552895,
+        "residual": 0,
+        "reconciliation": "matched",
+        "specialRows": [
+          {
+            "commodity": "980110",
+            "description": "VALUE OF REPAIRS OR ALTERATIONS OF PREVIOUSLY IMPORTED ARTICLES, REPAIRED OR ALTERED PRIOR TO EXPORTATION FROM UNITED STATES",
+            "value": 35000971,
+            "detailRecordCount": 32,
+            "special": true
+          },
+          {
+            "commodity": "980230",
+            "description": "EXPORTS OF ALL WEARING APPAREL DONATED FOR RELIEF OR CHARITY BY INDIVIDUALS OR PRIVATE AGENCIES, AND USED WEARING APPAREL GIVEN BY GOVERNMENT AGENCIES",
+            "value": 256811,
+            "detailRecordCount": 10,
+            "special": true
+          },
+          {
+            "commodity": "980320",
+            "description": "EXPORTS OF MILITARY EQUIPMENT NOT IDENTIFIED BY KIND",
+            "value": 3782,
+            "detailRecordCount": 4,
+            "special": true
+          },
+          {
+            "commodity": "987000",
+            "description": "ITEMS IMPORTED FROM CANADA AND RETURNED TO CANADA; EXHIBITS FOR CANADIAN PUBLIC MUSEUMS AND INSTITUTIONS; AND ITEMS FOR THE CANADIAN GOVERNOR GENERAL",
+            "value": 13660011,
+            "detailRecordCount": 50,
+            "special": true
+          },
+          {
+            "commodity": "988000",
+            "description": "LOW VALUE EXPORT SHIPMENTS; CANADIAN ESTIMATED LATE RECEIPTS",
+            "value": 1533311008,
+            "detailRecordCount": 3,
+            "special": true
+          }
+        ],
+        "processingSeconds": 3.875,
+        "peakProcessWorkingSetBytes": 205475840,
+        "HS6File": {
+          "file": "exports-2026-08-hs6.json",
+          "bytes": 1045999,
+          "sha256": "f6d18b15ae45249b414c0bfb719ffd36901ed98d6b8e301ff8842beb76a817ca"
+        },
+        "originalArchive": {
+          "file": "exports-2026-08.ZIP",
+          "sourceUrl": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2608.ZIP",
+          "kind": "archive",
+          "context": {
+            "basename": "EXDB2608.ZIP",
+            "month": "2026-08",
+            "direction": "exports",
+            "index": "data-products.html"
+          },
+          "startedAt": "2026-10-11T15:04:45.0103504Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 402653184,
+          "httpStatus": 200,
+          "contentType": "application/zip",
+          "contentLength": null,
+          "lastModified": "Tue, 06 Oct 2026 12:34:05 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:04:44 GMT",
+          "completed": true,
+          "bytes": 123408639,
+          "sha256": "89db9a73dbd85a65d2078e0047c2592b38149d2403cf47425efe291cdf881052",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:05:03.8649662Z",
+          "elapsedSeconds": 18.8546158
+        },
+        "ownCurrentReference": {
+          "displayedMillions": "30289.6",
+          "referenceUSD": 30289600000,
+          "differenceUSD": -47105,
+          "displayPrecisionUSD": 100000,
+          "roundingBoundUSD": 50000,
+          "check": "matched"
+        },
+        "classificationStatus": "unverified",
+        "releaseAccepted": false,
+        "rootContextReceipt": {
+          "file": "exports-2026-08.ZIP.replay.json",
+          "bytes": 4307,
+          "sha256": "2ef7509de81277ba8353b62c8376645ffa24eb87ae5033129ad55a16310d441f"
+        }
+      },
+      {
+        "validated": true,
+        "countryCode": "1220",
+        "direction": "exports",
+        "month": "2026-05",
+        "measure": "ALL_VAL_MO",
+        "archiveMemberCount": 75,
+        "archiveUncompressedBytes": 474896286,
+        "selectedMembers": {
+          "EXP_CTY.TXT": {
+            "actualMember": "EXP_CTY.TXT",
+            "records": 229,
+            "bytes": 64578,
+            "recordWidthExcludingCRLF": 280,
+            "sha256": "e628481c282f6a0208027408b4e429aef54838a15891fcd66e113c621ce4df8c",
+            "crc32": "acf82a7d",
+            "CRCVerifiedAtEOF": true
+          },
+          "HSDESC.TXT": {
+            "actualMember": "HSDESC.TXT",
+            "records": 6975,
+            "bytes": 1450800,
+            "recordWidthExcludingCRLF": 206,
+            "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+            "crc32": "a4d5f2c3",
+            "CRCVerifiedAtEOF": true
+          },
+          "EXP_DETL.TXT": {
+            "actualMember": "EXP_DETL.TXT",
+            "records": 1022282,
+            "bytes": 332241650,
+            "recordWidthExcludingCRLF": 323,
+            "sha256": "49e220592dcb7585d2c1a1979a8a3f5f34f9069f7fc6d8162e38f438874cfe6f",
+            "crc32": "7e039aff",
+            "CRCVerifiedAtEOF": true
+          }
+        },
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "uniqueGlobalDetailKeys": 1022282,
+        "duplicateGlobalDetailKeys": 0,
+        "canadaDetailRecords": 71008,
+        "zeroCanadaDetailRecords": 23591,
+        "dimensions": {
+          "1": 42728,
+          "2": 28280
+        },
+        "exportDfTotals": {
+          "1": 25151855736,
+          "2": 4638980023
+        },
+        "HS6Rows": 5031,
+        "zeroHS6Rows": 386,
+        "missingDescriptionCodes": [],
+        "sum": 29790835759,
+        "countryTotal": 29790835759,
+        "residual": 0,
+        "reconciliation": "matched",
+        "specialRows": [
+          {
+            "commodity": "980110",
+            "description": "VALUE OF REPAIRS OR ALTERATIONS OF PREVIOUSLY IMPORTED ARTICLES, REPAIRED OR ALTERED PRIOR TO EXPORTATION FROM UNITED STATES",
+            "value": 44177553,
+            "detailRecordCount": 32,
+            "special": true
+          },
+          {
+            "commodity": "980230",
+            "description": "EXPORTS OF ALL WEARING APPAREL DONATED FOR RELIEF OR CHARITY BY INDIVIDUALS OR PRIVATE AGENCIES, AND USED WEARING APPAREL GIVEN BY GOVERNMENT AGENCIES",
+            "value": 286593,
+            "detailRecordCount": 9,
+            "special": true
+          },
+          {
+            "commodity": "980320",
+            "description": "EXPORTS OF MILITARY EQUIPMENT NOT IDENTIFIED BY KIND",
+            "value": 9204,
+            "detailRecordCount": 3,
+            "special": true
+          },
+          {
+            "commodity": "987000",
+            "description": "ITEMS IMPORTED FROM CANADA AND RETURNED TO CANADA; EXHIBITS FOR CANADIAN PUBLIC MUSEUMS AND INSTITUTIONS; AND ITEMS FOR THE CANADIAN GOVERNOR GENERAL",
+            "value": 33184705,
+            "detailRecordCount": 41,
+            "special": true
+          },
+          {
+            "commodity": "988000",
+            "description": "LOW VALUE EXPORT SHIPMENTS; CANADIAN ESTIMATED LATE RECEIPTS",
+            "value": 1201619960,
+            "detailRecordCount": 3,
+            "special": true
+          }
+        ],
+        "processingSeconds": 3.057,
+        "peakProcessWorkingSetBytes": 123150336,
+        "HS6File": {
+          "file": "exports-2026-05-hs6.json",
+          "bytes": 1029987,
+          "sha256": "233ac18c06bc7f771e82e60c76bd6548acf6352814b5f9f2a982af965f743547"
+        },
+        "originalArchive": {
+          "file": "exports-2026-05.ZIP",
+          "sourceUrl": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2605.ZIP",
+          "kind": "archive",
+          "context": {
+            "basename": "EXDB2605.ZIP",
+            "month": "2026-05",
+            "direction": "exports",
+            "index": "data-products.html"
+          },
+          "startedAt": "2026-10-11T15:05:03.8725616Z",
+          "headerTimeoutSeconds": 30,
+          "bodyTimeoutSeconds": 120,
+          "maxBytes": 402653184,
+          "httpStatus": 200,
+          "contentType": "application/zip",
+          "contentLength": null,
+          "lastModified": "Tue, 06 Oct 2026 12:34:03 GMT",
+          "httpDate": "Sun, 11 Oct 2026 15:05:03 GMT",
+          "completed": true,
+          "bytes": 115183679,
+          "sha256": "d3f3aca2f0325ddc24610c41db8dc9a79c649decec7e1660df4cb3f95b2e14a7",
+          "error": null,
+          "retrievedAt": "2026-10-11T15:05:21.4947167Z",
+          "elapsedSeconds": 17.6221551
+        },
+        "ownCurrentReference": {
+          "displayedMillions": "30399.0",
+          "referenceUSD": 30399000000,
+          "differenceUSD": -608164241,
+          "displayPrecisionUSD": 100000,
+          "roundingBoundUSD": 50000,
+          "check": "mismatch"
+        },
+        "classificationStatus": "unverified",
+        "releaseAccepted": false,
+        "rootContextReceipt": {
+          "file": "exports-2026-05.ZIP.replay.json",
+          "bytes": 4311,
+          "sha256": "abd06d7a9a40acede2dbd0f634f86b853fbd755131dd8205811489d0348b3a16"
+        }
+      }
+    ],
+    "mayOriginalPublication": {
+      "sourceFile": "ft900-2026-05.pdf",
+      "pinVerified": true,
+      "reviewedMonthlyReferenceUSD": 29790800000,
+      "countryCode": "1220",
+      "direction": "exports",
+      "month": "2026-05",
+      "coverDate": "2026-07-07",
+      "physicalPDFPage": 53,
+      "table": "Supplemental Exhibit 4; monthly goods exports; FAS; not seasonally adjusted",
+      "check": "matched",
+      "differenceUSD": 35759
+    },
+    "rootReplayReceipt": {
+      "file": "boundary-validation-replay.json",
+      "bytes": 39008,
+      "sha256": "e4c729c302e1f3f52e2d9757312b8e53b774333ce8b9ff986255e0b5c9c19b60"
+    },
+    "independentReplayReceipt": {
+      "file": "independent-boundary-review.json",
+      "bytes": 34620,
+      "sha256": "98e686ec8d0552e642a67e0b821378f1923defd53f97286ad3c4d22df38ed902"
+    },
+    "independentReview": {
+      "scope": "Independent parser replay of all five ZIPs, selected members, every HS6 output, own current reference, original May publication pin, resource/provenance limits",
+      "verdict": "Separate replay reproduced all five exact totals and complete outputs; current May mismatch remains visible",
+      "independentParser": {
+        "path": ".tmp/independent_bulk_review_20261011.py",
+        "sha256": "b400f5b5231d45d5c755c4e74aa89f200861468420b41a3c43a7837cf1415bf5",
+        "approach": "Separately implemented parser derives named field slices from retained official layout HTML; exact full-key byte set covers all published dimensions plus calendar. Root parser was not imported, executed, or copied; root source read separately for resource-method review."
+      },
+      "supplementaryReviewScript": {
+        "path": "D:\\Projects\\ChatGPT\\New folder\\us-import-export\\.tmp\\independent_bulk_finalize_20261011.py",
+        "sha256": "944cf4266e77939dfcb648686375eb457363efe92e1489293e24834b89885a8e"
+      },
+      "PDFVerification": {
+        "file": "ft900-2026-05.pdf",
+        "sha256": "9ab9737e0c84a679dec653de9ca1223de3004e0d0d074ef3a2dec33cb63c70ec",
+        "bytes": 1798284,
+        "pinMatchesCountryPublicationsScript": true,
+        "pinMatchesOriginalPublicationsDocumentation": true,
+        "coverDate": "2026-07-07",
+        "physicalPage": 53,
+        "printedPage": "- 5 -",
+        "table": "Supplemental Exhibit 4",
+        "countryCode": "1220",
+        "country": "Canada",
+        "month": "2026-05",
+        "direction": "exports",
+        "basis": "Domestic and foreign, FAS, not seasonally adjusted",
+        "referenceUSD": 29790800000,
+        "differenceUSD": 35759,
+        "roundingBoundUSD": 50000,
+        "historicalCorroboration": "matched",
+        "currentReferenceStillMismatch": true,
+        "renderedAndVisuallyInspected": true,
+        "image": ".tmp/independent_may_supplemental_page53.png",
+        "imageSHA256": "8fcf45c44828412a1d06996240101e21ae5a7220a2a216f8508de6447bafe67e"
+      },
+      "limitations": [
+        "Peak working set is resident physical memory, not committed memory or total disk footprint.",
+        "These local Windows measurements do not guarantee GitHub runner peak usage or runtime.",
+        "Five sampled contexts do not establish all 48 rolling direction/month contexts or annual concordance.",
+        "All three selected text members streamed; other member CRCs are outside this review."
+      ]
+    },
+    "resourceObservation": {
+      "downloadedOriginals": 13,
+      "originalBytes": 697503386,
+      "downloadSeconds": 108.9865672,
+      "researchProcessingWallSeconds": 39.971,
+      "minimumContextParsingSeconds": 3.057,
+      "maximumContextParsingSeconds": 14.757,
+      "minimumChildPeakWorkingSetBytes": 123150336,
+      "maximumChildPeakWorkingSetBytes": 387104768,
+      "maximumOriginalZIPBytes": 227480759,
+      "maximumArchiveDeclaredUncompressedBytes": 2080988906,
+      "allFiveHS6OutputBytes": 4962533,
+      "retrievalLimits": {
+        "inFlight": 1,
+        "headerSeconds": 30,
+        "bodySeconds": 120,
+        "maximumZIPBytes": 402653184,
+        "maximumTotalBytes": 1073741824,
+        "overallSeconds": 1020
+      },
+      "replayLimits": {
+        "maximumArchiveMembers": 100,
+        "maximumDeclaredUncompressedBytesPerArchive": 3221225472,
+        "maximumDetailKeysPerArchive": 5000000,
+        "processing": "Separate process for each archive; stream only root country/detail/description TXT members; never extract or run other members"
+      },
+      "limitations": "Local Windows process measurements only, not GitHub runner/hosting guarantees; streaming leaves originals compressed but still needs retained-original storage; no 24-month budget established"
+    },
+    "nextRecommendation": {
+      "status": "Design before implementation; no production adoption",
+      "work": [
+        "Design isolated24month bulk diagnostic with measured download/processing/retained-original budgets",
+        "Review reference-vintage compatibility separately before country acceptance",
+        "Retain exact reconciliation, current-reference agreement and pinned publication corroboration as separate outcomes"
+      ],
+      "reason": "Both source record contracts now verified at old/latest boundaries, but May preliminary-original match/current-reference mismatch persists across retrieval routes"
+    },
+    "limitations": [
+      "Only five contexts tested; no48archive coverage claim",
+      "Descriptions do not verify classification continuity",
+      "Missing product-month does not become zero",
+      "May original publication corroboration does not replace current-reference acceptance gate",
+      "LastModified does not identify individual observation vintage",
+      "No runner implementation or public hosting/storage change"
+    ],
+    "sourceCoverage": "unverified",
+    "classificationStatus": "unverified",
+    "rollingComparisonsAvailable": false,
+    "releaseAccepted": false,
+    "defaultAuditRetrievalChanged": false,
+    "earlierCompletedFullAuditVerdict": "failed"
   }
 }
