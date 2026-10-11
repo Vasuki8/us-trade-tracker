@@ -1,4 +1,5 @@
 import type {Direction,Measure} from '../src/lib/trade/types';
+import type {CountryPublicationEvidence} from './country-publications';
 export type CountryContext={countryCode:string;month:string;direction:Direction;kind:'total'|'products'};
 export type CountryRow={code:string;description:string;valueUsd:number|null;special:boolean};
 export type CountryPart=CountryContext & {measure:Measure;rows:CountryRow[]};
@@ -7,6 +8,6 @@ export type CountryFetchOptions=CountryContext & {apiKey:string;explicitAggregat
 export type CountryAuditOptions={countryCode:string;end:string;outputDir:string;apiKey:string;codeVersion?:string};
 export type CountryReferenceRow={month:string;importsUsd:number;exportsUsd:number};
 export type AuditFile={path:string;bytes:number;sha256:string};
-export type CountryMonthAudit={month:string;direction:Direction;totalUsd:number|null;productSumUsd:number|null;residualUsd:number|null;productRows:number;unavailableValues:number;specialRows:CountryRow[];referenceUsd:number|null;referenceCheck:'matched'|'mismatch'|'unavailable';errors:string[]};
+export type CountryMonthAudit={month:string;direction:Direction;totalUsd:number|null;productSumUsd:number|null;residualUsd:number|null;productRows:number;unavailableValues:number;specialRows:CountryRow[];referenceUsd:number|null;referenceCheck:'matched'|'mismatch'|'unavailable';publicationReferenceUsd:number|null;publicationCheck:'matched'|'mismatch'|'unavailable'|'not-reviewed';referenceCorroboration:'current-table'|'original-publication-only'|'none';errors:string[]};
 export type CountryCandidate={direction:Direction;code:string;description:string;special:boolean;currentUsd:number|null;previousUsd:number|null;currentSharePercent:number|null;previousSharePercent:number|null;shareChangePercentagePoints:number|null;currentReportedMonths:number;previousReportedMonths:number;complete:boolean;classificationStatus:'unverified';comparisonAvailable:false};
-export type CountryAuditReport={schemaVersion:1;countryCode:string;fromMonth:string;toMonth:string;retrievedAt:string;codeVersion:string;sourceCoverage:'verified'|'failed';classificationStatus:'unverified';rawFiles:AuditFile[];months:CountryMonthAudit[];candidates:CountryCandidate[];reference:{url:string;retrievedAt:string|null;lastModified:string|null;httpDate:string|null;error:string|null};};
+export type CountryAuditReport={schemaVersion:1;countryCode:string;fromMonth:string;toMonth:string;retrievedAt:string;codeVersion:string;sourceCoverage:'verified'|'failed';classificationStatus:'unverified';rawFiles:AuditFile[];months:CountryMonthAudit[];candidates:CountryCandidate[];publications:CountryPublicationEvidence[];reference:{url:string;retrievedAt:string|null;lastModified:string|null;httpDate:string|null;error:string|null};};
