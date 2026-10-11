@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "countryCode": "1220",
   "reportingMonth": "2026-08",
-  "sourceCoverage": "unverified",
+  "sourceCoverage": "failed",
   "classificationStatus": "unverified",
   "releaseAccepted": false,
   "failedAuditArtifact": {
@@ -72,10 +72,406 @@
     "coffeeControlValueUsd": 140980739,
     "countryResponses": 0,
     "countryTimeouts": 4,
-    "countryElapsedMs": {"imports-total": 30002, "imports-products": 30001, "exports-total": 30000, "exports-products": 30001},
+    "countryElapsedMs": {
+      "imports-total": 30002,
+      "imports-products": 30001,
+      "exports-total": 30000,
+      "exports-products": 30001
+    },
     "underlyingCountryTimeoutCause": "unverified",
     "probePassed": false,
     "sourceCoverage": "unverified",
+    "releaseAccepted": false
+  },
+  "calendarProbe": {
+    "runId": 38095866518,
+    "runUrl": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38095866518",
+    "jobId": 114341507050,
+    "headSha": "2cd1b077387b8cd4ee22acf24ee13986493609d1",
+    "mode": "connectivity-probe",
+    "countryTemporalPredicate": "YEAR/MONTH",
+    "conclusion": "success",
+    "retrievedAt": "2026-10-10T23:42:57.563Z",
+    "artifactId": 11684894693,
+    "artifactBytes": 708137,
+    "artifactSha256": "61ae69a54ccef22ce877a740c536bf32842aeecbaee080ff210d6ae4e5d9f15e",
+    "zipEntries": 7,
+    "independentlyMatchedFiles": 7,
+    "extractedBytes": 3612699,
+    "logicalChecks": 6,
+    "httpAttempts": 6,
+    "rawManifestDigestsVerified": 6,
+    "allHttpStatuses": 200,
+    "results": [
+      {
+        "label": "api-variables",
+        "outcome": "received",
+        "status": 200,
+        "attempts": 1,
+        "errorCodes": [],
+        "elapsedMs": [
+          200
+        ]
+      },
+      {
+        "label": "coffee-control",
+        "outcome": "received",
+        "status": 200,
+        "attempts": 1,
+        "errorCodes": [],
+        "elapsedMs": [
+          1338
+        ]
+      },
+      {
+        "label": "exports-products",
+        "outcome": "validated",
+        "status": 200,
+        "attempts": 1,
+        "errorCodes": [],
+        "elapsedMs": [
+          11274
+        ],
+        "rows": 5111,
+        "amountUsd": 30289552895,
+        "contract": [
+          {
+            "commodityLevel": "HS6",
+            "summary": "HSCY"
+          }
+        ]
+      },
+      {
+        "label": "exports-total",
+        "outcome": "validated",
+        "status": 200,
+        "attempts": 1,
+        "errorCodes": [],
+        "elapsedMs": [
+          15432
+        ],
+        "rows": 1,
+        "amountUsd": 30289552895,
+        "contract": [
+          {
+            "commodityLevel": "-",
+            "summary": "CY"
+          }
+        ]
+      },
+      {
+        "label": "imports-products",
+        "outcome": "validated",
+        "status": 200,
+        "attempts": 1,
+        "errorCodes": [],
+        "elapsedMs": [
+          13906
+        ],
+        "rows": 4437,
+        "amountUsd": 35980039950,
+        "contract": [
+          {
+            "commodityLevel": "HS6",
+            "summary": "HSCY"
+          }
+        ]
+      },
+      {
+        "label": "imports-total",
+        "outcome": "validated",
+        "status": 200,
+        "attempts": 1,
+        "errorCodes": [],
+        "elapsedMs": [
+          13835
+        ],
+        "rows": 1,
+        "amountUsd": 35980039950,
+        "contract": [
+          {
+            "commodityLevel": "-",
+            "summary": "CY"
+          }
+        ]
+      }
+    ],
+    "latestResiduals": [
+      {
+        "direction": "imports",
+        "residualUsd": 0
+      },
+      {
+        "direction": "exports",
+        "residualUsd": 0
+      }
+    ],
+    "probePassed": true,
+    "sourceCoverage": "unverified",
+    "classificationStatus": "unverified",
+    "releaseAccepted": false,
+    "priorTimeoutCause": "unverified"
+  },
+  "fullAudit": {
+    "runId": 38096086464,
+    "runUrl": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38096086464",
+    "jobId": 114342164223,
+    "headSha": "2cd1b077387b8cd4ee22acf24ee13986493609d1",
+    "mode": "full",
+    "countryTemporalPredicate": "YEAR/MONTH",
+    "conclusion": "failure",
+    "cause": "source-check-failure",
+    "auditStartedAt": "2026-10-10T23:45:54.518Z",
+    "firstApiRecordAt": "2026-10-10T23:46:06.575Z",
+    "lastApiRecordAt": "2026-10-10T23:56:56.339Z",
+    "artifactId": 11686055905,
+    "artifactName": "census-1220-country-audit",
+    "artifactBytes": 23117921,
+    "artifactSha256": "2acbe7419576b9e19f1c574b78c4e65f798b664f3fac35b552f5e7826ad1550c",
+    "zipEntries": 99,
+    "independentlyMatchedFiles": 99,
+    "extractedBytes": 117546289,
+    "completedAuditReport": true,
+    "completedDataset": true,
+    "auditReportSha256": "4bc7a7518e6f38232b054902e593f0f6c2a49bda6619c0af09f1b6e3d3d2224e",
+    "countryDatasetSha256": "b640c9fe6052aa826709d9cd41103488f66161534335ce2f764090bcbcd71515",
+    "sourceRecords": 97,
+    "rawManifestDigestsVerified": 97,
+    "logicalApiParts": 96,
+    "httpAttempts": 96,
+    "http200Parts": 88,
+    "noResponseParts": 8,
+    "http200WithoutRetainedBody": 1,
+    "validatedApiParts": 87,
+    "originalHs6Observations": 214292,
+    "validatedTotalParts": 41,
+    "validatedProductParts": 46,
+    "evidenceConsistencyVerified": true,
+    "independentReplaySha256": "cc293f21837457439302b3486f46df439cb5b178ab9721b834601155c6f7ec66",
+    "independentReview": "matched",
+    "monthlyChecks": 48,
+    "zeroResidualMonths": 40,
+    "nonzeroResiduals": [],
+    "incompleteMonths": [
+      {
+        "month": "2025-05",
+        "direction": "imports",
+        "errors": [
+          "Total retrieval or validation failed; inspect raw evidence"
+        ]
+      },
+      {
+        "month": "2025-06",
+        "direction": "imports",
+        "errors": [
+          "Total retrieval or validation failed; inspect raw evidence",
+          "HS6 retrieval or validation failed; inspect raw evidence"
+        ]
+      },
+      {
+        "month": "2025-08",
+        "direction": "imports",
+        "errors": [
+          "Total retrieval or validation failed; inspect raw evidence"
+        ]
+      },
+      {
+        "month": "2025-09",
+        "direction": "imports",
+        "errors": [
+          "HS6 retrieval or validation failed; inspect raw evidence"
+        ]
+      },
+      {
+        "month": "2025-12",
+        "direction": "imports",
+        "errors": [
+          "Total retrieval or validation failed; inspect raw evidence"
+        ]
+      },
+      {
+        "month": "2026-03",
+        "direction": "imports",
+        "errors": [
+          "Total retrieval or validation failed; inspect raw evidence"
+        ]
+      },
+      {
+        "month": "2026-04",
+        "direction": "imports",
+        "errors": [
+          "Total retrieval or validation failed; inspect raw evidence"
+        ]
+      },
+      {
+        "month": "2026-06",
+        "direction": "imports",
+        "errors": [
+          "Total retrieval or validation failed; inspect raw evidence"
+        ]
+      }
+    ],
+    "failedParts": [
+      {
+        "file": "raw/imports-2025-05-total.json",
+        "direction": "imports",
+        "month": "2025-05",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-06-products.json",
+        "direction": "imports",
+        "month": "2025-06",
+        "kind": "products",
+        "status": 200,
+        "cause": "body-unavailable"
+      },
+      {
+        "file": "raw/imports-2025-06-total.json",
+        "direction": "imports",
+        "month": "2025-06",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-08-total.json",
+        "direction": "imports",
+        "month": "2025-08",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-09-products.json",
+        "direction": "imports",
+        "month": "2025-09",
+        "kind": "products",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2025-12-total.json",
+        "direction": "imports",
+        "month": "2025-12",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2026-03-total.json",
+        "direction": "imports",
+        "month": "2026-03",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2026-04-total.json",
+        "direction": "imports",
+        "month": "2026-04",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      },
+      {
+        "file": "raw/imports-2026-06-total.json",
+        "direction": "imports",
+        "month": "2026-06",
+        "kind": "total",
+        "status": 0,
+        "cause": "no-usable-response"
+      }
+    ],
+    "underlyingRetrievalFailureCause": "unverified",
+    "officialTable": {
+      "url": "https://www.census.gov/foreign-trade/balance/c1220.html",
+      "retrievedAt": "2026-10-10T23:45:54.735Z",
+      "lastModified": "Tue, 06 Oct 2026 13:08:40 GMT",
+      "httpDate": "Sat, 10 Oct 2026 23:45:54 GMT",
+      "httpStatus": 200,
+      "rawRecordSha256": "9121f5e716a2f038399866954f4dc1179d10d280c3153f6d61a7fc480018f2be"
+    },
+    "referenceCounts": {
+      "matched": 34,
+      "mismatch": 7,
+      "unavailable": 7
+    },
+    "referenceMismatches": [
+      {
+        "month": "2026-01",
+        "direction": "exports",
+        "apiTotalUsd": 24510292823,
+        "referenceUsd": 24461200000,
+        "differenceUsd": 49092823
+      },
+      {
+        "month": "2026-02",
+        "direction": "exports",
+        "apiTotalUsd": 28371311032,
+        "referenceUsd": 28417800000,
+        "differenceUsd": -46488968
+      },
+      {
+        "month": "2026-03",
+        "direction": "exports",
+        "apiTotalUsd": 31438946691,
+        "referenceUsd": 31654800000,
+        "differenceUsd": -215853309
+      },
+      {
+        "month": "2026-04",
+        "direction": "exports",
+        "apiTotalUsd": 29741092873,
+        "referenceUsd": 30197100000,
+        "differenceUsd": -456007127
+      },
+      {
+        "month": "2026-05",
+        "direction": "exports",
+        "apiTotalUsd": 29790835759,
+        "referenceUsd": 30399000000,
+        "differenceUsd": -608164241
+      },
+      {
+        "month": "2026-06",
+        "direction": "exports",
+        "apiTotalUsd": 30695510012,
+        "referenceUsd": 31007100000,
+        "differenceUsd": -311589988
+      },
+      {
+        "month": "2026-07",
+        "direction": "exports",
+        "apiTotalUsd": 29338645167,
+        "referenceUsd": 29545800000,
+        "differenceUsd": -207154833
+      }
+    ],
+    "underlyingReferenceMismatchCause": "unverified",
+    "referencePrecisionUsd": 100000,
+    "referenceCheck": "round API total and reference to displayed precision; differences retained without adjustment",
+    "candidateCounts": [
+      {
+        "direction": "imports",
+        "candidates": 4916,
+        "completeCandidates": 0,
+        "comparisonsAvailable": 0
+      },
+      {
+        "direction": "exports",
+        "candidates": 5339,
+        "completeCandidates": 4427,
+        "comparisonsAvailable": 0
+      }
+    ],
+    "candidates": 10255,
+    "arithmeticallyCompleteCandidates": 4427,
+    "sourceCoverage": "failed",
+    "classificationStatus": "unverified",
+    "comparisonsAvailable": 0,
     "releaseAccepted": false
   }
 }
