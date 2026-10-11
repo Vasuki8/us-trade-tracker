@@ -130,6 +130,16 @@ CSV exports include classification verification and line-break fields. Formula-l
 
 ## File management
 
+The optional local Canada bulk diagnostic uses an existing **Windows CPython 3.11+** interpreter and Node 24. It never installs a runtime or uses Census/R2 credentials. Run a read-only preflight first, with your absolute interpreter path and a fresh ignored destination:
+
+```text
+npm run data:diagnose-country-bulk -- --python C:/Python/python.exe --output data/backups/canada-country-audit/fresh-run --preflight
+```
+
+Remove `--preflight` to perform one fixed September 2024–August 2026 diagnostic: 48 monthly ZIPs, nine official HTML originals and seven pinned publication PDFs, serially with no retries. Existing destinations are refused. Originals remain compressed locally; no release, accepted data, R2 object or default audit retrieval changes. The command requires 16 GiB free before requests, stops below 2 GiB, caps originals at 12 GiB and generated evidence at 128 MiB, and limits the invocation to 60 minutes. Parsing children are measured every 250 ms and stopped above 1 GiB or 60 seconds.
+
+The report retains partial and unattempted outcomes. A nonzero exit is expected if May's current-reference mismatch persists; historical-publication matches cannot override that failure. Classification stays unverified and country releases/rolling comparisons remain unavailable. See the [diagnostic design](docs/superpowers/specs/2026-10-11-canada-bulk-diagnostic-design.md) for source, resource and acceptance boundaries. The fresh live result is recorded separately after independent replay.
+
 Track website code, import scripts, project documents, public assets, dependency lockfiles, and small test fixtures in Git. Store large source datasets and prepared data archives in Cloudflare R2, with a separate backup.
 
 Coffee downloads belong in `data/raw/`, generated datasets in `data/processed/`, and local backups in `data/backups/`. Other reviewed products have separate generated roots under `data/products/<code>/`. These folders are ignored by Git. Add accuracy-check samples under `tests/fixtures/` so they can be versioned.
