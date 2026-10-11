@@ -722,5 +722,453 @@
     "classificationStatus": "unverified",
     "releaseAccepted": false,
     "recommendation": "Retain failed full audit; isolate a narrowed aggregate query for remaining import failures, and investigate the common API/public-table source vintage before any acceptance retry. ALL_VAL_YR is not a supported monthly correction."
+  },
+  "aggregateProbe": {
+    "runId": 38101045210,
+    "runUrl": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/38101045210",
+    "jobId": 114356864815,
+    "headSha": "9cdc827a11ed61555340498b6d04367e20cfe134",
+    "mode": "aggregate-probe",
+    "baselineAuditRunId": 38096086464,
+    "conclusion": "failure",
+    "cause": "source-check-failure",
+    "retrievedAt": "2026-10-11T01:15:45.825Z",
+    "artifactId": 11687408230,
+    "artifactName": "census-1220-country-audit",
+    "artifactBytes": 548324,
+    "artifactSha256": "6adc288cb2b88f39e42bc374f669e0630e899658af54455655e0fd1b1b829022",
+    "zipEntries": 10,
+    "independentlyMatchedFiles": 10,
+    "extractedBytes": 3529166,
+    "completedDiagnosticReport": true,
+    "diagnosticReportSha256": "7f9a20eaea41b6ac3c0aecf042d3d8a8386cd133307c5a1e89f17dc47f27eb45",
+    "independentReplaySha256": "a32e860946bce049baa6ad63e1e647119093fefcc4fdd9a22a97eabeb9de2106",
+    "evidenceConsistencyVerified": true,
+    "independentReview": "matched",
+    "sourceRecords": 9,
+    "rawManifestDigestsVerified": 9,
+    "logicalRequests": 9,
+    "httpAttempts": 9,
+    "usableApiParts": 4,
+    "events": [
+      {
+        "label": "canada-reference",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T01:14:04.373Z",
+        "elapsedMs": 168
+      },
+      {
+        "label": "imports-2025-05-total-baseline",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T01:14:34.412Z",
+        "elapsedMs": 30001
+      },
+      {
+        "label": "imports-2025-05-total-explicit",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T01:14:34.415Z",
+        "elapsedMs": 30000
+      },
+      {
+        "label": "imports-2025-06-products-explicit",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T01:14:55.730Z",
+        "elapsedMs": 21312
+      },
+      {
+        "label": "imports-2025-06-products-baseline",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T01:14:56.307Z",
+        "elapsedMs": 21890
+      },
+      {
+        "label": "imports-2026-08-total-baseline",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T01:15:26.362Z",
+        "elapsedMs": 30001
+      },
+      {
+        "label": "imports-2026-08-total-explicit",
+        "attempt": 1,
+        "phase": "headers",
+        "httpStatus": null,
+        "errorCode": "timeout",
+        "retrievedAt": "2026-10-11T01:15:26.363Z",
+        "elapsedMs": 30000
+      },
+      {
+        "label": "exports-2026-05-total-baseline",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T01:15:29.492Z",
+        "elapsedMs": 3126
+      },
+      {
+        "label": "exports-2026-05-total-explicit",
+        "attempt": 1,
+        "phase": "complete",
+        "httpStatus": 200,
+        "errorCode": null,
+        "retrievedAt": "2026-10-11T01:15:45.823Z",
+        "elapsedMs": 19457
+      }
+    ],
+    "results": [
+      {
+        "label": "canada-reference",
+        "outcome": "received"
+      },
+      {
+        "label": "exports-2026-05-total-baseline",
+        "outcome": "validated",
+        "rows": 1,
+        "amountUsd": 29790835759,
+        "normalizedRowsSha256": "7860ae6c39735dc277a003edb271e23b9f1a592f66fdd12c9de663273b618a14"
+      },
+      {
+        "label": "exports-2026-05-total-explicit",
+        "outcome": "validated",
+        "rows": 1,
+        "amountUsd": 29790835759,
+        "normalizedRowsSha256": "7860ae6c39735dc277a003edb271e23b9f1a592f66fdd12c9de663273b618a14"
+      },
+      {
+        "label": "imports-2025-05-total-baseline",
+        "outcome": "failed"
+      },
+      {
+        "label": "imports-2025-05-total-explicit",
+        "outcome": "failed"
+      },
+      {
+        "label": "imports-2025-06-products-baseline",
+        "outcome": "validated",
+        "rows": 4302,
+        "amountUsd": 29645029011,
+        "normalizedRowsSha256": "cc0e713702ec00068b85d4e1f23e0b3b6f579e7defd5870aa7b0a925ca4ad484"
+      },
+      {
+        "label": "imports-2025-06-products-explicit",
+        "outcome": "validated",
+        "rows": 4302,
+        "amountUsd": 29645029011,
+        "normalizedRowsSha256": "cc0e713702ec00068b85d4e1f23e0b3b6f579e7defd5870aa7b0a925ca4ad484"
+      },
+      {
+        "label": "imports-2026-08-total-baseline",
+        "outcome": "failed"
+      },
+      {
+        "label": "imports-2026-08-total-explicit",
+        "outcome": "failed"
+      }
+    ],
+    "pairedComparisons": [
+      {
+        "direction": "imports",
+        "month": "2025-05",
+        "kind": "total",
+        "status": "unavailable",
+        "baselineRows": null,
+        "explicitRows": null,
+        "baselineAmountUsd": null,
+        "explicitAmountUsd": null
+      },
+      {
+        "direction": "imports",
+        "month": "2025-06",
+        "kind": "products",
+        "status": "equivalent",
+        "baselineRows": 4302,
+        "explicitRows": 4302,
+        "baselineAmountUsd": 29645029011,
+        "explicitAmountUsd": 29645029011
+      },
+      {
+        "direction": "imports",
+        "month": "2026-08",
+        "kind": "total",
+        "status": "unavailable",
+        "baselineRows": null,
+        "explicitRows": null,
+        "baselineAmountUsd": null,
+        "explicitAmountUsd": null
+      },
+      {
+        "direction": "exports",
+        "month": "2026-05",
+        "kind": "total",
+        "status": "equivalent",
+        "baselineRows": 1,
+        "explicitRows": 1,
+        "baselineAmountUsd": 29790835759,
+        "explicitAmountUsd": 29790835759
+      }
+    ],
+    "exportReferenceChecks": [
+      {
+        "month": "2026-05",
+        "direction": "exports",
+        "strategy": "baseline",
+        "apiTotalUsd": 29790835759,
+        "referenceUsd": 30399000000,
+        "differenceUsd": -608164241,
+        "precisionUsd": 100000,
+        "status": "mismatch"
+      },
+      {
+        "month": "2026-05",
+        "direction": "exports",
+        "strategy": "explicit",
+        "apiTotalUsd": 29790835759,
+        "referenceUsd": 30399000000,
+        "differenceUsd": -608164241,
+        "precisionUsd": 100000,
+        "status": "mismatch"
+      }
+    ],
+    "supportingOwnImportReferenceChecks": [
+      {
+        "label": "imports-2025-05-total-baseline",
+        "kind": "total",
+        "amountUsd": null,
+        "referenceUsd": 29977400000,
+        "differenceUsd": null,
+        "precisionUsd": 100000,
+        "status": "unavailable",
+        "meaning": "Supporting own-reference corroboration; product sum agreement alone cannot replace a separate API total"
+      },
+      {
+        "label": "imports-2025-05-total-explicit",
+        "kind": "total",
+        "amountUsd": null,
+        "referenceUsd": 29977400000,
+        "differenceUsd": null,
+        "precisionUsd": 100000,
+        "status": "unavailable",
+        "meaning": "Supporting own-reference corroboration; product sum agreement alone cannot replace a separate API total"
+      },
+      {
+        "label": "imports-2025-06-products-baseline",
+        "kind": "products",
+        "amountUsd": 29645029011,
+        "referenceUsd": 29645000000,
+        "differenceUsd": 29011,
+        "precisionUsd": 100000,
+        "status": "matched",
+        "meaning": "Supporting own-reference corroboration; product sum agreement alone cannot replace a separate API total"
+      },
+      {
+        "label": "imports-2025-06-products-explicit",
+        "kind": "products",
+        "amountUsd": 29645029011,
+        "referenceUsd": 29645000000,
+        "differenceUsd": 29011,
+        "precisionUsd": 100000,
+        "status": "matched",
+        "meaning": "Supporting own-reference corroboration; product sum agreement alone cannot replace a separate API total"
+      },
+      {
+        "label": "imports-2026-08-total-baseline",
+        "kind": "total",
+        "amountUsd": null,
+        "referenceUsd": 35980000000,
+        "differenceUsd": null,
+        "precisionUsd": 100000,
+        "status": "unavailable",
+        "meaning": "Supporting own-reference corroboration; product sum agreement alone cannot replace a separate API total"
+      },
+      {
+        "label": "imports-2026-08-total-explicit",
+        "kind": "total",
+        "amountUsd": null,
+        "referenceUsd": 35980000000,
+        "differenceUsd": null,
+        "precisionUsd": 100000,
+        "status": "unavailable",
+        "meaning": "Supporting own-reference corroboration; product sum agreement alone cannot replace a separate API total"
+      }
+    ],
+    "crossRunCorroboration": [
+      {
+        "label": "exports-2026-05-total-baseline",
+        "baselineSamePartUsd": 29790835759,
+        "baselineProductSumUsd": 29790835759,
+        "amountUsd": 29790835759,
+        "samePartDifferenceUsd": 0,
+        "productSumDifferenceUsd": 0,
+        "meaning": "Cross-run corroboration only; original audit remains unchanged"
+      },
+      {
+        "label": "exports-2026-05-total-explicit",
+        "baselineSamePartUsd": 29790835759,
+        "baselineProductSumUsd": 29790835759,
+        "amountUsd": 29790835759,
+        "samePartDifferenceUsd": 0,
+        "productSumDifferenceUsd": 0,
+        "meaning": "Cross-run corroboration only; original audit remains unchanged"
+      },
+      {
+        "label": "imports-2025-06-products-baseline",
+        "baselineSamePartUsd": null,
+        "baselineProductSumUsd": null,
+        "amountUsd": 29645029011,
+        "samePartDifferenceUsd": null,
+        "productSumDifferenceUsd": null,
+        "meaning": "Cross-run corroboration only; original audit remains unchanged"
+      },
+      {
+        "label": "imports-2025-06-products-explicit",
+        "baselineSamePartUsd": null,
+        "baselineProductSumUsd": null,
+        "amountUsd": 29645029011,
+        "samePartDifferenceUsd": null,
+        "productSumDifferenceUsd": null,
+        "meaning": "Cross-run corroboration only; original audit remains unchanged"
+      }
+    ],
+    "officialTable": {
+      "url": "https://www.census.gov/foreign-trade/balance/c1220.html",
+      "retrievedAt": "2026-10-11T01:14:04.376Z",
+      "lastModified": "Tue, 06 Oct 2026 13:08:40 GMT",
+      "httpDate": "Sun, 11 Oct 2026 01:14:04 GMT",
+      "error": null,
+      "httpStatus": 200,
+      "rawRecordSha256": "b610511353d4a09b1d90f302ef838dac8a5c3e6eb8e8ac8ed798aa6906f5ab32"
+    },
+    "probePassed": false,
+    "sourceCoverage": "unverified",
+    "classificationStatus": "unverified",
+    "releaseAccepted": false,
+    "underlyingRetrievalFailureCause": "unverified",
+    "explicitAggregateFixSupported": false,
+    "meaning": "Fixed strategy diagnostic only; paired differences do not prove a cause or establish complete country coverage",
+    "recommendation": "Keep the original query strategy. Review compatible publication references and an independently justified import-total alternative before another full audit."
+  },
+  "publicationVintageResearch": {
+    "sourceRole": "Supporting primary-source research; not substituted or archived/replayed acceptance inputs",
+    "baselineAuditRunId": 38096086464,
+    "originalPublicationMatches": 7,
+    "originalPublications": [
+      {
+        "month": "2026-01",
+        "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2601.pdf#page=56",
+        "pdfPage": 56,
+        "exhibit": "Appended Exhibit 4",
+        "basis": "Domestic and foreign exports, FAS, not seasonally adjusted",
+        "precisionUsd": 100000,
+        "publicationUsd": 24510300000,
+        "baselineApiTotalUsd": 24510292823,
+        "differenceUsd": -7177,
+        "status": "matched"
+      },
+      {
+        "month": "2026-02",
+        "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2602.pdf#page=55",
+        "pdfPage": 55,
+        "exhibit": "Appended Exhibit 4",
+        "basis": "Domestic and foreign exports, FAS, not seasonally adjusted",
+        "precisionUsd": 100000,
+        "publicationUsd": 28371300000,
+        "baselineApiTotalUsd": 28371311032,
+        "differenceUsd": 11032,
+        "status": "matched"
+      },
+      {
+        "month": "2026-03",
+        "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2603.pdf#page=54",
+        "pdfPage": 54,
+        "exhibit": "Appended Exhibit 4",
+        "basis": "Domestic and foreign exports, FAS, not seasonally adjusted",
+        "precisionUsd": 100000,
+        "publicationUsd": 31438900000,
+        "baselineApiTotalUsd": 31438946691,
+        "differenceUsd": 46691,
+        "status": "matched"
+      },
+      {
+        "month": "2026-04",
+        "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2604.pdf#page=55",
+        "pdfPage": 55,
+        "exhibit": "Appended Exhibit 4",
+        "basis": "Domestic and foreign exports, FAS, not seasonally adjusted",
+        "precisionUsd": 100000,
+        "publicationUsd": 29741100000,
+        "baselineApiTotalUsd": 29741092873,
+        "differenceUsd": -7127,
+        "status": "matched"
+      },
+      {
+        "month": "2026-05",
+        "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2605.pdf#page=53",
+        "pdfPage": 53,
+        "exhibit": "Appended Exhibit 4",
+        "basis": "Domestic and foreign exports, FAS, not seasonally adjusted",
+        "precisionUsd": 100000,
+        "publicationUsd": 29790800000,
+        "baselineApiTotalUsd": 29790835759,
+        "differenceUsd": 35759,
+        "status": "matched"
+      },
+      {
+        "month": "2026-06",
+        "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2606.pdf#page=53",
+        "pdfPage": 53,
+        "exhibit": "Appended Exhibit 4",
+        "basis": "Domestic and foreign exports, FAS, not seasonally adjusted",
+        "precisionUsd": 100000,
+        "publicationUsd": 30695500000,
+        "baselineApiTotalUsd": 30695510012,
+        "differenceUsd": 10012,
+        "status": "matched"
+      },
+      {
+        "month": "2026-07",
+        "url": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2607.pdf#page=54",
+        "pdfPage": 54,
+        "exhibit": "Appended Exhibit 4",
+        "basis": "Domestic and foreign exports, FAS, not seasonally adjusted",
+        "precisionUsd": 100000,
+        "publicationUsd": 29338600000,
+        "baselineApiTotalUsd": 29338645167,
+        "differenceUsd": 45167,
+        "status": "matched"
+      }
+    ],
+    "documentedMayRevision": {
+      "originalReleaseDate": "2026-07-07",
+      "originalUsd": 29790800000,
+      "originalPrecisionUsd": 100000,
+      "revisedReleaseDate": "2026-08-04",
+      "revisedUsd": 30399000000,
+      "revisedPrecisionUsd": 1000000,
+      "revisedSource": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2606.pdf#page=35",
+      "currentHtmlUsd": 30399000000
+    },
+    "canadianEstimatePolicySource": "https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_2606.pdf#page=7",
+    "assessment": "All seven retained monthly API totals match their original publications at displayed precision. Census documents replacing Canada estimates in subsequent news-release exhibits. A reference-vintage difference is supported; exact API revision metadata and attribution of all seven gaps remain unverified.",
+    "acceptanceGateChanged": false,
+    "classificationStatus": "unverified",
+    "releaseAccepted": false
   }
 }
