@@ -1,6 +1,6 @@
 # Canada country audit evidence
 
-**Latest verdict:** the completed 24-month audit failed source acceptance. Independent replay verifies the retained evidence and calculations, but nine import parts are unavailable and seven export totals disagree with the retained official table. No Canada release or country comparison is accepted. Earlier runs below are historical checkpoints.
+**Latest verdict:** the completed 24-month audit failed source acceptance. A separately retained followup retrieved two of its nine missing import parts; seven still timed out. The export cumulative value equals the original API monthly sum and remains $1,796,212,748 below the followup's official reference sum, so substituting `ALL_VAL_YR` does not resolve the discrepancy. Independent replay and review verify both runs' evidence, not source acceptance. No Canada release or country comparison is accepted. Earlier runs below are historical checkpoints.
 
 ## October 10 first live run: incomplete, no source acceptance
 
@@ -85,7 +85,28 @@ The manual `source-followup` diagnostic tests the two observed problems separate
 
 Original credential-safe bodies and every attempt remain retained, with header/body failure phase, elapsed time and allowlisted transport codes. The cumulative comparison requires all eight January–August 2026 reference rows. It reports the signed difference from their rounded sum with a $400,000 accumulated rounding bound; an unavailable input remains unavailable. Agreement within that bound corroborates cumulative values only. It cannot repair the seven monthly discrepancies, prove a revision cause, substitute monthly denominators or establish classification compatibility.
 
-The followup writes an isolated diagnostic report, not a country release or combined accepted dataset. It never overwrites the original failed audit. Its source and classification statuses stay unverified regardless of diagnostic outcome. Live followup findings will be recorded after exact-head code checks and independent source replay; the latest full-audit verdict above remains failed.
+The followup writes an isolated diagnostic report, not a country release or combined accepted dataset. It never overwrites the original failed audit. Its source and classification statuses stay unverified regardless of diagnostic outcome. The latest full-audit verdict above remains failed.
+
+### Live followup: two import totals retrieved; cumulative correction hypothesis rejected
+
+[PR #41](https://github.com/Vasuki8/us-trade-tracker/pull/41) passed independent review and [exact-head checks](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38098183253): 523 tests, zero diagnostics across 137 checked files and 52 browser cases. [Followup run 38098594901](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38098594901) used merged main commit `5ea158b79c0409bb64678db7a3bfe6db07cf2be4`. Its code checks passed before retrieval. Eleven logical requests made eleven attempts; retrieval finished in about 129 seconds, inside the nine-minute step. The workflow failed its source diagnostic, rather than timing out, and upload succeeded.
+
+The 37,405-byte ZIP matches GitHub's SHA-256 `915ab060f10c8f1700ca47c65d1b7094bc33ce39aa67f438813a17d98b32b3c0`. Independent verification and separate review matched all **12 members** (244,586 extracted bytes), all **11 original-record manifest digests**, request/attempt/event identities, original response contracts and the cumulative calculation. This verifies evidence consistency only.
+
+Seven import requests timed out before response headers at 30,000–30,001 ms: May 2025 total; June 2025 total and breakdown; August 2025 total; September 2025 breakdown; December 2025 total; April 2026 total. Each retained attempt has null status/body and the allowlisted `timeout` code. There were no HTTP 429/5xx responses triggering a retry. This establishes the observed failure phase and deadline, but not the underlying server or network cause. The two remaining import totals returned HTTP 200 with the expected Canada CY aggregate contract:
+
+| Import month | Followup total USD | Original audit HS6 sum USD | Followup rounded reference USD |
+| --- | ---: | ---: | ---: |
+| 2026-03 | 34,089,317,327 | 34,089,317,327 | 34,089,300,000 |
+| 2026-06 | 37,216,785,546 | 37,216,785,546 | 37,216,800,000 |
+
+Both exact cross-run residuals are $0 and both totals match the followup reference at its displayed precision. This corroborates those two totals without overwriting the original audit, creating a combined accepted dataset or establishing complete import coverage. No missing HS6 breakdown was retrieved.
+
+August exports returned monthly `ALL_VAL_MO = $30,289,552,895` and cumulative `ALL_VAL_YR = $234,176,187,252`. The cumulative value **exactly equals the original audit's January–August API monthly sum**. The followup's own eight rounded official export months sum to **$235,972,400,000**. Their signed difference is **-$1,796,212,748**, outside the **$400,000** accumulated rounding bound. Thus the specific hypothesis that the API cumulative field already supplies a corrected total is rejected for this retrieval. Census's documented revision process remains relevant background, but the cause of the API/public-table discrepancy is still unverified. Neither cumulative values nor statistical adjustments may be substituted for monthly product denominators.
+
+The followup reference was retrieved `2026-10-11T00:30:34.037Z` (October 10 in the local timezone), with `Last-Modified: Tue, 06 Oct 2026 12:35:31 GMT` and `Date: Sun, 11 Oct 2026 00:30:34 GMT`. Its Last-Modified differs from the original full audit's `13:08:40 GMT`, but all eight displayed 2026 export months are identical across the two references. Retain both originals; the timestamp difference alone does not establish a revision or caching cause. The export API row again reports `LAST_UPDATE = "0"`, which provides no useful revision date.
+
+**Next recommendation:** investigate a narrower aggregate request against the retained import query under unchanged month, country, validation and deadline controls, and investigate the common API/public-table source vintage. Do not repeat all 96 requests or implement an `ALL_VAL_YR` correction. The original full audit remains failed, this diagnostic remains unverified for source/classification acceptance, and country release/archive and page work should wait. All accepted coffee hashes remain unchanged. See the exact report/replay hashes and findings in the [machine-readable evidence](1220-country-audit-evidence.json).
 
 ## Product eligibility questions retained for the next design
 
