@@ -108,6 +108,37 @@ class OriginalRecord:
     elapsed_seconds: float = 0
 
 
+@dataclass(frozen=True)
+class HS6Row:
+    commodity: str
+    description: str | None
+    value_usd: int
+    detail_record_count: int
+    special: bool
+
+
+@dataclass(frozen=True)
+class ArchiveResult:
+    context: Context
+    rows: tuple[HS6Row, ...]
+    sum_usd: int
+    country_total_usd: int
+    residual_usd: int
+    members: dict
+    full_key_count: int
+    observations: dict
+
+
+@dataclass
+class WorkerOutcome:
+    state: str = 'unattempted'
+    reason: str | None = None
+    sampled_working_set: int = 0
+    peak_working_set: int = 0
+    elapsed_seconds: float = 0
+    files: dict | None = None
+
+
 def validate_projection(payload: dict) -> tuple[PublicationPin, ...]:
     require(type(payload) is dict and set(payload) == {'schemaVersion', 'countryCode', 'publications'}, 'invalid-projection')
     require(type(payload['schemaVersion']) is int and payload['schemaVersion'] == 1 and payload['countryCode'] == '1220', 'invalid-projection')
