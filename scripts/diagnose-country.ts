@@ -1,19 +1,21 @@
 import {mkdir,writeFile} from 'node:fs/promises';import {dirname,join,resolve} from 'node:path';import {pathToFileURL} from 'node:url';import {createHash} from 'node:crypto';import {execFileSync} from 'node:child_process';
-import {resolveCountryAuditOptions,validateCountryAuditOptions} from './audit-country';import {fetchCountryPart,fetchCountryExportCumulativeTotal} from './census-country-client';import {parseCountryReference} from './country-reference';import type {CountryAuditOptions,CountryAuditReport,CountryReferenceRow} from './country-audit-types';
+import {resolveCountryAuditOptions,validateCountryAuditOptions} from './audit-country';import {fetchCountryPart,fetchCountryExportCumulativeTotal,fetchCountryImportEnduseTotal} from './census-country-client';import {parseCountryReference} from './country-reference';import type {CountryAuditOptions,CountryAuditReport,CountryReferenceRow,CountryRaw} from './country-audit-types';
 
 // Fixed failed identities from retained audit 38096086464; this is not a resume/acceptance path.
 const missingImports=[['2025-05','total'],['2025-06','total'],['2025-06','products'],['2025-08','total'],['2025-09','products'],['2025-12','total'],['2026-03','total'],['2026-04','total'],['2026-06','total']] as const;
 type Event={label:string;attempt:number;phase:'complete'|'headers'|'body';retrievedAt:string;elapsedMs:number;httpStatus:number|null;errorCode:string|null};
 type Result={label:string;outcome:'received'|'validated'|'failed';rows?:number;amountUsd?:number|null;yearToDateUsd?:number|null;normalizedRowsSha256?:string};
 const aggregateContexts=[{direction:'imports',month:'2025-05',kind:'total'},{direction:'imports',month:'2025-06',kind:'products'},{direction:'imports',month:'2026-08',kind:'total'},{direction:'exports',month:'2026-05',kind:'total'}] as const;
+const totalMonths=['2025-05','2025-06','2026-08'] as const;
 const safeCodes=new Set(['UND_ERR_CONNECT_TIMEOUT','UND_ERR_HEADERS_TIMEOUT','UND_ERR_BODY_TIMEOUT','ECONNRESET','ETIMEDOUT','ENOTFOUND','ECONNREFUSED','ENETUNREACH','EHOSTUNREACH','ABORT_ERR']);
 function safeErrorCode(error:unknown){const cause=error as {cause?:{code?:unknown};name?:string}|null;const code=String(cause?.cause?.code??'');return safeCodes.has(code)?code:cause?.name==='TimeoutError'?'timeout':'unknown';}
 function safeSum(values:(number|null)[]){if(!values.length||values.some(value=>value===null))return null;const value=values.reduce<bigint>((sum,value)=>sum+BigInt(value!),0n);return value>BigInt(Number.MAX_SAFE_INTEGER)?null:Number(value);}
 
-async function runCountryDiagnostic(options:CountryAuditOptions,fetchImpl:typeof fetch,aggregateProbe:boolean){
+async function runCountryDiagnostic(options:CountryAuditOptions,fetchImpl:typeof fetch,mode:'followup'|'aggregate'|'total'){
+ const aggregateProbe=mode==='aggregate';
  validateCountryAuditOptions(options);await mkdir(dirname(resolve(options.outputDir)),{recursive:true});try{await mkdir(options.outputDir);}catch{throw new Error('Followup requires fresh output; directory already exists or cannot be created');}await mkdir(join(options.outputDir,'raw'));
  const events:Event[]=[],results:Result[]=[],rawFiles:CountryAuditReport['rawFiles']=[],attempts=new Map<string,number>();
- async function save(label:string,payload:unknown){const bytes=Buffer.from(JSON.stringify(payload));if(bytes.includes(Buffer.from(options.apiKey))||bytes.includes(Buffer.from(encodeURIComponent(options.apiKey))))throw new Error('Credential-bearing diagnostic evidence');const path=`raw/${aggregateProbe?'aggregate':'followup'}-${label}.json`;await writeFile(join(options.outputDir,path),bytes,{flag:'wx'});rawFiles.push({path,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')});}
+ async function save(label:string,payload:unknown){const bytes=Buffer.from(JSON.stringify(payload));if(bytes.includes(Buffer.from(options.apiKey))||bytes.includes(Buffer.from(encodeURIComponent(options.apiKey))))throw new Error('Credential-bearing diagnostic evidence');const path=`raw/${mode}-${label}.json`;await writeFile(join(options.outputDir,path),bytes,{flag:'wx'});rawFiles.push({path,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')});}
  function instrument(label:string):typeof fetch{return (async(input,init)=>{
   const started=Date.now(),attempt=(attempts.get(label)??0)+1;attempts.set(label,attempt);let response:Response;
   const record=(phase:Event['phase'],httpStatus:number|null,errorCode:string|null)=>events.push({label,attempt,phase,httpStatus,errorCode,retrievedAt:new Date().toISOString(),elapsedMs:Date.now()-started});
@@ -36,7 +38,14 @@ async function runCountryDiagnostic(options:CountryAuditOptions,fetchImpl:typeof
 
  const tasks=missingImports.map(([month,kind])=>{const label=`imports-${month}-${kind}`;return {label,run:async()=>{const part=await fetchCountryPart({countryCode:options.countryCode,month,direction:'imports',kind,apiKey:options.apiKey,onRaw:raw=>save(label,raw)},instrument(label));return {label,outcome:'validated' as const,rows:part.rows.length,amountUsd:safeSum(part.rows.map(row=>row.valueUsd))};}};});
  const cumulativeLabel='exports-2026-08-cumulative';let cumulativeUsd:number|null=null;
- const allTasks:{label:string;run:()=>Promise<Result>}[]=aggregateProbe?aggregateContexts.flatMap(context=>(['baseline','explicit'] as const).map(strategy=>{
+ const allTasks:{label:string;run:()=>Promise<Result>}[]=mode==='total'?totalMonths.flatMap(month=>(['hs','enduse'] as const).map(endpoint=>{
+  const label=`imports-${month}-total-${endpoint}`;
+  return {label,run:async()=>{
+   const request={countryCode:options.countryCode,month,direction:'imports' as const,kind:'total' as const,apiKey:options.apiKey,onRaw:(raw:CountryRaw)=>save(label,raw)};
+   if(endpoint==='enduse'){const total=await fetchCountryImportEnduseTotal(request,instrument(label));return {label,outcome:'validated' as const,rows:1,amountUsd:total.valueUsd};}
+   const part=await fetchCountryPart(request,instrument(label));return {label,outcome:'validated' as const,rows:part.rows.length,amountUsd:part.rows[0].valueUsd};
+  }};
+ })):aggregateProbe?aggregateContexts.flatMap(context=>(['baseline','explicit'] as const).map(strategy=>{
   const label=`${context.direction}-${context.month}-${context.kind}-${strategy}`;
   return {label,run:async()=>{
    const part=await fetchCountryPart({...context,countryCode:options.countryCode,explicitAggregates:strategy==='explicit',apiKey:options.apiKey,onRaw:raw=>save(label,raw)},instrument(label));
@@ -61,17 +70,30 @@ async function runCountryDiagnostic(options:CountryAuditOptions,fetchImpl:typeof
   const result=results.find(row=>row.label===`exports-2026-05-total-${strategy}`)!,referenceUsd=referenceRows.find(row=>row.month==='2026-05')?.exportsUsd??null,apiTotalUsd=result.amountUsd??null;
   return {month:'2026-05',direction:'exports',strategy,apiTotalUsd,referenceUsd,differenceUsd:apiTotalUsd===null||referenceUsd===null?null:apiTotalUsd-referenceUsd,precisionUsd:100000,status:apiTotalUsd===null||referenceUsd===null?'unavailable':Math.round(apiTotalUsd/100000)*100000===referenceUsd?'matched':'mismatch'};
  }):[];
+ const totalComparisons=mode==='total'?totalMonths.map(month=>{
+  const hsTotalUsd=results.find(row=>row.label===`imports-${month}-total-hs`)?.amountUsd??null,enduseTotalUsd=results.find(row=>row.label===`imports-${month}-total-enduse`)?.amountUsd??null;
+  return {month,direction:'imports',hsTotalUsd,enduseTotalUsd,differenceUsd:hsTotalUsd===null||enduseTotalUsd===null?null:enduseTotalUsd-hsTotalUsd,status:hsTotalUsd===null||enduseTotalUsd===null?'unavailable':hsTotalUsd===enduseTotalUsd?'equivalent':'mismatch'};
+ }):[];
+ const importReferenceChecks=mode==='total'?totalMonths.flatMap(month=>(['hs','enduse'] as const).map(endpoint=>{
+  const apiTotalUsd=results.find(row=>row.label===`imports-${month}-total-${endpoint}`)?.amountUsd??null,referenceUsd=referenceRows.find(row=>row.month===month)?.importsUsd??null;
+  return {month,direction:'imports',endpoint,apiTotalUsd,referenceUsd,differenceUsd:apiTotalUsd===null||referenceUsd===null?null:apiTotalUsd-referenceUsd,precisionUsd:100000,status:apiTotalUsd===null||referenceUsd===null?'unavailable':Math.round(apiTotalUsd/100000)*100000===referenceUsd?'matched':'mismatch'};
+ })):[];
  const common={schemaVersion:1,baselineAuditRunId:38096086464,countryCode:options.countryCode,reportingMonth:options.end,codeVersion:options.codeVersion??'unspecified',retrievedAt:new Date().toISOString(),sourceCoverage:'unverified',classificationStatus:'unverified',releaseAccepted:false,logicalRequests:allTasks.length+1,events,results,rawFiles,reference};
- return {common,allUsable,pairedComparisons,exportReferenceChecks,cumulativeComparison:{status,referenceMonths:yearRows.length,apiYearToDateUsd:cumulativeUsd,referenceMonthlySumUsd,differenceUsd,roundingBoundUsd,meaning:'Cumulative corroboration only; does not resolve monthly differences or establish product eligibility'}};
+ return {common,allUsable,pairedComparisons,exportReferenceChecks,totalComparisons,importReferenceChecks,cumulativeComparison:{status,referenceMonths:yearRows.length,apiYearToDateUsd:cumulativeUsd,referenceMonthlySumUsd,differenceUsd,roundingBoundUsd,meaning:'Cumulative corroboration only; does not resolve monthly differences or establish product eligibility'}};
 }
 export async function runCountryFollowup(options:CountryAuditOptions,fetchImpl:typeof fetch=fetch){
- const {common,allUsable,cumulativeComparison}=await runCountryDiagnostic(options,fetchImpl,false);
+ const {common,allUsable,cumulativeComparison}=await runCountryDiagnostic(options,fetchImpl,'followup');
  const report={...common,purpose:'source-followup-diagnostic',diagnosticPassed:allUsable&&cumulativeComparison.status==='within-rounding-bound',cumulativeComparison};
  await writeFile(join(options.outputDir,'source-followup.json'),JSON.stringify(report,null,2),{flag:'wx'});return report;
 }
 export async function runCountryAggregateProbe(options:CountryAuditOptions,fetchImpl:typeof fetch=fetch){
- const {common,allUsable,pairedComparisons,exportReferenceChecks}=await runCountryDiagnostic(options,fetchImpl,true);
+ const {common,allUsable,pairedComparisons,exportReferenceChecks}=await runCountryDiagnostic(options,fetchImpl,'aggregate');
  const report={...common,purpose:'aggregate-query-diagnostic',probePassed:allUsable&&pairedComparisons.every(row=>row.status==='equivalent')&&exportReferenceChecks.every(row=>row.status==='matched'),pairedComparisons,exportReferenceChecks,meaning:'Fixed query-strategy evidence only; paired differences do not prove a cause or establish full coverage, compatible classifications or release acceptance'};
  await writeFile(join(options.outputDir,'aggregate-probe.json'),JSON.stringify(report,null,2),{flag:'wx'});return report;
+}
+export async function runCountryTotalProbe(options:CountryAuditOptions,fetchImpl:typeof fetch=fetch){
+ const {common,allUsable,totalComparisons,importReferenceChecks}=await runCountryDiagnostic(options,fetchImpl,'total');
+ const report={...common,purpose:'total-endpoint-diagnostic',probePassed:allUsable&&totalComparisons.every(row=>row.status==='equivalent')&&importReferenceChecks.every(row=>row.status==='matched'),totalComparisons,importReferenceChecks,meaning:'Fixed import total endpoint evidence only; an available alternate does not replace missing HS totals or establish full coverage, compatible classifications or release acceptance'};
+ await writeFile(join(options.outputDir,'total-probe.json'),JSON.stringify(report,null,2),{flag:'wx'});return report;
 }
 if(process.argv[1]&&pathToFileURL(resolve(process.argv[1])).href===import.meta.url){try{const options=resolveCountryAuditOptions(process.argv.slice(2),process.env);const report=await runCountryFollowup({...options,codeVersion:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()});console.log(`Canada source followup: ${report.results.length} logical checks, ${report.events.length} attempts; ${report.diagnosticPassed?'passed':'failed'}. Coverage and classification remain unverified; no release accepted.`);if(!report.diagnosticPassed)process.exitCode=1;}catch{console.error('Canada source followup failed; inspect retained evidence.');process.exitCode=1;}}

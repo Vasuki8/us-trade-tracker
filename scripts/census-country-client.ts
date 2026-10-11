@@ -35,17 +35,17 @@ export function normalizeCountryPart(payload:unknown,context:CountryContext):Cou
   return {...publicContext(context),measure,rows};
 }
 const noContent=Symbol('country-no-content');
-async function fetchCountryTable(options:CountryFetchOptions,fetchImpl:typeof fetch,cumulative=false):Promise<unknown>{
+async function fetchCountryTable(options:CountryFetchOptions,fetchImpl:typeof fetch,mode:'hs'|'export-cumulative'|'import-enduse-total'='hs'):Promise<unknown>{
   validateContext(options);if(!options.apiKey.trim())throw new Error('Census key required');
-  const {columns}=fields(options.direction);
-  const url=new URL(`https://api.census.gov/data/timeseries/intltrade/${options.direction}/hs`);
+  const columns=mode==='import-enduse-total'?['I_ENDUSE','I_ENDUSE_LDESC','GEN_VAL_MO','CTY_CODE','CTY_NAME','COMM_LVL','SUMMARY_LVL','SUMMARY_LVL2','DISTRICT','LAST_UPDATE']:fields(options.direction).columns;
+  const url=new URL(`https://api.census.gov/data/timeseries/intltrade/${options.direction}/${mode==='import-enduse-total'?'enduse':'hs'}`);
   url.searchParams.set('CTY_CODE',options.countryCode);url.searchParams.set('SUMMARY_LVL','DET');url.searchParams.set('SUMMARY_LVL2',options.kind==='total'?'CY':'HSCY');
   // Census recommends native calendar predicates to reduce monthly query processing.
   url.searchParams.set('YEAR',options.month.slice(0,4));url.searchParams.set('MONTH',options.month.slice(5));
   if(options.kind==='products')url.searchParams.set('COMM_LVL','HS6');
   // Opt-in diagnostic strategy; returned dimensions still pass the same strict validator.
   if(options.explicitAggregates)for(const field of options.direction==='imports'?['DISTRICT','RP','CTY_SUBCODE']:['DISTRICT','DF'])url.searchParams.set(field,'-');
-  url.searchParams.set('get',[...columns,...(cumulative?['ALL_VAL_YR']:[])].filter(column=>!url.searchParams.has(column)).join(','));
+  url.searchParams.set('get',[...columns,...(mode==='export-cumulative'?['ALL_VAL_YR']:[])].filter(column=>!url.searchParams.has(column)).join(','));
   const requestUrl=url.toString();url.searchParams.set('key',options.apiKey);
   let response:Response|undefined;let attempts=0;let responseBody='';const responses:CountryRaw['responses']=[];
   const persist=async()=>{const last=responses.at(-1)!;await options.onRaw?.({schemaVersion:1,...publicContext(options),requestUrl,retrievedAt:last.retrievedAt,httpStatus:last.httpStatus??0,attempts,responseBody:last.responseBody??'',responses});};
@@ -88,5 +88,25 @@ export function normalizeCountryExportCumulativeTotal(payload:unknown,context:Co
 }
 export async function fetchCountryExportCumulativeTotal(options:CountryFetchOptions,fetchImpl:typeof fetch=fetch){
   validateContext(options);if(options.direction!=='exports'||options.kind!=='total')throw new Error('Cumulative diagnostic requires an export total');
-  return normalizeCountryExportCumulativeTotal(await fetchCountryTable(options,fetchImpl,true),options);
+  return normalizeCountryExportCumulativeTotal(await fetchCountryTable(options,fetchImpl,'export-cumulative'),options);
+}
+
+function validateEnduseContext(context:CountryContext){validateContext(context);if(context.direction!=='imports'||context.kind!=='total')throw new Error('End-use diagnostic requires an import total');}
+// This endpoint has no RP or CTY_SUBCODE fields. Validate its own aggregate contract.
+export function normalizeCountryImportEnduseTotal(payload:unknown,context:CountryContext){
+  validateEnduseContext(context);
+  const columns=['I_ENDUSE','I_ENDUSE_LDESC','GEN_VAL_MO','CTY_CODE','CTY_NAME','COMM_LVL','SUMMARY_LVL','SUMMARY_LVL2','DISTRICT','LAST_UPDATE','YEAR','MONTH'];
+  if(!Array.isArray(payload)||payload.length!==2||!Array.isArray(payload[0])||!Array.isArray(payload[1]))throw new Error('Missing or duplicate end-use total');
+  const [headers,cell]=payload as unknown[][];
+  if(headers.some(header=>typeof header!=='string')||new Set(headers).size!==headers.length||headers.length!==columns.length||columns.some(column=>!headers.includes(column))||cell.length!==headers.length)throw new Error('Unexpected end-use columns');
+  const row=Object.fromEntries(headers.map((header,index)=>[String(header),cell[index]]));
+  if(columns.filter(column=>column!=='GEN_VAL_MO').some(column=>typeof row[column]!=='string'))throw new Error('Invalid end-use dimension type');
+  if(row.I_ENDUSE!=='-'||!['','-'].includes(String(row.COMM_LVL))||row.CTY_CODE!==context.countryCode||row.CTY_NAME!=='CANADA'||row.SUMMARY_LVL!=='DET'||row.SUMMARY_LVL2!=='CY'||row.DISTRICT!=='-'||row.YEAR!==context.month.slice(0,4)||row.MONTH!==context.month.slice(5))throw new Error('Unexpected end-use identity or aggregation');
+  const raw=row.GEN_VAL_MO,missing=raw===null||raw===''||raw==='null';
+  if(!missing&&(typeof raw!=='string'||!/^\d+$/.test(raw)||!Number.isSafeInteger(Number(raw))))throw new Error('Invalid end-use dollar value');
+  return {countryCode:context.countryCode,month:context.month,endpoint:'enduse' as const,measure:'GEN_VAL_MO' as const,description:String(row.I_ENDUSE_LDESC),valueUsd:missing?null:Number(raw)};
+}
+export async function fetchCountryImportEnduseTotal(options:CountryFetchOptions,fetchImpl:typeof fetch=fetch){
+  validateEnduseContext(options);if(options.explicitAggregates)throw new Error('End-use diagnostic does not support HS subdivision predicates');
+  return normalizeCountryImportEnduseTotal(await fetchCountryTable(options,fetchImpl,'import-enduse-total'),options);
 }

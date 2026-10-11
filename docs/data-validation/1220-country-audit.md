@@ -168,3 +168,19 @@ The current-reference mismatch is real, but it does not by itself prove the API 
 - Retain the full run's own API retrieval times and Canada-table retrieval/version. August product `LAST_UPDATE` values are all `"0"`, which gives no useful revision date. Rounded official-table agreement corroborates monthly totals, not product continuity or classification eligibility.
 
 Until those questions have reviewed evidence, every product candidate remains `classificationStatus: unverified` and `comparisonAvailable: false`, even if its arithmetic and monthly observations are complete.
+
+## Controlled import-total endpoint probe
+
+The explicit-subdivision probe did not provide a supported fix. The next controlled alternative compares two Census commodity-classification endpoints for the same **country all-goods import total**, rather than changing source definitions or extending timeouts.
+
+The [official import end-use metadata](https://api.census.gov/data/timeseries/intltrade/imports/enduse/variables.json) supplies `GEN_VAL_MO` (general-import total value), `I_ENDUSE`, `I_ENDUSE_LDESC`, calendar fields, country, district and summary dimensions. It does not supply HS-only `RP` or `CTY_SUBCODE`. The [API guide](https://www.census.gov/foreign-trade/reference/guides/Guide_to_International_Trade_Datasets.pdf) distinguishes country `CY` from end-use-by-country `EUCY` and documents the dash aggregate. These facts justify testing the alternative; they do not establish its observed availability or equivalence.
+
+Manual `total-probe` retrieves its own official Canada reference first, then these fixed pairs: May 2025 import total, June 2025 import total, and August 2026 import total control. Each pair uses original `imports/hs` and alternative `imports/enduse`, with exact `YEAR`/`MONTH`, Canada `1220`, `SUMMARY_LVL=DET`, `SUMMARY_LVL2=CY` and `GEN_VAL_MO`. The end-use result must be exactly one aggregate `I_ENDUSE=-` row with empty/dash commodity level, national district, Canada name/code and exact period. Extra, duplicate, missing, subdivided or unknown fields fail closed. The alternate has a dedicated total type; it never masquerades as an HS6 product.
+
+The reference runs alone; then at most two API requests run concurrently. Seven logical requests permit at most nineteen attempts: a 30-second reference plus three paired 91.5-second retry schedules totals 304.5 seconds, within a six-minute step. Existing HTTP-only retry and 30-second request deadlines remain. Original credential-safe responses, all retry bodies, phase/status diagnostics, byte counts and SHA-256 records are retained under fresh output.
+
+`total-probe.json` separates exact endpoint dollar equality from each endpoint's own rounded reference agreement. A timeout or missing total leaves the pair unavailable even if the alternate matches the reference. This is evidence for a possible retrieval strategy, not fallback acceptance. Default full-audit queries, current-reference mismatch records, classification gates and accepted coffee files remain unchanged. Actual results require independent artifact verification and replay before considering adoption.
+
+### Reference-vintage protocol direction
+
+The seven original-publication matches remain supporting research. Before an original FT900 figure can become a validation input, retain its original publication bytes and digest, identify the release, country, measure, month, table/page and displayed precision, and independently verify the extraction. Keep current-table checks alongside original-publication checks so revisions stay visible. Never substitute revised totals into an unrevised product denominator, scale products, or widen rounding to hide a disagreement. A matched original publication can corroborate vintage; it does not prove HS6 completeness or classification continuity. No gate has changed and no original-publication ledger is accepted yet.
