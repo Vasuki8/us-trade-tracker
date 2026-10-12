@@ -2,6 +2,14 @@ import {test,expect} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 import {parseCsv} from '../helpers/parse-csv';
 const route='/preview/countries/1220/';
+async function expectReadableCountryChart(page:import('@playwright/test').Page,title:string){
+  const image=page.getByRole('img',{name:title});await expect(image).toHaveCount(1);
+  const sizes=await image.evaluate(element=>{
+    const visible=Array.from(element instanceof SVGSVGElement?[element]:element.querySelectorAll('svg')).find(el=>el.getBoundingClientRect().width>0)!;
+    return Array.from(visible.querySelectorAll('text')).map(label=>parseFloat(getComputedStyle(label).fontSize)*visible.getBoundingClientRect().width/visible.viewBox.baseVal.width);
+  });
+  expect(sizes.length).toBeGreaterThan(0);for(const size of sizes)expect(size).toBeGreaterThanOrEqual(12);
+}
 test.beforeEach(async({page})=>{await page.route('**/*',route=>{const url=new URL(route.request().url());if(url.hostname!=='127.0.0.1'&&url.protocol!=='blob:')throw new Error('Unexpected provider/network request');return route.continue();});});
 test('fixture page shows default research, switches everything and preserves reference exclusions',async({page},info)=>{
   await page.goto(route);await expect(page.getByRole('radio',{name:'Imports'})).toBeChecked();await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','noindex,nofollow');
@@ -24,7 +32,19 @@ test('supports keyboard controls and contained mobile tables',async({page},info)
   const button=page.getByRole('button',{name:'Download monthly CSV'});await button.focus();const event=page.waitForEvent('download');await page.keyboard.press('Enter');expect((await event).suggestedFilename()).toContain('exports');
   await page.screenshot({path:info.outputPath('mobile.png'),fullPage:true});
 });
+test('keeps chart labels readable across phone and desktop widths in both directions',async({page},info)=>{
+  await page.goto(route);
+  for(const width of [320,375,680,681,1024]){
+    await page.setViewportSize({width,height:812});
+    for(const direction of ['Imports','Exports']){
+      await page.getByRole('radio',{name:direction}).check();
+      await expectReadableCountryChart(page,direction==='Imports'?'Monthly U.S. imports from Canada':'Monthly U.S. exports to Canada');
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+    }
+    if(width===375)await page.getByRole('region',{name:'All-goods history'}).screenshot({path:info.outputPath('readable-mobile-chart.png')});
+  }
+});
 test('provides Imports research and sources without JavaScript',async({browser,baseURL})=>{
-  const context=await browser.newContext({javaScriptEnabled:false});const page=await context.newPage();const requests:string[]=[];page.on('request',r=>{if(!r.url().startsWith(baseURL!))requests.push(r.url());});await page.goto(baseURL+route);
-  await expect(page.getByRole('table',{name:'Monthly U.S. imports from Canada · nominal USD'}).getByRole('row')).toHaveCount(25);await expect(page.getByRole('region',{name:'Country overview'})).toContainText('$2,400,000');await expect(page.locator('noscript p')).toContainText('require JavaScript');await expect(page.getByRole('region',{name:'Sources and revision differences'})).toContainText('Product shares here use totals from the same files');expect(requests).toEqual([]);await context.close();
+  const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:375,height:812}});const page=await context.newPage();const requests:string[]=[];page.on('request',r=>{if(!r.url().startsWith(baseURL!))requests.push(r.url());});await page.goto(baseURL+route);
+  await expect(page.getByRole('table',{name:'Monthly U.S. imports from Canada · nominal USD'}).getByRole('row')).toHaveCount(25);await expect(page.getByRole('region',{name:'Country overview'})).toContainText('$2,400,000');await expect(page.locator('noscript p')).toContainText('require JavaScript');await expect(page.getByRole('region',{name:'Sources and revision differences'})).toContainText('Product shares here use totals from the same files');await expectReadableCountryChart(page,'Monthly U.S. imports from Canada');expect(requests).toEqual([]);await context.close();
 });
