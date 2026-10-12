@@ -29,6 +29,9 @@ test('supports keyboard controls and contained mobile tables',async({page},info)
   await page.setViewportSize({width:375,height:812});await page.goto(route);const imports=page.getByRole('radio',{name:'Imports'});await imports.focus();await page.keyboard.press('ArrowRight');await expect(page.getByRole('radio',{name:'Exports'})).toBeChecked();
   const scroll=page.getByRole('region',{name:'Selected country category comparisons'});await scroll.focus();await expect(scroll).toBeFocused();await page.keyboard.press('End');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);expect(await scroll.evaluate(el=>el.scrollWidth>el.clientWidth)).toBe(true);
+  const references=page.getByRole('region',{name:'Country reference differences'});
+  const monthWidth=await references.getByRole('columnheader',{name:'Month',exact:true}).evaluate(el=>el.getBoundingClientRect().width);
+  expect(monthWidth).toBeLessThan(await references.evaluate(el=>el.clientWidth/2));
   const button=page.getByRole('button',{name:'Download monthly CSV'});await button.focus();const event=page.waitForEvent('download');await page.keyboard.press('Enter');expect((await event).suggestedFilename()).toContain('exports');
   await page.screenshot({path:info.outputPath('mobile.png'),fullPage:true});
 });
