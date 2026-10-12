@@ -1,6 +1,6 @@
 # Canada HS6 classification continuity review
 
-Review window: **September 2024–August 2026**. Review date: October 12, 2026. The 17 direction/HS6 candidates are unchanged. Draft conclusions in the separate snapshot ledger now support compatibility at six digits; independent review is required before these conclusions are relied on or integrated. This review changes no source values, country totals, statistical flags, reference outcomes, publication availability or release policy.
+Review window: **September 2024–August 2026**. Review date: October 12, 2026. All **17 ordinary direction/HS6 candidates are compatible at six digits** for this fixed window. A fresh independent reviewer supported each semantic conclusion and verified all 941 source bindings across 248 original sources. The review found one citation defect; the root corrected 72 export locators to source-specific pages and verified their bounds without changing any semantic conclusion or source body. This review changes no source values, country totals, statistical flags, reference outcomes, publication availability or release policy.
 
 ## Evidence and scope
 
@@ -23,7 +23,7 @@ The historical workbooks corroborate dates and parent membership. Literal `Curre
 
 ## Candidate conclusions
 
-| Direction | HS6 | Reviewed six-digit scope | Draft conclusion |
+| Direction | HS6 | Reviewed six-digit scope | Conclusion |
 | --- | --- | --- | --- |
 | Imports | 270900 | Crude petroleum/bituminous oils | Compatible |
 | Imports | 271019 | Other noncrude petroleum preparations, with parent exclusions | Compatible |
@@ -43,4 +43,10 @@ The historical workbooks corroborate dates and parent membership. Literal `Curre
 | Exports | 870323 | Spark-ignition passenger vehicles above 1,500 cc through 3,000 cc | Compatible |
 | Exports | 711291 | Gold scrap/waste, with precious-metal and 8549 exclusions | Compatible |
 
-The [prospective ledger](1220-snapshot-classification-evidence.json) binds each direction/code, fixed interval, conclusion and original source identities/locators. Three known statistical candidates remain ineligible. Any newly qualified comparisons will be assessed offline with the existing calculations and same-archive denominators. The previous all-unverified assessment and all prior source/reference failures are preserved. No country release, public profile, 60-month claim, trade-source replay/download, R2 operation, deployment, access change or cost is authorized here.
+The [classification ledger](1220-snapshot-classification-evidence.json) binds each direction/code, fixed interval, conclusion and original source identities/locators. Three known statistical candidates remain ineligible. Newly qualified comparisons are assessed offline with the existing calculations and same-archive denominators. The previous all-unverified assessment and all prior source/reference failures are preserved. No country release, public profile, 60-month claim, trade-source replay/download, R2 operation, deployment, access change or cost is authorized here.
+
+## Independent review and correction
+
+The immutable draft reviewed was `df90e03313c428e74864919a94ad281ffe3c5b49`, tree `450c937d97ace7a0d2b747fa5b6b24b64537b63b`. The 81,421-byte independent receipt has SHA-256 `5e4232f871674d07d902998b743335f0331fd0224d970295fd0d23168aab3e7a`. It records all 17 individual verdicts, source identities, inspection methods and limits. Verdict: **with fixes**, solely for finding R1, the copied export citations. Forty transition-guide bindings had referenced nonexistent pages; all 72 new export dated-change locators were made source-specific. The correction check reauthenticated all 941 bindings, checked 875 explicit PDF page locators across 246 PDFs, and confirmed that source identities and semantic conclusions did not change.
+
+The reviewer did not judge fresh assessment calculations, raw trade-body integrity/replay, public availability, 60-month history, deployment or the broader preservation audit. Those limits remain explicit in the [versioned evidence record](1220-classification-continuity-evidence.json). The previous unverified snapshot reports remain historical evidence of their original processing versions.
