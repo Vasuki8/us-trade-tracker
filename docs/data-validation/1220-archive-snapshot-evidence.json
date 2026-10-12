@@ -1,0 +1,1080 @@
+{
+  "schemaVersion": 1,
+  "kind": "canada-archive-snapshot-assessment",
+  "countryCode": "1220",
+  "period": {
+    "from": "2024-09",
+    "to": "2026-08",
+    "months": 24,
+    "directionContexts": 48
+  },
+  "processingCommit": "d4473b449f195ea1a27c5bfeea558947a295073a",
+  "processingTree": "1f83795aece54c7f417635586fc74ec87088ba77",
+  "rawVerificationBasis": "previous-reviewed-replay",
+  "archiveIntegrity": "passed",
+  "completed": true,
+  "sourceAnchors": [
+    {
+      "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1/bulk-report.json",
+      "bytes": 91396,
+      "sha256": "7a306222bf6be80eae1c938341661e353b08cb4a5ab4e50c6466702f704ad00c"
+    },
+    {
+      "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1/original-manifest.json",
+      "bytes": 51828,
+      "sha256": "66acdc59057211575cf8b659f853460e1d279d624677f41fd880da6827865535"
+    },
+    {
+      "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1-offline-inventory-128/offline-replay.json",
+      "bytes": 139962,
+      "sha256": "9157869192cef9b14d542de8ce772ddea146167dbe7d510aa45eb4919735ca6d"
+    },
+    {
+      "path": ".tmp/canada-inventory-independent-review-20261011/independent-inventory128-receipt.json",
+      "bytes": 228778,
+      "sha256": "0279468121f2164f007b0338f0ff5cd9babc49c67e16cf31cfbd6e28c3d20927"
+    }
+  ],
+  "captureInterval": {
+    "startedAt": "2026-10-11T17:07:26.408Z",
+    "finishedAt": "2026-10-11T17:49:43.278Z"
+  },
+  "classificationLedgerIdentity": {
+    "path": "docs/data-validation/1220-snapshot-classification-evidence.json",
+    "bytes": 80962,
+    "sha256": "a7ab9ad32f875d804046a961776452ebb919859f38bd8b0aee6365d7f2bd10ab"
+  },
+  "outputFiles": [
+    {
+      "path": "data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r2/snapshot-assessment.json",
+      "bytes": 432821,
+      "sha256": "a013869f92ca5525eceaa35ef8d59bb635732b18b258960ed691a1d7219d132e"
+    },
+    {
+      "path": "data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r2/snapshot-assessment.md",
+      "bytes": 3277,
+      "sha256": "5f569b6286f261acd38423f60cf257eef991abb9283a97ba8161fdfde5318719"
+    }
+  ],
+  "outputLimitBytes": 8388608,
+  "readAudit": {
+    "identity": {
+      "path": ".superpowers/sdd/2026-10-11-canada-archive-snapshot/live-read-audit.json",
+      "bytes": 151,
+      "sha256": "0dc1e03b169ec86df540f9ccf4c41a1ec3aadbaaf25d5fe61da41f7b438314b8"
+    },
+    "schemaVersion": 1,
+    "providerAttempts": 0,
+    "zipAttempts": 0,
+    "normalizedRowsReads": 48,
+    "normalizedReceiptReads": 49,
+    "otherReads": 62,
+    "limitation": "Receipt-suffix counter49 includes48 normalized receipts and the independently reviewed anchor receipt. No trade ZIP bodies were read."
+  },
+  "contexts": [
+    {
+      "id": "imports-2024-09",
+      "sumUsd": 34532022027,
+      "countryTotalUsd": 34532022027,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2024-09",
+      "sumUsd": 29381533587,
+      "countryTotalUsd": 29381533587,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2024-10",
+      "sumUsd": 34413502802,
+      "countryTotalUsd": 34413502802,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2024-10",
+      "sumUsd": 30344153485,
+      "countryTotalUsd": 30344153485,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2024-11",
+      "sumUsd": 33446477024,
+      "countryTotalUsd": 33446477024,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2024-11",
+      "sumUsd": 29113642001,
+      "countryTotalUsd": 29113642001,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2024-12",
+      "sumUsd": 35825700666,
+      "countryTotalUsd": 35825700666,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2024-12",
+      "sumUsd": 26321773216,
+      "countryTotalUsd": 26321773216,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2025-01",
+      "sumUsd": 38949656278,
+      "countryTotalUsd": 38949656278,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2025-01",
+      "sumUsd": 27246249213,
+      "countryTotalUsd": 27246249213,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2025-02",
+      "sumUsd": 34787423872,
+      "countryTotalUsd": 34787423872,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2025-02",
+      "sumUsd": 28406495865,
+      "countryTotalUsd": 28406495865,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2025-03",
+      "sumUsd": 34967520099,
+      "countryTotalUsd": 34967520099,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2025-03",
+      "sumUsd": 32433182812,
+      "countryTotalUsd": 32433182812,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2025-04",
+      "sumUsd": 29101655844,
+      "countryTotalUsd": 29101655844,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2025-04",
+      "sumUsd": 27407840353,
+      "countryTotalUsd": 27407840353,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2025-05",
+      "sumUsd": 29977446512,
+      "countryTotalUsd": 29977446512,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2025-05",
+      "sumUsd": 28275621286,
+      "countryTotalUsd": 28275621286,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2025-06",
+      "sumUsd": 29645029011,
+      "countryTotalUsd": 29645029011,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2025-06",
+      "sumUsd": 28847532304,
+      "countryTotalUsd": 28847532304,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2025-07",
+      "sumUsd": 32195874058,
+      "countryTotalUsd": 32195874058,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2025-07",
+      "sumUsd": 27040258760,
+      "countryTotalUsd": 27040258760,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2025-08",
+      "sumUsd": 29140363978,
+      "countryTotalUsd": 29140363978,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2025-08",
+      "sumUsd": 27222228217,
+      "countryTotalUsd": 27222228217,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2025-09",
+      "sumUsd": 31749010166,
+      "countryTotalUsd": 31749010166,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2025-09",
+      "sumUsd": 26623525449,
+      "countryTotalUsd": 26623525449,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2025-10",
+      "sumUsd": 31235491687,
+      "countryTotalUsd": 31235491687,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2025-10",
+      "sumUsd": 29282080357,
+      "countryTotalUsd": 29282080357,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2025-11",
+      "sumUsd": 28513696440,
+      "countryTotalUsd": 28513696440,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2025-11",
+      "sumUsd": 25410938561,
+      "countryTotalUsd": 25410938561,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2025-12",
+      "sumUsd": 31658890347,
+      "countryTotalUsd": 31658890347,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2025-12",
+      "sumUsd": 25423759199,
+      "countryTotalUsd": 25423759199,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "imports-2026-01",
+      "sumUsd": 28330595475,
+      "countryTotalUsd": 28330595475,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2026-01",
+      "sumUsd": 24510292823,
+      "countryTotalUsd": 24510292823,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "mismatch",
+      "afterCurrentCheck": "mismatch",
+      "originalPublicationCheck": "matched"
+    },
+    {
+      "id": "imports-2026-02",
+      "sumUsd": 29172287264,
+      "countryTotalUsd": 29172287264,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2026-02",
+      "sumUsd": 28371311032,
+      "countryTotalUsd": 28371311032,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "mismatch",
+      "afterCurrentCheck": "mismatch",
+      "originalPublicationCheck": "matched"
+    },
+    {
+      "id": "imports-2026-03",
+      "sumUsd": 34089317327,
+      "countryTotalUsd": 34089317327,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2026-03",
+      "sumUsd": 31438946691,
+      "countryTotalUsd": 31438946691,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "mismatch",
+      "afterCurrentCheck": "mismatch",
+      "originalPublicationCheck": "matched"
+    },
+    {
+      "id": "imports-2026-04",
+      "sumUsd": 35028144854,
+      "countryTotalUsd": 35028144854,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2026-04",
+      "sumUsd": 29741092873,
+      "countryTotalUsd": 29741092873,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "mismatch",
+      "afterCurrentCheck": "mismatch",
+      "originalPublicationCheck": "matched"
+    },
+    {
+      "id": "imports-2026-05",
+      "sumUsd": 36337153960,
+      "countryTotalUsd": 36337153960,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2026-05",
+      "sumUsd": 29790835759,
+      "countryTotalUsd": 29790835759,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "mismatch",
+      "afterCurrentCheck": "mismatch",
+      "originalPublicationCheck": "matched"
+    },
+    {
+      "id": "imports-2026-06",
+      "sumUsd": 37216785546,
+      "countryTotalUsd": 37216785546,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2026-06",
+      "sumUsd": 30695510012,
+      "countryTotalUsd": 30695510012,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "mismatch",
+      "afterCurrentCheck": "mismatch",
+      "originalPublicationCheck": "matched"
+    },
+    {
+      "id": "imports-2026-07",
+      "sumUsd": 33491125060,
+      "countryTotalUsd": 33491125060,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2026-07",
+      "sumUsd": 29338645167,
+      "countryTotalUsd": 29338645167,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "mismatch",
+      "afterCurrentCheck": "mismatch",
+      "originalPublicationCheck": "matched"
+    },
+    {
+      "id": "imports-2026-08",
+      "sumUsd": 35980039950,
+      "countryTotalUsd": 35980039950,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    },
+    {
+      "id": "exports-2026-08",
+      "sumUsd": 30289552895,
+      "countryTotalUsd": 30289552895,
+      "residualUsd": 0,
+      "beforeCurrentCheck": "matched",
+      "afterCurrentCheck": "matched",
+      "originalPublicationCheck": "not-reviewed"
+    }
+  ],
+  "candidates": [
+    {
+      "direction": "imports",
+      "code": "270900",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 92392091351,
+        "countryTotalUsd": 392802538076,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 90202785944,
+        "countryTotalUsd": 396982672171,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "imports",
+      "code": "980100",
+      "reason": "statistical-category",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 15307813259,
+        "countryTotalUsd": 392802538076,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 15469400131,
+        "countryTotalUsd": 396982672171,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "imports",
+      "code": "271019",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 10131644634,
+        "countryTotalUsd": 392802538076,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 7155619709,
+        "countryTotalUsd": 396982672171,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "imports",
+      "code": "271121",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 9026917085,
+        "countryTotalUsd": 392802538076,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 7100998099,
+        "countryTotalUsd": 396982672171,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "imports",
+      "code": "870323",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 7663395213,
+        "countryTotalUsd": 392802538076,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 11811095948,
+        "countryTotalUsd": 396982672171,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "imports",
+      "code": "870340",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 7416973359,
+        "countryTotalUsd": 392802538076,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 5703290607,
+        "countryTotalUsd": 396982672171,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "imports",
+      "code": "870324",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 4733244274,
+        "countryTotalUsd": 392802538076,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 3599704652,
+        "countryTotalUsd": 396982672171,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "imports",
+      "code": "870829",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 4666539202,
+        "countryTotalUsd": 392802538076,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 4473635918,
+        "countryTotalUsd": 396982672171,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "imports",
+      "code": "271012",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 4535944699,
+        "countryTotalUsd": 392802538076,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 3891295599,
+        "countryTotalUsd": 396982672171,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "imports",
+      "code": "880240",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 4497749296,
+        "countryTotalUsd": 392802538076,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 3695079415,
+        "countryTotalUsd": 396982672171,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "exports",
+      "code": "988000",
+      "reason": "statistical-category",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 13370929635,
+        "countryTotalUsd": 340916490818,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 9324750875,
+        "countryTotalUsd": 342040511099,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "exports",
+      "code": "270900",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 11038813062,
+        "countryTotalUsd": 340916490818,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 9738915177,
+        "countryTotalUsd": 342040511099,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "exports",
+      "code": "880000",
+      "reason": "statistical-category",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 9779879483,
+        "countryTotalUsd": 340916490818,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 9832711419,
+        "countryTotalUsd": 342040511099,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "exports",
+      "code": "870431",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 7719363184,
+        "countryTotalUsd": 340916490818,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 8305491370,
+        "countryTotalUsd": 342040511099,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "exports",
+      "code": "271012",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 7400563787,
+        "countryTotalUsd": 340916490818,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 7624459484,
+        "countryTotalUsd": 342040511099,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "exports",
+      "code": "271019",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 6858722528,
+        "countryTotalUsd": 340916490818,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 5008994329,
+        "countryTotalUsd": 342040511099,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "exports",
+      "code": "870899",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 5664030072,
+        "countryTotalUsd": 340916490818,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 3723286490,
+        "countryTotalUsd": 342040511099,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "exports",
+      "code": "847150",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 4886353611,
+        "countryTotalUsd": 340916490818,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 2068964653,
+        "countryTotalUsd": 342040511099,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "exports",
+      "code": "870323",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 4633873899,
+        "countryTotalUsd": 340916490818,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 5855829798,
+        "countryTotalUsd": 342040511099,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    },
+    {
+      "direction": "exports",
+      "code": "711291",
+      "reason": "classification-unverified",
+      "comparisonEligible": false,
+      "current": {
+        "from": "2025-09",
+        "to": "2026-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 4314655419,
+        "countryTotalUsd": 340916490818,
+        "sharePercent": null
+      },
+      "prior": {
+        "from": "2024-09",
+        "to": "2025-08",
+        "reportedMonths": 12,
+        "observedSumUsd": 2915319018,
+        "countryTotalUsd": 342040511099,
+        "sharePercent": null
+      },
+      "growthPercent": null,
+      "sharePointChange": null
+    }
+  ],
+  "counts": {
+    "contexts": 48,
+    "candidates": 20,
+    "beforeCurrentMatches": 41,
+    "beforeCurrentMismatches": 7,
+    "afterCurrentMatches": 41,
+    "afterCurrentMismatches": 7,
+    "publicationMatches": 7,
+    "publicationNotReviewed": 41,
+    "unverifiedClassifications": 17,
+    "statisticalCandidates": 3,
+    "eligibleComparisons": 0
+  },
+  "preservation": {
+    "protectedTrackedFiles": 8,
+    "coffeeHashesPreserved": 4,
+    "historicalEvidenceFieldsUnchanged": 23,
+    "workflowOrApplicationChanges": 0
+  },
+  "verification": {
+    "focusedTests": 43,
+    "projectTests": 620,
+    "projectFiles": 58,
+    "checkedFiles": 160,
+    "errors": 0,
+    "warnings": 0,
+    "hints": 0,
+    "independentReview": {
+      "path": ".superpowers/sdd/2026-10-11-canada-archive-snapshot/independent-review-receipt.json",
+      "bytes": 70977,
+      "sha256": "a268fda70a2d1fdfc8b84d31d9b7a7ff163aedd4a33d8d84744019a36260066b",
+      "reviewedHead": "9975528d8afe01092ef517ad9e9d16cc318aa087",
+      "reviewedTree": "abda66a45ceadbc8a9a4ace227ab219953bef3ec",
+      "dataVerification": "passed",
+      "implementationVerdict": "with-fixes",
+      "substantiveFindings": 1,
+      "repair": {
+        "commit": "d4473b449f195ea1a27c5bfeea558947a295073a",
+        "test": "leaves no passed Markdown if JSON publication fails after Markdown publication",
+        "redObserved": true,
+        "greenCommandTests": 12,
+        "greenProjectTests": 620,
+        "secondFullReview": false
+      }
+    },
+    "providerCI": "pending"
+  },
+  "releaseAccepted": false,
+  "rollingComparisonsAvailable": false,
+  "defaultAuditRetrievalChanged": false,
+  "limitations": [
+    "No fresh original-body verification: relies on prior independent raw replay.",
+    "Not a uniform revision vintage, original-publication dataset or latest revised headline history.",
+    "Current-reference differences remain mismatches, including May.",
+    "All17 ordinary classification entries remain unverified; retained sums are observations, not accepted comparisons.",
+    "Twenty-four months do not supply a separately required sixty-month public history."
+  ],
+  "independentlyVerifiedRun": {
+    "processingCommit": "9975528d8afe01092ef517ad9e9d16cc318aa087",
+    "outputFiles": [
+      {
+        "path": "data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r1/snapshot-assessment.json",
+        "bytes": 432821,
+        "sha256": "db33209e879b4230353d197b6a1050d374b6ef970c1f0bd93d66202a4664ff8e"
+      },
+      {
+        "path": "data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r1/snapshot-assessment.md",
+        "bytes": 3277,
+        "sha256": "cbed3fb5b8e743b5646d3bf4049f3998836e5d0e38a902084b72b96ae15fd169"
+      }
+    ]
+  },
+  "finalRunEquivalence": {
+    "schemaVersion": 1,
+    "processingCommit": "d4473b449f195ea1a27c5bfeea558947a295073a",
+    "assessmentDataEqualToIndependentlyVerifiedR1": true,
+    "onlyDifference": "processingCommit",
+    "files": [
+      {
+        "path": "data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r2/snapshot-assessment.json",
+        "bytes": 432821,
+        "sha256": "a013869f92ca5525eceaa35ef8d59bb635732b18b258960ed691a1d7219d132e"
+      },
+      {
+        "path": "data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r2/snapshot-assessment.md",
+        "bytes": 3277,
+        "sha256": "5f569b6286f261acd38423f60cf257eef991abb9283a97ba8161fdfde5318719"
+      }
+    ]
+  }
+}

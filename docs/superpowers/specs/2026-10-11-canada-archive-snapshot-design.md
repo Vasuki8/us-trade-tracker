@@ -1,6 +1,6 @@
 # Canada archive snapshot assessment design
 
-Prepared October 11, 2026, against main `24e8451c9ec8b667e54df3a17dbdf9c15b147934`. The owner approved preparing this design with “continue,” after reviewing the proposed snapshot rules, and approved the independently reviewed written specification with “approved.” The implementation plan remains subject to review before execution. It extends the reference/classification work in [country audit Task 3](../plans/2026-10-10-canada-country-audit.md), without accepting or publishing a country release.
+Prepared October 11, 2026, against main `24e8451c9ec8b667e54df3a17dbdf9c15b147934`. The owner approved preparing this design with “continue,” after reviewing the proposed snapshot rules, approved the independently reviewed written specification with “approved,” and approved the reviewed implementation plan with “Proceed with this plan.” It extends the reference/classification work in [country audit Task 3](../plans/2026-10-10-canada-country-audit.md), without accepting or publishing a country release.
 
 ## Purpose and decision
 
