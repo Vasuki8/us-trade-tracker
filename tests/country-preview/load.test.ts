@@ -9,7 +9,8 @@ vi.mock('node:fs/promises',async(original)=>{const actual=await original<typeof 
 const roots:string[]=[];
 afterEach(async()=>{vi.restoreAllMocks();vi.unstubAllEnvs();for(const root of roots.splice(0))await fs.rm(root,{recursive:true,force:true});});
 async function setup(){
-  const root=await fs.mkdtemp(resolve('.superpowers/sdd/2026-10-12-canada-profile-prototype/loader-'));roots.push(root);
+  await fs.mkdir(resolve('.tmp'),{recursive:true});
+  const root=await fs.mkdtemp(resolve('.tmp/canada-loader-test-'));roots.push(root);
   const body=Buffer.from(JSON.stringify(makeCountryAssessmentFixture()));
   vi.spyOn(canadaPreviewContract,'assessment','get').mockReturnValue({path:'source/assessment.json',bytes:body.length,sha256:createHash('sha256').update(body).digest('hex')} as unknown as typeof canadaPreviewContract.assessment);
   await fs.mkdir(resolve(root,'source'));await fs.writeFile(resolve(root,'source/assessment.json'),body);
