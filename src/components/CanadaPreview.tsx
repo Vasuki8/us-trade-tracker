@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect,useState} from 'react';
 import type {CountryDirection,CountryPreview} from '../lib/country-preview/types';
 import {countryCsvFilename,serializeCountryMonthlyCsv,serializeCountryProductsCsv} from '../lib/country-preview/downloads';
 import {downloadBlob} from '../lib/trade/downloads';
@@ -7,6 +7,8 @@ import {CountryPreviewChart} from './CountryPreviewChart';
 const period=(from:string,to:string)=>`${monthLabel(from)}–${monthLabel(to)}`;
 export function CanadaPreview({data}:{data:CountryPreview}):React.JSX.Element {
   const [direction,setDirection]=useState<CountryDirection>('imports'),[error,setError]=useState<string|null>(null);
+  const [interactive,setInteractive]=useState(false);
+  useEffect(()=>{setInteractive(true);},[]);
   const view=data.directions[direction],label=direction==='imports'?'Imports':'Exports';
   const publicationSources=view.references.differences.flatMap(row=>row.publicationSource?[{month:row.month,...row.publicationSource}]:[]);
   const source=data.source==='fixture'?'Synthetic development data':'U.S. Census Bureau monthly merchandise files';
@@ -15,7 +17,7 @@ export function CanadaPreview({data}:{data:CountryPreview}):React.JSX.Element {
     <div className="page-heading"><p className="eyebrow">COUNTRY RESEARCH / LOCAL DEVELOPMENT PREVIEW</p><h1>Canada</h1><p>Explore captured U.S. goods trade with Canada, September 2024–August 2026.</p></div>
     <div className="sample-banner"><strong>{source}</strong><span>24-month development preview · No accepted country release</span></div>
     <p className="preview-capture">Source collection captured {data.captureInterval.startedAt} to {data.captureInterval.finishedAt}. Capture times describe the saved files, not observation revision dates.</p>
-    <fieldset className="explorer-controls"><legend>Trade direction</legend>{(['imports','exports'] as const).map(d=><label key={d}><input type="radio" name="canada-direction" value={d} checked={direction===d} onChange={()=>{setDirection(d);setError(null);}}/>{d==='imports'?'Imports':'Exports'}</label>)}</fieldset>
+    <fieldset className="explorer-controls" disabled={!interactive}><legend>Trade direction</legend>{(['imports','exports'] as const).map(d=><label key={d}><input type="radio" name="canada-direction" value={d} checked={direction===d} onChange={()=>{setDirection(d);setError(null);}}/>{d==='imports'?'Imports':'Exports'}</label>)}</fieldset>
     <noscript><p>Imports are shown below. Direction switching and CSV downloads require JavaScript.</p></noscript>
     <section aria-label="Country overview">
       <h2>{view.title}</h2><p>{view.measure} · {direction==='imports'?'General imports, customs value':'Domestic plus foreign exports, FAS value'} · nominal USD, not seasonally adjusted.</p>
@@ -41,7 +43,7 @@ export function CanadaPreview({data}:{data:CountryPreview}):React.JSX.Element {
         </tr>)}</tbody>
       </table></div>
     </section>
-    <div className="download-actions"><button className="secondary-button" onClick={()=>download('monthly')}>Download monthly CSV</button><button className="secondary-button" onClick={()=>download('products')}>Download products CSV</button></div>{error&&<p role="alert">{error}</p>}
+    <div className="download-actions"><button className="secondary-button" disabled={!interactive} onClick={()=>download('monthly')}>Download monthly CSV</button><button className="secondary-button" disabled={!interactive} onClick={()=>download('products')}>Download products CSV</button></div>{error&&<p role="alert">{error}</p>}
     <section className="data-card preview-methods" aria-label="Sources and revision differences">
       <h2>Sources and revision differences</h2>
       <p>These figures come from a captured set of monthly Census files. Currently revised country totals can differ. Product shares here use totals from the same files as the product values.</p>

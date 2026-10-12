@@ -56,6 +56,16 @@ Independent review caught a CSS specificity conflict that initially left the mon
 
 The retained projection and all four browser CSVs remain byte-identical to the original verified prototype, and all 11 protected file identities retain their byte lengths and hashes. Source, loader, calculations, historical evidence and workflows are unchanged. File counts remain 21 ordinary and 22 opted-in: ordinary synthetic 507,655 bytes, ordinary accepted-data 1,084,304 bytes, retained opt-in 1,175,420 bytes. Largest assets remain 212,848 and 283,166 bytes respectively. Ordinary accepted-data output was restored with preview mode unset. Receipts are under ignored `.superpowers/sdd/2026-10-12-canada-profile-references/`.
 
+## Interactivity follow-up, October 12, 2026
+
+Without JavaScript, the original enabled native Exports radio could become checked while the server-rendered Imports tables stayed unchanged; the CSV buttons also appeared usable without a handler. Direction controls and both download buttons now remain disabled until the client is ready. Default Imports research and native source disclosures remain readable and usable independently of JavaScript.
+
+Both browser regressions failed before the fix: disabled JavaScript and held JavaScript assets exposed enabled controls. All six Canada browser checks now pass, including delayed readiness followed by an Exports switch and download. Independent review identified a keyboard-test timing risk: page load does not guarantee hydration, so the test now waits for Imports to enable and receive focus before pressing ArrowRight. All six browser checks pass again. Local verification also passed 689 unit tests, zero diagnostics across 181 checked files and the normal route/navigation/payload boundary check.
+
+In the real retained preview without JavaScript, a forced Exports click leaves Imports selected and its 24 monthly observations visible. Both CSV buttons remain disabled, and the 24 monthly source identities expand and collapse with the keyboard. After hydration, both directions and all four downloads work. The projection and four CSVs are byte-identical to the original verified prototype; all 11 protected file lengths and hashes remain unchanged. No provider request or source replay was performed.
+
+Build counts remain 21 ordinary and 22 opted-in files: ordinary synthetic 507,751 bytes, ordinary accepted-data 1,084,400 bytes, retained opt-in 1,175,552 bytes. Largest assets remain 212,848 and 283,166 bytes respectively. Ordinary accepted-data output was restored with preview mode unset. Local receipts and the retained no-JavaScript screenshot are under ignored `.superpowers/sdd/2026-10-12-canada-profile-interactivity/`.
+
 ## Scope
 
 `/preview/countries/1220/` requires an explicit `CANADA_PREVIEW_MODE=fixture` or `retained`. Retained failures have no fallback; ordinary builds expose no route or navigation entry. Noindex metadata is a presentation control, not access protection or publication approval.
