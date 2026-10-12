@@ -50,7 +50,15 @@ export async function writeSnapshotOutputs(outputDir:string,result:SnapshotAsses
   if(Buffer.byteLength(markdown)+Buffer.byteLength(json)>limit)throw new Error('output-size-limit');
   const md=await stage(path,'.snapshot-assessment.md.stage',markdown,limit),data=await stage(path,'.snapshot-assessment.json.stage',json,limit);
   await ownerFor(path);await rename(resolve(path,md.path),resolve(path,'snapshot-assessment.md'));
-  await ownerFor(path);await rename(resolve(path,data.path),resolve(path,'snapshot-assessment.json'));
+  try {
+    await ownerFor(path);await rename(resolve(path,data.path),resolve(path,'snapshot-assessment.json'));
+  }catch(error){
+    // Retract our published report before writing a failure artifact. The owned stage
+    // name is now vacant; never overwrite or remove a foreign existing output.
+    await ownerFor(path);
+    await rename(resolve(path,'snapshot-assessment.md'),resolve(path,md.path));
+    throw error;
+  }
   owners.delete(path);return [{...md,path:'snapshot-assessment.md'},{...data,path:'snapshot-assessment.json'}];
 }
 export async function writeFailedSnapshotOutput(outputDir:string):Promise<void>{
