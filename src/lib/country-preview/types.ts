@@ -1,0 +1,14 @@
+export type CountryDirection='imports'|'exports';
+export type CountryPreviewMode='fixture'|'retained'|null;
+export type OriginalSource={month:string;url:string;capturedAt:string;bytes:number;sha256:string};
+export type CountryTotalPoint={month:string;valueUsd:number|null;originalSource:OriginalSource|null};
+export type CountryPeriodSummary={from:string;to:string;reportedMonths:number;totalUsd:number|null};
+export type CountryTotalSummary={latestMonth:string;latestUsd:number|null;current:CountryPeriodSummary;prior:CountryPeriodSummary;changeUsd:number|null;growthPercent:number|null};
+export type CountryProductPeriod={from:string;to:string;reportedMonths:number;observedSumUsd:number|null;countryTotalUsd:number|null;sharePercent:number|null};
+export type CountryProductSummary={code:string;description:string|null;current:CountryProductPeriod;prior:CountryProductPeriod;comparisonEligible:boolean;reason:string;specialByPolicy:boolean;classification:{status:'compatible'|'incompatible'|'unverified'|'statistical-category';from:string|null;to:string|null};changeUsd:number|null;growthPercent:number|null;sharePointChange:number|null};
+export type PublicReferenceSource={url:string;capturedAt:string;bytes:number;sha256:string};
+export type PublicPublicationSource={url:string;bytes:number;sha256:string};
+export type CountryReferenceDifference={month:string;archiveUsd:number;currentBeforeUsd:number;currentAfterUsd:number;differenceBeforeUsd:number;differenceAfterUsd:number;publicationUsd:number|null;publicationDifferenceUsd:number|null;publicationCheck:'matched'|'mismatch'|'unavailable'|'not-reviewed';publicationSource:PublicPublicationSource|null};
+export type CountryReferenceSummary={before:{matched:number;mismatch:number;source:PublicReferenceSource|null};after:{matched:number;mismatch:number;source:PublicReferenceSource|null};publication:{matched:number;notReviewed:number};differences:readonly CountryReferenceDifference[]};
+export type CountryDirectionView={direction:CountryDirection;measure:'GEN_VAL_MO'|'ALL_VAL_MO';title:string;monthly:readonly CountryTotalPoint[];summary:CountryTotalSummary;products:readonly CountryProductSummary[];references:CountryReferenceSummary};
+export type CountryPreview={schemaVersion:1;countryCode:'1220';countryName:'Canada';source:'fixture'|'retained';reporting:{from:string;to:string;latest:string};captureInterval:{startedAt:string;finishedAt:string};processingVersion:string;rawVerification:'synthetic'|'previous-reviewed-replay';directions:Record<CountryDirection,CountryDirectionView>;availability:{releaseAccepted:false;rollingComparisonsAvailable:false;defaultAuditRetrievalChanged:false}};
