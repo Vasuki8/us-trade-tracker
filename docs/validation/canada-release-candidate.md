@@ -6,23 +6,23 @@ Prepared October 12, 2026. This record covers the approved offline milestone und
 
 | Field | Verified value |
 | --- | --- |
-| Release ID | `2026-08-4929a153-645d-42c3-b258-17c2d5c2d0a5` |
-| Packaging commit | `f049874981d41783ff89baa13bd78140f030d185` |
-| Preparation time | `2026-10-12T23:08:28.535Z` |
+| Release ID | `2026-08-2e27b39c-932b-4f3d-b2aa-3b11ca2a3cca` |
+| Packaging commit | `603027e811b958f857d1ab612c74e44c3e217f75` |
+| Preparation time | `2026-10-12T23:23:27.180Z` |
 | Source-assessment commit | `9c385fb94b2a36b1d07ddf9e01670c366839a83b` |
 | Package bytes, including final LF | 2,960,916 |
-| Package SHA-256 | `1b29b113200eede28fc3511863173f64ba288d6d3c2f98a1b656d5f200e5d994` |
+| Package SHA-256 | `337d25eeb94c87d9dbfdc4c9a21a20e7e50f416a6599cd0699f028eee0349818` |
 | Members / decoded bytes | 11 / 2,218,749 |
 | Generated projection bytes | 33,716 |
 | Projection SHA-256 | `33c7db7ec421bddaa13e36c3b2e32cd4558aa041fe17f2f3da01285b62b08fd0` |
 
-The private local candidate is `data/backups/canada-country-release/candidate-20261012-r1/candidate.json`. Its ten evidence bodies match the fixed size/hash table in the [implementation plan](../superpowers/plans/2026-10-12-canada-release-acceptance.md); the eleventh member is the generated projection. No raw ZIP, normalized source-row array or original classification document is packaged. Individual members fit 1 MiB; decoded content fits 6 MiB; the serialized package fits 8 MiB. The manifest, reports, proof and approval records have separate bounded contracts.
+The private local candidate is `data/backups/canada-country-release/candidate-20261012-r2/candidate.json`. Its ten evidence bodies match the fixed size/hash table in the [implementation plan](../superpowers/plans/2026-10-12-canada-release-acceptance.md); the eleventh member is the generated projection. No raw ZIP, normalized source-row array or original classification document is packaged. Individual members fit 1 MiB; decoded content fits 6 MiB; the serialized package fits 8 MiB. The manifest, reports, proof and approval records have separate bounded contracts. The earlier r1 package remains immutable and unaccepted; r2 supersedes it because implementation review fixes changed the packaging runtime, while all eleven member bodies remain identical.
 
 The immutable preparation report passes gates 1–5 and leaves recovery/review pending. Recovery has since been independently verified; the final complete eligibility report and trusted operator proof are assembled only after whole-branch review and final-head CI. Neither report selects a country release. Final integration evidence will be recorded on the associated PR and in the owned private candidate directory, without a further runtime/documentation commit.
 
 ## Portable recovery and independent calculations
 
-Recovery ran in `data/backups/canada-country-release/portable-20261012-r1/`, an isolated root with all ten historical input locations absent. Observed filesystem opens comprised one input package and generated-output readbacks; there were zero other source opens. The package, projection and verified receipt were reproduced in its fresh nested country-backup output. No receipt-internal path was followed, no provider request or ZIP replay occurred, and no country pointer was created.
+Recovery ran in `data/backups/canada-country-release/portable-20261012-r2/`, an isolated root with all ten historical input locations absent. Observed filesystem opens comprised one input package and generated-output readbacks; there were zero other source opens. The package, projection and verified receipt were reproduced in its fresh nested country-backup output. No receipt-internal path was followed, no provider request or ZIP replay occurred, and no country pointer was created.
 
 A separate Python checker used explicit fixed member hashes, independent integer sums and binary64 quotient comparisons, without importing production calculations. It verified:
 
@@ -40,15 +40,17 @@ A separate Python checker used explicit fixed member hashes, independent integer
 
 | Private receipt | Bytes | SHA-256 |
 | --- | ---:| --- |
-| `candidate-report.json` | 1,064 | `c128fc1fc86a2ff945cc5aed483ac309dbc703f318c1e9ae2ffbf4c4c9cbcb01` |
-| `portability-check.json` | 1,190 | `cc7bffaa928194d7ac21f4bd0d7e9db40484042ebd0dbdb5b2881c142d5378ac` |
-| `independent-candidate-check.json` | 6,298 | `22bbf65989e2ad2819c31cc207f9084492cbd87f43ae0d0a40759c53ada2d73a` |
+| `candidate-report.json` | 1,064 | `860dcf801c4c91ca084c0497b8154b0fbccf98c9e5202c93347b5dc03070598c` |
+| `portability-check.json` | 1,190 | `e98f898d3b4b8d034a6f0cd9c4bb26aacdf48fc0cf5ef458baf0ee070a51afaf` |
+| `independent-candidate-check.json` | 6,298 | `afd1d81db62ef19d66075e32293b11f6069556da411a7359bb6effa8e5c43d06` |
 
 The original strict bulk report's 48 failed contexts retain null totals. Arithmetic is authenticated against the separately reviewed complete replay; context identity and pinned original bytes preserve that failed history. ZIP request binding uses unique request IDs because publication requests can share the same export-month context. The classification continuity record carries the complete original `with fixes` verdict object and its independently verified citation correction. Those source records were not edited to satisfy the new validator.
 
 ## Implementation and build checks
 
-All 830 unit tests pass across 70 files. Astro/tool type checks cover 197 files with zero errors, warnings or hints. The ordinary build boundary browser check passes; all six existing Canada fixture browser checks pass. Selection/accepted-recovery writes ran only against isolated synthetic temporary state with a test-only authentication-boundary mock; production rejects fixture/unauthenticated candidates. Cases include stale baselines, held locks, changed/reparse inputs, interrupted writes, failed/uncertain rename, different or unreadable readback, and receipt failure after an acknowledged replacement.
+All 836 unit tests pass across 70 files. Astro/tool type checks cover 197 files with zero errors, warnings or hints. The ordinary build boundary browser check passes; all six existing Canada fixture browser checks pass. Selection/accepted-recovery writes ran only against isolated synthetic temporary state with a test-only authentication-boundary mock; production rejects fixture/unauthenticated candidates. Cases include stale baselines, held locks, changed/reparse inputs, interrupted writes, failed/uncertain rename, different or unreadable readback, and receipt failure after an acknowledged replacement.
+
+One fresh independent whole-branch review examined `da51b6d5b25b269671e253cee6bfd09be13d812e`, reran 138 country-release tests, authenticated the real r1 package/protected identities and reported three Important findings, with no Critical or Minor issue. Root resolved all three in `603027e811b958f857d1ab612c74e44c3e217f75`: cleanup preserves established outcomes and primary errors; accepted recovery stages all outputs before atomic pointer visibility and reports an acknowledged but unreadable state explicitly; the exact selection receipt survives restoration and supports a second generation after original inputs are removed. Six regression cases failed before the fixes and then passed, with the full 836-test suite and clean type checks. The original review report and explicit fix dispositions remain part of the final proof; no second review or real acceptance operation occurred.
 
 | Build | Files | Total uncompressed bytes | Largest file |
 | --- | ---:| ---:| --- |
