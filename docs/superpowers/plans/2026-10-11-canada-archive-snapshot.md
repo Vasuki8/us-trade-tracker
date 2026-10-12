@@ -1,6 +1,6 @@
 # Canada Archive Snapshot Assessment Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Produce and independently verify a bounded offline assessment of the reviewed Canada archive collection without enabling a country release.
 
@@ -44,7 +44,7 @@
 - `loadReviewedCollection(repoRoot:string):Promise<ReviewedCollection>` authenticates fixed anchors/supporting references. `readReviewedContexts(collection:ReviewedCollection):AsyncIterable<SnapshotContext>` verifies and yields one context's normalized rows/receipt at a time.
 - Export `canadaSnapshotContract` from the contract file: the exact 48-context grid, 20 candidate keys, spec anchor pins/paths, output limit `8*1024*1024` and the required reference contexts. Unit fixtures may mock this module; production signatures/CLI provide no pin override.
 
-- [ ] Write failing input tests using a synthetic full grid and hashed fixtures. Authenticate four anchors, then row/receipt files; reject changed bytes/lengths, missing anchors, duplicate or crossed contexts, incompatible measure/receipt metadata, duplicate HS6 rows, null/unsafe dollars and invalid capture timestamps. Assert the original retrieval/parser commits stay distinct from assessment processing version.
+- [x] Write failing input tests using a synthetic full grid and hashed fixtures. Authenticate four anchors, then row/receipt files; reject changed bytes/lengths, missing anchors, duplicate or crossed contexts, incompatible measure/receipt metadata, duplicate HS6 rows, null/unsafe dollars and invalid capture timestamps. Assert the original retrieval/parser commits stay distinct from assessment processing version.
 
 ```ts
 it('rejects a hash-valid receipt bound to another direction', async () => {
@@ -56,10 +56,10 @@ it('rejects a hash-valid receipt bound to another direction', async () => {
 
 `snapshotFixture(overrides?:SnapshotFixtureOverrides)` and `consumeContexts(collection:ReviewedCollection)` live in the test helper. The helper mocks only the trusted contract for synthetic inputs; it does not create a production escape hatch.
 
-- [ ] Run `node node_modules/vitest/vitest.mjs run tests/scripts/country-snapshot-input.test.ts --maxWorkers=2`; observe missing behavior fail before implementation.
-- [ ] Implement the interfaces. Resolve inputs from fixed trusted relative roots; reject traversal and reparse/symlink escapes. Read bounded bytes, verify bytes and SHA-256, and parse those same buffers. Do not validate one path then reopen unchecked content. Map the existing snake-case receipt/request fields to the normalized types; validate all 48 identities explicitly. Hash the retained before/after HTML and request metadata through their authenticated `sourceFiles` identities; use `parseCountryReference` to bind amounts. Preserve publication evidence through the pinned ledger/retained verified metadata without fresh PDF-body verification. Keep old failed reports as historical evidence rather than requiring their old worker outcomes to pass.
-- [ ] Add the path-escape/change-during-read tests, using disposable workspace-local directories. Production remains Node 24; Windows junction ownership checks can run locally where the platform supports them. Run the focused suite to green and `npm.cmd run check`.
-- [ ] Commit this independently testable adapter and its fixtures.
+- [x] Run `node node_modules/vitest/vitest.mjs run tests/scripts/country-snapshot-input.test.ts --maxWorkers=2`; observe missing behavior fail before implementation.
+- [x] Implement the interfaces. Resolve inputs from fixed trusted relative roots; reject traversal and reparse/symlink escapes. Read bounded bytes, verify bytes and SHA-256, and parse those same buffers. Do not validate one path then reopen unchecked content. Map the existing snake-case receipt/request fields to the normalized types; validate all 48 identities explicitly. Hash the retained before/after HTML and request metadata through their authenticated `sourceFiles` identities; use `parseCountryReference` to bind amounts. Preserve publication evidence through the pinned ledger/retained verified metadata without fresh PDF-body verification. Keep old failed reports as historical evidence rather than requiring their old worker outcomes to pass.
+- [x] Add the path-escape/change-during-read tests, using disposable workspace-local directories. Production remains Node 24; Windows junction ownership checks can run locally where the platform supports them. Run the focused suite to green and `npm.cmd run check`.
+- [x] Commit this independently testable adapter and its fixtures.
 
 ## Task 2: Classification evidence and pure assessment
 
@@ -73,7 +73,7 @@ it('rejects a hash-valid receipt bound to another direction', async () => {
 - `SnapshotAssessment` has schema/policy version, `completed`, processing/input provenance, `archiveIntegrity`, unchanged strict-audit verdicts, `months:readonly MonthlySnapshotAssessment[]` (48 outcomes), 20 candidates, `classificationLedgerIdentity:FileIdentity|null` and the three literal-false availability fields. The pure assessor leaves that identity null; the command binds the committed ledger's actual identity before writing a successful artifact. `MonthlySnapshotAssessment` has `id`, `month`, `direction`, `sumUsd`, `countryTotalUsd`, `residualUsd`, `beforeReference` and `afterReference`. Both reference results retain amounts/identities and use existing `referenceCheck`/`publicationCheck`, plus `currentDifferenceUsd` and `publicationDifferenceUsd`.
 - Each candidate retains monthly reported values and capture/policy flags, complete current/prior observed sums, reported counts, classification reason/interval and `comparisonEligible`. Ordinary monthly/rolling shares, growth and share-point change remain null where the corresponding completeness/classification/denominator prerequisite fails. Unqualified period sums are labeled retained observations, not accepted comparisons.
 
-- [ ] Write failing calculation tests for exact reconciliation, duplicate/missing grid contexts, complete periods, zero versus absent observations, positive complete denominators, classification boundaries and statistical categories. Pin the known May distinction:
+- [x] Write failing calculation tests for exact reconciliation, duplicate/missing grid contexts, complete periods, zero versus absent observations, positive complete denominators, classification boundaries and statistical categories. Pin the known May distinction:
 
 ```ts
 expect(may.sumUsd).toBe(29790835759);
@@ -88,10 +88,10 @@ expect(result.rollingComparisonsAvailable).toBe(false);
 
 The fixture supplies current reference `30399000000` and publication `29790800000`. Also assert weighted rolling share equals `100*sum(product)/sum(country)`, zero-prior growth is null, a missing month is null rather than zero, incompatible/unverified classification blocks comparison, and legacy export `880000.specialAtCapture=false` remains unchanged while its policy flag is true.
 
-- [ ] Run the focused assessment suite and observe failure before implementation.
-- [ ] Review the 17 candidate keys using retained annual concordances/historical workbooks plus primary HS6 definitions, relevant section/chapter notes and dated changes across the fixed interval. Retain any additional small primary classification references with source identity/provenance in the existing ignored classification-reference directory; do not download trade datasets or add a runtime spreadsheet dependency. Record one explicit conclusion per direction/code. If the available evidence does not establish semantic continuity, use `unverified` with the precise missing evidence; do not force all entries compatible to finish. The ledger remains separate from accepted coffee classification files. Document that begin/end-month screening and shared prefixes do not prove transfers or unchanged scope.
-- [ ] Implement ledger validation and the streaming pure assessor. Check safe integer sums and same-archive controls before qualification; retain current/publication checks separately using the existing reviewed publication definitions and `compareCountryReferences`. Keep the 20 fixed candidates/order, including special categories, without backfilling. Apply inclusive classification month boundaries and both complete 12-month windows. Return unsuccessful integrity/completion for malformed or partial inputs, never a qualified partial grid.
-- [ ] Run Task 1/2 focused suites to green and type checks; commit the assessor, tests and evidence conclusions. Whole-branch review must independently inspect the classification conclusions before they are relied on.
+- [x] Run the focused assessment suite and observe failure before implementation.
+- [x] Review the 17 candidate keys using retained annual concordances/historical workbooks plus primary HS6 definitions, relevant section/chapter notes and dated changes across the fixed interval. Retain any additional small primary classification references with source identity/provenance in the existing ignored classification-reference directory; do not download trade datasets or add a runtime spreadsheet dependency. Record one explicit conclusion per direction/code. If the available evidence does not establish semantic continuity, use `unverified` with the precise missing evidence; do not force all entries compatible to finish. The ledger remains separate from accepted coffee classification files. Document that begin/end-month screening and shared prefixes do not prove transfers or unchanged scope.
+- [x] Implement ledger validation and the streaming pure assessor. Check safe integer sums and same-archive controls before qualification; retain current/publication checks separately using the existing reviewed publication definitions and `compareCountryReferences`. Keep the 20 fixed candidates/order, including special categories, without backfilling. Apply inclusive classification month boundaries and both complete 12-month windows. Return unsuccessful integrity/completion for malformed or partial inputs, never a qualified partial grid.
+- [x] Run Task 1/2 focused suites to green and type checks; commit the assessor, tests and evidence conclusions. Whole-branch review must independently inspect the classification conclusions before they are relied on.
 
 ## Task 3: Standalone command and bounded two-artifact output
 
@@ -105,7 +105,7 @@ The fixture supplies current reference `30399000000` and publication `2979080000
 - `runCountrySnapshot(options:SnapshotOptions):Promise<{exitCode:0|1;result:SnapshotAssessment|null}>` loads the fixed collection and committed classification ledger, calls Task 2, binds ledger hash/current processing commit and writes output. Read the ledger from its committed Git blob, with no working-copy or caller-provided override; record that blob's bytes/hash. Safe failure reasons do not include arbitrary exception text. Failures before a full assessment use a minimal versioned report with `completed=false`, `archiveIntegrity='failed'`, a fixed reason code and the three false availability flags; never assert a complete grid in that report.
 - Add `data:assess-country-snapshot`: `node --import tsx scripts/assess-country-snapshot.ts`. Preflight verifies options/paths without creating output or reading the dataset.
 
-- [ ] Write failing command tests for exact options, occupied/empty output, concurrent creation, outside-root/reparse output, input failure midway, output failure and exhausted allowance. Spy on `fetch`/provider entry points and assert zero calls. An unverified classification must not change the command's successful archive-integrity assessment into release acceptance.
+- [x] Write failing command tests for exact options, occupied/empty output, concurrent creation, outside-root/reparse output, input failure midway, output failure and exhausted allowance. Spy on `fetch`/provider entry points and assert zero calls. An unverified classification must not change the command's successful archive-integrity assessment into release acceptance.
 
 ```ts
 it('rejects options that could replace the reviewed collection', () => {
@@ -119,9 +119,9 @@ it('rejects options that could replace the reviewed collection', () => {
 });
 ```
 
-- [ ] Run the command suite to RED.
-- [ ] Implement exclusive fresh-directory ownership before assessment. Preserve workspace-safe input/output roots. Bound success artifacts together below `8*1024*1024`, reserve 8 KiB within that allowance for a failure report, and count staged bytes. Stage within the owned directory and publish the success JSON last only after both artifacts are fully written; on a failure, leave no final JSON claiming a completed/passed assessment. A safe failed JSON/report is attempted only within remaining allowance and ownership; otherwise use a fixed failure message and nonzero exit. Do not overwrite a foreign occupied path or accepted pointer. Document that exit zero means a complete offline integrity assessment, with reference differences/classification blockers still visible.
-- [ ] Run all three focused suites and `npm.cmd run check`; check the failure-after-Markdown and concurrent-writer assertions. Commit the command and usage docs.
+- [x] Run the command suite to RED.
+- [x] Implement exclusive fresh-directory ownership before assessment. Preserve workspace-safe input/output roots. Bound success artifacts together below `8*1024*1024`, reserve 8 KiB within that allowance for a failure report, and count staged bytes. Stage within the owned directory and publish the success JSON last only after both artifacts are fully written; on a failure, leave no final JSON claiming a completed/passed assessment. A safe failed JSON/report is attempted only within remaining allowance and ownership; otherwise use a fixed failure message and nonzero exit. Do not overwrite a foreign occupied path or accepted pointer. Document that exit zero means a complete offline integrity assessment, with reference differences/classification blockers still visible.
+- [x] Run all three focused suites and `npm.cmd run check`; check the failure-after-Markdown and concurrent-writer assertions. Commit the command and usage docs.
 
 ## Task 4: Real offline verification, review and integration
 

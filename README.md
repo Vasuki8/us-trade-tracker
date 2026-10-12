@@ -146,6 +146,15 @@ Coffee downloads belong in `data/raw/`, generated datasets in `data/processed/`,
 
 Store actual local credentials in `.env`, which is ignored by Git. An `.env.example` file can document required setting names without values. Automated jobs use GitHub Actions secrets; deployed backend functions use Cloudflare secrets. The Census key remains in the data processing environment.
 
+The separate Canada archive snapshot command assesses only the retained, reviewed September 2024–August 2026 collection. It reads no trade ZIP bodies and makes no provider requests:
+
+```powershell
+npm run data:assess-country-snapshot -- --output data/backups/canada-country-audit/fresh-snapshot --preflight
+npm run data:assess-country-snapshot -- --output data/backups/canada-country-audit/fresh-snapshot
+```
+
+The destination must be fresh, even if an existing directory is empty. New output is capped at 8 MiB. Exit zero means complete offline archive integrity, not a passed strict source audit or an accepted release. Current-reference failures remain visible, and the separate [classification ledger](docs/data-validation/1220-snapshot-classification.md) keeps unsupported comparisons unavailable. The command reads that ledger from the current committed Git version. Pages/chart data stay on the static host; downloads remain generated in the browser and R2 remains private backup storage.
+
 ## Change workflow
 
 Use `main` for reviewed release code and a separate branch for each feature or fix. Save focused commits with clear descriptions, run the relevant checks, and review changes before merging. Review a preview before publishing a website release.
