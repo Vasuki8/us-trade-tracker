@@ -155,6 +155,10 @@ npm run data:assess-country-snapshot -- --output data/backups/canada-country-aud
 
 The destination must be fresh, even if an existing directory is empty. New output is capped at 8 MiB. Exit zero means complete offline archive integrity, not a passed strict source audit or an accepted release. Current-reference failures remain visible, and the separate [classification ledger](docs/data-validation/1220-snapshot-classification.md) keeps unsupported comparisons unavailable. The command reads that ledger from the current committed Git version. Pages/chart data stay on the static host; downloads remain generated in the browser and R2 remains private backup storage.
 
+## Canada audit status
+
+The [Canada audit handoff](docs/data-validation/1220-audit-handoff.md) closes the fixed September 2024–August 2026 investigation under the approved archive-snapshot contract. All 48 contexts reconcile exactly, and all 17 ordinary classifications and their qualified offline comparisons are independently verified. The seven current-reference mismatches and earlier strict-audit failures remain preserved. An accepted Canada release, public country profile and five-year history remain subsequent design and validation work; the snapshot command does not enable them.
+
 ## Change workflow
 
 Use `main` for reviewed release code and a separate branch for each feature or fix. Save focused commits with clear descriptions, run the relevant checks, and review changes before merging. Review a preview before publishing a website release.
