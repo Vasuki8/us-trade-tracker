@@ -190,6 +190,26 @@ npm run build
 
 `npm run test:e2e` runs the ordinary browser suite, then the isolated Canada fixture suite. `npm run test:e2e:canada` runs just that fixture suite; it forces synthetic modes, uses its own temporary output, binds localhost on port 4402 (override with `PLAYWRIGHT_CANADA_PORT`), and refuses to reuse a server. CSVs remain generated in the browser. No deployment, accepted country pointer or R2 operation is included.
 
+## Offline Canada release candidates
+
+Node 24 can prepare the fixed September 2024–August 2026 collection under `canada-country-release-v1`. All ten pinned JSON evidence files must be available locally, including the historical independent receipts. The existing `data/backups/canada-country-release/` parent must be a normal directory inside this checkout. Each output child must be fresh. Preflight authenticates the evidence and checks the destination without creating files:
+
+```powershell
+npm run data:prepare-country-release -- --output data/backups/canada-country-release/candidate-1 --preflight
+npm run data:prepare-country-release -- --output data/backups/canada-country-release/candidate-1
+npm run data:recover-country-release -- --candidate data/backups/canada-country-release/candidate-1/candidate.json --output data/backups/canada-country-release/recovery-1
+```
+
+Preparation writes `candidate.json` and `candidate-report.json`. The portable package contains exactly ten authenticated evidence bodies plus the generated `research-data.json`; it excludes raw trade ZIPs, normalized rows and original classification documents. Recovery reads that package and reproduces its research data in a fresh directory, without requiring historical scratch locations. Preserve the separate private source collection as well: this package carries reviewed evidence and does not provide a fresh raw-source replay.
+
+The seven gates are authenticated assessment, authenticated replay/arithmetic evidence, qualified classification scope, recorded reference qualifications, verified projection, portable recovery, and implementation review/checks/preservation. Preparation passes the first five and leaves the last two pending. An eligible candidate requires separate trusted operator proof of the actual recovery, checks, independent review, CI and unchanged runtime files. That offline record validates bindings; the parser does not authenticate GitHub or human consent independently.
+
+The original strict audit remains failed. Both saved reference grids retain 41 matches and seven mismatches; original-publication checks retain seven matches and 41 unreviewed contexts. Comparisons cover 17 ordinary selected categories; three statistical categories retain totals with comparisons unavailable. Observation revision dates remain unknown, and selected categories are a subset of trade.
+
+Prepared and eligible candidates have no effect on availability. **There is no real acceptance command in this milestone.** The tested local selection API needs later owner authorization identifying the exact package, complete eligibility report and explicit initialization or expected prior pointer. Its outcome binds the complete selected pointer digest, including the approval-record identity. Accepted-state recovery additionally requires that recorded selected identity, its selection receipt and explicit recovery authorization; a backup alone is insufficient. Real selection, country storage/R2 activation and public publication remain separate decisions.
+
+On failure, check Node 24, the fixed input identities and contained non-reparse paths. Never overwrite an existing destination, remove a stale selection lock automatically, or retry a conflict against a changed baseline. An acknowledged selection whose receipt cannot be saved reports the established outcome separately; it does not roll back. Keep unreferenced artifacts for deliberate diagnosis. The [candidate validation record](docs/validation/canada-release-candidate.md) records the measured offline result. Product releases, the opt-in Canada preview and ordinary static-host/browser-download behavior remain unchanged.
+
 ## Change workflow
 
 Use `main` for reviewed release code and a separate branch for each feature or fix. Save focused commits with clear descriptions, run the relevant checks, and review changes before merging. Review a preview before publishing a website release.

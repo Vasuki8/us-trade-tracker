@@ -23,6 +23,8 @@
     "data:diagnose-country": "node --import tsx scripts/diagnose-country.ts",
     "data:diagnose-country-bulk": "node --import tsx scripts/diagnose-country-bulk.ts",
     "data:assess-country-snapshot": "node --import tsx scripts/assess-country-snapshot.ts",
+    "data:prepare-country-release": "node --import tsx scripts/prepare-country-release.ts",
+    "data:recover-country-release": "node --import tsx scripts/recover-country-release.ts",
     "data:probe-aggregates": "node --import tsx scripts/probe-country-aggregates.ts",
     "data:probe-totals": "node --import tsx scripts/probe-country-totals.ts",
     "data:probe-prefix": "node --import tsx scripts/probe-country-prefix.ts",
