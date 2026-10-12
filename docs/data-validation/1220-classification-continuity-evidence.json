@@ -1,0 +1,3144 @@
+{
+  "schemaVersion": 1,
+  "kind": "canada-hs6-classification-continuity-review",
+  "countryCode": "1220",
+  "from": "2024-09",
+  "to": "2026-08",
+  "reviewDate": "2026-10-12",
+  "baselineCommit": "ad052c38b3a7a7d2df14e5f3b16f1141ba91b304",
+  "reviewedDraftCommit": "df90e03313c428e74864919a94ad281ffe3c5b49",
+  "priorLedgerIdentity": {
+    "path": "docs/data-validation/1220-snapshot-classification-evidence.json",
+    "bytes": 80962,
+    "sha256": "a7ab9ad32f875d804046a961776452ebb919859f38bd8b0aee6365d7f2bd10ab"
+  },
+  "draftLedgerIdentity": {
+    "path": "docs/data-validation/1220-snapshot-classification-evidence.json",
+    "bytes": 492700,
+    "sha256": "16366e1dcf648134d21585603e544d0b0c2ab3fb440822953ce55a98a3bbd3b3"
+  },
+  "candidateCount": 17,
+  "sourceBindings": 941,
+  "effectiveImportCoverage": {
+    "editions": 54,
+    "files": 216,
+    "releaseCalendarIdentity": {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/hts-release-list.json",
+      "bytes": 81730,
+      "sha256": "d07d7d022319bf6f1b4c60918565ad528ca3df8be9eb2e6d0c6ee2defd2d0f81"
+    },
+    "calendar": [
+      {
+        "name": "2024HTSRev8",
+        "start": "08/15/2024",
+        "end": "09/26/2024"
+      },
+      {
+        "name": "2024HTSRev9",
+        "start": "09/26/2024",
+        "end": "11/22/2024"
+      },
+      {
+        "name": "2024HTSRev10",
+        "start": "11/22/2024",
+        "end": "12/31/2024"
+      },
+      {
+        "name": "2025HTSBasic",
+        "start": "12/31/2024",
+        "end": "02/05/2025"
+      },
+      {
+        "name": "2025HTSRev1",
+        "start": "02/05/2025",
+        "end": "02/12/2025"
+      },
+      {
+        "name": "2025HTSRev2",
+        "start": "02/12/2025",
+        "end": "03/06/2025"
+      },
+      {
+        "name": "2025HTSRev3",
+        "start": "03/06/2025",
+        "end": "03/11/2025"
+      },
+      {
+        "name": "2025HTSRev4",
+        "start": "03/11/2025",
+        "end": "03/14/2025"
+      },
+      {
+        "name": "2025HTSRev5",
+        "start": "03/14/2025",
+        "end": "04/03/2025"
+      },
+      {
+        "name": "2025HTSRev6",
+        "start": "04/03/2025",
+        "end": "04/04/2025"
+      },
+      {
+        "name": "2025HTSRev7",
+        "start": "04/04/2025",
+        "end": "04/09/2025"
+      },
+      {
+        "name": "2025HTSRev8",
+        "start": "04/09/2025",
+        "end": "04/11/2025"
+      },
+      {
+        "name": "2025HTSRev9",
+        "start": "04/11/2025",
+        "end": "04/15/2025"
+      },
+      {
+        "name": "2025HTSRev10",
+        "start": "04/15/2025",
+        "end": "05/02/2025"
+      },
+      {
+        "name": "2025HTSRev11",
+        "start": "05/02/2025",
+        "end": "05/13/2025"
+      },
+      {
+        "name": "2025HTSRev12",
+        "start": "05/13/2025",
+        "end": "05/16/2025"
+      },
+      {
+        "name": "2025HTSRev13",
+        "start": "05/16/2025",
+        "end": "06/06/2025"
+      },
+      {
+        "name": "2025HTSRev14",
+        "start": "06/06/2025",
+        "end": "06/20/2025"
+      },
+      {
+        "name": "2025HTSRev15",
+        "start": "06/20/2025",
+        "end": "07/01/2025"
+      },
+      {
+        "name": "2025HTSRev16",
+        "start": "07/01/2025",
+        "end": "08/01/2025"
+      },
+      {
+        "name": "2025HTSRev17",
+        "start": "08/01/2025",
+        "end": "08/07/2025"
+      },
+      {
+        "name": "2025HTSRev18",
+        "start": "08/07/2025",
+        "end": "08/18/2025"
+      },
+      {
+        "name": "2025HTSRev19",
+        "start": "08/18/2025",
+        "end": "08/27/2025"
+      },
+      {
+        "name": "2025HTSRev20",
+        "start": "08/27/2025",
+        "end": "08/29/2025"
+      },
+      {
+        "name": "2025HTSRev21",
+        "start": "08/29/2025",
+        "end": "09/09/2025"
+      },
+      {
+        "name": "2025HTSRev22",
+        "start": "09/09/2025",
+        "end": "09/16/2025"
+      },
+      {
+        "name": "2025HTSRev23",
+        "start": "09/16/2025",
+        "end": "09/26/2025"
+      },
+      {
+        "name": "2025HTSRev24",
+        "start": "09/26/2025",
+        "end": "10/10/2025"
+      },
+      {
+        "name": "2025HTSRev25",
+        "start": "10/10/2025",
+        "end": "10/31/2025"
+      },
+      {
+        "name": "2025HTSRev26",
+        "start": "10/31/2025",
+        "end": "11/07/2025"
+      },
+      {
+        "name": "2025HTSRev27",
+        "start": "11/07/2025",
+        "end": "11/10/2025"
+      },
+      {
+        "name": "2025HTSRev28",
+        "start": "11/10/2025",
+        "end": "11/17/2025"
+      },
+      {
+        "name": "2025HTSRev29",
+        "start": "11/17/2025",
+        "end": "11/21/2025"
+      },
+      {
+        "name": "2025HTSRev30",
+        "start": "11/21/2025",
+        "end": "11/28/2025"
+      },
+      {
+        "name": "2025HTSRev31",
+        "start": "11/28/2025",
+        "end": "12/05/2025"
+      },
+      {
+        "name": "2025HTSRev32",
+        "start": "12/05/2025",
+        "end": "12/31/2025"
+      },
+      {
+        "name": "2026HTSBasic",
+        "start": "12/31/2025",
+        "end": "01/16/2026"
+      },
+      {
+        "name": "2026HTSRev1",
+        "start": "01/16/2026",
+        "end": "01/30/2026"
+      },
+      {
+        "name": "2026HTSRev2",
+        "start": "01/30/2026",
+        "end": "02/12/2026"
+      },
+      {
+        "name": "2026HTSRev3",
+        "start": "02/12/2026",
+        "end": "02/25/2026"
+      },
+      {
+        "name": "2026HTSRev4",
+        "start": "02/25/2026",
+        "end": "04/08/2026"
+      },
+      {
+        "name": "2026HTSRev5",
+        "start": "04/08/2026",
+        "end": "04/23/2026"
+      },
+      {
+        "name": "2026HTSRev6",
+        "start": "04/23/2026",
+        "end": "04/29/2026"
+      },
+      {
+        "name": "2026HTSRev7",
+        "start": "04/29/2026",
+        "end": "05/22/2026"
+      },
+      {
+        "name": "2026HTSRev8",
+        "start": "05/22/2026",
+        "end": "05/28/2026"
+      },
+      {
+        "name": "2026HTSRev9",
+        "start": "05/28/2026",
+        "end": "06/08/2026"
+      },
+      {
+        "name": "2026HTSRev10",
+        "start": "06/08/2026",
+        "end": "07/01/2026"
+      },
+      {
+        "name": "2026HTSRev11",
+        "start": "07/01/2026",
+        "end": "07/21/2026"
+      },
+      {
+        "name": "2026HTSRev12",
+        "start": "07/21/2026",
+        "end": "07/28/2026"
+      },
+      {
+        "name": "2026HTSRev13",
+        "start": "07/28/2026",
+        "end": "07/31/2026"
+      },
+      {
+        "name": "2026HTSRev14",
+        "start": "07/31/2026",
+        "end": "08/03/2026"
+      },
+      {
+        "name": "2026HTSRev15",
+        "start": "08/03/2026",
+        "end": "08/14/2026"
+      },
+      {
+        "name": "2026HTSRev16",
+        "start": "08/14/2026",
+        "end": "08/24/2026"
+      },
+      {
+        "name": "2026HTSRev17",
+        "start": "08/24/2026",
+        "end": "09/02/2026"
+      }
+    ],
+    "captureManifest": {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/effective-hts-chapters-capture.json",
+      "bytes": 138031,
+      "sha256": "f2c87dcc1dea35891db4b12d4a26b7c5d6268adcb73f7129eda210e27778ffd9"
+    },
+    "newBytes": 178029253,
+    "reusedBytes": 14199392,
+    "elapsedSeconds": 147.2646538,
+    "limits": {
+      "newBytes": 201326592,
+      "fileBytes": 2097152,
+      "overallSeconds": 720,
+      "concurrency": 1
+    },
+    "uniqueGoverningNoteBlocks": 6,
+    "noteChanges": [
+      {
+        "release": "2025HTSBasic",
+        "chapter": 27,
+        "change": "new statistical note for biogenic child2710124560; parent legal scope retained"
+      },
+      {
+        "release": "2026HTSRev11",
+        "chapter": 87,
+        "change": "new statistical note for8707100030; unrelated parent"
+      }
+    ]
+  },
+  "lexicalCorroboration": {
+    "candidateEditionContexts": 486,
+    "limitation": "Presence/annual calendars do not independently establish semantic continuity."
+  },
+  "exportReview": {
+    "years": [
+      2024,
+      2025,
+      2026
+    ],
+    "inWindowDatedGuides": 5,
+    "officialCommitteeHistories": 4,
+    "notes": "C84 ADP note6/systemsexclusion stable; C71 reflow; C87 new/used subdivision and C27 within-parent biogenic children reviewed."
+  },
+  "referenceIdentities": [
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev10-Chapter-27.pdf",
+      "bytes": 899195,
+      "sha256": "a2f4d195801d6867a92bc7897af96c282e8ad5659ddee456599ad24a8ab87aca",
+      "url": "https://hts.usitc.gov/reststop/file?release=2024HTSRev10&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:40:35.043Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev10-Chapter-86.pdf",
+      "bytes": 842417,
+      "sha256": "2b23035374e753147d3b3c7f4c5c98548433b47f176594132f4433cb1eb891ce",
+      "url": "https://hts.usitc.gov/reststop/file?release=2024HTSRev10&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:40:35.630Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev10-Chapter-87.pdf",
+      "bytes": 984300,
+      "sha256": "8b08b765fef6ab9b609291b9cef615cd7e4463d0e6d57f4d6ce45c2bb4d74f61",
+      "url": "https://hts.usitc.gov/reststop/file?release=2024HTSRev10&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:40:36.398Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev10-Chapter-88.pdf",
+      "bytes": 838320,
+      "sha256": "f3bfb2bd080f870800c4ee4625f9d0a55af71363b8188da09802646ae9526309",
+      "url": "https://hts.usitc.gov/reststop/file?release=2024HTSRev10&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:40:37.363Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev8-Chapter-27.pdf",
+      "bytes": 899157,
+      "sha256": "63367e7504fe627411a57f6196e0ff1fb942309f86819d3eb90c684d7a32f1a4",
+      "url": "https://hts.usitc.gov/reststop/file?release=2024HTSRev8&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:35:37.160Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev8-Chapter-86.pdf",
+      "bytes": 842400,
+      "sha256": "eeec3e674ff40c928822914918525a0e89394889bb38a3810885220e72af9752",
+      "url": "https://hts.usitc.gov/reststop/file?release=2024HTSRev8&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:36:22.519Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev8-Chapter-87.pdf",
+      "bytes": 984222,
+      "sha256": "72daa7197c4b464bc661f4fad99a752016784c203010a9e2b1b537d311f18939",
+      "url": "https://hts.usitc.gov/reststop/file?release=2024HTSRev8&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:35:37.659Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev8-Chapter-88.pdf",
+      "bytes": 838327,
+      "sha256": "c934688006d092a1f5c72aaeb6e9934db5a2a5c888d4ecc94873a833cbe15999",
+      "url": "https://hts.usitc.gov/reststop/file?release=2024HTSRev8&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:35:38.100Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev8-details.json",
+      "bytes": 5426,
+      "sha256": "c138b6b4244ab9dae103cc08e99a2312020db3b8e101895b4bc2fd43f75b3114",
+      "url": "https://hts.usitc.gov/reststop/releaseDetails?release=2024HTSRev8",
+      "capturedAt": "2026-10-12T04:35:36.814Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev9-Chapter-27.pdf",
+      "bytes": 899187,
+      "sha256": "883fb560e3703720254db48a359843b23549079477e66ebc49bcd04d47a904f5",
+      "url": "https://hts.usitc.gov/reststop/file?release=2024HTSRev9&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:40:32.267Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev9-Chapter-86.pdf",
+      "bytes": 842393,
+      "sha256": "ac953a5606e4641cf2890206c7a1a095e511af615782d79c1d2af478cc3a35c5",
+      "url": "https://hts.usitc.gov/reststop/file?release=2024HTSRev9&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:40:33.617Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev9-Chapter-87.pdf",
+      "bytes": 984375,
+      "sha256": "0461e867c38e50a6543d494908d774c9464447e355a913201d2c42303221e890",
+      "url": "https://hts.usitc.gov/reststop/file?release=2024HTSRev9&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:40:34.350Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2024HTSRev9-Chapter-88.pdf",
+      "bytes": 838290,
+      "sha256": "4de60dee40bf5e4571fb7df2a6106b2c10f7f370b67ebeaa7535902a3cedeaea",
+      "url": "https://hts.usitc.gov/reststop/file?release=2024HTSRev9&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:40:34.618Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSBasic-Chapter-27.pdf",
+      "bytes": 899199,
+      "sha256": "1137c7a7174bde269863494a3599f11dbd1f9a2b7798c4b43fb4b62190f921ac",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSBasic&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:36:23.309Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSBasic-Chapter-86.pdf",
+      "bytes": 842264,
+      "sha256": "703778596d9427e48658c517ced5bc72ad4963366650a934635e9520d5e5f909",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSBasic&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:36:24.424Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSBasic-Chapter-87.pdf",
+      "bytes": 983629,
+      "sha256": "a654889424e9000fc46a8920d9107865d94bd4d6f17e3ab3f1800378bf1be599",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSBasic&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:36:24.854Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSBasic-Chapter-88.pdf",
+      "bytes": 838166,
+      "sha256": "c58f45748d2fbd1bb90999e7df86be66f0ab16cc0ca8849ff63b3a0ccc640686",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSBasic&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:36:25.919Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSBasic-details.json",
+      "bytes": 5505,
+      "sha256": "02962bc8b4e46206c0b24de6ac078ec4c2862c135f2420c3912a25a4c3176406",
+      "url": "https://hts.usitc.gov/reststop/releaseDetails?release=2025HTSBasic",
+      "capturedAt": "2026-10-12T04:36:22.688Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev1-Chapter-27.pdf",
+      "bytes": 899653,
+      "sha256": "f9def72bd963d0d12c9ce3e4ace16a60446a360d7536c3f7c883effc243ec0a4",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev1&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:40:39.504Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev1-Chapter-86.pdf",
+      "bytes": 842403,
+      "sha256": "b27a484b98fdcd1b7a0f2b952285b389edfe66a0520eb83ad7c731db3ab6103e",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev1&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:40:40.637Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev1-Chapter-87.pdf",
+      "bytes": 984108,
+      "sha256": "2323393ae43fcaf23d27026e7de8e78f1411351caabe79dc29016c858f71c1e2",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev1&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:40:41.567Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev1-Chapter-88.pdf",
+      "bytes": 838341,
+      "sha256": "864f1691871890794fc4d5224bd0b46c43b11f68eced2d5a7168763977363477",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev1&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:40:42.896Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev10-Chapter-27.pdf",
+      "bytes": 899696,
+      "sha256": "e715253259da96b8e9c0767b306537efb3524f67a7341139c86d13d2be3b2cd3",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev10&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:10.702Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev10-Chapter-86.pdf",
+      "bytes": 842389,
+      "sha256": "ca3f68624a3eb173bafe9b89a89c2a890a9bb5a956a2ef4b18360c9939049b0d",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev10&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:11.419Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev10-Chapter-87.pdf",
+      "bytes": 984545,
+      "sha256": "e33894d873d4bbf9edff8393488c8faa52ebc6d28aa50240f7fc07f45a673a9f",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev10&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:12.002Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev10-Chapter-88.pdf",
+      "bytes": 838470,
+      "sha256": "5a8f62682313f0d57809727362e3c3120b3eca24af2378713910429fc6a30562",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev10&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:12.695Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev11-Chapter-27.pdf",
+      "bytes": 899619,
+      "sha256": "e0d46c0b98b5639ff266eede0a6a99d60f45937d5bbf05b3e5ce9c1e2cc7f17a",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev11&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:13.654Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev11-Chapter-86.pdf",
+      "bytes": 842417,
+      "sha256": "5f8451412ff1095d4be23281e524e7332c7f4cc7349fe82e19fb7d58fd387287",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev11&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:14.496Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev11-Chapter-87.pdf",
+      "bytes": 984525,
+      "sha256": "663c89324d339673470b85ba6fdff5fb48bb4ba1b8caae72847d8873b8fe5554",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev11&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:15.435Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev11-Chapter-88.pdf",
+      "bytes": 838557,
+      "sha256": "14526c5ae8ea4b4cf21a3e8bcd2e73a2ea1955f6f02b776574a8de9dd117d68a",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev11&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:16.175Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev12-Chapter-27.pdf",
+      "bytes": 899689,
+      "sha256": "2fc59162fc3ddfad06f9f7b0f198910ca3dd2a81ea450c2a5f464a01a59f51de",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev12&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:16.842Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev12-Chapter-86.pdf",
+      "bytes": 842401,
+      "sha256": "60f0ff611534b011f9d626eb47ba0f890de76adc58d8af40f8de9ccfe505e61c",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev12&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:17.379Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev12-Chapter-87.pdf",
+      "bytes": 984431,
+      "sha256": "a9e7a2fd59ede68d1c7a4717b75c72ecc4804b45093e9fe243cb5f6138e0bc31",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev12&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:18.233Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev12-Chapter-88.pdf",
+      "bytes": 838490,
+      "sha256": "094104adf960cdc5ce4ff0e900bacfbccdfc1f248f811555d0ab7e8c010b4f79",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev12&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:18.721Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev13-Chapter-27.pdf",
+      "bytes": 899649,
+      "sha256": "97f2f3d2be88674e1f0df93acf908de94631242b0bd504155454267ac772eb1b",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev13&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:19.426Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev13-Chapter-86.pdf",
+      "bytes": 842420,
+      "sha256": "aa098346c2acd10b3089bcb3c2196264549b3b5c65f976141f395e0b415e35ca",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev13&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:20.103Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev13-Chapter-87.pdf",
+      "bytes": 984413,
+      "sha256": "6e95471c42e5ff9163d9f27a8af02324c65b29b8df61777574dd366cd8e6e186",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev13&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:21.182Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev13-Chapter-88.pdf",
+      "bytes": 838561,
+      "sha256": "e414e4c9369a3241c9ee2403ec4ce4d87f645cc56ad5fa53f19c96d58301b0e0",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev13&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:21.671Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev14-Chapter-27.pdf",
+      "bytes": 899701,
+      "sha256": "38301b7ee0ceb92b68735fee47373956d8664714c2325045f3234d6ba1929d0b",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev14&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:22.265Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev14-Chapter-86.pdf",
+      "bytes": 842425,
+      "sha256": "aaafe527122ec645b21bf713d461b3f736ee08035e3f35cb0d53553d8193c4c6",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev14&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:22.709Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev14-Chapter-87.pdf",
+      "bytes": 984582,
+      "sha256": "98a1c1e67d53ca777fefae1e9340e06ea19d3858b50d201276c51e9d39ede88e",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev14&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:23.063Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev14-Chapter-88.pdf",
+      "bytes": 838478,
+      "sha256": "ef8eafdc05ef149872dde41995efec6c2200dd1207a1f6414dc4d47c6e73b414",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev14&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:23.567Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev15-Chapter-27.pdf",
+      "bytes": 899611,
+      "sha256": "26106d43d41513f315c81901deac493f36b402973dc51767128f7a3ba174b866",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev15&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:24.064Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev15-Chapter-86.pdf",
+      "bytes": 842405,
+      "sha256": "68776c5ef8803e89a2ac50ddec4aaf4857770487ecbb58c2af5884661d2f4d5d",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev15&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:24.624Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev15-Chapter-87.pdf",
+      "bytes": 984720,
+      "sha256": "21b847136d40a4135b47982e693344c5c10ec73493a4168dbbede940e0ab73e9",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev15&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:25.333Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev15-Chapter-88.pdf",
+      "bytes": 838499,
+      "sha256": "db9903f6104328aa429957bdd8e14e87dc1643d14df33c6a5ab01c89b6ff7535",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev15&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:26.031Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev16-Chapter-27.pdf",
+      "bytes": 899613,
+      "sha256": "d7b9f95d515cf35a8846d2057b49ad06335597c1fd2d3cd557eb2abc5d0c4bfd",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev16&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:26.474Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev16-Chapter-86.pdf",
+      "bytes": 842587,
+      "sha256": "3a8bbb2e8e9499cd901487e0f0ef45bfc0655c87c253119362d47749ac636e9c",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev16&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:27.480Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev16-Chapter-87.pdf",
+      "bytes": 984714,
+      "sha256": "8818ca83967480260d031d84849559fc5ce839b79fc09416fec091e62b1203cb",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev16&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:28.471Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev16-Chapter-88.pdf",
+      "bytes": 838558,
+      "sha256": "852313170552811ec6851545148c5b9e6a9965e532dde7cbe972d0477c71c285",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev16&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:29.087Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev17-Chapter-27.pdf",
+      "bytes": 899632,
+      "sha256": "3758c57d10366be4e9824f48648857b525e0094fbfca0503bc939b92470837ee",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev17&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:30.092Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev17-Chapter-86.pdf",
+      "bytes": 842605,
+      "sha256": "7f14704ea577e78c0d5af63744274312107df84b881a8c65b3bb01dde5dd7d80",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev17&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:30.986Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev17-Chapter-87.pdf",
+      "bytes": 984343,
+      "sha256": "7880e345e17b5ec0b23a8c3ecfc534cc21e455310fb49c02aa2b40c31c540ec9",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev17&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:31.612Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev17-Chapter-88.pdf",
+      "bytes": 838550,
+      "sha256": "8faa6f4518caeca9ec25e9f0c9b555a5d8339959e9655926102aa35f0e029684",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev17&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:32.434Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev18-Chapter-27.pdf",
+      "bytes": 899575,
+      "sha256": "4b80a30dee08ed48f19110e655bd0df79190f1e23b80f4ae50ab28b37929bd2e",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev18&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:32.946Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev18-Chapter-86.pdf",
+      "bytes": 842595,
+      "sha256": "e5619644a6105a9bff9ce8d9e110275e4b9a7ef405141b54bd3a1ba2ed8e68b9",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev18&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:33.494Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev18-Chapter-87.pdf",
+      "bytes": 984645,
+      "sha256": "790e0ad430f91cffedc9017879c94ed3c973291b1fcba5f16bb1e7e569f119f0",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev18&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:34.915Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev18-Chapter-88.pdf",
+      "bytes": 838568,
+      "sha256": "6a166add378dd62bfca32d08233e515125fe7eba1b1323dc794ab6d2bf55fe49",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev18&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:35.766Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev19-Chapter-27.pdf",
+      "bytes": 899708,
+      "sha256": "68969713a983240c05a5b72a05e77c6430538c5f8e9ac7d2b2f7cf29db157390",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev19&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:37.162Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev19-Chapter-86.pdf",
+      "bytes": 842623,
+      "sha256": "53c791f94ef3e77491e898f8232df39b8aff2a352853b373146e7be935a40898",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev19&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:38.326Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev19-Chapter-87.pdf",
+      "bytes": 984607,
+      "sha256": "f3ef46455f3cf7f12fb3490355423991120d058137a0fa5d5625c7941e7084e1",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev19&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:39.273Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev19-Chapter-88.pdf",
+      "bytes": 838544,
+      "sha256": "6bbbdb5fd9af4d8d7b511bea7154b5e4e2af62a5aadf5eba45cf9d49d59184a6",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev19&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:40.477Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev2-Chapter-27.pdf",
+      "bytes": 899670,
+      "sha256": "698fa8e85c23b6a273d3d2c8c3a766e35c58171af59215fe8ddbfdf2872d2ebe",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev2&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:40:43.620Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev2-Chapter-86.pdf",
+      "bytes": 842404,
+      "sha256": "8ca3c76a0beaea69edd508fc02d55642e2ed5ed3462887a684c1cb56005e6ce9",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev2&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:40:44.611Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev2-Chapter-87.pdf",
+      "bytes": 984240,
+      "sha256": "b670d39d5894f47e66854b20413e9b43a1c85cd63e569dfc123f5fcbf294e8ec",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev2&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:40:46.404Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev2-Chapter-88.pdf",
+      "bytes": 838249,
+      "sha256": "44218d8b70c4d5c9ac9466ecddd5ae03342bad8c6374e91fc905161d883e59cb",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev2&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:40:48.321Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev20-Chapter-27.pdf",
+      "bytes": 899526,
+      "sha256": "2311394a17edd44f6b6c6072d0fe10c62c86bbcdaf87b2c06884e00be267ab4f",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev20&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:41.842Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev20-Chapter-86.pdf",
+      "bytes": 842609,
+      "sha256": "d720db1e562d0e8800559af164947930a1101dc5eeb3ef1a9a8134de09a2c632",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev20&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:42.254Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev20-Chapter-87.pdf",
+      "bytes": 984631,
+      "sha256": "5c2d618d1a3df54fa492213248eb8096920a933b8a09c681308bd9f9ecdcb33b",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev20&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:43.045Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev20-Chapter-88.pdf",
+      "bytes": 838556,
+      "sha256": "fb264c25cadd899cd810142e16c23ad1855c8533d338889d903f95024ee2fe22",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev20&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:43.904Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev21-Chapter-27.pdf",
+      "bytes": 899662,
+      "sha256": "407042c87329ed28604c684be88ce3ff7e5ac35a20528649173c6b3009a7c405",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev21&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:44.536Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev21-Chapter-86.pdf",
+      "bytes": 842582,
+      "sha256": "9388148063a52c5973147a1aff6858b88ea9833a24f4adf461c3b74950a1fe5c",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev21&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:45.067Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev21-Chapter-87.pdf",
+      "bytes": 984436,
+      "sha256": "3d7d700f8d3a868e29f167d1b6259d567f08f57f8803fb35e4614451e24b9719",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev21&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:45.831Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev21-Chapter-88.pdf",
+      "bytes": 838471,
+      "sha256": "fff3089ea7d2a5a08b3fceea1241d05e852614a908ffbb4043e57cb80666c6cb",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev21&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:46.251Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev22-Chapter-27.pdf",
+      "bytes": 899657,
+      "sha256": "c56b20dffc3eda8f98af810dc26931f4da7a033445a6e6a65745d9715e09a4b0",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev22&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:46.860Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev22-Chapter-86.pdf",
+      "bytes": 842575,
+      "sha256": "1ef81b0f85f669cadf5f7853ffaa240702e009060c10b8ba991ce595a5378363",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev22&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:47.186Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev22-Chapter-87.pdf",
+      "bytes": 984620,
+      "sha256": "4d0d2f85b51de41da9cc1ca51d12040979664b2ddb3aad2e34f87a056cb31ba6",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev22&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:47.514Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev22-Chapter-88.pdf",
+      "bytes": 838503,
+      "sha256": "a19f8d433ca77e1092867740e3bd29241d2b63ca7a23a5ddbadbe64c08e990f6",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev22&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:47.766Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev23-Chapter-27.pdf",
+      "bytes": 899639,
+      "sha256": "4095af3e9b464b70ca3ec17c6e1d7027b4aac1e2b7fa32d1abb3fb182306398c",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev23&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:48.313Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev23-Chapter-86.pdf",
+      "bytes": 842608,
+      "sha256": "f8a8cff6ff9849763a67c7a7f1d259e7c575c2db8ed0130f3b4982550a9d1b4c",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev23&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:48.713Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev23-Chapter-87.pdf",
+      "bytes": 984627,
+      "sha256": "4cde29986349e043691fd6caa29435083bbcfaa9832725c3fabdb5336d5ae2e3",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev23&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:49.681Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev23-Chapter-88.pdf",
+      "bytes": 838501,
+      "sha256": "ad29f4c25e4ab14b0a2b68452f9e216bf4a30a9d9d60ed8d7adbc64a6142342b",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev23&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:50.064Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev24-Chapter-27.pdf",
+      "bytes": 899699,
+      "sha256": "42c924a8357e16a2def7e75c681663960ec077716dc21bb26f7158f6f40274a6",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev24&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:50.525Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev24-Chapter-86.pdf",
+      "bytes": 842578,
+      "sha256": "a2fcdd3a6744fd86833e8e8e77e22857d8f6162a7e95f722a35726df32fc37a2",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev24&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:51.065Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev24-Chapter-87.pdf",
+      "bytes": 984562,
+      "sha256": "cf3a35d4df689b41362ae186a88f1d669ee9acdc4c579210342c4d94b4bafe80",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev24&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:51.505Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev24-Chapter-88.pdf",
+      "bytes": 838513,
+      "sha256": "b50bf0702483739b1a5aa9ea1b04d7f0b6e7e2b5cba4459e4117a711b5dce0b3",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev24&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:52.133Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev25-Chapter-27.pdf",
+      "bytes": 899626,
+      "sha256": "b7419ba890936d370fca9c2dc95f599c3f730fe193e7a61ac12f94332a886be1",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev25&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:52.734Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev25-Chapter-86.pdf",
+      "bytes": 842592,
+      "sha256": "6c4e3e4df4708309da2e2683614434f4ed272d93c443d4ab7f62c52ccd08600e",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev25&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:53.667Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev25-Chapter-87.pdf",
+      "bytes": 984590,
+      "sha256": "0766050a936a18ae2fd2f88955a48e363cc968a571ffb6eb0cae2f622f29a451",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev25&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:54.445Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev25-Chapter-88.pdf",
+      "bytes": 838537,
+      "sha256": "f5e3e6789fcbcaf864fb6c1902585c85344e5cfa7538e7e8fe77525aebb6e0a4",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev25&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:54.685Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev26-Chapter-27.pdf",
+      "bytes": 899653,
+      "sha256": "8fcfb5479e1edf2f54c03affaa398f63cb0a34ca9011a4d3d0dc063c17774f55",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev26&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:55.907Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev26-Chapter-86.pdf",
+      "bytes": 842613,
+      "sha256": "8b08892da40f138ca683b0023d04544f2554060aedc831c3dc65e8b94635104a",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev26&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:56.635Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev26-Chapter-87.pdf",
+      "bytes": 984319,
+      "sha256": "2d269ea77131a9e8fcea9cda08d678561dcfdb856865df405d01336a1df27aec",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev26&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:58.096Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev26-Chapter-88.pdf",
+      "bytes": 838517,
+      "sha256": "89d292f69da90ef84186b2d9d172fb285d66d04613bd79b7b0e875ba872dbc93",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev26&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:58.540Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev27-Chapter-27.pdf",
+      "bytes": 899593,
+      "sha256": "9f5e83b3a82ee9792eb16be0bc04c28a20e3c9c0bbe47656285d4c3445ea0125",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev27&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:59.140Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev27-Chapter-86.pdf",
+      "bytes": 842621,
+      "sha256": "a0c6e0988d457fa0c91dda05961b018c50587536831b7c2ef0c2295f80e54b7d",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev27&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:59.832Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev27-Chapter-87.pdf",
+      "bytes": 984626,
+      "sha256": "9a5ba4d3c3c4a298384ec937243a29375a39ceadb2a09f2dddbc00e4f3765cd1",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev27&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:00.737Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev27-Chapter-88.pdf",
+      "bytes": 838527,
+      "sha256": "d7962da1f116b96b2d2ef722434282663e71575d587ef087aab87bd58801fff9",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev27&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:01.251Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev28-Chapter-27.pdf",
+      "bytes": 899655,
+      "sha256": "76465695f9d2925e756b93b11205d55c9e05ea07c8a75292bc2855d64d082279",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev28&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:01.987Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev28-Chapter-86.pdf",
+      "bytes": 842598,
+      "sha256": "a74f5fe298f3caaac39fc61f55ea5a302ee6ccdada5097336d83ccf5761c698f",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev28&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:03.056Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev28-Chapter-87.pdf",
+      "bytes": 984716,
+      "sha256": "cff51f61dc17d2a16f2530eed55f646b2341d1190189c16a7304addf0c4191db",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev28&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:05.449Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev28-Chapter-88.pdf",
+      "bytes": 838545,
+      "sha256": "4852827c28a1e969bc7d3ad6386f6883f032fb058cc38ef901cf95ce4e831451",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev28&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:05.965Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev29-Chapter-27.pdf",
+      "bytes": 899660,
+      "sha256": "39a9bb84472d502c41c8b5d45c7cc0ec94d463ba9f429616b7863707391b5f00",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev29&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:06.566Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev29-Chapter-86.pdf",
+      "bytes": 842546,
+      "sha256": "7c684ae526e31b9c527fa18367f18398526704f0de2b8a6eab11e35d63223110",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev29&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:07.491Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev29-Chapter-87.pdf",
+      "bytes": 984690,
+      "sha256": "d651f4ecac1dde77b37dc0828883c4ce9e7c0f31c980f77d2a5a72b97537e170",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev29&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:08.292Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev29-Chapter-88.pdf",
+      "bytes": 838523,
+      "sha256": "53aab3b5e6d48f18d3a6ef1edce744bc564731c083c8625b988f89f1a5686174",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev29&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:09.195Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev3-Chapter-27.pdf",
+      "bytes": 899677,
+      "sha256": "fd807a3d7c7cb30aedcd5b97c241861a51fdd23c692d102f9758e4e28366df85",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev3&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:40:49.849Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev3-Chapter-86.pdf",
+      "bytes": 842417,
+      "sha256": "d617d30b1de219983f0e4bb17b73a8eedf006506c844f44106235c0364e3680f",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev3&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:40:51.142Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev3-Chapter-87.pdf",
+      "bytes": 984435,
+      "sha256": "d7c4f6f175f0ac77f6e0397c9fda2a15ef175c992e86aee6a4a5a8bd7ecd594c",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev3&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:40:52.230Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev3-Chapter-88.pdf",
+      "bytes": 838300,
+      "sha256": "1e30cecbfe7533df9e2058b7a4a4a4f1be18bf0ed39477b96041cce8baddb7fc",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev3&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:40:52.857Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev30-Chapter-27.pdf",
+      "bytes": 899648,
+      "sha256": "90a9260881630396ea049de76ba20119f1f1e9f5c76cb720a6155581b629dc77",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev30&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:10.596Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev30-Chapter-86.pdf",
+      "bytes": 842568,
+      "sha256": "3322dd876edf0e25e19ca4d6f5933c51b3a0d52654a81f5225728ef8b6fe2703",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev30&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:11.043Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev30-Chapter-87.pdf",
+      "bytes": 984350,
+      "sha256": "4951a938af38c4bbda56179c7ca25b6fbb326eee87edf29e84cc5a19cf843da9",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev30&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:11.710Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev30-Chapter-88.pdf",
+      "bytes": 838520,
+      "sha256": "28344c07218dbe349d6f490b55221d2ec9a305961c7bfa4a6079aa001c499d45",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev30&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:12.248Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev31-Chapter-27.pdf",
+      "bytes": 899700,
+      "sha256": "15397527767029268cf16bf82738cede4b31356687922120b10aced6b74a5197",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev31&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:12.812Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev31-Chapter-86.pdf",
+      "bytes": 842586,
+      "sha256": "6c4a713186398aa8157918e7f910b307069e48f05eea6f77757d094dba48dc62",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev31&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:13.344Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev31-Chapter-87.pdf",
+      "bytes": 984286,
+      "sha256": "7795c75ad8a122bcd2e32523170124ec8b8678150c54b563000cbb70eed47fec",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev31&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:13.997Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev31-Chapter-88.pdf",
+      "bytes": 838543,
+      "sha256": "60855633f0cac126d0cc2c002e858c238a581b85554316c3013c5af9e8577b99",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev31&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:14.750Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev32-Chapter-27.pdf",
+      "bytes": 899629,
+      "sha256": "d48ed135a29bc5d97071e0096c58e2968164ba1becc74b6eecef525726efb6fa",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev32&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:15.620Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev32-Chapter-86.pdf",
+      "bytes": 842593,
+      "sha256": "354e209f9a52464cf75c067c2d6660bc81231fcb41bf5537f65637416cecc250",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev32&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:16.444Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev32-Chapter-87.pdf",
+      "bytes": 984382,
+      "sha256": "ef4b583437cbb9df5b3cea20017142a8eafb877b79525c1acdb7b0f421308e05",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev32&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:17.353Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev32-Chapter-88.pdf",
+      "bytes": 838487,
+      "sha256": "8f5f22bc7cecc26d6bf8d5785faa98a85e25b4fe429fe669ccca6be2529e33ee",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev32&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:18.133Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev4-Chapter-27.pdf",
+      "bytes": 899663,
+      "sha256": "a644c5216c060574ab28d124e8c9a04f58c97351b95578ad944627d52e9db4c0",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev4&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:40:53.280Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev4-Chapter-86.pdf",
+      "bytes": 842418,
+      "sha256": "9a26f1b9e2eebff0bdf58cc2c9b357d3f8847051cf2415d51d5e5840eb2cc916",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev4&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:40:53.630Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev4-Chapter-87.pdf",
+      "bytes": 984388,
+      "sha256": "ca4f273786ffac4a5aa7abf85ede4ca15c150d2b9945c220e5b1aaf6f28a38ce",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev4&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:40:53.967Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev4-Chapter-88.pdf",
+      "bytes": 838263,
+      "sha256": "a902594d0163d54010f1b2964133e76becc584a57948f073d44889e774c53890",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev4&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:40:54.160Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev5-Chapter-27.pdf",
+      "bytes": 899606,
+      "sha256": "2b644d55375640b3d3e1f712ecaae6d6b9895a0d98569bf90318866cbec4d6bf",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev5&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:40:54.487Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev5-Chapter-86.pdf",
+      "bytes": 842410,
+      "sha256": "5ba8726102e43ee5412f8f71253b7dc64576650d9ac1363903a99c3bd118032b",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev5&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:40:55.061Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev5-Chapter-87.pdf",
+      "bytes": 984674,
+      "sha256": "37580ddb17b42e53d84f69cf7014daa0ad69308e18fe770015e56fce75b9d7fb",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev5&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:40:55.615Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev5-Chapter-88.pdf",
+      "bytes": 838529,
+      "sha256": "57c2bf18c529ed373128d4b3ebff3d90b300069a4750f7fc7980887fb974c705",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev5&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:40:56.454Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev6-Chapter-27.pdf",
+      "bytes": 899658,
+      "sha256": "2b5ae086d7e41d8fc5491fb18385380913ef9d7546a5380f26cc123a034432c9",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev6&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:40:57.413Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev6-Chapter-86.pdf",
+      "bytes": 842432,
+      "sha256": "50ef1a9f05b3072a58f3031a4bf74dd4d01d9454e1f2c90c7d8b26e4754f90ef",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev6&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:40:58.211Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev6-Chapter-87.pdf",
+      "bytes": 984521,
+      "sha256": "608ffca7be9b2d3e568c37bd532bde4efb47b387ac8b59c0ddcddc6583ad523e",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev6&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:40:59.014Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev6-Chapter-88.pdf",
+      "bytes": 838546,
+      "sha256": "c57287228a87269e6f26b924816406f6f762bc21e72c739deec854af51760802",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev6&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:40:59.675Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev7-Chapter-27.pdf",
+      "bytes": 899718,
+      "sha256": "335f2e114c40fcb0bfbd956028eda89afd56ec61c098d84f71205c2bf4a78a66",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev7&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:00.535Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev7-Chapter-86.pdf",
+      "bytes": 842393,
+      "sha256": "80c560b2263bc7cf1be3c71ebbf1d5c1f1a4fd7c0194c4638f83712aee5c9771",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev7&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:01.330Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev7-Chapter-87.pdf",
+      "bytes": 984397,
+      "sha256": "589d91edd93ae22b952627c495de464b06bfbad5f220b80a8b5ff9260eaa8631",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev7&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:02.690Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev7-Chapter-88.pdf",
+      "bytes": 838551,
+      "sha256": "150270900c50a73b7852d3bf7bb9f074d80d5082c12863f54def823010694842",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev7&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:03.247Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev8-Chapter-27.pdf",
+      "bytes": 899675,
+      "sha256": "a8171a9fad35912001681d534eed65153f1f56fdf08468beaa2555334caf050f",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev8&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:03.837Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev8-Chapter-86.pdf",
+      "bytes": 842397,
+      "sha256": "1adf401fb3c56aba036a5a57b167695072ada2d4442068aa724b1cdc4b592baa",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev8&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:04.728Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev8-Chapter-87.pdf",
+      "bytes": 984553,
+      "sha256": "aa9fb00df249a4b6fda580c49f3f27c7682d876a31a5f54b6e29c4939e4fe7a4",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev8&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:06.063Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev8-Chapter-88.pdf",
+      "bytes": 838512,
+      "sha256": "db207e8a416e9f7435a3947127e0f4b518b27354223b5e3104af29220b9f2eed",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev8&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:06.886Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev9-Chapter-27.pdf",
+      "bytes": 899548,
+      "sha256": "a352d6ddb373912d798bf195baf64f806db94a84bb4c91fac472d66845098327",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev9&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:41:07.812Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev9-Chapter-86.pdf",
+      "bytes": 842428,
+      "sha256": "2aad90245cfe3e22d6ba7506f697eaaa75ffaaab7f9da539457aac8973354f71",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev9&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:41:08.550Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev9-Chapter-87.pdf",
+      "bytes": 984594,
+      "sha256": "12ec71e2a8ca0346b06321d51496b0ad9b6aee56d1d5ecea5b423314b6ad308a",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev9&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:41:09.202Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2025HTSRev9-Chapter-88.pdf",
+      "bytes": 838464,
+      "sha256": "4bb81e98acfffcd581ea83c275ee2c0a4f5d50095d57a791d61a8f2821916fa6",
+      "url": "https://hts.usitc.gov/reststop/file?release=2025HTSRev9&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:41:09.672Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSBasic-Chapter-27.pdf",
+      "bytes": 899199,
+      "sha256": "a1b9fbd17114b2695d215c23b67adb45322c6d82bcff7ef78ddee23537bd3d59",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSBasic&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:36:27.274Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSBasic-Chapter-86.pdf",
+      "bytes": 842444,
+      "sha256": "ae5f8375de01ca6b7d0b907978413517caac9aad3fb1364090800acfa97ae65f",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSBasic&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:36:27.904Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSBasic-Chapter-87.pdf",
+      "bytes": 984020,
+      "sha256": "00ae169df9787e65d5c5c800544b3f66f95e7a9ff54590a22781b9d4301e685a",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSBasic&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:36:28.755Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSBasic-Chapter-88.pdf",
+      "bytes": 838431,
+      "sha256": "05527e58e7b3e9e5667a864c86cd3b247d7531ab0ddd9f546d336bb8ef3e2eb2",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSBasic&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:36:29.288Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSBasic-details.json",
+      "bytes": 5366,
+      "sha256": "79d7fa2faad98fd55ab89a8d16bb7bc5f5f905e82c8f5bcce564e518c9a40c7e",
+      "url": "https://hts.usitc.gov/reststop/releaseDetails?release=2026HTSBasic",
+      "capturedAt": "2026-10-12T04:36:26.017Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev1-Chapter-27.pdf",
+      "bytes": 899724,
+      "sha256": "44a170b0037a0c66b71fb641ca631cb37d85249193e566e473fb3b81052bf187",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev1&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:18.784Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev1-Chapter-86.pdf",
+      "bytes": 842577,
+      "sha256": "15617642c6e4a43c8591de1e48a39a69b5e92d71c40245c19406a50f0ed04d4b",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev1&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:19.870Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev1-Chapter-87.pdf",
+      "bytes": 984471,
+      "sha256": "74fe02bf898d5424c3f5fcad24af46c2ee8b6021d9d6de2678242d842952ac8a",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev1&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:20.760Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev1-Chapter-88.pdf",
+      "bytes": 838555,
+      "sha256": "39d5fb79c2dbef61f36070778f88b18beb6823812cad78f2a6ddc18893b82b73",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev1&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:21.340Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev10-Chapter-27.pdf",
+      "bytes": 899649,
+      "sha256": "ba61f3c23e635de9f7ab29e01bc159645eed5f48fdf9fd5cf970ad7d32117139",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev10&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:38.564Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev10-Chapter-86.pdf",
+      "bytes": 842619,
+      "sha256": "400d2f51aa13962f9b0088f237db43775c01c5ada3f115c33c5c046356796a60",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev10&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:39.118Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev10-Chapter-87.pdf",
+      "bytes": 984077,
+      "sha256": "9c20cdd79140f104a15c937ae5f239331184976ae9eb03eec37b991c2ac151ba",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev10&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:39.912Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev10-Chapter-88.pdf",
+      "bytes": 838312,
+      "sha256": "861116296e01272b6f8e52c04e9d479963169ef71d69ac332043d8ba7eb3c091",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev10&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:40.546Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev11-Chapter-27.pdf",
+      "bytes": 899629,
+      "sha256": "2c592ea09995d9ba80b442513aed668c7d7f6085d3022d12275ed236fb11dcc5",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev11&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:41.288Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev11-Chapter-86.pdf",
+      "bytes": 842593,
+      "sha256": "6c37a269c62a909dca05fb7105697cdb38d811927629eba393ba7953cf6c8899",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev11&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:42.093Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev11-Chapter-87.pdf",
+      "bytes": 987023,
+      "sha256": "a637b273c4e4b4b96970e9cf79137ec8065e17fbaf79bd2e401898127b03dcff",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev11&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:43.067Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev11-Chapter-88.pdf",
+      "bytes": 838346,
+      "sha256": "bf62b9a83fad5c4717bfc30706a1e4d8a0d662c1a6c0f25e0ec243859306ccbe",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev11&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:43.964Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev12-Chapter-27.pdf",
+      "bytes": 899588,
+      "sha256": "609c43775aaf4f382988af72fd149fe72fe88914965156d8ca4e9dace4e8aebb",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev12&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:44.745Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev12-Chapter-86.pdf",
+      "bytes": 842581,
+      "sha256": "2ab8260fc4183be9a4f3160a64ac615fadc3d19b3c9a900b7b9903dbfeaa3a10",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev12&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:45.450Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev12-Chapter-87.pdf",
+      "bytes": 987033,
+      "sha256": "83f4ef5c733ef5005d8b02d683a356c07fa8983cfbbb4fade4b75eace13321a4",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev12&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:46.266Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev12-Chapter-88.pdf",
+      "bytes": 838306,
+      "sha256": "e1c795578a1e8cd4d751177c3322d2f526600f161173a9671a645bd0a9d1955a",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev12&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:47.027Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev13-Chapter-27.pdf",
+      "bytes": 886492,
+      "sha256": "2b5e3a0a69047551ac81a4bd4366031ec6a258ae2a311240d1ee32ec0561096e",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev13&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:48.190Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev13-Chapter-86.pdf",
+      "bytes": 836852,
+      "sha256": "84d7c5267605ac726db039f104aede87303ec55f0fede9df277bb922858bdd51",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev13&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:49.281Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev13-Chapter-87.pdf",
+      "bytes": 951145,
+      "sha256": "70ffe777c1b8e513b01df4344be1adddc37ce62c33eed40de6c2a12365578a42",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev13&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:50.131Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev13-Chapter-88.pdf",
+      "bytes": 833437,
+      "sha256": "0b519149e9f7fe5116acec57e804ef68b6a99a57ed37516016a6cf568ac0b785",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev13&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:50.875Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev14-Chapter-27.pdf",
+      "bytes": 886499,
+      "sha256": "f53d388fe872770076e4aa20755fbcf2ef1bbddc177220130a5140cf8a412f89",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev14&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:51.761Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev14-Chapter-86.pdf",
+      "bytes": 836856,
+      "sha256": "5aaae6c3ff40a1aa2fa862f75b530258f47817ce9f16d931cb365204686639ee",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev14&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:52.535Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev14-Chapter-87.pdf",
+      "bytes": 951150,
+      "sha256": "b77b44df0977660a27ef3eeb2547808c46cc35c4042f6ba3b93dd2b03aaf56f6",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev14&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:53.445Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev14-Chapter-88.pdf",
+      "bytes": 833396,
+      "sha256": "148487602db3ac78c20c577777dd48132c17c1c8cc5f15ad1e876c12e961dafd",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev14&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:53.743Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev15-Chapter-27.pdf",
+      "bytes": 886502,
+      "sha256": "84c8ef1c7e392ba427d393913dbded1dd9c2a112ac70fdc4538ff962f59a92d5",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev15&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:54.067Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev15-Chapter-86.pdf",
+      "bytes": 836853,
+      "sha256": "3ece261de626bad56b2d409357a83412ef51a228ba818c82a018aeb9f1c3a44c",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev15&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:54.415Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev15-Chapter-87.pdf",
+      "bytes": 951208,
+      "sha256": "fd77f832349b615cbe6bd785292db6f4a51cf8fb2aacc9124728211edda661ff",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev15&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:54.802Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev15-Chapter-88.pdf",
+      "bytes": 833430,
+      "sha256": "7d7474c50798f6a0c54017ed5d751a4d9b674743481d959adf3d7982b14a6f16",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev15&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:55.474Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev16-Chapter-27.pdf",
+      "bytes": 886493,
+      "sha256": "18a5e9ee933b340d3002dacad9132b4f6614c2a4f9a0e5c196990ef1bccc80a9",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev16&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:56.200Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev16-Chapter-86.pdf",
+      "bytes": 836851,
+      "sha256": "60f1cbb1bd1f21b2094bc5be1ef1042096537e7229cb017d5f3071cd5d32530d",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev16&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:56.804Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev16-Chapter-87.pdf",
+      "bytes": 951149,
+      "sha256": "769f48103680bcd4a5bb25c1fcf6a75f55c96d8419ecb3717107748b60e80d83",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev16&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:57.459Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev16-Chapter-88.pdf",
+      "bytes": 833424,
+      "sha256": "3981ca7ebf0c7fbfbf8ccdafd1c8652d67774bd1e8b619337e846414bb73d8c1",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev16&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:58.070Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev17-Chapter-27.pdf",
+      "bytes": 886501,
+      "sha256": "a4b0f5e22eb80799b93abf9214fd198c49c037ba3cc224c5534aca4a198bb83d",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev17&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:36:29.828Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev17-Chapter-86.pdf",
+      "bytes": 836855,
+      "sha256": "96caf414b4fff02ffd408ef989a01e34378649efdb385e9eedb7710e01db8d81",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev17&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:36:30.344Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev17-Chapter-87.pdf",
+      "bytes": 951148,
+      "sha256": "b0be9983fbcc62e5643efb4925d87eeae2dff27def16e23fc68cb36768aa6774",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev17&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:36:30.910Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev17-Chapter-88.pdf",
+      "bytes": 833430,
+      "sha256": "ecfbcdde29b9ed205028052e77ca133d611e994791c2f3022f9eee110e1ada40",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev17&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:36:31.483Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev17-details.json",
+      "bytes": 5431,
+      "sha256": "daab4b73d76f09e8b2c4a0fac65374a1627661d260144aa2cda96d1f216e77f0",
+      "url": "https://hts.usitc.gov/reststop/releaseDetails?release=2026HTSRev17",
+      "capturedAt": "2026-10-12T04:36:29.372Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev2-Chapter-27.pdf",
+      "bytes": 899663,
+      "sha256": "a30a27d5d130a6fdf004cc5e4cec5cdecf486353853b61a770278259d2e53acd",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev2&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:21.929Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev2-Chapter-86.pdf",
+      "bytes": 842566,
+      "sha256": "3b201252bb391ff9bc6d0f81eff4d911fa323a008dbc6de57b0a7f2aed574864",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev2&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:22.661Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev2-Chapter-87.pdf",
+      "bytes": 984710,
+      "sha256": "3302dbde91cdd13c0fb45e94f40ec3517b8fcc8062002a3c2bf4931a5cf3b183",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev2&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:23.234Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev2-Chapter-88.pdf",
+      "bytes": 838561,
+      "sha256": "c6d98dac259e696627ec61db2d8974cac7c0df934af218e424d1e5ee103b0c95",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev2&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:24.157Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev3-Chapter-27.pdf",
+      "bytes": 899606,
+      "sha256": "b8419090fe7617f7582c17e0b8a6d4f09f5f99bcc104cf69ecf49992f351ccdd",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev3&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:24.690Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev3-Chapter-86.pdf",
+      "bytes": 842584,
+      "sha256": "33c8ba789dbb1db3b2d8cb588bd72bdc2676203a2c74fa35d0ca79d4ebe41eed",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev3&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:25.161Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev3-Chapter-87.pdf",
+      "bytes": 984571,
+      "sha256": "35a3faa23d25fc16a48149fc358e926b38ace3c8c42ed290734c9e4cfddfff5b",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev3&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:25.603Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev3-Chapter-88.pdf",
+      "bytes": 838500,
+      "sha256": "3a543c657fe13a9db5569ed6323812d53d33cdb35f69589ac2c3638b813349e2",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev3&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:25.852Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev4-Chapter-27.pdf",
+      "bytes": 899662,
+      "sha256": "546a17d9f02767ba21d0659f1aa42309b9d38d4099285518da7635537eed33b5",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev4&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:26.367Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev4-Chapter-86.pdf",
+      "bytes": 842592,
+      "sha256": "a74bb8be2cd44c82c09f5a0f972ecf62461dfe5b86683f325dd9faf03fa63cd7",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev4&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:26.557Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev4-Chapter-87.pdf",
+      "bytes": 984398,
+      "sha256": "014f4a767756d441d6e065815afa79f5913eb4ccc321ba96b7c34e48be22f52d",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev4&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:27.002Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev4-Chapter-88.pdf",
+      "bytes": 838516,
+      "sha256": "6d705d575cda7f5891431a633f68412120bf37232fd8519fe75e6ef1d92a5142",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev4&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:27.424Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev5-Chapter-27.pdf",
+      "bytes": 899681,
+      "sha256": "3016d95e660f182da3b20c9d11759d4392a4efa2560f70ba05ac631a2c0976ca",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev5&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:27.758Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev5-Chapter-86.pdf",
+      "bytes": 842600,
+      "sha256": "7cd3d9704397afee43ce43719e9c3cb179f6bb66f2911cc4f8a26c4384f61934",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev5&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:27.954Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev5-Chapter-87.pdf",
+      "bytes": 984083,
+      "sha256": "f2fbcdce2f4b7115f436a036e203e32c53bf59b0aadcf50e66680b09a7dabdf3",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev5&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:28.382Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev5-Chapter-88.pdf",
+      "bytes": 838275,
+      "sha256": "45a28156837d017c667afe38aca319ee777e8e04468dbbb44286467b001fe87c",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev5&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:28.756Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev6-Chapter-27.pdf",
+      "bytes": 899665,
+      "sha256": "bb582481ad8bec3366e610e1caf038c3eefba3c9eed781619524b244554863c5",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev6&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:29.215Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev6-Chapter-86.pdf",
+      "bytes": 842608,
+      "sha256": "8b88841c0f52a418c9fcea6df979ad69af87dc176cca1e66e71fc72755f47d72",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev6&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:29.468Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev6-Chapter-87.pdf",
+      "bytes": 984124,
+      "sha256": "53ea8c00d016586127fc857433707a4edf8d968d09410f58b304eb8187ffebb0",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev6&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:30.209Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev6-Chapter-88.pdf",
+      "bytes": 838311,
+      "sha256": "e70259b1954e800124f14257cf715d38604a4e21e72daf60d9941f54b86a0460",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev6&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:30.597Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev7-Chapter-27.pdf",
+      "bytes": 899657,
+      "sha256": "805ad47f57f3840cdbce1d21313391d3417dc7e42f2d4d1f210be0ce616ce714",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev7&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:31.096Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev7-Chapter-86.pdf",
+      "bytes": 842615,
+      "sha256": "8c0757680cb5c4c3796e3c286ece77ab81e605b72a224b7570ba047ffd4bc4cf",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev7&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:31.623Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev7-Chapter-87.pdf",
+      "bytes": 983972,
+      "sha256": "5a3c1895b52e1b55b0eb4fd757a59cafdc3fe9970173954bdd134f71a107760b",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev7&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:32.341Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev7-Chapter-88.pdf",
+      "bytes": 838301,
+      "sha256": "d4128cb7793b3efd02dc073b1efce78b64a6beec84c2358c19897dfeee6fb3a2",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev7&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:32.891Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev8-Chapter-27.pdf",
+      "bytes": 899666,
+      "sha256": "dc60612da6f2755433a4b8c2e5fead27ddf7fc11308071dc4d5ee67a427abce3",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev8&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:33.664Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev8-Chapter-86.pdf",
+      "bytes": 842598,
+      "sha256": "ab0a2f23c0bfd8519bed33372a2f911aaba482ffc880115cf6b7bd688f901ea2",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev8&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:34.156Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev8-Chapter-87.pdf",
+      "bytes": 983943,
+      "sha256": "a05cfbe7801abadb22a6647b0f3e9287e61e3ff47bba54c905a76bbb2dbaab0b",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev8&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:35.004Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev8-Chapter-88.pdf",
+      "bytes": 838316,
+      "sha256": "4e57e108290562436e96c7b872798e1babf8fd509fec145ac72680b30ca02125",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev8&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:35.267Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev9-Chapter-27.pdf",
+      "bytes": 899731,
+      "sha256": "27bb1c0bf1d4ce8534754cf438a53dcb13543ab2d1769b667630c8642a6ef755",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev9&filename=Chapter%2027",
+      "capturedAt": "2026-10-12T04:42:36.382Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev9-Chapter-86.pdf",
+      "bytes": 842634,
+      "sha256": "b0d84eadd3741be4d5deb74a4ab0476311b8406159adc952ad069d44f3439615",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev9&filename=Chapter%2086",
+      "capturedAt": "2026-10-12T04:42:36.797Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev9-Chapter-87.pdf",
+      "bytes": 983951,
+      "sha256": "584855eba2c058e2bab7aff38609f52a8cd43d23f071885d45b3b3a8c1a3e638",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev9&filename=Chapter%2087",
+      "capturedAt": "2026-10-12T04:42:37.257Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/2026HTSRev9-Chapter-88.pdf",
+      "bytes": 838307,
+      "sha256": "49a8f9893f5c8efbac0a9c725d2c126f8e2e154bafe6d8ebaae2154493c91044",
+      "url": "https://hts.usitc.gov/reststop/file?release=2026HTSRev9&filename=Chapter%2088",
+      "capturedAt": "2026-10-12T04:42:37.879Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/484(f)_committee_changes_for_january_1_2025-final.pdf",
+      "bytes": 269849,
+      "sha256": "48a5e8fb7bcb98cee0d2ac3757768f7a618bc8794da39dbc35358cf501cf337b",
+      "url": "https://www.usitc.gov/tariff_affairs/documents/484(f)_committee_changes_for_january_1_2025-final.pdf",
+      "capturedAt": "2026-10-12T04:29:42.130Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/484(f)_committee_changes_for_july_1_2025-final.pdf",
+      "bytes": 228878,
+      "sha256": "ec250db11b44c8d1b6254c2387167ee85f737d7223809d0c1845fc10e6fc8f78",
+      "url": "https://www.usitc.gov/tariff_affairs/documents/484(f)_committee_changes_for_july_1_2025-final.pdf",
+      "capturedAt": "2026-10-12T04:29:41.952Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/hts-download-2024-rev8.html",
+      "bytes": 11053,
+      "sha256": "62c570957096ba8ea57511eb11234664f9386a3d22f842aad4c8af0c6929f63c",
+      "url": "https://hts.usitc.gov/download?release=2024HTSRev8",
+      "capturedAt": "2026-10-12T04:29:42.740Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/hts-download-2025-basic.html",
+      "bytes": 11053,
+      "sha256": "9b2283885c37b4c3dd9c3258e985265e33335acf35bbee83dcead3b372ebca4c",
+      "url": "https://hts.usitc.gov/download?release=2025HTSBasic",
+      "capturedAt": "2026-10-12T04:29:42.874Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/hts-public-main.js",
+      "bytes": 503179,
+      "sha256": "bca652e7ba7ead240426f8d29b43dd4d6c647244070168d3366d55ec2fbcee4c",
+      "url": "https://hts.usitc.gov/main.b5b757898a0f94c4.js",
+      "capturedAt": "2026-10-12T04:33:06.102Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/hts-release-list.json",
+      "bytes": 81730,
+      "sha256": "d07d7d022319bf6f1b4c60918565ad528ca3df8be9eb2e6d0c6ee2defd2d0f81",
+      "url": "https://hts.usitc.gov/reststop/releaseList",
+      "capturedAt": "2026-10-12T04:38:38.915Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/hts_2024_revision_8_csv.csv",
+      "bytes": 3870179,
+      "sha256": "9ec9da1528482e3e03f6bfd927a1dae61d9244ac50859b2d37123b0e036c9126",
+      "url": "https://www.usitc.gov/tata/hts/hts_2024_revision_8_csv.csv",
+      "capturedAt": "2026-10-12T04:32:42.659Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/hts_2025_basic_edition_csv.csv",
+      "bytes": 3867657,
+      "sha256": "fde8f54399970eee2c33a5dbfe725072c3592239655af790cf8d0d0102c17c84",
+      "url": "https://www.usitc.gov/tata/hts/hts_2025_basic_edition_csv.csv",
+      "capturedAt": "2026-10-12T04:33:02.204Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/hts_2026_basic_edition_csv.csv",
+      "bytes": 3949243,
+      "sha256": "952e773ca60758ef6b7af4964a28558da7cdb1a39cd9d187e482d67258304f08",
+      "url": "https://www.usitc.gov/tata/hts/hts_2026_basic_edition_csv.csv",
+      "capturedAt": "2026-10-12T04:33:05.708Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/hts_2026_revision_17_csv.csv",
+      "bytes": 3954394,
+      "sha256": "69c92d1d6ff3b833198d95b2d5ea88a9a3ce5fbc705f014c8594d3f4247f98bb",
+      "url": "https://www.usitc.gov/tata/hts/hts_2026_revision_17_csv.csv",
+      "capturedAt": "2026-10-12T04:33:05.820Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/list_of_committee_changes_for_january-1-2026-and-february-1-2026.pdf",
+      "bytes": 1156062,
+      "sha256": "6c15b74b65a692c53a3e8072051c8fc0991ff72e16850f059f571cc07c099968",
+      "url": "https://www.usitc.gov/tariff_affairs/documents/list_of_committee_changes_for_january-1-2026-and-february-1-2026.pdf",
+      "capturedAt": "2026-10-12T04:29:41.723Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/list_of_committee_changes_for_july_1_2026-final.pdf",
+      "bytes": 1302380,
+      "sha256": "6cb6a677eaaecd228216cc399afc2d1cf539a17a71366ae31dab7c02759b7510",
+      "url": "https://www.usitc.gov/tariff_affairs/documents/list_of_committee_changes_for_july_1_2026-final.pdf",
+      "capturedAt": "2026-10-12T04:29:41.342Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/schedule-b-2025-jan-changes.pdf",
+      "bytes": 72910,
+      "sha256": "fdbb94c54797065716b3b81d948f8d6401d57c127bc5d111ed56101c652f86f0",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2025/jan_obsoletetonew.pdf",
+      "capturedAt": "2026-10-12T04:25:04.256Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/schedule-b-2025-july-changes.pdf",
+      "bytes": 75324,
+      "sha256": "c25b2ed2cc4156548632288fc6024e1db1566a3beb41150a63283450b359523e",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2025/July_obsoletetonew.pdf",
+      "capturedAt": "2026-10-12T04:25:04.444Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/schedule-b-2026-feb-changes.pdf",
+      "bytes": 80162,
+      "sha256": "f03d97a7b3f4eed64a560ea2ad6facd17741b2b48be205b1aea9d2a67d38c5bb",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2026/feb_obsoletetonew.pdf",
+      "capturedAt": "2026-10-12T04:25:04.952Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/schedule-b-2026-jan-changes.pdf",
+      "bytes": 92317,
+      "sha256": "511d8964adf094bc4af62ee783ce59b5e0583a2781346c7da3d86730ab3879e6",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2026/jan_obsoletetonew.pdf",
+      "capturedAt": "2026-10-12T04:25:04.691Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/schedule-b-2026-july-changes.pdf",
+      "bytes": 84277,
+      "sha256": "131e16af3f0e7621d416294cf3710b330a6dd9f4889b5325ff365dd234c3bf78",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2026/July_obsoletetonew.pdf",
+      "capturedAt": "2026-10-12T04:25:05.127Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/schedule-index.html",
+      "bytes": 58078,
+      "sha256": "fcb7b8a32fd9c9aece11ee884560eee993fcca4ff3cf9ca799dc698ad62892bf",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/index.html",
+      "capturedAt": "2026-10-12T04:24:55.194Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/usitc-2025-basic.html",
+      "bytes": 49854,
+      "sha256": "45a988b935fa74ba83eb1735fff430e8bec716220deb6921371d66838c271806",
+      "url": "https://www.usitc.gov/2025_htsa_basic_edition",
+      "capturedAt": "2026-10-12T04:27:14.306Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/usitc-archive-page1.html",
+      "bytes": 113325,
+      "sha256": "c0e2a0a6caa918d04728d986abe28d7dfaa196d426548f1b5e99b89535b7fbd2",
+      "url": "https://www.usitc.gov/harmonized_tariff_information/hts/archive/list?page=1",
+      "capturedAt": "2026-10-12T04:27:14.470Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/usitc-archive-page2.html",
+      "bytes": 119357,
+      "sha256": "b8103794911469b85973780d9feabce01a98d8c8ed6bf51046de8b1ef4fdf5f4",
+      "url": "https://www.usitc.gov/harmonized_tariff_information/hts/archive/list?page=2",
+      "capturedAt": "2026-10-12T04:27:38.760Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/usitc-archive.html",
+      "bytes": 117010,
+      "sha256": "e173aac0d15fb1e0c5e83a98924c4bd2d7674df35e4ce7f9e1aa50d62cfb8122",
+      "url": "https://www.usitc.gov/harmonized_tariff_information/hts/archive/list",
+      "capturedAt": "2026-10-12T04:24:55.535Z"
+    },
+    {
+      "path": "data/backups/canada-country-audit/classification-references-2026-10-12/usitc-committee.html",
+      "bytes": 56507,
+      "sha256": "c8890c683d3b0557602439b1a5433b7820eb8eafbb3dc93942c36fcc63032d3e",
+      "url": "https://www.usitc.gov/harmonized_tariff_information/484_f_committee",
+      "capturedAt": "2026-10-12T04:26:52.905Z"
+    }
+  ],
+  "candidates": [
+    {
+      "direction": "imports",
+      "code": "270900",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. No candidate HS6 scope transfer identified in the reviewed definitions, governing notes and dated changes.",
+      "scopeConclusion": "Crude petroleum oils and oils from bituminous minerals. All54 effective HTS editions have matching governing legal note blocks; two added statistical-note blocks were checked and do not alter this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 59
+    },
+    {
+      "direction": "imports",
+      "code": "271019",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. No candidate HS6 scope transfer identified in the reviewed definitions, governing notes and dated changes.",
+      "scopeConclusion": "Other noncrude petroleum oils/preparations under heading2710, excluding biodiesel-containing preparations and waste oils. All54 effective HTS editions have matching governing legal note blocks; two added statistical-note blocks were checked and do not alter this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 59
+    },
+    {
+      "direction": "imports",
+      "code": "271121",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. No candidate HS6 scope transfer identified in the reviewed definitions, governing notes and dated changes.",
+      "scopeConclusion": "Natural gas in gaseous state; liquefied natural gas remains a different HS6. All54 effective HTS editions have matching governing legal note blocks; two added statistical-note blocks were checked and do not alter this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 59
+    },
+    {
+      "direction": "imports",
+      "code": "870323",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. No candidate HS6 scope transfer identified in the reviewed definitions, governing notes and dated changes.",
+      "scopeConclusion": "Passenger motor vehicles with only spark-ignition piston engines, cylinder capacity above1500cc and no more than3000cc; includes new and used within this parent. All54 effective HTS editions have matching governing legal note blocks; two added statistical-note blocks were checked and do not alter this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 113
+    },
+    {
+      "direction": "imports",
+      "code": "870340",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. No candidate HS6 scope transfer identified in the reviewed definitions, governing notes and dated changes.",
+      "scopeConclusion": "Passenger vehicles using spark-ignition piston and electric propulsion, excluding those chargeable from an external electrical source. All54 effective HTS editions have matching governing legal note blocks; two added statistical-note blocks were checked and do not alter this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 113
+    },
+    {
+      "direction": "imports",
+      "code": "870324",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. No candidate HS6 scope transfer identified in the reviewed definitions, governing notes and dated changes.",
+      "scopeConclusion": "Passenger motor vehicles with only spark-ignition piston engines, cylinder capacity above3000cc. All54 effective HTS editions have matching governing legal note blocks; two added statistical-note blocks were checked and do not alter this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 113
+    },
+    {
+      "direction": "imports",
+      "code": "870829",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. Official July2026 HTS history transfers8708295160 into8708295150/5190 within870829; tonneau-cover subdivision preserves the HS6 parent.",
+      "scopeConclusion": "Other vehicle body/cab parts and accessories under8708, subject to SectionXVII exclusions/principal-use notes. All54 effective HTS editions have matching governing legal note blocks; two added statistical-note blocks were checked and do not alter this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 113
+    },
+    {
+      "direction": "imports",
+      "code": "271012",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. Official Jan2025 HTS history transfers2710124590 into2710124560/4595 within271012; biogenic-fuel statistical note1 identifies the subdivision, not a cross-parent transfer.",
+      "scopeConclusion": "Light petroleum oils/preparations under heading2710, excluding biodiesel-containing preparations and waste oils; subheading distillation definition retained. All54 effective HTS editions have matching governing legal note blocks; two added statistical-note blocks were checked and do not alter this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 59
+    },
+    {
+      "direction": "imports",
+      "code": "880240",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. No candidate HS6 scope transfer identified in the reviewed definitions, governing notes and dated changes.",
+      "scopeConclusion": "Airplanes/other aircraft above15000kg unladen weight under8802; unmanned aircraft in8806 excluded. All54 effective HTS editions have matching governing legal note blocks; two added statistical-note blocks were checked and do not alter this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 113
+    },
+    {
+      "direction": "exports",
+      "code": "270900",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. No candidate HS6 scope transfer identified in the reviewed definitions, governing notes and dated changes.",
+      "scopeConclusion": "Crude petroleum oils and oils from bituminous minerals. 2024/2025/2026 ScheduleB definitions/governing notes and all five in-window dated transition guides plus authoritative committee histories support this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 16
+    },
+    {
+      "direction": "exports",
+      "code": "870431",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. No candidate HS6 scope transfer identified in the reviewed definitions, governing notes and dated changes.",
+      "scopeConclusion": "Goods-transport vehicles with only spark-ignition piston engines, gross vehicle weight no more than5metrictons. 2024/2025/2026 ScheduleB definitions/governing notes and all five in-window dated transition guides plus authoritative committee histories support this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 19
+    },
+    {
+      "direction": "exports",
+      "code": "271012",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. Official Jan2025 ScheduleB history transfers2710124550 into2710124560/4595 within271012; statistical note6 identifies the biogenic subdivision.",
+      "scopeConclusion": "Light petroleum oils/preparations under heading2710, excluding biodiesel-containing preparations and waste oils; subheading distillation definition retained. 2024/2025/2026 ScheduleB definitions/governing notes and all five in-window dated transition guides plus authoritative committee histories support this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 16
+    },
+    {
+      "direction": "exports",
+      "code": "271019",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. Official Jan2025 ScheduleB history transfers2710194590 into2710194550/4595 within271019; statistical note6 identifies the biogenic subdivision.",
+      "scopeConclusion": "Other noncrude petroleum oils/preparations under heading2710, excluding biodiesel-containing preparations and waste oils. 2024/2025/2026 ScheduleB definitions/governing notes and all five in-window dated transition guides plus authoritative committee histories support this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 16
+    },
+    {
+      "direction": "exports",
+      "code": "870899",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. No candidate HS6 scope transfer identified in the reviewed definitions, governing notes and dated changes.",
+      "scopeConclusion": "Other vehicle parts/accessories under8708 outside the separately specified branches, subject to SectionXVII notes. 2024/2025/2026 ScheduleB definitions/governing notes and all five in-window dated transition guides plus authoritative committee histories support this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 19
+    },
+    {
+      "direction": "exports",
+      "code": "847150",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. No candidate HS6 scope transfer identified in the reviewed definitions, governing notes and dated changes.",
+      "scopeConclusion": "ADP processing units outside847141/847149, whether or not with one/two storage/input/output unit types in the housing; Chapter84 note6 and SectionXVI retained. 2024/2025/2026 ScheduleB definitions/governing notes and all five in-window dated transition guides plus authoritative committee histories support this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 19
+    },
+    {
+      "direction": "exports",
+      "code": "870323",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. Jan2025 ScheduleB statistical note2 distinguishes new/used children within8703; all such children stay under the unchanged870323 cylinder-capacity parent.",
+      "scopeConclusion": "Passenger motor vehicles with only spark-ignition piston engines, cylinder capacity above1500cc and no more than3000cc; includes new and used within this parent. 2024/2025/2026 ScheduleB definitions/governing notes and all five in-window dated transition guides plus authoritative committee histories support this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 19
+    },
+    {
+      "direction": "exports",
+      "code": "711291",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "compatible",
+      "reason": "Evidence supports unchanged six-digit coverage over2024-09..2026-08. No candidate HS6 scope transfer identified in the reviewed definitions, governing notes and dated changes.",
+      "scopeConclusion": "Gold waste/scrap, including gold-clad metal, excluding sweepings with other precious metals; heading7112 excludes8549 goods. 2024/2025/2026 ScheduleB definitions/governing notes and all five in-window dated transition guides plus authoritative committee histories support this parent. National detailed codes may split; no reconstructed or allocated values are used.",
+      "sourceCount": 16
+    }
+  ],
+  "verification": {
+    "ledgerParser": "17 valid compatible entries",
+    "snapshotRegressionCases": 43,
+    "localTestEnvironment": "43 cases passed with host execution after sandbox temporary-module isolation caused ENOENT; no runtime fix or test changes.",
+    "independentClassificationReview": "all17 supported; R1 corrected",
+    "qualifiedOfflineAssessment": "passed independent calculation verification; no findings",
+    "ciEvidenceLocation": "Associated GitHub pull request checks; passing final CI is required before merge."
+  },
+  "preservation": {
+    "prior23CountryEvidenceFields": "unchanged",
+    "priorUnverifiedSnapshot": "unchanged",
+    "coffeeReleases": "unchanged",
+    "calculationRuntime": "unchanged",
+    "websiteWorkflowsAndR2": "unchanged"
+  },
+  "releaseAccepted": false,
+  "rollingComparisonsAvailable": false,
+  "defaultAuditRetrievalChanged": false,
+  "correctedLedgerIdentity": {
+    "path": "docs/data-validation/1220-snapshot-classification-evidence.json",
+    "bytes": 487985,
+    "sha256": "afde19b1384c0cbab8cb2f7bbbc5ed8253bc636bb7a35c6b8d5d3c599a1010fd"
+  },
+  "compatibleCount": 17,
+  "independentClassificationReview": {
+    "receipt": {
+      "path": ".tmp/canada-classification-review-20261012/independent-classification-review-receipt.json",
+      "bytes": 81421,
+      "sha256": "5e4232f871674d07d902998b743335f0331fd0224d970295fd0d23168aab3e7a"
+    },
+    "reviewedCommit": "df90e03313c428e74864919a94ad281ffe3c5b49",
+    "reviewedTree": "450c937d97ace7a0d2b747fa5b6b24b64537b63b",
+    "verdict": {
+      "readyToIntegrate": "with fixes",
+      "semanticVerdict": "all17 compatible within fixed interval",
+      "reason": "Primary definitions, governing notes and dated transfer histories sufficiently support each HS6 conclusion. Correct R1 source locators before integration; preserve the pinned review and original bytes, then root can perform the separately required fresh bounded offline assessment."
+    },
+    "verifiedCounts": {
+      "entries": 17,
+      "imports": 9,
+      "exports": 8,
+      "sourceBindings": 941,
+      "definitionAndNotesBindings": 792,
+      "datedChangeBindings": 132,
+      "historicalCodeBindings": 17,
+      "uniqueBoundSources": 248,
+      "originalPdfSources": 246,
+      "originalXlsxSources": 2,
+      "sourceIdentityMismatches": 0,
+      "pdfRequestUrlMismatches": 0,
+      "importPublishedEditions": 54,
+      "importChapterPdfs": 216,
+      "editionFooterLabelsVerified": 216,
+      "importCandidateEditionInheritedDescriptionChecks": 486,
+      "orderedInheritedDescriptionExceptions": 0,
+      "uniqueImportNormalizedNoteForms": 6,
+      "csvAnchors": 4,
+      "uniqueParentsComparedInCsv": 13,
+      "censusDatedTransitionGuides": 5,
+      "officialCommitteeHistories": 4,
+      "historicalSelectedImportRows": 170,
+      "historicalSelectedExportRows": 92,
+      "historicalInWindowDateRows": 12,
+      "newCapturedChapterBodies": 200,
+      "newCapturedChapterBytes": 178029253,
+      "reusedChapterBodies": 16,
+      "copiedExportLocatorsRequiringCorrection": 72,
+      "outOfRangeGuideLocatorBindings": 40
+    },
+    "entryVerdicts": [
+      {
+        "direction": "imports",
+        "code": "270900",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 59,
+        "reason": "Crude petroleum and bituminous oils heading unchanged, including the national API-gravity/condensate subdivisions; no in-window HS6 transfer.",
+        "provenanceCorrectionRequired": false
+      },
+      {
+        "direction": "imports",
+        "code": "271019",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 59,
+        "reason": "Heading 2710 and inherited noncrude 70-percent/basic-constituent branch retain biodiesel and waste-oil exclusions; Chapter 27 legal note 2 and related definitions unchanged.",
+        "provenanceCorrectionRequired": false
+      },
+      {
+        "direction": "imports",
+        "code": "271121",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 59,
+        "reason": "Petroleum gases heading, gaseous-state branch, and natural-gas leaf unchanged; liquefied gas is a different branch.",
+        "provenanceCorrectionRequired": false
+      },
+      {
+        "direction": "imports",
+        "code": "870323",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 113,
+        "reason": "Heading 8703 principally-person-transport scope, other vehicles with only spark-ignition piston engines, and >1500 through 3000 cc branch unchanged. Both new and used remain within the same HS6.",
+        "provenanceCorrectionRequired": false
+      },
+      {
+        "direction": "imports",
+        "code": "870340",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 113,
+        "reason": "Heading 8703 scope and combined spark-ignition/electric propulsion branch unchanged; plug-in external charging exclusion retained.",
+        "provenanceCorrectionRequired": false
+      },
+      {
+        "direction": "imports",
+        "code": "870324",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 113,
+        "reason": "Heading 8703 and only-spark-ignition branch unchanged; >3000 cc criterion retained.",
+        "provenanceCorrectionRequired": false
+      },
+      {
+        "direction": "imports",
+        "code": "870829",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 113,
+        "reason": "Heading 8708, other body/cab-parts branch, and residual leaf unchanged; Section XVII exclusions and principal-use notes retained. July 2026 official table explicitly transfers 8708295160 into 8708295150/5190 within the parent.",
+        "provenanceCorrectionRequired": false
+      },
+      {
+        "direction": "imports",
+        "code": "271012",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 59,
+        "reason": "Heading 2710 and inherited noncrude 70-percent/basic-constituent branch retain biodiesel and waste-oil exclusions; subheading note 4 retains 90-percent distillation at 210 C. Biogenic statistical subdivision does not enlarge this parent. Import January 2025 official history explicitly transfers 2710124590 into 2710124560/4595 within HS6.",
+        "provenanceCorrectionRequired": false
+      },
+      {
+        "direction": "imports",
+        "code": "880240",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 113,
+        "reason": "Heading 8802 aircraft scope and >15000 kg unladen-weight branch unchanged; unmanned-aircraft 8806 exclusion and chapter definition of unladen weight retained.",
+        "provenanceCorrectionRequired": false
+      },
+      {
+        "direction": "exports",
+        "code": "270900",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 16,
+        "reason": "Crude petroleum and bituminous oils heading unchanged, including the national API-gravity/condensate subdivisions; no in-window HS6 transfer.",
+        "provenanceCorrectionRequired": true
+      },
+      {
+        "direction": "exports",
+        "code": "870431",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 19,
+        "reason": "Heading 8704 goods-transport scope, other vehicles with only spark-ignition engine branch, and <=5 metric ton gross-weight limit unchanged.",
+        "provenanceCorrectionRequired": true
+      },
+      {
+        "direction": "exports",
+        "code": "271012",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 16,
+        "reason": "Heading 2710 and inherited noncrude 70-percent/basic-constituent branch retain biodiesel and waste-oil exclusions; subheading note 4 retains 90-percent distillation at 210 C. Biogenic statistical subdivision does not enlarge this parent. Export January 2025 official history explicitly transfers 2710124550 into 2710124560/4595 within HS6.",
+        "provenanceCorrectionRequired": true
+      },
+      {
+        "direction": "exports",
+        "code": "271019",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 16,
+        "reason": "Heading 2710 and inherited noncrude 70-percent/basic-constituent branch retain biodiesel and waste-oil exclusions; Chapter 27 legal note 2 and related definitions unchanged. January 2025 official history explicitly transfers 2710194590 into 2710194550/4595 within HS6.",
+        "provenanceCorrectionRequired": true
+      },
+      {
+        "direction": "exports",
+        "code": "870899",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 19,
+        "reason": "Heading 8708 and other-parts/accessories residual branch retained, with separately specified branches still excluded; Section XVII exclusions and principal-use rules unchanged.",
+        "provenanceCorrectionRequired": true
+      },
+      {
+        "direction": "exports",
+        "code": "847150",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 19,
+        "reason": "Heading 8471 processing units excluding 847141/847149 retained; Chapter 84 note 6 ADP capabilities, unit criteria/exclusions and subheading systems definition unchanged, as are Section XVI governing notes. Added 2026 industrial-turbine statistical note concerns 8411828010.",
+        "provenanceCorrectionRequired": true
+      },
+      {
+        "direction": "exports",
+        "code": "870323",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 19,
+        "reason": "Heading 8703 principally-person-transport scope, other vehicles with only spark-ignition piston engines, and >1500 through 3000 cc branch unchanged. Both new and used remain within the same HS6. January 2025 Schedule B note 2 specifies new/used distinctions; scope is unchanged when both are retained. Import baseline already contains its own note.",
+        "provenanceCorrectionRequired": true
+      },
+      {
+        "direction": "exports",
+        "code": "711291",
+        "from": "2024-09",
+        "to": "2026-08",
+        "semanticVerdict": "compatible",
+        "sourceBindings": 16,
+        "reason": "Heading 7112 recovery-of-precious-metal waste/scrap scope and 8549 exclusion retained; other/gold branch includes gold-clad material but excludes sweepings containing other precious metals. Chapter 71 alloy/precious-metal/cladding rules unchanged.",
+        "provenanceCorrectionRequired": true
+      }
+    ],
+    "methods": [
+      "Independently rehashed all248 bound originals and checked all941 binding sizes/digests; matched246 PDF source URLs to their request metadata. Workbook identities independently rechecked against approved spec.",
+      "Independently selected overlapping editions from retained official releaseList; matched all54 release intervals and their four chapters to capture manifest, verified contiguous publication coverage from2024-08-15 through2026-09-02, and authenticated216 PDF edition footers. Publication coverage is not a trade-row revision date.",
+      "Fresh pypdf extraction from original PDF bodies; code/page checks for definition locators, whole dated-table candidate screens, independent full chapter note normalization across216 versions. Six note forms reproduced: chapter27 two, chapter87 two, SectionXVII one, chapter88 one.",
+      "Independent CSV indent-stack reconstruction at four anchors recovered actual inherited parent scope for13 unique candidate codes, including nationally collapsed HS6 labels. All486 import candidate/edition contexts contain the full inherited descriptions in order. This corroborates semantic/manual/note review rather than serving as sole proof.",
+      "Read 2024/2025/2026 Schedule B parent definitions and governing Chapter27/71/84/87 and SectionXVI/XVII notes. Compared note wording, resolved extraction reflow and read the full parent branch for export870899 across pages.",
+      "Visually inspected independently rendered original committee PDF17/19/20 (January2025),69 (July2026), plus the2026 ADP note page2. Transfer direction, affected children, parent inclusion and dates agree with ledger conclusions.",
+      "Read-only direct XLSX worksheet/shared-string XML extraction independently confirmed Data header and262 selected detailed rows; twelve in-window begin/end-date rows corroborate official transfer dates. No workbook rewrite or date-label extension.",
+      "Verified annual add/delete prefix locators and five dated Census guides as corroboration only. Verified current diff is evidence/documentation only; git diff --check for pinned range passed. No runtime test or new assessment was performed by this reviewer."
+    ],
+    "limits": [
+      "Classification continuity is limited to direction/HS6 and2024-09..2026-08, with no allocation/reconstruction of obsolete or replacement detail values.",
+      "The result does not establish observation revision dates, a uniform revision vintage, statistical accuracy of submitted trade classifications, or changes outside the fixed interval.",
+      "Historical XLSX dates and annual presence are corroboration; they are not predecessor mappings or stand-alone semantic proof.",
+      "Census dated transition guides are guidance, not the authoritative manual; the actual books and official committee histories supply the decisive definitions/transfers.",
+      "All941 identities were verified; the locator findings prevent an unqualified all941-locators-pass assertion.",
+      "Supplemental capture budget byte count was recalculated; elapsed capture time was not independently timed by this reviewer."
+    ],
+    "declinedToJudge": [
+      "Fresh qualified offline snapshot calculations: no new assessment existed in the immutable review scope; root must execute and verify the authorized bounded offline assessment after correction.",
+      "Trade ZIP/body integrity, decompression or source replay: expressly excluded; rely on previously reviewed replay only.",
+      "Country release, public profile and rolling public availability: expressly excluded and remain false.",
+      "60-month chart/history qualification: outside the fixed24-month scope.",
+      "R2, deployment, access, schedules, paid services or provider requests: excluded; none performed by reviewer.",
+      "Runtime calculation/code regression review: no code changes in the pinned two-file diff.",
+      "Full preservation audit of historical reports,23fields and coffee artifacts: outside this classification-only review; no such files were changed by the pinned diff."
+    ],
+    "findings": {
+      "critical": [],
+      "important": [
+        {
+          "id": "R1",
+          "severity": "P2",
+          "file": "docs/data-validation/1220-snapshot-classification-evidence.json",
+          "line": 6615,
+          "title": "Replace copied export dated-change locators with source-specific locations",
+          "problem": "All 72 export bindings for the four committee PDFs and five Census transition guides reuse Jan2025 committee pages18-20/page15. Forty guide bindings point to nonexistent pages: guide page counts are 2,3,5,3,3. The other three committee PDFs do not have the January2025 evidence at those copied locations.",
+          "impact": "Source identities are correct and independent reading supports the semantic conclusions, but the ledger cannot truthfully claim all locator bindings are precise or reproducible as written. Provenance is a required deliverable.",
+          "fix": "Give each source its own actual pages or explicitly scoped whole-document scan locator. Fuel transfer proof belongs to the January2025 committee PDF17 (imports) and19-20 (exports); new/used note is page15; January2025 Census fuel guide is page2. Other transition guides may use their actual full-page range with a negative candidate scan. Remove unrelated committee-page references from all 72 copied locators.",
+          "classificationImpact": "Citation-only. The underlying retained sources sufficiently support all17 compatible conclusions; no semantic unverified downgrade is warranted by this defect."
+        }
+      ],
+      "minor": []
+    }
+  },
+  "reviewFindingDisposition": {
+    "id": "R1",
+    "accepted": true,
+    "status": "corrected",
+    "correctionReceipt": {
+      "path": ".tmp/canada-classification-review-20261012/citation-correction-receipt.json",
+      "bytes": 36634,
+      "sha256": "40b245d0ab0e12c9875b8fed2178b76b75af5c01955de1f944a3fcc94f1739ca"
+    },
+    "correctedLocators": 72,
+    "sourceBindingsReauthenticated": 941,
+    "boundedPdfLocators": 875,
+    "semanticConclusionsChanged": false,
+    "sourceBodiesChanged": false
+  },
+  "qualifiedOfflineAssessment": {
+    "processingCommit": "9c385fb94b2a36b1d07ddf9e01670c366839a83b",
+    "outputs": [
+      {
+        "path": "data/backups/canada-country-audit/snapshot-classifications-2026-10-12-r1/snapshot-assessment.json",
+        "bytes": 858857,
+        "sha256": "2cad0dcabf353b8aec0d365bb247e5d976712a7a1ebc90cac26694322503d9f8"
+      },
+      {
+        "path": "data/backups/canada-country-audit/snapshot-classifications-2026-10-12-r1/snapshot-assessment.md",
+        "bytes": 3192,
+        "sha256": "9dd280b4b7a7522d3775a94aee86fc05e313315b91c3d76b9c61c910df4dd44e"
+      }
+    ],
+    "outputLimitBytes": 8388608,
+    "combinedOutputBytes": 862049,
+    "archiveIntegrity": "passed",
+    "completed": true,
+    "contexts": 48,
+    "normalizedSourceFiles": 96,
+    "residualsAllZero": true,
+    "candidates": [
+      {
+        "direction": "imports",
+        "code": "270900",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 92392091351,
+          "countryTotalUsd": 392802538076,
+          "sharePercent": 23.52125620255637
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 90202785944,
+          "countryTotalUsd": 396982672171,
+          "sharePercent": 22.722096521418248
+        },
+        "growthPercent": 2.4270928930722517,
+        "sharePointChange": 0.7991596811381214
+      },
+      {
+        "direction": "imports",
+        "code": "980100",
+        "comparisonEligible": false,
+        "reason": "statistical-category",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 15307813259,
+          "countryTotalUsd": 392802538076,
+          "sharePercent": null
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 15469400131,
+          "countryTotalUsd": 396982672171,
+          "sharePercent": null
+        },
+        "growthPercent": null,
+        "sharePointChange": null
+      },
+      {
+        "direction": "imports",
+        "code": "271019",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 10131644634,
+          "countryTotalUsd": 392802538076,
+          "sharePercent": 2.5793225989898554
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 7155619709,
+          "countryTotalUsd": 396982672171,
+          "sharePercent": 1.802501774162506
+        },
+        "growthPercent": 41.59003756525653,
+        "sharePointChange": 0.7768208248273494
+      },
+      {
+        "direction": "imports",
+        "code": "271121",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 9026917085,
+          "countryTotalUsd": 392802538076,
+          "sharePercent": 2.298080131868562
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 7100998099,
+          "countryTotalUsd": 396982672171,
+          "sharePercent": 1.7887425816765248
+        },
+        "growthPercent": 27.12180681010488,
+        "sharePointChange": 0.5093375501920372
+      },
+      {
+        "direction": "imports",
+        "code": "870323",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 7663395213,
+          "countryTotalUsd": 392802538076,
+          "sharePercent": 1.9509535886749478
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 11811095948,
+          "countryTotalUsd": 396982672171,
+          "sharePercent": 2.975216999625711
+        },
+        "growthPercent": -35.11698451406061,
+        "sharePointChange": -1.0242634109507633
+      },
+      {
+        "direction": "imports",
+        "code": "870340",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 7416973359,
+          "countryTotalUsd": 392802538076,
+          "sharePercent": 1.8882193061504489
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 5703290607,
+          "countryTotalUsd": 396982672171,
+          "sharePercent": 1.436659836009999
+        },
+        "growthPercent": 30.04726341485548,
+        "sharePointChange": 0.45155947014044995
+      },
+      {
+        "direction": "imports",
+        "code": "870324",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 4733244274,
+          "countryTotalUsd": 392802538076,
+          "sharePercent": 1.2049933020249999
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 3599704652,
+          "countryTotalUsd": 396982672171,
+          "sharePercent": 0.9067661901498385
+        },
+        "growthPercent": 31.48979518000745,
+        "sharePointChange": 0.2982271118751614
+      },
+      {
+        "direction": "imports",
+        "code": "870829",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 4666539202,
+          "countryTotalUsd": 392802538076,
+          "sharePercent": 1.1880114687795402
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 4473635918,
+          "countryTotalUsd": 396982672171,
+          "sharePercent": 1.1269096188845704
+        },
+        "growthPercent": 4.312002307202506,
+        "sharePointChange": 0.061101849894969806
+      },
+      {
+        "direction": "imports",
+        "code": "271012",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 4535944699,
+          "countryTotalUsd": 392802538076,
+          "sharePercent": 1.15476461053884
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 3891295599,
+          "countryTotalUsd": 396982672171,
+          "sharePercent": 0.9802179973547629
+        },
+        "growthPercent": 16.56643869886586,
+        "sharePointChange": 0.17454661318407716
+      },
+      {
+        "direction": "imports",
+        "code": "880240",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 4497749296,
+          "countryTotalUsd": 392802538076,
+          "sharePercent": 1.145040792768444
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 3695079415,
+          "countryTotalUsd": 396982672171,
+          "sharePercent": 0.9307911085369356
+        },
+        "growthPercent": 21.722669281250077,
+        "sharePointChange": 0.21424968423150847
+      },
+      {
+        "direction": "exports",
+        "code": "988000",
+        "comparisonEligible": false,
+        "reason": "statistical-category",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 13370929635,
+          "countryTotalUsd": 340916490818,
+          "sharePercent": null
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 9324750875,
+          "countryTotalUsd": 342040511099,
+          "sharePercent": null
+        },
+        "growthPercent": null,
+        "sharePointChange": null
+      },
+      {
+        "direction": "exports",
+        "code": "270900",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 11038813062,
+          "countryTotalUsd": 340916490818,
+          "sharePercent": 3.2379815465990838
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 9738915177,
+          "countryTotalUsd": 342040511099,
+          "sharePercent": 2.847298744148226
+        },
+        "growthPercent": 13.347460793887146,
+        "sharePointChange": 0.39068280245085774
+      },
+      {
+        "direction": "exports",
+        "code": "880000",
+        "comparisonEligible": false,
+        "reason": "statistical-category",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 9779879483,
+          "countryTotalUsd": 340916490818,
+          "sharePercent": null
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 9832711419,
+          "countryTotalUsd": 342040511099,
+          "sharePercent": null
+        },
+        "growthPercent": null,
+        "sharePointChange": null
+      },
+      {
+        "direction": "exports",
+        "code": "870431",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 7719363184,
+          "countryTotalUsd": 340916490818,
+          "sharePercent": 2.2642973842298
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 8305491370,
+          "countryTotalUsd": 342040511099,
+          "sharePercent": 2.4282186175298
+        },
+        "growthPercent": -7.0571163088211115,
+        "sharePointChange": -0.16392123329999997
+      },
+      {
+        "direction": "exports",
+        "code": "271012",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 7400563787,
+          "countryTotalUsd": 340916490818,
+          "sharePercent": 2.1707849242619446
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 7624459484,
+          "countryTotalUsd": 342040511099,
+          "sharePercent": 2.2291100722256787
+        },
+        "growthPercent": -2.936545173724737,
+        "sharePointChange": -0.058325147963734114
+      },
+      {
+        "direction": "exports",
+        "code": "271019",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 6858722528,
+          "countryTotalUsd": 340916490818,
+          "sharePercent": 2.0118482715644177
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 5008994329,
+          "countryTotalUsd": 342040511099,
+          "sharePercent": 1.464444756238304
+        },
+        "growthPercent": 36.92813522049408,
+        "sharePointChange": 0.5474035153261136
+      },
+      {
+        "direction": "exports",
+        "code": "870899",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 5664030072,
+          "countryTotalUsd": 340916490818,
+          "sharePercent": 1.6614127578309994
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 3723286490,
+          "countryTotalUsd": 342040511099,
+          "sharePercent": 1.088551317514063
+        },
+        "growthPercent": 52.1244762446416,
+        "sharePointChange": 0.5728614403169363
+      },
+      {
+        "direction": "exports",
+        "code": "847150",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 4886353611,
+          "countryTotalUsd": 340916490818,
+          "sharePercent": 1.4332992807932559
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 2068964653,
+          "countryTotalUsd": 342040511099,
+          "sharePercent": 0.6048887736579133
+        },
+        "growthPercent": 136.1738565187561,
+        "sharePointChange": 0.8284105071353426
+      },
+      {
+        "direction": "exports",
+        "code": "870323",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 4633873899,
+          "countryTotalUsd": 340916490818,
+          "sharePercent": 1.3592401728298373
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 5855829798,
+          "countryTotalUsd": 342040511099,
+          "sharePercent": 1.7120281393525028
+        },
+        "growthPercent": -20.86733974777318,
+        "sharePointChange": -0.3527879665226654
+      },
+      {
+        "direction": "exports",
+        "code": "711291",
+        "comparisonEligible": true,
+        "reason": "eligible-offline-only",
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 4314655419,
+          "countryTotalUsd": 340916490818,
+          "sharePercent": 1.2656047845169804
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "observedSumUsd": 2915319018,
+          "countryTotalUsd": 342040511099,
+          "sharePercent": 0.8523314997492188
+        },
+        "growthPercent": 47.99942621579674,
+        "sharePointChange": 0.4132732847677616
+      }
+    ],
+    "ordinaryComparisonEligible": 17,
+    "statisticalCandidatesIneligible": 3,
+    "currentReferenceOutcomes": {
+      "before": {
+        "matched": 41,
+        "mismatch": 7
+      },
+      "after": {
+        "matched": 41,
+        "mismatch": 7
+      }
+    },
+    "originalPublicationMatches": 7,
+    "originalPublicationUnreviewed": 41,
+    "strictAuditVerdicts": {
+      "original": {
+        "sourceCoverage": "failed",
+        "diagnosticOutcome": "failed",
+        "classificationStatus": "unverified"
+      },
+      "inventory": {
+        "sourceCoverage": "failed"
+      }
+    },
+    "captureInterval": {
+      "startedAt": "2026-10-11T17:07:26.408Z",
+      "finishedAt": "2026-10-11T17:49:43.278Z"
+    },
+    "sourceRevisionLimitation": "Retained observations are not a uniform revision vintage or latest revised headline history.",
+    "selectedCandidateCount": 20
+  },
+  "independentCalculationVerification": {
+    "receipt": {
+      "path": ".superpowers/sdd/2026-10-11-canada-archive-snapshot/independent-qualified-calculation-receipt.json",
+      "bytes": 57268,
+      "sha256": "62864ebf3c55e0b01fe1e6114e3413c0674effa1fad19a0842103c1d9859c547"
+    },
+    "reviewedProcessingCommit": "9c385fb94b2a36b1d07ddf9e01670c366839a83b",
+    "reviewedTree": "c94e3f55f26e174b828ea86dfd0d4f9dc999fad7",
+    "verdict": "passed",
+    "findings": [],
+    "method": "Independent Python integer sums and exact numerator/denominator binary64 quotients; no imports from production assessment calculations. Pinned anchors, normalized rows/receipts and retained current references freshly authenticated. No CLI execution, provider calls or trade ZIP reads.",
+    "counts": {
+      "anchors": 4,
+      "normalizedFiles": 96,
+      "contexts": 48,
+      "normalizedRows": 223049,
+      "zeroResidualContexts": 48,
+      "candidateObservations": 480,
+      "windowPairs": 40,
+      "qualifiedMonthlyShares": 408,
+      "qualifiedRollingShares": 34,
+      "growthPercentages": 17,
+      "sharePointChanges": 17,
+      "eligibleCandidates": 17,
+      "statisticalCandidates": 3,
+      "capturePolicyFlagDifferences": 24,
+      "candidateMissingValues": 0,
+      "candidateZeroValues": 0
+    },
+    "referenceCounts": {
+      "before-current-matched": 41,
+      "before-publication-not-reviewed": 41,
+      "after-current-matched": 41,
+      "after-publication-not-reviewed": 41,
+      "before-current-mismatch": 7,
+      "before-publication-matched": 7,
+      "after-current-mismatch": 7,
+      "after-publication-matched": 7
+    },
+    "availability": {
+      "releaseAccepted": false,
+      "rollingComparisonsAvailable": false,
+      "defaultAuditRetrievalChanged": false
+    },
+    "limits": [
+      "Targeted calculation verification only; not a second implementation/code review.",
+      "Classification semantic conclusions reused from the fresh independent source reviewer; corrected locator wording itself and 248 source bodies were not re-reviewed here. Only 72 locator fields differ from that reviewed ledger.",
+      "No raw trade ZIP integrity or fresh original-publication PDF-body verification; prior reviewed attestations and authenticated retained projection reused.",
+      "Fixed selected candidates have no missing or zero observations; null comparisons verified for statistical categories, but absent/zero-input branches are not empirically exercised by this real run.",
+      "Offline comparability does not imply a uniform revision vintage, release acceptance, public comparisons, or 60-month history."
+    ],
+    "declinedToJudge": [
+      "Classification source semantics and corrected source locator adequacy: separately reviewed/root-verified scope.",
+      "Runtime regressions, atomic publication behavior and code changes: outside this targeted data verification.",
+      "Fresh ZIP/source-provider validity, public release and longer history: expressly excluded."
+    ]
+  },
+  "preservationCheck": {
+    "receipt": {
+      "path": ".tmp/canada-classification-review-20261012/classification-preservation-receipt.json",
+      "bytes": 1851,
+      "sha256": "afaf588fbb314af4a2a227b9e59937fc2cbddcf6f79cf87bb0670b1fbe8e646f"
+    },
+    "unchangedTrackedPaths": 93,
+    "unchangedCandidateObservations": 480,
+    "unchangedWindowNumeratorDenominatorPairs": 40,
+    "unchangedReferenceAndPublicationOutcomes": 48,
+    "priorSnapshotOutputs": [
+      {
+        "path": "data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r1/snapshot-assessment.json",
+        "bytes": 432821,
+        "sha256": "db33209e879b4230353d197b6a1050d374b6ef970c1f0bd93d66202a4664ff8e"
+      },
+      {
+        "path": "data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r1/snapshot-assessment.md",
+        "bytes": 3277,
+        "sha256": "cbed3fb5b8e743b5646d3bf4049f3998836e5d0e38a902084b72b96ae15fd169"
+      },
+      {
+        "path": "data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r2/snapshot-assessment.json",
+        "bytes": 432821,
+        "sha256": "a013869f92ca5525eceaa35ef8d59bb635732b18b258960ed691a1d7219d132e"
+      },
+      {
+        "path": "data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r2/snapshot-assessment.md",
+        "bytes": 3277,
+        "sha256": "5f569b6286f261acd38423f60cf257eef991abb9283a97ba8161fdfde5318719"
+      }
+    ]
+  }
+}
