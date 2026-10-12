@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import {CanadaPreview} from '../../../components/CanadaPreview';
+import {loadCanadaPreview} from '../../../lib/country-preview/load.server';
+export async function getStaticPaths(){const preview=await loadCanadaPreview();return preview?[{params:{code:'1220'},props:{preview}}]:[];}
+const {preview}=Astro.props;
+---
+<BaseLayout title="Canada local development preview" description="A local 24-month preview of captured U.S. goods trade with Canada." robots="noindex,nofollow">
+  <CanadaPreview data={preview} client:load/>
+</BaseLayout>
