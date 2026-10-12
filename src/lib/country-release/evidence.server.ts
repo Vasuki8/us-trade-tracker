@@ -31,7 +31,8 @@ export function verifyCountryEvidence(input:ReadonlyMap<EvidenceName,Buffer>):Ve
   const requests=array(manifest.requests).map(obj),normalized=new Map(a.inputProvenance.normalizedFiles.map(f=>[f.path,f]));let rows=0;
   for(const m of a.months){
     const r=replayed.get(m.id),b=old.get(m.id),v=reviewed.get(m.id);if(!r||!b||!v)throw new Error('country-crossed-context');
-    for(const c of [r,b])for(const k of ['id','month','direction','measure','sumUsd','countryTotalUsd','residualUsd'] as const)same(c[k],m[k]);
+    for(const c of [r,b])for(const k of ['id','month','direction','measure'] as const)same(c[k],m[k]);
+    for(const k of ['sumUsd','countryTotalUsd','residualUsd'] as const)same(r[k],m[k]);
     for(const k of ['sumUsd','countryTotalUsd','residualUsd'] as const)same(v[k],m[k]);
     same(v.allNormalizedRowsMatched,true);same(v.hs6Rows,r.hs6Rows);rows=countryInteger(rows+countryInteger(r.hs6Rows,1));
     const originals=a.inputProvenance.originals.filter(o=>o.context_id===m.id),requested=requests.filter(o=>o.context_id===m.id);if(originals.length!==1||requested.length!==1)throw new Error('country-original-binding');

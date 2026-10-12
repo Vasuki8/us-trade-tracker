@@ -3,7 +3,12 @@ import {createHash} from 'node:crypto';
 import {decodeCountryRelease,verifyCountryRelease} from './package.server';
 import {canadaCountryReleaseContract as contract,countryJsonBytes,countryJson,countryKeys,countrySame as same,countryInteger as integer,countryHash,countryCommit,parseCountryDigest,digestCountryBytes} from './contract.server';
 import {readCountryBoundedFile,reserveCountryOutput,writeCountryExclusiveFile,countryFailureReceipt,pendingCountryReport} from './prepare.server';
-import type {CountryVerificationProof,CountryGateReport,CountryRecoveryReceipt,DecodedCountryPackage} from './types';
+import type {CountryVerificationProof,CountryGateReport,CountryRecoveryReceipt,DecodedCountryPackage,AuthenticatedCountryCandidate} from './types';
+export function authenticateCountryCandidate(bytes:Buffer,proof:CountryVerificationProof):AuthenticatedCountryCandidate{
+  const candidate=decodeCountryRelease(bytes),verified=verifyCountryRelease(candidate),p=parseCountryVerificationProof(proof),report=sealCountryEligibility(candidate,p);
+  if(candidate.manifest.source!=='census'||report.status!=='eligible')throw new Error('country-candidate-not-eligible');
+  return {candidate,proof:p,report,projection:verified.projection};
+}
 export function parseCountryRecoveryReceipt(value:unknown):CountryRecoveryReceipt{
   const v=countryKeys(value,['schemaVersion','candidateDigest','projectionDigest','policyId','status','historicalPathReads']);same(v.schemaVersion,1);same(v.policyId,contract.policyId);same(v.status,'verified');same(v.historicalPathReads,0);
   return {schemaVersion:1,candidateDigest:parseCountryDigest(v.candidateDigest),projectionDigest:parseCountryDigest(v.projectionDigest,contract.limits.member),policyId:contract.policyId,status:'verified',historicalPathReads:0};

@@ -19,6 +19,7 @@ it('authenticates_exact_fixed_evidence_and_preserves_qualifications',()=>{
   expect(v.projection.directions.imports.summary.current.totalUsd).toBe(2400000);
   files.get('bulk-report.json')![0]^=1;expect(v.files.get('bulk-report.json')![0]).not.toBe(files.get('bulk-report.json')![0]);
 });
+it('authenticates replay totals without converting the old strict failures into passes',()=>{const bulk=JSON.parse(files.get('bulk-report.json')!.toString());expect(bulk.contexts.every((c:{state:string;sumUsd:null})=>c.state==='failed'&&c.sumUsd===null)).toBe(true);expect(verifyCountryEvidence(files).projection.directions.imports.summary.current.totalUsd).toBe(2400000);expect(bulk.sourceCoverage).toBe('failed');});
 it.each(['missing','changed','oversized','extra','crossed'] as const)('rejects %s evidence before parsing',kind=>{
   if(kind==='missing')files.delete('bulk-report.json');
   if(kind==='changed')files.get('bulk-report.json')![0]^=1;

@@ -37,7 +37,8 @@ export type CountryVerificationProof={
 export type CountryApproval={scope:'local-selection-only';actor:'owner';approvedAt:string;candidateDigest:Digest;eligibilityReportDigest:Digest;baseline:{kind:'initialize'}|{kind:'existing';pointerDigest:Digest}};
 export type CountryAcceptanceRecord={schemaVersion:1;decision:'approved-for-local-selection';approval:CountryApproval;report:CountryGateReport;proof:CountryVerificationProof};
 export type CountryCurrentPointer={schemaVersion:1;countryCode:'1220';releaseId:string;package:Digest&{path:string};acceptance:Digest&{path:string}};
-export type CountrySelectionOutcome={status:'acknowledged'|'confirmed-by-readback'|'already-selected'|'unchanged'|'conflict'|'unconfirmed';candidateDigest:Digest;currentStateVerified:boolean};
+export type CountrySelectionOutcome={status:'acknowledged'|'confirmed-by-readback'|'already-selected'|'unchanged'|'conflict'|'unconfirmed';candidateDigest:Digest;currentStateVerified:boolean;selectedPointerDigest:Digest|null};
+export type AuthenticatedCountryCandidate={candidate:DecodedCountryPackage;proof:CountryVerificationProof;report:CountryGateReport;projection:CountryPreview};
 export class CountrySelectionReceiptError extends Error{
   constructor(public readonly outcome:CountrySelectionOutcome){super('country-selection-receipt-failed');this.name='CountrySelectionReceiptError';}
 }
