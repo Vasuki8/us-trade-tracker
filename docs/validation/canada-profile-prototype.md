@@ -66,6 +66,14 @@ In the real retained preview without JavaScript, a forced Exports click leaves I
 
 Build counts remain 21 ordinary and 22 opted-in files: ordinary synthetic 507,751 bytes, ordinary accepted-data 1,084,400 bytes, retained opt-in 1,175,552 bytes. Largest assets remain 212,848 and 283,166 bytes respectively. Ordinary accepted-data output was restored with preview mode unset. Local receipts and the retained no-JavaScript screenshot are under ignored `.superpowers/sdd/2026-10-12-canada-profile-interactivity/`.
 
+## CSV eligibility follow-up, October 12, 2026
+
+Accepted synthetic preview input could mark an ordinary category comparison ineligible while retaining previously calculated values. The page correctly showed those comparisons as unavailable, but the product CSV still emitted the stored dollar change, growth, current/prior shares and share-point change. The serializer now applies the same eligibility condition as the page to all five fields. Observed amounts, denominators, periods, classification, reason and sources remain available; the CSV schema and eligible calculations are unchanged.
+
+Three regressions failed before the repair: incompatible Imports, incomplete Exports and the rendered-page download agreement check. They now pass, including both directions, preserved observed totals and unaffected eligible comparisons. Local verification passed 692 unit tests across 64 files, 181-file type checks with zero diagnostics, all six Canada browser checks and the ordinary-build preview boundary check.
+
+The real retained projection and all four browser CSVs remain byte-identical to the original verified prototype, with all 11 protected file identities unchanged. No source fetch, source replay or archive recalculation occurred. Build counts remain 21 ordinary and 22 opted-in files: ordinary synthetic 507,881 bytes, ordinary accepted-data 1,084,530 bytes, retained opt-in 1,175,682 bytes. Largest files remain 212,848 and 283,166 bytes respectively. The ordinary accepted-data output was restored with preview mode unset. Receipts are under ignored `.superpowers/sdd/2026-10-12-canada-csv-eligibility/`.
+
 ## Scope
 
 `/preview/countries/1220/` requires an explicit `CANADA_PREVIEW_MODE=fixture` or `retained`. Retained failures have no fallback; ordinary builds expose no route or navigation entry. Noindex metadata is a presentation control, not access protection or publication approval.
