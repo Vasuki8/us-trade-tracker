@@ -57,3 +57,17 @@ it('attributes retained publication links without claiming uniform revision matu
   expect(screen.getByText('U.S. Census Bureau monthly merchandise files')).toBeVisible();expect(screen.getByRole('link',{name:'Jan 2026 original publication'})).toHaveAttribute('href',data.directions.exports.references.differences[0].publicationSource?.url);
   expect(screen.getByRole('region',{name:'Sources and revision differences'})).toHaveTextContent('do not establish each product observation’s revision date');
 });
+it('keeps reference figures compact while preserving full publication identities in methods',async()=>{
+  const data=makeCountryPreviewFixture();data.source='retained';data.rawVerification='previous-reviewed-replay';
+  data.directions.exports.references.differences.forEach((row,i)=>{row.publicationSource={url:`https://www.census.gov/foreign-trade/Press-Release/ft900/ft900_260${i+1}.pdf`,bytes:100+i,sha256:String(i+1).repeat(64)};});
+  render(<CanadaPreview data={data}/>);await userEvent.click(screen.getByRole('radio',{name:'Exports'}));
+  const table=screen.getByRole('table',{name:'Retained reference differences · Exports'});
+  expect(within(table).getAllByRole('row')).toHaveLength(8);
+  expect(table).not.toHaveTextContent('SHA-256');expect(table).not.toHaveTextContent('100 bytes');
+  expect(within(table).getByRole('link',{name:'Jan 2026 original publication'})).toHaveAttribute('href',data.directions.exports.references.differences[0].publicationSource!.url);
+  const summary=screen.getByText('Original-publication source identities'),details=summary.closest('details')!;
+  expect(details).not.toHaveAttribute('open');await userEvent.click(summary);expect(details).toHaveAttribute('open');
+  for(const row of data.directions.exports.references.differences){expect(details).toHaveTextContent(`${row.publicationSource!.bytes} bytes`);expect(details).toHaveTextContent(row.publicationSource!.sha256);expect(within(details).getByRole('link',{name:row.publicationSource!.url})).toHaveAttribute('href',row.publicationSource!.url);}
+  await userEvent.click(screen.getByRole('radio',{name:'Imports'}));expect(screen.queryByText('Original-publication source identities')).toBeNull();
+  await userEvent.click(screen.getByRole('radio',{name:'Exports'}));expect(screen.getByText('Original-publication source identities').closest('details')).not.toHaveAttribute('open');
+});

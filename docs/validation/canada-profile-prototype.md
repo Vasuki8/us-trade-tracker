@@ -46,6 +46,14 @@ The browser regression first failed the 12px rendered-label floor, then passed a
 
 The 33,715-byte retained projection and all four downloaded CSV files are byte-identical to the original verified prototype. All 11 protected source/assessment/coffee identities retain their lengths and hashes. Source, loader, calculation, historical evidence and workflow files are unchanged. Updated builds still contain 21 ordinary files and 22 opted-in files: ordinary synthetic 507,101 bytes; ordinary accepted-data 1,083,750 bytes; retained opt-in 1,174,866 bytes. Largest assets remain 212,848 bytes in fixture mode and 283,166 bytes with accepted product data. Desktop and real/synthetic mobile chart screenshots were inspected; receipts are under ignored `.superpowers/sdd/2026-10-12-canada-profile-readability/`.
 
+## Reference-table follow-up, October 12, 2026
+
+At a 375px viewport, the retained export-reference grid's seven rows were about 206px tall because full publication hashes wrapped in a narrow numeric-table cell. The grid now retains all seven rows, values, publication-check labels and per-month citation links, while full publication URLs, byte lengths and SHA-256 identities appear in a native expandable methods list. A reference-specific rule also keeps the month column narrower than product-description columns.
+
+The attribution regression failed before the repair and now verifies all seven full source identities, citation links and direction-specific disclosure behavior. Local checks passed 689 unit tests, 181-file type checks with zero diagnostics, five Canada fixture browser checks and the normal route/navigation/payload boundary check. In the real retained browser at 375px, every reference row measured 57.5px. Keyboard expansion/collapse exposed all seven identities without page overflow; screenshots of the compact table and expanded source list were inspected.
+
+The retained projection and all four browser CSVs remain byte-identical to the original verified prototype, and all 11 protected file identities retain their byte lengths and hashes. Source, loader, calculations, historical evidence and workflows are unchanged. File counts remain 21 ordinary and 22 opted-in: ordinary synthetic 507,639 bytes, ordinary accepted-data 1,084,288 bytes, retained opt-in 1,175,404 bytes. Largest assets remain 212,848 and 283,166 bytes respectively. Ordinary accepted-data output was restored with preview mode unset. Receipts are under ignored `.superpowers/sdd/2026-10-12-canada-profile-references/`.
+
 ## Scope
 
 `/preview/countries/1220/` requires an explicit `CANADA_PREVIEW_MODE=fixture` or `retained`. Retained failures have no fallback; ordinary builds expose no route or navigation entry. Noindex metadata is a presentation control, not access protection or publication approval.
