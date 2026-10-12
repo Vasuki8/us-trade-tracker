@@ -1,0 +1,1362 @@
+{
+  "schemaVersion": 1,
+  "policyId": "canada-archive-snapshot-v1",
+  "reviewBasis": "Bounded primary-source screening; conservative unverified conclusions. No classification compatibility accepted.",
+  "entries": [
+    {
+      "direction": "imports",
+      "code": "270900",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 270900: import HTS definitions and section/chapter notes are not authenticated across every effective revision in September 2024\u2013August 2026. Schedule B definitions corroborate the shared HS6 parent but cannot prove direction-specific import scope.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Import_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Import_Historical_HS_Numbers.xlsx",
+          "bytes": 1117590,
+          "sha256": "d13be8bd5755a9237f8c1d1f0cf49d29e9141413d845dc39728f98ab534bade6",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 270900; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c27.pdf",
+          "bytes": 123677,
+          "sha256": "2efc7c1e0173b7d8055f136f569515845e850e06f0c36f70f979f6a5f067cacf",
+          "locator": "PDF pages 5: subheading 2709.00; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 270900; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 5: subheading 2709.00; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 270900; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 5: subheading 2709.00; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 270900; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        }
+      ]
+    },
+    {
+      "direction": "imports",
+      "code": "271019",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 271019: import HTS definitions and section/chapter notes are not authenticated across every effective revision in September 2024\u2013August 2026. Schedule B definitions corroborate the shared HS6 parent but cannot prove direction-specific import scope.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Import_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Import_Historical_HS_Numbers.xlsx",
+          "bytes": 1117590,
+          "sha256": "d13be8bd5755a9237f8c1d1f0cf49d29e9141413d845dc39728f98ab534bade6",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 271019; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c27.pdf",
+          "bytes": 123677,
+          "sha256": "2efc7c1e0173b7d8055f136f569515845e850e06f0c36f70f979f6a5f067cacf",
+          "locator": "PDF pages 2,6,7: subheading 2710.19; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 271019; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 2,3,6,7: subheading 2710.19; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 271019; PDF pages 4",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 2,3,6,7: subheading 2710.19; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 271019; PDF pages 4",
+          "kind": "dated-change"
+        }
+      ]
+    },
+    {
+      "direction": "imports",
+      "code": "271121",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 271121: import HTS definitions and section/chapter notes are not authenticated across every effective revision in September 2024\u2013August 2026. Schedule B definitions corroborate the shared HS6 parent but cannot prove direction-specific import scope.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Import_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Import_Historical_HS_Numbers.xlsx",
+          "bytes": 1117590,
+          "sha256": "d13be8bd5755a9237f8c1d1f0cf49d29e9141413d845dc39728f98ab534bade6",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 271121; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c27.pdf",
+          "bytes": 123677,
+          "sha256": "2efc7c1e0173b7d8055f136f569515845e850e06f0c36f70f979f6a5f067cacf",
+          "locator": "PDF pages 7: subheading 2711.21; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 271121; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 8: subheading 2711.21; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 271121; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 8: subheading 2711.21; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 271121; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        }
+      ]
+    },
+    {
+      "direction": "imports",
+      "code": "870323",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 870323: import HTS definitions and section/chapter notes are not authenticated across every effective revision in September 2024\u2013August 2026. Schedule B definitions corroborate the shared HS6 parent but cannot prove direction-specific import scope.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Import_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Import_Historical_HS_Numbers.xlsx",
+          "bytes": 1117590,
+          "sha256": "d13be8bd5755a9237f8c1d1f0cf49d29e9141413d845dc39728f98ab534bade6",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 870323; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c87.pdf",
+          "bytes": 156794,
+          "sha256": "963f5a23db591c3ee83676f217305a119f0e194db032089bbd6c5def70a34074",
+          "locator": "PDF pages 4: subheading 8703.23; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 870323; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 4: subheading 8703.23; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 870323; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 4: subheading 8703.23; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 870323; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        }
+      ]
+    },
+    {
+      "direction": "imports",
+      "code": "870340",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 870340: import HTS definitions and section/chapter notes are not authenticated across every effective revision in September 2024\u2013August 2026. Schedule B definitions corroborate the shared HS6 parent but cannot prove direction-specific import scope.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Import_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Import_Historical_HS_Numbers.xlsx",
+          "bytes": 1117590,
+          "sha256": "d13be8bd5755a9237f8c1d1f0cf49d29e9141413d845dc39728f98ab534bade6",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 870340; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c87.pdf",
+          "bytes": 156794,
+          "sha256": "963f5a23db591c3ee83676f217305a119f0e194db032089bbd6c5def70a34074",
+          "locator": "PDF pages 4,5: subheading 8703.40; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 870340; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 5: subheading 8703.40; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 870340; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 5: subheading 8703.40; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 870340; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        }
+      ]
+    },
+    {
+      "direction": "imports",
+      "code": "870324",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 870324: import HTS definitions and section/chapter notes are not authenticated across every effective revision in September 2024\u2013August 2026. Schedule B definitions corroborate the shared HS6 parent but cannot prove direction-specific import scope.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Import_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Import_Historical_HS_Numbers.xlsx",
+          "bytes": 1117590,
+          "sha256": "d13be8bd5755a9237f8c1d1f0cf49d29e9141413d845dc39728f98ab534bade6",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 870324; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c87.pdf",
+          "bytes": 156794,
+          "sha256": "963f5a23db591c3ee83676f217305a119f0e194db032089bbd6c5def70a34074",
+          "locator": "PDF pages 4: subheading 8703.24; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 870324; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 4: subheading 8703.24; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 870324; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 4: subheading 8703.24; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 870324; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        }
+      ]
+    },
+    {
+      "direction": "imports",
+      "code": "870829",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 870829: import HTS definitions and section/chapter notes are not authenticated across every effective revision in September 2024\u2013August 2026. Schedule B definitions corroborate the shared HS6 parent but cannot prove direction-specific import scope. Detailed-code validity boundaries inside the interval require a documented predecessor/scope mapping: 8708295150 (07/2026..Current), 8708295160 (01/2022..06/2026), 8708295190 (07/2026..Current).",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Import_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Import_Historical_HS_Numbers.xlsx",
+          "bytes": 1117590,
+          "sha256": "d13be8bd5755a9237f8c1d1f0cf49d29e9141413d845dc39728f98ab534bade6",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 870829; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c87.pdf",
+          "bytes": 156794,
+          "sha256": "963f5a23db591c3ee83676f217305a119f0e194db032089bbd6c5def70a34074",
+          "locator": "PDF pages 9: subheading 8708.29; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 870829; PDF pages 27,28",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 9: subheading 8708.29; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 870829; PDF pages 29",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 9: subheading 8708.29; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 870829; PDF pages 31",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        }
+      ]
+    },
+    {
+      "direction": "imports",
+      "code": "271012",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 271012: import HTS definitions and section/chapter notes are not authenticated across every effective revision in September 2024\u2013August 2026. Schedule B definitions corroborate the shared HS6 parent but cannot prove direction-specific import scope. Detailed-code validity boundaries inside the interval require a documented predecessor/scope mapping: 2710124560 (01/2025..Current), 2710124590 (01/2012..12/2024), 2710124595 (01/2025..Current).",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Import_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Import_Historical_HS_Numbers.xlsx",
+          "bytes": 1117590,
+          "sha256": "d13be8bd5755a9237f8c1d1f0cf49d29e9141413d845dc39728f98ab534bade6",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 271012; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c27.pdf",
+          "bytes": 123677,
+          "sha256": "2efc7c1e0173b7d8055f136f569515845e850e06f0c36f70f979f6a5f067cacf",
+          "locator": "PDF pages 2,5,6: subheading 2710.12; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 271012; PDF pages 4",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 2,3,5,6: subheading 2710.12; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 271012; PDF pages 4",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 2,3,5,6: subheading 2710.12; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 271012; PDF pages 4",
+          "kind": "dated-change"
+        }
+      ]
+    },
+    {
+      "direction": "imports",
+      "code": "880240",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 880240: import HTS definitions and section/chapter notes are not authenticated across every effective revision in September 2024\u2013August 2026. Schedule B definitions corroborate the shared HS6 parent but cannot prove direction-specific import scope.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Import_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Import_Historical_HS_Numbers.xlsx",
+          "bytes": 1117590,
+          "sha256": "d13be8bd5755a9237f8c1d1f0cf49d29e9141413d845dc39728f98ab534bade6",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 880240; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c88.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c88.pdf",
+          "bytes": 98032,
+          "sha256": "b1806a49c94ab7f6b4cc2e60c1625ce1d5ab5c1db0e553a43ec26392f6f167a5",
+          "locator": "PDF pages 1,3: subheading 8802.40; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 880240; PDF pages 29",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c88.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c88.pdf",
+          "bytes": 98032,
+          "sha256": "b1806a49c94ab7f6b4cc2e60c1625ce1d5ab5c1db0e553a43ec26392f6f167a5",
+          "locator": "PDF pages 1,3: subheading 8802.40; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 880240; PDF pages 30,31",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c88.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c88.pdf",
+          "bytes": 98032,
+          "sha256": "b1806a49c94ab7f6b4cc2e60c1625ce1d5ab5c1db0e553a43ec26392f6f167a5",
+          "locator": "PDF pages 1,3: subheading 8802.40; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 880240; PDF pages 32,33",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        }
+      ]
+    },
+    {
+      "direction": "exports",
+      "code": "270900",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 270900: 2024/2025/2026 Schedule B parent definitions and notes were inspected, but July-updated annual books and the cumulative add/delete lists do not establish every effective intermediate scope or cross-parent transfer in September 2024\u2013August 2026.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Export_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Export_Historical_HS_Numbers.xlsx",
+          "bytes": 531257,
+          "sha256": "ce57b7594132292bef7e5c1c501574636e290604367d707d5e8b22c8d4292776",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 270900; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c27.pdf",
+          "bytes": 123677,
+          "sha256": "2efc7c1e0173b7d8055f136f569515845e850e06f0c36f70f979f6a5f067cacf",
+          "locator": "PDF pages 5: subheading 2709.00; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 270900; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 5: subheading 2709.00; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 270900; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 5: subheading 2709.00; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 270900; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        }
+      ]
+    },
+    {
+      "direction": "exports",
+      "code": "870431",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 870431: 2024/2025/2026 Schedule B parent definitions and notes were inspected, but July-updated annual books and the cumulative add/delete lists do not establish every effective intermediate scope or cross-parent transfer in September 2024\u2013August 2026.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Export_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Export_Historical_HS_Numbers.xlsx",
+          "bytes": 531257,
+          "sha256": "ce57b7594132292bef7e5c1c501574636e290604367d707d5e8b22c8d4292776",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 870431; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c87.pdf",
+          "bytes": 156794,
+          "sha256": "963f5a23db591c3ee83676f217305a119f0e194db032089bbd6c5def70a34074",
+          "locator": "PDF pages 7: subheading 8704.31; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 870431; PDF pages 27",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 7: subheading 8704.31; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 870431; PDF pages 28",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 7: subheading 8704.31; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 870431; PDF pages 30",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        }
+      ]
+    },
+    {
+      "direction": "exports",
+      "code": "271012",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 271012: 2024/2025/2026 Schedule B parent definitions and notes were inspected, but July-updated annual books and the cumulative add/delete lists do not establish every effective intermediate scope or cross-parent transfer in September 2024\u2013August 2026. Detailed-code validity boundaries inside the interval require a documented predecessor/scope mapping: 2710124550 (01/2024..12/2024), 2710124560 (01/2025..Current), 2710124595 (01/2025..Current).",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Export_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Export_Historical_HS_Numbers.xlsx",
+          "bytes": 531257,
+          "sha256": "ce57b7594132292bef7e5c1c501574636e290604367d707d5e8b22c8d4292776",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 271012; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c27.pdf",
+          "bytes": 123677,
+          "sha256": "2efc7c1e0173b7d8055f136f569515845e850e06f0c36f70f979f6a5f067cacf",
+          "locator": "PDF pages 2,5,6: subheading 2710.12; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 271012; PDF pages 4",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 2,3,5,6: subheading 2710.12; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 271012; PDF pages 4",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 2,3,5,6: subheading 2710.12; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 271012; PDF pages 4",
+          "kind": "dated-change"
+        }
+      ]
+    },
+    {
+      "direction": "exports",
+      "code": "271019",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 271019: 2024/2025/2026 Schedule B parent definitions and notes were inspected, but July-updated annual books and the cumulative add/delete lists do not establish every effective intermediate scope or cross-parent transfer in September 2024\u2013August 2026. Detailed-code validity boundaries inside the interval require a documented predecessor/scope mapping: 2710194550 (01/2025..Current), 2710194590 (Prior to 2007..12/2024), 2710194595 (01/2025..Current).",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Export_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Export_Historical_HS_Numbers.xlsx",
+          "bytes": 531257,
+          "sha256": "ce57b7594132292bef7e5c1c501574636e290604367d707d5e8b22c8d4292776",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 271019; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c27.pdf",
+          "bytes": 123677,
+          "sha256": "2efc7c1e0173b7d8055f136f569515845e850e06f0c36f70f979f6a5f067cacf",
+          "locator": "PDF pages 2,6,7: subheading 2710.19; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 271019; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 2,3,6,7: subheading 2710.19; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 271019; PDF pages 4",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c27.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c27.pdf",
+          "bytes": 127098,
+          "sha256": "4781a2dcaadf5e0f8c31ecc431b8addc999407066e12311276c3c1599af3b90c",
+          "locator": "PDF pages 2,3,6,7: subheading 2710.19; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 271019; PDF pages 4",
+          "kind": "dated-change"
+        }
+      ]
+    },
+    {
+      "direction": "exports",
+      "code": "870899",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 870899: 2024/2025/2026 Schedule B parent definitions and notes were inspected, but July-updated annual books and the cumulative add/delete lists do not establish every effective intermediate scope or cross-parent transfer in September 2024\u2013August 2026.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Export_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Export_Historical_HS_Numbers.xlsx",
+          "bytes": 531257,
+          "sha256": "ce57b7594132292bef7e5c1c501574636e290604367d707d5e8b22c8d4292776",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 870899; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c87.pdf",
+          "bytes": 156794,
+          "sha256": "963f5a23db591c3ee83676f217305a119f0e194db032089bbd6c5def70a34074",
+          "locator": "PDF pages 10: subheading 8708.99; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 870899; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 11: subheading 8708.99; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 870899; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 11: subheading 8708.99; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 870899; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        }
+      ]
+    },
+    {
+      "direction": "exports",
+      "code": "847150",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 847150: 2024/2025/2026 Schedule B parent definitions and notes were inspected, but July-updated annual books and the cumulative add/delete lists do not establish every effective intermediate scope or cross-parent transfer in September 2024\u2013August 2026.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Export_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Export_Historical_HS_Numbers.xlsx",
+          "bytes": 531257,
+          "sha256": "ce57b7594132292bef7e5c1c501574636e290604367d707d5e8b22c8d4292776",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 847150; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c84.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c84.pdf",
+          "bytes": 504150,
+          "sha256": "5bac061f8a5ce2d1432538d88e92236f7bc26495a860b7c8580f3b68693a170b",
+          "locator": "PDF pages 46: subheading 8471.50; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 847150; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c84.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c84.pdf",
+          "bytes": 504150,
+          "sha256": "5bac061f8a5ce2d1432538d88e92236f7bc26495a860b7c8580f3b68693a170b",
+          "locator": "PDF pages 46: subheading 8471.50; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 847150; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c84.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c84.pdf",
+          "bytes": 521786,
+          "sha256": "54c10b155786b53746db58ee31d3ff16a10be3ca394cf2e15a415d98bea5909e",
+          "locator": "PDF pages 50: subheading 8471.50; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 847150; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/section16.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-section16.pdf",
+          "bytes": 107278,
+          "sha256": "31366a5e9865f63c55bbdc7aba6c52fc90e34c5d10943491c979f6d7f5d72b48",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/section16.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-section16.pdf",
+          "bytes": 107278,
+          "sha256": "31366a5e9865f63c55bbdc7aba6c52fc90e34c5d10943491c979f6d7f5d72b48",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/section16.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-section16.pdf",
+          "bytes": 107278,
+          "sha256": "31366a5e9865f63c55bbdc7aba6c52fc90e34c5d10943491c979f6d7f5d72b48",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        }
+      ]
+    },
+    {
+      "direction": "exports",
+      "code": "870323",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 870323: 2024/2025/2026 Schedule B parent definitions and notes were inspected, but July-updated annual books and the cumulative add/delete lists do not establish every effective intermediate scope or cross-parent transfer in September 2024\u2013August 2026.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Export_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Export_Historical_HS_Numbers.xlsx",
+          "bytes": 531257,
+          "sha256": "ce57b7594132292bef7e5c1c501574636e290604367d707d5e8b22c8d4292776",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 870323; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c87.pdf",
+          "bytes": 156794,
+          "sha256": "963f5a23db591c3ee83676f217305a119f0e194db032089bbd6c5def70a34074",
+          "locator": "PDF pages 4: subheading 8703.23; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 870323; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 4: subheading 8703.23; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 870323; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c87.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c87.pdf",
+          "bytes": 160232,
+          "sha256": "cdd89a24ce7e123968070f8fdfbe28d1370d1c718983df5015cc77381a082f36",
+          "locator": "PDF pages 4: subheading 8703.23; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 870323; no literal prefix found; absence is not continuity proof",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/section17.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-section17.pdf",
+          "bytes": 82240,
+          "sha256": "ea17034a56669d4c9fd435fd78b125d74dea921e0d637e452d810468b19a2877",
+          "locator": "PDF pages 1-2, section notes",
+          "kind": "definition-and-notes"
+        }
+      ]
+    },
+    {
+      "direction": "exports",
+      "code": "711291",
+      "from": "2024-09",
+      "to": "2026-08",
+      "status": "unverified",
+      "reason": "HS6 711291: 2024/2025/2026 Schedule B parent definitions and notes were inspected, but July-updated annual books and the cumulative add/delete lists do not establish every effective intermediate scope or cross-parent transfer in September 2024\u2013August 2026.",
+      "scopeConclusion": "Reviewed parent description and date screening are corroboration only; no allocation, bridging or semantic continuity acceptance. Exact effective notes/transfer evidence remains missing.",
+      "sources": [
+        {
+          "url": "https://www.census.gov/foreign-trade/reference/codes/Export_Historical_HS_Numbers.xlsx",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/Export_Historical_HS_Numbers.xlsx",
+          "bytes": 531257,
+          "sha256": "ce57b7594132292bef7e5c1c501574636e290604367d707d5e8b22c8d4292776",
+          "locator": "Data!A:E; detailed codes with HS6 prefix 711291; begin/end month screening only",
+          "kind": "historical-code-screen"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/c71.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-c71.pdf",
+          "bytes": 125005,
+          "sha256": "d41b7f134c1f891be37525708ba8955efdd8b90361ae9cac5259c7a72a3f1997",
+          "locator": "PDF pages 7: subheading 7112.91; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2024/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2024-adddeletelist.pdf",
+          "bytes": 244168,
+          "sha256": "6ff4db6753f2b9159f77831989d1ba783a790cec6e214005c74d0334397a20a1",
+          "locator": "Add/delete list; prefix 711291; PDF pages 17",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/c71.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-c71.pdf",
+          "bytes": 125005,
+          "sha256": "d41b7f134c1f891be37525708ba8955efdd8b90361ae9cac5259c7a72a3f1997",
+          "locator": "PDF pages 7: subheading 7112.91; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2025/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2025-adddeletelist.pdf",
+          "bytes": 248278,
+          "sha256": "25aac37934e9b75f8b161c1a3a5809e40a6c01270b41f724d1bdd8d364820fc4",
+          "locator": "Add/delete list; prefix 711291; PDF pages 18",
+          "kind": "dated-change"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c71.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-c71.pdf",
+          "bytes": 125144,
+          "sha256": "dc4e8a9b5250f2c899742226318a4c0451d4efd05de72edd8fea9f3471f14abb",
+          "locator": "PDF pages 7: subheading 7112.91; chapter notes at beginning",
+          "kind": "definition-and-notes"
+        },
+        {
+          "url": "https://www.census.gov/foreign-trade/schedules/b/2026/adddeletelist.pdf",
+          "path": "data/backups/canada-country-audit/classification-references-2026-10-11/schedule-b-2026-adddeletelist.pdf",
+          "bytes": 250346,
+          "sha256": "3b303ab034ed1212006ae23b36666cfc1d0ee2da98187174ab591ed3d84cf885",
+          "locator": "Add/delete list; prefix 711291; PDF pages 20",
+          "kind": "dated-change"
+        }
+      ]
+    }
+  ]
+}
