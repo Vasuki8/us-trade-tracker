@@ -1,0 +1,1057 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "1220",
+  "countryName": "Canada",
+  "source": "fixture",
+  "reporting": {
+    "from": "2024-09",
+    "to": "2026-08",
+    "latest": "2026-08"
+  },
+  "captureInterval": {
+    "startedAt": "2026-10-11T17:01:00.000Z",
+    "finishedAt": "2026-10-11T17:02:00.000Z"
+  },
+  "processingVersion": "synthetic-fixture-v1",
+  "rawVerification": "synthetic",
+  "directions": {
+    "imports": {
+      "direction": "imports",
+      "measure": "GEN_VAL_MO",
+      "title": "U.S. imports from Canada",
+      "monthly": [
+        {
+          "month": "2024-09",
+          "valueUsd": 100000,
+          "originalSource": null
+        },
+        {
+          "month": "2024-10",
+          "valueUsd": 100000,
+          "originalSource": null
+        },
+        {
+          "month": "2024-11",
+          "valueUsd": 100000,
+          "originalSource": null
+        },
+        {
+          "month": "2024-12",
+          "valueUsd": 100000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-01",
+          "valueUsd": 100000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-02",
+          "valueUsd": 100000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-03",
+          "valueUsd": 100000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-04",
+          "valueUsd": 100000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-05",
+          "valueUsd": 100000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-06",
+          "valueUsd": 100000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-07",
+          "valueUsd": 100000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-08",
+          "valueUsd": 100000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-09",
+          "valueUsd": 200000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-10",
+          "valueUsd": 200000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-11",
+          "valueUsd": 200000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-12",
+          "valueUsd": 200000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-01",
+          "valueUsd": 200000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-02",
+          "valueUsd": 200000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-03",
+          "valueUsd": 200000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-04",
+          "valueUsd": 200000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-05",
+          "valueUsd": 200000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-06",
+          "valueUsd": 200000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-07",
+          "valueUsd": 200000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-08",
+          "valueUsd": 200000,
+          "originalSource": null
+        }
+      ],
+      "summary": {
+        "latestMonth": "2026-08",
+        "latestUsd": 200000,
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "totalUsd": 2400000
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "totalUsd": 1200000
+        },
+        "changeUsd": 1200000,
+        "growthPercent": 100
+      },
+      "products": [
+        {
+          "code": "270900",
+          "description": "Synthetic category 270900",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 120000,
+            "countryTotalUsd": 1200000,
+            "sharePercent": 10
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 240000,
+            "countryTotalUsd": 2400000,
+            "sharePercent": 10
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 120000,
+          "growthPercent": 100,
+          "sharePointChange": 0
+        },
+        {
+          "code": "980100",
+          "description": "Synthetic category 980100",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 108000,
+            "countryTotalUsd": 1200000,
+            "sharePercent": null
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 216000,
+            "countryTotalUsd": 2400000,
+            "sharePercent": null
+          },
+          "comparisonEligible": false,
+          "reason": "statistical-category",
+          "specialByPolicy": true,
+          "classification": {
+            "status": "statistical-category",
+            "from": null,
+            "to": null
+          },
+          "changeUsd": null,
+          "growthPercent": null,
+          "sharePointChange": null
+        },
+        {
+          "code": "271019",
+          "description": "Synthetic category 271019",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 96000,
+            "countryTotalUsd": 1200000,
+            "sharePercent": 8
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 192000,
+            "countryTotalUsd": 2400000,
+            "sharePercent": 8
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 96000,
+          "growthPercent": 100,
+          "sharePointChange": 0
+        },
+        {
+          "code": "271121",
+          "description": "Synthetic category 271121",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 84000,
+            "countryTotalUsd": 1200000,
+            "sharePercent": 7
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 168000,
+            "countryTotalUsd": 2400000,
+            "sharePercent": 7
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 84000,
+          "growthPercent": 100,
+          "sharePointChange": 0
+        },
+        {
+          "code": "870323",
+          "description": "Synthetic category 870323",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 72000,
+            "countryTotalUsd": 1200000,
+            "sharePercent": 6
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 144000,
+            "countryTotalUsd": 2400000,
+            "sharePercent": 6
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 72000,
+          "growthPercent": 100,
+          "sharePointChange": 0
+        },
+        {
+          "code": "870340",
+          "description": "Synthetic category 870340",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 60000,
+            "countryTotalUsd": 1200000,
+            "sharePercent": 5
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 120000,
+            "countryTotalUsd": 2400000,
+            "sharePercent": 5
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 60000,
+          "growthPercent": 100,
+          "sharePointChange": 0
+        },
+        {
+          "code": "870324",
+          "description": "Synthetic category 870324",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 48000,
+            "countryTotalUsd": 1200000,
+            "sharePercent": 4
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 96000,
+            "countryTotalUsd": 2400000,
+            "sharePercent": 4
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 48000,
+          "growthPercent": 100,
+          "sharePointChange": 0
+        },
+        {
+          "code": "870829",
+          "description": "Synthetic category 870829",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 36000,
+            "countryTotalUsd": 1200000,
+            "sharePercent": 3
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 72000,
+            "countryTotalUsd": 2400000,
+            "sharePercent": 3
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 36000,
+          "growthPercent": 100,
+          "sharePointChange": 0
+        },
+        {
+          "code": "271012",
+          "description": "Synthetic category 271012",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 24000,
+            "countryTotalUsd": 1200000,
+            "sharePercent": 2
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 48000,
+            "countryTotalUsd": 2400000,
+            "sharePercent": 2
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 24000,
+          "growthPercent": 100,
+          "sharePointChange": 0
+        },
+        {
+          "code": "880240",
+          "description": "Synthetic category 880240",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 12000,
+            "countryTotalUsd": 1200000,
+            "sharePercent": 1
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 24000,
+            "countryTotalUsd": 2400000,
+            "sharePercent": 1
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 12000,
+          "growthPercent": 100,
+          "sharePointChange": 0
+        }
+      ],
+      "references": {
+        "before": {
+          "matched": 24,
+          "mismatch": 0,
+          "source": null
+        },
+        "after": {
+          "matched": 24,
+          "mismatch": 0,
+          "source": null
+        },
+        "publication": {
+          "matched": 0,
+          "notReviewed": 24
+        },
+        "differences": []
+      }
+    },
+    "exports": {
+      "direction": "exports",
+      "measure": "ALL_VAL_MO",
+      "title": "U.S. exports to Canada",
+      "monthly": [
+        {
+          "month": "2024-09",
+          "valueUsd": 300000,
+          "originalSource": null
+        },
+        {
+          "month": "2024-10",
+          "valueUsd": 300000,
+          "originalSource": null
+        },
+        {
+          "month": "2024-11",
+          "valueUsd": 300000,
+          "originalSource": null
+        },
+        {
+          "month": "2024-12",
+          "valueUsd": 300000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-01",
+          "valueUsd": 300000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-02",
+          "valueUsd": 300000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-03",
+          "valueUsd": 300000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-04",
+          "valueUsd": 300000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-05",
+          "valueUsd": 300000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-06",
+          "valueUsd": 300000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-07",
+          "valueUsd": 300000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-08",
+          "valueUsd": 300000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-09",
+          "valueUsd": 400000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-10",
+          "valueUsd": 400000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-11",
+          "valueUsd": 400000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-12",
+          "valueUsd": 400000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-01",
+          "valueUsd": 400000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-02",
+          "valueUsd": 400000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-03",
+          "valueUsd": 400000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-04",
+          "valueUsd": 400000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-05",
+          "valueUsd": 400000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-06",
+          "valueUsd": 400000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-07",
+          "valueUsd": 400000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-08",
+          "valueUsd": 200000,
+          "originalSource": null
+        }
+      ],
+      "summary": {
+        "latestMonth": "2026-08",
+        "latestUsd": 200000,
+        "current": {
+          "from": "2025-09",
+          "to": "2026-08",
+          "reportedMonths": 12,
+          "totalUsd": 4600000
+        },
+        "prior": {
+          "from": "2024-09",
+          "to": "2025-08",
+          "reportedMonths": 12,
+          "totalUsd": 3600000
+        },
+        "changeUsd": 1000000,
+        "growthPercent": 27.77777777777778
+      },
+      "products": [
+        {
+          "code": "988000",
+          "description": "Synthetic category 988000",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 120000,
+            "countryTotalUsd": 3600000,
+            "sharePercent": null
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 240000,
+            "countryTotalUsd": 4600000,
+            "sharePercent": null
+          },
+          "comparisonEligible": false,
+          "reason": "statistical-category",
+          "specialByPolicy": true,
+          "classification": {
+            "status": "statistical-category",
+            "from": null,
+            "to": null
+          },
+          "changeUsd": null,
+          "growthPercent": null,
+          "sharePointChange": null
+        },
+        {
+          "code": "270900",
+          "description": "Synthetic category 270900",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 108000,
+            "countryTotalUsd": 3600000,
+            "sharePercent": 3
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 216000,
+            "countryTotalUsd": 4600000,
+            "sharePercent": 4.695652173913044
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 108000,
+          "growthPercent": 100,
+          "sharePointChange": 1.695652173913044
+        },
+        {
+          "code": "880000",
+          "description": "Synthetic category 880000",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 96000,
+            "countryTotalUsd": 3600000,
+            "sharePercent": null
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 192000,
+            "countryTotalUsd": 4600000,
+            "sharePercent": null
+          },
+          "comparisonEligible": false,
+          "reason": "statistical-category",
+          "specialByPolicy": true,
+          "classification": {
+            "status": "statistical-category",
+            "from": null,
+            "to": null
+          },
+          "changeUsd": null,
+          "growthPercent": null,
+          "sharePointChange": null
+        },
+        {
+          "code": "870431",
+          "description": "Synthetic category 870431",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 84000,
+            "countryTotalUsd": 3600000,
+            "sharePercent": 2.3333333333333335
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 168000,
+            "countryTotalUsd": 4600000,
+            "sharePercent": 3.652173913043478
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 84000,
+          "growthPercent": 100,
+          "sharePointChange": 1.3188405797101446
+        },
+        {
+          "code": "271012",
+          "description": "Synthetic category 271012",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 72000,
+            "countryTotalUsd": 3600000,
+            "sharePercent": 2
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 144000,
+            "countryTotalUsd": 4600000,
+            "sharePercent": 3.130434782608696
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 72000,
+          "growthPercent": 100,
+          "sharePointChange": 1.1304347826086958
+        },
+        {
+          "code": "271019",
+          "description": "Synthetic category 271019",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 60000,
+            "countryTotalUsd": 3600000,
+            "sharePercent": 1.6666666666666667
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 120000,
+            "countryTotalUsd": 4600000,
+            "sharePercent": 2.608695652173913
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 60000,
+          "growthPercent": 100,
+          "sharePointChange": 0.9420289855072463
+        },
+        {
+          "code": "870899",
+          "description": "Synthetic category 870899",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 48000,
+            "countryTotalUsd": 3600000,
+            "sharePercent": 1.3333333333333333
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 96000,
+            "countryTotalUsd": 4600000,
+            "sharePercent": 2.0869565217391304
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 48000,
+          "growthPercent": 100,
+          "sharePointChange": 0.7536231884057971
+        },
+        {
+          "code": "847150",
+          "description": "Synthetic category 847150",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 36000,
+            "countryTotalUsd": 3600000,
+            "sharePercent": 1
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 72000,
+            "countryTotalUsd": 4600000,
+            "sharePercent": 1.565217391304348
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 36000,
+          "growthPercent": 100,
+          "sharePointChange": 0.5652173913043479
+        },
+        {
+          "code": "870323",
+          "description": "Synthetic category 870323",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 24000,
+            "countryTotalUsd": 3600000,
+            "sharePercent": 0.6666666666666666
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 48000,
+            "countryTotalUsd": 4600000,
+            "sharePercent": 1.0434782608695652
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 24000,
+          "growthPercent": 100,
+          "sharePointChange": 0.37681159420289856
+        },
+        {
+          "code": "711291",
+          "description": "Synthetic category 711291",
+          "prior": {
+            "from": "2024-09",
+            "to": "2025-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 12000,
+            "countryTotalUsd": 3600000,
+            "sharePercent": 0.3333333333333333
+          },
+          "current": {
+            "from": "2025-09",
+            "to": "2026-08",
+            "reportedMonths": 12,
+            "observedSumUsd": 24000,
+            "countryTotalUsd": 4600000,
+            "sharePercent": 0.5217391304347826
+          },
+          "comparisonEligible": true,
+          "reason": "eligible-offline-only",
+          "specialByPolicy": false,
+          "classification": {
+            "status": "compatible",
+            "from": "2024-09",
+            "to": "2026-08"
+          },
+          "changeUsd": 12000,
+          "growthPercent": 100,
+          "sharePointChange": 0.18840579710144928
+        }
+      ],
+      "references": {
+        "before": {
+          "matched": 17,
+          "mismatch": 7,
+          "source": null
+        },
+        "after": {
+          "matched": 17,
+          "mismatch": 7,
+          "source": null
+        },
+        "publication": {
+          "matched": 7,
+          "notReviewed": 17
+        },
+        "differences": [
+          {
+            "month": "2026-01",
+            "archiveUsd": 400000,
+            "currentBeforeUsd": 500000,
+            "currentAfterUsd": 500000,
+            "differenceBeforeUsd": -100000,
+            "differenceAfterUsd": -100000,
+            "publicationUsd": 400000,
+            "publicationDifferenceUsd": 0,
+            "publicationCheck": "matched",
+            "publicationSource": null
+          },
+          {
+            "month": "2026-02",
+            "archiveUsd": 400000,
+            "currentBeforeUsd": 500000,
+            "currentAfterUsd": 500000,
+            "differenceBeforeUsd": -100000,
+            "differenceAfterUsd": -100000,
+            "publicationUsd": 400000,
+            "publicationDifferenceUsd": 0,
+            "publicationCheck": "matched",
+            "publicationSource": null
+          },
+          {
+            "month": "2026-03",
+            "archiveUsd": 400000,
+            "currentBeforeUsd": 500000,
+            "currentAfterUsd": 500000,
+            "differenceBeforeUsd": -100000,
+            "differenceAfterUsd": -100000,
+            "publicationUsd": 400000,
+            "publicationDifferenceUsd": 0,
+            "publicationCheck": "matched",
+            "publicationSource": null
+          },
+          {
+            "month": "2026-04",
+            "archiveUsd": 400000,
+            "currentBeforeUsd": 500000,
+            "currentAfterUsd": 500000,
+            "differenceBeforeUsd": -100000,
+            "differenceAfterUsd": -100000,
+            "publicationUsd": 400000,
+            "publicationDifferenceUsd": 0,
+            "publicationCheck": "matched",
+            "publicationSource": null
+          },
+          {
+            "month": "2026-05",
+            "archiveUsd": 400000,
+            "currentBeforeUsd": 500000,
+            "currentAfterUsd": 500000,
+            "differenceBeforeUsd": -100000,
+            "differenceAfterUsd": -100000,
+            "publicationUsd": 400000,
+            "publicationDifferenceUsd": 0,
+            "publicationCheck": "matched",
+            "publicationSource": null
+          },
+          {
+            "month": "2026-06",
+            "archiveUsd": 400000,
+            "currentBeforeUsd": 500000,
+            "currentAfterUsd": 500000,
+            "differenceBeforeUsd": -100000,
+            "differenceAfterUsd": -100000,
+            "publicationUsd": 400000,
+            "publicationDifferenceUsd": 0,
+            "publicationCheck": "matched",
+            "publicationSource": null
+          },
+          {
+            "month": "2026-07",
+            "archiveUsd": 400000,
+            "currentBeforeUsd": 500000,
+            "currentAfterUsd": 500000,
+            "differenceBeforeUsd": -100000,
+            "differenceAfterUsd": -100000,
+            "publicationUsd": 400000,
+            "publicationDifferenceUsd": 0,
+            "publicationCheck": "matched",
+            "publicationSource": null
+          }
+        ]
+      }
+    }
+  },
+  "availability": {
+    "releaseAccepted": false,
+    "rollingComparisonsAvailable": false,
+    "defaultAuditRetrievalChanged": false
+  }
+}
