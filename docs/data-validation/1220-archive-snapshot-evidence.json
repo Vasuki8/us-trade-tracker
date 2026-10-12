@@ -1032,7 +1032,23 @@
         "secondFullReview": false
       }
     },
-    "providerCI": "pending"
+    "providerCI": {
+      "status": "passed",
+      "runId": 38202119823,
+      "jobId": 114657574040,
+      "testedHead": "77c4506a537e662ae8a53f569c0cbe33d0c82017",
+      "testedMergeCommit": "86ea47474e85a030ec3e559be4a2bcc477730334",
+      "testedTree": "64024d64253ea3cde40a8e1260e0fdd9c31ff035",
+      "projectTests": 620,
+      "checkedFiles": 160,
+      "errors": 0,
+      "warnings": 0,
+      "hints": 0,
+      "browserCases": 52,
+      "fixtureBuild": "passed",
+      "pullRequest": "https://github.com/Vasuki8/us-trade-tracker/pull/63",
+      "latestIntegrationChecks": "Final evidence-only changes require their own passing checks on this pull request."
+    }
   },
   "releaseAccepted": false,
   "rollingComparisonsAvailable": false,
