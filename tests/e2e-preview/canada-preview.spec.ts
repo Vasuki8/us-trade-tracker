@@ -49,5 +49,22 @@ test('keeps chart labels readable across phone and desktop widths in both direct
 });
 test('provides Imports research and sources without JavaScript',async({browser,baseURL})=>{
   const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:375,height:812}});const page=await context.newPage();const requests:string[]=[];page.on('request',r=>{if(!r.url().startsWith(baseURL!))requests.push(r.url());});await page.goto(baseURL+route);
+  const imports=page.getByRole('radio',{name:'Imports'}),exports=page.getByRole('radio',{name:'Exports'});
+  await expect(imports).toBeDisabled();await expect(exports).toBeDisabled();
+  await expect(page.getByRole('button',{name:'Download monthly CSV'})).toBeDisabled();await expect(page.getByRole('button',{name:'Download products CSV'})).toBeDisabled();
+  await exports.click({force:true});await expect(imports).toBeChecked();await expect(exports).not.toBeChecked();
   await expect(page.getByRole('table',{name:'Monthly U.S. imports from Canada · nominal USD'}).getByRole('row')).toHaveCount(25);await expect(page.getByRole('region',{name:'Country overview'})).toContainText('$2,400,000');await expect(page.locator('noscript p')).toContainText('require JavaScript');await expect(page.getByRole('region',{name:'Sources and revision differences'})).toContainText('Product shares here use totals from the same files');await expectReadableCountryChart(page,'Monthly U.S. imports from Canada');expect(requests).toEqual([]);await context.close();
+});
+test('keeps SSR controls read-only until delayed JavaScript is ready',async({page})=>{
+  let releaseScripts!:()=>void;const held=new Promise<void>(resolve=>{releaseScripts=resolve;});
+  await page.route('**/_astro/*.js',async route=>{await held;await route.continue();});
+  try{
+    await page.goto(route,{waitUntil:'commit'});
+    await expect(page.getByRole('radio',{name:'Imports'})).toBeChecked();await expect(page.getByRole('radio',{name:'Exports'})).toBeDisabled();
+    await expect(page.getByRole('button',{name:'Download monthly CSV'})).toBeDisabled();await expect(page.getByRole('button',{name:'Download products CSV'})).toBeDisabled();
+    await expect(page.getByRole('region',{name:'Country overview'})).toContainText('$2,400,000');
+    releaseScripts();await expect(page.getByRole('radio',{name:'Exports'})).toBeEnabled();
+    await page.getByRole('radio',{name:'Exports'}).check();await expect(page.getByRole('region',{name:'Country overview'})).toContainText('$4,600,000');
+    const event=page.waitForEvent('download');await page.getByRole('button',{name:'Download products CSV'}).click();expect((await event).suggestedFilename()).toContain('exports');
+  }finally{releaseScripts();}
 });
