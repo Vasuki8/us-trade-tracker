@@ -20,6 +20,8 @@ it('authenticates_exact_fixed_evidence_and_preserves_qualifications',()=>{
   files.get('bulk-report.json')![0]^=1;expect(v.files.get('bulk-report.json')![0]).not.toBe(files.get('bulk-report.json')![0]);
 });
 it('authenticates replay totals without converting the old strict failures into passes',()=>{const bulk=JSON.parse(files.get('bulk-report.json')!.toString());expect(bulk.contexts.every((c:{state:string;sumUsd:null})=>c.state==='failed'&&c.sumUsd===null)).toBe(true);expect(verifyCountryEvidence(files).projection.directions.imports.summary.current.totalUsd).toBe(2400000);expect(bulk.sourceCoverage).toBe('failed');});
+it('binds ZIP request identities separately from publication requests for the same month',()=>{const manifest=JSON.parse(files.get('original-manifest.json')!.toString());expect(manifest.requests.filter((r:{context_id:string})=>r.context_id==='exports-2026-01')).toHaveLength(2);expect(verifyCountryEvidence(files).projection.directions.exports.references.publication.matched).toBe(7);});
+it('preserves and binds the complete historical classification verdict object',()=>{const e=JSON.parse(files.get('continuity-evidence.json')!.toString());expect(e.independentClassificationReview.verdict.readyToIntegrate).toBe('with fixes');expect(verifyCountryEvidence(files).projection.availability.releaseAccepted).toBe(false);});
 it.each(['missing','changed','oversized','extra','crossed'] as const)('rejects %s evidence before parsing',kind=>{
   if(kind==='missing')files.delete('bulk-report.json');
   if(kind==='changed')files.get('bulk-report.json')![0]^=1;
