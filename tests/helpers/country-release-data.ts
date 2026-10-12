@@ -1,10 +1,12 @@
 import {createHash} from 'node:crypto';
+import {mkdir,mkdtemp,writeFile,rm} from 'node:fs/promises';
+import {resolve,relative,sep} from 'node:path';
 import {vi} from 'vitest';
 import {makeCountryAssessmentFixture} from './country-preview-data';
 import {canadaCountryReleaseContract as contract} from '../../src/lib/country-release/contract.server';
 import {canadaPreviewContract} from '../../src/lib/country-preview/contract.server';
 import * as projector from '../../src/lib/country-preview/project.server';
-import type {CandidateMetadata,EvidenceName,MemberPin} from '../../src/lib/country-release/types';
+import type {CandidateMetadata,EvidenceName,MemberPin,DecodedCountryPackage,CountryVerificationProof} from '../../src/lib/country-release/types';
 export const releaseEvidenceNames:EvidenceName[]=['assessment.json','classification-ledger.json','bulk-report.json','original-manifest.json','offline-replay.json','inventory-review.json','classification-review.json','citation-correction.json','calculation-review.json','continuity-evidence.json'];
 export const fixtureDigest=(body:Buffer)=>({bytes:body.length,sha256:createHash('sha256').update(body).digest('hex')});
 const body=(value:unknown)=>Buffer.from(JSON.stringify(value)+'\n');
@@ -41,4 +43,19 @@ export function mockCountryReleaseEvidence(files:ReadonlyMap<EvidenceName,Buffer
   vi.spyOn(projector,'projectRetainedAssessment').mockImplementation(value=>({...project(value),source:'fixture',rawVerification:'synthetic'}));
   vi.spyOn(contract,'projection','get').mockReturnValue(fixtureDigest(body(projection)));
   return pins;
+}
+export function makeCountryVerificationProofFixture(c:DecodedCountryPackage):CountryVerificationProof{
+  const log='1'.repeat(64),report='Synthetic passing reviewer record; this is not real review or authorization.';
+  return {schemaVersion:1,policyId:'canada-country-release-v1',candidateDigest:{...c.digest},packagingCommit:c.manifest.packagingCommit,
+    recovery:{schemaVersion:1,policyId:'canada-country-release-v1',candidateDigest:{...c.digest},projectionDigest:fixtureDigest(c.files.get('research-data.json')!),status:'verified',historicalPathReads:0},
+    preservation:{before:contract.protectedFiles.map(f=>({...f})),after:contract.protectedFiles.map(f=>({...f}))},
+    checks:{unit:{passed:1,failed:0,logSha256:log},types:{files:1,errors:0,warnings:0,hints:0,logSha256:log},browser:{ordinaryPassed:1,canadaPassed:6,failed:0,logSha256:log},normalBuild:{previewAbsent:true,fileCount:21,totalBytes:100,logSha256:log}},
+    review:{reviewedHead:c.manifest.packagingCommit,verdict:'passed',report,reportSha256:createHash('sha256').update(report).digest('hex'),unresolvedFindingIds:[],findingDispositions:[]},
+    ci:{repository:'Vasuki8/us-trade-tracker',runId:1,headCommit:c.manifest.packagingCommit,testedMergeCommit:'2'.repeat(40),testedTree:'3'.repeat(40),conclusion:'success',logSha256:log},
+    runtimeComparison:{fromCommit:c.manifest.packagingCommit,toCommit:c.manifest.packagingCommit,changedPaths:[]}};
+}
+export async function makeCountryReleaseWorkspaceFixture(packageBytes:Buffer){
+  const parent=resolve('.tmp');await mkdir(parent,{recursive:true});const repoRoot=await mkdtemp(resolve(parent,'canada-release-workspace-'));
+  await mkdir(resolve(repoRoot,contract.backupRoot),{recursive:true});const candidateFile=resolve(repoRoot,contract.backupRoot,'input-candidate.json');await writeFile(candidateFile,packageBytes);
+  return {repoRoot,candidateFile,outputDir:resolve(repoRoot,contract.backupRoot,'recovered'),outcomeFile:resolve(repoRoot,'selection-outcome.json'),dispose:async()=>{const rel=relative(parent,repoRoot);if(!rel||rel.startsWith('..'+sep)||!rel.startsWith('canada-release-workspace-'))throw new Error('unsafe-test-cleanup');await rm(repoRoot,{recursive:true,force:true});}};
 }

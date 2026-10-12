@@ -20,6 +20,19 @@ export const canadaCountryReleaseContract={
     {name:'continuity-evidence.json',path:'docs/data-validation/1220-classification-continuity-evidence.json',bytes:150904,sha256:'12bfab9a0638a24c4cfd399d3235064ad0e28a8037670c244a2ee7d3ecf9492d'},
   ];},
   get projection():Digest{return {bytes:33716,sha256:'33c7db7ec421bddaa13e36c3b2e32cd4558aa041fe17f2f3da01285b62b08fd0'};},
+  get protectedFiles(){return [
+    {path:'data/processed/current.json',bytes:76,sha256:'5098efe55c5d712f097afaef140527c1c3636ebdd7dd0fe48b5521c5cf589bc8'},
+    {path:'data/processed/releases/2026-08-5f3c2606-06a0-4c96-8fbc-a2332e0428ae.json',bytes:2977166,sha256:'eaa8c1baa86bd3a8880dcda12db3b32625a38c221591c8c0e087b6af6a325727'},
+    {path:'data/products/090111/processed/current.json',bytes:76,sha256:'d93e6e11e48c540396fee4699a0a9e58cbde0e6f6a55e20e7ba7056fb3296a39'},
+    {path:'data/products/090111/processed/releases/2026-08-d6b1ed52-cd6c-4b7d-87ca-d52c9e338cae.json',bytes:2234188,sha256:'ef5d56791ad85b1b7a199829818522389a792e82cee792665be61f8e78cba0f7'},
+    {path:'data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r1/snapshot-assessment.json',bytes:432821,sha256:'db33209e879b4230353d197b6a1050d374b6ef970c1f0bd93d66202a4664ff8e'},
+    {path:'data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r1/snapshot-assessment.md',bytes:3277,sha256:'cbed3fb5b8e743b5646d3bf4049f3998836e5d0e38a902084b72b96ae15fd169'},
+    {path:'data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r2/snapshot-assessment.json',bytes:432821,sha256:'a013869f92ca5525eceaa35ef8d59bb635732b18b258960ed691a1d7219d132e'},
+    {path:'data/backups/canada-country-audit/snapshot-assessment-2026-10-11-r2/snapshot-assessment.md',bytes:3277,sha256:'5f569b6286f261acd38423f60cf257eef991abb9283a97ba8161fdfde5318719'},
+    {path:'data/backups/canada-country-audit/snapshot-classifications-2026-10-12-r1/snapshot-assessment.json',bytes:858857,sha256:'2cad0dcabf353b8aec0d365bb247e5d976712a7a1ebc90cac26694322503d9f8'},
+    {path:'data/backups/canada-country-audit/snapshot-classifications-2026-10-12-r1/snapshot-assessment.md',bytes:3192,sha256:'9dd280b4b7a7522d3775a94aee86fc05e313315b91c3d76b9c61c910df4dd44e'},
+    {path:'docs/data-validation/1220-snapshot-classification-evidence.json',bytes:487985,sha256:'afde19b1384c0cbab8cb2f7bbbc5ed8253bc636bb7a35c6b8d5d3c599a1010fd'},
+  ];},
 };
 export const digestCountryBytes=(body:Buffer):Digest=>({bytes:body.length,sha256:createHash('sha256').update(body).digest('hex')});
 export const countryJsonBytes=(value:unknown):Buffer=>Buffer.from(JSON.stringify(value)+'\n','utf8');
