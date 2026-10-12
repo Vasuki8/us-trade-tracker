@@ -2,6 +2,7 @@
 import {afterEach,expect,it,vi} from 'vitest';
 import {cleanup,render,screen,within} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import {renderToStaticMarkup} from 'react-dom/server';
 import '@testing-library/jest-dom/vitest';
 import {CanadaPreview} from '../../src/components/CanadaPreview';
 import {makeCountryPreviewFixture} from '../helpers/country-preview-data';
@@ -9,6 +10,9 @@ import {downloadBlob} from '../../src/lib/trade/downloads';
 import {serializeCountryMonthlyCsv,serializeCountryProductsCsv} from '../../src/lib/country-preview/downloads';
 vi.mock('../../src/lib/trade/downloads',()=>({downloadBlob:vi.fn()}));
 afterEach(()=>{cleanup();vi.clearAllMocks();});
+it('server-renders a readable monthly point title',()=>{
+  expect(renderToStaticMarkup(<CanadaPreview data={makeCountryPreviewFixture()}/>)).toContain('<title>Sep 2024: $100,000</title>');
+});
 it('renders complete Imports research with fixed periods and selected categories',()=>{
   const {container}=render(<CanadaPreview data={makeCountryPreviewFixture()}/>);
   expect(screen.getByRole('radio',{name:'Imports'})).toBeChecked();

@@ -159,6 +159,37 @@ The destination must be fresh, even if an existing directory is empty. New outpu
 
 The [Canada audit handoff](docs/data-validation/1220-audit-handoff.md) closes the fixed September 2024–August 2026 investigation under the approved archive-snapshot contract. All 48 contexts reconcile exactly, and all 17 ordinary classifications and their qualified offline comparisons are independently verified. The seven current-reference mismatches and earlier strict-audit failures remain preserved. An accepted Canada release, public country profile and five-year history remain subsequent design and validation work; the snapshot command does not enable them.
 
+## Local Canada development preview
+
+The opt-in route is `/preview/countries/1220/`. It covers September 2024–August 2026 only; it is not an accepted country release or approval to publish. Noindex metadata controls presentation, not access. Ordinary builds exclude the route and its observations.
+
+For synthetic data (including product fixtures):
+
+```powershell
+$env:TRADE_DATA_MODE = 'fixture'
+$env:CANADA_PREVIEW_MODE = 'fixture'
+npm run build
+npm run preview -- --port 4402
+```
+
+For the reviewed retained Canada assessment and existing accepted product data:
+
+```powershell
+Remove-Item Env:TRADE_DATA_MODE -ErrorAction SilentlyContinue
+$env:CANADA_PREVIEW_MODE = 'retained'
+npm run build
+npm run preview -- --port 4402
+```
+
+Retained mode reads only the fixed pinned local assessment. Missing, altered or incompatible input fails without a synthetic fallback. It reuses the previously reviewed replay; it makes no new provider request or ZIP replay. The retained inputs remain ignored and do not enter CI. Remove `CANADA_PREVIEW_MODE` for ordinary builds:
+
+```powershell
+Remove-Item Env:CANADA_PREVIEW_MODE -ErrorAction SilentlyContinue
+npm run build
+```
+
+`npm run test:e2e` runs the ordinary browser suite, then the isolated Canada fixture suite. `npm run test:e2e:canada` runs just that fixture suite; it forces synthetic modes, uses its own temporary output, binds localhost on port 4402 (override with `PLAYWRIGHT_CANADA_PORT`), and refuses to reuse a server. CSVs remain generated in the browser. No deployment, accepted country pointer or R2 operation is included.
+
 ## Change workflow
 
 Use `main` for reviewed release code and a separate branch for each feature or fix. Save focused commits with clear descriptions, run the relevant checks, and review changes before merging. Review a preview before publishing a website release.
