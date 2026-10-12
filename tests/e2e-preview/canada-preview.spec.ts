@@ -26,7 +26,7 @@ test('downloads direction-specific monthly and product values with qualified pro
   }
 });
 test('supports keyboard controls and contained mobile tables',async({page},info)=>{
-  await page.setViewportSize({width:375,height:812});await page.goto(route);const imports=page.getByRole('radio',{name:'Imports'});await imports.focus();await page.keyboard.press('ArrowRight');await expect(page.getByRole('radio',{name:'Exports'})).toBeChecked();
+  await page.setViewportSize({width:375,height:812});await page.goto(route);const imports=page.getByRole('radio',{name:'Imports'});await expect(imports).toBeEnabled();await imports.focus();await expect(imports).toBeFocused();await page.keyboard.press('ArrowRight');await expect(page.getByRole('radio',{name:'Exports'})).toBeChecked();
   const scroll=page.getByRole('region',{name:'Selected country category comparisons'});await scroll.focus();await expect(scroll).toBeFocused();await page.keyboard.press('End');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);expect(await scroll.evaluate(el=>el.scrollWidth>el.clientWidth)).toBe(true);
   const references=page.getByRole('region',{name:'Country reference differences'});
