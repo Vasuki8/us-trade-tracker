@@ -2,6 +2,7 @@ import {expect,it} from 'vitest';
 import {makeCountryPreviewFixture} from '../helpers/country-preview-data';
 import {parseCsv} from '../helpers/parse-csv';
 import {serializeCountryMonthlyCsv,serializeCountryProductsCsv,countryCsvFilename} from '../../src/lib/country-preview/downloads';
+import {validateFixturePreview} from '../../src/lib/country-preview/load.server';
 it('exports 24 direction-specific monthly amounts and synthetic provenance',()=>{
   const data=makeCountryPreviewFixture(),csv=serializeCountryMonthlyCsv(data,'exports'),rows=parseCsv(csv);
   expect(rows).toHaveLength(24);expect(rows[0]).toMatchObject({month:'2024-09',value_usd:'300000',original_source_url:''});
@@ -16,6 +17,14 @@ it('exports ten fixed product pairs with same-archive denominators and statistic
   expect(rows).toHaveLength(10);expect(rows.map(x=>x.product_code)).toEqual(['270900','980100','271019','271121','870323','870340','870324','870829','271012','880240']);
   expect(rows[0]).toMatchObject({current_value_usd:'240000',prior_value_usd:'120000',current_country_total_usd:'2400000',prior_country_total_usd:'1200000',change_usd:'120000',growth_percent:'100',current_share_percent:'10',prior_share_percent:'10',share_change_percentage_points:'0',current_period_start:'2025-09',prior_period_start:'2024-09',classification_status:'compatible',raw_verification:'synthetic',current_original_sources:'[]'});
   expect(rows[1]).toMatchObject({current_value_usd:'216000',comparison_eligible:'false',classification_status:'statistical-category',change_usd:'',growth_percent:'',current_share_percent:''});
+});
+it.each([['imports','incompatible'],['exports','incomplete']] as const)('blanks unsupported %s %s comparisons while preserving observed totals', (direction,reason)=>{
+  const data=makeCountryPreviewFixture(),product=data.directions[direction].products.find(row=>row.code==='270900')!;
+  product.comparisonEligible=false;product.reason=reason;product.classification.status=reason==='incompatible'?'incompatible':'unverified';
+  if(reason==='incomplete')product.current.reportedMonths=11;
+  const rows=parseCsv(serializeCountryProductsCsv(validateFixturePreview(data),direction));
+  expect(rows.find(row=>row.product_code==='270900')).toMatchObject({comparison_eligible:'false',reason,current_value_usd:direction==='imports'?'240000':'216000',prior_value_usd:direction==='imports'?'120000':'108000',current_country_total_usd:String(product.current.countryTotalUsd),prior_country_total_usd:String(product.prior.countryTotalUsd),current_reported_months:String(product.current.reportedMonths),change_usd:'',growth_percent:'',current_share_percent:'',prior_share_percent:'',share_change_percentage_points:''});
+  const eligible=rows.find(row=>row.comparison_eligible==='true')!;expect(eligible.growth_percent).toBe('100');expect(eligible.current_share_percent).not.toBe('');
 });
 it('binds retained monthly and rolling source records to the selected direction',()=>{
   const data=makeCountryPreviewFixture();data.source='retained';data.rawVerification='previous-reviewed-replay';

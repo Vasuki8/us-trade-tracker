@@ -8,6 +8,8 @@ import {CanadaPreview} from '../../src/components/CanadaPreview';
 import {makeCountryPreviewFixture} from '../helpers/country-preview-data';
 import {downloadBlob} from '../../src/lib/trade/downloads';
 import {serializeCountryMonthlyCsv,serializeCountryProductsCsv} from '../../src/lib/country-preview/downloads';
+import {validateFixturePreview} from '../../src/lib/country-preview/load.server';
+import {parseCsv} from '../helpers/parse-csv';
 vi.mock('../../src/lib/trade/downloads',()=>({downloadBlob:vi.fn()}));
 afterEach(()=>{cleanup();vi.clearAllMocks();});
 it('server-renders a readable monthly point title',()=>{
@@ -41,6 +43,21 @@ it('downloads both selected-direction CSVs from the same view',async()=>{
   expect(downloadBlob).toHaveBeenCalledTimes(2);const calls=vi.mocked(downloadBlob).mock.calls;
   const read=(blob:Blob)=>new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result));reader.onerror=reject;reader.readAsText(blob);});
   expect(await read(calls[0][0])).toBe(serializeCountryMonthlyCsv(data,'exports'));expect(calls[0][1]).toContain('exports');expect(await read(calls[1][0])).toBe(serializeCountryProductsCsv(data,'exports'));
+});
+it('downloads blank comparisons for the same ineligible rows shown as unavailable',async()=>{
+  const data=makeCountryPreviewFixture();
+  for(const direction of ['imports','exports'] as const){const product=data.directions[direction].products.find(row=>row.code==='270900')!;product.comparisonEligible=false;product.reason='incompatible';product.classification.status='incompatible';}
+  render(<CanadaPreview data={validateFixturePreview(data)}/>);
+  for(const direction of ['Imports','Exports'] as const){
+    await userEvent.click(screen.getByRole('radio',{name:direction}));
+    const table=screen.getByRole('table',{name:`Selected leading categories · ${direction}`});
+    expect(within(table).getByRole('row',{name:/270900/})).toHaveTextContent('Unavailable');
+    await userEvent.click(screen.getByRole('button',{name:'Download products CSV'}));
+    const [blob,filename]=vi.mocked(downloadBlob).mock.calls.at(-1)!;
+    const csv=await new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result));reader.onerror=reject;reader.readAsText(blob);});
+    const row=parseCsv(csv).find(row=>row.product_code==='270900')!;
+    expect(filename).toContain(direction.toLowerCase());expect(row).toMatchObject({comparison_eligible:'false',current_value_usd:direction==='Imports'?'240000':'216000',prior_value_usd:direction==='Imports'?'120000':'108000',change_usd:'',growth_percent:'',current_share_percent:'',prior_share_percent:'',share_change_percentage_points:''});
+  }
 });
 it.each(['null','zero-prior','incompatible','incomplete'] as const)('keeps %s comparisons explicitly unavailable',kind=>{
   const data=makeCountryPreviewFixture(),v=data.directions.imports,p=v.products[0];
