@@ -40,5 +40,12 @@ export type CountryCurrentPointer={schemaVersion:1;countryCode:'1220';releaseId:
 export type CountrySelectionOutcome={status:'acknowledged'|'confirmed-by-readback'|'already-selected'|'unchanged'|'conflict'|'unconfirmed';candidateDigest:Digest;currentStateVerified:boolean;selectedPointerDigest:Digest|null};
 export type AuthenticatedCountryCandidate={candidate:DecodedCountryPackage;proof:CountryVerificationProof;report:CountryGateReport;projection:CountryPreview};
 export class CountrySelectionReceiptError extends Error{
+  cleanupError?:unknown;
   constructor(public readonly outcome:CountrySelectionOutcome){super('country-selection-receipt-failed');this.name='CountrySelectionReceiptError';}
+}
+export class CountrySelectionCleanupError extends Error{
+  constructor(public readonly outcome:CountrySelectionOutcome,public readonly cleanupError:unknown){super('country-selection-cleanup-failed',{cause:cleanupError});this.name='CountrySelectionCleanupError';}
+}
+export class CountryAcceptedRecoveryError extends Error{
+  constructor(public readonly outcome:CountrySelectionOutcome,cause:unknown){super('country-accepted-recovery-state-unconfirmed',{cause});this.name='CountryAcceptedRecoveryError';}
 }

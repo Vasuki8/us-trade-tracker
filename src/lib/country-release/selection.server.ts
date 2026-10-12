@@ -5,7 +5,7 @@ import {assertSnapshotPath} from '../../../scripts/country-snapshot-input';
 import {authenticateCountryCandidate} from './recovery.server';
 import {canadaCountryReleaseContract as contract,countryJson,countryJsonBytes,countryKeys,countrySame as same,countryTimestamp,countryReleaseId,parseCountryDigest,digestCountryBytes} from './contract.server';
 import {readCountryBoundedFile,writeCountryExclusiveFile,reserveCountryOutput,countryFailureReceipt} from './prepare.server';
-import {CountrySelectionReceiptError,type CountryApproval,type CountryVerificationProof,type CountrySelectionOutcome,type CountryCurrentPointer,type CountryAcceptanceRecord,type CountryRecoveryReceipt,type AuthenticatedCountryCandidate,type Digest} from './types';
+import {CountrySelectionReceiptError,CountrySelectionCleanupError,CountryAcceptedRecoveryError,type CountryApproval,type CountryVerificationProof,type CountrySelectionOutcome,type CountryCurrentPointer,type CountryAcceptanceRecord,type CountryRecoveryReceipt,type AuthenticatedCountryCandidate,type Digest} from './types';
 import type {CountryPreview} from '../country-preview/types';
 function canonicalJson(bytes:Buffer,limit:number):unknown{const value=countryJson(bytes,limit);if(!countryJsonBytes(value).equals(bytes))throw new Error('country-noncanonical-record');return value;}
 function parseApproval(value:unknown):CountryApproval{
@@ -50,7 +50,7 @@ export async function selectLocalCountryRelease(opts:{repoRoot:string;candidateF
   const before=await maybeState(opts.repoRoot);
   if(before&&before.pointer.package.sha256===auth.candidate.digest.sha256&&before.pointer.package.bytes===auth.candidate.digest.bytes)return persistOutcome(opts.repoRoot,outcomeFile,selectedOutcome('already-selected',auth,true,before.digest));
   checkBaseline(approval,before);await ensureDirectory(opts.repoRoot,resolve(state,'releases'));
-  const lockPath=resolve(state,'.accept.lock'),lockBytes=countryJsonBytes({token:randomUUID()}),lockDigest=digestCountryBytes(lockBytes);await assertSnapshotPath(opts.repoRoot,lockPath,true);const lock=await open(lockPath,'wx');let pending:string|null=null,pendingDigest:Digest|null=null;
+  const lockPath=resolve(state,'.accept.lock'),lockBytes=countryJsonBytes({token:randomUUID()}),lockDigest=digestCountryBytes(lockBytes);await assertSnapshotPath(opts.repoRoot,lockPath,true);const lock=await open(lockPath,'wx');let pending:string|null=null,pendingDigest:Digest|null=null,establishedOutcome:CountrySelectionOutcome|undefined,primaryError:unknown;
   try{
     await lock.writeFile(lockBytes);await lock.sync();await assertSnapshotPath(opts.repoRoot,state);checkBaseline(approval,await maybeState(opts.repoRoot));
     const fresh=await readCountryBoundedFile(opts.repoRoot,opts.candidateFile,contract.limits.package);same(digestCountryBytes(fresh),auth.candidate.digest);const checked=authenticateCountryCandidate(fresh,auth.proof);checkApproval(approval,checked);
@@ -67,16 +67,41 @@ export async function selectLocalCountryRelease(opts:{repoRoot:string;candidateF
       else if((before===null&&after===null)||(before&&after&&before.digest.sha256===after.digest.sha256&&before.digest.bytes===after.digest.bytes))outcome=selectedOutcome('unchanged',checked,true,null);
       else outcome=selectedOutcome('conflict',checked,true,null);
     }catch{outcome=selectedOutcome(acknowledged?'acknowledged':'unconfirmed',checked,false,acknowledged?pendingDigest:null);}
-    return await persistOutcome(opts.repoRoot,outcomeFile,outcome);
-  }finally{await lock.close();if(pending&&pendingDigest)await removeOwnedFile(opts.repoRoot,pending,pendingDigest);await removeOwnedFile(opts.repoRoot,lockPath,lockDigest);}
+    establishedOutcome=outcome;return await persistOutcome(opts.repoRoot,outcomeFile,outcome);
+  }catch(error){primaryError=error;throw error;}
+  finally{
+    let cleanupError:unknown;try{await lock.close();}catch(error){cleanupError=error;}
+    if(pending&&pendingDigest)await removeOwnedFile(opts.repoRoot,pending,pendingDigest);await removeOwnedFile(opts.repoRoot,lockPath,lockDigest);
+    if(cleanupError!==undefined){
+      if(primaryError instanceof CountrySelectionReceiptError)primaryError.cleanupError=cleanupError;
+      else if(primaryError instanceof Error)primaryError.cause??=cleanupError;
+      else if(establishedOutcome)throw new CountrySelectionCleanupError(establishedOutcome,cleanupError);
+    }
+  }
 }
 export async function recoverSelectedCountryRelease(opts:{repoRoot:string;candidateFile:string;recordFile:string;selectionReceiptFile:string;expectedPointer:CountryCurrentPointer;outputDir:string;recoveryAuthorization:CountryApproval}):Promise<CountryRecoveryReceipt>{
   const pointer=parsePointer(countryJson(countryJsonBytes(opts.expectedPointer),contract.limits.pointer)),pointerBytes=countryJsonBytes(pointer),pointerDigest=digestCountryBytes(pointerBytes);
   const packageBytes=await readCountryBoundedFile(opts.repoRoot,opts.candidateFile,contract.limits.package),recordBytes=await readCountryBoundedFile(opts.repoRoot,opts.recordFile,contract.limits.record);same(digestCountryBytes(packageBytes),referenceDigest(pointer.package));same(digestCountryBytes(recordBytes),referenceDigest(pointer.acceptance));const {auth}=validateRecord(recordBytes,packageBytes);same(pointer.releaseId,auth.candidate.manifest.releaseId);
-  const receipt=countryKeys(canonicalJson(await readCountryBoundedFile(opts.repoRoot,opts.selectionReceiptFile,contract.limits.pointer),contract.limits.pointer),['status','candidateDigest','currentStateVerified','selectedPointerDigest']);if(!['acknowledged','confirmed-by-readback','already-selected'].includes(String(receipt.status)))throw new Error('country-selection-not-confirmed');same(receipt.currentStateVerified,true);same(parseCountryDigest(receipt.candidateDigest),auth.candidate.digest);same(parseCountryDigest(receipt.selectedPointerDigest,contract.limits.pointer),pointerDigest);
+  const selectionReceiptBytes=await readCountryBoundedFile(opts.repoRoot,opts.selectionReceiptFile,contract.limits.pointer),receipt=countryKeys(canonicalJson(selectionReceiptBytes,contract.limits.pointer),['status','candidateDigest','currentStateVerified','selectedPointerDigest']);if(!['acknowledged','confirmed-by-readback','already-selected'].includes(String(receipt.status)))throw new Error('country-selection-not-confirmed');same(receipt.currentStateVerified,true);same(parseCountryDigest(receipt.candidateDigest),auth.candidate.digest);same(parseCountryDigest(receipt.selectedPointerDigest,contract.limits.pointer),pointerDigest);
   const authorization=parseApproval(opts.recoveryAuthorization);checkApproval(authorization,auth);if(authorization.baseline.kind!=='existing')throw new Error('country-recovery-authorization');same(authorization.baseline.pointerDigest,pointerDigest);
-  const output=await reserveCountryOutput(opts.repoRoot,opts.outputDir);
-  try{const state=resolve(output,contract.stateRoot),release=resolve(state,'releases',pointer.releaseId);await ensureDirectory(output,release);await writeCountryExclusiveFile(output,resolve(release,'candidate.json'),packageBytes);await writeCountryExclusiveFile(output,resolve(release,'acceptance.json'),recordBytes);await writeCountryExclusiveFile(output,resolve(state,'current.json'),pointerBytes);const recovered=await readSelectedCountryRelease(output);same(recovered.pointer,pointer);
-    const projection=countryJsonBytes(recovered.projection);await writeCountryExclusiveFile(output,resolve(output,'research-data.json'),projection);const result:CountryRecoveryReceipt={schemaVersion:1,policyId:contract.policyId,candidateDigest:auth.candidate.digest,projectionDigest:digestCountryBytes(projection),status:'verified',historicalPathReads:0};await writeCountryExclusiveFile(output,resolve(output,'recovery-receipt.json'),countryJsonBytes(result));return result;
-  }catch(error){await countryFailureReceipt(opts.repoRoot,output);throw error;}
+  const output=await reserveCountryOutput(opts.repoRoot,opts.outputDir),state=resolve(output,contract.stateRoot),current=resolve(state,'current.json'),pending=resolve(state,`.current-${randomUUID()}.pending`);
+  try{
+    const release=resolve(state,'releases',pointer.releaseId);await ensureDirectory(output,release);await writeCountryExclusiveFile(output,resolve(release,'candidate.json'),packageBytes);await writeCountryExclusiveFile(output,resolve(release,'acceptance.json'),recordBytes);
+    validateRecord(await readCountryBoundedFile(output,resolve(release,'acceptance.json'),contract.limits.record),await readCountryBoundedFile(output,resolve(release,'candidate.json'),contract.limits.package));
+    // Preserve the exact source selection evidence for another portable recovery.
+    await writeCountryExclusiveFile(output,resolve(output,'selection-receipt.json'),selectionReceiptBytes);
+    const projection=countryJsonBytes(auth.projection);await writeCountryExclusiveFile(output,resolve(output,'research-data.json'),projection);
+    const result:CountryRecoveryReceipt={schemaVersion:1,policyId:contract.policyId,candidateDigest:auth.candidate.digest,projectionDigest:digestCountryBytes(projection),status:'verified',historicalPathReads:0};await writeCountryExclusiveFile(output,resolve(output,'recovery-receipt.json'),countryJsonBytes(result));
+    // All immutable data, provenance and receipts are complete before pointer publication.
+    await writeCountryExclusiveFile(output,pending,pointerBytes);await assertSnapshotPath(output,current,true);let acknowledged=false,publicationError:unknown;
+    try{await rename(pending,current);acknowledged=true;}catch(error){publicationError=error;}
+    let outcome:CountrySelectionOutcome;
+    try{const recovered=await readState(output);if(recovered.digest.sha256===pointerDigest.sha256&&recovered.digest.bytes===pointerDigest.bytes)return result;
+      outcome=selectedOutcome(acknowledged?'acknowledged':'conflict',auth,!acknowledged,acknowledged?pointerDigest:null);
+    }catch(error){publicationError??=error;if(acknowledged)outcome=selectedOutcome('acknowledged',auth,false,pointerDigest);
+      else{try{await lstat(current);outcome=selectedOutcome('unconfirmed',auth,false,null);}catch(e){outcome=selectedOutcome((e as NodeJS.ErrnoException).code==='ENOENT'?'unchanged':'unconfirmed',auth,(e as NodeJS.ErrnoException).code==='ENOENT',null);}}
+    }
+    throw new CountryAcceptedRecoveryError(outcome,publicationError);
+  }catch(error){if(!(error instanceof CountryAcceptedRecoveryError))await countryFailureReceipt(opts.repoRoot,output);throw error;}
+  finally{await removeOwnedFile(output,pending,pointerDigest);}
 }
