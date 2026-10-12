@@ -106,6 +106,19 @@ The fixture supplies current reference `30399000000` and publication `2979080000
 - Add `data:assess-country-snapshot`: `node --import tsx scripts/assess-country-snapshot.ts`. Preflight verifies options/paths without creating output or reading the dataset.
 
 - [ ] Write failing command tests for exact options, occupied/empty output, concurrent creation, outside-root/reparse output, input failure midway, output failure and exhausted allowance. Spy on `fetch`/provider entry points and assert zero calls. An unverified classification must not change the command's successful archive-integrity assessment into release acceptance.
+
+```ts
+it('rejects options that could replace the reviewed collection', () => {
+  const root = process.cwd();
+  const args = ['--output', 'data/backups/canada-country-audit/test-run'];
+  expect(resolveSnapshotOptions([...args, '--preflight'], root))
+    .toMatchObject({preflight: true});
+  for (const option of ['--input', '--pins', '--country', '--end', '--classification']) {
+    expect(() => resolveSnapshotOptions([...args, option, 'other'], root)).toThrow();
+  }
+});
+```
+
 - [ ] Run the command suite to RED.
 - [ ] Implement exclusive fresh-directory ownership before assessment. Preserve workspace-safe input/output roots. Bound success artifacts together below `8*1024*1024`, reserve 8 KiB within that allowance for a failure report, and count staged bytes. Stage within the owned directory and publish the success JSON last only after both artifacts are fully written; on a failure, leave no final JSON claiming a completed/passed assessment. A safe failed JSON/report is attempted only within remaining allowance and ownership; otherwise use a fixed failure message and nonzero exit. Do not overwrite a foreign occupied path or accepted pointer. Document that exit zero means a complete offline integrity assessment, with reference differences/classification blockers still visible.
 - [ ] Run all three focused suites and `npm.cmd run check`; check the failure-after-Markdown and concurrent-writer assertions. Commit the command and usage docs.
