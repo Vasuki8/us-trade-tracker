@@ -1,26 +1,31 @@
 import {useEffect,useState} from 'react';
-import type {CountryDirection,CountryPreview} from '../lib/country-preview/types';
-import {countryCsvFilename,serializeCountryMonthlyCsv,serializeCountryProductsCsv} from '../lib/country-preview/downloads';
+import type {CountryDirection,CountryPreview,CountryPresentation} from '../lib/country-preview/types';
+import {countryCsvFilename,serializeCountryMonthlyCsv,serializeCountryProductsCsv,assertCountryPresentationSource} from '../lib/country-preview/downloads';
 import {downloadBlob} from '../lib/trade/downloads';
 import {usd,usdChange,percent,countryShare,percentagePoints,monthLabel} from '../lib/trade/format';
 import {CountryPreviewChart} from './CountryPreviewChart';
 const period=(from:string,to:string)=>`${monthLabel(from)}–${monthLabel(to)}`;
-export function CanadaPreview({data}:{data:CountryPreview}):React.JSX.Element {
+export function CanadaPreview({data,presentation={kind:'preview'}}:{data:CountryPreview;presentation?:CountryPresentation}):React.JSX.Element {
+  const accepted=presentation.kind==='accepted-local',profileSample=presentation.kind==='accepted-fixture';
+  assertCountryPresentationSource(data,presentation);
   const [direction,setDirection]=useState<CountryDirection>('imports'),[error,setError]=useState<string|null>(null);
   const [interactive,setInteractive]=useState(false);
   useEffect(()=>{setInteractive(true);},[]);
   const view=data.directions[direction],label=direction==='imports'?'Imports':'Exports';
   const publicationSources=view.references.differences.flatMap(row=>row.publicationSource?[{month:row.month,...row.publicationSource}]:[]);
   const source=data.source==='fixture'?'Synthetic development data':'U.S. Census Bureau monthly merchandise files';
-  const download=(kind:'monthly'|'products')=>{try{downloadBlob(new Blob([kind==='monthly'?serializeCountryMonthlyCsv(data,direction):serializeCountryProductsCsv(data,direction)],{type:'text/csv;charset=utf-8'}),countryCsvFilename(direction,kind));setError(null);}catch{setError('Download unavailable. Please try again.');}};
+  const banner=accepted?'24-month locally accepted snapshot · Not published':profileSample?'Synthetic accepted-profile sample · No accepted country release':data.source==='retained'?'24-month captured assessment · Acceptance not checked in this preview':'24-month development preview · No accepted country release';
+  const download=(kind:'monthly'|'products')=>{try{downloadBlob(new Blob([kind==='monthly'?serializeCountryMonthlyCsv(data,direction,presentation):serializeCountryProductsCsv(data,direction,presentation)],{type:'text/csv;charset=utf-8'}),countryCsvFilename(direction,kind,presentation));setError(null);}catch{setError('Download unavailable. Please try again.');}};
   return <div className="canada-preview">
-    <div className="page-heading"><p className="eyebrow">COUNTRY RESEARCH / LOCAL DEVELOPMENT PREVIEW</p><h1>Canada</h1><p>Explore captured U.S. goods trade with Canada, September 2024–August 2026.</p></div>
-    <div className="sample-banner"><strong>{source}</strong><span>24-month development preview · No accepted country release</span></div>
+    <div className="page-heading"><p className="eyebrow">COUNTRY RESEARCH / {accepted?'ACCEPTED LOCAL PREVIEW':profileSample?'ACCEPTED-PROFILE DEVELOPMENT SAMPLE':'LOCAL DEVELOPMENT PREVIEW'}</p><h1>Canada</h1><p>Explore captured U.S. goods trade with Canada, September 2024–August 2026.</p></div>
+    <div className="sample-banner"><strong>{source}</strong><span>{banner}</span></div>
+    {accepted&&<p className="preview-capture">Local acceptance recorded {presentation.acceptedAt}. This local preview does not publish the snapshot.</p>}
     <p className="preview-capture">Source collection captured {data.captureInterval.startedAt} to {data.captureInterval.finishedAt}. Capture times describe the saved files, not observation revision dates.</p>
     <fieldset className="explorer-controls" disabled={!interactive}><legend>Trade direction</legend>{(['imports','exports'] as const).map(d=><label key={d}><input type="radio" name="canada-direction" value={d} checked={direction===d} onChange={()=>{setDirection(d);setError(null);}}/>{d==='imports'?'Imports':'Exports'}</label>)}</fieldset>
     <noscript><p>Imports are shown below. Direction switching and CSV downloads require JavaScript.</p></noscript>
     <section aria-label="Country overview">
       <h2>{view.title}</h2><p>{view.measure} · {direction==='imports'?'General imports, customs value':'Domestic plus foreign exports, FAS value'} · nominal USD, not seasonally adjusted.</p>
+      {(accepted||profileSample)&&direction==='exports'&&<p>Census derives exports to Canada from Canadian import data. <a href="https://www.census.gov/foreign-trade/reference/definitions/index.html">Canadian data exchange definitions</a></p>}
       <div className="preview-summary">
         <div><span>Latest captured month · {monthLabel(view.summary.latestMonth)}</span><strong>{usd(view.summary.latestUsd)}</strong></div>
         <div><span>Current · {period(view.summary.current.from,view.summary.current.to)}</span><strong>{usd(view.summary.current.totalUsd)}</strong><small>{view.summary.current.reportedMonths}/12 months reported</small></div>
@@ -29,17 +34,17 @@ export function CanadaPreview({data}:{data:CountryPreview}):React.JSX.Element {
       </div>
     </section>
     <CountryPreviewChart view={view} source={data.source}/>
-    <section className="data-card" aria-label="Leading products and changes">
-      <h2>Leading products and changes</h2><p>Current: {period(view.summary.current.from,view.summary.current.to)} · Prior: {period(view.summary.prior.from,view.summary.prior.to)}</p>
+    <section className="data-card" aria-label={accepted||profileSample?'Selected categories and changes':'Leading products and changes'}>
+      <h2>{accepted||profileSample?'Selected categories and changes':'Leading products and changes'}</h2><p>Current: {period(view.summary.current.from,view.summary.current.to)} · Prior: {period(view.summary.prior.from,view.summary.prior.to)}</p>
       <p>These ten selected categories are ordered by current-period reported value and cover a subset of trade. Shares use all U.S. {direction==='imports'?'imports from':'exports to'} Canada as the same-archive denominator; they are not a country’s share of U.S. trade for one product.</p>
       <p>Statistical categories remain in this list and the all-goods denominator. Their observed totals are shown; share, growth and change comparisons are unavailable under the reviewed policy.</p>
       <div className="table-scroll" role="region" aria-label="Selected country category comparisons" tabIndex={0}><table>
-        <caption>Selected leading categories · {label}</caption>
+        <caption>{accepted||profileSample?'Selected categories':'Selected leading categories'} · {label}</caption>
         <thead><tr>{['Category','Current value (USD)','Prior value (USD)','Dollar change','Growth (%)','Current share (%)','Prior share (%)','Share change (pp)','Comparison status'].map(h=><th scope="col" key={h}>{h}</th>)}</tr></thead>
         <tbody>{view.products.map(p=><tr key={p.code}>
           <th scope="row">{p.code}<small>{p.description??'Description unavailable'}</small></th><td>{usd(p.current.observedSumUsd)}</td><td>{usd(p.prior.observedSumUsd)}</td>
           <td>{usdChange(p.comparisonEligible?p.changeUsd:null)}</td><td>{percent(p.comparisonEligible?p.growthPercent:null)}</td><td>{countryShare(p.comparisonEligible?p.current.sharePercent:null)}</td><td>{countryShare(p.comparisonEligible?p.prior.sharePercent:null)}</td><td>{percentagePoints(p.comparisonEligible?p.sharePointChange:null)}</td>
-          <td>{p.specialByPolicy?'Statistical category':p.comparisonEligible?'Compatible · offline preview only':'Unavailable'}<small>{p.reason}</small>{p.classification.from&&<small>Classification: {period(p.classification.from,p.classification.to!)} · {p.classification.status}</small>}</td>
+          <td>{p.specialByPolicy?'Statistical category':p.comparisonEligible?accepted?'Compatible · accepted snapshot':'Compatible · offline preview only':'Unavailable'}<small>{accepted&&p.reason==='eligible-offline-only'?'Reviewed against the captured files':accepted&&p.reason==='statistical-category'?'Ordinary-product comparisons are unavailable':p.reason}</small>{p.classification.from&&<small>Classification: {period(p.classification.from,p.classification.to!)} · {p.classification.status}</small>}</td>
         </tr>)}</tbody>
       </table></div>
     </section>
@@ -49,7 +54,7 @@ export function CanadaPreview({data}:{data:CountryPreview}):React.JSX.Element {
       <p>These figures come from a captured set of monthly Census files. Currently revised country totals can differ. Product shares here use totals from the same files as the product values.</p>
       <p>Saved current reference before collection: {view.references.before.matched} matched; {view.references.before.mismatch} mismatch. Saved current reference after collection: {view.references.after.matched} matched; {view.references.after.mismatch} mismatch.</p>
       <p>Original-publication checks: {view.references.publication.matched} matched; {view.references.publication.notReviewed} not reviewed. Matches and mismatches are separate from signed differences against rounded reference figures.</p>
-      <p>Documented Census revision procedures support differing publication maturity, but do not establish each product observation’s revision date. This is a captured collection, without a uniform or latest-revised claim. Historical failed source audits remain failed; these offline comparisons do not accept a country release.</p>
+      <p>Documented Census revision procedures support differing publication maturity, but do not establish each product observation’s revision date. This is a captured collection, without a uniform or latest-revised claim. {accepted?'Historical failed source audits remain failed. Local acceptance applies to this captured snapshot and its qualified comparisons; it does not assert current revised headline agreement.':'Historical failed source audits remain failed; these offline comparisons do not accept a country release.'}</p>
       <p><a href="https://www.census.gov/foreign-trade/reference/definitions/index.html">Census trade definitions and revision methodology</a></p>
       {view.references.differences.length>0?<div className="table-scroll" role="region" aria-label="Country reference differences" tabIndex={0}><table className="preview-reference-table">
         <caption>Retained reference differences · {label}</caption><thead><tr>{['Month','Archive (USD)','Current before (USD)','Difference before (USD)','Current after (USD)','Difference after (USD)','Original publication (USD)','Publication difference (USD)','Publication check'].map(h=><th scope="col" key={h}>{h}</th>)}</tr></thead>

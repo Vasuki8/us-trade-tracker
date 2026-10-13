@@ -12,10 +12,10 @@ it('accepts only explicit integer local ports',()=>{
   for(const value of ['','1023','65536','4.4',' 4402','4402x','04402'])expect(()=>resolveCanadaPreviewPort(value)).toThrow();
 });
 it('forces fixture modes, shares an owned output and restores environment after its server closes',async()=>{
-  const r=await root();vi.stubEnv('CANADA_PREVIEW_MODE','retained');vi.stubEnv('TRADE_DATA_MODE','published');vi.stubEnv('PLAYWRIGHT_CANADA_PORT','4402');
-  vi.mocked(build).mockImplementation(async options=>{expect(process.env.CANADA_PREVIEW_MODE).toBe('fixture');expect(process.env.TRADE_DATA_MODE).toBe('fixture');expect(resolve(options!.outDir!)).toContain('canada-preview-');});
+  const r=await root();vi.stubEnv('CANADA_PREVIEW_MODE','retained');vi.stubEnv('CANADA_ACCEPTED_PREVIEW_MODE','selected');vi.stubEnv('TRADE_DATA_MODE','published');vi.stubEnv('PLAYWRIGHT_CANADA_PORT','4402');
+  vi.mocked(build).mockImplementation(async options=>{expect(process.env.CANADA_PREVIEW_MODE).toBe('fixture');expect(process.env.CANADA_ACCEPTED_PREVIEW_MODE).toBe('fixture');expect(process.env.TRADE_DATA_MODE).toBe('fixture');expect(resolve(options!.outDir!)).toContain('canada-preview-');});
   const stop=vi.fn(async()=>{});vi.mocked(preview).mockResolvedValue({port:4402,host:'127.0.0.1',closed:async()=>{},stop});
-  await serveCanadaPreviewFixture();expect(vi.mocked(build).mock.calls[0][0]).toEqual(vi.mocked(preview).mock.calls[0][0]);expect(stop).toHaveBeenCalled();expect(await readdir(resolve(r,'.tmp'))).toEqual([]);expect(process.env.CANADA_PREVIEW_MODE).toBe('retained');expect(process.env.TRADE_DATA_MODE).toBe('published');
+  await serveCanadaPreviewFixture();expect(vi.mocked(build).mock.calls[0][0]).toEqual(vi.mocked(preview).mock.calls[0][0]);expect(stop).toHaveBeenCalled();expect(await readdir(resolve(r,'.tmp'))).toEqual([]);expect(process.env.CANADA_PREVIEW_MODE).toBe('retained');expect(process.env.CANADA_ACCEPTED_PREVIEW_MODE).toBe('selected');expect(process.env.TRADE_DATA_MODE).toBe('published');
 });
 it('cleans its owned output after a build failure before server startup',async()=>{
   const r=await root();vi.mocked(build).mockRejectedValue(Error('simulated build error'));await expect(serveCanadaPreviewFixture()).rejects.toThrow();expect(preview).not.toHaveBeenCalled();expect(await readdir(resolve(r,'.tmp'))).toEqual([]);

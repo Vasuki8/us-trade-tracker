@@ -12,14 +12,14 @@ export async function serveCanadaPreviewFixture():Promise<void> {
   const port=resolveCanadaPreviewPort(process.env.PLAYWRIGHT_CANADA_PORT),root=resolve(process.cwd()),tempRoot=resolve(root,'.tmp');
   await assertSnapshotPath(root,tempRoot,true);await mkdir(tempRoot,{recursive:true});
   const owned=await mkdtemp(resolve(tempRoot,'canada-preview-'));
-  const prior={TRADE_DATA_MODE:process.env.TRADE_DATA_MODE,CANADA_PREVIEW_MODE:process.env.CANADA_PREVIEW_MODE};
+  const prior={TRADE_DATA_MODE:process.env.TRADE_DATA_MODE,CANADA_PREVIEW_MODE:process.env.CANADA_PREVIEW_MODE,CANADA_ACCEPTED_PREVIEW_MODE:process.env.CANADA_ACCEPTED_PREVIEW_MODE};
   let server:PreviewServer|undefined,stopping=false,stopPromise:Promise<void>|undefined;
   const stop=()=>{stopping=true;if(server)stopPromise??=server.stop();return stopPromise??Promise.resolve();};
   const signal=()=>{void stop().catch(()=>{process.exitCode=1;});};
   process.on('SIGINT',signal);process.on('SIGTERM',signal);
   try {
     await assertSnapshotPath(root,owned);
-    process.env.TRADE_DATA_MODE='fixture';process.env.CANADA_PREVIEW_MODE='fixture';
+    process.env.TRADE_DATA_MODE='fixture';process.env.CANADA_PREVIEW_MODE='fixture';process.env.CANADA_ACCEPTED_PREVIEW_MODE='fixture';
     const config={root,outDir:owned,server:{host:'127.0.0.1',port}};
     await build(config);if(stopping)throw new Error('Canada preview startup interrupted');
     server=await preview(config);if(server.port!==port)throw new Error('Unexpected Canada preview port');
@@ -27,7 +27,7 @@ export async function serveCanadaPreviewFixture():Promise<void> {
   } finally {
     process.off('SIGINT',signal);process.off('SIGTERM',signal);
     try {await stop();} finally {
-      for(const name of ['TRADE_DATA_MODE','CANADA_PREVIEW_MODE'] as const){if(prior[name]===undefined)delete process.env[name];else process.env[name]=prior[name];}
+      for(const name of ['TRADE_DATA_MODE','CANADA_PREVIEW_MODE','CANADA_ACCEPTED_PREVIEW_MODE'] as const){if(prior[name]===undefined)delete process.env[name];else process.env[name]=prior[name];}
       // Never delete normal dist, a link target, or an output we did not create.
       const within=relative(tempRoot,owned);
       if(!/^canada-preview-[^\\/]+$/.test(within))throw new Error('Invalid owned Canada preview output');
