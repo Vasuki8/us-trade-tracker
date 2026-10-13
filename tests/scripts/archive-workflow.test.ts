@@ -4,15 +4,66 @@ import {tmpdir} from 'node:os';import {join} from 'node:path';
 import {parse} from 'yaml';
 import {parseArchiveDispatch} from '../../scripts/archive-inputs';
 import {runArchiveCommand} from '../../scripts/archive-product';
-import {createArchiveFixture} from '../helpers/archive';
+import {createArchiveFixture,syntheticCensusFetch} from '../helpers/archive';
 import {MemoryArchiveStore} from '../helpers/archive-store';
-import {CURRENT_KEY} from '../../scripts/archive-bundle';
-import {readCurrentRelease} from '../../scripts/prepare-release';
+import {CURRENT_KEY,packBundle,encodePointer} from '../../scripts/archive-bundle';
+import {prepareRelease,readCurrentRelease} from '../../scripts/prepare-release';
 const valid={REPORTING_MONTH:'2026-08',ARCHIVE_TO_R2:'false',INITIALIZE_ARCHIVE:'false',GITHUB_REF:'refs/heads/main'};
 const dirs:string[]=[];afterAll(async()=>{for(const dir of dirs)await rm(dir,{recursive:true,force:true});});
 it('defaults to artifact-only and needs neither R2 configuration nor a provider client',async()=>{
-  expect(parseArchiveDispatch(valid)).toEqual({productCode:'090121',reportingMonth:'2026-08',archive:false,initialize:false,includeDuties:false});
+  expect(parseArchiveDispatch(valid)).toEqual({productCode:'090121',reportingMonth:'2026-08',archive:false,initialize:false,includeDuties:false,candidateOnly:false});
   let calls=0;expect(await runArchiveCommand(['preflight'],valid,()=>{calls++;throw new Error('unexpected provider');})).toMatchObject({archive:false});expect(calls).toBe(0);
+});
+it('allows candidate-only review against an existing main-branch archive',()=>{
+  expect(parseArchiveDispatch({...valid,ARCHIVE_TO_R2:'true',CANDIDATE_ONLY:'true'})).toMatchObject({archive:true,initialize:false,candidateOnly:true});
+  expect(parseArchiveDispatch({...valid,CANDIDATE_ONLY:'false'})).toMatchObject({archive:false,candidateOnly:false});
+});
+it.each([
+  {CANDIDATE_ONLY:'yes'},
+  {CANDIDATE_ONLY:'true',ARCHIVE_TO_R2:'false'},
+  {CANDIDATE_ONLY:'true',INITIALIZE_ARCHIVE:'true'},
+  {CANDIDATE_ONLY:'true',GITHUB_REF:'refs/heads/feature'},
+])('rejects contradictory candidate-only dispatch %j before provider access',async patch=>{
+  const env={...valid,ARCHIVE_TO_R2:'true',...patch};let calls=0;
+  await expect(runArchiveCommand(['restore','--data-dir','unused','--run-dir','unused'],env,()=>{calls++;throw new Error('unexpected provider');})).rejects.toThrow(/Invalid|Candidate-only/);
+  expect(calls).toBe(0);
+});
+it('refuses candidate-only promotion before reading state or configuring a provider',async()=>{
+  let calls=0;
+  await expect(runArchiveCommand(['promote','--data-dir','unused','--run-dir','unused'],{...valid,ARCHIVE_TO_R2:'true',CANDIDATE_ONLY:'true'},()=>{calls++;throw new Error('unexpected provider');})).rejects.toThrow(/Candidate-only.*promotion/i);
+  expect(calls).toBe(0);
+});
+it('refuses a candidate-only stage with no accepted baseline before provider access',async()=>{
+  const root=await mkdtemp(join(tmpdir(),'trade-candidate-no-baseline-'));dirs.push(root);
+  await writeFile(join(root,'run.json'),JSON.stringify({schemaVersion:2,productCode:'090121',reportingMonth:'2026-08',baseline:null}));let calls=0;
+  await expect(runArchiveCommand(['stage','--data-dir',join(root,'data'),'--run-dir',root],{...valid,ARCHIVE_TO_R2:'true',CANDIDATE_ONLY:'true'},()=>{calls++;throw new Error('unexpected provider');})).rejects.toThrow(/Candidate-only.*baseline/i);
+  expect(calls).toBe(0);
+});
+it('stops a candidate-only run at restore when the accepted archive is absent',async()=>{
+  const root=await mkdtemp(join(tmpdir(),'trade-candidate-absent-'));dirs.push(root);const store=new MemoryArchiveStore();
+  await expect(runArchiveCommand(['restore','--data-dir',join(root,'data'),'--run-dir',join(root,'run')],{...valid,ARCHIVE_TO_R2:'true',CANDIDATE_ONLY:'true'},()=>store)).rejects.toThrow(/Archive is absent/);
+  expect(store.puts).toHaveLength(0);await expect(readFile(join(root,'run/run.json'))).rejects.toMatchObject({code:'ENOENT'});
+});
+it.each([true,false])('restores, stages and recovers a baseline-aware candidate with candidateOnly=%s',async candidateOnly=>{
+  const f=await createArchiveFixture();dirs.push(f.dataDir);const root=await mkdtemp(join(tmpdir(),'trade-candidate-flow-'));dirs.push(root);
+  const store=new MemoryArchiveStore(),baseline=packBundle(f.input),pointer=encodePointer(baseline.reference);
+  store.seed(baseline.reference.key,baseline.bytes);store.seed(CURRENT_KEY,pointer);
+  const dataDir=join(root,'data'),runDir=join(root,'run'),env={...valid,ARCHIVE_TO_R2:'true',CANDIDATE_ONLY:String(candidateOnly),BACKUP_ARTIFACT_ID:'1234',BACKUP_ARTIFACT_DIGEST:'e'.repeat(64)};
+  const args=(command:string,target=dataDir)=>[command,'--data-dir',target,'--run-dir',runDir];
+  await runArchiveCommand(args('restore'),env,()=>store);
+  await prepareRelease({productCode:'090121',end:'2026-08',months:60,apiKey:'synthetic',outputDir:join(dataDir,'processed'),codeVersion:'synthetic-candidate'},syntheticCensusFetch({worldDelta:100}));
+  const staged=await runArchiveCommand(args('stage'),env,()=>store) as {run:{baseline:{reference:unknown}};reference:{key:string}};
+  expect(staged.run.baseline.reference).toEqual(baseline.reference);expect(store.objects.has(staged.reference.key)).toBe(true);
+  const recovered=join(root,'recovered');await runArchiveCommand(args('verify',recovered),{},()=>{throw new Error('unexpected offline provider');});
+  const release=await readCurrentRelease(join(recovered,'processed'));expect(release?.revisedKeys.length).toBeGreaterThan(0);
+  expect(release).toEqual(await readCurrentRelease(join(dataDir,'processed')));expect(store.objects.get(CURRENT_KEY)!.bytes).toEqual(pointer);expect(store.pointerPutCalls).toBe(0);
+  if(candidateOnly){
+    await expect(runArchiveCommand(args('promote'),env,()=>store)).rejects.toThrow(/Candidate-only.*promotion/i);
+    expect(store.objects.get(CURRENT_KEY)!.bytes).toEqual(pointer);expect(store.pointerPutCalls).toBe(0);
+    await expect(readFile(join(runDir,'outcome.json'))).rejects.toMatchObject({code:'ENOENT'});
+  }else{
+    expect(await runArchiveCommand(args('promote'),env,()=>store)).toMatchObject({status:'acknowledged'});expect(store.pointerPutCalls).toBe(1);
+  }
 });
 it.each([{INCLUDE_DUTIES:'yes'},{ARCHIVE_TO_R2:'yes'},{INITIALIZE_ARCHIVE:'1'},{REPORTING_MONTH:'2026-13'},{REPORTING_MONTH:'2026-08;echo'},{INITIALIZE_ARCHIVE:'true'},{ARCHIVE_TO_R2:'true',GITHUB_REF:'refs/heads/feature'}])('rejects invalid dispatch %j before any provider call',patch=>{expect(()=>parseArchiveDispatch({...valid,...patch})).toThrow();});
 it('packs and recovers synthetic original data entirely offline without changing its source pointer',async()=>{
@@ -47,4 +98,24 @@ it('opts into duty retrieval and requires offline recovery after backup and befo
  expect(steps.find(s=>s.id==='import').run).toContain('--duties');
  const recovery=steps.findIndex(s=>s.id==='recovery');expect(recovery).toBeGreaterThan(steps.findIndex(s=>s.id==='backup'));expect(recovery).toBeLessThan(steps.findIndex(s=>s.id==='promote'));
  expect(steps[recovery].run).toContain('verify');expect(steps[recovery].env).toBeUndefined();expect(steps.find(s=>s.id==='promote').if).toContain("steps.recovery.outcome == 'success'");
+});
+it('routes candidate-only success to review and never to promotion in the actual workflow',async()=>{
+  const w=parse(await readFile('.github/workflows/import-census.yml','utf8')),job=w.jobs.import,steps=job.steps as any[];
+  expect(w.on.workflow_dispatch.inputs.candidate_only).toMatchObject({type:'boolean',default:false});
+  expect(job.env.CANDIDATE_ONLY).toBe('${{ inputs.candidate_only }}');
+  const ready=steps.find(s=>s.id==='candidate_ready'),promote=steps.find(s=>s.id==='promote');expect(ready).toBeDefined();
+  expect(steps.indexOf(ready)).toBeGreaterThan(steps.findIndex(s=>s.id==='recovery'));
+  expect(ready.env).toEqual({BACKUP_ARTIFACT_ID:'${{ steps.backup.outputs.artifact-id }}',BACKUP_ARTIFACT_DIGEST:'${{ steps.backup.outputs.artifact-digest }}'});
+  expect(ready.run).toContain('Candidate ready for review');expect(ready.run).toContain('GITHUB_STEP_SUMMARY');expect(ready.run).not.toContain('data:archive');expect(ready.run).not.toContain('outcome.json');
+  // Evaluate the workflow's supported conjunctions; an unknown expression fails the contract.
+  function allowed(expression:string,state:{candidate:boolean;archive:boolean;main:boolean;success:boolean;failed?:string}):boolean{
+    const terms:Record<string,boolean>={'success()':state.success,'inputs.candidate_only':state.candidate,'!inputs.candidate_only':!state.candidate,'inputs.archive_to_r2':state.archive,"github.ref == 'refs/heads/main'":state.main};
+    for(const id of ['restore','stage','backup','recovery'])terms[`steps.${id}.outcome == 'success'`]=state.failed!==id;
+    return expression.split(' && ').map(term=>{if(!Object.hasOwn(terms,term))throw new Error(`Unsupported workflow gate: ${term}`);return terms[term];}).every(Boolean);
+  }
+  const success={candidate:true,archive:true,main:true,success:true};
+  expect(allowed(ready.if,success)).toBe(true);expect(allowed(promote.if,success)).toBe(false);
+  expect(allowed(ready.if,{...success,candidate:false})).toBe(false);expect(allowed(promote.if,{...success,candidate:false})).toBe(true);
+  for(const state of [{...success,archive:false},{...success,main:false},{...success,success:false},...['restore','stage','backup','recovery'].map(failed=>({...success,failed}))])expect(allowed(ready.if,state)).toBe(false);
+  for(const failed of ['backup','recovery'])expect(allowed(promote.if,{...success,candidate:false,failed})).toBe(false);
 });

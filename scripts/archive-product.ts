@@ -31,10 +31,11 @@ export async function runArchiveCommand(args:string[],env:NodeJS.ProcessEnv,stor
     if(env.GITHUB_OUTPUT){const paths=productDataPaths(env.GITHUB_WORKSPACE??process.cwd(),productCode),outputs={product_code:productCode,data_dir:paths.dataDir,processed_dir:paths.processedDir,classification_file:paths.classificationFile};if(Object.values(outputs).some(v=>/[\r\n]/.test(v)))throw new Error('Invalid workflow path');await appendFile(env.GITHUB_OUTPUT,Object.entries(outputs).map(([k,v])=>`${k}=${v}\n`).join(''));}return dispatch;
   }
   if(!dispatch.archive)throw new Error('Remote archive commands require archive mode');
+  if(command==='promote'&&dispatch.candidateOnly)throw new Error('Candidate-only review forbids promotion');
   // Parse persisted input before creating a provider client.
   if(command==='restore')return restoreForImport({store:provider(),dataDir,runDir,productCode},{reportingMonth:dispatch.reportingMonth,initialize:dispatch.initialize});
   const state=parseArchiveJson(await readLocalFileBounded(join(runDir,command==='stage'?'run.json':'candidate.json'),LIMITS.pointer),LIMITS.pointer);
-  if(command==='stage'){const run=parseRunState(state,productCode);if(run.reportingMonth!==dispatch.reportingMonth)throw new Error('Run month differs from dispatch');return stageCandidate({store:provider(),dataDir,runDir,productCode},run);}
+  if(command==='stage'){const run=parseRunState(state,productCode);if(run.reportingMonth!==dispatch.reportingMonth)throw new Error('Run month differs from dispatch');if(dispatch.candidateOnly&&!run.baseline)throw new Error('Candidate-only review requires an accepted baseline');return stageCandidate({store:provider(),dataDir,runDir,productCode},run);}
   const candidate=parseCandidateState(state,productCode);if(candidate.run.reportingMonth!==dispatch.reportingMonth)throw new Error('Candidate month differs from dispatch');
   const outcome=await promoteCandidate({store:provider(),dataDir,runDir,productCode},candidate,{artifactId:env.BACKUP_ARTIFACT_ID??'',artifactDigest:env.BACKUP_ARTIFACT_DIGEST??''});
   if(['conflict','unconfirmed'].includes(outcome.status))process.exitCode=1;return outcome;
