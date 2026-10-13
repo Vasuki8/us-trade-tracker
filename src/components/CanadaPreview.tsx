@@ -4,9 +4,11 @@ import {countryCsvFilename,serializeCountryMonthlyCsv,serializeCountryProductsCs
 import {downloadBlob} from '../lib/trade/downloads';
 import {usd,usdChange,percent,countryShare,percentagePoints,monthLabel} from '../lib/trade/format';
 import {CountryPreviewChart} from './CountryPreviewChart';
+import {countryTimestampLabel} from '../lib/country-preview/presentation';
 const period=(from:string,to:string)=>`${monthLabel(from)}–${monthLabel(to)}`;
 export function CanadaPreview({data,presentation={kind:'preview'}}:{data:CountryPreview;presentation?:CountryPresentation}):React.JSX.Element {
   const accepted=presentation.kind==='accepted-local',profileSample=presentation.kind==='accepted-fixture';
+  const profile=accepted||profileSample;
   assertCountryPresentationSource(data,presentation);
   const [direction,setDirection]=useState<CountryDirection>('imports'),[error,setError]=useState<string|null>(null);
   const [interactive,setInteractive]=useState(false);
@@ -15,12 +17,17 @@ export function CanadaPreview({data,presentation={kind:'preview'}}:{data:Country
   const publicationSources=view.references.differences.flatMap(row=>row.publicationSource?[{month:row.month,...row.publicationSource}]:[]);
   const source=data.source==='fixture'?'Synthetic development data':'U.S. Census Bureau monthly merchandise files';
   const banner=accepted?'24-month locally accepted snapshot · Not published':profileSample?'Synthetic accepted-profile sample · No accepted country release':data.source==='retained'?'24-month captured assessment · Acceptance not checked in this preview':'24-month development preview · No accepted country release';
+  const verificationNote=data.source==='retained'?`Reuses the previously reviewed ${profile?'source':'raw'} replay; this page performs no fresh source verification.`:'All displayed observations and reference examples are synthetic.';
+  const auditMetadata=<>
+    <p>Assessment processing version: <code>{data.processingVersion}</code> · Source verification basis: {data.rawVerification}. {!profile&&verificationNote}</p>
+    {(['before','after'] as const).map(which=>{const s=view.references[which].source;return s&&<p key={which}>Saved {which} reference: <a href={s.url}>{s.url}</a> · captured {s.capturedAt} · {s.bytes} bytes · SHA-256 {s.sha256}</p>;})}
+  </>;
   const download=(kind:'monthly'|'products')=>{try{downloadBlob(new Blob([kind==='monthly'?serializeCountryMonthlyCsv(data,direction,presentation):serializeCountryProductsCsv(data,direction,presentation)],{type:'text/csv;charset=utf-8'}),countryCsvFilename(direction,kind,presentation));setError(null);}catch{setError('Download unavailable. Please try again.');}};
   return <div className="canada-preview">
     <div className="page-heading"><p className="eyebrow">COUNTRY RESEARCH / {accepted?'ACCEPTED LOCAL PREVIEW':profileSample?'ACCEPTED-PROFILE DEVELOPMENT SAMPLE':'LOCAL DEVELOPMENT PREVIEW'}</p><h1>Canada</h1><p>Explore captured U.S. goods trade with Canada, September 2024–August 2026.</p></div>
     <div className="sample-banner"><strong>{source}</strong><span>{banner}</span></div>
-    {accepted&&<p className="preview-capture">Local acceptance recorded {presentation.acceptedAt}. This local preview does not publish the snapshot.</p>}
-    <p className="preview-capture">Source collection captured {data.captureInterval.startedAt} to {data.captureInterval.finishedAt}. Capture times describe the saved files, not observation revision dates.</p>
+    {accepted&&<p className="preview-capture">Local acceptance recorded <time dateTime={presentation.acceptedAt}>{countryTimestampLabel(presentation.acceptedAt)}</time>. This local preview does not publish the snapshot.</p>}
+    <p className="preview-capture">Source collection captured {profile?<time dateTime={data.captureInterval.startedAt}>{countryTimestampLabel(data.captureInterval.startedAt)}</time>:data.captureInterval.startedAt} to {profile?<time dateTime={data.captureInterval.finishedAt}>{countryTimestampLabel(data.captureInterval.finishedAt)}</time>:data.captureInterval.finishedAt}. Capture times describe the saved files, not observation revision dates.</p>
     <fieldset className="explorer-controls" disabled={!interactive}><legend>Trade direction</legend>{(['imports','exports'] as const).map(d=><label key={d}><input type="radio" name="canada-direction" value={d} checked={direction===d} onChange={()=>{setDirection(d);setError(null);}}/>{d==='imports'?'Imports':'Exports'}</label>)}</fieldset>
     <noscript><p>Imports are shown below. Direction switching and CSV downloads require JavaScript.</p></noscript>
     <section aria-label="Country overview">
@@ -61,8 +68,14 @@ export function CanadaPreview({data,presentation={kind:'preview'}}:{data:Country
         <tbody>{view.references.differences.map(r=><tr key={r.month}><th scope="row">{monthLabel(r.month)}</th><td>{usd(r.archiveUsd)}</td><td>{usd(r.currentBeforeUsd)}</td><td>{usdChange(r.differenceBeforeUsd)}</td><td>{usd(r.currentAfterUsd)}</td><td>{usdChange(r.differenceAfterUsd)}</td><td>{usd(r.publicationUsd)}</td><td>{usdChange(r.publicationDifferenceUsd)}</td><td className="preview-publication-check">{r.publicationCheck}{r.publicationSource&&<small><a href={r.publicationSource.url}>{monthLabel(r.month)} original publication</a></small>}</td></tr>)}</tbody>
       </table></div>:<p>No current-reference mismatches in this direction.</p>}
       {publicationSources.length>0&&<details><summary>Original-publication source identities</summary><ul>{publicationSources.map(source=><li key={source.month}><strong>{monthLabel(source.month)}</strong>: <a href={source.url}>{source.url}</a> · {source.bytes} bytes · SHA-256 {source.sha256}</li>)}</ul></details>}
-      <p>Assessment processing version: <code>{data.processingVersion}</code> · Source verification basis: {data.rawVerification}. {data.source==='retained'?'Reuses the previously reviewed raw replay; this page performs no fresh source verification.':'All displayed observations and reference examples are synthetic.'}</p>
-      {(['before','after'] as const).map(which=>{const s=view.references[which].source;return s&&<p key={which}>Saved {which} reference: <a href={s.url}>{s.url}</a> · captured {s.capturedAt} · {s.bytes} bytes · SHA-256 {s.sha256}</p>;})}
+      {profile?<>
+        <p>{verificationNote}</p>
+        <details><summary>Capture and verification details</summary>
+          {accepted&&<p>Exact local acceptance time: <time dateTime={presentation.acceptedAt}>{presentation.acceptedAt}</time>.</p>}
+          <p>Exact collection times: <time dateTime={data.captureInterval.startedAt}>{data.captureInterval.startedAt}</time> to <time dateTime={data.captureInterval.finishedAt}>{data.captureInterval.finishedAt}</time>.</p>
+          {auditMetadata}
+        </details>
+      </>:auditMetadata}
       {data.source==='retained'&&<details><summary>Monthly original source identities</summary><ul>{view.monthly.map(p=><li key={p.month}>{monthLabel(p.month)}: {p.originalSource&&<><a href={p.originalSource.url}>{p.originalSource.url}</a> · captured {p.originalSource.capturedAt} · {p.originalSource.bytes} bytes · SHA-256 {p.originalSource.sha256}</>}</li>)}</ul></details>}
     </section>
   </div>;

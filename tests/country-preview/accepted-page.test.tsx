@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import {afterEach,expect,it,vi} from 'vitest';
-import {cleanup,render,screen} from '@testing-library/react';
+import {cleanup,render,screen,within} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
 import {CanadaPreview} from '../../src/components/CanadaPreview';
@@ -19,3 +19,41 @@ it('uses synthetic CSV context without an acceptance identity in fixture samples
 it('rejects crossed synthetic/accepted CSV provenance',()=>{for(const serialize of [serializeCountryMonthlyCsv,serializeCountryProductsCsv]){expect(()=>serialize(makeCountryPreviewFixture(),'imports',presentation)).toThrow();expect(()=>serialize(data(),'exports',{kind:'accepted-fixture'})).toThrow();}});
 it('explains accepted comparison qualifications in plain language without rewriting recorded reasons',()=>{const value=data();render(<CanadaPreview data={value} presentation={presentation}/>);expect(screen.queryAllByText('eligible-offline-only')).toHaveLength(0);expect(screen.getAllByText('Reviewed against the captured files').length).toBeGreaterThan(0);expect(value.directions.imports.products.find(p=>p.comparisonEligible)?.reason).toBe('eligible-offline-only');});
 it('keeps an assessment-only retained preview explicit about unchecked acceptance',()=>{render(<CanadaPreview data={data()}/>);expect(screen.getByText('24-month captured assessment · Acceptance not checked in this preview')).toBeVisible();expect(screen.queryByText(/No accepted country release/)).toBeNull();});
+it('shows accepted capture times in UTC while retaining the exact original instants',()=>{
+  const value=data();value.captureInterval.startedAt='2026-10-11T19:01:00.123+02:00';
+  render(<CanadaPreview data={value} presentation={presentation}/>);
+  expect(screen.getByText('12 Oct 2026, 23:00 UTC')).toHaveAttribute('datetime',presentation.acceptedAt);
+  expect(screen.getByText('11 Oct 2026, 17:01 UTC')).toHaveAttribute('datetime',value.captureInterval.startedAt);
+  expect(screen.getByText('11 Oct 2026, 17:02 UTC')).toHaveAttribute('datetime',value.captureInterval.finishedAt);
+});
+it('discloses exact accepted audit metadata while keeping review limits visible and following direction',async()=>{
+  const value=data(),url='https://www.census.gov/foreign-trade/balance/c1220.html';
+  value.directions.imports.references.before.source={url,capturedAt:'2026-10-11T17:00:00.000Z',bytes:100,sha256:'1'.repeat(64)};
+  value.directions.exports.references.before.source={url,capturedAt:'2026-10-11T17:03:00.000Z',bytes:101,sha256:'2'.repeat(64)};
+  const original=JSON.stringify(value);render(<CanadaPreview data={value} presentation={presentation}/>);
+  const methods=screen.getByRole('region',{name:'Sources and revision differences'}),summary=within(methods).getByText('Capture and verification details',{exact:true}),details=summary.closest('details')!;
+  expect(details).not.toHaveAttribute('open');
+  expect(within(methods).getByText(/previously reviewed source replay/)).toBeVisible();
+  expect(within(methods).getByText(/no fresh source verification/)).toBeVisible();
+  expect(within(details).getByText(value.processingVersion,{exact:true})).not.toBeVisible();
+  expect(details).toHaveTextContent(value.captureInterval.startedAt);expect(details).toHaveTextContent(presentation.acceptedAt);
+  await userEvent.click(summary);expect(details).toHaveAttribute('open');expect(within(details).getByText(value.processingVersion,{exact:true})).toBeVisible();
+  expect(details).toHaveTextContent('100 bytes');expect(details).toHaveTextContent('1'.repeat(64));
+  expect(within(details).getByRole('link',{name:url})).toHaveAttribute('href',url);
+  await userEvent.click(screen.getByRole('radio',{name:'Exports'}));expect(details).toHaveAttribute('open');expect(details).toHaveTextContent('101 bytes');expect(details).toHaveTextContent('2'.repeat(64));expect(details).not.toHaveTextContent('1'.repeat(64));
+  expect(methods).toHaveTextContent('17 matched; 7 mismatch');expect(JSON.stringify(value)).toBe(original);
+});
+it('keeps accepted-profile capture explanations synthetic and without a real acceptance time',()=>{
+  render(<CanadaPreview data={makeCountryPreviewFixture()} presentation={{kind:'accepted-fixture'}}/>);
+  expect(screen.getByText('11 Oct 2026, 17:01 UTC')).toBeVisible();
+  expect(screen.getByText(/All displayed observations and reference examples are synthetic/)).toBeVisible();
+  expect(screen.queryByText(/Local acceptance recorded/)).toBeNull();
+  const details=screen.getByText('Capture and verification details',{exact:true}).closest('details')!;
+  expect(details).toHaveTextContent('synthetic');expect(details).not.toHaveTextContent('previous-reviewed-replay');
+});
+it('preserves the original assessment preview timestamp and metadata presentation',()=>{
+  const value=data();render(<CanadaPreview data={value}/>);
+  expect(screen.queryByText('Capture and verification details',{exact:true})).toBeNull();
+  expect(screen.getByText(new RegExp(`Source collection captured ${value.captureInterval.startedAt}`))).toBeVisible();
+  expect(screen.getByText(value.processingVersion,{exact:true})).toBeVisible();
+});
