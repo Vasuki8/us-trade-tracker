@@ -99,3 +99,5 @@ Document checks verified both local links, no placeholders, the existing adapter
 The owner subsequently approved the written design for the [implementation plan](../plans/2026-10-13-canada-pilot-deployment.md). Root implementation with subagents reviewing remains the selected execution method. Implementation requires review of that plan; creation/upload remains the separate final decision.
 
 The owner approved local implementation Tasks 1–5 on October 13, 2026. The prepared package and independent review are recorded in [the deployment validation record](../../validation/canada-pilot-deployment.md). Exact package/target authorization still gates Task 6.
+
+The owner subsequently continued after the concrete package/target/conditional-withdrawal decision. The exact package was published and verified; [the observed publication record](../../validation/canada-pilot-deployment.md#observed-public-pilot) records the bounded result without a recurring-release or refresh claim.

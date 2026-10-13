@@ -1,6 +1,6 @@
 # Canada historical-snapshot pilot preparation
 
-Status: **prepared-for-owner-deployment-review**. Local Tasks 1–4 and independent whole-branch review passed on October 13, 2026. Integration is Task 5; project creation, public upload and live checks remain gated Task 6. Nothing in this record claims publication.
+Status: **published-verified**. The owner approved the concrete package/target decision, and the exact prepared package was deployed and verified on October 13, 2026. Local Tasks 1–5 were integrated through PR #77; the observed Task 6 outcome is recorded below. The earlier preparation/review evidence remains preserved.
 
 The opt-in `CANADA_PILOT_MODE=snapshot` uses the existing authenticated selected reader. It presents Canada as a **24-month accepted historical snapshot**, September 2024–August 2026, and reports the original local acceptance time separately from capture times. It adds no observations or refresh promise. Imports remain general imports/customs value; exports remain domestic plus foreign exports/FAS value with the Canadian exchange qualification. All values remain nominal USD and not seasonally adjusted.
 
@@ -33,9 +33,9 @@ The site adds the reviewed noindex/nofollow header rule and a standalone error p
 
 The early operator and browser-proof failures were retained privately. They exposed a Windows metadata comparison and proof expectations for removed publication columns/coffee pointer paths; they did not justify changes to research values or production behavior.
 
-## Limits and remaining decision
+## Limits
 
-Localhost cannot establish Cloudflare's header handling, real HTTP error behavior, public hostname availability, deployment identity or serving state at canonical/older deployment URLs. Those checks remain mandatory after concrete authorization of the exact package and target. No Cloudflare project has been created or uploaded by this preparation. Public access differs from search indexing exclusion; a canonical withdrawal replacement may leave older deployment URLs accessible. Permanent project removal needs action-time confirmation.
+Localhost did not establish Cloudflare's header handling, HTTP error behavior, hostname availability, deployment identity or public serving state. The subsequent observed live checks below now establish the recorded publication outcome. Public access differs from search indexing exclusion; a canonical withdrawal replacement may leave older deployment URLs accessible. Permanent project removal still needs action-time confirmation.
 
 Private evidence is preserved under `data/backups/canada-country-pilot/deployment-20261013-r1/`, with a sorted digest seal. It includes upload/withdrawal entries, manifests, ZIPs/readback receipts, source/data export, original baselines, operator/proof harnesses, screenshots/downloads and execution logs. Provider/account inspection and later review/integration receipts are supplemental private evidence rather than modifications to the original seal.
 
@@ -50,3 +50,19 @@ Root rulings on declined-to-judge items: current account/name/capacity is a boun
 Read-only preflight found no existing trade Pages project and the expected Pages Direct Upload form. It states the project name generates a permanent `pages.dev` hostname, but availability and the assigned hostname cannot be established before creation. Visible account limits match the Free tier; no paid activation was submitted. The proposal remains Free Pages in the existing account with no paid upgrade, custom domain, access-policy change or repository auto-deployment. Current official [Direct Upload limits](https://developers.cloudflare.com/pages/get-started/direct-upload/) and [Pages limits](https://developers.cloudflare.com/pages/platform/limits/) were checked; the measured package fits. Any different target or unexpected paid/legal commitment stops the provider operation for an owner decision.
 
 [PR #77](https://github.com/Vasuki8/us-trade-tracker/pull/77) contains this implementation and evidence summary. Exact-head CI, expected-head merge, synchronized-main tree proof and the concrete operator proposal are preserved as separate private integration receipts after their observed outcomes. This review record grants no public upload approval.
+
+## Observed public pilot
+
+The owner's subsequent “continue” followed the exact public-upload/conditional-withdrawal decision and authorized that presented operation. The existing signed-in dashboard created the exact approved Direct Upload project and reported successful upload of all 24 package entries. Production deployment `f8e060b4-1767-4276-b991-a6a0a2bc87da` reported **success**, with provider creation time `2026-10-13T14:56:47.680446Z` from the visible timestamp's `datetime`/`title` attributes.
+
+The pilot is available at [Canada historical snapshot](https://us-trade-tracker.pages.dev/countries/1220/), on canonical origin `https://us-trade-tracker.pages.dev`. The provider-reported deployment origin is `https://f8e060b4.us-trade-tracker.pages.dev`; no additional aliases were reported in the inspected deployment views. The fixed snapshot and both coffee profiles retain their original accepted data. Source capture, local acceptance, artifact preparation, provider creation and live verification remain separate recorded events.
+
+All **54 finite live requests** passed across both origins: each of 23 served payloads matched its manifest length/SHA-256 after transport decompression, with expected same-origin HTML redirects only. Every tested response carried `X-Robots-Tag: noindex, nofollow`. The eight missing/private-path probes returned HTTP 404 and the exact standalone error payload, including both private Canada previews, country `9999` and the private state-pointer path. The provider's 23 served-files count is expected: the 24th uploaded entry, `_headers`, is a provider control rather than a served asset.
+
+The reused anonymous research proof passed on the canonical site: all 48 monthly values/chart labels, 20 category summaries, fixed totals, 17 qualified comparisons/three exclusions, four actual Canada CSV downloads, six direction/viewport checks, UTC/native keyboard disclosures and no-JavaScript Imports. Both real coffee profiles' trade/duty denominator/weighted rolling figures and a shared-view sourced CSV/1920×1080 PNG passed. There were zero browser errors or external browser requests. Live desktop/mobile screenshots and the existing retained chart provenance were visually checked.
+
+The bounded live verifier first passed one positive and eight negative probes: it rejects cross-origin/unexpected redirects before following them, wrong payloads, missing header directives, a 200 private path, oversized actual/declared bodies and malformed origins; a failure produces no passing receipt. The actual live asset verification completed at `2026-10-13T14:58:35.103Z`.
+
+No withdrawal was needed because all required checks passed. The separately authenticated withdrawal package remains private and available under the approved conditional permission; no deletion or older-URL retraction is claimed. No paid activation, custom domain, analytics, Git automatic deployment, access/token change, R2/Census operation or pointer rewrite was performed. All eleven protected inputs and the Canada pointer were rechecked unchanged after live verification.
+
+Publication evidence is preserved separately at `data/backups/canada-country-pilot/deployment-20261013-r1/publication-20261013-r1/`, retaining the original preparation and integration seals. It contains the provider receipt/screenshots, asset/header/404 records, anonymous research results/downloads/screenshots and local verifier/operator evidence. Publication establishes this fixed historical pilot; it does not establish automatic refresh or full recurring-release acceptance.
