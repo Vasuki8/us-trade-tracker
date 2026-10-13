@@ -1,0 +1,57 @@
+name: Prepare private Canada upload capabilities
+on:
+  workflow_dispatch:
+    inputs:
+      bundle_sha256:
+        description: Exact locally prepared accepted bundle SHA-256
+        required: true
+        type: string
+      bundle_bytes:
+        description: Exact accepted bundle byte count
+        required: true
+        type: string
+      local_bundle_path:
+        description: Local data/backups/canada-country-archive/<fresh-child>/bundle.json path
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: canada-private-archive-1220
+  cancel-in-progress: false
+jobs:
+  capabilities:
+    if: github.ref == 'refs/heads/main' && github.event.repository.private == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      BUNDLE_SHA256: ${{ inputs.bundle_sha256 }}
+      BUNDLE_BYTES: ${{ inputs.bundle_bytes }}
+      LOCAL_BUNDLE_PATH: ${{ inputs.local_bundle_path }}
+      OUTPUT: data/backups/canada-country-archive/capabilities-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci
+      - name: Authenticate fixed source manifest and bounded capability inputs
+        id: preflight
+        run: npm run data:country-archive -- capabilities --bundle-sha256 "$BUNDLE_SHA256" --bundle-bytes "$BUNDLE_BYTES" --bundle-path "$LOCAL_BUNDLE_PATH" --output "$OUTPUT" --preflight
+      - name: Mint private conditional upload capabilities
+        env:
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: npm run data:country-archive -- capabilities --bundle-sha256 "$BUNDLE_SHA256" --bundle-bytes "$BUNDLE_BYTES" --bundle-path "$LOCAL_BUNDLE_PATH" --output "$OUTPUT"
+      - name: Retain temporary capabilities in the private repository only
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: canada-1220-upload-capabilities
+          path: ${{ env.OUTPUT }}/
+          if-no-files-found: error
+          retention-days: 1
