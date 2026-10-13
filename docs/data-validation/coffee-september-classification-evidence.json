@@ -1,0 +1,548 @@
+{
+  "status": "independently-reviewed-source-evidence",
+  "sourcePolicy": "Official USITC August baseline and all listed September revisions, current Census Schedule B chapter/obsolete lists/concordances",
+  "reviewedMonth": "2026-09",
+  "classificationConclusion": "HS6 non-roasted/non-decaffeinated 090111 and roasted/non-decaffeinated 090121 remain comparable across the reviewed September editions",
+  "sources": [
+    {
+      "id": "hts-index",
+      "url": "https://www.usitc.gov/harmonized_tariff_information/hts/archive/list?page=0",
+      "bytes": 118051,
+      "sha256": "373d922fb9f510b32f1d6e4fce7db09410e89b844fb2b4d3167952f4071fc0d4"
+    },
+    {
+      "id": "hts-rev-17",
+      "url": "https://www.usitc.gov/sites/default/files/tata/hts/hts_2026_revision_17_json.json",
+      "bytes": 12635520,
+      "sha256": "8ee8cdc2575a74ed1795a3b354bbefd308b857921c3a4901c744dce00a443294"
+    },
+    {
+      "id": "hts-rev-18",
+      "url": "https://www.usitc.gov/sites/default/files/tata/hts/hts_2026_revision_18_json.json",
+      "bytes": 12641399,
+      "sha256": "c6beeedc5d675896c9a1f89c3b8d18fd92834075fef0e377cc7f6a684f114809"
+    },
+    {
+      "id": "hts-rev-19",
+      "url": "https://www.usitc.gov/sites/default/files/tata/hts/hts_2026_revision_19_json.json",
+      "bytes": 12641397,
+      "sha256": "b83a0e40640e0fd36c434a37d0317c51e1d466ce9160613f7384609665128e28"
+    },
+    {
+      "id": "hts-rev-20",
+      "url": "https://www.usitc.gov/sites/default/files/tata/hts/hts_2026_revision_20_json.json",
+      "bytes": 12642180,
+      "sha256": "bea73f235732215a4bfab973be7495c16c450c65b78e40f58324031ebf092a09"
+    },
+    {
+      "id": "schedule-b-index",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/index.html",
+      "bytes": 58078,
+      "sha256": "e8dbcecafa875fe7ead66ceeacad761688b48aeedf64892a24f5638332d25499"
+    },
+    {
+      "id": "schedule-b-chapter-9",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2026/c09.pdf",
+      "bytes": 94394,
+      "sha256": "665700637c011f32bf697a5885653abea2ba8b53ae2372209aecab67f4d19f58"
+    },
+    {
+      "id": "export-changes-jan",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2026/jan_obsoletetonew.pdf",
+      "bytes": 92317,
+      "sha256": "511d8964adf094bc4af62ee783ce59b5e0583a2781346c7da3d86730ab3879e6"
+    },
+    {
+      "id": "export-changes-feb",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2026/feb_obsoletetonew.pdf",
+      "bytes": 80162,
+      "sha256": "f03d97a7b3f4eed64a560ea2ad6facd17741b2b48be205b1aea9d2a67d38c5bb"
+    },
+    {
+      "id": "export-changes-July",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2026/July_obsoletetonew.pdf",
+      "bytes": 84277,
+      "sha256": "131e16af3f0e7621d416294cf3710b330a6dd9f4889b5325ff365dd234c3bf78"
+    },
+    {
+      "id": "2026-imp-code",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2026/imp-code.txt",
+      "bytes": 5689647,
+      "sha256": "267137ffc87b819dfea80859ec804940ea220a7c3b512d2d985f2b2e038fc31c"
+    },
+    {
+      "id": "2026-exp-code",
+      "url": "https://www.census.gov/foreign-trade/schedules/b/2026/exp-code.txt",
+      "bytes": 2728341,
+      "sha256": "6841a8573e408b11a8adfcb49db84b9038c40f8396db4e11f00797138639bce8"
+    }
+  ],
+  "htsEditions": [
+    {
+      "revision": 17,
+      "archiveLabelDate": "August 24, 2026",
+      "rawRowStartZeroBased": 2819,
+      "rawRowEndExclusive": 2874,
+      "rows": 55,
+      "classificationFields": [
+        "htsno",
+        "indent",
+        "description",
+        "units"
+      ],
+      "classificationDigest": {
+        "bytes": 4329,
+        "sha256": "51b2efbbf2f8cc3354531dddbab0d67c3477f8b0755533139c6fffcf9edc2157"
+      },
+      "sameAsAugustBaseline": true,
+      "products": {
+        "090111": {
+          "definitionPath": [
+            "Coffee, whether or not roasted or decaffeinated; coffee husks and skins; coffee substitutes containing coffee in any proportion:",
+            "Coffee, not roasted:",
+            "Not decaffeinated"
+          ],
+          "codes": [
+            "0901110015",
+            "0901110025",
+            "0901110035",
+            "0901110040",
+            "0901110050",
+            "0901110065"
+          ],
+          "units": [
+            "kg"
+          ]
+        },
+        "090121": {
+          "definitionPath": [
+            "Coffee, whether or not roasted or decaffeinated; coffee husks and skins; coffee substitutes containing coffee in any proportion:",
+            "Coffee, roasted:",
+            "Not decaffeinated"
+          ],
+          "codes": [
+            "0901210015",
+            "0901210020",
+            "0901210025",
+            "0901210029",
+            "0901210040",
+            "0901210049",
+            "0901210055",
+            "0901210065"
+          ],
+          "units": [
+            "kg"
+          ]
+        }
+      }
+    },
+    {
+      "revision": 18,
+      "archiveLabelDate": "September 2, 2026",
+      "rawRowStartZeroBased": 2819,
+      "rawRowEndExclusive": 2874,
+      "rows": 55,
+      "classificationFields": [
+        "htsno",
+        "indent",
+        "description",
+        "units"
+      ],
+      "classificationDigest": {
+        "bytes": 4329,
+        "sha256": "51b2efbbf2f8cc3354531dddbab0d67c3477f8b0755533139c6fffcf9edc2157"
+      },
+      "sameAsAugustBaseline": true,
+      "products": {
+        "090111": {
+          "definitionPath": [
+            "Coffee, whether or not roasted or decaffeinated; coffee husks and skins; coffee substitutes containing coffee in any proportion:",
+            "Coffee, not roasted:",
+            "Not decaffeinated"
+          ],
+          "codes": [
+            "0901110015",
+            "0901110025",
+            "0901110035",
+            "0901110040",
+            "0901110050",
+            "0901110065"
+          ],
+          "units": [
+            "kg"
+          ]
+        },
+        "090121": {
+          "definitionPath": [
+            "Coffee, whether or not roasted or decaffeinated; coffee husks and skins; coffee substitutes containing coffee in any proportion:",
+            "Coffee, roasted:",
+            "Not decaffeinated"
+          ],
+          "codes": [
+            "0901210015",
+            "0901210020",
+            "0901210025",
+            "0901210029",
+            "0901210040",
+            "0901210049",
+            "0901210055",
+            "0901210065"
+          ],
+          "units": [
+            "kg"
+          ]
+        }
+      }
+    },
+    {
+      "revision": 19,
+      "archiveLabelDate": "September 15, 2026",
+      "rawRowStartZeroBased": 2819,
+      "rawRowEndExclusive": 2874,
+      "rows": 55,
+      "classificationFields": [
+        "htsno",
+        "indent",
+        "description",
+        "units"
+      ],
+      "classificationDigest": {
+        "bytes": 4329,
+        "sha256": "51b2efbbf2f8cc3354531dddbab0d67c3477f8b0755533139c6fffcf9edc2157"
+      },
+      "sameAsAugustBaseline": true,
+      "products": {
+        "090111": {
+          "definitionPath": [
+            "Coffee, whether or not roasted or decaffeinated; coffee husks and skins; coffee substitutes containing coffee in any proportion:",
+            "Coffee, not roasted:",
+            "Not decaffeinated"
+          ],
+          "codes": [
+            "0901110015",
+            "0901110025",
+            "0901110035",
+            "0901110040",
+            "0901110050",
+            "0901110065"
+          ],
+          "units": [
+            "kg"
+          ]
+        },
+        "090121": {
+          "definitionPath": [
+            "Coffee, whether or not roasted or decaffeinated; coffee husks and skins; coffee substitutes containing coffee in any proportion:",
+            "Coffee, roasted:",
+            "Not decaffeinated"
+          ],
+          "codes": [
+            "0901210015",
+            "0901210020",
+            "0901210025",
+            "0901210029",
+            "0901210040",
+            "0901210049",
+            "0901210055",
+            "0901210065"
+          ],
+          "units": [
+            "kg"
+          ]
+        }
+      }
+    },
+    {
+      "revision": 20,
+      "archiveLabelDate": "September 28, 2026",
+      "rawRowStartZeroBased": 2819,
+      "rawRowEndExclusive": 2874,
+      "rows": 55,
+      "classificationFields": [
+        "htsno",
+        "indent",
+        "description",
+        "units"
+      ],
+      "classificationDigest": {
+        "bytes": 4329,
+        "sha256": "51b2efbbf2f8cc3354531dddbab0d67c3477f8b0755533139c6fffcf9edc2157"
+      },
+      "sameAsAugustBaseline": true,
+      "products": {
+        "090111": {
+          "definitionPath": [
+            "Coffee, whether or not roasted or decaffeinated; coffee husks and skins; coffee substitutes containing coffee in any proportion:",
+            "Coffee, not roasted:",
+            "Not decaffeinated"
+          ],
+          "codes": [
+            "0901110015",
+            "0901110025",
+            "0901110035",
+            "0901110040",
+            "0901110050",
+            "0901110065"
+          ],
+          "units": [
+            "kg"
+          ]
+        },
+        "090121": {
+          "definitionPath": [
+            "Coffee, whether or not roasted or decaffeinated; coffee husks and skins; coffee substitutes containing coffee in any proportion:",
+            "Coffee, roasted:",
+            "Not decaffeinated"
+          ],
+          "codes": [
+            "0901210015",
+            "0901210020",
+            "0901210025",
+            "0901210029",
+            "0901210040",
+            "0901210049",
+            "0901210055",
+            "0901210065"
+          ],
+          "units": [
+            "kg"
+          ]
+        }
+      }
+    }
+  ],
+  "concordances": [
+    {
+      "productCode": "090111",
+      "direction": "imp",
+      "matchesPrior2026Digest": true,
+      "rows": [
+        {
+          "code": "0901110015",
+          "description": "COFFEE, CERTIFIED ORGANIC, ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+        },
+        {
+          "code": "0901110025",
+          "description": "COFFEE, ARABICA, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+        },
+        {
+          "code": "0901110035",
+          "description": "COFFEE, CERTIFIED ORGANIC, ROBUSTA, NOT DECAFFEINATED, NOT ROASTED"
+        },
+        {
+          "code": "0901110040",
+          "description": "COFFEE, OTHER THAN CERTIFIED ORGANIC, ROBUSTA, NOT DECAFFEINATED, NOT ROASTED"
+        },
+        {
+          "code": "0901110045",
+          "description": "COFFEE, CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+        },
+        {
+          "code": "0901110050",
+          "description": "OTHER COFFEE, CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+        },
+        {
+          "code": "0901110055",
+          "description": "COFFEE, OTHER THAN CERTIFIED ORGANIC, NOT ARABICA, NOT DECAFFEINATED, NOT ROASTED"
+        },
+        {
+          "code": "0901110065",
+          "description": "OTHER COFFEE, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED, NOT ROASTED"
+        }
+      ],
+      "currentHtsDetailedCodes": [
+        "0901110015",
+        "0901110025",
+        "0901110035",
+        "0901110040",
+        "0901110050",
+        "0901110065"
+      ],
+      "concordanceCodesAbsentFromReviewedHts": [
+        "0901110045",
+        "0901110055"
+      ]
+    },
+    {
+      "productCode": "090111",
+      "direction": "exp",
+      "matchesPrior2026Digest": true,
+      "rows": [
+        {
+          "code": "0901110000",
+          "description": "COFFEE, NOT ROASTED, NOT DECAFFEINATED"
+        }
+      ],
+      "currentHtsDetailedCodes": null,
+      "concordanceCodesAbsentFromReviewedHts": []
+    },
+    {
+      "productCode": "090121",
+      "direction": "imp",
+      "matchesPrior2026Digest": true,
+      "rows": [
+        {
+          "code": "0901210015",
+          "description": "COFFEE, CERTIFIED ORGANIC, ARABICA, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+        },
+        {
+          "code": "0901210020",
+          "description": "COFFEE, ARABICA, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+        },
+        {
+          "code": "0901210025",
+          "description": "COFFEE, CERTIFIED ORGANIC, ROBUSTA, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+        },
+        {
+          "code": "0901210029",
+          "description": "COFFEE, ROBUSTA, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+        },
+        {
+          "code": "0901210035",
+          "description": "COFFEE, CERTIFIED ORGANIC, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+        },
+        {
+          "code": "0901210040",
+          "description": "OTHER COFFEE, CERTIFIED ORGANIC, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, NOT DECAFFEINATED"
+        },
+        {
+          "code": "0901210045",
+          "description": "COFFEE, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+        },
+        {
+          "code": "0901210049",
+          "description": "OTHER COFFEE, IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT DECAFFEINATED"
+        },
+        {
+          "code": "0901210055",
+          "description": "COFFEE, CERTIFIED ORGANIC, ROASTED, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+        },
+        {
+          "code": "0901210065",
+          "description": "COFFEE, ROASTED, OTHER THAN CERTIFIED ORGANIC, NOT IN RETAIL CONTAINERS WEIGHING 2 KG OR LESS, NOT DECAFFEINATED"
+        }
+      ],
+      "currentHtsDetailedCodes": [
+        "0901210015",
+        "0901210020",
+        "0901210025",
+        "0901210029",
+        "0901210040",
+        "0901210049",
+        "0901210055",
+        "0901210065"
+      ],
+      "concordanceCodesAbsentFromReviewedHts": [
+        "0901210035",
+        "0901210045"
+      ]
+    },
+    {
+      "productCode": "090121",
+      "direction": "exp",
+      "matchesPrior2026Digest": true,
+      "rows": [
+        {
+          "code": "0901210010",
+          "description": "COFFEE, ROASTED, NOT DECAFFEINATED, CERTIFIED ORGANIC"
+        },
+        {
+          "code": "0901210050",
+          "description": "COFFEE, ROASTED, NOT DECAFFEINATED, OTHER THAN CERTIFIED ORGANIC"
+        }
+      ],
+      "currentHtsDetailedCodes": null,
+      "concordanceCodesAbsentFromReviewedHts": []
+    }
+  ],
+  "exportPdfs": [
+    {
+      "id": "schedule-b-chapter-9",
+      "pages": 4,
+      "textDigest": {
+        "bytes": 20270,
+        "sha256": "3a997bef148e9742d7f2e263f51dc195ded68d18864e5fafed7b56cebae4c11b"
+      },
+      "coffeeMatches": 1
+    },
+    {
+      "id": "export-changes-jan",
+      "pages": 5,
+      "textDigest": {
+        "bytes": 182708,
+        "sha256": "27d16c10c3dc67230554d33c277de3c1edeceb9334cfc67a9760d076908d0464"
+      },
+      "coffeeMatches": 0
+    },
+    {
+      "id": "export-changes-feb",
+      "pages": 3,
+      "textDigest": {
+        "bytes": 24656,
+        "sha256": "96dfa0966f054727900fd8c0837f5d8b0fcb971c097b002df859f1e4168573a1"
+      },
+      "coffeeMatches": 0
+    },
+    {
+      "id": "export-changes-July",
+      "pages": 3,
+      "textDigest": {
+        "bytes": 31141,
+        "sha256": "c7b749a1867e1ff8f19b154aec485a6357b7ff23e938764c1aa53ad1d35bf205"
+      },
+      "coffeeMatches": 0
+    }
+  ],
+  "unchangedIntervals": [
+    {
+      "productCode": "090111",
+      "bytes": 135,
+      "sha256": "150850e061558f5fda59aececb2b9a56695eb778607bc0395788af403bd8150d",
+      "intervals": [
+        {
+          "from": "2021-09",
+          "to": "2026-08",
+          "evidenceUrl": "https://www.census.gov/foreign-trade/reference/index.html"
+        }
+      ]
+    },
+    {
+      "productCode": "090121",
+      "bytes": 135,
+      "sha256": "150850e061558f5fda59aececb2b9a56695eb778607bc0395788af403bd8150d",
+      "intervals": [
+        {
+          "from": "2021-09",
+          "to": "2026-08",
+          "evidenceUrl": "https://www.census.gov/foreign-trade/reference/index.html"
+        }
+      ]
+    }
+  ],
+  "acceptedIntervalExtended": false,
+  "liveTradeDataImported": false,
+  "r2Operations": 0,
+  "limitations": [
+    "Published archive label dates are not claims about legal tariff effective dates",
+    "Classification hierarchy/units only; no tariff-rate or duty-payment conclusion",
+    "Annual concordances contain historical detail codes and cannot establish simultaneous validity",
+    "Does not re-audit September 2021-August 2026 history, verify September API observations or establish successive-release acceptance"
+  ],
+  "originalCollectionBytes": 59505763,
+  "exportTableVisuallyChecked": true,
+  "scope": "Evidence review only; accepted intervals end in 2026-08",
+  "independentReview": {
+    "outcome": "passed",
+    "receipt": {
+      "bytes": 9067,
+      "sha256": "b1e4f8622d0c80b4c601f80a66486befdbd858d0d8b8bf0234c1fd111b0a17de"
+    },
+    "sourceChecks": {
+      "bytes": 41758,
+      "sha256": "28765dfba36b9c05abaea8fdbc2f3db8b12ad2e836c103f49e6f187cd35ebc1c"
+    },
+    "openFindings": [],
+    "correctedFinding": "Monthly refresh notes distinguish accepted August intervals from reviewed September source evidence",
+    "scope": "Classification source evidence only; no interval extension or release acceptance"
+  }
+}
