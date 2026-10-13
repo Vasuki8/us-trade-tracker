@@ -32,3 +32,29 @@ it.each(['failure','null','crossed'] as const)('refuses %s reader outcome withou
   if(kind==='crossed')vi.mocked(loadAcceptedCanadaPreview).mockResolvedValue({data:makeCountryPreviewFixture(),presentation:{kind:'accepted-fixture'}});
   await expect(loadCanadaPilot({environment:{CANADA_PILOT_MODE:'selected'}})).rejects.toThrow('Canada pilot unavailable or invalid');expect(loadAcceptedCanadaPreview).toHaveBeenCalledTimes(1);
 });
+it('snapshot maps to selected without changing research',async()=>{
+  const data=makeCountryPreviewFixture();data.source='retained';data.rawVerification='previous-reviewed-replay';
+  const before=JSON.stringify(data),acceptedAt='2026-10-12T23:46:54.013Z';
+  vi.mocked(loadAcceptedCanadaPreview).mockImplementation(async options=>{
+    if(options?.modeValue!=='selected')throw Error('Unsupported reader mode private-path');
+    return {data,presentation:{kind:'accepted-local',releaseId:'accepted-release',acceptedAt},proof:'owner-private-evidence'};
+  });
+  const result=await loadCanadaPilot({workspaceRoot:'staged-project',environment:{CANADA_PILOT_MODE:'snapshot'}});
+  expect(loadAcceptedCanadaPreview).toHaveBeenCalledExactlyOnceWith({workspaceRoot:'staged-project',modeValue:'selected'});
+  expect(result).toEqual({data,presentation:{kind:'pilot-snapshot',releaseId:'accepted-release',acceptedAt}});
+  expect(result?.data).toBe(data);expect(JSON.stringify(data)).toBe(before);expect(data.availability.releaseAccepted).toBe(false);
+  expect(Object.keys(result!)).toEqual(['data','presentation']);expect(JSON.stringify(result)).not.toContain('owner-private-evidence');
+});
+it.each(['failure','null','accepted-fixture','fixture-source','synthetic-replay'] as const)('snapshot %s never falls back or leaks diagnostics',async kind=>{
+  const data=makeCountryPreviewFixture();data.source='retained';data.rawVerification='previous-reviewed-replay';
+  if(kind==='fixture-source')data.source='fixture';if(kind==='synthetic-replay')data.rawVerification='synthetic';
+  if(kind==='failure')vi.mocked(loadAcceptedCanadaPreview).mockRejectedValue(Error('private-path secret'));
+  else if(kind==='null')vi.mocked(loadAcceptedCanadaPreview).mockResolvedValue(null);
+  else vi.mocked(loadAcceptedCanadaPreview).mockResolvedValue({data,presentation:kind==='accepted-fixture'?{kind:'accepted-fixture'}:{kind:'accepted-local',releaseId:'accepted-release',acceptedAt:'2026-10-12T23:46:54.013Z'}});
+  await expect(loadCanadaPilot({environment:{CANADA_PILOT_MODE:'snapshot'}})).rejects.toThrow('Canada pilot unavailable or invalid');
+  expect(loadAcceptedCanadaPreview).toHaveBeenCalledTimes(1);
+});
+it('rejects crossed snapshot configuration before any upstream read',async()=>{
+  for(const environment of [{CANADA_PILOT_MODE:'snapshot',TRADE_DATA_MODE:'fixture'},{CANADA_PILOT_MODE:'snapshot',CANADA_PREVIEW_MODE:''},{CANADA_PILOT_MODE:'snapshot',CANADA_ACCEPTED_PREVIEW_MODE:''}])await expect(loadCanadaPilot({environment})).rejects.toThrow();
+  expect(loadAcceptedCanadaPreview).not.toHaveBeenCalled();
+});

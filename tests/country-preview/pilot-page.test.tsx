@@ -11,6 +11,7 @@ import type {CountryPilotPresentation} from '../../src/lib/country-preview/types
 afterEach(()=>cleanup());
 const pilot:CountryPilotPresentation={kind:'pilot-prepared',releaseId:'2026-08-2e27b39c-932b-4f3d-b2aa-3b11ca2a3cca',acceptedAt:'2026-10-12T23:46:54.013Z'};
 const sample:CountryPilotPresentation={kind:'pilot-fixture'};
+const snapshot:CountryPilotPresentation={kind:'pilot-snapshot',releaseId:'2026-08-2e27b39c-932b-4f3d-b2aa-3b11ca2a3cca',acceptedAt:'2026-10-12T23:46:54.013Z'};
 function real(){const data=makeCountryPreviewFixture();data.source='retained';data.rawVerification='previous-reviewed-replay';return data;}
 it('presents a fixed historical snapshot and accepted context without claiming deployment',async()=>{
   const data=real(),before=JSON.stringify(data);render(<CanadaPreview data={data} presentation={pilot}/>);
@@ -42,4 +43,33 @@ it.each(['imports','exports'] as const)('withholds unsupported %s display and CS
 });
 it('rejects crossed pilot sources in both rendering and serializers',()=>{
   const spy=vi.spyOn(console,'error').mockImplementation(()=>{});try{for(const [data,presentation] of [[makeCountryPreviewFixture(),pilot],[real(),sample]] as const){expect(()=>render(<CanadaPreview data={data} presentation={presentation}/>)).toThrow();for(const serialize of [serializeCountryMonthlyCsv,serializeCountryProductsCsv])expect(()=>serialize(data,'imports',presentation)).toThrow();}}finally{spy.mockRestore();}
+});
+it('snapshot retains research without preparation or publication claims',async()=>{
+  const data=real(),before=JSON.stringify(data);render(<CanadaPreview data={data} presentation={snapshot}/>);
+  expect(screen.getByRole('heading',{name:'Canada historical snapshot'})).toBeVisible();
+  expect(screen.getByText('24-month accepted historical snapshot')).toBeVisible();expect(screen.getByText('COUNTRY RESEARCH / HISTORICAL SNAPSHOT')).toBeVisible();
+  expect(screen.getByText('12 Oct 2026, 23:46 UTC')).toHaveAttribute('datetime',snapshot.acceptedAt);
+  expect(screen.getByText(/Snapshot accepted/)).toBeVisible();expect(screen.queryByText(/Prepared for pilot publication|This prepared page does not publish|Website published|Deployment time/)).toBeNull();
+  expect(screen.getAllByText('Compatible · accepted snapshot').length).toBeGreaterThan(0);
+  await userEvent.click(screen.getByRole('radio',{name:'Exports'}));expect(screen.getByRole('table',{name:'Selected categories · Exports'})).toBeVisible();
+  expect(screen.getByText('Capture and verification details')).toBeVisible();expect(screen.getByText('Canadian data exchange definitions')).toBeVisible();expect(JSON.stringify(data)).toBe(before);
+});
+it.each(['imports','exports'] as const)('snapshot CSVs preserve original %s columns with a truthful separate context',direction=>{
+  const data=real();for(const [kind,serialize] of [['monthly',serializeCountryMonthlyCsv],['products',serializeCountryProductsCsv]] as const){
+    const original=parseCsv(serialize(data,direction)),rows=parseCsv(serialize(data,direction,snapshot));
+    expect(rows).toHaveLength(kind==='monthly'?24:10);rows.forEach((row,i)=>{for(const [key,value] of Object.entries(original[i]))expect(row[key],key).toBe(value);expect(row).toMatchObject({presentation_context:'historical-snapshot',accepted_release_id:snapshot.releaseId,local_accepted_at:snapshot.acceptedAt,build_context:'accepted-historical-snapshot'});expect(row).not.toHaveProperty('publication_status');});
+    expect(countryCsvFilename(direction,kind,snapshot)).toBe(`canada-1220-${direction}-2024-09-2026-08-historical-snapshot-${kind}.csv`);
+  }
+  const statistical=parseCsv(serializeCountryProductsCsv(data,direction,snapshot)).filter(row=>row.special_by_policy==='true');expect(statistical.length).toBeGreaterThan(0);
+  for(const row of statistical)expect(row).toMatchObject({change_usd:'',growth_percent:'',current_share_percent:'',prior_share_percent:'',share_change_percentage_points:''});
+});
+it('snapshot keeps zero-prior growth and unavailable comparisons blank',()=>{
+  const data=real(),p=data.directions.imports.products[0];p.prior.observedSumUsd=0;p.prior.sharePercent=0;p.growthPercent=null;
+  let row=parseCsv(serializeCountryProductsCsv(data,'imports',snapshot))[0];expect(row.prior_value_usd).toBe('0');expect(row.growth_percent).toBe('');expect(row.prior_share_percent).toBe('0');
+  p.comparisonEligible=false;p.reason='classification-unverified';row=parseCsv(serializeCountryProductsCsv(data,'imports',snapshot))[0];
+  expect(row).toMatchObject({comparison_eligible:'false',change_usd:'',growth_percent:'',current_share_percent:'',prior_share_percent:'',share_change_percentage_points:''});
+});
+it('snapshot rejects fixture or synthetic-replay sources before displaying or exporting',()=>{
+  const invalid=[makeCountryPreviewFixture(),real()];invalid[1].rawVerification='synthetic';
+  const spy=vi.spyOn(console,'error').mockImplementation(()=>{});try{for(const data of invalid){expect(()=>render(<CanadaPreview data={data} presentation={snapshot}/>)).toThrow();for(const serialize of [serializeCountryMonthlyCsv,serializeCountryProductsCsv])expect(()=>serialize(data,'imports',snapshot)).toThrow();}}finally{spy.mockRestore();}
 });

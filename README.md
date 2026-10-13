@@ -234,6 +234,18 @@ For a clearly synthetic sample, set both `CANADA_PILOT_MODE` and `TRADE_DATA_MOD
 
 Remove `CANADA_PILOT_MODE` for ordinary builds. Preparation keeps `noindex,nofollow`; this is not access control or evidence of publication. Source coverage remains September 2024–August 2026, CSVs are browser-generated, and R2 stays private. Hosting/account changes, deployment, indexing and new data require their later decisions.
 
+For the historical-snapshot presentation intended for deployment review, use the same authenticated real data and unset private modes:
+
+```powershell
+Remove-Item Env:CANADA_PREVIEW_MODE,Env:CANADA_ACCEPTED_PREVIEW_MODE -ErrorAction SilentlyContinue
+Remove-Item Env:TRADE_DATA_MODE -ErrorAction SilentlyContinue
+$env:CANADA_PILOT_MODE = 'snapshot'
+npm run build
+npm run preview -- --port 4422
+```
+
+This changes the page and CSV presentation context without changing the accepted snapshot or publishing it. The separate Pages templates, authenticated upload ZIP and private publication receipt belong to the [deployment plan](docs/superpowers/plans/2026-10-13-canada-pilot-deployment.md). They are not added to ordinary Astro output automatically. Actual project creation and upload require approval of the exact package and target; the current GitHub checks build fixtures.
+
 ## Change workflow
 
 Use `main` for reviewed release code and a separate branch for each feature or fix. Save focused commits with clear descriptions, run the relevant checks, and review changes before merging. Review a preview before publishing a website release.
