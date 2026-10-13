@@ -1,4 +1,4 @@
-import type {Comparison,Direction,ProfileView,Release} from './types';
+import type {Comparison,Direction,ProfileView,Release,ValueStatus} from './types';
 import type {ProductDefinition} from './product-registry';
 import type {DutyComparison,DutyView} from './duty-types';
 import {buildMonthlyChangesView,buildChangesView,rankChanges,type CountryChange,type ChangesView} from './changes';
@@ -7,10 +7,10 @@ import {shiftMonth} from './metrics';
 
 export type PortfolioSelection={productCodes:string[];direction:Direction};
 export type PortfolioPeriods={monthly:ChangesView['periods'];rolling:ChangesView['periods']};
-export type PortfolioTrade={periods:ChangesView['periods'];comparison:Comparison;status:'available'|'incomplete_period'|'classification_unverified'};
+export type PortfolioTrade={periods:ChangesView['periods'];comparison:Comparison;statuses:{current:ValueStatus;previous:ValueStatus};status:'available'|'incomplete_period'|'classification_unverified'};
 export type PortfolioHighlight={movement:'increase'|'decrease';country:CountryChange;duties:DutyComparison|null};
 export type PortfolioDirection={monthly:PortfolioTrade;rolling:PortfolioTrade;highlights:PortfolioHighlight[];unavailablePartnerCount:number;worldDuties:{latest:DutyComparison;rolling:DutyComparison}|null;provenance:ProfileView['provenance'];dutyProvenance:DutyView['provenance']|null};
-export type PreparedPortfolioProduct={code:string;name:string;description:string;reportingMonth:string;directions:Record<Direction,PortfolioDirection>};
+export type PreparedPortfolioProduct={code:string;name:string;description:string;reportingMonth:string;provenance:ProfileView['provenance'];directions:Record<Direction,PortfolioDirection>};
 export type PreparedPortfolio={products:PreparedPortfolioProduct[]};
 export type PortfolioProduct=Omit<PreparedPortfolioProduct,'directions'>&{status:'available'|'reporting_month_mismatch';data:PortfolioDirection|null};
 export type PortfolioBriefing={selection:PortfolioSelection;reportingMonth:string;periods:PortfolioPeriods;products:PortfolioProduct[]};
@@ -18,7 +18,14 @@ export type PortfolioBriefing={selection:PortfolioSelection;reportingMonth:strin
 export function portfolioPeriods(end:string):PortfolioPeriods{
   return {monthly:{current:{from:end,to:end},previous:{from:shiftMonth(end,-12),to:shiftMonth(end,-12)}},rolling:{current:{from:shiftMonth(end,-11),to:end},previous:{from:shiftMonth(end,-23),to:shiftMonth(end,-12)}}};
 }
-const compactTrade=(view:ChangesView):PortfolioTrade=>({periods:view.periods,comparison:view.world,status:!view.classificationComparable?'classification_unverified':view.world.current===null||view.world.previous===null?'incomplete_period':'available'});
+function compactTrade(view:ChangesView,release:Release):PortfolioTrade{
+  const rows=release.observations.filter(row=>row.geography==='world'&&row.direction===view.direction&&row.measure===view.provenance.measure);
+  const status=(period:{from:string;to:string}):ValueStatus=>{
+    const statuses=[];for(let month=period.from;month<=period.to;month=shiftMonth(month,1))statuses.push(rows.find(row=>row.month===month)?.status??'missing');
+    return statuses.includes('suppressed')?'suppressed':statuses.includes('missing')?'missing':'reported';
+  };
+  return {periods:view.periods,comparison:view.world,statuses:{current:status(view.periods.current),previous:status(view.periods.previous)},status:!view.classificationComparable?'classification_unverified':view.world.current===null||view.world.previous===null?'incomplete_period':'available'};
+}
 
 /** Build-time only: no raw observations, history arrays or complete country rankings cross this boundary. */
 export function preparePortfolioBriefing(profiles:readonly {product:ProductDefinition;release:Release}[]):PreparedPortfolio{
@@ -36,11 +43,11 @@ export function preparePortfolioBriefing(profiles:readonly {product:ProductDefin
       const partnerDuties=direction==='imports'&&highlights.length?buildDutyView(release,highlights.map(h=>h.country.code)):null;
       for(const highlight of highlights)highlight.duties=partnerDuties?.series.find(s=>s.code===highlight.country.code)?.rolling??null;
       const world=duties?.series[0];
-      return {monthly:compactTrade(monthly),rolling:compactTrade(rolling),highlights,unavailablePartnerCount:rank.unavailableCount,
+      return {monthly:compactTrade(monthly,release),rolling:compactTrade(rolling,release),highlights,unavailablePartnerCount:rank.unavailableCount,
         worldDuties:world?{latest:world.latest,rolling:world.rolling}:null,provenance:rolling.provenance,dutyProvenance:duties?.provenance??null};
     };
     const imports=directionData('imports'),exports=directionData('exports');
-    return {code:product.code,name:product.displayName,description:release.observations.find(row=>row.geography==='world')?.description??product.displayName,reportingMonth:release.reportingMonth,directions:{imports,exports}};
+    return {code:product.code,name:product.displayName,description:release.observations.find(row=>row.geography==='world')?.description??product.displayName,reportingMonth:release.reportingMonth,provenance:imports.provenance,directions:{imports,exports}};
   });
   return {products};
 }

@@ -6,6 +6,7 @@ import type {DutyComparison,DutyPeriod} from '../lib/trade/duty-types';
 import {usd,usdChange,percent,percentagePoints,monthLabel} from '../lib/trade/format';
 import {profileViewPath} from '../lib/trade/view-link';
 import type {Direction} from '../lib/trade/types';
+import {downloadBlob,serializePortfolioSummaryCsv,serializePortfolioPartnersCsv} from '../lib/trade/downloads';
 
 const range=(period:{from:string;to:string})=>period.from===period.to?monthLabel(period.to):`${monthLabel(period.from)}–${monthLabel(period.to)}`;
 const dutyShare=(value:number|null)=>value===null?'Unavailable':`${value.toFixed(3)}%`;
@@ -70,10 +71,12 @@ export function PortfolioBriefing({data}:{data:PreparedPortfolio}){
   const change=(next:PortfolioSelection)=>{const path=portfolioPath(next,window.location.hash);window.history.pushState(window.history.state,'',path);generation.current++;setSelection(next);setNotice(null);setCopied(false);setManual(false);setLink(new URL(path,window.location.origin).href);};
   const copy=async()=>{const current=++generation.current;try{await navigator.clipboard.writeText(link);if(current===generation.current){setCopied(true);setManual(false);}}catch{if(current===generation.current){setCopied(false);setManual(true);}}};
   const view=selectPortfolioBriefing(data,selection);
+  const download=(kind:'summary'|'partners')=>downloadBlob(new Blob([kind==='summary'?serializePortfolioSummaryCsv(view):serializePortfolioPartnersCsv(view)],{type:'text/csv;charset=utf-8'}),`coffee-portfolio-${selection.direction}-${view.reportingMonth}-${kind}.csv`);
   return <div className="portfolio-briefing"><div className="portfolio-controls">
     <fieldset disabled={!ready}><legend>Products · select at least one</legend>{data.products.map(p=><label key={p.code}><input type="checkbox" checked={selection.productCodes.includes(p.code)} disabled={selection.productCodes.length===1&&selection.productCodes.includes(p.code)} onChange={event=>change({...selection,productCodes:data.products.filter(item=>item.code===p.code?event.target.checked:selection.productCodes.includes(item.code)).map(item=>item.code)})}/>{p.name} · HS {p.code}</label>)}</fieldset>
     <fieldset disabled={!ready}><legend>Trade direction</legend>{(['imports','exports'] as const).map(direction=><label key={direction}><input type="radio" name="portfolio-direction" checked={direction===selection.direction} onChange={()=>change({...selection,direction})}/>{direction==='imports'?'Imports':'Exports'}</label>)}</fieldset>
     <div className="view-link"><button className="secondary-button" disabled={!ready} onClick={copy}>Copy briefing link</button><p>Links restore your products and direction using the latest accepted releases.</p>{notice&&<p role="status">{notice}</p>}{copied&&<p role="status">Briefing link copied.</p>}{manual&&<label>Briefing link<input readOnly value={link} onFocus={event=>event.currentTarget.select()}/></label>}</div>
+    <div className="download-actions"><button className="secondary-button" disabled={!ready} onClick={()=>download('summary')}>Download summary CSV</button><button className="secondary-button" disabled={!ready} onClick={()=>download('partners')}>Download partner changes CSV</button><button className="secondary-button" disabled={!ready} onClick={()=>window.print()}>Print / Save PDF</button></div>
     <noscript><p>Enable JavaScript to select products, change direction, restore a saved selection or download CSVs. The default report shows all available products and Imports. You can print this default report using your browser.</p></noscript>
   </div>
     <p className="portfolio-selection">Selected report: {view.products.map(p=>`${p.name} (HS ${p.code})`).join('; ')} · {selection.direction==='imports'?'Imports':'Exports'} · Reporting month: {monthLabel(view.reportingMonth)}.</p>

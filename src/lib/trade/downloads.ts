@@ -2,7 +2,37 @@ import type {ProfileView} from './types';
 import type {DutyView,DutyPeriod,DutyComparison} from './duty-types';
 import {rankChanges,selectCountryChanges,type ChangeMetric,type ChangesView} from './changes';
 import {rankProductChanges,PRODUCT_GROWTH_THRESHOLD_USD,type ProductChangesView,type ProductChangeMetric} from './product-changes';
+import type {PortfolioBriefing,PortfolioProduct} from './portfolio-briefing';
 const csvCell=(value:unknown)=>{let text=String(value??'');if(typeof value==='string'&&/^(?:[=+@]|-(?!$)|[\t\r])/.test(text))text="'"+text;return /[",\r\n]/.test(text)?`"${text.replaceAll('"','""')}"`:text;};
+const portfolioHeaders=['product_code','product_name','product_description','direction','reporting_month','product_reporting_month','comparison_period','availability','current_value_usd','previous_value_usd','change_usd','growth_percent','current_value_status','previous_value_status','current_period_start','current_period_end','previous_period_start','previous_period_end','measure','units','source','retrieved_at','code_version','revised','source_urls'];
+const dutyPeriodColumns=['calculated_duty_usd','consumption_value_usd','dutiable_value_usd','duty_share_percent','calculated_duty_status','consumption_value_status','dutiable_value_status','complete','classification_compatible','coverage_status','affected_dutiable_value_usd','affected_share_percent','qualified'];
+const portfolioDutyHeaders=[...['current','previous'].flatMap(side=>dutyPeriodColumns.map(column=>`${side}_duty_${column}`)),'duty_comparison_available','duty_change_usd','duty_growth_percent','duty_share_change_percentage_points','numerator_measure','denominator_measure','duty_qualification','duty_source','duty_retrieved_at','duty_code_version','duty_revised','duty_source_urls'];
+const csvRecords=(headers:string[],rows:Record<string,unknown>[])=>[headers,...rows.map(row=>headers.map(key=>row[key]))].map(row=>row.map(csvCell).join(',')).join('\r\n')+'\r\n';
+function portfolioDutyRecord(value:DutyComparison|null|undefined,product:PortfolioProduct):Record<string,unknown>{
+  const row:Record<string,unknown>={};
+  for(const side of ['current','previous'] as const){const period=value?.[side];const cells=period?[period.calculatedDutyUsd,period.consumptionValueUsd,period.dutiableValueUsd,period.dutySharePercent,period.statuses.calculatedDuty,period.statuses.consumptionValue,period.statuses.dutiableValue,period.complete,period.classificationCompatible,period.coverage.status,period.coverage.affectedDutiableValueUsd,period.coverage.affectedSharePercent,period.coverage.qualified]:[];
+    dutyPeriodColumns.forEach((key,i)=>{row[`${side}_duty_${key}`]=cells[i];});
+  }
+  const provenance=value?product.data?.dutyProvenance:null;
+  return {...row,duty_comparison_available:value?.change.comparable,duty_change_usd:value?.change.calculatedDutyUsd,duty_growth_percent:value?.change.growthPercent,duty_share_change_percentage_points:value?.change.dutySharePercentagePoints,
+    numerator_measure:value?'CAL_DUT_MO':null,denominator_measure:value?'CON_VAL_MO':null,
+    duty_qualification:value?'Estimated duties may differ from amounts paid; excludes antidumping and countervailing duties. RP70/79 are dutiable value without calculated duties. Reported zero is not proof of duty-free treatment.':null,
+    duty_source:provenance?(provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau'):null,duty_retrieved_at:provenance?.retrievedAt,duty_code_version:provenance?.codeVersion,duty_revised:provenance?.revised,duty_source_urls:provenance?.sourceUrls.join(' | ')};
+}
+function portfolioRecord(view:PortfolioBriefing,product:PortfolioProduct,period:'monthly'|'rolling'):Record<string,unknown>{
+  const trade=product.data?.[period],periods=view.periods[period],source=product.provenance;
+  return {product_code:product.code,product_name:product.name,product_description:product.description,direction:view.selection.direction,reporting_month:view.reportingMonth,product_reporting_month:product.reportingMonth,comparison_period:period,
+    availability:trade?.status??product.status,current_value_usd:trade?.comparison.current,previous_value_usd:trade?.comparison.previous,change_usd:trade?.comparison.changeUsd,growth_percent:trade?.comparison.changePercent,current_value_status:trade?.statuses.current??'unavailable',previous_value_status:trade?.statuses.previous??'unavailable',
+    current_period_start:periods.current.from,current_period_end:periods.current.to,previous_period_start:periods.previous.from,previous_period_end:periods.previous.to,measure:view.selection.direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO',units:'current USD, not seasonally adjusted; growth and shares in percent; share changes in percentage points',source:source.source==='fixture'?'Development sample data':'U.S. Census Bureau',retrieved_at:source.retrievedAt,code_version:source.codeVersion,revised:source.revised,source_urls:source.sourceUrls.join(' | ')};
+}
+export function serializePortfolioSummaryCsv(view:PortfolioBriefing):string{
+  const rows=view.products.flatMap(product=>(['monthly','rolling'] as const).map(period=>({...portfolioRecord(view,product,period),...portfolioDutyRecord(period==='monthly'?product.data?.worldDuties?.latest:product.data?.worldDuties?.rolling,product)})));
+  return csvRecords([...portfolioHeaders,...portfolioDutyHeaders],rows);
+}
+export function serializePortfolioPartnersCsv(view:PortfolioBriefing):string{
+  const rows=view.products.flatMap(product=>product.data?.highlights.map(({movement,country,duties})=>({...portfolioRecord(view,product,'rolling'),movement,ranking_metric:'dollars',partner_code:country.code,partner_name:country.name,current_value_usd:country.currentUsd,previous_value_usd:country.previousUsd,change_usd:country.changeUsd,growth_percent:country.changePercent,current_share_percent:country.currentSharePercent,previous_share_percent:country.previousSharePercent,share_change_percentage_points:country.shareChangePoints,...portfolioDutyRecord(duties,product)}))??[]);
+  return csvRecords([...portfolioHeaders,'movement','ranking_metric','partner_code','partner_name','current_share_percent','previous_share_percent','share_change_percentage_points',...portfolioDutyHeaders],rows);
+}
 export function serializeProductChangesCsv(view:ProductChangesView,metric:ProductChangeMetric):string{
   const ranking=rankProductChanges(view,metric);
   const headers=['ranking_metric','movement','rank','product_code','product_name','product_description','direction','current_value_usd','previous_value_usd','change_usd','growth_percent','current_period_start','current_period_end','previous_period_start','previous_period_end','measure','units','minimum_previous_value_usd','reviewed_product_count','unavailable_count','different_reporting_month_count','below_threshold_count','unchanged_count','source','retrieved_at','code_version','revised','source_urls'];
