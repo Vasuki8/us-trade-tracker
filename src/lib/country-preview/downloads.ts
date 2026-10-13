@@ -8,13 +8,13 @@ const csv=(headers:string[],rows:unknown[][])=>[headers,...rows].map(row=>row.ma
 const source=(data:CountryPreview)=>data.source==='fixture'?'Synthetic development data':'U.S. Census Bureau monthly merchandise files';
 const provenance=(data:CountryPreview)=>[source(data),data.captureInterval.startedAt,data.captureInterval.finishedAt,data.processingVersion,data.rawVerification];
 export function assertCountryPresentationSource(data:CountryPreview,p?:CountryPresentation):void {
-  const accepted=p?.kind==='accepted-local'||p?.kind==='pilot-prepared',sample=p?.kind==='accepted-fixture'||p?.kind==='pilot-fixture';
+  const accepted=p?.kind==='accepted-local'||p?.kind==='pilot-prepared'||p?.kind==='pilot-snapshot',sample=p?.kind==='accepted-fixture'||p?.kind==='pilot-fixture';
   if(accepted&&(data.source!=='retained'||data.rawVerification!=='previous-reviewed-replay')||sample&&(data.source!=='fixture'||data.rawVerification!=='synthetic'))throw new Error('Country presentation/source mismatch');
 }
-const contextHeaders=(p?:CountryPresentation)=>p&&p.kind!=='preview'?['presentation_context','accepted_release_id','local_accepted_at',p.kind==='pilot-prepared'||p.kind==='pilot-fixture'?'build_context':'publication_status']:[];
-const contextValues=(p?:CountryPresentation)=>!p||p.kind==='preview'?[]:p.kind==='accepted-local'?['accepted-local',p.releaseId,p.acceptedAt,'not-published']:p.kind==='pilot-prepared'?['pilot-preparation',p.releaseId,p.acceptedAt,'local-preparation-only']:p.kind==='pilot-fixture'?['pilot-fixture','','','local-preparation-only']:['accepted-profile-fixture','','','not-published'];
+const contextHeaders=(p?:CountryPresentation)=>p&&p.kind!=='preview'?['presentation_context','accepted_release_id','local_accepted_at',p.kind==='pilot-prepared'||p.kind==='pilot-fixture'||p.kind==='pilot-snapshot'?'build_context':'publication_status']:[];
+const contextValues=(p?:CountryPresentation)=>!p||p.kind==='preview'?[]:p.kind==='accepted-local'?['accepted-local',p.releaseId,p.acceptedAt,'not-published']:p.kind==='pilot-prepared'?['pilot-preparation',p.releaseId,p.acceptedAt,'local-preparation-only']:p.kind==='pilot-snapshot'?['historical-snapshot',p.releaseId,p.acceptedAt,'accepted-historical-snapshot']:p.kind==='pilot-fixture'?['pilot-fixture','','','local-preparation-only']:['accepted-profile-fixture','','','not-published'];
 export function countryCsvFilename(direction:CountryDirection,kind:'monthly'|'products',presentation?:CountryPresentation):string {
-  const context=!presentation||presentation.kind==='preview'?'preview':presentation.kind==='accepted-local'?'accepted-local':presentation.kind==='pilot-prepared'?'pilot-prepared':presentation.kind==='pilot-fixture'?'pilot-fixture':'accepted-profile-fixture';
+  const context=!presentation||presentation.kind==='preview'?'preview':presentation.kind==='accepted-local'?'accepted-local':presentation.kind==='pilot-prepared'?'pilot-prepared':presentation.kind==='pilot-snapshot'?'historical-snapshot':presentation.kind==='pilot-fixture'?'pilot-fixture':'accepted-profile-fixture';
   return `canada-1220-${direction}-2024-09-2026-08-${context}-${kind}.csv`;
 }
 export function serializeCountryMonthlyCsv(data:CountryPreview,direction:CountryDirection,presentation?:CountryPresentation):string {
