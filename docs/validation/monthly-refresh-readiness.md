@@ -6,7 +6,9 @@ Validated October 10, 2026. This bounded pipeline check prepares the two accepte
 
 The accepted datasets report August 2026. The [Census FT900 release calendar](https://www.census.gov/foreign-trade/schedule.html), checked October 10, schedules September 2026 for **November 4, 2026 at 8:30 a.m. Eastern**. A synthetic September transition can test the software now but cannot prove a successful update across two official releases. That launch requirement remains open.
 
-Before the real September import, confirm publication and API coverage and review classification continuity through September. Current classification evidence for both accepted products ends in August. The importer does not extend it automatically; a duty-enabled future snapshot without compatible evidence fails validation and retains the accepted pointer.
+Before the real September import, confirm publication and API coverage and review classification continuity through September. Accepted classification intervals for both products end in August. The importer does not extend them automatically; a duty-enabled future snapshot without compatible evidence fails validation and retains the accepted pointer.
+
+The [October 13 classification review](../data-validation/coffee-september-classification.md) compares the August HTS baseline with all three listed September editions and checks current Schedule B definitions/notices for both accepted coffee products. Its evidence supports continued HS6 comparability; accepted intervals still end in August. Recheck publication/notices and explicitly review the interval update before the live candidate run. The existing `candidate_only` workflow option prepares a restored-baseline candidate, backup and offline recovery for review without promotion; it does not itself satisfy successive-release acceptance.
 
 ## Importer correction
 
