@@ -12,7 +12,11 @@ on:
         required: true
         type: string
       archive_to_r2:
-        description: Retain the accepted release in the configured private R2 bucket (main only)
+        description: Restore and archive in private R2; promote unless candidate_only is enabled (main only)
+        type: boolean
+        default: false
+      candidate_only:
+        description: Prepare for review without promotion (requires archive_to_r2 and an existing archive on main)
         type: boolean
         default: false
       include_duties:
@@ -36,6 +40,7 @@ jobs:
       PRODUCT_CODE: ${{ inputs.product_code }}
       REPORTING_MONTH: ${{ inputs.reporting_month }}
       ARCHIVE_TO_R2: ${{ inputs.archive_to_r2 }}
+      CANDIDATE_ONLY: ${{ inputs.candidate_only }}
       INITIALIZE_ARCHIVE: ${{ inputs.initialize_archive }}
       INCLUDE_DUTIES: ${{ inputs.include_duties }}
     steps:
@@ -100,9 +105,17 @@ jobs:
         id: recovery
         if: success() && inputs.archive_to_r2 && steps.backup.outcome == 'success'
         run: npm run data:archive -- verify --product "$PRODUCT_CODE" --data-dir .tmp/recovery/data --run-dir .tmp/archive
+      - name: Report the candidate ready for review
+        id: candidate_ready
+        if: success() && inputs.candidate_only && inputs.archive_to_r2 && github.ref == 'refs/heads/main' && steps.restore.outcome == 'success' && steps.stage.outcome == 'success' && steps.backup.outcome == 'success' && steps.recovery.outcome == 'success'
+        env:
+          BACKUP_ARTIFACT_ID: ${{ steps.backup.outputs.artifact-id }}
+          BACKUP_ARTIFACT_DIGEST: ${{ steps.backup.outputs.artifact-digest }}
+        run: |
+          printf '### Candidate ready for review\n\nProduct: %s\n\nReporting month: %s\n\nBackup artifact ID: %s\n\nBackup artifact digest: %s\n\nBaseline restoration, candidate staging, backup and offline recovery succeeded. Promotion was skipped; review is required before acceptance.\n' "$PRODUCT_CODE" "$REPORTING_MONTH" "$BACKUP_ARTIFACT_ID" "$BACKUP_ARTIFACT_DIGEST" >> "$GITHUB_STEP_SUMMARY"
       - name: Promote the backed-up candidate conditionally
         id: promote
-        if: success() && inputs.archive_to_r2 && github.ref == 'refs/heads/main' && steps.backup.outcome == 'success' && steps.recovery.outcome == 'success'
+        if: success() && inputs.archive_to_r2 && !inputs.candidate_only && github.ref == 'refs/heads/main' && steps.backup.outcome == 'success' && steps.recovery.outcome == 'success'
         env:
           DATA_DIR: ${{ steps.preflight.outputs.data_dir }}
           R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
