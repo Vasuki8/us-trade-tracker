@@ -1,7 +1,7 @@
 export type CountryDirection='imports'|'exports';
 export type CountryPreviewMode='fixture'|'retained'|null;
-export type CanadaPilotMode='fixture'|'selected'|null;
-export type CountryPilotPresentation={kind:'pilot-fixture'}|{kind:'pilot-prepared';releaseId:string;acceptedAt:string};
+export type CanadaPilotMode='fixture'|'selected'|'snapshot'|null;
+export type CountryPilotPresentation={kind:'pilot-fixture'}|{kind:'pilot-prepared'|'pilot-snapshot';releaseId:string;acceptedAt:string};
 export type CountryPresentation={kind:'preview'}|{kind:'accepted-fixture'}|{kind:'accepted-local';releaseId:string;acceptedAt:string}|CountryPilotPresentation;
 export type OriginalSource={month:string;url:string;capturedAt:string;bytes:number;sha256:string};
 export type CountryTotalPoint={month:string;valueUsd:number|null;originalSource:OriginalSource|null};

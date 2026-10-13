@@ -14,3 +14,14 @@ it.each(['CANADA_PREVIEW_MODE','CANADA_ACCEPTED_PREVIEW_MODE'] as const)('refuse
   expect(()=>resolveCanadaPilotMode({CANADA_PILOT_MODE:'selected',CANADA_PREVIEW_MODE:'fixture',CANADA_ACCEPTED_PREVIEW_MODE:'fixture'})).toThrow();
 });
 it.each([['selected','fixture'],['selected',''],['selected','published'],['fixture',undefined],['fixture','census'],['fixture','']] as const)('refuses mixed pilot %s/product %s modes',(pilot,product)=>{expect(()=>resolveCanadaPilotMode({CANADA_PILOT_MODE:pilot,TRADE_DATA_MODE:product})).toThrow();});
+it('allows snapshot only with real products',()=>{
+  expect(resolveCanadaPilotMode({CANADA_PILOT_MODE:'snapshot'})).toBe('snapshot');
+  expect(resolveCanadaPilotMode({CANADA_PILOT_MODE:'snapshot',TRADE_DATA_MODE:'census'})).toBe('snapshot');
+  for(const product of ['fixture','','published'])expect(()=>resolveCanadaPilotMode({CANADA_PILOT_MODE:'snapshot',TRADE_DATA_MODE:product})).toThrow();
+});
+it.each(['CANADA_PREVIEW_MODE','CANADA_ACCEPTED_PREVIEW_MODE'] as const)('rejects every defined private flag %s for snapshot',name=>{
+  for(const value of ['','fixture','selected','retained'])expect(()=>resolveCanadaPilotMode({CANADA_PILOT_MODE:'snapshot',[name]:value})).toThrow();
+});
+it.each([' Snapshot','snapshot ','Snapshot','SNAPSHOT'])('refuses malformed snapshot mode %s',mode=>{
+  expect(()=>resolveCanadaPilotMode({CANADA_PILOT_MODE:mode})).toThrow();
+});
