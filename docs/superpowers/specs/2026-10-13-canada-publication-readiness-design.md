@@ -1,6 +1,6 @@
 # Canada publication readiness design
 
-Prepared October 13, 2026 against `b5456adb9c93743bb5514d305c911da565456b71`. **Proposed for owner review.** The owner's latest “continue” follows the recommendation to prepare publication readiness. This stage covers the design; it does not authorize a public deployment, account configuration, new data collection or implementation.
+Prepared October 13, 2026 against `b5456adb9c93743bb5514d305c911da565456b71`. **Written design approved for implementation planning.** The owner's October 13 “Approved” applies to the reviewed written design and authorizes preparation of its implementation plan. It does not authorize public deployment, account configuration, new data collection or implementation.
 
 ## Purpose and recommendation
 
@@ -84,4 +84,4 @@ Excluded: new Canada months or classifications, another country/product, country
 
 Owner review of this written design decides whether to prepare the implementation plan for the **local public-pilot preparation milestone**. It does not select a hosting project or approve publication. The plan will name exact files/interfaces, failure checks and preserved identities. The owner retains the later decision to deploy an initial pilot before successive-release acceptance or wait for that evidence; no implementation check can make that strategic choice automatically.
 
-Independent review of `8f6678c76be539b984f94387da8fc07a8d979990` found no issues and confirmed the source facts, existing-interface fit and authorization boundaries. Document checks verified all six local links, no placeholders, archive evidence bindings, all eleven protected file identities and the unchanged selected pointer. Account capacity/project suitability, future source availability, live successive-release success, deployment and the proposed page's rendering remain later evidence gates. The design is ready for owner review; implementation planning has not begun.
+Independent review of `8f6678c76be539b984f94387da8fc07a8d979990` found no issues and confirmed the source facts, existing-interface fit and authorization boundaries. Document checks verified all six local links, no placeholders, archive evidence bindings, all eleven protected file identities and the unchanged selected pointer. Account capacity/project suitability, future source availability, live successive-release success, deployment and the proposed page's rendering remain later evidence gates. The owner subsequently approved this design for the [implementation plan](../plans/2026-10-13-canada-pilot-preparation.md); implementation requires review of that plan.
