@@ -43,3 +43,24 @@ Independent review caught an incorrect boundary in the first timing report: remo
 - All five retained-Census browser cases passed. A direct before/after comparison matched the initial visible profile and byte-identical merchandise, changes and duty CSV downloads for world and selected-country views, both trade directions and both change-ranking measures. The other cases verified independently replayed duty records, tiny positive shares, mobile downloads and server-rendered research.
 
 The normal local data pointer was separately advanced to this previously verified, acknowledged archive recovery. The legacy version 1 release and original pointer were retained under ignored local backup storage. Merchandise values did not change. No fresh Census request, remote archive promotion, deployment, public R2 delivery or schedule was required for this loading work. Public launch still requires the separate successive-official-release and deployment checks.
+
+## Hosted baseline — October 13, 2026
+
+After the [verified public pilot deployment](canada-pilot-deployment.md#observed-public-pilot), the two hosted coffee profiles were measured at `https://us-trade-tracker.pages.dev`. This completes the previously deferred deployed measurement, without changing product code, hosted assets, accepted data or provider settings. The successful second official-release update remains a separate gate.
+
+Five fresh Chromium contexts per product and CPU rate were visited in alternating product order, for **20 visits**. The existing test-only React commit hook requested Imports → Exports in the next task; completion required both `ALL_VAL_MO` and the rendered “Total exports” definition. Timings start at navigation; switch latency is separately measured from the requested click to its completed DOM update. Long-task observation continued through completion and the following animation frame. Viewport was 1280 × 1000, with normal CPU and simulated 4× slower CPU, and no network throttling.
+
+Origin-only request interception kept the probe bounded and disabled the browser HTTP cache. CDN, DNS and connection state outside each fresh context were not reset. These are measurements on the development computer, with instrumented headless Chromium—not physical mobile-device measurements or real-user field data. The current published artifact includes later features; its timings are not a before/after comparison with the October 9 local build.
+
+| Product | CPU | Median first React commit | Median navigation through completed switch | Median switch latency | Median total observed long-task time |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Roasted coffee, 090121 | Normal | 681.3 ms | 728.5 ms | 47.0 ms | 0 ms |
+| Green coffee, 090111 | Normal | 586.8 ms | 624.6 ms | 38.2 ms | 0 ms |
+| Roasted coffee, 090121 | Simulated 4× slower | 1,467.0 ms | 1,714.5 ms | 246.5 ms | 455 ms |
+| Green coffee, 090111 | Simulated 4× slower | 1,197.2 ms | 1,403.7 ms | 203.0 ms | 421 ms |
+
+Median encoded HTML body sizes were 77,976 bytes for roasted coffee and 59,625 bytes for green coffee. Decoded HTML sizes were 283,215 and 227,142 bytes. Every response matched its published length/SHA-256 in the authenticated 24-entry manifest from source commit `2a7796df69629448678bca8885f842ca6ae8dceb`. All 20 visits completed Exports, with zero page errors and zero blocked external requests. These measurements describe HTML/body transfer and the recorded JavaScript/CSS resources, not a complete network-byte billing measurement.
+
+The first attempt used the wrong completion text (“Domestic + foreign exports”) and timed out. A single diagnostic confirmed a successful React commit/export switch, the actual “Total exports” text and no website errors. That failed attempt and root-cause evidence remain in `data/backups/hosted-profile-loading/20261013-r1/`; the corrected runs and exact measurement harness are preserved separately in `20261013-r2/`. No failed timing is included in the medians.
+
+This small baseline shows prompt switches under the tested normal-CPU conditions and more main-thread work under simulated slowdown. It does not establish a broad performance budget or justify a new optimization on its own. Keep the existing representation and use representative task/device evidence before choosing another loading change.
