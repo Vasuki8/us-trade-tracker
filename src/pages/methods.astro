@@ -3,7 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import {loadPublishedReleases} from '../lib/trade/load-release';
 import {monthLabel} from '../lib/trade/format';
 import {CENSUS_RELEASE_CALENDAR,nextScheduledRelease} from '../lib/trade/release-schedule';
+import {loadCanadaPilot} from '../lib/country-preview/pilot-load.server';
 const profiles=await loadPublishedReleases();
+const canadaPilot=await loadCanadaPilot();
 const preparedAt=new Date(),scheduled=nextScheduledRelease(preparedAt);
 const publicationDate=scheduled?new Intl.DateTimeFormat('en-US',{dateStyle:'long',timeZone:'America/New_York'}).format(new Date(scheduled.publishesAt)):null;
 const checkedDate=new Intl.DateTimeFormat('en-US',{dateStyle:'long',timeZone:'UTC'}).format(new Date(`${CENSUS_RELEASE_CALENDAR.checkedOn}T00:00:00Z`));
@@ -22,6 +24,13 @@ const preparedLabel=new Intl.DateTimeFormat('en-US',{dateStyle:'long',timeStyle:
   <p>Dates can change. Confirm them on the <a href={CENSUS_RELEASE_CALENDAR.sourceUrl}>official release calendar</a>.</p>
   <p>Scheduled publication does not mean this website has accepted new data. Published reporting months are listed below.</p>
 </section>
+{canadaPilot&&<section class="release-details" aria-labelledby="canada-snapshot-heading">
+  <h2 id="canada-snapshot-heading">Canada snapshot</h2>
+  <p><a href="/countries/1220/">Canada historical snapshot</a> covers September 2024–August 2026 only. Source: {canadaPilot.data.source==='fixture'?'Synthetic development data':'U.S. Census Bureau monthly merchandise files'}. This prepared page does not publish the snapshot or promise monthly Canada updates.</p>
+  <p>Imports use GEN_VAL_MO, general imports at customs value. Exports use ALL_VAL_MO, domestic plus foreign exports at reported FAS value; Census derives exports to Canada from Canadian import data. Values are nominal USD, not seasonally adjusted.</p>
+  <p>Category shares use the all-goods totals from the same captured files as their product values, separately for imports and exports. These ten selected categories per direction cover a subset of trade. Statistical categories remain in observed totals but have no ordinary-product comparisons.</p>
+  <p>Currently revised country totals can differ from this captured collection; it has no uniform or latest-revised claim. Capture times describe saved files, not observation revision dates. Historical audit failures remain failed. {canadaPilot.data.source==='fixture'?'The observations and reference examples here are synthetic.':'Local acceptance applies to the fixed snapshot and qualified comparisons; the page reuses previously reviewed sources without a fresh source audit.'}</p>
+</section>}
 <h2>Published release information</h2>
 <p>Each published profile uses its own validated release. A failed refresh retains the last validated release and its date. Revision counts compare records with the previous retained release.</p>
 {profiles.map(({product,release})=><article class="release-details" aria-labelledby={`release-${product.code}`}>

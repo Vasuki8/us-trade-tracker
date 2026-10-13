@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {CanadaPreview} from '../../components/CanadaPreview';
+import {loadCanadaPilot} from '../../lib/country-preview/pilot-load.server';
+export async function getStaticPaths(){const pilot=await loadCanadaPilot();return pilot?[{params:{code:'1220'},props:pilot}]:[];}
+const {data,presentation}=Astro.props;
+---
+<BaseLayout title="Canada historical snapshot" description="Captured U.S. goods trade with Canada, September 2024–August 2026." robots="noindex,nofollow">
+  <CanadaPreview data={data} presentation={presentation} client:load/>
+</BaseLayout>

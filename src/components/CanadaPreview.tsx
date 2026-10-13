@@ -7,7 +7,8 @@ import {CountryPreviewChart} from './CountryPreviewChart';
 import {countryTimestampLabel} from '../lib/country-preview/presentation';
 const period=(from:string,to:string)=>`${monthLabel(from)}–${monthLabel(to)}`;
 export function CanadaPreview({data,presentation={kind:'preview'}}:{data:CountryPreview;presentation?:CountryPresentation}):React.JSX.Element {
-  const accepted=presentation.kind==='accepted-local',profileSample=presentation.kind==='accepted-fixture';
+  const pilot=presentation.kind==='pilot-prepared'||presentation.kind==='pilot-fixture';
+  const accepted=presentation.kind==='accepted-local'||presentation.kind==='pilot-prepared',profileSample=presentation.kind==='accepted-fixture'||presentation.kind==='pilot-fixture';
   const profile=accepted||profileSample;
   assertCountryPresentationSource(data,presentation);
   const [direction,setDirection]=useState<CountryDirection>('imports'),[error,setError]=useState<string|null>(null);
@@ -16,7 +17,7 @@ export function CanadaPreview({data,presentation={kind:'preview'}}:{data:Country
   const view=data.directions[direction],label=direction==='imports'?'Imports':'Exports';
   const publicationSources=view.references.differences.flatMap(row=>row.publicationSource?[{month:row.month,...row.publicationSource}]:[]);
   const source=data.source==='fixture'?'Synthetic development data':'U.S. Census Bureau monthly merchandise files';
-  const banner=accepted?'24-month locally accepted snapshot · Not published':profileSample?'Synthetic accepted-profile sample · No accepted country release':data.source==='retained'?'24-month captured assessment · Acceptance not checked in this preview':'24-month development preview · No accepted country release';
+  const banner=pilot?accepted?'24-month accepted snapshot · Prepared for pilot publication':'Synthetic pilot preparation sample · No accepted country release':accepted?'24-month locally accepted snapshot · Not published':profileSample?'Synthetic accepted-profile sample · No accepted country release':data.source==='retained'?'24-month captured assessment · Acceptance not checked in this preview':'24-month development preview · No accepted country release';
   const verificationNote=data.source==='retained'?`Reuses the previously reviewed ${profile?'source':'raw'} replay; this page performs no fresh source verification.`:'All displayed observations and reference examples are synthetic.';
   const auditMetadata=<>
     <p>Assessment processing version: <code>{data.processingVersion}</code> · Source verification basis: {data.rawVerification}. {!profile&&verificationNote}</p>
@@ -24,9 +25,9 @@ export function CanadaPreview({data,presentation={kind:'preview'}}:{data:Country
   </>;
   const download=(kind:'monthly'|'products')=>{try{downloadBlob(new Blob([kind==='monthly'?serializeCountryMonthlyCsv(data,direction,presentation):serializeCountryProductsCsv(data,direction,presentation)],{type:'text/csv;charset=utf-8'}),countryCsvFilename(direction,kind,presentation));setError(null);}catch{setError('Download unavailable. Please try again.');}};
   return <div className="canada-preview">
-    <div className="page-heading"><p className="eyebrow">COUNTRY RESEARCH / {accepted?'ACCEPTED LOCAL PREVIEW':profileSample?'ACCEPTED-PROFILE DEVELOPMENT SAMPLE':'LOCAL DEVELOPMENT PREVIEW'}</p><h1>Canada</h1><p>Explore captured U.S. goods trade with Canada, September 2024–August 2026.</p></div>
+    <div className="page-heading"><p className="eyebrow">COUNTRY RESEARCH / {pilot?accepted?'PILOT PREPARATION':'PILOT DEVELOPMENT SAMPLE':accepted?'ACCEPTED LOCAL PREVIEW':profileSample?'ACCEPTED-PROFILE DEVELOPMENT SAMPLE':'LOCAL DEVELOPMENT PREVIEW'}</p><h1>{pilot?'Canada historical snapshot':'Canada'}</h1><p>Explore captured U.S. goods trade with Canada, September 2024–August 2026.</p></div>
     <div className="sample-banner"><strong>{source}</strong><span>{banner}</span></div>
-    {accepted&&<p className="preview-capture">Local acceptance recorded <time dateTime={presentation.acceptedAt}>{countryTimestampLabel(presentation.acceptedAt)}</time>. This local preview does not publish the snapshot.</p>}
+    {accepted&&<p className="preview-capture">Local acceptance recorded <time dateTime={presentation.acceptedAt}>{countryTimestampLabel(presentation.acceptedAt)}</time>. {pilot?'This prepared page does not publish the snapshot.':'This local preview does not publish the snapshot.'}</p>}
     <p className="preview-capture">Source collection captured {profile?<time dateTime={data.captureInterval.startedAt}>{countryTimestampLabel(data.captureInterval.startedAt)}</time>:data.captureInterval.startedAt} to {profile?<time dateTime={data.captureInterval.finishedAt}>{countryTimestampLabel(data.captureInterval.finishedAt)}</time>:data.captureInterval.finishedAt}. Capture times describe the saved files, not observation revision dates.</p>
     <fieldset className="explorer-controls" disabled={!interactive}><legend>Trade direction</legend>{(['imports','exports'] as const).map(d=><label key={d}><input type="radio" name="canada-direction" value={d} checked={direction===d} onChange={()=>{setDirection(d);setError(null);}}/>{d==='imports'?'Imports':'Exports'}</label>)}</fieldset>
     <noscript><p>Imports are shown below. Direction switching and CSV downloads require JavaScript.</p></noscript>

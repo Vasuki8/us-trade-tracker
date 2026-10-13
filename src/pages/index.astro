@@ -3,7 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import {loadPublishedReleases} from '../lib/trade/load-release';
 import {monthLabel} from '../lib/trade/format';
 import {monthlyChangesPath,releaseBriefingPath} from '../lib/trade/view-link';
+import {loadCanadaPilot} from '../lib/country-preview/pilot-load.server';
 const profiles=await loadPublishedReleases();
+const canadaPilot=await loadCanadaPilot();
 const sample=profiles.some(({release})=>release.source==='fixture');
 ---
 <BaseLayout title="Follow U.S. goods trade">
@@ -35,6 +37,13 @@ const sample=profiles.some(({release})=>release.source==='fixture');
       </article>
     </li>)}</ul></nav>
   </section>
+  {canadaPilot&&<section class="data-card" aria-labelledby="home-country-heading">
+    <p class="eyebrow">COUNTRY RESEARCH</p><h2 id="home-country-heading">Country snapshot</h2>
+    <h3><a href="/countries/1220/">Canada historical snapshot</a></h3>
+    <p>September 2024–August 2026 · 24 captured months of U.S. goods trade.</p>
+    <p>Source: {canadaPilot.data.source==='fixture'?'Synthetic development data':'U.S. Census Bureau monthly merchandise files'}.</p>
+    <p>Explore all-goods history and ten selected categories in each direction, with their source and comparison qualifications. This fixed historical snapshot does not promise monthly Canada updates.</p>
+  </section>}
 </BaseLayout>
 <style>
   .home-profiles{padding:30px 0 24px;border-top:1px solid var(--border)}.home-profiles>p:not(.eyebrow){font-size:13px}
