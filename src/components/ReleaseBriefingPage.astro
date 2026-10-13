@@ -18,6 +18,7 @@ const description=release.observations.find(row=>row.geography==='world')?.descr
     <p>A factual summary of the latest retained release, with links to the figures behind it.</p>
   </div>
   <nav class="briefing-products" aria-label="Briefing products">
+    <p><a href="/briefing/portfolio/">Build a coffee portfolio briefing</a></p>
     <p>Choose a reviewed product</p>
     <ul>{products.map(option=><li><a href={releaseBriefingPath(option.code)} aria-current={option.code===product.code?'page':undefined}>{option.displayName} · HS {option.code}</a></li>)}</ul>
   </nav>
