@@ -24,6 +24,8 @@ async function checkProfiles(page:Page){
   await expect(page.getByRole('link',{name:'Find a product',exact:true})).toHaveAttribute('href','/products/');
   await expect(page.getByRole('link',{name:'Compare product changes',exact:true})).toHaveAttribute('href','/changes/products/');
   await expect(page.locator('astro-island')).toHaveCount(0);
+  await expect(page.getByRole('link',{name:'Country research',exact:true})).toHaveCount(0);
+  await expect(page.getByRole('region',{name:'Country snapshot',exact:true})).toHaveCount(0);
 }
 
 test('home starts product search and exposes the published pilot research with its own identity',async({page})=>{

@@ -218,6 +218,22 @@ The [recovered-profile rehearsal](docs/validation/canada-recovered-profile-rebui
 
 On failure, check Node 24, the fixed input identities and contained non-reparse paths. Never overwrite an existing destination, remove a stale selection lock automatically, or retry a conflict against a changed baseline. An acknowledged selection whose receipt cannot be saved reports the established outcome separately; lock cleanup cannot replace that evidence. Cleanup-only failures carry the outcome in `CountrySelectionCleanupError`; combined receipt/cleanup failures retain `CountrySelectionReceiptError` and its separate cleanup error. Accepted recovery preserves the exact selection receipt, completes all data/receipts before exposing its pointer, and carries an acknowledged but unreadable final state in `CountryAcceptedRecoveryError`. No automatic rollback occurs. Keep unreferenced artifacts for deliberate diagnosis. The [candidate validation record](docs/validation/canada-release-candidate.md) records the measured offline result. Product releases, the opt-in Canada preview and ordinary static-host/browser-download behavior remain unchanged.
 
+## Local Canada pilot preparation
+
+The opt-in `/countries/1220/` prepares the fixed historical snapshot for a possible pilot publication. It adds conditional homepage, navigation and Methods entries; it does not deploy the site. Both private preview modes must be unset. Real mode requires the authenticated selected Canada state and real accepted product releases; crossed or invalid modes fail without a fixture fallback.
+
+```powershell
+Remove-Item Env:CANADA_PREVIEW_MODE,Env:CANADA_ACCEPTED_PREVIEW_MODE -ErrorAction SilentlyContinue
+Remove-Item Env:TRADE_DATA_MODE -ErrorAction SilentlyContinue
+$env:CANADA_PILOT_MODE = 'selected'
+npm run build
+npm run preview -- --port 4416
+```
+
+For a clearly synthetic sample, set both `CANADA_PILOT_MODE` and `TRADE_DATA_MODE` to `fixture`. Run `npm run test:e2e:canada-pilot` for the separate isolated fixture suite. It binds localhost on 4403 (override with `PLAYWRIGHT_CANADA_PILOT_PORT`), uses its own output, and refuses server reuse. The original preview suite forces pilot mode off; the pilot suite forces private modes off. `npm run test:e2e` runs the ordinary, private-preview and pilot suites in sequence.
+
+Remove `CANADA_PILOT_MODE` for ordinary builds. Preparation keeps `noindex,nofollow`; this is not access control or evidence of publication. Source coverage remains September 2024–August 2026, CSVs are browser-generated, and R2 stays private. Hosting/account changes, deployment, indexing and new data require their later decisions.
+
 ## Change workflow
 
 Use `main` for reviewed release code and a separate branch for each feature or fix. Save focused commits with clear descriptions, run the relevant checks, and review changes before merging. Review a preview before publishing a website release.

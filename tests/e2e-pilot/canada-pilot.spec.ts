@@ -34,7 +34,22 @@ test('default Imports and source details work without JavaScript',async({browser
 });
 test('pilot output omits private previews, acceptance packages and private identities',async({page})=>{
   for(const privateRoute of ['/preview/countries/1220/','/preview/accepted/countries/1220/'])expect((await page.goto(privateRoute))?.status()).toBe(404);
-  const dirs=(await readdir(resolve('.tmp'))).filter(name=>/^canada-pilot-[A-Za-z0-9]{6}$/.test(name));expect(dirs).toHaveLength(1);
+  const dirs=(await readdir(resolve('.tmp'))).filter(name=>/^canada-pilot-[A-Za-z0-9]{6}$/.test(name)),served=await (await page.request.get('/methods/')).text(),matching=[];
+  // Windows force-termination can leave older owned fixture output. Authenticate the current output against its actual served HTML.
+  for(const dir of dirs){try{if(await readFile(resolve('.tmp',dir,'methods/index.html'),'utf8')===served)matching.push(dir);}catch(error){if((error as NodeJS.ErrnoException).code!=='ENOENT')throw error;}}
+  expect(matching).toHaveLength(1);
   async function scan(dir:string):Promise<void>{for(const entry of await readdir(dir,{withFileTypes:true})){const file=resolve(dir,entry.name);if(entry.isDirectory()){expect(file.replaceAll('\\','/')).not.toContain('/preview/');await scan(file);}else if(/\.(html|js|json)$/.test(entry.name)){const text=await readFile(file,'utf8');expect(text,file).not.toMatch(/data\/backups|\.superpowers\/|X-Amz-Signature|9ede6a6906b0da7f85e74203d186bee7f6a8e08e37f452fb9f5a99e88e10a399|337d25eeb94c87d9dbfdc4c9a21a20e7e50f416a6599cd0699f028eee0349818|owner-private-evidence/);}}}
-  await scan(resolve('.tmp',dirs[0]));
+  await scan(resolve('.tmp',matching[0]));
+});
+test('opted-in homepage, Methods and product navigation expose only the fixed country snapshot',async({page})=>{
+  await page.goto('/');const card=page.getByRole('region',{name:'Country snapshot',exact:true});await expect(card).toContainText('September 2024–August 2026');await expect(card).toContainText('Synthetic development data');await expect(page.getByRole('navigation',{name:'Product profiles',exact:true}).getByRole('article')).toHaveCount(2);await expect(page.locator('astro-island')).toHaveCount(0);
+  await card.getByRole('link',{name:'Canada historical snapshot',exact:true}).click();await expect(page).toHaveURL(/\/countries\/1220\/$/);
+  for(const url of ['/methods/','/products/090121/','/countries/1220/']){await page.goto(url);await expect(page.getByRole('navigation',{name:'Main',exact:true}).getByRole('link',{name:'Country research',exact:true})).toHaveAttribute('href',path);}
+  await page.goto('/methods/');const methods=page.getByRole('region',{name:'Canada snapshot',exact:true});await expect(methods).toContainText('Synthetic development data');await expect(methods).toContainText('same captured files');await expect(methods).toContainText('GEN_VAL_MO');await expect(methods).toContainText('ALL_VAL_MO');await expect(methods).toContainText('Statistical categories');await expect(methods).toContainText('monthly Canada updates');await expect(page.locator('astro-island')).toHaveCount(0);
+});
+test('country entry, navigation and Methods stay usable on mobile without JavaScript',async({browser,baseURL})=>{
+  const context=await browser.newContext({baseURL,javaScriptEnabled:false,viewport:{width:320,height:812}});try{const page=await context.newPage();await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
+    await page.goto('/');const entry=page.getByRole('region',{name:'Country snapshot',exact:true}).getByRole('link',{name:'Canada historical snapshot',exact:true});await entry.focus();await page.keyboard.press('Enter');await expect(page).toHaveURL(/\/countries\/1220\/$/);await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeDisabled();
+    for(const width of [320,375])for(const url of ['/','/countries/1220/','/methods/','/products/090121/']){await page.setViewportSize({width,height:812});await page.goto(url);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await expect(page.getByRole('navigation',{name:'Main',exact:true}).getByRole('link',{name:'Country research',exact:true})).toBeVisible();}
+  }finally{await context.close();}
 });
