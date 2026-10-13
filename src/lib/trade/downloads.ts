@@ -30,8 +30,10 @@ export function serializePortfolioSummaryCsv(view:PortfolioBriefing):string{
   return csvRecords([...portfolioHeaders,...portfolioDutyHeaders],rows);
 }
 export function serializePortfolioPartnersCsv(view:PortfolioBriefing):string{
-  const rows=view.products.flatMap(product=>product.data?.highlights.map(({movement,country,duties})=>({...portfolioRecord(view,product,'rolling'),movement,ranking_metric:'dollars',partner_code:country.code,partner_name:country.name,current_value_usd:country.currentUsd,previous_value_usd:country.previousUsd,change_usd:country.changeUsd,growth_percent:country.changePercent,current_share_percent:country.currentSharePercent,previous_share_percent:country.previousSharePercent,share_change_percentage_points:country.shareChangePoints,...portfolioDutyRecord(duties,product)}))??[]);
-  return csvRecords([...portfolioHeaders,'movement','ranking_metric','partner_code','partner_name','current_share_percent','previous_share_percent','share_change_percentage_points',...portfolioDutyHeaders],rows);
+  // Ranked highlights have complete, classification-comparable partner amounts;
+  // their world share denominators can still be unavailable independently.
+  const rows=view.products.flatMap(product=>product.data?.highlights.map(({movement,country,duties})=>({...portfolioRecord(view,product,'rolling'),movement,ranking_metric:'dollars',partner_code:country.code,partner_name:country.name,availability:'available',current_value_status:'reported',previous_value_status:'reported',current_value_usd:country.currentUsd,previous_value_usd:country.previousUsd,change_usd:country.changeUsd,growth_percent:country.changePercent,current_share_percent:country.currentSharePercent,previous_share_percent:country.previousSharePercent,current_share_availability:country.currentSharePercent===null?'unavailable':'available',previous_share_availability:country.previousSharePercent===null?'unavailable':'available',share_change_percentage_points:country.shareChangePoints,...portfolioDutyRecord(duties,product)}))??[]);
+  return csvRecords([...portfolioHeaders,'movement','ranking_metric','partner_code','partner_name','current_share_percent','previous_share_percent','current_share_availability','previous_share_availability','share_change_percentage_points',...portfolioDutyHeaders],rows);
 }
 export function serializeProductChangesCsv(view:ProductChangesView,metric:ProductChangeMetric):string{
   const ranking=rankProductChanges(view,metric);

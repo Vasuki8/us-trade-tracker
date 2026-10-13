@@ -29,3 +29,8 @@ it('preserves suppressed amounts and zero-prior growth, with empty duty fields f
   expect(exports[0]).toMatchObject({direction:'exports',measure:'ALL_VAL_MO',current_value_usd:'200',current_duty_calculated_duty_usd:'',numerator_measure:'',denominator_measure:''});
   expect(parseCsv(serializePortfolioPartnersCsv(selected([portfolioSample()],'exports')))[0].current_duty_consumption_value_usd).toBe('');
 });
+it('keeps complete partner dollar statuses independent of a suppressed world share denominator',()=>{
+  const item=portfolioSample(),world=item.release.observations.find(r=>r.geography==='world'&&r.direction==='imports'&&r.month==='2025-12')!;world.status='suppressed';world.valueUsd=null;
+  const rows=parseCsv(serializePortfolioPartnersCsv(selected([item])));
+  expect(rows[0]).toMatchObject({partner_code:'1220',current_value_usd:'480',previous_value_usd:'120',change_usd:'360',availability:'available',current_value_status:'reported',previous_value_status:'reported',current_share_percent:'',current_share_availability:'unavailable',previous_share_percent:'20',previous_share_availability:'available',share_change_percentage_points:''});
+});
