@@ -1,6 +1,6 @@
 # Canada pilot deployment design
 
-Prepared October 13, 2026 against `b6ea8f823d138a65f881754845dad343e24731ad`. **Written design awaiting owner review.** The owner approved preparing this design after the read-only hosting preflight. This approval permits design work only; it creates no Pages project, publication, credential, implementation or paid commitment.
+Prepared October 13, 2026 against `b6ea8f823d138a65f881754845dad343e24731ad`. **Written design approved for implementation planning.** The owner approved the reviewed written design on October 13, 2026. This approval permits preparation of its implementation plan; it creates no Pages project, publication, credential, implementation or paid commitment.
 
 ## Purpose and success
 
@@ -95,3 +95,5 @@ Excluded: new months/classifications/countries/products, country duties, raw or 
 This design's checks are document/link/source/interface/scope checks and independent review; no product test, rebuild, 7.95 GB rescan or provider mutation is warranted for writing it. Owner review of the written design permits preparation of the implementation plan. Implementation requires review of that plan; actual project creation/upload remains the later concrete decision described above.
 
 Document checks verified both local links, no placeholders, the existing adapter/context interfaces and the unchanged 466-byte selected pointer. Independent read-only review of `e6da0e39fdf58518157dba07b3f624542e8b8e7c` found no Critical, Important or Minor issues and judged the written specification ready for owner review. New runtime/package correctness, historical preservation revalidation, current account/name availability, upload/live behavior, withdrawal effectiveness and successive-release capability were expressly deferred to their named future evidence gates. No runtime code, source state or provider resource changed during this design stage.
+
+The owner subsequently approved the written design for the [implementation plan](../plans/2026-10-13-canada-pilot-deployment.md). Root implementation with subagents reviewing remains the selected execution method. Implementation requires review of that plan; creation/upload remains the separate final decision.
