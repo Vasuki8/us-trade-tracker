@@ -5,8 +5,8 @@ export type SourceManifest={schemaVersion:1;policyId:'canada-private-archive-v1'
 export type ArchiveRef=Digest&{key:string};
 export type CountryArchivePointer={schemaVersion:1;policyId:'canada-private-archive-v1';countryCode:'1220';releaseId:string;sourceManifest:ArchiveRef;bundle:ArchiveRef;localPointerDigest:Digest};
 export interface ArchiveStore{
-  get(key:string,maxBytes:number):Promise<{bytes:Buffer;etag:string}|null>;
-  put(key:string,bytes:Buffer,condition:{ifNoneMatch:'*'}):Promise<void>;
+  get(key:string,maxBytes:number,signal?:AbortSignal):Promise<{bytes:Buffer;etag:string}|null>;
+  put(key:string,bytes:Buffer,condition:{ifNoneMatch:'*'},signal?:AbortSignal):Promise<void>;
   source(key:string,maxBytes:number,signal?:AbortSignal):Promise<{stream:Readable;contentLength:number|null}>;
 }
 export type OperatorAuthorization={schemaVersion:1;scope:'private-country-archive-and-isolated-recovery';actor:'owner';recordedAt:string;instruction:string;localPointerDigest:Digest;sourceManifestDigest:Digest;recovery:CountryApproval};

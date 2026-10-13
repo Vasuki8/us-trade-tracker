@@ -47,14 +47,15 @@ export function createCountryArchiveStore(config:R2Config,options:Pick<S3ClientC
     }catch(error){clean();const e=error as {name?:string;$metadata?:{httpStatusCode?:number}};if(e.name==='NoSuchKey'&&e.$metadata?.httpStatusCode===404)throw error;throw new CountryArchiveTransportError('read_failed');}
   }
   return {
-    async get(key,maxBytes){try{if(maxBytes>contract.limits.bundle)throw new Error('country-archive-compact-bound');const object=await source(key,maxBytes),chunks:Buffer[]=[];for await(const part of object.stream)chunks.push(Buffer.from(part));return {bytes:Buffer.concat(chunks),etag:object.etag};}catch(error){const e=error as {name?:string;$metadata?:{httpStatusCode?:number}};if(e.name==='NoSuchKey'&&e.$metadata?.httpStatusCode===404)return null;throw new CountryArchiveTransportError('read_failed');}},
+    async get(key,maxBytes,signal){try{if(maxBytes>contract.limits.bundle)throw new Error('country-archive-compact-bound');const object=await source(key,maxBytes,signal),chunks:Buffer[]=[];for await(const part of object.stream)chunks.push(Buffer.from(part));return {bytes:Buffer.concat(chunks),etag:object.etag};}catch(error){const e=error as {name?:string;$metadata?:{httpStatusCode?:number}};if(e.name==='NoSuchKey'&&e.$metadata?.httpStatusCode===404)return null;throw new CountryArchiveTransportError('read_failed');}},
     source,
-    async put(key,bytes,condition){
-      try{assertCountryArchiveKey(key);if(key!==contract.currentKey||!Buffer.isBuffer(bytes)||bytes.length<1||bytes.length>contract.limits.pointer||!condition||Object.keys(condition).join()!=='ifNoneMatch'||condition.ifNoneMatch!=='*')throw new Error('country-archive-write-bound');}catch{throw new CountryArchiveTransportError('write_failed');}
+    async put(key,bytes,condition,parentSignal){
+      try{if(parentSignal?.aborted)throw new Error('country-archive-aborted');assertCountryArchiveKey(key);if(key!==contract.currentKey||!Buffer.isBuffer(bytes)||bytes.length<1||bytes.length>contract.limits.pointer||!condition||Object.keys(condition).join()!=='ifNoneMatch'||condition.ifNoneMatch!=='*')throw new Error('country-archive-write-bound');}catch{throw new CountryArchiveTransportError('write_failed');}
       const controller=new AbortController(),owned=new Set<Readable>();let timer:ReturnType<typeof setTimeout>|undefined;
+      const abort=()=>{controller.abort();for(const stream of owned)stream.destroy();};parentSignal?.addEventListener('abort',abort,{once:true});
       try{const deadline=new Promise<never>((_r,reject)=>{timer=setTimeout(()=>{controller.abort();for(const stream of owned)stream.destroy();reject(new Error('country-archive-timeout'));},contract.limits.objectMs);}),command=new PutObjectCommand({Bucket:config.bucketName,Key:key,Body:bytes,IfNoneMatch:'*',ContentType:'application/json',StorageClass:'STANDARD'});responseLimit(command,contract.limits.pointer,controller,owned);await Promise.race([client.send(command,{abortSignal:controller.signal}),deadline]);}
       catch(error){const status=(error as {$metadata?:{httpStatusCode?:number}}).$metadata?.httpStatusCode;throw new CountryArchiveTransportError(status===412?'conflict':status!==undefined&&status>=400&&status<500?'write_failed':'unconfirmed_write');}
-      finally{if(timer)clearTimeout(timer);for(const stream of owned)stream.destroy();}
+      finally{if(timer)clearTimeout(timer);parentSignal?.removeEventListener('abort',abort);for(const stream of owned)stream.destroy();}
     },
   };
 }
