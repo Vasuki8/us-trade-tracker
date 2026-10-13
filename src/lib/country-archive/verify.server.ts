@@ -50,6 +50,7 @@ export async function verifyCountryArchive(opts:{store:ArchiveStore;repoRoot:str
   try{await writeCountryExclusiveFile(opts.repoRoot,resolve(output,'verification-receipt.json'),countryJsonBytes(receipt));}catch{throw new CountryArchiveVerificationReceiptError(receipt);}return receipt;
 }
 export async function verifySelectedCountryArchive(opts:{store:ArchiveStore;repoRoot:string;outputDir:string}):Promise<ArchiveVerificationReceipt>{
-  const selected=await current(opts.store);if(!selected)throw new Error('country-archive-selected-missing');
-  return verifyCountryArchive({...opts,bundleDigest:refDigest(selected.pointer.bundle),initialize:false});
+  const store:ArchiveStore={get:(key,maxBytes)=>opts.store.get(key,maxBytes),source:(key,maxBytes,signal)=>opts.store.source(key,maxBytes,signal),put:async()=>{throw new Error('country-archive-read-only');}};
+  const selected=await current(store);if(!selected)throw new Error('country-archive-selected-missing');
+  return verifyCountryArchive({...opts,store,bundleDigest:refDigest(selected.pointer.bundle),initialize:false});
 }

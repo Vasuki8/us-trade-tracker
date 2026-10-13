@@ -1,0 +1,74 @@
+name: Verify private Canada archive recovery
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Initialize only after full verification, or read-only selected recovery
+        required: true
+        type: choice
+        default: verify-selected
+        options:
+          - verify-selected
+          - verify-initialize
+      bundle_sha256:
+        description: Exact accepted bundle SHA-256 (initialization only)
+        required: false
+        type: string
+      bundle_bytes:
+        description: Exact accepted bundle byte count (initialization only)
+        required: false
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: canada-private-archive-1220
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/main' && github.event.repository.private == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    env:
+      OPERATION: ${{ inputs.operation }}
+      BUNDLE_SHA256: ${{ inputs.bundle_sha256 }}
+      BUNDLE_BYTES: ${{ inputs.bundle_bytes }}
+      OUTPUT: data/backups/canada-country-archive/verification-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci
+      - name: Validate fixed identities and mode before storage credentials
+        id: preflight
+        run: |
+          case "$OPERATION" in
+            verify-selected) args=(verify-selected) ;;
+            verify-initialize) args=(verify --initialize --bundle-sha256 "$BUNDLE_SHA256" --bundle-bytes "$BUNDLE_BYTES") ;;
+            *) exit 1 ;;
+          esac
+          npm run data:country-archive -- "${args[@]}" --output "$OUTPUT" --preflight
+      - name: Stream all preserved sources and recover accepted Canada state
+        env:
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: |
+          case "$OPERATION" in
+            verify-selected) args=(verify-selected) ;;
+            verify-initialize) args=(verify --initialize --bundle-sha256 "$BUNDLE_SHA256" --bundle-bytes "$BUNDLE_BYTES") ;;
+            *) exit 1 ;;
+          esac
+          npm run data:country-archive -- "${args[@]}" --output "$OUTPUT"
+      - name: Retain full verification receipts and isolated compact recovery
+        if: always() && steps.preflight.outcome == 'success'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: canada-1220-archive-verification
+          path: ${{ env.OUTPUT }}/
+          if-no-files-found: warn
+          retention-days: 7
