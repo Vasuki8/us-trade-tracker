@@ -44,7 +44,7 @@ export function decodeCountryArchive(input:Buffer):DecodedArchive{
 }
 export async function reserveArchiveOutput(repoRoot:string,outputDir:string):Promise<string>{
   const base=resolve(repoRoot,contract.backupRoot),target=resolve(repoRoot,outputDir),rel=relative(base,target);if(!rel||rel==='..'||rel.startsWith('..'+sep)||isAbsolute(rel)||!rel.split(sep).every(p=>/^[A-Za-z0-9_-]+$/.test(p)))throw new Error('country-archive-output-namespace');
-  await assertSnapshotPath(repoRoot,dirname(base));await assertSnapshotPath(repoRoot,base,true);try{await mkdir(base);}catch(e){if((e as NodeJS.ErrnoException).code!=='EEXIST')throw e;}await assertSnapshotPath(repoRoot,base);if(!(await lstat(base)).isDirectory())throw new Error('country-archive-output-root');
+  await assertSnapshotPath(repoRoot,resolve(repoRoot));let parent=resolve(repoRoot);for(const piece of contract.backupRoot.split('/')){parent=resolve(parent,piece);await assertSnapshotPath(repoRoot,parent,true);try{await mkdir(parent);}catch(e){if((e as NodeJS.ErrnoException).code!=='EEXIST')throw e;}await assertSnapshotPath(repoRoot,parent);if(!(await lstat(parent)).isDirectory())throw new Error('country-archive-output-root');}
   await assertSnapshotPath(repoRoot,dirname(target));await assertSnapshotPath(repoRoot,target,true);await mkdir(target);await assertSnapshotPath(repoRoot,target);return target;
 }
 export async function prepareCountryArchive(opts:{repoRoot:string;outputDir:string;operatorInstruction:string}){

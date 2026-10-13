@@ -32,11 +32,13 @@ function responseLimit(command:GetObjectCommand|PutObjectCommand,maxBytes:number
 const validEtag=(v:unknown):v is string=>typeof v==='string'&&/^"[\x21\x23-\x7e]{1,510}"$/.test(v);
 export function createCountryArchiveStore(config:R2Config,options:Pick<S3ClientConfig,'requestHandler'>={}):ArchiveStore{
   const client=clientFor(config,options);
-  async function source(key:string,maxBytes:number){
+  async function source(key:string,maxBytes:number,parentSignal?:AbortSignal){
     const controller=new AbortController(),owned=new Set<Readable>();let timer:ReturnType<typeof setTimeout>|undefined;
-    const clean=()=>{if(timer)clearTimeout(timer);for(const stream of owned)stream.destroy();};
-    try{assertCountryArchiveKey(key);if(!Number.isSafeInteger(maxBytes)||maxBytes<1||maxBytes>contract.limits.source)throw new Error('country-archive-read-bound');
-      const deadline=new Promise<never>((_r,reject)=>{timer=setTimeout(()=>{controller.abort();for(const stream of owned)stream.destroy(new Error('country-archive-timeout'));reject(new Error('country-archive-timeout'));},contract.limits.objectMs);});
+    const abort=()=>{controller.abort();for(const stream of owned)stream.destroy();};
+    const clean=()=>{if(timer)clearTimeout(timer);parentSignal?.removeEventListener('abort',abort);for(const stream of owned)stream.destroy();};
+    parentSignal?.addEventListener('abort',abort,{once:true});
+    try{if(parentSignal?.aborted)throw new Error('country-archive-aborted');assertCountryArchiveKey(key);if(!Number.isSafeInteger(maxBytes)||maxBytes<1||maxBytes>contract.limits.source)throw new Error('country-archive-read-bound');
+      const deadline=new Promise<never>((_r,reject)=>{timer=setTimeout(()=>{controller.abort();for(const stream of owned)stream.destroy();reject(new Error('country-archive-timeout'));},contract.limits.objectMs);});
       const command=new GetObjectCommand({Bucket:config.bucketName,Key:key});responseLimit(command,maxBytes,controller,owned);const object=await Promise.race([client.send(command,{abortSignal:controller.signal}),deadline]);
       if(!validEtag(object.ETag)||!object.Body||!(Symbol.asyncIterator in object.Body)||object.ContentLength!==undefined&&(!Number.isSafeInteger(object.ContentLength)||object.ContentLength<0||object.ContentLength>maxBytes))throw new Error('country-archive-response');
       const body=object.Body as Readable;owned.add(body);

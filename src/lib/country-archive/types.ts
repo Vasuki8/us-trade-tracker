@@ -7,7 +7,7 @@ export type CountryArchivePointer={schemaVersion:1;policyId:'canada-private-arch
 export interface ArchiveStore{
   get(key:string,maxBytes:number):Promise<{bytes:Buffer;etag:string}|null>;
   put(key:string,bytes:Buffer,condition:{ifNoneMatch:'*'}):Promise<void>;
-  source(key:string,maxBytes:number):Promise<{stream:Readable;contentLength:number|null}>;
+  source(key:string,maxBytes:number,signal?:AbortSignal):Promise<{stream:Readable;contentLength:number|null}>;
 }
 export type OperatorAuthorization={schemaVersion:1;scope:'private-country-archive-and-isolated-recovery';actor:'owner';recordedAt:string;instruction:string;localPointerDigest:Digest;sourceManifestDigest:Digest;recovery:CountryApproval};
 export type ArchiveMemberName='candidate.json'|'acceptance.json'|'local-pointer.json'|'selection-receipt.json'|'local-completion.json'|'operator-authorization.json';
