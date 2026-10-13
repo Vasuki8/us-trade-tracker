@@ -1,8 +1,8 @@
 import {afterEach,expect,it,vi} from 'vitest';
 import {build,preview} from 'astro';
-import {mkdtemp,mkdir,readdir,rm,symlink} from 'node:fs/promises';
+import {mkdtemp,mkdir,readdir,rm,symlink,readFile,writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
-import {resolveCanadaPreviewPort,serveCanadaPreviewFixture} from '../../scripts/serve-canada-preview-fixture';
+import {resolveCanadaPreviewPort,serveCanadaPreviewFixture,resolveCanadaPilotPort,serveCanadaPilotFixture} from '../../scripts/serve-canada-preview-fixture';
 vi.mock('astro',()=>({build:vi.fn(),preview:vi.fn()}));
 const roots:string[]=[];
 afterEach(async()=>{vi.restoreAllMocks();vi.unstubAllEnvs();vi.mocked(build).mockReset();vi.mocked(preview).mockReset();for(const r of roots.splice(0))await rm(r,{recursive:true,force:true});});
@@ -12,10 +12,10 @@ it('accepts only explicit integer local ports',()=>{
   for(const value of ['','1023','65536','4.4',' 4402','4402x','04402'])expect(()=>resolveCanadaPreviewPort(value)).toThrow();
 });
 it('forces fixture modes, shares an owned output and restores environment after its server closes',async()=>{
-  const r=await root();vi.stubEnv('CANADA_PREVIEW_MODE','retained');vi.stubEnv('CANADA_ACCEPTED_PREVIEW_MODE','selected');vi.stubEnv('TRADE_DATA_MODE','published');vi.stubEnv('PLAYWRIGHT_CANADA_PORT','4402');
-  vi.mocked(build).mockImplementation(async options=>{expect(process.env.CANADA_PREVIEW_MODE).toBe('fixture');expect(process.env.CANADA_ACCEPTED_PREVIEW_MODE).toBe('fixture');expect(process.env.TRADE_DATA_MODE).toBe('fixture');expect(resolve(options!.outDir!)).toContain('canada-preview-');});
+  const r=await root();vi.stubEnv('CANADA_PREVIEW_MODE','retained');vi.stubEnv('CANADA_ACCEPTED_PREVIEW_MODE','selected');vi.stubEnv('CANADA_PILOT_MODE','selected');vi.stubEnv('TRADE_DATA_MODE','published');vi.stubEnv('PLAYWRIGHT_CANADA_PORT','4402');
+  vi.mocked(build).mockImplementation(async options=>{expect(process.env.CANADA_PREVIEW_MODE).toBe('fixture');expect(process.env.CANADA_ACCEPTED_PREVIEW_MODE).toBe('fixture');expect(process.env.CANADA_PILOT_MODE).toBeUndefined();expect(process.env.TRADE_DATA_MODE).toBe('fixture');expect(resolve(options!.outDir!)).toContain('canada-preview-');});
   const stop=vi.fn(async()=>{});vi.mocked(preview).mockResolvedValue({port:4402,host:'127.0.0.1',closed:async()=>{},stop});
-  await serveCanadaPreviewFixture();expect(vi.mocked(build).mock.calls[0][0]).toEqual(vi.mocked(preview).mock.calls[0][0]);expect(stop).toHaveBeenCalled();expect(await readdir(resolve(r,'.tmp'))).toEqual([]);expect(process.env.CANADA_PREVIEW_MODE).toBe('retained');expect(process.env.CANADA_ACCEPTED_PREVIEW_MODE).toBe('selected');expect(process.env.TRADE_DATA_MODE).toBe('published');
+  await serveCanadaPreviewFixture();expect(vi.mocked(build).mock.calls[0][0]).toEqual(vi.mocked(preview).mock.calls[0][0]);expect(stop).toHaveBeenCalled();expect(await readdir(resolve(r,'.tmp'))).toEqual([]);expect(process.env.CANADA_PREVIEW_MODE).toBe('retained');expect(process.env.CANADA_ACCEPTED_PREVIEW_MODE).toBe('selected');expect(process.env.CANADA_PILOT_MODE).toBe('selected');expect(process.env.TRADE_DATA_MODE).toBe('published');
 });
 it('cleans its owned output after a build failure before server startup',async()=>{
   const r=await root();vi.mocked(build).mockRejectedValue(Error('simulated build error'));await expect(serveCanadaPreviewFixture()).rejects.toThrow();expect(preview).not.toHaveBeenCalled();expect(await readdir(resolve(r,'.tmp'))).toEqual([]);
@@ -25,4 +25,29 @@ it('stops an unexpected fallback port and fails',async()=>{
 });
 it('rejects an output reparse ancestor',async()=>{
   const r=await root(),target=resolve(r,'target');await mkdir(target);await symlink(target,resolve(r,'.tmp'),process.platform==='win32'?'junction':'dir');await expect(serveCanadaPreviewFixture()).rejects.toThrow();expect(build).not.toHaveBeenCalled();expect(await readdir(target)).toEqual([]);
+});
+it('uses a separate explicit pilot port and rejects malformed ports',()=>{
+  expect(resolveCanadaPilotPort(undefined)).toBe(4403);expect(resolveCanadaPilotPort('1024')).toBe(1024);expect(resolveCanadaPilotPort('65535')).toBe(65535);
+  for(const value of ['','1023','65536','4.4',' 4403','4403x','04403'])expect(()=>resolveCanadaPilotPort(value)).toThrow();
+});
+it('isolates pilot mode from private previews and leaves ordinary output intact',async()=>{
+  const r=await root();await mkdir(resolve(r,'dist'));await writeFile(resolve(r,'dist/owner.txt'),'ordinary');
+  vi.stubEnv('CANADA_PREVIEW_MODE','retained');vi.stubEnv('CANADA_ACCEPTED_PREVIEW_MODE','selected');vi.stubEnv('CANADA_PILOT_MODE','selected');vi.stubEnv('TRADE_DATA_MODE','census');
+  vi.mocked(build).mockImplementation(async options=>{expect(process.env.TRADE_DATA_MODE).toBe('fixture');expect(process.env.CANADA_PILOT_MODE).toBe('fixture');expect(process.env.CANADA_PREVIEW_MODE).toBeUndefined();expect(process.env.CANADA_ACCEPTED_PREVIEW_MODE).toBeUndefined();expect(resolve(options!.outDir!)).toContain('canada-pilot-');});
+  const stop=vi.fn(async()=>{});vi.mocked(preview).mockResolvedValue({port:4403,closed:async()=>{},stop});await serveCanadaPilotFixture();expect(stop).toHaveBeenCalled();expect(vi.mocked(build).mock.calls[0][0]).toEqual(vi.mocked(preview).mock.calls[0][0]);expect(await readdir(resolve(r,'.tmp'))).toEqual([]);expect(await readFile(resolve(r,'dist/owner.txt'),'utf8')).toBe('ordinary');expect(process.env.CANADA_PREVIEW_MODE).toBe('retained');expect(process.env.CANADA_ACCEPTED_PREVIEW_MODE).toBe('selected');expect(process.env.CANADA_PILOT_MODE).toBe('selected');expect(process.env.TRADE_DATA_MODE).toBe('census');
+});
+it.each(['build','server','port'] as const)('restores all pilot settings and cleans only owned output after %s failure',async failure=>{
+  const r=await root();for(const [name,value] of Object.entries({CANADA_PREVIEW_MODE:'retained',CANADA_ACCEPTED_PREVIEW_MODE:'selected',CANADA_PILOT_MODE:'selected',TRADE_DATA_MODE:'census'}))vi.stubEnv(name,value);
+  const stop=vi.fn(async()=>{});if(failure==='build')vi.mocked(build).mockRejectedValue(Error('build failed'));else if(failure==='server')vi.mocked(preview).mockRejectedValue(Error('server failed'));else vi.mocked(preview).mockResolvedValue({port:4404,closed:async()=>{},stop});
+  await expect(serveCanadaPilotFixture()).rejects.toThrow();expect(await readdir(resolve(r,'.tmp'))).toEqual([]);if(failure==='port')expect(stop).toHaveBeenCalled();expect(process.env.CANADA_PREVIEW_MODE).toBe('retained');expect(process.env.CANADA_ACCEPTED_PREVIEW_MODE).toBe('selected');expect(process.env.CANADA_PILOT_MODE).toBe('selected');expect(process.env.TRADE_DATA_MODE).toBe('census');
+});
+it.each(['preview','pilot'] as const)('stops the owned %s server when termination arrives during preview startup',async kind=>{
+  const r=await root(),signals=new Map<string,()=>void>();
+  vi.spyOn(process,'on').mockImplementation(((name:string,listener:()=>void)=>{if(name==='SIGINT'||name==='SIGTERM')signals.set(name,listener);return process;}) as typeof process.on);
+  vi.stubEnv('CANADA_PILOT_MODE',undefined);const stop=vi.fn(async()=>{});
+  vi.mocked(preview).mockImplementation(async()=>{signals.get('SIGTERM')!();return {port:kind==='pilot'?4403:4402,stop,closed:async()=>{throw Error('Waited for closure after startup interruption');}};});
+  await expect(kind==='pilot'?serveCanadaPilotFixture():serveCanadaPreviewFixture()).rejects.toThrow('startup interrupted');expect(stop).toHaveBeenCalled();expect(await readdir(resolve(r,'.tmp'))).toEqual([]);expect(process.env.CANADA_PILOT_MODE).toBeUndefined();
+});
+it('rejects a pilot output reparse ancestor before building',async()=>{
+  const r=await root(),target=resolve(r,'target');await mkdir(target);await symlink(target,resolve(r,'.tmp'),process.platform==='win32'?'junction':'dir');await expect(serveCanadaPilotFixture()).rejects.toThrow();expect(build).not.toHaveBeenCalled();expect(await readdir(target)).toEqual([]);
 });

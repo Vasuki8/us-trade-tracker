@@ -30,8 +30,9 @@
     "data:probe-totals": "node --import tsx scripts/probe-country-totals.ts",
     "data:probe-prefix": "node --import tsx scripts/probe-country-prefix.ts",
     "data:probe-partitions": "node --import tsx scripts/probe-country-partitions.ts",
-    "test:e2e": "playwright test && playwright test --config playwright.canada-preview.config.ts",
-    "test:e2e:canada": "playwright test --config playwright.canada-preview.config.ts"
+    "test:e2e": "playwright test && playwright test --config playwright.canada-preview.config.ts && playwright test --config playwright.canada-pilot.config.ts",
+    "test:e2e:canada": "playwright test --config playwright.canada-preview.config.ts",
+    "test:e2e:canada-pilot": "playwright test --config playwright.canada-pilot.config.ts"
   },
   "dependencies": {
     "@astrojs/react": "7.0.1",

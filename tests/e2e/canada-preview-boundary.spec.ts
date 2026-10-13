@@ -2,10 +2,11 @@ import {test,expect} from '@playwright/test';
 import {readdir,readFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 test('normal static build omits Canada preview route and observations',async({page})=>{
-  for(const route of ['/preview/countries/1220/','/preview/accepted/countries/1220/']){
+  for(const route of ['/preview/countries/1220/','/preview/accepted/countries/1220/','/countries/1220/']){
     const response=await page.goto(route);expect(response?.status()).toBe(404);
   }
   await page.goto('/products/');await expect(page.locator('nav a[href*="/preview/"]')).toHaveCount(0);
+  await expect(page.getByRole('link',{name:'Country research',exact:true})).toHaveCount(0);
   async function scan(dir:string):Promise<void>{
     for(const entry of await readdir(dir,{withFileTypes:true})){
       const path=resolve(dir,entry.name);
