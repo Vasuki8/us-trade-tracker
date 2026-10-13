@@ -12,6 +12,8 @@ This is a fixed pilot, with accepted reporting data through August 2026. It does
 
 ## Project direction
 
+The **coffee portfolio briefing** at `/briefing/portfolio/` combines the selected published coffee profiles in one report, keeping their amounts and duty rates separate. Choose products and Imports/Exports, share the selection URL, download sourced summary/partner CSVs or print/save the report as PDF. See the [verification and publication boundary](docs/validation/coffee-portfolio-briefing.md).
+
 The website uses Astro, TypeScript, and React on Cloudflare Pages. Census observations are processed into prepared pages and chart data. The initial hosting budget is US$0 to US$15 per month, excluding the domain and development work; automatic monthly publishing remains future work.
 
 The first local development profile is verified with real Census data: roasted coffee (HS 090121), five years of import/export history through August 2026, comparison of up to three partner countries, and sourced PNG/CSV downloads. It includes an importer with validated releases, refresh recovery, and revision tracking. Independent reviewers checked all 9,577 observations, annual totals, country share and six-digit classification continuity. Offline tests use visibly labeled synthetic fixtures. See the [recorded verification](docs/data-validation/090121.md).

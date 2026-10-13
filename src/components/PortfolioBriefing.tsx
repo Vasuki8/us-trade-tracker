@@ -37,7 +37,7 @@ function ProductCard({product,direction,reportingMonth}:{product:PortfolioProduc
   return <article className="portfolio-product" aria-labelledby={`${id}-title`}><h2 id={`${id}-title`}>{product.name} · HS {product.code}</h2>
     <p className="portfolio-description">{product.description}</p>
     <p><a href={profileViewPath(product.code,{direction,months:12,countryCodes:[]})}>Explore {product.name} research</a></p>
-    {!data?<p role="status">Comparisons unavailable for {monthLabel(reportingMonth)}. This product's retained release ends in {monthLabel(product.reportingMonth)}. Select it alone to read its own reporting period.</p>:<>
+    {!data?<><p role="status">Comparisons unavailable for {monthLabel(reportingMonth)}. This product's retained release ends in {monthLabel(product.reportingMonth)}. Select it alone to read its own reporting period.</p><p className="portfolio-source">Source: {product.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau'} · Retrieved: {product.provenance.retrievedAt} · Processing revision: {product.provenance.codeVersion}. {product.provenance.sourceUrls.map(url=><a key={url} href={url}>{url} </a>)}</p></>:<>
       <TradeSummary label="Latest month" trade={data.monthly} id={`${id}-monthly`}/><TradeSummary label="Rolling twelve months" trade={data.rolling} id={`${id}-rolling`}/>
       <section className="portfolio-section" aria-labelledby={`${id}-partners`}><h3 id={`${id}-partners`}>Partner highlights</h3><p>Largest rolling dollar increase and decrease · {range(data.rolling.periods.current)} compared with {range(data.rolling.periods.previous)}.</p>
         {data.highlights.length===0&&<p>No comparable partner increase or decrease is available.</p>}

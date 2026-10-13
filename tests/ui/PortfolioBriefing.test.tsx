@@ -46,3 +46,11 @@ it('keeps readable default SSR research, unique IDs and sourced duty qualificati
   expect(within(first).getByRole('region',{name:'Rolling estimated duties'})).toHaveTextContent('Duty share: 15.000%');
   expect(first).toHaveTextContent('RP 70/79');expect(first).toHaveTextContent('2026-01-01T00:00:00.000Z');
 });
+it('explains an older selected release and keeps its source identity without showing stale comparisons',()=>{
+  const old=portfolioSample('090111','Green coffee');old.release.reportingMonth='2025-11';
+  render(<PortfolioBriefing data={preparePortfolioBriefing([portfolioSample(),old])}/>);
+  const card=screen.getByRole('article',{name:'Green coffee · HS 090111'});
+  expect(card).toHaveTextContent('Comparisons unavailable for Dec 2025');
+  expect(card).toHaveTextContent('2026-01-01T00:00:00.000Z');
+  expect(within(card).queryByRole('region',{name:'Latest month'})).toBeNull();
+});
