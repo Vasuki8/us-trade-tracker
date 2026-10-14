@@ -4,7 +4,7 @@ Verified October 14, 2026. This batch prepares the existing fixed pilot locally;
 
 ## Rehearsed source and accepted inputs
 
-Final rehearsed runtime source: 1a7466496dafb64a6688a697a95ab1d55065b007, based on d43c45f7e47da0741ab9a57f465edf0d80b82179. The initial rehearsal used c5a3f39d313cc6e0525f30fd11a9e3ffe471440e; the final rehearsal includes the independently reviewed filesystem fixes. Subsequent closeout edits are documentation only.
+Final rehearsed runtime source: 1a7466496dafb64a6688a697a95ab1d55065b007, based on d43c45f7e47da0741ab9a57f465edf0d80b82179. The initial rehearsal used c5a3f39d313cc6e0525f30fd11a9e3ffe471440e; the final rehearsal includes the independently reviewed filesystem fixes. Subsequent closeout edits are documentation and a test-only diagnostic correction.
 
 The tracked staging command exported committed Git blobs from a clean isolated checkout. It authenticated and copied exactly seven named Canada/coffee state files (8,186,318 bytes), including the selected Canada acceptance record and projection. The eleven contract-protected original inputs and all seven originals matched their initial fingerprints after preparation. No raw Canada archive was opened or copied.
 
@@ -52,7 +52,7 @@ Readback now applies the same ignored source-root/.tmp boundary as creation, bef
 
 Seven added regressions pass. The fix pass passed the full Windows suite (1,124/1,124 tests in 93 files) and clean diagnostics. CI also runs the existing application/browser/Python checks; its Windows-specific adapter test is skipped on Linux while the platform-neutral reparse and containment regressions still run.
 
-The corrected runtime was committed as 1a7466496dafb64a6688a697a95ab1d55065b007. A second fresh staging/build/readback/assembly/ZIP/browser rehearsal passed on that exact source. It again preserved all original/protected hashes and 84 CSV outputs. New served-tree differences are limited to the documented Astro identifiers and Methods timestamp. Subsequent edits are documentation only.
+The corrected runtime was committed as 1a7466496dafb64a6688a697a95ab1d55065b007. A second fresh staging/build/readback/assembly/ZIP/browser rehearsal passed on that exact source. It again preserved all original/protected hashes and 84 CSV outputs. New served-tree differences are limited to the documented Astro identifiers and Methods timestamp. Subsequent edits are documentation and a test-only diagnostic correction.
 
 Decisions on the reviewer's excluded behaviors:
 
@@ -62,3 +62,4 @@ Decisions on the reviewer's excluded behaviors:
 - Arbitrary substituted build assets are not independently attested by a successful manifest; rely on the controlled build and research rehearsal, with the risk that benign manual substitutions could pass structural checks.
 
 No deferred minor findings. Exact-head CI, protected merge, main-tree identity and evidence-preservation results are recorded in the batch pull request and private closeout receipt. This record makes no deployment claim.
+ Linux CI initially rejected one assertion that expected the reparse diagnostic instead of the earlier ignored-scope rejection from Git. The regression now accepts either valid rejection and explicitly checks that no output directory is created. Runtime code is unchanged; the retained rehearsal remains applicable.

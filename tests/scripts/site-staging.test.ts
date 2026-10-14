@@ -77,7 +77,8 @@ it('dependency_exception_is_one_bound_link',async()=>{
 });
 it('rejects_input_output_reparse_ancestors_and_hardlinked_stage',async()=>{
  const f=await preparationFixture();const alias=resolve(f.sourceRoot,'.tmp/alias');await symlink(f.dataRoot,alias,process.platform==='win32'?'junction':'dir');
- await expect(createSiteStage({...f,outputRoot:resolve(alias,'nested')})).rejects.toThrow(/reparse/);
+ await expect(createSiteStage({...f,outputRoot:resolve(alias,'nested')})).rejects.toThrow(/reparse|ignored-scope/);
+ await expect(lstat(resolve(alias,'nested'))).rejects.toMatchObject({code:'ENOENT'});
  await expect(createSiteStage({...f,dataRoot:alias})).rejects.toThrow(/reparse/);
  await createSiteStage(f);await link(resolve(f.outputRoot,'project/a.ts'),resolve(f.sourceRoot,'.tmp/linked-copy'));
  await expect(verifySiteStage({...f,stageRoot:f.outputRoot})).rejects.toThrow(/type|length/);
