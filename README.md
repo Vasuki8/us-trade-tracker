@@ -96,17 +96,39 @@ Push-Location (Join-Path $siteRun 'project')
 try {
   $env:TRADE_DATA_MODE = 'census'
   $env:CANADA_PILOT_MODE = 'snapshot'
-  [Environment]::SetEnvironmentVariable('CANADA_PREVIEW_MODE', $null, 'Process')
-  [Environment]::SetEnvironmentVariable('CANADA_ACCEPTED_PREVIEW_MODE', $null, 'Process')
+  Remove-Item Env:CANADA_PREVIEW_MODE,Env:CANADA_ACCEPTED_PREVIEW_MODE -ErrorAction SilentlyContinue
   npm run build -- --outDir ../real-dist
   if ($LASTEXITCODE -ne 0) { throw 'Build failed' }
 } finally {
   Pop-Location
-  foreach ($siteFlag in $siteFlags) { [Environment]::SetEnvironmentVariable($siteFlag, $sitePrior[$siteFlag], 'Process') }
+  foreach ($siteFlag in $siteFlags) {
+    if ($null -eq $sitePrior[$siteFlag]) { Remove-Item -LiteralPath "Env:$siteFlag" -ErrorAction SilentlyContinue }
+    else { [Environment]::SetEnvironmentVariable($siteFlag, $sitePrior[$siteFlag], 'Process') }
+  }
 }
 node --import tsx scripts/stage-site.ts verify --source-root $siteSource --data-root $siteData --stage-root $siteRun
 if ($LASTEXITCODE -ne 0) { throw 'Post-build readback failed' }
 ```
+
+Assemble only the verified real build into fresh site and withdrawal trees, then create and read back each ZIP. Use Python 3.12 or newer (no packages required):
+
+```powershell
+$sitePackages = Join-Path $siteRun 'packages'
+node --import tsx scripts/prepare-site.ts --source-root $siteSource --data-root $siteData --stage-root $siteRun --build-root (Join-Path $siteRun 'real-dist') --output $sitePackages
+if ($LASTEXITCODE -ne 0) { throw 'Assembly failed' }
+foreach ($siteKind in @('site', 'withdrawal')) {
+  $siteManifest = Join-Path $sitePackages ($siteKind + '-manifest.json')
+  $siteZip = Join-Path $sitePackages ($siteKind + '.zip')
+  py -3 scripts/package_site.py create --work-dir $sitePackages --root (Join-Path $sitePackages $siteKind) --manifest $siteManifest --zip $siteZip
+  if ($LASTEXITCODE -ne 0) { throw 'Packaging failed' }
+  py -3 scripts/package_site.py verify --work-dir $sitePackages --manifest $siteManifest --zip $siteZip
+  if ($LASTEXITCODE -ne 0) { throw 'ZIP readback failed' }
+}
+```
+
+Assembly requires the explicit real-dist build, authenticates the stage again before/after copying, adds the committed headers and standalone error templates, and writes schema-v1 manifests only after readback. Controls count towards the 1,000-entry dashboard limit; each file is bounded at 25 MiB. A failed attempt requires a fresh destination. Receipts and manifests stay outside served trees.
+
+The cross-language integration test uses SITE_PACKAGE_PYTHON to select an existing Python 3.12+ executable. Set that environment variable before npm test; CI supplies python3. No dependency installation, source import or provider operation is performed by these tools. See the [real preparation verification](docs/validation/local-site-preparation.md).
 
 Each staging command emits its private JSON receipt only on success. Readback authenticates the source inventory to its recorded Git commit, compares the seven copied state files with their accepted originals, and rejects missing/changed/extra files or invalid dependency links. Build caches under `project/.astro` and `project/dist` are permitted; other extra project files are refused. Keep receipts outside any served tree.
 
