@@ -71,6 +71,26 @@ Open the displayed localhost URL, then `/products/090121/`. Explicit fixture mod
 
 Run code checks with `npm test` and `npm run check`. For browser acceptance, install Chromium once with `npx playwright install chromium`, build using explicit fixture mode with `npm run build`, then run `npm run test:e2e`. Browser tests exercise real controls and downloads, mobile overflow, keyboard use, PNG failure recovery, and research without JavaScript.
 
+## Local site packaging
+
+The tracked Python operator consumes an **already prepared tree and schema-v1 manifest** from the existing site/withdrawal preparation flow. It creates a ZIP or checks a retained ZIP without rebuilding, downloading data or contacting a provider. Use Python 3.12 or newer; no Python packages are required. Keep the preparation directory private and ignored, such as a fresh directory under `.tmp/`.
+
+All paths must be inside the existing, explicitly owned `--work-dir`; parent traversal, symlinks/junctions/reparse points and hardlinked files are refused. Run from the repository root, with the reviewed manifest and tree already in place:
+
+```powershell
+py -3 scripts/package_site.py create --work-dir .tmp/package-run --root .tmp/package-run/upload --manifest .tmp/package-run/site-manifest.json --zip .tmp/package-run/site.zip
+py -3 scripts/package_site.py verify --work-dir .tmp/package-run --manifest .tmp/package-run/site-manifest.json --zip .tmp/package-run/site.zip
+py -3 -m unittest discover -s tests/packaging -v
+```
+
+On Linux/macOS, replace `py -3` with `python3`. Both commands emit a JSON receipt on stdout only after full verification: work-directory-relative ZIP path, ZIP bytes/SHA-256, entry count and `entriesVerified: true`. Failure returns nonzero and writes its explanation to stderr. Creation requires a fresh destination and preserves occupied files. If creation fails after opening the ZIP, a partial file may remain for investigation; it has no success receipt and requires a fresh destination for another attempt.
+
+The existing manifest format and dashboard preparation bounds remain: at most **1,000 entries**, including `_headers` and `404.html`, and at most **26,214,400 uncompressed bytes per asset**. This package bound is separate from the normal build's 15,000-file planning alert. The operator checks exact file sets, roles, portable/case-unique paths, private/runtime path exclusions, totals, largest-file identity, provider headers, template SHA-256/Git-blob identities and stable regular-file reads. ZIP verification checks every complete decompressed member, its compressed-stream end and CRC, and hashes the ZIP through the same stable handle. Withdrawal packages contain only `index.html`, `404.html` and `_headers`.
+
+A manifest is trusted local preparation input, not a deployment approval or independent source-data attestation. The operator does not produce manifests, stage accepted datasets, scan arbitrary asset text for secrets, validate provenance metadata against Census/Git, select a target or upload files. Existing source/data review and publication decisions still apply. Do not package an ordinary fixture build for public release.
+
+Offline validation on October 14, 2026 passed 24 packaging tests, including exact file/asset boundaries, malformed manifests and ZIPs, stable-file metadata, hardlinks/junctions, occupied destinations and reproducible output. The operator also read back the retained 30-entry production package and recreated it from a checked private copy of its prepared tree: 1,534,093 uncompressed bytes, 366,534 ZIP bytes, and SHA-256 `1d429b9d39725011e6b43ad6ee8592445d2f7ff5832c8cfb17e4e7db6bcc1e0a`. The original manifest and ZIP remained unchanged; this was an offline compatibility check.
+
 ## Census key in GitHub
 
 The manual **Audit Canada country data** workflow is the first data step toward the launch brief's country profiles. It is restricted to Canada (`1220`) through August 2026 and checks 24 monthly all-goods totals and complete HS6 breakdowns for imports and exports. It retains the original responses, sanitized queries and hashes, reports reconciliation gaps and unavailable product months, and compares totals with the official Canada table at its displayed precision. The existing `CENSUS_API_KEY` secret is used only in retrieval. Evidence is retained even when source checks fail, as `census-1220-country-audit` for seven days.
