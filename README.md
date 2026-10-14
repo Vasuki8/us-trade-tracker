@@ -71,6 +71,47 @@ Open the displayed localhost URL, then `/products/090121/`. Explicit fixture mod
 
 Run code checks with `npm test` and `npm run check`. For browser acceptance, install Chromium once with `npx playwright install chromium`, build using explicit fixture mode with `npm run build`, then run `npm run test:e2e`. Browser tests exercise real controls and downloads, mobile overflow, keyboard use, PNG failure recovery, and research without JavaScript.
 
+## Local site preparation
+
+The staging tool exports a clean committed checkout and copies only the fixed accepted Canada/coffee state into a fresh ignored preparation directory. Source and data roots are explicit, so an isolated development checkout can read the existing primary checkout's accepted data. Originals remain unchanged. The staged project reuses the source checkout's existing dependency directory through one recorded link; builds may update that runtime's ignored caches.
+
+Run the following in PowerShell from the clean source checkout. Set `$siteData` to the checkout that holds the existing accepted data; ensure Node 24/dependencies are already available. Choose a new run name for each attempt:
+
+```powershell
+$siteSource = (Get-Location).Path
+$siteData = $siteSource
+$siteRun = Join-Path $siteSource '.tmp/pilot-preparation-r1'
+$siteCommit = git rev-parse HEAD
+New-Item -ItemType Directory -Path (Join-Path $siteSource '.tmp') -Force | Out-Null
+
+node --import tsx scripts/stage-site.ts create --source-root $siteSource --data-root $siteData --output $siteRun --commit $siteCommit
+if ($LASTEXITCODE -ne 0) { throw 'Staging failed' }
+node --import tsx scripts/stage-site.ts verify --source-root $siteSource --data-root $siteData --stage-root $siteRun
+if ($LASTEXITCODE -ne 0) { throw 'Pre-build readback failed' }
+
+$siteFlags = @('TRADE_DATA_MODE', 'CANADA_PILOT_MODE', 'CANADA_PREVIEW_MODE', 'CANADA_ACCEPTED_PREVIEW_MODE')
+$sitePrior = @{}
+foreach ($siteFlag in $siteFlags) { $sitePrior[$siteFlag] = [Environment]::GetEnvironmentVariable($siteFlag, 'Process') }
+Push-Location (Join-Path $siteRun 'project')
+try {
+  $env:TRADE_DATA_MODE = 'census'
+  $env:CANADA_PILOT_MODE = 'snapshot'
+  [Environment]::SetEnvironmentVariable('CANADA_PREVIEW_MODE', $null, 'Process')
+  [Environment]::SetEnvironmentVariable('CANADA_ACCEPTED_PREVIEW_MODE', $null, 'Process')
+  npm run build -- --outDir ../real-dist
+  if ($LASTEXITCODE -ne 0) { throw 'Build failed' }
+} finally {
+  Pop-Location
+  foreach ($siteFlag in $siteFlags) { [Environment]::SetEnvironmentVariable($siteFlag, $sitePrior[$siteFlag], 'Process') }
+}
+node --import tsx scripts/stage-site.ts verify --source-root $siteSource --data-root $siteData --stage-root $siteRun
+if ($LASTEXITCODE -ne 0) { throw 'Post-build readback failed' }
+```
+
+Each staging command emits its private JSON receipt only on success. Readback authenticates the source inventory to its recorded Git commit, compares the seven copied state files with their accepted originals, and rejects missing/changed/extra files or invalid dependency links. Build caches under `project/.astro` and `project/dist` are permitted; other extra project files are refused. Keep receipts outside any served tree.
+
+This is a local preparation recipe with a shared runtime, not a fresh-machine install, source refresh or public upload. A fresh build can change the Methods preparation timestamp; measure new hashes rather than copying an earlier package's receipt.
+
 ## Local site packaging
 
 The tracked Python operator consumes an **already prepared tree and schema-v1 manifest** from the existing site/withdrawal preparation flow. It creates a ZIP or checks a retained ZIP without rebuilding, downloading data or contacting a provider. Use Python 3.12 or newer; no Python packages are required. Keep the preparation directory private and ignored, such as a fresh directory under `.tmp/`.

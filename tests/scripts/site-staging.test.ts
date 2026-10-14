@@ -1,10 +1,14 @@
 import {afterEach,expect,it,vi} from 'vitest';
-import {readFile,writeFile,mkdir,readdir,lstat,link} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,readdir,lstat,link,unlink,symlink} from 'node:fs/promises';
 import {resolve} from 'node:path';
-import {createSiteStage} from '../../scripts/site-staging';
+import * as fs from 'node:fs/promises';
+import {readSiteFile} from '../../scripts/site-preparation-files';
+import {createSiteStage,verifySiteStage} from '../../scripts/site-staging';
 import {preparationFixture,cleanPreparationFixtures,fixtureGit,blob} from '../helpers/site-preparation';
 vi.mock('../../src/lib/country-preview/pilot-load.server',()=>({loadCanadaPilot:vi.fn()}));
-afterEach(cleanPreparationFixtures);
+vi.mock('node:fs/promises',async importOriginal=>{const actual=await importOriginal<typeof import('node:fs/promises')>();return{...actual,open:vi.fn(actual.open)};});
+const originalOpen=vi.mocked(fs.open).getMockImplementation()!;
+afterEach(async()=>{vi.mocked(fs.open).mockImplementation(originalOpen);await cleanPreparationFixtures();});
 it('exports_requested_clean_head',async()=>{
  const f=await preparationFixture(),receipt=await createSiteStage(f);
  expect(receipt.codeCommit).toBe(f.commit);expect(receipt.status).toBe('staged-for-local-build');
@@ -45,5 +49,46 @@ it('refuses_hardlinked_working_source_without_copying_it',async()=>{
  const f=await preparationFixture();await link(resolve(f.sourceRoot,'a.ts'),resolve(f.sourceRoot,'.tmp/linked-source'));
  await expect(createSiteStage(f)).rejects.toThrow(/source|file|link/);
  await expect(lstat(resolve(f.outputRoot,'staging-receipt.json'))).rejects.toMatchObject({code:'ENOENT'});
+});
+
+it('readbacks_complete_stage_and_permitted_build_cache',async()=>{
+ const f=await preparationFixture(),receipt=await createSiteStage(f);await mkdir(resolve(f.outputRoot,'project/.astro'));await writeFile(resolve(f.outputRoot,'project/.astro/cache.json'),'{}');
+ expect(await verifySiteStage({...f,stageRoot:f.outputRoot})).toEqual(receipt);
+});
+it.each(['missing','changed','forged','original'] as const)('rejects_missing_changed_or_forged_stage_%s',async kind=>{
+ const f=await preparationFixture();await createSiteStage(f);
+ if(kind==='missing')await unlink(resolve(f.outputRoot,'project/a.ts'));
+ if(kind==='changed')await writeFile(resolve(f.outputRoot,'project/a.ts'),'changed');
+ if(kind==='original')await writeFile(resolve(f.dataRoot,'data/processed/current.json'),'changed');
+ if(kind==='forged'){const p=resolve(f.outputRoot,'staging-receipt.json'),v=JSON.parse(await readFile(p,'utf8'));v.products[0].code='999999';await writeFile(p,JSON.stringify(v)+'\n');}
+ await expect(verifySiteStage({...f,stageRoot:f.outputRoot})).rejects.toThrow();
+});
+it('rejects_unexpected_stage_file',async()=>{
+ const f=await preparationFixture();await createSiteStage(f);await writeFile(resolve(f.outputRoot,'project/proof.json'),'private');
+ await expect(verifySiteStage({...f,stageRoot:f.outputRoot})).rejects.toThrow(/unexpected/);
+});
+it('dependency_exception_is_one_bound_link',async()=>{
+ const f=await preparationFixture();await createSiteStage(f);const runtime=resolve(f.outputRoot,'project/node_modules');
+ await unlink(runtime);await symlink(f.dataRoot,runtime,process.platform==='win32'?'junction':'dir');
+ await expect(verifySiteStage({...f,stageRoot:f.outputRoot})).rejects.toThrow(/runtime|dependency/);
+ await unlink(runtime);await symlink(resolve(f.sourceRoot,'node_modules'),runtime,process.platform==='win32'?'junction':'dir');
+ const alias=resolve(f.outputRoot,'project/other-link');await symlink(f.dataRoot,alias,process.platform==='win32'?'junction':'dir');
+ await expect(verifySiteStage({...f,stageRoot:f.outputRoot})).rejects.toThrow(/reparse/);
+});
+it('rejects_input_output_reparse_ancestors_and_hardlinked_stage',async()=>{
+ const f=await preparationFixture();const alias=resolve(f.sourceRoot,'.tmp/alias');await symlink(f.dataRoot,alias,process.platform==='win32'?'junction':'dir');
+ await expect(createSiteStage({...f,outputRoot:resolve(alias,'nested')})).rejects.toThrow(/reparse/);
+ await expect(createSiteStage({...f,dataRoot:alias})).rejects.toThrow(/reparse/);
+ await createSiteStage(f);await link(resolve(f.outputRoot,'project/a.ts'),resolve(f.sourceRoot,'.tmp/linked-copy'));
+ await expect(verifySiteStage({...f,stageRoot:f.outputRoot})).rejects.toThrow(/type|length/);
+});
+it('metadata_changes_during_read_fail_but_domains_may_differ',async()=>{
+ const f=await preparationFixture(),path=resolve(f.sourceRoot,'a.ts');let changing=false;
+ vi.mocked(fs.open).mockImplementation(async(...args)=>{
+  const handle=await originalOpen(...args),original=handle.stat.bind(handle);let calls=0;
+  vi.spyOn(handle,'stat').mockImplementation(async(...statArgs:any[])=>{const value=await original(...statArgs as []);calls++;return Object.assign(Object.create(Object.getPrototypeOf(value)),value,{ctimeMs:Number(value.ctimeMs)+1000+(changing&&calls===2?1000:0)});});return handle;
+ });
+ expect((await readSiteFile(f.sourceRoot,path)).toString()).toContain('export const');
+ changing=true;await expect(readSiteFile(f.sourceRoot,path)).rejects.toThrow(/changed-during/);
 });
 

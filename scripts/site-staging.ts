@@ -1,6 +1,6 @@
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {mkdir,lstat,symlink} from 'node:fs/promises';
+import {mkdir,lstat,symlink,readdir,realpath} from 'node:fs/promises';
 import {resolve,relative,sep} from 'node:path';
 import {loadCanadaPilot} from '../src/lib/country-preview/pilot-load.server';
 import {canadaCountryReleaseContract as release,countryJsonBytes,digestCountryBytes,countrySame} from '../src/lib/country-release/contract.server';
@@ -67,5 +67,27 @@ export async function createSiteStage(options:SiteStageOptions):Promise<SiteStag
  await symlink(info.receipt.runtime.dependencyTarget,resolve(outputRoot,'project/node_modules'),process.platform==='win32'?'junction':'dir');
  const fresh=await stageInformation(sourceRoot,dataRoot,options.commit);countrySame(fresh.receipt,info.receipt);await cleanHead(sourceRoot,options.commit);
  await writeSiteFile(outputRoot,resolve(outputRoot,'staging-receipt.json'),countryJsonBytes(info.receipt));return info.receipt;
+}
+
+export async function verifySiteStage(options:{sourceRoot:string;dataRoot:string;stageRoot:string}):Promise<SiteStageReceipt>{
+ const sourceRoot=resolve(options.sourceRoot),dataRoot=resolve(options.dataRoot),stageRoot=resolve(options.stageRoot),body=await readSiteFile(stageRoot,resolve(stageRoot,'staging-receipt.json'),1024*1024);
+ const value=JSON.parse(new TextDecoder('utf8',{fatal:true}).decode(body));if(!countryJsonBytes(value).equals(body))throw Error('site-noncanonical-receipt');
+ const info=await stageInformation(sourceRoot,dataRoot,value?.codeCommit);countrySame(value,info.receipt);
+ const project=resolve(stageRoot,'project'),runtime=resolve(project,'node_modules');await assertLocalPath(stageRoot,project);
+ if(!(await lstat(runtime)).isSymbolicLink()||resolve(await realpath(runtime))!==info.receipt.runtime.dependencyTarget)throw Error('site-runtime-link');
+ const expected=new Map([...info.sources,...info.data.files].map(f=>[f.identity.path,f.identity])),observed=new Set<string>();
+ async function scan(directory:string):Promise<void>{
+  await assertLocalPath(stageRoot,directory);for(const e of await readdir(directory,{withFileTypes:true})){
+   const path=resolve(directory,e.name);if(path===runtime)continue;await assertLocalPath(stageRoot,path);const stat=await lstat(path),name=relative(project,path).split(sep).join('/');
+   if(stat.isDirectory())await scan(path);else if(stat.isFile()){
+    if(stat.nlink!==1)throw Error('site-file-type-length');const item=expected.get(name);
+    if(item){await readSiteFile(stageRoot,path,16*1024*1024,item);observed.add(name);}
+    else if(!name.startsWith('.astro/')&&!name.startsWith('dist/'))throw Error('site-unexpected-stage-file');
+   }else throw Error('site-nonregular-stage-file');
+  }
+ }
+ await scan(project);if(observed.size!==expected.size||[...expected.keys()].some(k=>!observed.has(k)))throw Error('site-missing-stage-file');
+ const current=await stageInformation(sourceRoot,dataRoot,value.codeCommit);countrySame(current.receipt,info.receipt);
+ await readSiteFile(stageRoot,resolve(stageRoot,'staging-receipt.json'),1024*1024,digestCountryBytes(body));return info.receipt;
 }
 
