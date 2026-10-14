@@ -10,8 +10,10 @@ import json
 import os
 from pathlib import Path
 import stat
+import struct
 import sys
 import zipfile
+import zlib
 
 MAX_FILES = 1000
 MAX_BYTES = 26214400
@@ -219,6 +221,43 @@ class Packager:
         self.verify_tree(root, manifest)
         return self.verify(destination, manifest)
 
+    @staticmethod
+    def _member_body(source, archive, info, expected_bytes):
+        # ZipExtFile truncates decompressed data to the central directory size.
+        # Retain its local-name/overlap checks, then decode the entire declared
+        # compressed member ourselves with a strict output bound.
+        with archive.open(info):
+            pass
+        source.seek(info.header_offset)
+        header = source.read(30)
+        if len(header) != 30:
+            raise ValueError("Truncated ZIP local header")
+        fields = struct.unpack("<4s5H3L2H", header)
+        if fields[0] != b"PK\x03\x04" or fields[2] != info.flag_bits or fields[3] != info.compress_type:
+            raise ValueError("ZIP local metadata differs")
+        source.seek(info.header_offset + 30 + fields[9] + fields[10])
+        if info.compress_type == zipfile.ZIP_STORED and info.compress_size != expected_bytes:
+            raise ValueError("ZIP stored length differs")
+        decoder = zlib.decompressobj(-15) if info.compress_type == zipfile.ZIP_DEFLATED else None
+        body = bytearray()
+        remaining = info.compress_size
+        while remaining:
+            chunk = source.read(min(65536, remaining))
+            if not chunk:
+                raise ValueError("Truncated ZIP member")
+            remaining -= len(chunk)
+            decoded = decoder.decompress(chunk, expected_bytes + 1 - len(body)) if decoder else chunk
+            body.extend(decoded)
+            if len(body) > expected_bytes:
+                raise ValueError("ZIP expanded length differs")
+            if decoder and (decoder.unconsumed_tail or decoder.unused_data):
+                raise ValueError("ZIP compressed member has trailing data")
+        if decoder and not decoder.eof:
+            raise ValueError("Incomplete ZIP compressed stream")
+        if len(body) != expected_bytes or zlib.crc32(body) != info.CRC:
+            raise ValueError("ZIP member length or CRC differs")
+        return bytes(body)
+
     def verify(self, path, manifest):
         path = self.checked_path(path)
         items = manifest_items(manifest)
@@ -242,8 +281,7 @@ class Packager:
                         item = items[name]
                         if not 0 <= info.file_size <= MAX_BYTES or info.file_size != item["bytes"]:
                             raise ValueError("ZIP length limit or mismatch")
-                        with archive.open(info) as member:
-                            body = member.read(MAX_BYTES + 1)
+                        body = self._member_body(source, archive, info, item["bytes"])
                         if len(body) != item["bytes"] or hashlib.sha256(body).hexdigest() != item["sha256"]:
                             raise ValueError("ZIP payload differs")
                         if name == "_headers" and body.replace(b"\r\n", b"\n") != HEADER:
@@ -257,7 +295,7 @@ class Packager:
                 while chunk := source.read(1048576):
                     sha.update(chunk)
                     size += len(chunk)
-        except (zipfile.BadZipFile, RuntimeError, NotImplementedError, EOFError) as error:
+        except (zipfile.BadZipFile, RuntimeError, NotImplementedError, EOFError, zlib.error) as error:
             raise ValueError("Invalid ZIP") from error
         return {"path": path.relative_to(self.work_dir).as_posix(), "bytes": size, "sha256": sha.hexdigest(),
                 "entryCount": len(seen), "entriesVerified": True}

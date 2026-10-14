@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import stat
+import struct
 import subprocess
 import sys
 import tempfile
@@ -14,6 +15,7 @@ import unittest
 from unittest.mock import patch
 import warnings
 import zipfile
+import zlib
 
 REPO = Path(__file__).resolve().parents[2]
 TOOL = REPO / "scripts/package_site.py"
@@ -327,6 +329,60 @@ class PackageTests(unittest.TestCase):
             self.make_zip(names)
             with self.subTest(names=names), self.assertRaises(ValueError):
                 self.operator.verify(self.out, self.manifest)
+
+
+    def forge_prefix_zip(self, compression):
+        expected = (self.root / "index.html").read_bytes()
+        with zipfile.ZipFile(self.out, "w", compression=compression) as archive:
+            for item in self.manifest["files"]:
+                body = (self.root / item["path"]).read_bytes()
+                if item["path"] == "index.html":
+                    body += b"unverified trailing payload"
+                archive.writestr(item["path"], body)
+        with zipfile.ZipFile(self.out) as archive:
+            offset = archive.getinfo("index.html").header_offset
+        raw = bytearray(self.out.read_bytes())
+        struct.pack_into("<L", raw, offset + 14, zlib.crc32(expected))
+        struct.pack_into("<L", raw, offset + 22, len(expected))
+        central = raw.find(b"PK\x01\x02")
+        while central >= 0:
+            name_length, extra_length, comment_length = struct.unpack_from("<3H", raw, central + 28)
+            name = bytes(raw[central + 46:central + 46 + name_length])
+            if name == b"index.html":
+                struct.pack_into("<L", raw, central + 16, zlib.crc32(expected))
+                struct.pack_into("<L", raw, central + 24, len(expected))
+                break
+            central += 46 + name_length + extra_length + comment_length
+        else:
+            self.fail("Missing fixture central entry")
+        self.out.write_bytes(raw)
+
+    def test_zip_cannot_hide_trailing_payload_behind_a_valid_prefix(self):
+        for compression in (zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED):
+            self.forge_prefix_zip(compression)
+            # Demonstrate the stdlib read truncation that this guard must reject.
+            with zipfile.ZipFile(self.out) as archive:
+                self.assertEqual(archive.read("index.html"), (self.root / "index.html").read_bytes())
+            with self.subTest(compression=compression), self.assertRaises(ValueError):
+                self.operator.verify(self.out, self.manifest)
+
+    def test_malformed_deflate_is_a_controlled_verification_failure(self):
+        self.forge_prefix_zip(zipfile.ZIP_DEFLATED)
+        with zipfile.ZipFile(self.out) as archive:
+            offset = archive.getinfo("index.html").header_offset
+        raw = bytearray(self.out.read_bytes())
+        name_length, extra_length = struct.unpack_from("<2H", raw, offset + 26)
+        start = offset + 30 + name_length + extra_length
+        raw[start] = (raw[start] & ~6) | 6  # DEFLATE reserved block type.
+        self.out.write_bytes(raw)
+        manifest = self.home / "manifest.json"
+        manifest.write_text(json.dumps(self.manifest), encoding="utf-8")
+        result = subprocess.run([sys.executable, str(TOOL), "verify", "--work-dir", str(self.home),
+                                 "--manifest", str(manifest), "--zip", str(self.out)], capture_output=True, text=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(result.stdout, "")
+        self.assertIn("Packaging failed:", result.stderr)
+        self.assertNotIn("Traceback", result.stderr)
 
     def test_cli_create_verify_and_failure_have_unambiguous_output(self):
         manifest = self.home / "manifest.json"
