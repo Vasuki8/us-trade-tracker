@@ -141,15 +141,22 @@ class PackageTests(unittest.TestCase):
         self.reject_create(manifest)
 
     def test_private_runtime_and_nonportable_manifest_paths(self):
+        (self.root / "404.html").write_bytes((REPO / "deployment/pages/404.html").read_bytes())
+        base = fixture_manifest(self.root, "site")
+        def with_asset(name):
+            manifest = copy.deepcopy(base)
+            manifest["files"].append({"path": name, "bytes": 1, "sha256": digest(b"x"), "role": "served-asset"})
+            manifest["fileCount"] += 1
+            manifest["totalBytes"] += 1
+            return manifest
+        # An ordinary asset with otherwise identical metadata must be accepted.
+        self.assertIn("assets/chart.js", pkg.manifest_items(with_asset("assets/chart.js")))
         for name in ("data/secret.json", "preview/index.html", "functions/index.js", ".git/config.json",
                      "secrets/key.json", ".env.json", "_worker.js", "_WORKER.js", "_redirects",
                      "asset.js.map", "../index.html", "/index.html", "C:/index.html", r"a\index.html",
                      "a//index.html", "a/./index.html", "asset%2ejson", "index.html ", "nul.json"):
-            manifest = copy.deepcopy(self.manifest)
-            manifest["packageKind"] = "site"
-            manifest["files"].append({"path": name, "bytes": 1, "sha256": digest(b"x"), "role": "served-asset"})
-            with self.subTest(name=name):
-                self.reject_create(manifest)
+            with self.subTest(name=name), self.assertRaises(ValueError):
+                pkg.manifest_items(with_asset(name))
 
     def test_duplicates_and_case_collisions_in_manifest(self):
         for name in ("index.html", "INDEX.html"):
