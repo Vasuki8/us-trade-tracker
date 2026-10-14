@@ -126,7 +126,7 @@ foreach ($siteKind in @('site', 'withdrawal')) {
 }
 ```
 
-Assembly requires the explicit real-dist build, authenticates the stage again before/after copying, adds the committed headers and standalone error templates, and writes schema-v1 manifests only after readback. Controls count towards the 1,000-entry dashboard limit; each file is bounded at 25 MiB. A failed attempt requires a fresh destination. Receipts and manifests stay outside served trees.
+Assembly requires the explicit real-dist build, authenticates the stage again before/after copying, adds the committed headers and standalone error templates, and writes schema-v1 manifests only after readback. Controls count towards the 1,000-entry dashboard limit; each file is bounded at 25 MiB. A failed attempt requires a fresh destination. Receipts and manifests stay outside served trees. Verification also rechecks that staging remains ignored under the source checkout .tmp directory. On Windows, a hidden read-only PowerShell helper checks the native reparse attribute for every inspected component; only the recorded dependency link is exempt. No new dependency is installed. A manifest proves the checked file identities; it does not independently attest that arbitrary substituted assets came from the documented build.
 
 The cross-language integration test uses SITE_PACKAGE_PYTHON to select an existing Python 3.12+ executable. Set that environment variable before npm test; CI supplies python3. No dependency installation, source import or provider operation is performed by these tools. See the [real preparation verification](docs/validation/local-site-preparation.md).
 

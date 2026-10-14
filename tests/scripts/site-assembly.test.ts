@@ -1,5 +1,5 @@
 import {afterEach,expect,it,vi} from 'vitest';
-import {readFile,writeFile,mkdir,lstat,link} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,lstat,link,rename} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import * as fs from 'node:fs/promises';
 import {createSiteStage} from '../../scripts/site-staging';
@@ -59,3 +59,10 @@ it('rejects_1001_entries_including_both_site_controls',async()=>{
  await expect(lstat(resolve(f.outputRoot,'preparation-receipt.json'))).rejects.toMatchObject({code:'ENOENT'});
 },30000);
 
+
+it('rejects_relocated_stage_before_assembly_output',async()=>{
+ const f=await setup(),stageRoot=resolve(f.home,'relocated-stage');await rename(f.stageRoot,stageRoot);
+ const outputRoot=resolve(stageRoot,'packages');
+ await expect(prepareSite({...f,stageRoot,buildRoot:resolve(stageRoot,'real-dist'),outputRoot})).rejects.toThrow(/scope|ignored/);
+ await expect(lstat(outputRoot)).rejects.toMatchObject({code:'ENOENT'});
+});

@@ -55,10 +55,17 @@ export async function stageInformation(sourceRoot:string,dataRoot:string,commit:
  return{receipt:{schemaVersion:1,status:'staged-for-local-build',codeCommit:commit,sources:sources.map(s=>s.identity),data:data.files.map(f=>f.identity),country:data.country,products:data.products,runtime:{nodeMajor:24,dependencyMode:'shared-existing',dependencyTarget,lock:{path:lock.path,bytes:lock.bytes,sha256:lock.sha256}}},sources,data};
 }
 async function cleanHead(root:string,commit:string){if(siteGit(root,['rev-parse','HEAD']).toString().trim()!==commit)throw Error('site-commit-not-head');if(siteGit(root,['status','--porcelain','--untracked-files=all']).toString().trim())throw Error('site-clean-checkout-required');}
+async function assertStageScope(sourceRoot:string,stageRoot:string,missing=false):Promise<void>{
+ const rel=relative(sourceRoot,stageRoot);
+ if(!rel.startsWith('.tmp'+sep)||rel.includes('..'))throw Error('site-output-must-be-ignored-scope');
+ try{if(!siteGit(sourceRoot,['check-ignore','--no-index',stageRoot]).toString().trim())throw Error('not-ignored');}
+ catch{throw Error('site-output-must-be-ignored-scope');}
+ await assertLocalPath(sourceRoot,stageRoot,missing);
+}
+
 export async function createSiteStage(options:SiteStageOptions):Promise<SiteStageReceipt>{
- const sourceRoot=resolve(options.sourceRoot),dataRoot=resolve(options.dataRoot),outputRoot=resolve(options.outputRoot),rel=relative(sourceRoot,outputRoot);
- if(!rel.startsWith('.tmp'+sep)||rel.includes('..')||siteGit(sourceRoot,['check-ignore','--no-index',outputRoot]).toString().trim()==='')throw Error('site-output-must-be-ignored-scope');
- await cleanHead(sourceRoot,options.commit);await assertLocalPath(sourceRoot,outputRoot,true);
+ const sourceRoot=resolve(options.sourceRoot),dataRoot=resolve(options.dataRoot),outputRoot=resolve(options.outputRoot);
+ await assertStageScope(sourceRoot,outputRoot,true);await cleanHead(sourceRoot,options.commit);
  try{await lstat(outputRoot);throw Error('site-occupied-output');}catch(error){if((error as NodeJS.ErrnoException).code!=='ENOENT')throw error;}
  const info=await stageInformation(sourceRoot,dataRoot,options.commit);
  for(const file of info.sources){const path=resolve(sourceRoot,file.identity.path);await assertLocalPath(sourceRoot,path);const stat=await lstat(path);if(!stat.isFile()||stat.nlink!==1)throw Error('site-working-source-file-type');}
@@ -70,7 +77,9 @@ export async function createSiteStage(options:SiteStageOptions):Promise<SiteStag
 }
 
 export async function verifySiteStage(options:{sourceRoot:string;dataRoot:string;stageRoot:string}):Promise<SiteStageReceipt>{
- const sourceRoot=resolve(options.sourceRoot),dataRoot=resolve(options.dataRoot),stageRoot=resolve(options.stageRoot),body=await readSiteFile(stageRoot,resolve(stageRoot,'staging-receipt.json'),1024*1024);
+ const sourceRoot=resolve(options.sourceRoot),dataRoot=resolve(options.dataRoot),stageRoot=resolve(options.stageRoot);
+ await assertStageScope(sourceRoot,stageRoot);
+ const body=await readSiteFile(stageRoot,resolve(stageRoot,'staging-receipt.json'),1024*1024);
  const value=JSON.parse(new TextDecoder('utf8',{fatal:true}).decode(body));if(!countryJsonBytes(value).equals(body))throw Error('site-noncanonical-receipt');
  const info=await stageInformation(sourceRoot,dataRoot,value?.codeCommit);countrySame(value,info.receipt);
  const project=resolve(stageRoot,'project'),runtime=resolve(project,'node_modules');await assertLocalPath(stageRoot,project);
@@ -88,6 +97,6 @@ export async function verifySiteStage(options:{sourceRoot:string;dataRoot:string
  }
  await scan(project);if(observed.size!==expected.size||[...expected.keys()].some(k=>!observed.has(k)))throw Error('site-missing-stage-file');
  const current=await stageInformation(sourceRoot,dataRoot,value.codeCommit);countrySame(current.receipt,info.receipt);
- await readSiteFile(stageRoot,resolve(stageRoot,'staging-receipt.json'),1024*1024,digestCountryBytes(body));return info.receipt;
+ await readSiteFile(stageRoot,resolve(stageRoot,'staging-receipt.json'),1024*1024,digestCountryBytes(body));await assertStageScope(sourceRoot,stageRoot);return info.receipt;
 }
 

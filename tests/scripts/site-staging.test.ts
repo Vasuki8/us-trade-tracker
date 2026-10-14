@@ -1,8 +1,8 @@
 import {afterEach,expect,it,vi} from 'vitest';
-import {readFile,writeFile,mkdir,readdir,lstat,link,unlink,symlink} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,readdir,lstat,link,unlink,symlink,rename} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import * as fs from 'node:fs/promises';
-import {readSiteFile} from '../../scripts/site-preparation-files';
+import {readSiteFile,assertLocalPath} from '../../scripts/site-preparation-files';
 import {createSiteStage,verifySiteStage} from '../../scripts/site-staging';
 import {preparationFixture,cleanPreparationFixtures,fixtureGit,blob} from '../helpers/site-preparation';
 vi.mock('../../src/lib/country-preview/pilot-load.server',()=>({loadCanadaPilot:vi.fn()}));
@@ -92,3 +92,26 @@ it('metadata_changes_during_read_fail_but_domains_may_differ',async()=>{
  changing=true;await expect(readSiteFile(f.sourceRoot,path)).rejects.toThrow(/changed-during/);
 });
 
+
+it.each(['visible','external'] as const)('rejects_relocated_stage_%s',async kind=>{
+ const f=await preparationFixture();await createSiteStage(f);
+ const stageRoot=resolve(kind==='visible'?f.sourceRoot:f.home,'relocated-stage');
+ await rename(f.outputRoot,stageRoot);
+ await expect(verifySiteStage({...f,stageRoot})).rejects.toThrow(/scope|ignored/);
+ expect(await readFile(resolve(stageRoot,'project/a.ts'),'utf8')).toContain('export const');
+});
+it('rejects_stage_that_is_no_longer_ignored',async()=>{
+ const f=await preparationFixture();await createSiteStage(f);
+ await writeFile(resolve(f.sourceRoot,'.gitignore'),'node_modules/\n');
+ await expect(verifySiteStage({...f,stageRoot:f.outputRoot})).rejects.toThrow(/scope|ignored/);
+});
+it('rejects_non_symlink_windows_reparse_attribute',async()=>{
+ const f=await preparationFixture(),path=resolve(f.sourceRoot,'a.ts');let inspected:string[]=[];
+ const attributes=async(paths:string[])=>{inspected=paths;return paths.map(p=>p===f.sourceRoot?1024:16);};
+ await expect(assertLocalPath(f.sourceRoot,path,false,attributes)).rejects.toThrow(/reparse/);
+ expect(inspected).toContain(f.sourceRoot);expect(inspected).toContain(path);
+});
+it('fails_closed_when_windows_attribute_results_are_incomplete',async()=>{
+ const f=await preparationFixture();
+ await expect(assertLocalPath(f.sourceRoot,resolve(f.sourceRoot,'a.ts'),false,async()=>[])).rejects.toThrow(/attributes/);
+});

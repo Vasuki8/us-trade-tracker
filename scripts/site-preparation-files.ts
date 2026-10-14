@@ -1,3 +1,4 @@
+import {windowsAttributes} from './site-windows-attributes';
 import {lstat,open,mkdir} from 'node:fs/promises';
 import {resolve,relative,isAbsolute,parse,sep,dirname} from 'node:path';
 import {digestCountryBytes} from '../src/lib/country-release/contract.server';
@@ -5,14 +6,21 @@ export type FileIdentity={path:string;bytes:number;sha256:string};
 export function localName(value:string):string{
  if(typeof value!=='string'||!value||/[\\:?#%*<>"|\x00-\x1f\x7f]/.test(value)||value.split('/').some(p=>!p||p==='.'||p==='..'||/[ .]$/.test(p)||/^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i.test(p)))throw Error('site-invalid-path');return value;
 }
-export async function assertLocalPath(root:string,target:string,missing=false):Promise<void>{
+export async function assertLocalPath(root:string,target:string,missing=false,attributes:((paths:string[])=>Promise<number[]>)|undefined=process.platform==='win32'?windowsAttributes:undefined):Promise<void>{
  if(target.split(/[\\/]/).includes('..'))throw Error('site-path-traversal');
  const base=resolve(root),path=resolve(target),rel=relative(base,path);if(rel==='..'||rel.startsWith('..'+sep)||isAbsolute(rel))throw Error('site-outside-scope');
- let cursor=parse(path).root;for(const part of path.slice(cursor.length).split(sep).filter(Boolean)){
-  cursor=resolve(cursor,part);try{const s=await lstat(cursor);if(s.isSymbolicLink())throw Error('site-reparse-path');}
+ let cursor=parse(path).root;const inspected:string[]=[cursor];
+ for(const part of path.slice(cursor.length).split(sep).filter(Boolean)){
+  cursor=resolve(cursor,part);try{const s=await lstat(cursor);if(s.isSymbolicLink())throw Error('site-reparse-path');inspected.push(cursor);}
   catch(error){if(missing&&cursor===path&&(error as NodeJS.ErrnoException).code==='ENOENT')continue;throw error;}
  }
+ if(attributes){
+  const values=await attributes(inspected);
+  if(!Array.isArray(values)||values.length!==inspected.length||values.some(v=>!Number.isInteger(v)||v<0))throw Error('site-windows-attributes-unavailable');
+  if(values.some(v=>(v&1024)!==0))throw Error('site-reparse-path');
+ }
 }
+
 const identity=(v:{dev:number|bigint;ino:number|bigint;size:number|bigint;mtimeMs:number|bigint;ctimeMs:number|bigint})=>[v.dev,v.ino,v.size,v.mtimeMs,v.ctimeMs].join('|');
 export async function readSiteFile(root:string,path:string,maxBytes=16*1024*1024,expected?:{bytes:number;sha256:string}):Promise<Buffer>{
  await assertLocalPath(root,path);const before=await lstat(path);if(!before.isFile()||before.nlink!==1||before.size>maxBytes||expected&&before.size!==expected.bytes)throw Error('site-file-type-length');
