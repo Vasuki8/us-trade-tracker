@@ -3,6 +3,8 @@ import {compareValues,shiftMonth,sumWindow} from './metrics';
 import {buildProfileView} from './profile';
 
 export type ChangeMetric = 'dollars' | 'share';
+export type CountryChangesPeriod = 'rolling' | 'monthly';
+export type CountryChangesViews = Record<CountryChangesPeriod,Record<Direction,ChangesView>>;
 export type CountryChange = {
   code:string; name:string; currentUsd:number|null; previousUsd:number|null;
   changeUsd:number|null; changePercent:number|null;

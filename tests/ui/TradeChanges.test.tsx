@@ -4,6 +4,8 @@ import {cleanup,render,screen,within} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
 import {sampleRelease} from '../helpers/release';
+import {buildChangesView,buildMonthlyChangesView} from '../../src/lib/trade/changes';
+import {TradeChanges} from '../../src/components/TradeChanges';
 import {ProductExplorer} from '../../src/components/ProductExplorer';
 afterEach(()=>{cleanup();window.history.replaceState(null,'','/');});
 
@@ -51,4 +53,13 @@ it('keeps small nonzero share changes visible rather than rounding them to zero'
   await userEvent.setup().selectOptions(changes.getByRole('combobox',{name:'Rank changes by'}),'share');
   const canada=within(changes.getByRole('table',{name:'Largest decreases · country share change'})).getByRole('row',{name:/CANADA/});
   expect(within(canada).getAllByRole('cell')[0]).toHaveTextContent('-0.0083 pp');
+});
+
+it.each(['imports','exports'] as const)('hands off a monthly %s ranking row to the matching selected-country comparison',direction=>{
+  render(<TradeChanges view={buildMonthlyChangesView(sampleRelease(),direction)}/>);
+  expect(screen.getByRole('link',{name:'CANADA'})).toHaveAttribute('href','/products/090121/?direction='+direction+'&months=12&countries=1220&comparison=monthly#selected-comparison-heading');
+});
+it('preserves rolling row links exactly',()=>{
+  render(<TradeChanges view={buildChangesView(sampleRelease(),'imports')}/>);
+  expect(screen.getByRole('link',{name:'CANADA'})).toHaveAttribute('href','/products/090121/?direction=imports&months=12&countries=1220');
 });

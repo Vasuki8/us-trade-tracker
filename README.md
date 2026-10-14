@@ -71,6 +71,14 @@ Open the displayed localhost URL, then `/products/090121/`. Explicit fixture mod
 
 Run code checks with `npm test` and `npm run check`. For browser acceptance, install Chromium once with `npx playwright install chromium`, build using explicit fixture mode with `npm run build`, then run `npm run test:e2e`. Browser tests exercise real controls and downloads, mobile overflow, keyboard use, PNG failure recovery, and research without JavaScript.
 
+## Monthly country movers
+
+The existing coffee changes pages now offer the latest reported month against the same month last year alongside rolling twelve-month comparisons. Direction and ranking changes retain the selected period. Copied monthly links append period=monthly; older links still open rolling comparisons. Country drilldowns and imports-to-duty links carry the matching period.
+
+Monthly CSVs identify the comparison in their filename and comparison_period column. Rolling downloads and default serializer output retain their previous contract. Without JavaScript, the page explains and displays imports over rolling twelve months ranked by dollar change.
+
+See the [monthly country movers verification](docs/validation/monthly-country-movers.md) for fixture checks, retained-data acceptance, compatibility hashes and measured local package growth. This batch prepares local packages; publication requires a separate package/target decision.
+
 ## Local site preparation
 
 The staging tool exports a clean committed checkout and copies only the fixed accepted Canada/coffee state into a fresh ignored preparation directory. Source and data roots are explicit, so an isolated development checkout can read the existing primary checkout's accepted data. Originals remain unchanged. The staged project reuses the source checkout's existing dependency directory through one recorded link; builds may update that runtime's ignored caches.
