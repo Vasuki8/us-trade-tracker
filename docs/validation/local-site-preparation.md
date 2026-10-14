@@ -4,7 +4,7 @@ Verified October 14, 2026. This batch prepares the existing fixed pilot locally;
 
 ## Rehearsed source and accepted inputs
 
-Runtime source: c5a3f39d313cc6e0525f30fd11a9e3ffe471440e, based on d43c45f7e47da0741ab9a57f465edf0d80b82179. Subsequent closeout edits are documentation only.
+Final rehearsed runtime source: 1a7466496dafb64a6688a697a95ab1d55065b007, based on d43c45f7e47da0741ab9a57f465edf0d80b82179. The initial rehearsal used c5a3f39d313cc6e0525f30fd11a9e3ffe471440e; the final rehearsal includes the independently reviewed filesystem fixes. Subsequent closeout edits are documentation only.
 
 The tracked staging command exported committed Git blobs from a clean isolated checkout. It authenticated and copied exactly seven named Canada/coffee state files (8,186,318 bytes), including the selected Canada acceptance record and projection. The eleven contract-protected original inputs and all seven originals matched their initial fingerprints after preparation. No raw Canada archive was opened or copied.
 
@@ -16,10 +16,10 @@ Follow the [PowerShell preparation recipe](../../README.md#local-site-preparatio
 
 | Artifact | Entries | Raw bytes | ZIP bytes | ZIP SHA-256 |
 | --- | ---: | ---: | ---: | --- |
-| Site | 30 | 1,534,093 | 366,538 | 0226a29c37599b6e916aed92dfc759ae30b20a5d684e17610f712143006f3b2d |
+| Site | 30 | 1,534,094 | 366,534 | f8ba67e6179b494d0e90495e107b8c86fd27e6dbdc0afbfa699c9597122f833c |
 | Withdrawal | 3 | 1,179 | 1,075 | af671ea2a9546b6ea76cfcd753c3286ca020cc4622c629d095fa2ae60a005932 |
 
-The site manifest SHA-256 is b597ad46d94ace3afc444b6876843d195cd314613ae959aa84378ad0dcfc9d89. The withdrawal manifest SHA-256 is 4cd0d5bfb6cdf0168be3b6e3ddc0448a1728c8ae251c98221bb4655b128f30f7. Largest site entry: products/090121/index.html, 283,298 bytes. Both packages satisfy the existing 1,000-entry dashboard limit including control files, and the 25 MiB per-file limit. The 15,000-file planning alert remains clear.
+The site manifest SHA-256 is c27bcf583255f06211210a85263c41ca0b8ec6337340e0fc0f6fdb02b83b01b5. The withdrawal manifest SHA-256 is b5a1ccb7b032335119a47079b56b1501cb6397561b8c77b6a3312ac665476b2c. Largest site entry: products/090121/index.html, 283,300 bytes. Both packages satisfy the existing 1,000-entry dashboard limit including control files, and the 25 MiB per-file limit. The 15,000-file planning alert remains clear.
 
 Recreating each ZIP from the same tree and manifest produced identical ZIP bytes. Comparing the new served tree with the retained prior preparation found 20 identical entries, nine HTML pages differing only in generated Astro island identifiers, and the Methods page differing only in its preparation timestamp. Fresh hashes are recorded rather than copied from prior evidence.
 
@@ -38,8 +38,27 @@ Source under src/ and deployment/ is unchanged from the pre-batch commit. Screen
 
 ## Automated checks and private evidence
 
-Thirty preparation tests exercise authenticated staging/readback, unsafe/occupied paths, changed or missing inputs, forged receipts, hardlinks/runtime links, templates/private payloads, package limits and roundtrips through the existing Python packager. CI uses fixtures and Python 3; it requires no accepted private data or secrets.
+Thirty-seven preparation tests on Windows exercise authenticated staging/readback, unsafe/occupied paths, changed or missing inputs, forged receipts, hardlinks/runtime links, templates/private payloads, package limits and roundtrips through the existing Python packager. CI uses fixtures and Python 3; it requires no accepted private data or secrets.
 
-The final check set is the complete unit suite with two workers, Astro/TypeScript diagnostics, the ordinary fixture build and all three existing browser suites, plus the 24 Python packaging tests. Results: 1,117/1,117 unit tests across 92 files; Astro/TypeScript diagnostics with zero errors, warnings or hints; 78/78 browser tests (61 ordinary, ten private-preview fixtures and seven pilot fixtures); 24/24 Python packaging tests. Fixture build: 27 files, 651,511 bytes; largest asset 212,848 bytes. Independent review and CI integration are recorded at closeout.
+The final check set is the complete unit suite with two workers, Astro/TypeScript diagnostics, the ordinary fixture build and all three existing browser suites, plus the 24 Python packaging tests. Initial results: 1,117/1,117 unit tests across 92 files; Astro/TypeScript diagnostics with zero errors, warnings or hints; 78/78 browser tests (61 ordinary, ten private-preview fixtures and seven pilot fixtures); 24/24 Python packaging tests. Fixture build: 27 files, 651,511 bytes; largest asset 212,848 bytes. Independent review and CI integration are recorded at closeout.
 
 Private run artifacts, fresh baselines, browser downloads/screenshots, readback receipts, fingerprints and test logs are preserved in the primary checkout's ignored .tmp/local-site-preparation-validation-20261014-r1 directory. No private evidence belongs in the served tree.
+
+## Independent review and integration
+
+A fresh read-only whole-branch review covered d43c45f..f8e9954. It found two Important filesystem boundary defects and no Critical or Minor findings. Root reproduced the defects before fixing them: relocated/no-longer-ignored stages, assembly outside the preparation boundary, and non-symlink Windows reparse attributes or incomplete attribute results.
+
+Readback now applies the same ignored source-root/.tmp boundary as creation, before reading the receipt and again before success. On Windows, a hidden read-only PowerShell helper queries [native file attributes](https://learn.microsoft.com/en-us/dotnet/api/system.io.fileattributes), including the 1024 reparse flag, for every inspected component. Paths travel as JSON data; the single bound dependency link remains the only exception. The helper installs no dependency and fails closed on missing/invalid attribute results. A real Windows junction/missing-path test verifies the adapter.
+
+Seven added regressions pass. The fix pass passed the full Windows suite (1,124/1,124 tests in 93 files) and clean diagnostics. CI also runs the existing application/browser/Python checks; its Windows-specific adapter test is skipped on Linux while the platform-neutral reparse and containment regressions still run.
+
+The corrected runtime was committed as 1a7466496dafb64a6688a697a95ab1d55065b007. A second fresh staging/build/readback/assembly/ZIP/browser rehearsal passed on that exact source. It again preserved all original/protected hashes and 84 CSV outputs. New served-tree differences are limited to the documented Astro identifiers and Methods timestamp. Subsequent edits are documentation only.
+
+Decisions on the reviewer's excluded behaviors:
+
+- Public deployment/provider behavior/live headers remain outside the authorized local batch; local proof cannot establish live provider behavior.
+- Accepted input/source correctness is preserved without an unauthorized new Census/raw replay; existing source errors could persist.
+- Dependency installation purity and concurrent-build isolation remain outside the shared-runtime guarantee; ignored caches could interfere with another build.
+- Arbitrary substituted build assets are not independently attested by a successful manifest; rely on the controlled build and research rehearsal, with the risk that benign manual substitutions could pass structural checks.
+
+No deferred minor findings. Exact-head CI, protected merge, main-tree identity and evidence-preservation results are recorded in the batch pull request and private closeout receipt. This record makes no deployment claim.

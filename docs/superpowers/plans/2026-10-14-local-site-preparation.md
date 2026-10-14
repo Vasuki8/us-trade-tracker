@@ -10,7 +10,7 @@
 
 **Spec:** The bounded design and permission envelope below, extending the existing [fixed-pilot deployment design](../specs/2026-10-13-canada-pilot-deployment-design.md) and [local packaging contract](../../../README.md#local-site-packaging). Existing source/data contracts remain authoritative.
 
-**Status:** The owner approved all five tasks and the full bounded permission envelope on October 14, 2026. Root implementation is in progress, with independent review before integration.
+**Status:** The owner approved all five tasks and the full bounded permission envelope on October 14, 2026. Implementation, local rehearsal and the independent review fix pass are verified. Task 5 operational completion is recorded in the batch PR and private closeout receipt.
 
 ## Bounded design
 
