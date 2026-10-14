@@ -158,6 +158,8 @@ Track website code, import scripts, project documents, public assets, dependency
 
 The [Canada private archive operator guide](docs/validation/canada-private-archive.md) records completed preservation of the fixed 766-file collection in private R2, authenticated conditional uploads, fresh-runner initialization and a separate full-stream read-only recovery. Both recoveries reproduced the selected acceptance and data exactly. The source collection remains private.
 
+If the source repository is public, the two Canada archive workflows deliberately skip their jobs. Keep their private-repository guards. The archive remains in separate private R2 storage; the operator guide documents local `verify-selected` with owner-supplied process credentials for later integrity checks. Selected Canada state and chat attachments are excluded by tracked ignore rules, alongside the existing credentials, data and backup exclusions.
+
 Coffee downloads belong in `data/raw/`, generated datasets in `data/processed/`, and local backups in `data/backups/`. Other reviewed products have separate generated roots under `data/products/<code>/`. These folders are ignored by Git. Add accuracy-check samples under `tests/fixtures/` so they can be versioned.
 
 Store actual local credentials in `.env`, which is ignored by Git. An `.env.example` file can document required setting names without values. Automated jobs use GitHub Actions secrets; deployed backend functions use Cloudflare secrets. The Census key remains in the data processing environment.

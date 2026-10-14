@@ -14,11 +14,13 @@ playwright-report/
 .env.*
 !.env.example
 secrets/
+.codex-remote-attachments/
 
 # Downloaded data, generated datasets, and local backups
 data/raw/
 data/processed/
 data/products/
+data/countries/
 data/backups/
 .data/
 .cache/
