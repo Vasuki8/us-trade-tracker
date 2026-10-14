@@ -10,7 +10,7 @@
 
 **Spec:** `docs/superpowers/specs/2026-10-13-estimated-duty-country-movers-design.md`
 
-**Status:** Proposed for a single combined design/plan/permission review, as requested by the owner. Preparing/committing this document authorizes no product implementation or publication. After approval, execute all approved tasks without routine check-ins; do not treat the approval as recurring or future milestone authority.
+**Status:** The owner approved all five tasks and the full permission envelope. Implementation, independent review, exact-head CI, reviewed merge, merged-source publication and live verification are complete; final evidence closeout is being recorded. See [validation](../../validation/estimated-duty-country-movers.md#observed-public-update). Approval is for this batch, not recurring or future milestone authority.
 
 ## Global Constraints
 

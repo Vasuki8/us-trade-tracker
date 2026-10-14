@@ -1,6 +1,6 @@
 # Estimated-duty country movers design
 
-**Status:** Proposed for the owner's single combined review of this design, its implementation plan and the permission envelope. No product implementation, import or publication is authorized by preparing these documents.
+**Status:** The owner approved the full five-task package and permission envelope. Implementation was independently reviewed, CI-tested and merged; the existing Free Pages project was updated and live verification passed. See [validation and publication evidence](../../validation/estimated-duty-country-movers.md#observed-public-update). The recorded approval authorizes this batch only.
 
 ## Purpose and recommendation
 

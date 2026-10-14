@@ -31,4 +31,23 @@ Owned local evidence: `.tmp/estimated-duty-country-movers-20261013-r1/`, to be s
 
 ## Independent review, merge and public update
 
-Pending the batch's fresh whole-branch review, exact-head GitHub CI, reviewed merge and rebuild of merged source. The owner approved publication to the existing Free `us-trade-tracker` Pages project and exact prior-site restoration if verification regresses. Existing production reference: `713cf8e5-4894-4083-ba77-be2b534bcc4d`; prior authenticated ZIP: `data/backups/coffee-portfolio-briefing/deployment-20261013-r1/site.zip`. No public update is claimed by the local checks above.
+A fresh independent whole-branch review of `b18c43b..414a5e4` found no Critical/Important issues and judged the feature ready to merge subject to exact-head CI. One cosmetic trailing blank line in `global.css` is deferred. The reviewer withheld judgment on the then-pending deployment, future products without accepted duties, and upstream source accuracy. Root retained the approved two-product/accepted-source scope and separately completed the package and live gates below. Future intake must revisit the discovery-link assumption; this batch performed no new acceptance audit.
+
+[PR #85](https://github.com/Vasuki8/us-trade-tracker/pull/85) passed [exact-head CI](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38490918151): 1,087 units, 249 files checked with zero diagnostics, and 78 browser checks. The reviewed head/base were rechecked before guarded merge `ded762c6e712fa9159ea8e1292e14fa8ad78eb23`; the merged tree `e458a61e0c0d8d1e3c4e81f43e01acdeeb7288dd` matched the CI-tested tree. No repeat suite was needed on that identical tree.
+
+## Observed public update
+
+The owner approved all five tasks, including this public update and automatic exact prior-site restoration if verification regressed. The authenticated prior ZIP/manifest and all 26 ZIP payloads matched the previous receipt. Immediately before upload, dashboard production still identified `713cf8e5-4894-4083-ba77-be2b534bcc4d`, and all 58 prior payload/header/404 checks passed across both prior origins.
+
+The actual merged source exported 378 regular tracked files and the same seven accepted state inputs. Its Census/snapshot build, with private preview modes absent, had 28 files / 1,533,348 bytes. The final Pages package had **30 entries / 1,534,093 uncompressed bytes**, largest profile **283,299 bytes**. It stayed below both the 15,000-file planning alert and dashboard limits of 1,000 entries / 26,214,400 bytes per asset. Thirteen local package rejection probes passed; manifest/ZIP payload authentication and readback passed. No private preview, raw archive, fixture data, credentials, function or source map entered the upload.
+
+- ZIP: 366,534 bytes, SHA256 `1d429b9d39725011e6b43ad6ee8592445d2f7ff5832c8cfb17e4e7db6bcc1e0a`.
+- Manifest: 6,400 bytes, SHA256 `8344c739aa04873f01b1dd906eac2dc01140533b4877b6e99147ca581e450c2c`.
+- Production deployment: `c5d3fc20-59c5-4e30-9c09-e05691383e57` on the existing Free `us-trade-tracker` project; dashboard confirmed 30/30 uploaded and deployment Success.
+- [Roasted estimated-duty changes](https://us-trade-tracker.pages.dev/changes/duties/) and [green estimated-duty changes](https://us-trade-tracker.pages.dev/changes/duties/090111/) are live. Deployment origin: `https://c5d3fc20.us-trade-tracker.pages.dev`.
+
+All **66** payload/hash/header/private-and-unknown-404 checks passed across canonical and deployment origins. The canonical live browser audit independently verified all eight real duty selections/CSVs, official world figures, source/research links, exclusion/qualification counts, unique IDs, no provider calls/raw observations, mobile and no-JavaScript defaults. Existing Canada/profile checks passed 48 monthly values, 20 category summaries and six downloads; the portfolio passed six selections/twelve CSVs. The final merged-source check preserved all 84 prior CSV outputs and 12 protected inputs; prior 24 Canada CSVs and six rendered components remained unchanged.
+
+**Restoration was not needed or executed.** The exact prior verified package remains authenticated and preserved; an actual restoration is not claimed as tested by this successful update. Domain, indexing (`noindex,nofollow`), access, billing and account settings were unchanged. No Census import/audit dispatch, R2 operation, accepted-data replacement, product/country intake, paid service or recurring job occurred.
+
+The machine-readable [publication receipt](estimated-duty-country-movers-publication.json) binds source, review, CI, deployment, package and observed outcomes. Bounded local/deployment/closeout evidence is preserved under `data/backups/estimated-duty-country-movers/`; raw accepted archives and earlier evidence remain in place. Public publication uses source merge `ded762c`; documentation closeout adds no runtime change or second public upload.
