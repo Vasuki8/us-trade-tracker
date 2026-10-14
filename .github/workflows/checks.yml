@@ -18,6 +18,8 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      - name: Local site packaging checks
+        run: python3 -m unittest discover -s tests/packaging -v
       - run: npm ci
       - run: npm test
       - run: npm run check
