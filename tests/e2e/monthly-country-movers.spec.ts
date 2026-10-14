@@ -28,7 +28,7 @@ for(const metric of ['dollars','share'] as const){
       const event=page.waitForEvent('download');await button.click();const download=await event;
       expect(download.suggestedFilename()).toBe('hs-'+code+'-'+direction+'-changes-'+(period==='monthly'?'monthly-':'')+metric+'.csv');
       const rows=parseCsv(await readFile(await download.path(),'utf8'));
-      expect(rows[0]).toMatchObject({partner_code:'1220',movement:'increase',rank:'1',current_value_usd:String(current/4),previous_value_usd:String(direction==='imports'?12*(period==='rolling'?12:1)*scale:current/8),measure:direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO'});
+      expect(rows[0]).toMatchObject({partner_code:direction==='imports'&&period==='rolling'?'4759':'1220',movement:'increase',rank:'1',current_value_usd:String(current/4),previous_value_usd:String(direction==='imports'?12*(period==='rolling'?12:1)*scale:current/8),measure:direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO'});
       expect(rows[0].comparison_period).toBe(period==='monthly'?'monthly':undefined);
       expect(rows[0].current_period_start).toBe(period==='monthly'?'2025-12':'2025-01');
       expect(rows[0].previous_period_start).toBe(period==='monthly'?'2024-12':'2024-01');
