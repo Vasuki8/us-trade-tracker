@@ -1,0 +1,9 @@
+---
+import DutyChangesPage from '../../../components/DutyChangesPage.astro';
+import {loadPublishedReleases} from '../../../lib/trade/load-release';
+import {DEFAULT_PRODUCT_CODE} from '../../../lib/trade/product-registry';
+const profiles=(await loadPublishedReleases()).filter(({product})=>product.dutiesAccepted);
+const selected=profiles.find(({product})=>product.code===DEFAULT_PRODUCT_CODE);
+if(!selected)throw new Error('Default product lacks accepted duties');
+---
+<DutyChangesPage product={selected.product} release={selected.release} products={profiles.map(({product})=>product)}/>

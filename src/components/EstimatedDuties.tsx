@@ -1,6 +1,7 @@
 import type {DutyView,DutyPeriod,DutyComparison} from '../lib/trade/duty-types';
 import {monthLabel,usd,percent} from '../lib/trade/format';
 import {downloadBlob,serializeDutyCsv} from '../lib/trade/downloads';
+import {dutyChangesPath} from '../lib/trade/duty-changes-link';
 const share=(value:number|null)=>value===null?'Unavailable':value>0&&value<0.001?'<0.001%':`${value.toFixed(3)}%`;
 function points(comparison:DutyComparison){
   const value=comparison.change.dutySharePercentagePoints;if(value===null)return 'Unavailable';
@@ -21,6 +22,7 @@ export function EstimatedDuties({view}:{view:DutyView}){
     <div className="section-heading"><div><p className="eyebrow">IMPORTS FOR CONSUMPTION</p><h2 id="duties-heading">Estimated duties</h2></div><span className="measure-tag">CAL_DUT_MO / CON_VAL_MO</span></div>
     {!view.available?<p>This retained release does not include a duty dataset. Estimated duties are unavailable.</p>:<>
       <p className="duty-definition">Calculated duties as share of import value uses imports for consumption (CON_VAL_MO). Monthly shares divide the same month’s calculated duties by its consumption value; rolling shares divide matching totals. Duty history: {monthLabel(view.fromMonth!)}–{monthLabel(view.reportingMonth)}. Country selections follow “Compare countries”; the chart history control does not shorten duty history.</p>
+      <p><a href={dutyChangesPath(view.productCode)}>Explore estimated-duty changes across countries</a></p>
       {view.series.map(series=><article className="duty-series" key={series.code}>
         <h3>{series.name}</h3>
         <h4>Latest month · {period(series.latest.current)}</h4>
