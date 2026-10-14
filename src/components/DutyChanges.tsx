@@ -4,6 +4,7 @@ import {selectDutyChanges,type PreparedDutyChanges,type DutyChangesSelection,typ
 import {dutyChangesPath,readDutyChangesSelection} from '../lib/trade/duty-changes-link';
 import {profileViewPath} from '../lib/trade/view-link';
 import {monthLabel,usd,usdChange,percent} from '../lib/trade/format';
+import {downloadBlob,serializeDutyChangesCsv} from '../lib/trade/downloads';
 
 const share=(value:number|null)=>value===null?'Unavailable':value>0&&value<0.001?'<0.001%':`${value.toFixed(3)}%`;
 const points=(value:number|null)=>value===null?'Unavailable':value!==0&&Math.abs(value)<0.001?`${value>0?'Increase':'Decrease'} <0.001 pp`:`${value>0?'+':''}${value.toFixed(3)} pp`;
@@ -46,6 +47,7 @@ export function DutyChanges({data}:{data:PreparedDutyChanges}){
     <div className="explorer-controls duty-changes-controls"><fieldset><legend>Comparison period</legend>{(['rolling','monthly'] as const).map(value=><label key={value}><input type="radio" name="duty-period" disabled={!ready} checked={selection.period===value} onChange={()=>change({...selection,period:value})}/>{value==='rolling'?'Rolling twelve months':'Latest month versus the same month last year'}</label>)}</fieldset>
       <fieldset><legend>Rank estimated-duty changes by</legend>{(['share','dollars'] as const).map(value=><label key={value}><input type="radio" name="duty-metric" disabled={!ready} checked={selection.metric===value} onChange={()=>change({...selection,metric:value})}/>{value==='share'?'Share change in percentage points':'Dollar change'}</label>)}</fieldset></div>
     <div className="view-link"><button className="secondary-button" disabled={!ready} onClick={copy}>Copy duty changes link</button><p>Links reopen this product, period and ranking using the latest accepted dataset.</p>{notice&&<p role="status">{notice}</p>}{copied&&<p role="status">Duty changes link copied.</p>}{showLink&&<div className="view-link-fallback"><p role="status">Select and copy the link below. Automatic copying is unavailable.</p><label>Duty changes link<input readOnly value={link} onFocus={event=>event.currentTarget.select()}/></label></div>}</div>
+    <div className="download-actions"><button className="secondary-button" disabled={!ready||!view.available} onClick={()=>downloadBlob(new Blob([serializeDutyChangesCsv(view)],{type:'text/csv;charset=utf-8'}),`hs-${view.productCode}-imports-estimated-duty-changes-${selection.period}-${selection.metric}.csv`)}>Download duty changes CSV</button></div>
     <noscript><p className="chart-note">Enable JavaScript to change periods or rankings, restore saved filters, copy links and generate CSV. The initial view shows imports, rolling twelve months, ranked by share change.</p></noscript>
     <p className="duty-period-labels"><strong>Current: {periodLabel(view.periods.current)}</strong> · Prior: {periodLabel(view.periods.previous)}</p>
     <p>Duty share = 100 × CAL_DUT_MO ÷ CON_VAL_MO for the same country, product and period. Rolling shares divide matching sums. Amounts are current USD, not seasonally adjusted.</p>
