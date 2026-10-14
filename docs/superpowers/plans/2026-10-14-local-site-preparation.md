@@ -1,6 +1,6 @@
 # Local Site Preparation Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Root implements; subagents review. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Root implements; subagents review. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Make the existing fixed-pilot source → accepted local data → Astro build → site/withdrawal manifest → verified ZIP flow repeatable without dated private preparation scripts.
 
@@ -78,41 +78,41 @@ CLI contracts: `stage-site.ts create --source-root --data-root --output --commit
 
 **Files:** Create the shared file helper, staging module/CLI and staging tests.
 
-- [ ] Write failing tests named `exports_requested_clean_head`, `stages_only_seven_named_inputs`, `refuses_dirty_or_crossed_commit` and `refuses_occupied_or_escaped_output`. Assert Git-blob equality, exact source inventory, unchanged originals and no success receipt on failure.
-- [ ] Run `npm test -- tests/scripts/site-staging.test.ts --maxWorkers=2` and confirm the failures concern the missing behavior.
-- [ ] Implement `createSiteStage` and the `create` CLI. Export only Git modes `100644`/`100755`; reject links/submodules and nonportable/colliding paths. Authenticate copied bodies and save the receipt last.
-- [ ] Select Canada's pointer/package/approval through the existing selected-release/pilot loaders and pins. Select the two named coffee pointer/release pairs by explicit paths and identities. Replace positional `protectedFiles.slice(0,4)`/`data.slice(3)` assumptions; permit no other accepted-state file.
-- [ ] Run the tests plus `npm run check`; commit this independently testable staging change.
+- [x] Write failing tests named `exports_requested_clean_head`, `stages_only_seven_named_inputs`, `refuses_dirty_or_crossed_commit` and `refuses_occupied_or_escaped_output`. Assert Git-blob equality, exact source inventory, unchanged originals and no success receipt on failure.
+- [x] Run `npm test -- tests/scripts/site-staging.test.ts --maxWorkers=2` and confirm the failures concern the missing behavior.
+- [x] Implement `createSiteStage` and the `create` CLI. Export only Git modes `100644`/`100755`; reject links/submodules and nonportable/colliding paths. Authenticate copied bodies and save the receipt last.
+- [x] Select Canada's pointer/package/approval through the existing selected-release/pilot loaders and pins. Select the two named coffee pointer/release pairs by explicit paths and identities. Replace positional `protectedFiles.slice(0,4)`/`data.slice(3)` assumptions; permit no other accepted-state file.
+- [x] Run the tests plus `npm run check`; commit this independently testable staging change.
 
 ## Task 2: Read back staged inputs around the controlled build
 
 **Files:** Extend staging module/CLI/tests; document the build recipe in README.
 
-- [ ] Add failing tests `rejects_missing_changed_or_forged_stage`, `rejects_unexpected_stage_file`, `dependency_exception_is_one_bound_link` and `metadata_changes_during_read_fail`. Test input/output junction ancestors, hardlinks and the Windows metadata-domain regression as applicable.
-- [ ] Run the focused staging tests; implement `verifySiteStage` and the `verify` CLI. Verify the complete recorded source inventory against Git and copied/original allowed data. Permit only expected build-generated paths (`project/.astro` and `project/dist`) after building; arbitrary extra files fail. Prefer `real-dist` outside `project`.
-- [ ] Document an explicit existing Astro build from `project` with `TRADE_DATA_MODE=census`, `CANADA_PILOT_MODE=snapshot`, and `CANADA_PREVIEW_MODE`/`CANADA_ACCEPTED_PREVIEW_MODE` absent: `npm run build -- --outDir ../real-dist`. Require fresh build output and stage verification immediately before and after. Do not add a build coordinator.
-- [ ] Run focused tests and code checks; commit the readback and controlled-build recipe.
+- [x] Add failing tests `rejects_missing_changed_or_forged_stage`, `rejects_unexpected_stage_file`, `dependency_exception_is_one_bound_link` and `metadata_changes_during_read_fail`. Test input/output junction ancestors, hardlinks and the Windows metadata-domain regression as applicable.
+- [x] Run the focused staging tests; implement `verifySiteStage` and the `verify` CLI. Verify the complete recorded source inventory against Git and copied/original allowed data. Permit only expected build-generated paths (`project/.astro` and `project/dist`) after building; arbitrary extra files fail. Prefer `real-dist` outside `project`.
+- [x] Document an explicit existing Astro build from `project` with `TRADE_DATA_MODE=census`, `CANADA_PILOT_MODE=snapshot`, and `CANADA_PREVIEW_MODE`/`CANADA_ACCEPTED_PREVIEW_MODE` absent: `npm run build -- --outDir ../real-dist`. Require fresh build output and stage verification immediately before and after. Do not add a build coordinator.
+- [x] Run focused tests and code checks; commit the readback and controlled-build recipe.
 
 ## Task 3: Assemble compatible site and withdrawal manifests
 
 **Files:** Create assembly module/CLI/tests; add the two npm aliases in package.json.
 
-- [ ] Add failing tests `assembles_site_controls_from_git_templates`, `withdrawal_has_exact_three_entries`, `rejects_changed_templates_and_private_output`, `rejects_rendered_fixture_data` and `refuses_collisions_limits_and_occupied_output`. Ordinary client validation literals must not be mistaken for rendered fixture data.
-- [ ] Run `npm test -- tests/scripts/site-assembly.test.ts --maxWorkers=2`; implement `prepareSite` and its CLI. Require verified staging before/after assembly. Read only the chosen build tree and authenticated staged templates; use exclusive stable copies.
-- [ ] Preserve the current public manifest fields, country/product identities, roles, totals, largest entry, header rule and template Git-blob/SHA-256 mapping. Apply existing targeted private/fixture/signature/query-key checks and reject raw data, preview routes, receipts, source maps, Functions or worker content. Withdrawal contains only `index.html`, `404.html` and `_headers`.
-- [ ] Add `tests/scripts/site-preparation-integration.test.ts` proving both produced manifests/trees are accepted by `package_site.py create`/`verify`. Use an explicit `SITE_PACKAGE_PYTHON` executable for the cross-language test; CI sets `python3`, local execution uses the existing bundled Python. No automatic Python installation or shell command construction. Reuse its current implementation and 24 malformed-package tests; change it only for a demonstrated compatibility defect with a failing regression.
-- [ ] Run assembly/staging tests and code checks; commit the assembly change.
+- [x] Add failing tests `assembles_site_controls_from_git_templates`, `withdrawal_has_exact_three_entries`, `rejects_changed_templates_and_private_output`, `rejects_rendered_fixture_data` and `refuses_collisions_limits_and_occupied_output`. Ordinary client validation literals must not be mistaken for rendered fixture data.
+- [x] Run `npm test -- tests/scripts/site-assembly.test.ts --maxWorkers=2`; implement `prepareSite` and its CLI. Require verified staging before/after assembly. Read only the chosen build tree and authenticated staged templates; use exclusive stable copies.
+- [x] Preserve the current public manifest fields, country/product identities, roles, totals, largest entry, header rule and template Git-blob/SHA-256 mapping. Apply existing targeted private/fixture/signature/query-key checks and reject raw data, preview routes, receipts, source maps, Functions or worker content. Withdrawal contains only `index.html`, `404.html` and `_headers`.
+- [x] Add `tests/scripts/site-preparation-integration.test.ts` proving both produced manifests/trees are accepted by `package_site.py create`/`verify`. Use an explicit `SITE_PACKAGE_PYTHON` executable for the cross-language test; CI sets `python3`, local execution uses the existing bundled Python. No automatic Python installation or shell command construction. Reuse its current implementation and 24 malformed-package tests; change it only for a demonstrated compatibility defect with a failing regression.
+- [x] Run assembly/staging tests and code checks; commit the assembly change.
 
 ## Task 4: Run one real offline preparation rehearsal
 
 **Files:** Update README and validation record; keep actual data/artifacts/receipts in ignored private task storage.
 
-- [ ] On committed runtime code, fingerprint the existing seven accepted-state files and contract-protected inputs. Stage the real fixed pilot into one fresh preparation root; no raw archive, credential or source-download directory enters staging.
-- [ ] Execute the documented precheck → explicit Astro build → postcheck → assembly flow. Capture automatic file count, total size and largest file; use the actual new manifest/ZIP hashes.
-- [ ] Create/read back the site and withdrawal ZIPs using the tracked Python tool. Verify withdrawal's exact three entries and recreate each ZIP from the same tree/manifest to prove identical bytes.
-- [ ] Reuse bounded local research/browser verification for the two coffee profiles, changes/duties/portfolio pages and Canada historical snapshot: retained values, direction/view controls, sourced CSV contracts, mobile/keyboard and absence of private routes. Establish the baseline from the unchanged accepted inputs/current reviewed source, rather than requiring a dated private baseline receipt.
-- [ ] Classify fresh-build preparation-time differences; any unexplained material research/data/CSV difference fails acceptance. Recheck original/protected hashes unchanged and preserve private proof. Record the rehearsed source commit and shared-runtime limitation.
-- [ ] Run the complete unit suite with two workers, `npm run check`, existing fixture build/browser acceptance and Python packaging tests once on the final runtime change set. Ensure ordinary CI requires no private accepted data. Commit commands, fixture checks and validation evidence.
+- [x] On committed runtime code, fingerprint the existing seven accepted-state files and contract-protected inputs. Stage the real fixed pilot into one fresh preparation root; no raw archive, credential or source-download directory enters staging.
+- [x] Execute the documented precheck → explicit Astro build → postcheck → assembly flow. Capture automatic file count, total size and largest file; use the actual new manifest/ZIP hashes.
+- [x] Create/read back the site and withdrawal ZIPs using the tracked Python tool. Verify withdrawal's exact three entries and recreate each ZIP from the same tree/manifest to prove identical bytes.
+- [x] Reuse bounded local research/browser verification for the two coffee profiles, changes/duties/portfolio pages and Canada historical snapshot: retained values, direction/view controls, sourced CSV contracts, mobile/keyboard and absence of private routes. Establish the baseline from the unchanged accepted inputs/current reviewed source, rather than requiring a dated private baseline receipt.
+- [x] Classify fresh-build preparation-time differences; any unexplained material research/data/CSV difference fails acceptance. Recheck original/protected hashes unchanged and preserve private proof. Record the rehearsed source commit and shared-runtime limitation.
+- [x] Run the complete unit suite with two workers, `npm run check`, existing fixture build/browser acceptance and Python packaging tests once on the final runtime change set. Ensure ordinary CI requires no private accepted data. Commit commands, fixture checks and validation evidence.
 
 ## Task 5: Review and integrate the completed batch
 

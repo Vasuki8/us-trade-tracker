@@ -40,6 +40,6 @@ Source under src/ and deployment/ is unchanged from the pre-batch commit. Screen
 
 Thirty preparation tests exercise authenticated staging/readback, unsafe/occupied paths, changed or missing inputs, forged receipts, hardlinks/runtime links, templates/private payloads, package limits and roundtrips through the existing Python packager. CI uses fixtures and Python 3; it requires no accepted private data or secrets.
 
-The final check set is the complete unit suite with two workers, Astro/TypeScript diagnostics, the ordinary fixture build and all three existing browser suites, plus the 24 Python packaging tests. Exact results and independent review are recorded at closeout below.
+The final check set is the complete unit suite with two workers, Astro/TypeScript diagnostics, the ordinary fixture build and all three existing browser suites, plus the 24 Python packaging tests. Results: 1,117/1,117 unit tests across 92 files; Astro/TypeScript diagnostics with zero errors, warnings or hints; 78/78 browser tests (61 ordinary, ten private-preview fixtures and seven pilot fixtures); 24/24 Python packaging tests. Fixture build: 27 files, 651,511 bytes; largest asset 212,848 bytes. Independent review and CI integration are recorded at closeout.
 
 Private run artifacts, fresh baselines, browser downloads/screenshots, readback receipts, fingerprints and test logs are preserved in the primary checkout's ignored .tmp/local-site-preparation-validation-20261014-r1 directory. No private evidence belongs in the served tree.
