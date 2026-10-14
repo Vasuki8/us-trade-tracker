@@ -20,7 +20,7 @@ export function MonthlyChanges({data,reportingMonth}:{data:string;reportingMonth
       <fieldset><legend>Comparison period</legend>{(['rolling','monthly'] as const).map(value=><label key={value}><input type="radio" name="comparison-period" disabled={!ready} checked={period===value} onChange={()=>savedView.changeSelection({direction,metric,period:value})}/>{value==='rolling'?'Rolling twelve months':'Latest month versus the same month last year'}</label>)}</fieldset>
     </div>
     <ChangesViewLink {...savedView} includePeriod/>
-    {direction==='imports'&&<p><a href={dutyChangesPath(view.productCode)}>Explore estimated-duty changes across countries</a></p>}
+    {direction==='imports'&&<p><a href={dutyChangesPath(view.productCode,period==='monthly'?{period:'monthly',metric:'share'}:undefined)}>Explore estimated-duty changes across countries</a></p>}
     <TradeChanges view={view} context="standalone" metric={metric} controlsReady={ready} onMetricChange={value=>savedView.changeSelection({direction,metric:value,period})}/>
     <div className="provenance"><p>Source: {provenance.source==='fixture'?'Development fixtures':'U.S. Census Bureau'} · {provenance.measure} · USD · retrieved {provenance.retrievedAt} · processing version {provenance.codeVersion} · revised observations: {provenance.revised?'yes':'no'}</p><p>{provenance.sourceUrls.map(url=><a key={url} href={url} rel="noreferrer">{url}</a>)}</p></div>
   </>;

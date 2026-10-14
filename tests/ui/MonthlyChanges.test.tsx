@@ -1,15 +1,17 @@
 // @vitest-environment jsdom
-import {afterEach,expect,it} from 'vitest';
+import {afterEach,expect,it,vi} from 'vitest';
 import {cleanup,render,screen,within} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
+import * as downloads from '../../src/lib/trade/downloads';
+import {parseCsv} from '../helpers/parse-csv';
 import {sampleRelease} from '../helpers/release';
 import {makeCountryChangesData} from '../helpers/country-changes';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {MonthlyChanges} from '../../src/components/MonthlyChanges';
 import type {Release} from '../../src/lib/trade/types';
 
-afterEach(()=>{cleanup();window.history.replaceState(null,'','/');});
+afterEach(()=>{cleanup();vi.restoreAllMocks();window.history.replaceState(null,'','/');});
 const props=(release:Release)=>({reportingMonth:release.reportingMonth,data:makeCountryChangesData(release)});
 
 it('shows reporting and comparison periods with explicit sample provenance',()=>{
@@ -146,4 +148,29 @@ it('renders a truthful rolling default with all interactive controls disabled be
   expect(page.getByRole('button',{name:'Copy changes link'})).toBeDisabled();
   expect(container).toHaveTextContent('The initial view shows U.S. imports ranked by dollar change over rolling twelve months.');
   expect(page.getByRole('region',{name:'What changed?'})).toHaveTextContent('Jan 2025–Dec 2025');container.remove();
+});
+
+it('preserves monthly context in the import duty handoff and omits duties for exports',async()=>{
+  render(<MonthlyChanges {...props(sampleRelease())}/>);
+  const user=userEvent.setup(),link=()=>screen.getByRole('link',{name:'Explore estimated-duty changes across countries'});
+  expect(link()).toHaveAttribute('href','/changes/duties/');
+  await user.click(screen.getByRole('radio',{name:'Latest month versus the same month last year'}));
+  expect(link()).toHaveAttribute('href','/changes/duties/?direction=imports&period=monthly&metric=share');
+  await user.click(screen.getByRole('radio',{name:'Exports'}));
+  expect(screen.queryByRole('link',{name:'Explore estimated-duty changes across countries'})).toBeNull();
+});
+it('downloads an explicitly identified monthly CSV and leaves rolling filenames unchanged',async()=>{
+  const files:{blob:Blob;filename:string}[]=[];
+  vi.spyOn(downloads,'downloadBlob').mockImplementation((blob,filename)=>{files.push({blob,filename});});
+  render(<MonthlyChanges {...props(sampleRelease())}/>);
+  const user=userEvent.setup();
+  await user.selectOptions(screen.getByLabelText('Rank changes by'),'share');
+  await user.click(screen.getByRole('button',{name:'Download changes CSV'}));
+  await user.click(screen.getByRole('radio',{name:'Latest month versus the same month last year'}));
+  await user.click(screen.getByRole('button',{name:'Download changes CSV'}));
+  expect(files.map(file=>file.filename)).toEqual(['hs-090121-imports-changes-share.csv','hs-090121-imports-changes-monthly-share.csv']);
+  const read=(blob:Blob)=>new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result));reader.onerror=()=>reject(reader.error);reader.readAsText(blob);});
+  const [rolling,monthly]=await Promise.all(files.map(async file=>parseCsv(await read(file.blob))));
+  expect(rolling[0]).not.toHaveProperty('comparison_period');
+  expect(monthly[0]).toMatchObject({comparison_period:'monthly',partner_code:'1220',current_value_usd:'25',current_period_start:'2025-12',previous_period_start:'2024-12'});
 });
