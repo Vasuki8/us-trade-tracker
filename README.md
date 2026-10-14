@@ -8,6 +8,8 @@ The [public pilot](https://us-trade-tracker.pages.dev/) was published and verifi
 
 The latest verified upload contains **26 entries and 1,263,422 uncompressed bytes**, including one provider control and the standalone error page. All 58 served-payload/header/404 checks passed across the canonical and deployment origins, along with six portfolio selections, twelve sourced portfolio CSVs and the existing research/download checks. Pages/chart data share Cloudflare Pages, while R2 remains private archive storage. See the [latest publication evidence](docs/validation/coffee-portfolio-briefing.md#observed-public-update) and [initial pilot evidence and limits](docs/validation/canada-pilot-deployment.md#observed-public-pilot).
 
+The next approved batch adds `/changes/duties/` and `/changes/duties/090111/`: imports-only country rankings by estimated-duty dollars or consumption-based share change, monthly or rolling. Its [local validation](docs/validation/estimated-duty-country-movers.md) independently verified eight retained-data selections/CSVs and preserved 84 existing CSV outputs and all protected state. Public publication is pending the reviewed merge and verified merged-source package; existing pilot coverage remains through August 2026.
+
 This is a fixed pilot, with accepted reporting data through August 2026. It does not promise automatic Canada refresh. A successful update across two successive official releases remains a separate acceptance requirement; initial publication does not close that gate.
 
 ## Project direction
