@@ -7,14 +7,14 @@ import {renderToStaticMarkup} from 'react-dom/server';
 import '@testing-library/jest-dom/vitest';
 import {sampleRelease} from '../helpers/release';
 import {productChangeSample} from '../helpers/product-changes';
-import {buildChangesView} from '../../src/lib/trade/changes';
+import {makeCountryChangesData} from '../helpers/country-changes';
 import {buildProductChangesView} from '../../src/lib/trade/product-changes';
 import {MonthlyChanges} from '../../src/components/MonthlyChanges';
 import {ProductChanges} from '../../src/components/ProductChanges';
 
 afterEach(()=>{cleanup();vi.restoreAllMocks();window.history.replaceState(null,'','/');});
 const release=sampleRelease();
-const countryData=JSON.stringify({imports:buildChangesView(release,'imports'),exports:buildChangesView(release,'exports')});
+const countryData=makeCountryChangesData(release);
 const products=[productChangeSample('100001','Big',1_000_000_000,1_100_000_000,40_000_000,20_000_000)];
 const productData=JSON.stringify({imports:buildProductChangesView(products,'imports'),exports:buildProductChangesView(products,'exports')});
 
