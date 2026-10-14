@@ -10,7 +10,7 @@
 
 **Spec:** The combined bounded design and permissions below, extending the approved [launch brief](../specs/2026-10-08-us-trade-tracker-design.md), [changes-link contract](../../validation/changes-view-links.md) and [local preparation contract](2026-10-14-local-site-preparation.md). A combined written artifact is provided because the owner explicitly requested a reviewed multi-task plan.
 
-**Status:** Owner approved this design, all five tasks and the complete permission envelope on October 14, 2026. Root implementation is in progress with independent review before integration. Planning baseline is main 6a74b7985da6d0668f6cd4b5560fdc975fe07859, merged PR #89.
+**Status:** Owner approved this design, all five tasks and the complete permission envelope on October 14, 2026. Implementation and local acceptance are complete; one independent whole-branch review found no issues. Final CI, merge, main synchronization and proof-preservation outcomes are recorded in PR #90 and the private closeout receipt under the approved permission envelope. Planning baseline is main 6a74b7985da6d0668f6cd4b5560fdc975fe07859, merged PR #89.
 
 ## Bounded design and recommendation
 

@@ -70,3 +70,14 @@ Against the previous retained preparation, total served bytes grow 155,931. Roas
 Other explained differences are changed/repartitioned JavaScript chunks and their references, generated Astro island IDs, two shared saved-link hydration comment separators on the product changes page, and the Methods preparation timestamp. Eleven served paths are byte-identical; six additional HTML pages match after normalizing island IDs and bundle references. Templates and the withdrawal ZIP remain identical.
 
 Private baselines, retained inputs, receipts, downloads, screenshots, scripts and logs are preserved under the primary checkout's ignored .tmp/monthly-country-movers-validation-20261014-r1 directory at closeout. Review, exact-head CI and merge evidence follow in the integration record. No public site was uploaded by this batch.
+## Independent review and integration
+
+One fresh read-only whole-branch reviewer examined 6a74b7985da6d0668f6cd4b5560fdc975fe07859 through e1c2ccad11bb2a555f1951df23ee5c139be1e0f5. It checked all five review focus classes, independently authenticated the 84 baseline/replay pairs and sixteen downloaded CSV identities, and found no Critical, Important or Minor issues. No implementation fix or second review was needed. This documentation closeout leaves the rehearsed runtime unchanged.
+
+Root's decisions on the three excluded judgments are recorded explicitly:
+
+- Provider accuracy, raw replay and source freshness remain outside the approved batch. Existing accepted observations are preserved and independently used; a prior source error could persist.
+- Public hosting/deployment and R2 remain outside local preparation. The package is verified locally; local proof cannot establish live provider behavior.
+- CI, expected-head merge, main-tree synchronization and proof preservation are root's remaining integration gates. Their outcomes are verified separately and recorded in [PR #90](https://github.com/Vasuki8/us-trade-tracker/pull/90) and the private closeout receipt; omitting those checks could integrate a different tree or lose private evidence.
+
+There are no deferred minor findings. The standing merge permission applies after successful exact-head Code checks. A merge with an identical verified tree does not require a duplicate retained build.
