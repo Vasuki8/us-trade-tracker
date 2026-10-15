@@ -1,6 +1,6 @@
 # Research handoffs validation
 
-October 14, 2026 (America/Toronto). Approved plan: [research handoffs and methods](../superpowers/plans/2026-10-14-research-handoffs.md). Baseline main c4adc9a74cbffbb1ef8886ec5793d980a2fb699d.
+Started October 14; published and verified October 15, 2026 (America/Toronto). Approved plan: [research handoffs and methods](../superpowers/plans/2026-10-14-research-handoffs.md). Baseline main c4adc9a74cbffbb1ef8886ec5793d980a2fb699d.
 
 ## Behavior and limits
 
@@ -22,7 +22,7 @@ The complete browser suite caught a duplicated static-default explanation; the p
 
 One packaging integration case timed out at its five-second test deadline while the full suite, browser suite and staging ran concurrently. It passed in isolation, then the complete final unit suite passed with no concurrent browser/staging jobs. The earlier failures and superseded preparation remain recorded privately; no checks were suppressed or numerical code changed.
 
-Both first exact-head CI runs passed units, types, build and packaging, then caught the same existing mobile keyboard test focusing a disabled control before hydration. A bounded delayed-script reproduction confirmed focus was ignored while disabled and ArrowRight worked after readiness/focus. The test now awaits enabled and focused Imports before its unchanged keyboard, download and scrolling checks; all three affected browser cases passed. This is a test-only correction; the retained package runtime is unchanged. Fresh exact-head CI remains required.
+Both first exact-head CI runs passed units, types, build and packaging, then caught the same existing mobile keyboard test focusing a disabled control before hydration. A bounded delayed-script reproduction confirmed focus was ignored while disabled and ArrowRight worked after readiness/focus. The test now awaits enabled and focused Imports before its unchanged keyboard, download and scrolling checks; all three affected browser cases passed. This is a test-only correction; the retained package runtime is unchanged. Both subsequent exact-head CI runs passed at 64bb226; the first failed runs remain retained.
 
 ## Final local acceptance
 
@@ -44,6 +44,23 @@ The site ZIP is **386,182 bytes**, SHA-256 `0b2c6e5e185d5b028a2bb87162b61a899d05
 
 The build adds one shared JavaScript chunk; Methods/link copy, bundle references and ordinary preparation-time/Astro island identifiers explain presentation changes. No calculation, CSV, dependency, classification, registry or deployment-template source changed. The staging/build runtime shares the existing ignored dependency directory and is not hermetic.
 
-Private baselines and upload copies reside under the primary checkout's ignored .tmp/research-handoffs-20261014-r1. The task worktree retains .tmp/research-handoffs-rehearsal-r2, .tmp/research-handoffs-validation-r1 and the plan-owned execution ledger until sealed preservation and native cleanup. Independent review, exact-head CI/merge and observed public deployment/restoration are the remaining Task 5 gates. This local acceptance makes no live-provider claim.
+Private baselines and upload copies reside under the primary checkout's ignored .tmp/research-handoffs-20261014-r1. The task worktree retains .tmp/research-handoffs-rehearsal-r2, .tmp/research-handoffs-validation-r1 and the plan-owned execution ledger until sealed preservation and native cleanup. Independent whole-branch and focused test-repair reviews found no findings. Final head 64bb22656d6c6945f9c9598371e7ef0349102d99 passed both PR [38679712456](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38679712456) and push [38679708221](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38679708221) checks: 1,183 unit tests plus one Windows-only skip, zero type diagnostics, 108 browser checks and 24 Python packaging checks. [PR #92](https://github.com/Vasuki8/us-trade-tracker/pull/92) merged with expected-head protection as 98e494cfc2b33558c7c85bb8016937dbc57dafda. Primary main has the reviewed head’s exact tree, and its runtime/build/deployment paths match staged a05bfd4. No second build was substituted.
 
 No new source retrieval, accepted-data change, R2 operation, new reporting month or recurring-release acceptance is claimed. Coffee remains through August 2026; Canada remains the fixed September 2024–August 2026 snapshot.
+
+
+## Observed public update
+
+On October 15, 2026 (America/Toronto), the signed-in dashboard confirmed the existing Free / Production / us-trade-tracker project. Immediately before publication, canonical and the prior 0a3ccb96 deployment passed all 66 pinned-prior payload/header/404 requests. Candidate and prior-restoration ZIPs/manifests passed readback, and all seven accepted/eleven protected original identities matched the pre-edit baseline.
+
+The first candidate upload contained all 31 verified files from the exact site ZIP above. Cloudflare reported Success, then the refreshed Production row identified **660d1364-b7c9-4220-a1b4-c66ca9eae5da**, [deployment origin](https://660d1364.us-trade-tracker.pages.dev), serving the [canonical pilot](https://us-trade-tracker.pages.dev). The initial dashboard/public view briefly retained the prior site during propagation; the refreshed new deployment and all payloads subsequently matched. There was no second candidate upload.
+
+All **68** bounded served-payload/header/404 requests passed across canonical and the observed new deployment origin. Decoded response lengths/hashes matched the manifest; every asset and missing/private-route response retained noindex,nofollow. Both private preview routes, the unsupported country and the private accepted-data path returned the exact standalone 404 page. Provider _headers was verified by its served effect, not treated as a downloadable payload.
+
+On canonical, all eight new product/direction/period journeys passed, including matching source/destination amounts, mobile/keyboard use and truthful static defaults. All sixteen merchandise country-mover selections/CSVs, eight duty selections/CSVs, six portfolio selections/twelve CSVs and existing Canada/coffee research checks passed. The latter retained 48 Canada monthly values, 20 categories, 17 eligible/three unavailable comparisons and six downloads including four Canada CSVs, a coffee CSV and PNG. No browser errors or outside-origin requests occurred in these bounded checks. Methods and the published entry screenshot were inspected.
+
+No regression required restoration. The exact previous working-site ZIP remains retained privately with SHA-256 `0f3ebebec1a18f7939b054e74fada2e784facc94e43f92fc9d2b20bccd4b99a9`; its manifest SHA-256 remains `cdee04449100b9a7a779d1a80de9772387e2f75dcc2967ac6c62aed1686151f7`. Verification of that package does not claim that restoration was exercised.
+
+Bounded private closeout preserves the public packages, seven accepted inputs, download baselines, local/live receipts, screenshots, CI logs and review dispositions under data/backups/research-handoffs/deployment-20261015-r1. A hash-readback seal and native task-worktree cleanup are execution closeout gates; their actual outcomes are retained in the private completion record. No raw archives or dependency trees are included.
+
+The existing Free target, static hosting, browser-generated downloads and noindex policy remain unchanged. No new data month, accepted release, R2 operation, paid service, automated refresh or successive-release acceptance is claimed.
