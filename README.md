@@ -357,6 +357,9 @@ npm run preview -- --port 4422
 
 This changes the page and CSV presentation context without changing the accepted snapshot or publishing it. The separate Pages templates, authenticated upload ZIP and private publication receipt belong to the [deployment plan](docs/superpowers/plans/2026-10-13-canada-pilot-deployment.md). They are not added to ordinary Astro output automatically. The initial exact package has now been published and verified; a later public replacement still requires its concrete package/target decision. The current GitHub checks build fixtures.
 
+On the public Canada snapshot route, direction-aware links such as `/countries/1220/?direction=exports#country-history-heading` reopen Imports or Exports after JavaScript starts. Copy view link offers a selectable fallback if clipboard access is unavailable. Links use the snapshot available at the route; they do not pin an immutable release. Without JavaScript the page explains and shows default Imports.
+
+Download chart PNG creates a 1,920 × 1,080 all-goods chart in the browser with the direction, measure, fixed period, source/capture context and historical qualifications. CSVs keep their existing contents and filenames. Private and locally prepared preview contexts retain their existing controls. See the [Canada sharing validation record](docs/validation/canada-research-sharing.md) for actual acceptance and publication status.
 ## Change workflow
 
 Use `main` for reviewed release code and a separate branch for each feature or fix. Save focused commits with clear descriptions, run the relevant checks, and review changes before merging. Review a preview before publishing a website release.
