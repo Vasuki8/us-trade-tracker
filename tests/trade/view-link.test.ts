@@ -1,6 +1,6 @@
 import {expect,it} from 'vitest';
 import {sampleRelease} from '../helpers/release';
-import {readViewSelection,profileViewPath} from '../../src/lib/trade/view-link';
+import {readViewSelection,profileViewPath,countryChangesViewPath} from '../../src/lib/trade/view-link';
 import type {ExplorerSelection} from '../../src/lib/trade/types';
 
 it('opens default imports without treating unrelated parameters as saved filters',()=>{
@@ -44,4 +44,24 @@ it.each([
 });
 it('does not interpolate a product path supplied outside the six-digit classification contract',()=>{
   expect(()=>profileViewPath('../methods',{direction:'imports',months:60,countryCodes:[]})).toThrow(/Invalid product code/);
+});
+
+
+it.each([
+  ['090121','imports','monthly','/changes/?direction=imports&metric=dollars&period=monthly#changes-heading'],
+  ['090121','exports','monthly','/changes/?direction=exports&metric=dollars&period=monthly#changes-heading'],
+  ['090121','imports','rolling','/changes/?direction=imports&metric=dollars#changes-heading'],
+  ['090121','exports','rolling','/changes/?direction=exports&metric=dollars#changes-heading'],
+  ['090111','imports','monthly','/changes/090111/?direction=imports&metric=dollars&period=monthly#changes-heading'],
+  ['090111','exports','monthly','/changes/090111/?direction=exports&metric=dollars&period=monthly#changes-heading'],
+  ['090111','imports','rolling','/changes/090111/?direction=imports&metric=dollars#changes-heading'],
+  ['090111','exports','rolling','/changes/090111/?direction=exports&metric=dollars#changes-heading'],
+  ['090122','exports','monthly','/changes/090122/?direction=exports&metric=dollars&period=monthly#changes-heading'],
+] as const)('country drilldown retains %s %s %s',(code,direction,period,expected)=>{
+  expect(countryChangesViewPath(code,{direction,period})).toBe(expected);
+});
+it.each([
+  ['../methods','imports','monthly'],['09012x','imports','rolling'],['090121','other','monthly'],['090121','imports','annual'],
+])('rejects invalid country drilldown selection %s %s %s',(code,direction,period)=>{
+  expect(()=>countryChangesViewPath(code,{direction,period} as Parameters<typeof countryChangesViewPath>[1])).toThrow();
 });

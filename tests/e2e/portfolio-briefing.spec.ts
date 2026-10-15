@@ -51,3 +51,31 @@ test('without JavaScript the default imports research remains readable and print
     await page.emulateMedia({media:'print'});await expect(page.locator('.portfolio-controls')).toBeHidden();await expect(page.getByRole('heading',{name:'Roasted coffee · HS 090121'})).toBeVisible();
   }finally{await context.close();}
 });
+
+
+test('portfolio country drilldowns preserve all product direction and period combinations',async({page})=>{
+  for(const code of ['090121','090122'])for(const direction of ['imports','exports'])for(const period of ['monthly','rolling']){
+    await page.goto(`/briefing/portfolio/?products=${code}&direction=${direction}`);
+    await expect(page.getByRole('button',{name:'Copy briefing link'})).toBeEnabled();
+    await page.getByRole('link',{name:period==='monthly'?'Explore latest-month country changes':'Explore rolling country changes',exact:true}).click();
+    const route=code==='090121'?'/changes/':'/changes/090122/';
+    await expect(page).toHaveURL(new URL(`${route}?direction=${direction}&metric=dollars${period==='monthly'?'&period=monthly':''}#changes-heading`,page.url()).href);
+    await expect(page.getByRole('button',{name:'Copy changes link'})).toBeEnabled();
+    await expect(page.getByRole('radio',{name:direction==='imports'?'Imports':'Exports',exact:true})).toBeChecked();
+    await expect(page.getByRole('radio',{name:period==='monthly'?'Latest month versus the same month last year':'Rolling twelve months',exact:true})).toBeChecked();
+    await expect(page.getByLabel('Rank changes by')).toHaveValue('dollars');
+    await expect(page.locator('.page-heading')).toContainText(`HS ${code}`);
+  }
+});
+
+test('a no-JavaScript monthly drilldown explains the static destination default',async({browser,baseURL})=>{
+  const context=await browser.newContext({baseURL,javaScriptEnabled:false,viewport:{width:320,height:812}});
+  try{
+    const page=await context.newPage();await page.goto('/briefing/portfolio/');
+    await page.getByRole('article',{name:'Roasted coffee · HS 090121'}).getByRole('link',{name:'Explore latest-month country changes',exact:true}).click();
+    await expect(page.getByRole('radio',{name:'Rolling twelve months',exact:true})).toBeChecked();
+    await expect(page.getByRole('radio',{name:'Latest month versus the same month last year',exact:true})).toBeDisabled();
+    await expect(page.getByText(/initial view shows U.S. imports ranked by dollar change over rolling twelve months/)).toBeVisible();
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  }finally{await context.close();}
+});
