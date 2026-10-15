@@ -9,7 +9,7 @@ export const countrySharePointTitle=(view:CountryShareHistoryView,s:CountryShare
 export function CountrySharePlotMarks({view,size}:{view:CountryShareHistoryView;size:CountrySharePlotSize}){
  const points=view.series[0]?.points??[],largest=Math.max(0,...view.series.flatMap(s=>s.points.map(p=>p.sharePercent??0))),maximum=(largest>0?largest:1)*1.12;
  const x=(i:number)=>size.left+i/Math.max(1,points.length-1)*(size.right-size.left),y=(v:number)=>size.bottom-v/maximum*(size.bottom-size.top);
- const tick=(v:number)=>new Intl.NumberFormat('en-US',{maximumSignificantDigits:3,notation:v>0&&v<0.000001?'scientific':'standard'}).format(v)+'%';
+ const tick=(v:number)=>new Intl.NumberFormat('en-US',{maximumSignificantDigits:3,notation:v>0&&v<0.001?'scientific':'standard'}).format(v)+'%';
  return <>
   {[0,1,2,3,4].map(i=><g key={i}><line x1={size.left} x2={size.right} y1={y(maximum*i/4)} y2={y(maximum*i/4)} stroke="#d8dfd9"/><text x={size.left-9} y={y(maximum*i/4)+4} textAnchor="end" fontSize={size.fontSize} fill="#53676e">{tick(maximum*i/4)}</text></g>)}
   {view.series.map((s,si)=>{let connected=false;const path=s.points.map((p,i)=>{if(p.sharePercent===null){connected=false;return '';}const command=connected&&!p.breakBefore?'L':'M';connected=true;return command+x(i)+','+y(p.sharePercent);}).join(' ');return <g key={s.code}>

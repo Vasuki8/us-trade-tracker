@@ -37,3 +37,6 @@ it('keeps all-unavailable selected months in the table instead of displaying zer
 it('uses the actual clipped history and adaptive tiny percentage axis',()=>{
  const view=model(sampleRelease(),{...selection,months:60});view.series[0].points.forEach(p=>p.sharePercent=0.0000001);render(<CountryShareHistory view={view}/>);expect(figure()).toHaveTextContent('Jan 2024–Dec 2025');const labels=[...figure().querySelectorAll('svg.share-history-desktop > g text')].map(e=>e.textContent!);expect(labels.some(s=>s.includes('E-'))).toBe(true);expect(labels.every(s=>s.length<20)).toBe(true);
 });
+it.each([0.000001,0.00001])('keeps intermediate tiny share %s axes concise in scientific notation',value=>{
+ const view=model();view.series[0].points.forEach(p=>p.sharePercent=value);render(<CountryShareHistory view={view}/>);const labels=[...figure().querySelectorAll('svg.share-history-mobile > g text')].map(t=>t.textContent!).filter(t=>t!=='0%');expect(labels).toHaveLength(4);expect(labels.every(t=>t.includes('E-'))).toBe(true);
+});
