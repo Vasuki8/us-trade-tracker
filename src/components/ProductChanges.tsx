@@ -43,7 +43,7 @@ export function ProductChanges({data}:{data:string}){
       <fieldset><legend>Trade direction</legend>{(['imports','exports'] as const).map(value=><label key={value}><input type="radio" name="product-direction" disabled={!ready} checked={direction===value} onChange={()=>savedView.changeSelection({direction:value,metric,period:periodType})}/>{value==='imports'?'Imports':'Exports'}</label>)}</fieldset>
       <fieldset><legend>Comparison period</legend>{(['rolling','monthly'] as const).map(value=><label key={value}><input type="radio" name="product-period" disabled={!ready} checked={periodType===value} onChange={()=>savedView.changeSelection({direction,metric,period:value})}/>{value==='rolling'?'Rolling twelve months':'Latest month'}</label>)}</fieldset>
     </div>
-    <ChangesViewLink {...savedView}/>
+    <ChangesViewLink {...savedView} includePeriod/>
     <p><a href={portfolioPath({productCodes:view.products.map(product=>product.code),direction})}>Open portfolio briefing</a></p>
     <section className="changes-card" aria-labelledby="product-changes-heading">
       <div className="section-heading"><div><p className="eyebrow">REVIEWED PRODUCT COMPARISONS</p><h2 id="product-changes-heading">Ranked product changes</h2></div><span className="measure-tag">{direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO'}</span></div>
