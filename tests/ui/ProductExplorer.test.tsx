@@ -141,3 +141,12 @@ it('shares_country_history_controls_without_shortening_duty_history',async()=>{
  expect(screen.getByRole('figure',{name:'Monthly estimated duties · current USD'})).toHaveTextContent('Jan 2024–Dec 2025');expect(document.querySelector('.chart-card svg.desktop-chart circle title')).toHaveTextContent('Jan 2025: $25');
  await user.selectOptions(screen.getByLabelText('History window'),'60');expect(f.querySelectorAll('svg.share-history-desktop circle')).toHaveLength(24);await user.click(screen.getByRole('radio',{name:'Exports'}));expect(screen.queryByRole('figure',{name:'Country share of U.S. imports · %'})).toBeNull();expect(screen.getByText('Choose up to three countries in Compare countries to see their monthly shares.')).toBeVisible();
 });
+
+it('server markup disables merchandise controls until saved-view restoration and explains the JavaScript requirement',()=>{
+ const html=renderToStaticMarkup(<ProductExplorer release={sampleRelease()}/>),doc=new DOMParser().parseFromString(html,'text/html');
+ for(const control of doc.querySelectorAll('input[name="direction"],select[aria-label="History window"]'))expect(control.hasAttribute('disabled')).toBe(true);
+ for(const label of ['Download chart PNG','Download data CSV'])expect([...doc.querySelectorAll('button')].find(b=>b.textContent===label)?.hasAttribute('disabled')).toBe(true);
+ expect((doc.querySelector('input[name="direction"][value="imports"]')??doc.querySelector('input[name="direction"][checked]'))?.hasAttribute('checked')).toBe(true);
+ expect([...doc.querySelectorAll('table caption')].some(c=>c.textContent==='Monthly trade values · current U.S. dollars')).toBe(true);
+ const note=doc.querySelector('noscript')!.textContent!;for(const word of ['direction','history','PNG','CSV'])expect(note).toContain(word);
+});
