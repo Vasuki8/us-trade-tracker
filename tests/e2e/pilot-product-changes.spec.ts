@@ -24,7 +24,11 @@ test('pilot import rankings and product links remain available without JavaScrip
   try{
     await page.goto('/changes/');await page.getByRole('link',{name:'Compare changes across reviewed products',exact:true}).click();
     await expect(page.getByRole('table',{name:'Largest product increases · dollar change'})).toContainText('+$1,800');
-    await expect(page.getByText('Enable JavaScript to change direction or ranking and download a CSV.',{exact:true})).toBeVisible();
+    await expect(page.getByText(/The initial view shows U.S. imports ranked by dollar change over rolling twelve months/)).toBeVisible();
+    await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeDisabled();
+    await expect(page.getByLabel('Rank product changes by')).toBeDisabled();
+    await expect(page.getByRole('button',{name:'Download product changes CSV'})).toBeDisabled();
+    await expect(page.getByRole('link',{name:'Compare latest-month figures',exact:true})).toHaveAttribute('href','/briefing/portfolio/?products=090121%2C090122&direction=imports');
     await page.getByRole('table',{name:'Largest product increases · dollar change'}).getByRole('link',{name:'Roasted coffee',exact:true}).click();await expect(page).toHaveURL(/\/products\/090121\/\?direction=imports&months=12$/);
   }finally{await context.close();}
 });
@@ -35,4 +39,18 @@ test('pilot product controls, table scrolling and download work by keyboard on m
   const table=page.getByRole('region',{name:'Scrollable largest product increases · dollar change'});await table.focus();for(let i=0;i<10;i++)await page.keyboard.press('ArrowRight');await expect.poll(()=>table.evaluate(element=>element.scrollLeft)).toBeGreaterThan(0);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.getByRole('button',{name:'Download product changes CSV'}).focus();const event=page.waitForEvent('download');await page.keyboard.press('Enter');expect((await event).suggestedFilename()).toBe('pilot-products-exports-changes-dollars.csv');
+});
+
+
+test('product rankings open the existing monthly report with every product and the selected direction',async({page})=>{
+  await page.goto('/changes/products/');
+  await expect(page.getByRole('button',{name:'Copy changes link'})).toBeEnabled();
+  await page.getByRole('radio',{name:'Exports',exact:true}).check();
+  await page.getByLabel('Rank product changes by').selectOption('growth');
+  await page.getByRole('link',{name:'Compare latest-month figures',exact:true}).click();
+  await expect(page).toHaveURL(/\/briefing\/portfolio\/\?products=090121%2C090122&direction=exports$/);
+  await expect(page.getByRole('button',{name:'Copy briefing link'})).toBeEnabled();
+  await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeChecked();
+  await expect(page.getByRole('article')).toHaveCount(2);
+  await expect(page.getByRole('heading',{name:'Latest month',exact:true})).toHaveCount(2);
 });

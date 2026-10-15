@@ -2,6 +2,7 @@
 import {afterEach,expect,it} from 'vitest';
 import {cleanup,render,screen,within} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import {renderToStaticMarkup} from 'react-dom/server';
 import '@testing-library/jest-dom/vitest';
 import {productChangeSample as sample} from '../helpers/product-changes';
 import {buildProductChangesView} from '../../src/lib/trade/product-changes';
@@ -45,4 +46,28 @@ it('shows the editorial threshold and excludes small prior totals only for growt
   expect(screen.getByText(/Growth rankings require at least \$10,000,000/)).toBeVisible();
   expect(screen.getByText(/Below the growth threshold: Small/)).toBeVisible();
   expect(screen.getByRole('button',{name:'Download product changes CSV'})).toBeDisabled();
+});
+
+
+it('product_monthly_entry_preserves_direction_and_coverage',async()=>{
+  const unavailable=sample('090111','Green',20_000_000,30_000_000);unavailable.release.classificationIntervals=[];
+  render(<ProductChanges data={data([sample('090121','Roasted',10_000_000,20_000_000),unavailable])}/>);
+  const entry=screen.getByRole('link',{name:'Compare latest-month figures',exact:true});
+  expect(entry).toHaveAttribute('href','/briefing/portfolio/?products=090121%2C090111&direction=imports');
+  await userEvent.setup().click(screen.getByRole('radio',{name:'Exports',exact:true}));
+  await userEvent.setup().selectOptions(screen.getByLabelText('Rank product changes by'),'growth');
+  expect(entry).toHaveAttribute('href','/briefing/portfolio/?products=090121%2C090111&direction=exports');
+  expect(screen.getByRole('list',{name:'Products excluded from comparison'})).toHaveTextContent('Green');
+});
+
+it('static_product_controls_wait_for_hydration',()=>{
+  const container=document.createElement('div');
+  container.innerHTML=renderToStaticMarkup(<ProductChanges data={data([sample('090121','Roasted',10_000_000,20_000_000)])}/>);
+  const page=within(container);
+  expect(page.getByRole('radio',{name:'Imports',exact:true})).toBeChecked();
+  for(const name of ['Imports','Exports'])expect(page.getByRole('radio',{name,exact:true})).toBeDisabled();
+  expect(page.getByLabelText('Rank product changes by')).toBeDisabled();
+  expect(page.getByRole('button',{name:'Download product changes CSV',exact:true})).toBeDisabled();
+  expect(page.getByRole('table',{name:'Largest product increases · dollar change'})).toHaveTextContent('Roasted');
+  expect(page.getByRole('link',{name:'Compare latest-month figures',exact:true})).toHaveAttribute('href','/briefing/portfolio/?products=090121&direction=imports');
 });
