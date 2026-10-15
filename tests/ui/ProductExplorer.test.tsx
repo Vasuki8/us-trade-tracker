@@ -57,7 +57,7 @@ it.each([
 });
 it('keeps an incomplete leading partner link and its unavailable observations',()=>{
   const release=sampleRelease();const missing=release.observations.find(row=>row.direction==='imports'&&row.month==='2025-12'&&row.partnerCode==='1220')!;
-  missing.valueUsd=null;missing.status='unavailable';
+  missing.valueUsd=null;missing.status='missing';
   window.history.replaceState(null,'','/products/090121/?direction=imports&months=12&countries=1220#trade-history-heading');
   render(<ProductExplorer release={release}/>);
   const partners=screen.getByRole('complementary',{name:'Leading partners'});

@@ -1,7 +1,8 @@
 import {test,expect} from '@playwright/test';import {readFile,mkdir,copyFile} from 'node:fs/promises';
 const openProfile=async(page:import('@playwright/test').Page)=>{await page.goto('/products/090121/');await expect(page.locator('astro-island')).toHaveCount(1);await expect(page.locator('astro-island[ssr]')).toHaveCount(0);};
 const tabTo=async(page:import('@playwright/test').Page,control:import('@playwright/test').Locator)=>{
-  for(let i=0;i<30;i++){await page.keyboard.press('Tab');if(await control.evaluate(element=>element===document.activeElement))return;}
+  const stops=await page.locator('a[href],button,input,select,textarea,[tabindex]').count();
+  for(let i=0;i<=stops;i++){await page.keyboard.press('Tab');if(await control.evaluate(element=>element===document.activeElement))return;}
   throw new Error('Control was not reachable through Tab navigation');
 };
 test('active filters, downloads and research provenance stay aligned',async({page})=>{
