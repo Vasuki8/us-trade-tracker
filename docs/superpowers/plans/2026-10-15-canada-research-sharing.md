@@ -10,7 +10,7 @@
 
 **Spec:** This combined bounded design and plan extends the [launch brief](../specs/2026-10-08-us-trade-tracker-design.md), [Canada pilot presentation](../../validation/canada-pilot-deployment.md), [research handoffs](../../validation/research-handoffs.md) and [live verifier](../../validation/live-site-verification.md). The combined format follows the owner's request for several tasks and one permission review.
 
-**Status:** Owner approved all five tasks and full permission envelope on October 15, 2026. Tasks 1–2 focused verification passed; Tasks 3–5 remain. Baseline main 099e6f25454b40c75e7fe054cfe0c7474716dd08.
+**Status:** Owner approved all five tasks and full permission envelope on October 15, 2026. Tasks 1–4 are locally verified; Task 5 independent review, integration, publication and private closeout remain. Baseline main 099e6f25454b40c75e7fe054cfe0c7474716dd08.
 
 ## Recommendation and alternatives
 
@@ -123,11 +123,11 @@ A required human sign-in/CAPTCHA or new terms decision still requires the human 
 **Consumes:** Task 2's current restored direction/readiness and the existing accepted view.
 **Deliverable:** A sourced image whose plot, direction, context and filename match the action taken.
 
-- [ ] Write failing tests for import/export measure and filename, retained versus synthetic labels, crossed/private context rejection, exact capture metadata, no private IDs, long footer wrapping, and unavailable-month line breaks. Assert the same plot points/path are used by screen and export; do not derive expected observed values through the new helper.
-- [ ] Add controlled asynchronous tests for duplicate clicks, direction change during conversion, stale success/error, null/failed conversion and CSV usability after PNG failure. Pin a fixed failure message: “PNG export failed. You can still download the monthly data as CSV.”
-- [ ] Run the focused cases RED, implement metadata/plot reuse and self-contained SVG text with explicit inline fonts/colors, white background and deterministic wrapping. Use no external resources or foreignObject.
-- [ ] Keep the download absent from private/local-prepared presentations, disabled before readiness, and announce Creating image… while busy. A prior-direction export must retain its captured filename; never pair current filename with old image content.
-- [ ] Run focused cases GREEN, inspect rendered SVG bounds/text and commit. The real PNG pixel/readability check belongs to Task 4.
+- [x] Write failing tests for import/export measure and filename, retained versus synthetic labels, crossed/private context rejection, exact capture metadata, no private IDs, long footer wrapping, and unavailable-month line breaks. Assert the same plot points/path are used by screen and export; do not derive expected observed values through the new helper.
+- [x] Add controlled asynchronous tests for duplicate clicks, direction change during conversion, stale success/error, null/failed conversion and CSV usability after PNG failure. Pin a fixed failure message: “PNG export failed. You can still download the monthly data as CSV.”
+- [x] Run the focused cases RED, implement metadata/plot reuse and self-contained SVG text with explicit inline fonts/colors, white background and deterministic wrapping. Use no external resources or foreignObject.
+- [x] Keep the download absent from private/local-prepared presentations, disabled before readiness, and announce Creating image… while busy. A prior-direction export must retain its captured filename; never pair current filename with old image content.
+- [x] Run focused cases GREEN, inspect rendered SVG bounds/text and commit. The real PNG pixel/readability check belongs to Task 4.
 
 ## Task 4: Verify retained research and prepare the exact candidate
 
@@ -135,12 +135,12 @@ A required human sign-in/CAPTCHA or new terms decision still requires the human 
 **Consumes:** Tasks 1–3 and existing stage/prepare/package tools.
 **Deliverable:** A measured locally accepted package and preserved predecessor, without new observations.
 
-- [ ] Add browser journeys for direct/reloaded Exports, Imports/Exports back/forward, fragment-aware copy and denied-clipboard fallback, keyboard use, 320/375/1120-pixel layouts, PNG failure/recovery, and no-JavaScript saved Exports showing explained Imports. Preserve fixture synthetic labels in downloaded images.
-- [ ] On the final runtime, run npm test -- --maxWorkers=2, npm run check, explicit fixture npm run build, npm run test:e2e and py -3 -m unittest discover -s tests/packaging -v using the configured Python 3.12+ runtime. Require all suites to pass and no type diagnostics. Retain focused evidence for any platform failure/repair.
-- [ ] Follow the existing README PowerShell site:stage recipe: fresh stage → precheck → TRADE_DATA_MODE=census/CANADA_PILOT_MODE=snapshot build with both private preview modes absent → postcheck → site:prepare. Read back all seven accepted/eleven protected identities before and after.
-- [ ] Replay the authenticated pre-edit CSV cases against the staged runtime and require exact bytes. Independently compare all 48 Canada monthly values, 20 category summaries, 17 qualified/three excluded comparisons and four Canada CSVs to retained accepted inputs, without calling application calculation modules for expected values.
-- [ ] On an exclusive loopback origin, download both real PNGs; check PNG signature, 1,920×1,080 dimensions, distinct import/export content and matching filenames. View both images at full resolution: inspect title/measure/period, axis/line gaps, capture/source/version footer, qualification, contrast and clipping. Check source SVG text against retained metadata; pixel dimensions alone do not prove legibility or numeric correctness.
-- [ ] Record file count, total raw bytes, largest file and payload delta from 31/1,693,100. Enforce global package limits. Create/read back site and withdrawal ZIPs with scripts/package_site.py and verify deterministic recreation. Keep private proof outside public output; preserve current restoration pins. Commit actual evidence and docs.
+- [x] Add browser journeys for direct/reloaded Exports, Imports/Exports back/forward, fragment-aware copy and denied-clipboard fallback, keyboard use, 320/375/1120-pixel layouts, PNG failure/recovery, and no-JavaScript saved Exports showing explained Imports. Preserve fixture synthetic labels in downloaded images.
+- [x] On the final runtime, run npm test -- --maxWorkers=2, npm run check, explicit fixture npm run build, npm run test:e2e and py -3 -m unittest discover -s tests/packaging -v using the configured Python 3.12+ runtime. Require all suites to pass and no type diagnostics. Retain focused evidence for any platform failure/repair.
+- [x] Follow the existing README PowerShell site:stage recipe: fresh stage → precheck → TRADE_DATA_MODE=census/CANADA_PILOT_MODE=snapshot build with both private preview modes absent → postcheck → site:prepare. Read back all seven accepted/eleven protected identities before and after.
+- [x] Replay the authenticated pre-edit CSV cases against the staged runtime and require exact bytes. Independently compare all 48 Canada monthly values, 20 category summaries, 17 qualified/three excluded comparisons and four Canada CSVs to retained accepted inputs, without calling application calculation modules for expected values.
+- [x] On an exclusive loopback origin, download both real PNGs; check PNG signature, 1,920×1,080 dimensions, distinct import/export content and matching filenames. View both images at full resolution: inspect title/measure/period, axis/line gaps, capture/source/version footer, qualification, contrast and clipping. Check source SVG text against retained metadata; pixel dimensions alone do not prove legibility or numeric correctness.
+- [x] Record file count, total raw bytes, largest file and payload delta from 31/1,693,100. Enforce global package limits. Create/read back site and withdrawal ZIPs with scripts/package_site.py and verify deterministic recreation. Keep private proof outside public output; preserve current restoration pins. Commit actual evidence and docs.
 
 ## Task 5: Review, merge, publish and close out
 
