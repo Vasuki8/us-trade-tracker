@@ -53,3 +53,59 @@ test('country entry, navigation and Methods stay usable on mobile without JavaSc
     for(const width of [320,375])for(const url of ['/','/countries/1220/','/methods/','/products/090121/']){await page.setViewportSize({width,height:812});await page.goto(url);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await expect(page.getByRole('navigation',{name:'Main',exact:true}).getByRole('link',{name:'Country research',exact:true})).toBeVisible();}
   }finally{await context.close();}
 });
+
+test('saved Canada direction, history, fragments and CSV stay aligned',async({page})=>{
+ await page.goto(path+'?direction=exports&utm_source=test#country-history-heading');
+ await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeChecked();
+ await expect(page.getByRole('region',{name:'Country overview'})).toContainText('ALL_VAL_MO');
+ await page.reload();await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeChecked();
+ await page.getByRole('radio',{name:'Imports',exact:true}).check();
+ await expect(page).toHaveURL(/\?direction=imports#country-history-heading$/);
+ await page.goBack();await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeChecked();
+ await page.goForward();await expect(page.getByRole('radio',{name:'Imports',exact:true})).toBeChecked();
+ const event=page.waitForEvent('download');await page.getByRole('button',{name:'Download monthly CSV',exact:true}).click();
+ const rows=parseCsv(await readFile((await (await event).path())!,'utf8'));expect(rows[0]).toMatchObject({direction:'imports',value_usd:'100000'});
+});
+test('manual Canada view links follow keyboard edits and fragments on mobile',async({page})=>{
+ await page.addInitScript(()=>{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:()=>Promise.reject(new Error('Denied'))}});});
+ await page.setViewportSize({width:320,height:812});await page.goto(path+'?direction=exports#country-history-heading');
+ const copy=page.getByRole('button',{name:'Copy view link',exact:true});await expect(copy).toBeEnabled();await copy.focus();await page.keyboard.press('Enter');
+ const manual=page.getByLabel('View link',{exact:true});await expect(manual).toHaveValue(/\/countries\/1220\/\?direction=exports#country-history-heading$/);
+ await manual.focus();await expect(manual).toBeFocused();expect(await manual.evaluate(el=>(el as HTMLInputElement).selectionEnd)).toBe((await manual.inputValue()).length);
+ const exports=page.getByRole('radio',{name:'Exports',exact:true});await exports.focus();await page.keyboard.press('ArrowLeft');
+ await expect(manual).toHaveValue(/\?direction=imports#country-history-heading$/);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
+test('both PNGs carry synthetic context and match their captured direction',async({page},testInfo)=>{
+ await page.goto(path);
+ for(const direction of ['imports','exports'] as const){
+  await expect(page.getByRole('radio',{name:'Imports',exact:true})).toBeEnabled();
+  await page.getByRole('radio',{name:direction==='imports'?'Imports':'Exports',exact:true}).check();
+  const svg=page.locator('svg[data-country-export]');await expect(svg).toHaveAttribute('viewBox','0 0 960 540');
+  const text=await svg.textContent();expect(text).toContain(direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO');expect(text).toContain('SYNTHETIC DEVELOPMENT DATA');expect(text).toContain('Capture times describe saved files');
+  expect(await svg.locator('path').getAttribute('d')).toBe(await page.locator('.country-chart-desktop path').getAttribute('d'));
+  const event=page.waitForEvent('download');await page.getByRole('button',{name:'Download chart PNG',exact:true}).click();const file=await event,body=await readFile((await file.path())!);
+  expect(file.suggestedFilename()).toBe('canada-1220-'+direction+'-2024-09-2026-08-pilot-fixture-chart.png');
+  expect(body.subarray(0,8).toString('hex')).toBe('89504e470d0a1a0a');expect(body.readUInt32BE(16)).toBe(1920);expect(body.readUInt32BE(20)).toBe(1080);
+  await file.saveAs(testInfo.outputPath(direction+'-chart.png'));
+ }
+});
+test('a PNG conversion failure leaves Canada CSV usable and reload restores image export',async({page})=>{
+ await page.goto(path);await expect(page.getByRole('button',{name:'Download chart PNG',exact:true})).toBeEnabled();
+ await page.evaluate(()=>{HTMLCanvasElement.prototype.getContext=(()=>null) as typeof HTMLCanvasElement.prototype.getContext;});
+ await page.getByRole('button',{name:'Download chart PNG',exact:true}).click();
+ await expect(page.getByRole('alert')).toHaveText('PNG export failed. You can still download the monthly data as CSV.');
+ const csv=page.waitForEvent('download');await page.getByRole('button',{name:'Download monthly CSV',exact:true}).click();expect((await csv).suggestedFilename()).toContain('-imports-');
+ await page.reload();await expect(page.getByRole('button',{name:'Download chart PNG',exact:true})).toBeEnabled();
+ const png=page.waitForEvent('download');await page.getByRole('button',{name:'Download chart PNG',exact:true}).click();expect((await png).suggestedFilename()).toContain('-chart.png');
+});
+test('a saved Exports URL explains static Imports and disables sharing without JavaScript',async({browser,baseURL})=>{
+ const context=await browser.newContext({baseURL,javaScriptEnabled:false,viewport:{width:375,height:812}});
+ try{
+  const page=await context.newPage();await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
+  await page.goto(path+'?direction=exports#country-history-heading');await expect(page.getByRole('radio',{name:'Imports',exact:true})).toBeChecked();
+  await expect(page.getByText('Imports are shown below. Saved directions, direction switching and downloads require JavaScript.',{exact:true})).toBeVisible();
+  for(const name of ['Copy view link','Download chart PNG','Download monthly CSV','Download products CSV'])await expect(page.getByRole('button',{name,exact:true})).toBeDisabled();
+  await expect(page.getByRole('region',{name:'Country overview'})).toContainText('GEN_VAL_MO');
+ }finally{await context.close();}
+});
