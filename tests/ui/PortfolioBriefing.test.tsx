@@ -53,4 +53,44 @@ it('explains an older selected release and keeps its source identity without sho
   expect(card).toHaveTextContent('Comparisons unavailable for Dec 2025');
   expect(card).toHaveTextContent('2026-01-01T00:00:00.000Z');
   expect(within(card).queryByRole('region',{name:'Latest month'})).toBeNull();
+  expect(within(card).queryByRole('link',{name:'Explore latest-month country changes'})).toBeNull();
+  expect(within(card).queryByRole('link',{name:'Explore rolling country changes'})).toBeNull();
+});
+
+
+it('country research links retain the summary period and changed direction',async()=>{
+  render(<PortfolioBriefing data={prepared}/>);
+  const card=within(screen.getByRole('article',{name:'Green coffee · HS 090111'}));
+  expect(card.getByRole('link',{name:'Explore latest-month country changes'})).toHaveAttribute('href','/changes/090111/?direction=imports&metric=dollars&period=monthly#changes-heading');
+  expect(card.getByRole('link',{name:'Explore rolling country changes'})).toHaveAttribute('href','/changes/090111/?direction=imports&metric=dollars#changes-heading');
+  await userEvent.setup().click(screen.getByRole('radio',{name:'Exports'}));
+  expect(card.getByRole('link',{name:'Explore latest-month country changes'})).toHaveAttribute('href','/changes/090111/?direction=exports&metric=dollars&period=monthly#changes-heading');
+  expect(card.getByRole('link',{name:'Explore rolling country changes'})).toHaveAttribute('href','/changes/090111/?direction=exports&metric=dollars#changes-heading');
+});
+
+it.each(['missing unrelated month','classification span'] as const)('keeps monthly drilldown when only rolling is unavailable: %s',reason=>{
+  const sample=portfolioSample();
+  if(reason==='missing unrelated month')sample.release.observations=sample.release.observations.filter(row=>!(row.direction==='imports'&&row.geography==='world'&&row.month==='2024-06'));
+  else sample.release.classificationIntervals=[{from:'2024-12',to:'2025-12',evidenceUrl:'https://example.invalid/monthly'}];
+  render(<PortfolioBriefing data={preparePortfolioBriefing([sample])}/>);
+  expect(screen.getByRole('link',{name:'Explore latest-month country changes'})).toBeVisible();
+  expect(screen.queryByRole('link',{name:'Explore rolling country changes'})).toBeNull();
+  expect(screen.getByRole('region',{name:'Rolling twelve months'})).toHaveTextContent('Comparison unavailable');
+});
+
+it.each(['missing','suppressed'] as const)('withholds unavailable matching-month links: %s',status=>{
+  const sample=portfolioSample(),row=sample.release.observations.find(row=>row.direction==='imports'&&row.geography==='world'&&row.month==='2025-12')!;
+  row.valueUsd=null;row.status=status;
+  render(<PortfolioBriefing data={preparePortfolioBriefing([sample])}/>);
+  expect(screen.queryByRole('link',{name:'Explore latest-month country changes'})).toBeNull();
+  expect(screen.queryByRole('link',{name:'Explore rolling country changes'})).toBeNull();
+  expect(screen.getByRole('region',{name:'Latest month'})).toHaveTextContent('Comparison unavailable');
+});
+
+it('retains an available dollar drilldown with a reported zero prior month and unavailable growth',()=>{
+  const sample=portfolioSample();for(const row of sample.release.observations)if(row.direction==='imports'&&row.month==='2024-12')row.valueUsd=0;
+  render(<PortfolioBriefing data={preparePortfolioBriefing([sample])}/>);
+  const monthly=within(screen.getByRole('region',{name:'Latest month'}));
+  expect(monthly.getByText(/No growth percentage/)).toBeVisible();
+  expect(monthly.getByRole('link',{name:'Explore latest-month country changes'})).toBeVisible();
 });

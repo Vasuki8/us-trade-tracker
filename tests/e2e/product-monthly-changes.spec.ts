@@ -39,7 +39,7 @@ test('both product changes pages and matching research links work without JavaSc
 
 test('second-product changes controls, table scrolling and downloads work on mobile',async({page})=>{
   await page.setViewportSize({width:375,height:812});await page.goto('/changes/090122/');
-  await page.getByRole('radio',{name:'Imports',exact:true}).focus();await page.keyboard.press('ArrowRight');await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeChecked();
+  const imports=page.getByRole('radio',{name:'Imports',exact:true});await expect(imports).toBeEnabled();await imports.focus();await expect(imports).toBeFocused();await page.keyboard.press('ArrowRight');await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeChecked();
   await page.getByRole('button',{name:'Download changes CSV',exact:true}).focus();const event=page.waitForEvent('download');await page.keyboard.press('Enter');expect((await event).suggestedFilename()).toBe('hs-090122-exports-changes-dollars.csv');
   const table=page.getByRole('region',{name:'Scrollable largest increases · dollar change'});await table.focus();for(let i=0;i<10;i++)await page.keyboard.press('ArrowRight');await expect.poll(()=>table.evaluate(el=>el.scrollLeft)).toBeGreaterThan(0);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);

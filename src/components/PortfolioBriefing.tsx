@@ -4,16 +4,17 @@ import {selectPortfolioBriefing} from '../lib/trade/portfolio-briefing';
 import {portfolioPath,readPortfolioSelection} from '../lib/trade/portfolio-link';
 import type {DutyComparison,DutyPeriod} from '../lib/trade/duty-types';
 import {usd,usdChange,percent,percentagePoints,monthLabel} from '../lib/trade/format';
-import {profileViewPath} from '../lib/trade/view-link';
+import {profileViewPath,countryChangesViewPath} from '../lib/trade/view-link';
 import type {Direction} from '../lib/trade/types';
 import {downloadBlob,serializePortfolioSummaryCsv,serializePortfolioPartnersCsv} from '../lib/trade/downloads';
 
 const range=(period:{from:string;to:string})=>period.from===period.to?monthLabel(period.to):`${monthLabel(period.from)}–${monthLabel(period.to)}`;
 const dutyShare=(value:number|null)=>value===null?'Unavailable':`${value.toFixed(3)}%`;
-function TradeSummary({label,trade,id}:{label:string;trade:PortfolioTrade;id:string}){
+function TradeSummary({label,trade,id,research}:{label:string;trade:PortfolioTrade;id:string;research:{href:string;label:string}|null}){
   return <section aria-labelledby={id} className="portfolio-section"><h3 id={id}>{label}</h3>
     <p className="briefing-period">{range(trade.periods.current)} compared with {range(trade.periods.previous)}</p>
     <dl className="portfolio-figures"><div><dt>Current value:</dt><dd>{usd(trade.comparison.current)}</dd></div><div><dt>Prior value:</dt><dd>{usd(trade.comparison.previous)}</dd></div><div><dt>Dollar change:</dt><dd>{usdChange(trade.comparison.changeUsd)}</dd></div><div><dt>Growth:</dt><dd>{percent(trade.comparison.changePercent)}</dd></div></dl>
+    {research&&<p><a href={research.href}>{research.label}</a></p>}
     {trade.status!=='available'&&<p>Comparison unavailable: {trade.status==='classification_unverified'?'the classification is not verified across both periods.':'one or both periods are incomplete or suppressed.'}</p>}
     {trade.comparison.previous===0&&<p>No growth percentage is calculated from a zero prior value.</p>}
   </section>;
@@ -38,7 +39,7 @@ function ProductCard({product,direction,reportingMonth}:{product:PortfolioProduc
     <p className="portfolio-description">{product.description}</p>
     <p><a href={profileViewPath(product.code,{direction,months:12,countryCodes:[]})}>Explore {product.name} research</a></p>
     {!data?<><p role="status">Comparisons unavailable for {monthLabel(reportingMonth)}. This product's retained release ends in {monthLabel(product.reportingMonth)}. Select it alone to read its own reporting period.</p><p className="portfolio-source">Source: {product.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau'} · Retrieved: {product.provenance.retrievedAt} · Processing revision: {product.provenance.codeVersion}. {product.provenance.sourceUrls.map(url=><a key={url} href={url}>{url} </a>)}</p></>:<>
-      <TradeSummary label="Latest month" trade={data.monthly} id={`${id}-monthly`}/><TradeSummary label="Rolling twelve months" trade={data.rolling} id={`${id}-rolling`}/>
+      <TradeSummary label="Latest month" trade={data.monthly} id={`${id}-monthly`} research={data.monthly.status==='available'?{href:countryChangesViewPath(product.code,{direction,period:'monthly'}),label:'Explore latest-month country changes'}:null}/><TradeSummary label="Rolling twelve months" trade={data.rolling} id={`${id}-rolling`} research={data.rolling.status==='available'?{href:countryChangesViewPath(product.code,{direction,period:'rolling'}),label:'Explore rolling country changes'}:null}/>
       <section className="portfolio-section" aria-labelledby={`${id}-partners`}><h3 id={`${id}-partners`}>Partner highlights</h3><p>Largest rolling dollar increase and decrease · {range(data.rolling.periods.current)} compared with {range(data.rolling.periods.previous)}.</p>
         {data.highlights.length===0&&<p>No comparable partner increase or decrease is available.</p>}
         {data.highlights.map(({movement,country,duties})=><div className="portfolio-partner" key={movement}><h4>{movement==='increase'?'Largest increase':'Largest decrease'}: <a href={profileViewPath(product.code,{direction,months:12,countryCodes:[country.code]})}>{country.name} · {country.code}</a></h4>

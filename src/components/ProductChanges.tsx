@@ -4,6 +4,7 @@ import {rankProductChanges,PRODUCT_GROWTH_THRESHOLD_USD,type ProductChange,type 
 import {downloadBlob,serializeProductChangesCsv} from '../lib/trade/downloads';
 import {monthLabel,percent,usd,usdChange} from '../lib/trade/format';
 import {profileViewPath} from '../lib/trade/view-link';
+import {portfolioPath} from '../lib/trade/portfolio-link';
 import {ChangesViewLink,useChangesViewLink} from './ChangesViewLink';
 
 function ProductChangesTable({products,movement,metric,direction}:{products:ProductChange[];movement:'increases'|'decreases';metric:ProductChangeMetric;direction:Direction}){
@@ -27,7 +28,7 @@ function ProductChangesTable({products,movement,metric,direction}:{products:Prod
 export function ProductChanges({data}:{data:string}){
   const views=useMemo(()=>JSON.parse(data) as Record<Direction,ProductChangesView>,[data]);
   const savedView=useChangesViewLink('/changes/products/','growth');
-  const {direction,metric}=savedView.selection;
+  const {direction,metric}=savedView.selection,ready=Boolean(savedView.link);
   const view=views[direction],ranking=rankProductChanges(view,metric);
   const period=(value:{from:string;to:string})=>`${monthLabel(value.from)}–${monthLabel(value.to)}`;
   const excluded=view.products.filter(product=>product.availability!=='available');
@@ -35,15 +36,16 @@ export function ProductChanges({data}:{data:string}){
   return <>
     {view.products.some(product=>product.provenance.source==='fixture')&&<div className="sample-banner"><strong>Development sample data</strong><span>These figures are synthetic and are for development checks.</span></div>}
     <div className="release-strip"><span>Comparison reporting month <strong>{monthLabel(view.reportingMonth)}</strong></span><a href="/methods/">Source &amp; methods ↗</a></div>
-    <div className="explorer-controls"><fieldset><legend>Trade direction</legend>{(['imports','exports'] as const).map(value=><label key={value}><input type="radio" name="product-direction" checked={direction===value} onChange={()=>savedView.changeSelection({direction:value,metric})}/>{value==='imports'?'Imports':'Exports'}</label>)}</fieldset></div>
+    <div className="explorer-controls"><fieldset><legend>Trade direction</legend>{(['imports','exports'] as const).map(value=><label key={value}><input type="radio" name="product-direction" disabled={!ready} checked={direction===value} onChange={()=>savedView.changeSelection({direction:value,metric})}/>{value==='imports'?'Imports':'Exports'}</label>)}</fieldset></div>
     <ChangesViewLink {...savedView}/>
+    <p><a href={portfolioPath({productCodes:view.products.map(product=>product.code),direction})}>Compare latest-month figures</a></p>
     <section className="changes-card" aria-labelledby="product-changes-heading">
       <div className="section-heading"><div><p className="eyebrow">REVIEWED PRODUCT COMPARISONS</p><h2 id="product-changes-heading">Ranked product changes</h2></div><span className="measure-tag">{direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO'}</span></div>
       <p className="changes-period"><strong>{period(view.periods.current)}</strong> compared with <strong>{period(view.periods.previous)}</strong> · U.S. {direction}</p>
       <p>Coverage: {view.products.length} reviewed pilot products. Rankings cover these products only. Growing flows are research leads.</p>
       <p className="changes-description">Up to ten increases and ten decreases. Growth rankings require at least {usd(PRODUCT_GROWTH_THRESHOLD_USD)} in the preceding twelve months. This is an initial editorial threshold.</p>
-      <div className="changes-controls"><label>Rank product changes by<select value={metric} onChange={event=>savedView.changeSelection({direction,metric:event.target.value as ProductChangeMetric})}><option value="dollars">Dollar change</option><option value="growth">Percentage growth</option></select></label>
-        <button className="secondary-button" disabled={ranking.increases.length+ranking.decreases.length===0} onClick={()=>downloadBlob(new Blob([serializeProductChangesCsv(view,metric)],{type:'text/csv;charset=utf-8'}),`pilot-products-${direction}-changes-${metric}.csv`)}>Download product changes CSV</button>
+      <div className="changes-controls"><label>Rank product changes by<select disabled={!ready} value={metric} onChange={event=>savedView.changeSelection({direction,metric:event.target.value as ProductChangeMetric})}><option value="dollars">Dollar change</option><option value="growth">Percentage growth</option></select></label>
+        <button className="secondary-button" disabled={!ready||ranking.increases.length+ranking.decreases.length===0} onClick={()=>downloadBlob(new Blob([serializeProductChangesCsv(view,metric)],{type:'text/csv;charset=utf-8'}),`pilot-products-${direction}-changes-${metric}.csv`)}>Download product changes CSV</button>
       </div>
       <p className="changes-status" role="status" aria-live="polite" aria-atomic="true">Excluded products: {ranking.unavailableCount} unavailable {ranking.unavailableCount===1?'comparison':'comparisons'}; {ranking.differentMonthCount} different reporting {ranking.differentMonthCount===1?'month':'months'}; {ranking.belowThresholdCount} below the growth threshold. {ranking.unchangedCount} {ranking.unchangedCount===1?'product has':'products have'} no change.</p>
       {excluded.length>0&&<ul aria-label="Products excluded from comparison">{excluded.map(product=><li key={product.code}>{product.name} · HS {product.code}: {product.availability==='reporting_month_mismatch'?`Reporting month ${monthLabel(product.reportingMonth)} differs from ${monthLabel(view.reportingMonth)}.`:product.availability==='classification_unverified'?'Classification continuity is unverified across these periods.':'Reported months are incomplete in one or both periods.'}</li>)}</ul>}
@@ -51,7 +53,7 @@ export function ProductChanges({data}:{data:string}){
       <ProductChangesTable products={ranking.increases} movement="increases" metric={metric} direction={direction}/>
       <ProductChangesTable products={ranking.decreases} movement="decreases" metric={metric} direction={direction}/>
       <p className="chart-note">Values are current USD, not seasonally adjusted. Comparisons require both complete, compatible twelve-month periods and the same reporting month. A zero prior value has no growth percentage. The CSV contains the displayed rankings, periods, threshold and each product’s source details.</p>
-      <noscript><p className="chart-note">Enable JavaScript to change direction or ranking and download a CSV.</p></noscript>
+      <noscript><p className="chart-note">Product rankings use rolling twelve-month periods. Enable JavaScript to change direction or ranking and download a CSV.</p></noscript>
     </section>
     <details className="provenance"><summary>Sources for these product comparisons</summary>{view.products.map(product=><div key={product.code}>
       <p><strong>{product.name} · HS {product.code}</strong> · {product.title}</p>

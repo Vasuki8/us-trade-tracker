@@ -1,9 +1,16 @@
-import type {Release,ExplorerSelection} from './types';
+import type {Release,ExplorerSelection,Direction} from './types';
 import {DEFAULT_PRODUCT_CODE,assertProductCode} from './product-registry';
 
 export function monthlyChangesPath(productCode:string=DEFAULT_PRODUCT_CODE):string{
   assertProductCode(productCode);
   return productCode===DEFAULT_PRODUCT_CODE?'/changes/':`/changes/${productCode}/`;
+}
+
+export function countryChangesViewPath(productCode:string,selection:{direction:Direction;period:'rolling'|'monthly'}):string{
+  if((selection.direction!=='imports'&&selection.direction!=='exports')||(selection.period!=='rolling'&&selection.period!=='monthly'))throw new Error('Invalid country changes selection');
+  const params=new URLSearchParams({direction:selection.direction,metric:'dollars'});
+  if(selection.period==='monthly')params.set('period','monthly');
+  return `${monthlyChangesPath(productCode)}?${params}#changes-heading`;
 }
 
 export function releaseBriefingPath(productCode:string=DEFAULT_PRODUCT_CODE):string{
