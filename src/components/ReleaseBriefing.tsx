@@ -6,7 +6,7 @@ import {buildChangesView,rankChanges} from '../lib/trade/changes';
 import {buildDutyView} from '../lib/trade/duties';
 import {shiftMonth} from '../lib/trade/metrics';
 import {monthLabel,usd,percent} from '../lib/trade/format';
-import {profileViewPath,monthlyChangesPath,countryChangesViewPath} from '../lib/trade/view-link';
+import {profileViewPath,countryChangesViewPath} from '../lib/trade/view-link';
 
 const period=(from:string,to:string)=>from===to?monthLabel(from):`${monthLabel(from)}–${monthLabel(to)}`;
 const share=(value:number|null)=>value===null?'Unavailable':value>0&&value<0.001?'<0.001%':`${value.toFixed(3)}%`;
@@ -34,6 +34,7 @@ function PartnerChanges({view}:{view:ChangesView}){
       <p>{decrease?<>Largest decrease: <strong><a href={profileViewPath(view.productCode,{direction:view.direction,months:12,countryCodes:[decrease.code]})}>{decrease.name}</a> · {usd(decrease.changeUsd)}</strong></>:'No country decrease among comparable observations.'}</p>
     </>}
     <p className="chart-note">Ranked by dollar change · {available} countries with comparable data; {ranks.unavailableCount} unavailable. Missing country months remain unavailable.</p>
+    {view.classificationComparable&&available>0&&<p><a href={countryChangesViewPath(view.productCode,{direction:view.direction,period:'rolling'})}>Explore twelve-month {imports?'import':'export'} changes by country</a></p>}
   </section>;
 }
 
@@ -64,7 +65,6 @@ export function ReleaseBriefing({release}:{release:Release}){
       <h2 id="partner-movements-heading">Partner markets over the latest twelve months</h2>
       <p>These highlights compare two rolling annual periods. They describe changes in recorded U.S. flows for this product; they do not establish worldwide demand or profitability.</p>
       <div className="briefing-grid"><PartnerChanges view={buildChangesView(release,'imports')}/><PartnerChanges view={buildChangesView(release,'exports')}/></div>
-      <p><a href={monthlyChangesPath(release.productCode)}>See all country changes</a></p>
     </section>
     <section className="briefing-section" aria-labelledby="briefing-duties-heading">
       <h2 id="briefing-duties-heading">Estimated duties</h2>

@@ -20,7 +20,7 @@ test('the second product keeps its identity in briefings, figures and research l
   const partner=page.getByRole('region',{name:'Annual import partner changes'}).getByRole('link').first();
   await expect(partner).toHaveAttribute('href',/^\/products\/090122\/\?direction=imports&months=12&countries=/);
   await partner.click();await expect(page).toHaveURL(/\/products\/090122\/\?direction=imports&months=12&countries=/);
-  await page.goto('/briefing/090122/');await page.getByRole('link',{name:'See all country changes',exact:true}).click();await expect(page).toHaveURL(/\/changes\/090122\/$/);
+  await page.goto('/briefing/090122/');await page.getByRole('region',{name:'Annual import partner changes'}).getByRole('link',{name:'Explore twelve-month import changes by country',exact:true}).click();await expect(page).toHaveURL(/\/changes\/090122\/\?direction=imports&metric=dollars#changes-heading$/);
   await page.getByRole('navigation',{name:'Main'}).getByRole('link',{name:'Briefing',exact:true}).click();await expect(page).toHaveURL(/\/briefing\/090122\/$/);
   await page.getByRole('link',{name:'Explore duty history and comparisons',exact:true}).click();await expect(page).toHaveURL(/\/products\/090122\/#duties-heading$/);
   await page.goto('/briefing/090122/');await page.getByRole('link',{name:'Explore the full product profile',exact:true}).click();await expect(page).toHaveURL(/\/products\/090122\/$/);
@@ -39,7 +39,7 @@ test('product briefings remain readable and navigable by keyboard on mobile with
     await expect(page.getByRole('region',{name:'Sources and release'})).toContainText('Development fixtures');
     await expect(page.locator('astro-island')).toHaveCount(0);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
     await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'Skip to content'})).toBeFocused();await page.keyboard.press('Enter');await expect(page).toHaveURL(/\/briefing\/090122\/#main$/);
-    await page.getByRole('link',{name:'See all country changes',exact:true}).focus();await page.keyboard.press('Enter');await expect(page).toHaveURL(/\/changes\/090122\/$/);
+    await page.getByRole('region',{name:'Annual import partner changes'}).getByRole('link',{name:'Explore twelve-month import changes by country',exact:true}).focus();await page.keyboard.press('Enter');await expect(page).toHaveURL(/\/changes\/090122\/\?direction=imports&metric=dollars#changes-heading$/);
     await page.getByRole('navigation',{name:'Main'}).getByRole('link',{name:'Briefing',exact:true}).click();await page.getByRole('navigation',{name:'Briefing products'}).getByRole('link',{name:'Roasted coffee · HS 090121',exact:true}).focus();await page.keyboard.press('Enter');await expect(page).toHaveURL(/\/briefing\/$/);
   }finally{await context.close();}
 });

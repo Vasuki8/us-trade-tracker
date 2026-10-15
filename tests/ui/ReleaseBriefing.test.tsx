@@ -54,6 +54,47 @@ it.each(['missing current','suppressed prior','unverified classification','split
   expect(card).toHaveTextContent('Dollar change: Unavailable');expect(card).toHaveTextContent('Growth: Unavailable');
 });
 
+// A shared default-import link cannot serve a reader of the export card.
+it.each([
+  ['090121','/changes/?direction=imports&metric=dollars#changes-heading','/changes/?direction=exports&metric=dollars#changes-heading','/products/090121/?direction=imports&months=12&countries=1220','/products/090121/?direction=exports&months=12&countries=1220'],
+  ['090111','/changes/090111/?direction=imports&metric=dollars#changes-heading','/changes/090111/?direction=exports&metric=dollars#changes-heading','/products/090111/?direction=imports&months=12&countries=1220','/products/090111/?direction=exports&months=12&countries=1220'],
+] as const)('briefing_annual_links_keep_card_direction: %s',(code,importsHref,exportsHref,importPartner,exportPartner)=>{
+  render(<ReleaseBriefing release={briefingRelease(code)}/>);
+  const imports=screen.getByRole('region',{name:'Annual import partner changes'}),exports=screen.getByRole('region',{name:'Annual export partner changes'});
+  expect(within(imports).getByRole('link',{name:'Explore twelve-month import changes by country'})).toHaveAttribute('href',importsHref);
+  expect(within(exports).getByRole('link',{name:'Explore twelve-month export changes by country'})).toHaveAttribute('href',exportsHref);
+  expect(within(imports).getByRole('link',{name:'CANADA',exact:true})).toHaveAttribute('href',importPartner);
+  expect(within(exports).getByRole('link',{name:'CANADA',exact:true})).toHaveAttribute('href',exportPartner);
+  expect(imports).toHaveTextContent('Largest increase: CANADA · $156');expect(exports).toHaveTextContent('Largest increase: CANADA · $300');
+  for(const card of [imports,exports]){expect(card).toHaveTextContent('Jan 2025–Dec 2025 compared with Jan 2024–Dec 2024');expect(card).toHaveTextContent('4 countries with comparable data; 0 unavailable');expect(card).toHaveTextContent('No country decrease among comparable observations.');}
+  expect(screen.queryByRole('link',{name:'See all country changes',exact:true})).toBeNull();
+});
+
+// Dollar eligibility survives zero baselines and equal periods, regardless of growth availability.
+it.each(['zero prior','no changes'] as const)('briefing_annual_links_follow_dollar_eligibility: %s',condition=>{
+  const release=sampleDutyRelease();
+  for(const row of release.observations)if(row.month.startsWith('2024'))row.valueUsd=condition==='zero prior'?0:(row.direction==='imports'?1:2)*(row.geography==='world'?100:25);
+  render(<ReleaseBriefing release={release}/>);
+  for(const direction of ['imports','exports'] as const){
+    const card=screen.getByRole('region',{name:direction==='imports'?'Annual import partner changes':'Annual export partner changes'});
+    expect(card).toHaveTextContent('4 countries with comparable data; 0 unavailable');
+    expect(within(card).getByRole('link',{name:direction==='imports'?'Explore twelve-month import changes by country':'Explore twelve-month export changes by country'})).toHaveAttribute('href',direction==='imports'?'/changes/?direction=imports&metric=dollars#changes-heading':'/changes/?direction=exports&metric=dollars#changes-heading');
+    if(condition==='no changes'){expect(card).toHaveTextContent('No country increase among comparable observations.');expect(card).toHaveTextContent('No country decrease among comparable observations.');}
+  }
+});
+
+// No eligible countries or incompatible classifications must not create a research promise.
+it.each(['missing','suppressed','unverified classification'] as const)('briefing_annual_links_follow_dollar_eligibility: %s',condition=>{
+  const release=sampleDutyRelease();
+  if(condition==='unverified classification')release.classificationIntervals=[];
+  else for(const row of release.observations)if(row.geography==='country'&&row.month.startsWith('2025')){row.valueUsd=null;row.status=condition;}
+  render(<ReleaseBriefing release={release}/>);
+  for(const name of ['Annual import partner changes','Annual export partner changes']){
+    const card=screen.getByRole('region',{name});expect(within(card).queryByRole('link',{name:/Explore twelve-month/})).toBeNull();
+    expect(card).toHaveTextContent('Country comparisons are unavailable');expect(card).toHaveTextContent('0 countries with comparable data; 4 unavailable');
+  }
+});
+
 it('separates latest-month year-over-year figures for imports and exports',()=>{
   render(<ReleaseBriefing release={sampleDutyRelease()}/>);
   const imports=screen.getByRole('region',{name:'Monthly imports'}),exports=screen.getByRole('region',{name:'Monthly exports'});

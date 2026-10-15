@@ -122,9 +122,9 @@ Planning read-back confirms these package pins, the prior completion record and 
 **Files:** ReleaseBriefing.tsx and tests/ui/ReleaseBriefing.test.tsx; affected old-link browser expectations.
 **Interfaces:** Consume unchanged ChangesView and rankChanges(view,'dollars') eligibility; produce two annual card links and remove only the ambiguous shared link.
 
-- [ ] Add `briefing_annual_links_keep_card_direction` for both product codes using literal rolling URLs. Pin existing highlight names/hrefs/order, amounts, period labels and excluded counts; require the old shared link absent.
-- [ ] Add `briefing_annual_links_follow_dollar_eligibility`: zero prior amounts and equal/no-change countries retain a valid link; all-country missing/suppressed or incompatible classification removes it. Do not replace a dollar eligibility test with changePercent availability.
-- [ ] Run the focused UI file RED, add the annual links and remove the shared link/import, then rerun GREEN. Update only affected old-link expectations in existing briefing browser tests to the new scoped direction-specific link and literal destination. Commit this independently testable change.
+- [x] Add `briefing_annual_links_keep_card_direction` for both product codes using literal rolling URLs. Pin existing highlight names/hrefs/order, amounts, period labels and excluded counts; require the old shared link absent.
+- [x] Add `briefing_annual_links_follow_dollar_eligibility`: zero prior amounts and equal/no-change countries retain a valid link; all-country missing/suppressed or incompatible classification removes it. Do not replace a dollar eligibility test with changePercent availability.
+- [x] Run the focused UI file RED, add the annual links and remove the shared link/import, then rerun GREEN. Update only affected old-link expectations in existing briefing browser tests to the new scoped direction-specific link and literal destination. Commit this independently testable change.
 
 ## Task 3: Verify briefing journeys and prepare the exact retained-data package
 
