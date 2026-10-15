@@ -8,7 +8,7 @@ import '@testing-library/jest-dom/vitest';
 import {sampleRelease} from '../helpers/release';
 import {productChangeSample} from '../helpers/product-changes';
 import {makeCountryChangesData} from '../helpers/country-changes';
-import {buildProductChangesView} from '../../src/lib/trade/product-changes';
+import {buildProductChangesView,buildMonthlyProductChangesView} from '../../src/lib/trade/product-changes';
 import {MonthlyChanges} from '../../src/components/MonthlyChanges';
 import {ProductChanges} from '../../src/components/ProductChanges';
 
@@ -16,7 +16,7 @@ afterEach(()=>{cleanup();vi.restoreAllMocks();window.history.replaceState(null,'
 const release=sampleRelease();
 const countryData=makeCountryChangesData(release);
 const products=[productChangeSample('100001','Big',1_000_000_000,1_100_000_000,40_000_000,20_000_000)];
-const productData=JSON.stringify({imports:buildProductChangesView(products,'imports'),exports:buildProductChangesView(products,'exports')});
+const productData=JSON.stringify({rolling:{imports:buildProductChangesView(products,'imports'),exports:buildProductChangesView(products,'exports')},monthly:{imports:buildMonthlyProductChangesView(products,'imports'),exports:buildMonthlyProductChangesView(products,'exports')}});
 
 for(const config of [
   {name:'country changes',path:'/changes/',metric:'share',wrongMetric:'growth',label:'Rank changes by',element:<MonthlyChanges data={countryData} reportingMonth={release.reportingMonth}/>},
@@ -166,12 +166,20 @@ describe('country period saved links',()=>{
   await user.click(screen.getByRole('button',{name:'Switch period'}));await act(async()=>{complete();});
   expect(screen.queryByText('Changes link copied.')).toBeNull();
  });
- it('keeps period out of product sharing when the feature is not enabled',async()=>{
+ it('retains the restored monthly period in product sharing',async()=>{
   window.history.replaceState(null,'','/changes/products/?direction=exports&metric=growth&period=monthly');
   render(<ProductChanges data={productData}/>);const user=userEvent.setup(),write=vi.spyOn(navigator.clipboard,'writeText').mockResolvedValue();
   expect(screen.getByRole('radio',{name:'Exports'})).toBeChecked();
   await user.click(screen.getByRole('button',{name:'Copy changes link'}));
-  expect(write).toHaveBeenCalledWith(new URL('/changes/products/?direction=exports&metric=growth',window.location.origin).href);
+  expect(screen.getByRole('radio',{name:'Latest month'})).toBeChecked();
+  expect(write).toHaveBeenCalledWith(new URL('/changes/products/?direction=exports&metric=growth&period=monthly',window.location.origin).href);
+ });
+ it('keeps period out of sharing when the hook feature is disabled',async()=>{
+  window.history.replaceState(null,'','/changes/?direction=exports&metric=share&period=monthly');
+  render(<PeriodLinkHarness allowPeriod={false}/>);const user=userEvent.setup(),write=vi.spyOn(navigator.clipboard,'writeText').mockResolvedValue();
+  expect(screen.getByLabelText('Saved period selection')).toHaveTextContent('exports/share/none');
+  await user.click(screen.getByRole('button',{name:'Copy changes link'}));
+  expect(write).toHaveBeenCalledWith(new URL('/changes/?direction=exports&metric=share',window.location.origin).href);
  });
  it('describes the rolling default before hydration',()=>{
   window.history.replaceState(null,'','/changes/?direction=exports&metric=share&period=monthly');
