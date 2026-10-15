@@ -61,6 +61,15 @@ export function serializeProductChangesCsv(view:ProductChangesView,metric:Produc
     view.periods.current.from,view.periods.current.to,view.periods.previous.from,view.periods.previous.to,product.provenance.measure,'current USD, not seasonally adjusted; growth in percent',metric==='growth'?PRODUCT_GROWTH_THRESHOLD_USD:null,view.products.length,ranking.unavailableCount,ranking.differentMonthCount,ranking.belowThresholdCount,ranking.unchangedCount,
     product.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau',product.provenance.retrievedAt,product.provenance.codeVersion,product.provenance.revised,product.provenance.sourceUrls.join(' | ')
   ]));
+  if(view.periodType==='monthly'){
+    headers[headers.indexOf('minimum_previous_value_usd')]='minimum_growth_qualification_value_usd';
+    headers.push('comparison_period','growth_qualification_basis','growth_qualification_period_start','growth_qualification_period_end','growth_qualification_value_usd','growth_qualification_availability','growth_qualification_unavailable_count','zero_prior_month_count');
+    const products=[...ranking.increases,...ranking.decreases];
+    rows.forEach((row,index)=>{
+      const qualification=products[index].growthQualification!;
+      row.push('monthly','preceding_twelve_months',qualification.from,qualification.to,qualification.valueUsd,qualification.availability,ranking.growthQualificationUnavailableCount,ranking.zeroPriorMonthCount);
+    });
+  }
   return [headers,...rows].map(row=>row.map(csvCell).join(',')).join('\r\n')+'\r\n';
 }
 export function serializeSelectedCountriesCsv(view:ChangesView,countryCodes:string[]):string{
