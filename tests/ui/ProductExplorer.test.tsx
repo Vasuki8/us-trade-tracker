@@ -10,6 +10,35 @@ import {buildProfileView} from '../../src/lib/trade/profile';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {TradeChart} from '../../src/components/TradeChart';
 afterEach(()=>{cleanup();window.history.replaceState(null,'','/');});
+it('native_profile_navigation_has_unique_rendered_targets',()=>{
+  const html=renderToStaticMarkup(<ProductExplorer release={sampleRelease()}/>);
+  const document=new DOMParser().parseFromString(html,'text/html');
+  const navigation=document.querySelector('nav[aria-label="On this profile"]');
+  expect(navigation).not.toBeNull();
+  for(const [label,id] of [
+    ['Trade over time','trade-history-heading'],['Compare countries','compare-countries-heading'],
+    ['What changed?','changes-heading'],['Estimated duties','duties-heading'],
+    ['Chart data','chart-data-heading'],['Leading partners','leading-partners-heading'],['Sources','profile-sources-heading'],
+  ]){
+    const link=[...navigation!.querySelectorAll('a')].find(item=>item.textContent===label);
+    expect(link?.getAttribute('href')).toBe('#'+id);
+    expect(document.querySelectorAll('[id="'+id+'"]').length).toBe(1);
+  }
+  expect(navigation!.querySelectorAll('a')).toHaveLength(7);
+  expect(document.querySelector('aside[aria-labelledby="compare-countries-heading"]')).not.toBeNull();
+  expect(document.querySelector('aside[aria-labelledby="leading-partners-heading"]')).not.toBeNull();
+});
+it('profile_navigation_tracks_direction',async()=>{
+  render(<ProductExplorer release={sampleRelease()}/>);const user=userEvent.setup();
+  const nav=screen.getByRole('navigation',{name:'On this profile'});
+  expect(within(nav).getByRole('link',{name:'Estimated duties'})).toHaveAttribute('href','#duties-heading');
+  await user.click(screen.getByRole('checkbox',{name:'CANADA'}));
+  expect(document.querySelectorAll('#selected-comparison-heading')).toHaveLength(1);
+  expect(within(nav).queryByRole('link',{name:'Selected country comparison'})).toBeNull();
+  await user.click(screen.getByRole('radio',{name:'Exports'}));
+  expect(within(nav).queryByRole('link',{name:'Estimated duties'})).toBeNull();
+  for(const link of within(nav).getAllByRole('link'))expect(document.querySelectorAll(link.getAttribute('href')!)).toHaveLength(1);
+});
 it('switches direction and enforces three countries with accessible controls',async()=>{
   render(<ProductExplorer release={sampleRelease()}/>);const user=userEvent.setup();
   expect(screen.getByText('Development sample data')).toBeVisible();
