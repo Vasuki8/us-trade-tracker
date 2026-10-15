@@ -8,6 +8,52 @@ import {ReleaseBriefing} from '../../src/components/ReleaseBriefing';
 
 afterEach(cleanup);
 
+function briefingRelease(productCode:'090121'|'090111'){
+  const release=sampleDutyRelease();release.productCode=productCode;
+  for(const row of release.observations)row.productCode=productCode;
+  for(const row of release.duties.observations)row.productCode=productCode;
+  return release;
+}
+
+// Wrong product, direction or default rolling period would open unrelated research.
+it.each([
+  ['090121','/changes/?direction=imports&metric=dollars&period=monthly#changes-heading','/changes/?direction=exports&metric=dollars&period=monthly#changes-heading'],
+  ['090111','/changes/090111/?direction=imports&metric=dollars&period=monthly#changes-heading','/changes/090111/?direction=exports&metric=dollars&period=monthly#changes-heading'],
+] as const)('briefing_monthly_links_keep_product_direction_and_period: %s',(code,importsHref,exportsHref)=>{
+  render(<ReleaseBriefing release={briefingRelease(code)}/>);
+  const imports=screen.getByRole('region',{name:'Monthly imports'}),exports=screen.getByRole('region',{name:'Monthly exports'});
+  expect(within(imports).getByRole('link',{name:'Explore latest-month import changes by country'})).toHaveAttribute('href',importsHref);
+  expect(within(exports).getByRole('link',{name:'Explore latest-month export changes by country'})).toHaveAttribute('href',exportsHref);
+  expect(imports).toHaveTextContent('Current value: $100');expect(imports).toHaveTextContent('Previous value: $50');
+  expect(exports).toHaveTextContent('Current value: $200');expect(exports).toHaveTextContent('Previous value: $100');
+});
+
+// Growth being unavailable from a zero baseline must not suppress dollar research.
+it.each(['imports','exports'] as const)('briefing_monthly_links_preserve_zero_and_unavailable_rules: zero prior %s',direction=>{
+  const release=sampleDutyRelease();
+  for(const row of release.observations)if(row.direction===direction&&row.month==='2024-12')row.valueUsd=0;
+  render(<ReleaseBriefing release={release}/>);
+  const card=screen.getByRole('region',{name:direction==='imports'?'Monthly imports':'Monthly exports'});
+  expect(card).toHaveTextContent('Previous value: $0');expect(card).toHaveTextContent('Growth: Unavailable');
+  expect(card).toHaveTextContent(direction==='imports'?'Dollar change: $100':'Dollar change: $200');
+  expect(within(card).getByRole('link')).toHaveAttribute('href',direction==='imports'?'/changes/?direction=imports&metric=dollars&period=monthly#changes-heading':'/changes/?direction=exports&metric=dollars&period=monthly#changes-heading');
+});
+
+// Links must not imply comparison availability for missing amounts or disjoint classifications.
+it.each(['missing current','suppressed prior','unverified classification','split classification'] as const)('briefing_monthly_links_preserve_zero_and_unavailable_rules: %s',failure=>{
+  const release=sampleDutyRelease();
+  if(failure==='missing current'||failure==='suppressed prior'){
+    const row=release.observations.find(row=>row.direction==='imports'&&row.geography==='world'&&row.month===(failure==='missing current'?'2025-12':'2024-12'))!;
+    row.valueUsd=null;row.status=failure==='missing current'?'missing':'suppressed';
+  }else if(failure==='unverified classification')release.classificationIntervals=[];
+  else release.classificationIntervals=[{...release.classificationIntervals[0],to:'2024-12'},{...release.classificationIntervals[0],from:'2025-01'}];
+  render(<ReleaseBriefing release={release}/>);
+  const card=screen.getByRole('region',{name:'Monthly imports'});
+  expect(within(card).queryByRole('link',{name:'Explore latest-month import changes by country'})).toBeNull();
+  expect(card).toHaveTextContent(failure==='missing current'?'Current value: Unavailable':'Current value: $100');
+  expect(card).toHaveTextContent('Dollar change: Unavailable');expect(card).toHaveTextContent('Growth: Unavailable');
+});
+
 it('separates latest-month year-over-year figures for imports and exports',()=>{
   render(<ReleaseBriefing release={sampleDutyRelease()}/>);
   const imports=screen.getByRole('region',{name:'Monthly imports'}),exports=screen.getByRole('region',{name:'Monthly exports'});
