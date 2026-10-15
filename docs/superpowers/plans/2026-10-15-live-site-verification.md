@@ -10,7 +10,7 @@
 
 **Spec:** This combined bounded design and plan extends the [launch design](../specs/2026-10-08-us-trade-tracker-design.md), [local preparation contract](../../validation/local-site-preparation.md) and [verified research-handoffs publication](../../validation/research-handoffs.md). The combined format follows the owner's request for several tasks and one permission review.
 
-**Status:** Owner approved all five tasks and the complete permission envelope on October 15, 2026; execution in progress. Planning baseline: main af7ed78d8598984852ee73844c2507a9958efff6. The previous five-task publication milestone is complete, including private preservation and worktree cleanup.
+**Status:** Owner approved all five tasks and the complete permission envelope on October 15, 2026; Tasks 1–4 locally and live verified; independent review, integration and private closeout remain at this record. Planning baseline: main af7ed78d8598984852ee73844c2507a9958efff6. The previous five-task publication milestone is complete, including private preservation and worktree cleanup.
 
 ## Recommendation and alternatives
 
@@ -74,10 +74,10 @@ The owner's preference for R2 usage below 100 GB is retained for future necessar
 
 **Interface:** loadLiveSitePackage({workDir,manifestPath,zipPath,manifestSha256,zipSha256}) returns the immutable validated manifest, verified identities and expected served/private-route checks. Require workDir beneath the executing checkout's Git-ignored .tmp directory, with both input files inside that owned directory; verify containment and ignored status instead of trusting a path prefix. Task 2 applies the same containment to proofRoot. Use SITE_PACKAGE_PYTHON for the existing Python runtime. Resolve the tracked packager beside the running scripts, pass separate arguments without a shell, bound its output and set a 30-second subprocess timeout. An injected test adapter must not become a CLI bypass.
 
-- [ ] Record the clean execution baseline and authenticate the original two package files against the pins before copying. Establish ignored, fresh task storage and preserve original identities for final readback.
-- [ ] Add failing tests for valid schema-v1 input, wrong expected digests, duplicate keys/entries, changed input during verifier invocation, wrong/failed verifier receipt, malformed ZIP, unsafe/reparse/hardlinked paths and the stated size/check limits. Assert zero HTTP calls for every preflight rejection.
-- [ ] Implement the binding using existing stable reads and the Python verifier. Validate the verifier's entriesVerified, entryCount, bytes and sha256 against the pinned ZIP/manifest; do not treat subprocess exit zero alone as verification. Build checks from the exact manifest bytes already authenticated.
-- [ ] Run npm test -- tests/scripts/live-site-package.test.ts --maxWorkers=2 with SITE_PACKAGE_PYTHON set. Include at least one actual Python integration roundtrip with a small valid fixture ZIP, plus an invalid ZIP/duplicate-key case, rather than mocking every package decision. Commit the passing package preflight.
+- [x] Record the clean execution baseline and authenticate the original two package files against the pins before copying. Establish ignored, fresh task storage and preserve original identities for final readback.
+- [x] Add failing tests for valid schema-v1 input, wrong expected digests, duplicate keys/entries, changed input during verifier invocation, wrong/failed verifier receipt, malformed ZIP, unsafe/reparse/hardlinked paths and the stated size/check limits. Assert zero HTTP calls for every preflight rejection.
+- [x] Implement the binding using existing stable reads and the Python verifier. Validate the verifier's entriesVerified, entryCount, bytes and sha256 against the pinned ZIP/manifest; do not treat subprocess exit zero alone as verification. Build checks from the exact manifest bytes already authenticated.
+- [x] Run npm test -- tests/scripts/live-site-package.test.ts --maxWorkers=2 with SITE_PACKAGE_PYTHON set. Include at least one actual Python integration roundtrip with a small valid fixture ZIP, plus an invalid ZIP/duplicate-key case, rather than mocking every package decision. Commit the passing package preflight.
 
 ## Task 2: Port and test the bounded HTTP verifier
 
@@ -85,10 +85,10 @@ The owner's preference for R2 usage below 100 GB is retained for future necessar
 
 **Interface:** verifyLiveSite(options) returns a LiveSiteVerificationReceipt after local binding and the two-origin run. Options are the Task 1 inputs plus deploymentOrigin and proofRoot. Internally allow injected fetch/clock/timers for deterministic tests. Receipt schema v1 records status, start/end times, package identities, origins, planned/completed counts and each completed check's allowed paths, status, decoded bytes/SHA-256 and normalized robots tokens. Failure records carry an allowlisted code and the failed planned path when safe.
 
-- [ ] Write failing transport tests for both exact target origins, valid HTML redirects, hash/length/status/header mismatches and each private-route requirement. Verify _headers is validated locally but never fetched as an asset.
-- [ ] Cover cross-origin/HTTP/credential/query/fragment/unrelated-path redirect rejection before follow-up fetch, loops and redirect-count exhaustion. Require absence of authentication/cookies and manual redirect handling.
-- [ ] Port the proven checks. Add stream tests for early EOF, overflow, an error after headers, a stalled body, abort at the overall deadline and compressed-response semantics. A mock may represent already-decoded bytes; explicitly check that compressed Content-Length is not used as decoded length. Cover cancellation and non-retry behavior with fake timers.
-- [ ] Implement fresh proof creation and exclusive read-back-verified receipts. Test failure on the second check preserving the first result, missing/occupied/unsafe output handling, failure-write errors yielding nonzero status, and redaction of a malicious Location/error string. Run the focused suite and commit.
+- [x] Write failing transport tests for both exact target origins, valid HTML redirects, hash/length/status/header mismatches and each private-route requirement. Verify _headers is validated locally but never fetched as an asset.
+- [x] Cover cross-origin/HTTP/credential/query/fragment/unrelated-path redirect rejection before follow-up fetch, loops and redirect-count exhaustion. Require absence of authentication/cookies and manual redirect handling.
+- [x] Port the proven checks. Add stream tests for early EOF, overflow, an error after headers, a stalled body, abort at the overall deadline and compressed-response semantics. A mock may represent already-decoded bytes; explicitly check that compressed Content-Length is not used as decoded length. Cover cancellation and non-retry behavior with fake timers.
+- [x] Implement fresh proof creation and exclusive read-back-verified receipts. Test failure on the second check preserving the first result, missing/occupied/unsafe output handling, failure-write errors yielding nonzero status, and redaction of a malicious Location/error string. Run the focused suite and commit.
 
 ## Task 3: Expose the command and document its limits
 
@@ -96,20 +96,20 @@ The owner's preference for R2 usage below 100 GB is retained for future necessar
 
 **Interface:** Add npm run site:verify -- --work-dir <owned-root> --manifest <path> --zip <path> --manifest-sha256 <sha> --zip-sha256 <sha> --deployment-origin <observed-origin> --proof-root <fresh-path>. Reuse the existing strict argument convention. No arbitrary origins list, headers, cookies, limit overrides or package approval discovery. Exit zero only after a passed receipt is saved and read back; otherwise exit nonzero with a stable safe diagnostic.
 
-- [ ] Add tests for required/duplicate/unknown arguments, malformed pins/origin, passed and failed runs, and exact option forwarding. These CLI tests must never reach the internet.
-- [ ] Document the workflow: independently review source/data/build → authenticate the package → observe/authorize the deployment target → run site:verify → retain separate browser/numerical acceptance. Explain that hashes match bytes, not the truth of statistics or the provider's Production assignment.
-- [ ] Include a runnable PowerShell recipe using an existing SITE_PACKAGE_PYTHON runtime and fresh owned storage. Keep private local absolute paths and secrets out of tracked documentation. Explain limits, failure receipts and the absence of automatic restoration.
-- [ ] Run the CLI tests and npm run check; inspect the diff for accidental changes to src/, deployment/, data/, dependencies or existing preparation contracts. Commit the command/docs.
+- [x] Add tests for required/duplicate/unknown arguments, malformed pins/origin, passed and failed runs, and exact option forwarding. These CLI tests must never reach the internet.
+- [x] Document the workflow: independently review source/data/build → authenticate the package → observe/authorize the deployment target → run site:verify → retain separate browser/numerical acceptance. Explain that hashes match bytes, not the truth of statistics or the provider's Production assignment.
+- [x] Include a runnable PowerShell recipe using an existing SITE_PACKAGE_PYTHON runtime and fresh owned storage. Keep private local absolute paths and secrets out of tracked documentation. Explain limits, failure receipts and the absence of automatic restoration.
+- [x] Run the CLI tests and npm run check; inspect the diff for accidental changes to src/, deployment/, data/, dependencies or existing preparation contracts. Commit the command/docs.
 
 ## Task 4: Verify against the existing real publication
 
 **Files:** Complete docs/validation/live-site-verification.md with actual results. Keep private receipts under fresh ignored task storage; do not commit copied private scripts or live response bodies.
 
-- [ ] Run the complete unit suite with two workers, npm run check and Python packaging discovery once on the final implementation; run existing CI checks later on the exact reviewed head. No new product build or numerical/browser replay is necessary for this tooling-only local acceptance. Existing CI retains its normal build/browser checks.
-- [ ] Authenticate originals and the bounded copied ZIP/manifest again. Require the real preflight to report 31 entries, 1,693,100 raw bytes and exactly 68 planned HTTP checks. Verify a deliberately wrong pin fails without network before the authorized live run.
-- [ ] Run site:verify once against the pinned canonical and deployment origins. Require all 60 served asset/error checks and eight private-route checks to pass. Inspect receipt identities, normalized noindex header, redirect chains, status/size/hash evidence and request bounds. This is a fresh observation, not reuse of an earlier receipt.
-- [ ] If a transient failure or in-scope implementation repair occurs, retain failure evidence and use at most the one additional authorized run after affected tests/review. A real content/production mismatch remains failed; do not publish or change the pins to obtain a pass.
-- [ ] Read back originals unchanged and record counts, checked commit, receipt identities and limitations truthfully. Commit the verification record. If external state prevents the intended live acceptance, complete safe development/review but report the missing acceptance rather than declaring all five tasks complete.
+- [x] Run the complete unit suite with two workers, npm run check and Python packaging discovery once on the final implementation; run existing CI checks later on the exact reviewed head. No new product build or numerical/browser replay is necessary for this tooling-only local acceptance. Existing CI retains its normal build/browser checks.
+- [x] Authenticate originals and the bounded copied ZIP/manifest again. Require the real preflight to report 31 entries, 1,693,100 raw bytes and exactly 68 planned HTTP checks. Verify a deliberately wrong pin fails without network before the authorized live run.
+- [x] Run site:verify once against the pinned canonical and deployment origins. Require all 60 served asset/error checks and eight private-route checks to pass. Inspect receipt identities, normalized noindex header, redirect chains, status/size/hash evidence and request bounds. This is a fresh observation, not reuse of an earlier receipt.
+- [x] If a transient failure or in-scope implementation repair occurs, retain failure evidence and use at most the one additional authorized run after affected tests/review. A real content/production mismatch remains failed; do not publish or change the pins to obtain a pass.
+- [x] Read back originals unchanged and record counts, checked commit, receipt identities and limitations truthfully. Commit the verification record. If external state prevents the intended live acceptance, complete safe development/review but report the missing acceptance rather than declaring all five tasks complete.
 
 ## Task 5: Independent review, integration and preservation
 
@@ -122,4 +122,5 @@ The owner's preference for R2 usage below 100 GB is retained for future necessar
 Coverage: package identity, request confinement, streamed-response correctness, receipt safety and one real acceptance each have an explicit owning task and test. The plan reuses the existing ZIP and filesystem contracts, leaves research semantics untouched and uses only two already observed public origins. The current package fits all proposed limits. Automated checks remain offline; the separately authorized live run is bounded and read-only.
 
 Root implementation plus independent review is already the selected execution method. Approval covers all five tasks and the full permission envelope without routine permission pauses. September ingestion/successive-release acceptance remains a later decision after the official release is available; this plan neither schedules nor starts that work.
+
 
