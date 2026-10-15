@@ -31,7 +31,7 @@ it('keeps both actions disabled before restored readiness in server HTML and cli
 it.each(['imports','exports'] as const)('captures the SVG and literal %s filename before awaiting conversion',async direction=>{
  const m=view();m.selection.direction=direction;const r=ref(),job=deferred<Blob>();vi.mocked(exportChartPng).mockReturnValueOnce(job.promise);render(<TradeChartDownload view={m} svgRef={r} ready/>);await begin();
  const captured=vi.mocked(exportChartPng).mock.calls[0][0];expect(captured).not.toBe(r.current);r.current!.textContent='changed after click';expect(captured.textContent).toBe('original chart');
- expect(screen.getByRole('status')).toHaveTextContent('Creating image…');expect(screen.getByRole('button',{name:'Creating image…'})).toBeDisabled();expect(screen.getByRole('button',{name:'Download data CSV'})).toBeEnabled();
+ expect(screen.getByRole('status')).toHaveTextContent('Creating image…');expect(screen.getByRole('button',{name:'Creating image…'})).toHaveAttribute('aria-disabled','true');expect(screen.getByRole('button',{name:'Download data CSV'})).toBeEnabled();
  await resolveJob(job);expect(downloads.map(d=>d.name)).toEqual([`hs-090121-${direction}.png`]);expect(downloads[0].blob.type).toBe('image/png');expect(screen.queryByRole('status')).toBeNull();
 });
 it('guards rapid duplicate activation until the first job settles',async()=>{
@@ -47,7 +47,7 @@ const changes:[string,(m:ProfileView)=>void][]=[
 it.each(changes)('suppresses obsolete success and error after %s changes',async(_label,change)=>{
  for(const outcome of ['success','error']){
   const m=view(),r=ref(),job=deferred<Blob>();vi.mocked(exportChartPng).mockReturnValueOnce(job.promise);const mounted=render(<TradeChartDownload view={m} svgRef={r} ready/>);await begin();const next=structuredClone(m);change(next);mounted.rerender(<TradeChartDownload view={next} svgRef={r} ready/>);
-  expect(screen.getByRole('button',{name:'Creating image…'})).toBeDisabled();if(outcome==='success')await resolveJob(job);else await rejectJob(job);expect(downloads).toHaveLength(0);expect(screen.queryByRole('alert')).toBeNull();expect(screen.getByRole('button',{name:'Download chart PNG'})).toBeEnabled();mounted.unmount();
+  expect(screen.getByRole('button',{name:'Creating image…'})).toHaveAttribute('aria-disabled','true');if(outcome==='success')await resolveJob(job);else await rejectJob(job);expect(downloads).toHaveLength(0);expect(screen.queryByRole('alert')).toBeNull();expect(screen.getByRole('button',{name:'Download chart PNG'})).toBeEnabled();mounted.unmount();
  }
 });
 it('invalidates changes in ordered countries even after changing back',async()=>{
@@ -76,4 +76,7 @@ it('reports a missing SVG while keeping the current CSV available',async()=>{
 });
 it('downloads the current CSV while an obsolete PNG conversion is still settling',async()=>{
  const m=view(),r=ref(),job=deferred<Blob>();vi.mocked(exportChartPng).mockReturnValueOnce(job.promise);const mounted=render(<TradeChartDownload view={m} svgRef={r} ready/>);await begin();const next=structuredClone(m);next.selection.direction='exports';mounted.rerender(<TradeChartDownload view={next} svgRef={r} ready/>);await userEvent.click(screen.getByRole('button',{name:'Download data CSV'}));expect(downloads.map(d=>d.name)).toEqual(['hs-090121-exports.csv']);await resolveJob(job);expect(downloads).toHaveLength(1);
+});
+it('keeps keyboard focus while marking a busy PNG action unavailable',async()=>{
+ const job=deferred<Blob>();vi.mocked(exportChartPng).mockReturnValueOnce(job.promise);render(<TradeChartDownload view={view()} svgRef={ref()} ready/>);const button=screen.getByRole('button',{name:'Download chart PNG'});button.focus();await userEvent.keyboard('{Enter}');expect(button).toHaveFocus();expect(button).toHaveAttribute('aria-disabled','true');expect(button).not.toBeDisabled();await userEvent.keyboard('{Enter}');expect(exportChartPng).toHaveBeenCalledTimes(1);await resolveJob(job);expect(button).toHaveFocus();expect(button).not.toHaveAttribute('aria-disabled','true');
 });

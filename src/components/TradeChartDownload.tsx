@@ -23,7 +23,7 @@ export function TradeChartDownload({view,svgRef,ready}:{view:ProfileView;svgRef:
   finally{active.current=false;if(mounted.current)setBusy(false);}
  };
  return <>
-  <div className="download-actions"><button className="primary-button" disabled={!ready||busy} onClick={download}>{busy?'Creating image…':'Download chart PNG'}</button><button className="secondary-button" disabled={!ready} onClick={()=>{if(ready)downloadBlob(new Blob([serializeCsv(view)],{type:'text/csv;charset=utf-8'}),stem+'.csv');}}>Download data CSV</button></div>
+  <div className="download-actions"><button className="primary-button" disabled={!ready} aria-disabled={busy||undefined} onClick={download}>{busy?'Creating image…':'Download chart PNG'}</button><button className="secondary-button" disabled={!ready} onClick={()=>{if(ready)downloadBlob(new Blob([serializeCsv(view)],{type:'text/csv;charset=utf-8'}),stem+'.csv');}}>Download data CSV</button></div>
   {busy&&<p role="status" className="chart-note">Creating image…</p>}
   {error&&<p role="alert" className="download-error">{error}</p>}
  </>;
