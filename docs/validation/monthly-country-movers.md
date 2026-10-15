@@ -81,3 +81,25 @@ Root's decisions on the three excluded judgments are recorded explicitly:
 - CI, expected-head merge, main-tree synchronization and proof preservation are root's remaining integration gates. Their outcomes are verified separately and recorded in [PR #90](https://github.com/Vasuki8/us-trade-tracker/pull/90) and the private closeout receipt; omitting those checks could integrate a different tree or lose private evidence.
 
 There are no deferred minor findings. The standing merge permission applies after successful exact-head Code checks. A merge with an identical verified tree does not require a duplicate retained build.
+
+
+## Observed public update
+
+After the local milestone, the owner separately authorized publication of the exact site ZIP above to the existing Free `us-trade-tracker` Pages Production project, bounded live verification, conditional restoration of the prior verified site, and reviewed documentation integration. Publication completed on October 14, 2026 in America/Toronto (October 15 UTC). This later authorization does not change the local batch's original boundary.
+
+The signed-in dashboard preflight confirmed the existing Free plan and prior Production deployment `c5d3fc20-59c5-4e30-9c09-e05691383e57`. The canonical and prior deployment origins passed all 66 prior-package payload/header/404 checks immediately before upload. A fresh ZIP readback authenticated the approved 385,151-byte upload and manifest. The dashboard showed 30/30 uploaded files, then success. Production now identifies deployment `0a3ccb96-2d14-435a-89dd-bbb3ff0381e6` at [its deployment origin](https://0a3ccb96.us-trade-tracker.pages.dev/); the [canonical pilot](https://us-trade-tracker.pages.dev/) serves that package.
+
+All 66 post-upload checks passed across those two new-package origins: exact uncompressed payload sizes and SHA-256 hashes, expected response statuses, noindex/nofollow headers, same-origin redirects and four private/unknown 404 routes per origin. `_headers` remains a provider control, rather than a public asset. The ZIP SHA-256 remains `0f3ebebec1a18f7939b054e74fada2e784facc94e43f92fc9d2b20bccd4b99a9`; manifest SHA-256 remains `cdee04449100b9a7a779d1a80de9772387e2f75dcc2967ac6c62aed1686151f7`. The uploaded site has 30 entries and 1,690,025 raw bytes; no public R2 delivery system was added.
+
+Read-only live browser checks against retained accepted inputs passed:
+
+- All sixteen product/direction/period/metric combinations and sixteen actual CSV downloads, including integer ordering, exclusions, periods, source fields and country/duty handoffs. Green coffee monthly exports retain Canada's opposite dollar and share movements.
+- The eight existing estimated-duty selections and eight CSVs, plus six portfolio selections and twelve portfolio CSVs, using independent sums and rankings.
+- Canada's 48 monthly values, 20 category summaries, 17 eligible/three unavailable comparisons, fixed acceptance/revision explanation and four sourced CSVs; existing coffee totals, consumption-based duties, selected-country CSV and chart PNG. That research verifier downloaded six files in total.
+- Desktop and 320/375-pixel monthly layouts, shared-link drilldowns and truthful no-JavaScript rolling defaults. Existing Canada keyboard/small-screen/static checks also passed. No browser errors or outside-origin requests were observed by the bounded verifiers.
+
+Desktop and mobile screenshots were inspected. Fresh authenticated readback preserved all seven accepted original file identities and eleven protected original identities. The feature source merged by [PR #90](https://github.com/Vasuki8/us-trade-tracker/pull/90) is `454d2adbae8b2d652630aa042c8669423805c694`; its runtime paths match the source used for the retained rehearsal package. This followup changes only README and this validation record.
+
+Prior-site restoration was not needed. The independently verified previous working-site ZIP remains available privately with SHA-256 `1d429b9d39725011e6b43ad6ee8592445d2f7ff5832c8cfb17e4e7db6bcc1e0a`. Private publication authorization, provider observation, manifests, receipts, downloaded files, screenshots and verifier sources are retained under `.tmp/monthly-country-movers-publication-20261014-r1` and a sealed local backup at closeout. The local feature evidence remains separately retained under `.tmp/monthly-country-movers-validation-20261014-r1`.
+
+This is a deployment check of existing accepted observations. No new source import/replay, accepted-data replacement, R2 operation, paid service, account/domain/access/indexing change or recurring job occurred. Coffee data still ends in August 2026; Canada remains the fixed September 2024–August 2026 snapshot. Successive-release acceptance remains open. Independent documentation review, exact-head CI and expected-head merge are recorded in the publication PR and private closeout receipt.
