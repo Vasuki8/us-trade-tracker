@@ -17,14 +17,14 @@ it('native_profile_navigation_has_unique_rendered_targets',()=>{
   expect(navigation).not.toBeNull();
   for(const [label,id] of [
     ['Trade over time','trade-history-heading'],['Compare countries','compare-countries-heading'],
-    ['What changed?','changes-heading'],['Estimated duties','duties-heading'],
+    ['What changed?','changes-heading'],['Estimated duties','duties-heading'],['Country share over time','country-share-history-heading'],
     ['Chart data','chart-data-heading'],['Leading partners','leading-partners-heading'],['Sources','profile-sources-heading'],
   ]){
     const link=[...navigation!.querySelectorAll('a')].find(item=>item.textContent===label);
     expect(link?.getAttribute('href')).toBe('#'+id);
     expect(document.querySelectorAll('[id="'+id+'"]').length).toBe(1);
   }
-  expect(navigation!.querySelectorAll('a')).toHaveLength(7);
+  expect(navigation!.querySelectorAll('a')).toHaveLength(8);
   expect(document.querySelector('aside[aria-labelledby="compare-countries-heading"]')).not.toBeNull();
   expect(document.querySelector('aside[aria-labelledby="leading-partners-heading"]')).not.toBeNull();
 });
@@ -132,4 +132,12 @@ it('distinguishes all three comparison lines and their legends without relying o
     const legends=[...svg.querySelectorAll('line')].filter(line=>line.getAttribute('stroke-width')==='3');
     expect(legends.map(line=>line.getAttribute('stroke-dasharray'))).toEqual(patterns);
   }
+});
+
+it('shares_country_history_controls_without_shortening_duty_history',async()=>{
+ const {sampleDutyRelease}=await import('../helpers/duties');render(<ProductExplorer release={sampleDutyRelease()}/>);const user=userEvent.setup();
+ await user.click(screen.getByRole('checkbox',{name:'CANADA'}));await user.selectOptions(screen.getByLabelText('History window'),'12');
+ const f=screen.getByRole('figure',{name:'Country share of U.S. imports · %'});expect(f).toHaveTextContent('Jan 2025–Dec 2025');expect(f.querySelectorAll('svg.share-history-desktop circle')).toHaveLength(12);
+ expect(screen.getByRole('figure',{name:'Monthly estimated duties · current USD'})).toHaveTextContent('Jan 2024–Dec 2025');expect(document.querySelector('.chart-card svg.desktop-chart circle title')).toHaveTextContent('Jan 2025: $25');
+ await user.selectOptions(screen.getByLabelText('History window'),'60');expect(f.querySelectorAll('svg.share-history-desktop circle')).toHaveLength(24);await user.click(screen.getByRole('radio',{name:'Exports'}));expect(screen.queryByRole('figure',{name:'Country share of U.S. imports · %'})).toBeNull();expect(screen.getByText('Choose up to three countries in Compare countries to see their monthly shares.')).toBeVisible();
 });

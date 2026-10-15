@@ -16,7 +16,7 @@ for(const code of ['090121','090122'])for(const direction of ['imports','exports
   test(`${code} ${direction} section links and leading partner restore the matching annual view`,async({page})=>{
     await page.goto(`/products/${code}/?direction=${direction}&months=60&countries=4759%2C1220&comparison=monthly`);await ready(page);
     const nav=page.getByRole('navigation',{name:'On this profile'});
-    await expect(nav.getByRole('link')).toHaveCount(direction==='imports'?7:6);
+    await expect(nav.getByRole('link')).toHaveCount(direction==='imports'?8:7);
     const query=new URL(page.url()).search;
     for(const link of await nav.getByRole('link').all()){
       const hash=(await link.getAttribute('href'))!;const target=page.locator(`[id="${hash.slice(1)}"]`);
@@ -88,7 +88,7 @@ for(const code of ['090121','090122'])test(`${code} native navigation works with
   try{
     await page.goto(`/products/${code}/?direction=exports&months=12&countries=1220`);
     await expect(page.locator('noscript p').first()).toContainText('The initial view shows U.S. imports');
-    const nav=page.getByRole('navigation',{name:'On this profile'});await expect(nav.getByRole('link')).toHaveCount(7);
+    const nav=page.getByRole('navigation',{name:'On this profile'});await expect(nav.getByRole('link')).toHaveCount(8);
     await nav.getByRole('link',{name:'Chart data',exact:true}).click();await expect(page.locator('#chart-data-heading')).toBeInViewport();
     const country=page.getByRole('complementary',{name:'Leading partners'}).getByRole('link',{name:'CANADA',exact:true});
     await expect(country).toHaveAttribute('href',`/products/${code}/?direction=imports&months=12&countries=1220#trade-history-heading`);

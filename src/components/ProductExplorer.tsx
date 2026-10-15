@@ -7,6 +7,9 @@ import {EstimatedDuties} from './EstimatedDuties';import {buildDutyView} from '.
 import {profileViewPath,readViewSelection} from '../lib/trade/view-link';
 import {CountryPicker} from './CountryPicker';
 import {SelectedCountryComparison} from './SelectedCountryComparison';
+import {CountryShareHistory} from './CountryShareHistory';
+import {CountryShareHistoryDownload} from './CountryShareHistoryDownload';
+import {buildCountryShareHistory} from '../lib/trade/country-share-history';
 export function ProductExplorer({release}:{release:Release}){
   const [selection,setSelection]=useState<ExplorerSelection>({direction:'imports',months:60,countryCodes:[]});
   const {direction,months,countryCodes,comparisonPeriod='annual'}=selection;
@@ -41,7 +44,7 @@ export function ProductExplorer({release}:{release:Release}){
     try{await navigator.clipboard.writeText(viewLink);if(generation===linkGeneration.current){setCopied(true);setShowLink(false);}}
     catch{if(generation===linkGeneration.current){setCopied(false);setShowLink(true);}}
   };
-  const svg=useRef<SVGSVGElement>(null);const view=buildProfileView(release,selection);
+  const svg=useRef<SVGSVGElement>(null);const view=buildProfileView(release,selection);const shareHistory=buildCountryShareHistory(release,view);
   const changes=useMemo(()=>buildChangesView(release,direction),[release,direction]);
   const selectedComparison=useMemo(()=>comparisonPeriod==='monthly'?buildMonthlyChangesView(release,direction):changes,[release,direction,comparisonPeriod,changes]);
   const countries=[...view.partners].sort((a,b)=>a.name.localeCompare(b.name));
@@ -50,7 +53,7 @@ export function ProductExplorer({release}:{release:Release}){
     {release.source==='fixture'&&<div className="sample-banner"><strong>Development sample data</strong><span>These figures are synthetic and are for development checks.</span></div>}
     <div className="release-strip"><span>Reporting month <strong>{monthLabel(release.reportingMonth)}</strong></span><span>Retrieved {new Date(release.retrievedAt).toISOString().slice(0,10)}</span><a href="/methods/">Source &amp; methods ↗</a></div>
     <nav className="profile-navigation" aria-label="On this profile"><strong>On this profile</strong><ul>
-      <li><a href="#trade-history-heading">Trade over time</a></li><li><a href="#compare-countries-heading">Compare countries</a></li><li><a href="#changes-heading">What changed?</a></li>
+      <li><a href="#trade-history-heading">Trade over time</a></li><li><a href="#compare-countries-heading">Compare countries</a></li><li><a href="#changes-heading">What changed?</a></li><li><a href="#country-share-history-heading">Country share over time</a></li>
       {direction==='imports'&&<li><a href="#duties-heading">Estimated duties</a></li>}
       <li><a href="#chart-data-heading">Chart data</a></li><li><a href="#leading-partners-heading">Leading partners</a></li><li><a href="#profile-sources-heading">Sources</a></li>
     </ul></nav>
@@ -74,6 +77,7 @@ export function ProductExplorer({release}:{release:Release}){
     </div><aside className="comparison-card" aria-labelledby="compare-countries-heading"><p className="eyebrow">PARTNER MARKETS</p><h2 id="compare-countries-heading">Compare countries</h2><p>Choose up to three partners. With none selected, the chart shows the U.S. total.</p>
       <CountryPicker key={direction} countries={countries} selectedCodes={countryCodes} ready={Boolean(viewLink)} onChange={codes=>changeSelection({...selection,countryCodes:codes})}/>
     </aside></section>
+    <CountryShareHistory view={shareHistory} download={<CountryShareHistoryDownload view={shareHistory}/>}/>
     <SelectedCountryComparison view={selectedComparison} countryCodes={countryCodes} onPeriodChange={period=>changeSelection({...selection,comparisonPeriod:period})}/>
     <TradeChanges view={changes}/>
     {direction==='imports'&&<EstimatedDuties view={buildDutyView(release,countryCodes)} classificationIntervals={release.classificationIntervals}/>}
