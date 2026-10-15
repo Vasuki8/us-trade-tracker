@@ -28,7 +28,7 @@ test('pilot import rankings and product links remain available without JavaScrip
     await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeDisabled();
     await expect(page.getByLabel('Rank product changes by')).toBeDisabled();
     await expect(page.getByRole('button',{name:'Download product changes CSV'})).toBeDisabled();
-    await expect(page.getByRole('link',{name:'Compare latest-month figures',exact:true})).toHaveAttribute('href','/briefing/portfolio/?products=090121%2C090122&direction=imports');
+    await expect(page.getByRole('link',{name:'Open portfolio briefing',exact:true})).toHaveAttribute('href','/briefing/portfolio/?products=090121%2C090122&direction=imports');
     await page.getByRole('table',{name:'Largest product increases · dollar change'}).getByRole('link',{name:'Roasted coffee',exact:true}).click();await expect(page).toHaveURL(/\/products\/090121\/\?direction=imports&months=12$/);
   }finally{await context.close();}
 });
@@ -47,10 +47,61 @@ test('product rankings open the existing monthly report with every product and t
   await expect(page.getByRole('button',{name:'Copy changes link'})).toBeEnabled();
   await page.getByRole('radio',{name:'Exports',exact:true}).check();
   await page.getByLabel('Rank product changes by').selectOption('growth');
-  await page.getByRole('link',{name:'Compare latest-month figures',exact:true}).click();
+  await page.getByRole('link',{name:'Open portfolio briefing',exact:true}).click();
   await expect(page).toHaveURL(/\/briefing\/portfolio\/\?products=090121%2C090122&direction=exports$/);
   await expect(page.getByRole('button',{name:'Copy briefing link'})).toBeEnabled();
   await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeChecked();
   await expect(page.getByRole('article')).toHaveCount(2);
   await expect(page.getByRole('heading',{name:'Latest month',exact:true})).toHaveCount(2);
+});
+
+
+for(const direction of ['imports','exports'] as const)test(`monthly product views preserve ${direction}, CSV identity and profile comparison`,async({page})=>{
+  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.goto(`/changes/products/?direction=${direction}&metric=dollars&period=monthly`);
+  await expect(page.getByRole('radio',{name:'Latest month',exact:true})).toBeChecked();
+  await expect(page.getByRole('radio',{name:direction==='imports'?'Imports':'Exports',exact:true})).toBeChecked();
+  await expect(page.locator('.changes-period')).toHaveText(new RegExp(`Dec 2025 compared with Dec 2024.*U.S. ${direction}`));
+  const table=page.getByRole('table',{name:'Largest product increases · dollar change'});
+  await expect(table.getByRole('row').nth(1)).toContainText(direction==='imports'?'+$150':'+$300');
+  const event=page.waitForEvent('download');await page.getByRole('button',{name:'Download product changes CSV',exact:true}).click();const file=await event;
+  expect(file.suggestedFilename()).toBe(`pilot-products-${direction}-changes-monthly-dollars.csv`);
+  const csv=await readFile(await file.path(),'utf8');
+  expect(csv).toContain('comparison_period,growth_qualification_basis');
+  expect(csv).toContain('monthly,preceding_twelve_months,2024-01,2024-12');
+  expect(csv).toContain(direction==='imports'?'300,150,150,100,2025-12,2025-12,2024-12,2024-12':'600,300,300,100,2025-12,2025-12,2024-12,2024-12');
+  await page.getByLabel('Rank product changes by').selectOption('growth');
+  await expect(page.getByRole('radio',{name:'Latest month',exact:true})).toBeChecked();
+  await expect(page.getByRole('status')).toContainText('2 below the growth threshold');
+  await expect(page.getByRole('button',{name:'Download product changes CSV'})).toBeDisabled();
+  await page.getByRole('radio',{name:'Rolling twelve months',exact:true}).check();
+  await expect(page).not.toHaveURL(/period=/);
+  await page.getByRole('radio',{name:'Latest month',exact:true}).check();
+  await page.getByLabel('Rank product changes by').selectOption('dollars');await page.reload();
+  await expect(page.getByRole('radio',{name:'Latest month',exact:true})).toBeChecked();
+  await table.getByRole('link',{name:'Synthetic second product',exact:true}).click();
+  await expect(page).toHaveURL(new RegExp(`/products/090122/\\?direction=${direction}&months=12&comparison=monthly$`));
+  await page.getByRole('checkbox',{name:'CANADA',exact:true}).check();
+  await expect(page.getByLabel('Country comparison period')).toHaveValue('monthly');expect(errors).toEqual([]);
+});
+
+test('monthly product manual copy, duplicate fallback and static period choices work on small screens',async({page,browser,baseURL})=>{
+  await page.setViewportSize({width:320,height:812});
+  await page.addInitScript(()=>Object.defineProperty(navigator,'clipboard',{value:{writeText:async()=>{throw new Error('blocked');}}}));
+  await page.goto('/changes/products/?direction=exports&metric=dollars&period=monthly#product-changes-heading');
+  await page.getByRole('button',{name:'Copy changes link',exact:true}).focus();await page.keyboard.press('Enter');
+  const manual=page.getByLabel('Changes link',{exact:true});await expect(manual).toHaveValue(page.url());
+  await page.getByRole('radio',{name:'Latest month',exact:true}).focus();await page.keyboard.press('ArrowLeft');
+  await expect(page.getByRole('radio',{name:'Rolling twelve months',exact:true})).toBeChecked();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.goto('/changes/products/?direction=exports&metric=growth&period=monthly&period=rolling');
+  await expect(page.getByText(/saved changes selection could not be restored/)).toBeVisible();
+  await expect(page.getByRole('radio',{name:'Rolling twelve months',exact:true})).toBeChecked();
+  await expect(page.getByRole('radio',{name:'Imports',exact:true})).toBeChecked();
+  const context=await browser.newContext({baseURL,javaScriptEnabled:false}),staticPage=await context.newPage();
+  try{await staticPage.goto('/changes/products/?direction=exports&metric=growth&period=monthly');
+    await expect(staticPage.getByRole('radio',{name:'Latest month',exact:true})).toBeDisabled();
+    await expect(staticPage.getByRole('radio',{name:'Rolling twelve months',exact:true})).toBeChecked();
+    await expect(staticPage.getByText(/Product rankings use rolling twelve-month periods.*comparison period/)).toBeVisible();
+  }finally{await context.close();}
 });

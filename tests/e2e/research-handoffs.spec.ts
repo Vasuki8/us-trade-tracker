@@ -13,7 +13,7 @@ for(const width of [320,375])for(const direction of ['imports','exports']){
     await expect(page.getByRole('button',{name:'Copy changes link'})).toBeEnabled();
     await page.getByRole('radio',{name:direction==='imports'?'Imports':'Exports',exact:true}).focus();
     await page.keyboard.press('Space');
-    await page.getByRole('link',{name:'Compare latest-month figures',exact:true}).focus();await page.keyboard.press('Enter');
+    await page.getByRole('link',{name:'Open portfolio briefing',exact:true}).focus();await page.keyboard.press('Enter');
     await expect(page.getByRole('button',{name:'Copy briefing link'})).toBeEnabled();
     await expect(page.getByRole('radio',{name:direction==='imports'?'Imports':'Exports',exact:true})).toBeChecked();
     for(const period of ['monthly','rolling']){

@@ -2,13 +2,13 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {ProductChanges} from '../../components/ProductChanges';
 import {loadPublishedReleases} from '../../lib/trade/load-release';
-import {buildProductChangesView} from '../../lib/trade/product-changes';
+import {buildProductChangesView,buildMonthlyProductChangesView} from '../../lib/trade/product-changes';
 const profiles=await loadPublishedReleases();
-const views={imports:buildProductChangesView(profiles,'imports'),exports:buildProductChangesView(profiles,'exports')};
+const views={rolling:{imports:buildProductChangesView(profiles,'imports'),exports:buildProductChangesView(profiles,'exports')},monthly:{imports:buildMonthlyProductChangesView(profiles,'imports'),exports:buildMonthlyProductChangesView(profiles,'exports')}};
 ---
-<BaseLayout title="Product changes" description="Compare changes in U.S. imports and exports across reviewed pilot products using sourced rolling twelve-month values.">
+<BaseLayout title="Product changes" description="Compare changes in U.S. imports and exports across reviewed pilot products using sourced monthly and rolling twelve-month values.">
   <div class="page-heading"><p class="eyebrow">MONTHLY RELEASE RESEARCH</p><h1>Product changes</h1>
-    <p>Compare the reviewed pilot products by dollar change or percentage growth over two rolling twelve-month periods.</p>
+    <p>Compare the reviewed pilot products by dollar change or percentage growth over two rolling twelve-month periods, or the latest month versus the same month one year earlier.</p>
     <p>Use each product profile to investigate the partner countries and history behind a change.</p>
     <a href="/products/">Browse reviewed product profiles</a>
   </div>
