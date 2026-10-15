@@ -10,7 +10,7 @@
 
 **Spec:** This combined bounded design and plan extends the [launch brief](../specs/2026-10-08-us-trade-tracker-design.md), [Canada pilot presentation](../../validation/canada-pilot-deployment.md), [research handoffs](../../validation/research-handoffs.md) and [live verifier](../../validation/live-site-verification.md). The combined format follows the owner's request for several tasks and one permission review.
 
-**Status:** Proposed for owner review on October 15, 2026 (America/Toronto). No implementation, upload or new data operation is authorized by creating this plan. Planning baseline: main 099e6f25454b40c75e7fe054cfe0c7474716dd08, merged PR #94. The preceding verification milestone is complete, including preservation and native worktree archive.
+**Status:** Owner approved all five tasks and full permission envelope on October 15, 2026. Tasks 1–2 focused verification passed; Tasks 3–5 remain. Baseline main 099e6f25454b40c75e7fe054cfe0c7474716dd08.
 
 ## Recommendation and alternatives
 
@@ -99,11 +99,11 @@ A required human sign-in/CAPTCHA or new terms decision still requires the human 
 **Files:** Add src/lib/country-preview/view-link.ts and tests/country-preview/view-link.test.ts.
 **Deliverable:** A deterministic fixed-route reader/writer with no DOM or network dependency.
 
-- [ ] Before runtime source edits, pin the planning source, authenticate all seven accepted inputs and eleven protected identities, and capture pre-edit Canada CSVs for both directions and both kinds. Preserve the existing 84 default coffee/change/portfolio CSV cases, sixteen merchandise-mover selections and eight duty-mover selections using the retained baseline harnesses, with their actual case lists/hashes. Baselines must precede edited runtime.
-- [ ] Add failing tests for defaults, both directions, duplicate/empty/invalid/case-mismatched direction, 2,048/2,049-character input, ignored unrelated fields, preserved fragments and runtime-invalid writer input. Pin canadaViewPath({direction:'exports'},'#country-history-heading') to /countries/1220/?direction=exports#country-history-heading.
-- [ ] Run npm test -- tests/country-preview/view-link.test.ts --maxWorkers=2 and confirm failure for the missing interface/behavior.
-- [ ] Implement the interfaces above and the fixed fallback notice “This saved Canada view could not be restored. Showing Imports.” Do not introduce a release/version query or arbitrary country route.
-- [ ] Rerun the focused cases, confirm canonical import/export roundtrips and commit the deliverable.
+- [x] Before runtime source edits, pin the planning source, authenticate all seven accepted inputs and eleven protected identities, and capture pre-edit Canada CSVs for both directions and both kinds. Preserve the existing 84 default coffee/change/portfolio CSV cases, sixteen merchandise-mover selections and eight duty-mover selections using the retained baseline harnesses, with their actual case lists/hashes. Baselines must precede edited runtime.
+- [x] Add failing tests for defaults, both directions, duplicate/empty/invalid/case-mismatched direction, 2,048/2,049-character input, ignored unrelated fields, preserved fragments and runtime-invalid writer input. Pin canadaViewPath({direction:'exports'},'#country-history-heading') to /countries/1220/?direction=exports#country-history-heading.
+- [x] Run npm test -- tests/country-preview/view-link.test.ts --maxWorkers=2 and confirm failure for the missing interface/behavior.
+- [x] Implement the interfaces above and the fixed fallback notice “This saved Canada view could not be restored. Showing Imports.” Do not introduce a release/version query or arbitrary country route.
+- [x] Rerun the focused cases, confirm canonical import/export roundtrips and commit the deliverable.
 
 ## Task 2: Integrate restored/copied views into the public Canada page
 
@@ -111,11 +111,11 @@ A required human sign-in/CAPTCHA or new terms decision still requires the human 
 **Consumes:** Task 1's reader/writer.
 **Deliverable:** The public page restores/copies direction and fragment while private previews retain existing behavior.
 
-- [ ] Read back Task 1's pre-edit baseline and original accepted/protected identities before integration; preserve them for Task 4's comparison.
-- [ ] Write failing cases for Exports restoration, invalid fallback, one-entry direction changes, back/forward, fragment updates, clipboard denial/manual selection, stale clipboard completion, static disabled controls and effect cleanup. Add cross-presentation tests that opt-in is absent from both private routes and rejected with local/prepared context.
-- [ ] Run the focused tests RED; implement the hook/component and public-only opt-in. Reuse existing view-link styling. Add id=country-history-heading to the existing history heading for stable fragment tests.
-- [ ] Update the no-JavaScript explanation: saved directions require JavaScript and the initial page shows Imports. Keep default research, source details and native disclosures readable.
-- [ ] Run the affected link/UI/presentation tests GREEN and commit. No calculation or CSV change.
+- [x] Read back Task 1's pre-edit baseline and original accepted/protected identities before integration; preserve them for Task 4's comparison.
+- [x] Write failing cases for Exports restoration, invalid fallback, one-entry direction changes, back/forward, fragment updates, clipboard denial/manual selection, stale clipboard completion, static disabled controls and effect cleanup. Add cross-presentation tests that opt-in is absent from both private routes and rejected with local/prepared context.
+- [x] Run the focused tests RED; implement the hook/component and public-only opt-in. Reuse existing view-link styling. Add id=country-history-heading to the existing history heading for stable fragment tests.
+- [x] Update the no-JavaScript explanation: saved directions require JavaScript and the initial page shows Imports. Keep default research, source details and native disclosures readable.
+- [x] Run the affected link/UI/presentation tests GREEN and commit. No calculation or CSV change.
 
 ## Task 3: Add a qualified browser-generated chart PNG
 

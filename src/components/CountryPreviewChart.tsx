@@ -19,7 +19,7 @@ function CountryPlot({view,size,className}:{view:CountryDirectionView;size:PlotS
 export function CountryPreviewChart({view,source}:{view:CountryDirectionView;source:'fixture'|'retained'}):React.JSX.Element {
   const title=`Monthly ${view.title}`;
   return <section className="chart-card" aria-label="All-goods history">
-    <h2>All-goods history</h2><p>{source==='fixture'?'Synthetic monthly observations':'Captured monthly Census merchandise values'} · nominal USD, not seasonally adjusted</p>
+    <h2 id="country-history-heading">All-goods history</h2><p>{source==='fixture'?'Synthetic monthly observations':'Captured monthly Census merchandise values'} · nominal USD, not seasonally adjusted</p>
     <div role="img" aria-label={title} aria-description="All 24 monthly all-goods values are in the table below. Gaps indicate unavailable values.">
       <CountryPlot view={view} size={desktop} className="country-chart-desktop"/>
       <CountryPlot view={view} size={mobile} className="country-chart-mobile"/>

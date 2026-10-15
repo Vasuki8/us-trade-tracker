@@ -4,16 +4,21 @@ import {countryCsvFilename,serializeCountryMonthlyCsv,serializeCountryProductsCs
 import {downloadBlob} from '../lib/trade/downloads';
 import {usd,usdChange,percent,countryShare,percentagePoints,monthLabel} from '../lib/trade/format';
 import {CountryPreviewChart} from './CountryPreviewChart';
+import {CanadaViewLink,useCanadaViewLink} from './CanadaViewLink';
 import {countryTimestampLabel} from '../lib/country-preview/presentation';
 const period=(from:string,to:string)=>`${monthLabel(from)}–${monthLabel(to)}`;
-export function CanadaPreview({data,presentation={kind:'preview'}}:{data:CountryPreview;presentation?:CountryPresentation}):React.JSX.Element {
+export function CanadaPreview({data,presentation={kind:'preview'},enableSharing=false}:{data:CountryPreview;presentation?:CountryPresentation;enableSharing?:boolean}):React.JSX.Element {
   const snapshot=presentation.kind==='pilot-snapshot';
   const pilot=presentation.kind==='pilot-prepared'||presentation.kind==='pilot-fixture'||snapshot;
   const accepted=presentation.kind==='accepted-local'||presentation.kind==='pilot-prepared'||snapshot,profileSample=presentation.kind==='accepted-fixture'||presentation.kind==='pilot-fixture';
   const profile=accepted||profileSample;
   assertCountryPresentationSource(data,presentation);
-  const [direction,setDirection]=useState<CountryDirection>('imports'),[error,setError]=useState<string|null>(null);
-  const [interactive,setInteractive]=useState(false);
+  if(enableSharing&&presentation.kind!=='pilot-snapshot'&&presentation.kind!=='pilot-fixture')throw new Error('Country sharing presentation mismatch');
+  const sharedView=useCanadaViewLink(enableSharing);
+  const [localDirection,setDirection]=useState<CountryDirection>('imports'),[error,setError]=useState<string|null>(null);
+  const direction=enableSharing?sharedView.selection.direction:localDirection;
+  const [localInteractive,setInteractive]=useState(false);
+  const interactive=enableSharing?sharedView.ready:localInteractive;
   useEffect(()=>{setInteractive(true);},[]);
   const view=data.directions[direction],label=direction==='imports'?'Imports':'Exports';
   const publicationSources=view.references.differences.flatMap(row=>row.publicationSource?[{month:row.month,...row.publicationSource}]:[]);
@@ -30,8 +35,9 @@ export function CanadaPreview({data,presentation={kind:'preview'}}:{data:Country
     <div className="sample-banner"><strong>{source}</strong><span>{banner}</span></div>
     {accepted&&(snapshot?<p className="preview-capture">Snapshot accepted <time dateTime={presentation.acceptedAt}>{countryTimestampLabel(presentation.acceptedAt)}</time>.</p>:<p className="preview-capture">Local acceptance recorded <time dateTime={presentation.acceptedAt}>{countryTimestampLabel(presentation.acceptedAt)}</time>. {pilot?'This prepared page does not publish the snapshot.':'This local preview does not publish the snapshot.'}</p>)}
     <p className="preview-capture">Source collection captured {profile?<time dateTime={data.captureInterval.startedAt}>{countryTimestampLabel(data.captureInterval.startedAt)}</time>:data.captureInterval.startedAt} to {profile?<time dateTime={data.captureInterval.finishedAt}>{countryTimestampLabel(data.captureInterval.finishedAt)}</time>:data.captureInterval.finishedAt}. Capture times describe the saved files, not observation revision dates.</p>
-    <fieldset className="explorer-controls" disabled={!interactive}><legend>Trade direction</legend>{(['imports','exports'] as const).map(d=><label key={d}><input type="radio" name="canada-direction" value={d} checked={direction===d} onChange={()=>{setDirection(d);setError(null);}}/>{d==='imports'?'Imports':'Exports'}</label>)}</fieldset>
-    <noscript><p>Imports are shown below. Direction switching and CSV downloads require JavaScript.</p></noscript>
+    <fieldset className="explorer-controls" disabled={!interactive}><legend>Trade direction</legend>{(['imports','exports'] as const).map(d=><label key={d}><input type="radio" name="canada-direction" value={d} checked={direction===d} onChange={()=>{if(enableSharing)sharedView.changeSelection({direction:d});else setDirection(d);setError(null);}}/>{d==='imports'?'Imports':'Exports'}</label>)}</fieldset>
+    {enableSharing&&<CanadaViewLink {...sharedView}/>}
+    <noscript><p>Imports are shown below. Saved directions, direction switching and downloads require JavaScript.</p></noscript>
     <section aria-label="Country overview">
       <h2>{view.title}</h2><p>{view.measure} · {direction==='imports'?'General imports, customs value':'Domestic plus foreign exports, FAS value'} · nominal USD, not seasonally adjusted.</p>
       {(accepted||profileSample)&&direction==='exports'&&<p>Census derives exports to Canada from Canadian import data. <a href="https://www.census.gov/foreign-trade/reference/definitions/index.html">Canadian data exchange definitions</a></p>}
