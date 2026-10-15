@@ -1,7 +1,8 @@
 import {useEffect,useMemo,useRef,useState} from 'react';
 import type {Release,ExplorerSelection} from '../lib/trade/types';import {buildProfileView} from '../lib/trade/profile';
-import {usd,percent,monthLabel} from '../lib/trade/format';import {serializeCsv,downloadBlob,exportChartPng} from '../lib/trade/downloads';
-import {TradeChart} from './TradeChart';import {TradeTable} from './TradeTable';
+import {usd,percent,monthLabel} from '../lib/trade/format';
+import {TradeChart} from './TradeChart';
+import {TradeChartDownload} from './TradeChartDownload';import {TradeTable} from './TradeTable';
 import {TradeChanges} from './TradeChanges';import {buildChangesView,buildMonthlyChangesView} from '../lib/trade/changes';
 import {EstimatedDuties} from './EstimatedDuties';import {buildDutyView} from '../lib/trade/duties';
 import {profileViewPath,readViewSelection} from '../lib/trade/view-link';
@@ -13,7 +14,6 @@ import {buildCountryShareHistory} from '../lib/trade/country-share-history';
 export function ProductExplorer({release}:{release:Release}){
   const [selection,setSelection]=useState<ExplorerSelection>({direction:'imports',months:60,countryCodes:[]});
   const {direction,months,countryCodes,comparisonPeriod='annual'}=selection;
-  const [downloadError,setDownloadError]=useState('');const [busy,setBusy]=useState(false);
   const [viewLink,setViewLink]=useState(''),[linkNotice,setLinkNotice]=useState<string|null>(null);
   const [copied,setCopied]=useState(false),[showLink,setShowLink]=useState(false);
   const linkGeneration=useRef(0),lastSearch=useRef<string|null>(null);
@@ -21,7 +21,7 @@ export function ProductExplorer({release}:{release:Release}){
     const restore=()=>{
       const restored=readViewSelection(window.location.search,release);
       lastSearch.current=window.location.search;
-      linkGeneration.current++;setSelection(restored.selection);setLinkNotice(restored.notice);setCopied(false);setShowLink(false);setDownloadError('');
+      linkGeneration.current++;setSelection(restored.selection);setLinkNotice(restored.notice);setCopied(false);setShowLink(false);
       setViewLink(new URL(profileViewPath(release.productCode,restored.selection)+window.location.hash,window.location.origin).href);
     };
     const navigate=()=>{
@@ -37,7 +37,7 @@ export function ProductExplorer({release}:{release:Release}){
     const path=profileViewPath(release.productCode,next)+window.location.hash;
     window.history.replaceState(window.history.state,'',path);
     lastSearch.current=window.location.search;
-    linkGeneration.current++;setSelection(next);setLinkNotice(null);setCopied(false);setDownloadError('');setViewLink(new URL(path,window.location.origin).href);
+    linkGeneration.current++;setSelection(next);setLinkNotice(null);setCopied(false);setViewLink(new URL(path,window.location.origin).href);
   };
   const copyViewLink=async()=>{
     const generation=linkGeneration.current;
@@ -48,7 +48,6 @@ export function ProductExplorer({release}:{release:Release}){
   const changes=useMemo(()=>buildChangesView(release,direction),[release,direction]);
   const selectedComparison=useMemo(()=>comparisonPeriod==='monthly'?buildMonthlyChangesView(release,direction):changes,[release,direction,comparisonPeriod,changes]);
   const countries=[...view.partners].sort((a,b)=>a.name.localeCompare(b.name));
-  const downloadPng=async()=>{setDownloadError('');setBusy(true);try{if(!svg.current)throw new Error('Chart unavailable');downloadBlob(await exportChartPng(svg.current),`hs-${release.productCode}-${direction}.png`);}catch{setDownloadError('PNG export failed. You can still download the displayed data as CSV.');}finally{setBusy(false);}};
   return <>
     {release.source==='fixture'&&<div className="sample-banner"><strong>Development sample data</strong><span>These figures are synthetic and are for development checks.</span></div>}
     <div className="release-strip"><span>Reporting month <strong>{monthLabel(release.reportingMonth)}</strong></span><span>Retrieved {new Date(release.retrievedAt).toISOString().slice(0,10)}</span><a href="/methods/">Source &amp; methods ↗</a></div>
@@ -72,8 +71,7 @@ export function ProductExplorer({release}:{release:Release}){
     <section className="research-grid"><div className="chart-card"><div className="section-heading"><div><p className="eyebrow">THE TREND</p><h2 id="trade-history-heading">Trade over time</h2></div><span className="measure-tag">{view.provenance.measure}</span></div>
       <TradeChart ref={svg} view={view}/><p className="chart-note">Available history: {view.series[0]?.points[0]?.month}–{release.reportingMonth}. Gaps mean unavailable data; classification boundaries break the line.</p>
       {view.series.some(series=>series.points.some(point=>!point.classificationVerified))&&<p className="sample-banner">Classification continuity is unverified for part or all of this history. Growth comparisons across unverified periods are unavailable.</p>}
-      <div className="download-actions"><button className="primary-button" disabled={busy} onClick={downloadPng}>{busy?'Creating image…':'Download chart PNG'}</button><button className="secondary-button" onClick={()=>downloadBlob(new Blob([serializeCsv(view)],{type:'text/csv;charset=utf-8'}),`hs-${release.productCode}-${direction}.csv`)}>Download data CSV</button></div>
-      {downloadError&&<p role="alert" className="download-error">{downloadError}</p>}
+      <TradeChartDownload view={view} svgRef={svg} ready={Boolean(viewLink)}/>
     </div><aside className="comparison-card" aria-labelledby="compare-countries-heading"><p className="eyebrow">PARTNER MARKETS</p><h2 id="compare-countries-heading">Compare countries</h2><p>Choose up to three partners. With none selected, the chart shows the U.S. total.</p>
       <CountryPicker key={direction} countries={countries} selectedCodes={countryCodes} ready={Boolean(viewLink)} onChange={codes=>changeSelection({...selection,countryCodes:codes})}/>
     </aside></section>
