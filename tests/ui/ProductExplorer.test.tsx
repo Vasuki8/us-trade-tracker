@@ -39,6 +39,37 @@ it('profile_navigation_tracks_direction',async()=>{
   expect(within(nav).queryByRole('link',{name:'Estimated duties'})).toBeNull();
   for(const link of within(nav).getAllByRole('link'))expect(document.querySelectorAll(link.getAttribute('href')!)).toHaveLength(1);
 });
+it.each([
+  ['090121','imports','/products/090121/?direction=imports&months=12&countries=1220#trade-history-heading','$300'],
+  ['090121','exports','/products/090121/?direction=exports&months=12&countries=1220#trade-history-heading','$600'],
+  ['090111','imports','/products/090111/?direction=imports&months=12&countries=1220#trade-history-heading','$300'],
+  ['090111','exports','/products/090111/?direction=exports&months=12&countries=1220#trade-history-heading','$600'],
+] as const)('opens a fresh annual partner view for %s %s',(code,direction,href,amount)=>{
+  const release=sampleRelease();release.productCode=code;release.observations.forEach(row=>{row.productCode=code;});
+  window.history.replaceState(null,'',`/products/${code}/?direction=${direction}&months=60&countries=1220%2C4759%2C2010&comparison=monthly`);
+  render(<ProductExplorer release={release}/>);
+  const partners=screen.getByRole('complementary',{name:'Leading partners'});
+  expect(within(partners).getByRole('link',{name:'CANADA'})).toHaveAttribute('href',href);
+  const rows=within(partners).getAllByRole('listitem');
+  expect(rows.map(row=>within(row).getByRole('link').textContent)).toEqual(['CANADA','GERMANY','ITALY','MEXICO']);
+  for(const row of rows){expect(row.querySelector('strong')).toHaveTextContent(amount);expect(row.querySelector('small')).toHaveTextContent('25.0% share');}
+  expect(screen.getByRole('table',{name:'Selected country monthly comparison'})).toBeVisible();
+});
+it('keeps an incomplete leading partner link and its unavailable observations',()=>{
+  const release=sampleRelease();const missing=release.observations.find(row=>row.direction==='imports'&&row.month==='2025-12'&&row.partnerCode==='1220')!;
+  missing.valueUsd=null;missing.status='unavailable';
+  window.history.replaceState(null,'','/products/090121/?direction=imports&months=12&countries=1220#trade-history-heading');
+  render(<ProductExplorer release={release}/>);
+  const partners=screen.getByRole('complementary',{name:'Leading partners'});
+  const link=within(partners).getByRole('link',{name:'CANADA'});
+  expect(link).toHaveAttribute('href','/products/090121/?direction=imports&months=12&countries=1220#trade-history-heading');
+  expect(link.closest('li')!.querySelector('strong')).toHaveTextContent('Unavailable');
+  const row=within(screen.getByRole('table',{name:'Selected country annual comparison'})).getAllByRole('row')[1];
+  expect(within(row).getAllByRole('cell')[0]).toHaveTextContent('Unavailable');
+  const csv=serializeCsv(buildProfileView(release,{direction:'imports',months:12,countryCodes:['1220']}));
+  const december=csv.split('\n').find(line=>line.startsWith('2025-12,'))!;
+  expect(december).toContain(',unavailable,');expect(december).not.toContain(',0,reported,');
+});
 it('switches direction and enforces three countries with accessible controls',async()=>{
   render(<ProductExplorer release={sampleRelease()}/>);const user=userEvent.setup();
   expect(screen.getByText('Development sample data')).toBeVisible();

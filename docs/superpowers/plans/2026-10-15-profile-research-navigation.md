@@ -135,10 +135,10 @@ The prior Canada-sharing worktree's native archive remains queued as of planning
 **Deliverable:** Existing leading-partner rows lead to the correct single-country research view, with no ranking change.
 **Files:** ProductExplorer.tsx, tests/ui/ProductExplorer.test.tsx, tests/ui/ProfileViewLink.test.tsx.
 
-- [ ] Write failing tests scoped to `getByRole('complementary',{name:'Leading partners'})`. Pin literal Canada URLs from the design for both products and directions. Starting from three selected countries, a five-year window and monthly comparison, assert the new destination has months=12, that partner alone, no comparison=monthly, and #trade-history-heading. Assert partner name/order/value/share text remains unchanged.
-- [ ] Include an incomplete-partner fixture: its link is still a known-country destination and its comparison/CSV remains unavailable where previously unavailable. Keep existing three-country controls and other ranking/briefing links unchanged.
-- [ ] Run the two focused UI files RED, implement anchors using existing profileViewPath and the exact explanatory sentence, then rerun GREEN. Scope any newly ambiguous existing test locator to its actual section; do not alter numerical expectations to accommodate a defect.
-- [ ] Commit the partner drilldowns. No calculator, serializer, registry, route or release schema changes.
+- [x] Write failing tests scoped to `getByRole('complementary',{name:'Leading partners'})`. Pin literal Canada URLs from the design for both products and directions. Starting from three selected countries, a five-year window and monthly comparison, assert the new destination has months=12, that partner alone, no comparison=monthly, and #trade-history-heading. Assert partner name/order/value/share text remains unchanged.
+- [x] Include an incomplete-partner fixture: its link is still a known-country destination and its comparison/CSV remains unavailable where previously unavailable. Keep existing three-country controls and other ranking/briefing links unchanged.
+- [x] Run the two focused UI files RED, implement anchors using existing profileViewPath and the exact explanatory sentence, then rerun GREEN. Scope any newly ambiguous existing test locator to its actual section; do not alter numerical expectations to accommodate a defect.
+- [x] Commit the partner drilldowns. No calculator, serializer, registry, route or release schema changes.
 
 ## Task 3: Keep copied links current after section navigation
 
