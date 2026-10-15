@@ -2,7 +2,7 @@
 
 ## Scope and current status
 
-Local acceptance passed October 15, 2026 (America/Toronto). The two existing coffee briefings now link each eligible monthly and annual partner card to the same product/direction/period country ranking by dollars. The shared annual Imports-default link is removed. This record precedes independent branch review, exact-head CI/merge, action-time provider preflight and public acceptance; publication is authorized but has not yet happened in this batch.
+Local acceptance passed October 15, 2026 (America/Toronto). The two existing coffee briefings now link each eligible monthly and annual partner card to the same product/direction/period country ranking by dollars. The shared annual Imports-default link is removed. The independently reviewed, exact-head CI-passed runtime was merged in PR #99 and its authenticated package was published and verified on the existing Free Production project. The public and operational evidence is recorded below.
 
 Monthly links require the existing non-null world dollar comparison. A zero prior value retains dollar research with unavailable growth. Annual links use the existing classification-compatible, eligible-country dollar ranking; equal/no-change periods retain valid links. Missing/suppressed/incompatible comparisons keep their existing figures and qualifications without a new comparison link. Individual destination countries may still be excluded for missing observations.
 
@@ -40,6 +40,30 @@ Site ZIP: **390,065 bytes**, SHA-256 **f7ca0478381638b6c36d7f3296b8757b1c32e2840
 
 Manifest SHA-256: **5c754cb3c4e60f9161238ece0ebdd69a4aebd8ca92bdd9d61365fd667aad7117**.
 
-Pinned verified predecessor: fcaf0070-6031-4308-ad9d-ee45e0a84558, ZIP7031ac55d7a47f901b31d04e72fbe09e1cab182e8cbd0a8322335467f6e69ef6, manifest9e8534b8dc19e7274ea185cd325dbeefad269ae7a50f5f453c3fe68f5a9d4a17. Action-time Free/Production/package/input checks remain required. Restoration execution has not been exercised in this batch.
+Pinned verified predecessor: fcaf0070-6031-4308-ad9d-ee45e0a84558, ZIP7031ac55d7a47f901b31d04e72fbe09e1cab182e8cbd0a8322335467f6e69ef6, manifest9e8534b8dc19e7274ea185cd325dbeefad269ae7a50f5f453c3fe68f5a9d4a17. Action-time Free/Production/package/input checks passed before upload. Restoration was unnecessary and was not exercised.
 
-No imports, new reporting month/product/country, accepted-data replacement, raw replay, R2 operation, new dependency/service, paid or indexing change occurred. Historical qualifications and the separate successive-official-release acceptance gate remain. Actual review/CI/merge/publication/live outcomes and operational preservation/archive readback will be recorded separately; a queued archive does not establish cleanup.
+No imports, new reporting month/product/country, accepted-data replacement, raw replay, R2 operation, new dependency/service, paid or indexing change occurred. Historical qualifications and the separate successive-official-release acceptance gate remain. The remaining operational preservation/archive steps are tracked below; a queued archive does not establish cleanup.
+
+## Verified public update
+
+On October 15, 2026 (America/Toronto), the existing **Workers Free / Active / Production / us-trade-tracker** target was verified in the signed-in dashboard. Production still pointed to the pinned predecessor. A fresh bounded predecessor check passed **68 logical checks / 98 HTTP requests** across canonical and predecessor origins before publication.
+
+A fresh independent reviewer inspected immutable **77663f3ae46606e5717e2ede3177c97b2ba4a012..938a1161135610acf4d4c5a57880769658815d28**, source/tests, unchanged destination controllers, verification scripts, saved receipts/logs and representative screenshots. **No findings.** The reviewer did not rerun tests or certify fresh source data, every browser/assistive technology, or pending operational steps. Zero-prior/equal-period tests and direct guard inspection support valid zero-dollar links; a fully-zero dynamic dataset was not separately executed. The extra 28-case baseline retains its disclosed indirect producer binding. Root retained these bounded limits without a new freshness or certification claim.
+
+Exact feature-head Code checks passed for both [push](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38776126627) and [pull request](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38776161142). [PR #99](https://github.com/Vasuki8/us-trade-tracker/pull/99) merged with expected-head protection to **cdc6dd10313a51e0a92d030912cf895165403cd9**. Main tree **6e82fb6ba4073cd5aef78e9ed6ca9d0acab271cf** equals the reviewed head tree; its packaged runtime equals **93da58233d14e4d06c066999680661ab76b1e54f**. Before upload, direct readback matched both candidate/restoration ZIP/manifest pins, all seven staged/primary accepted inputs and eleven protected identities.
+
+Exactly **one candidate upload**, **31/31 assets**, was deployed successfully. Dashboard-observed Production ID: **6d1e06b1-068a-451e-acf7-9aab8b201ebe**; deployment origin: [6d1e06b1.us-trade-tracker.pages.dev](https://6d1e06b1.us-trade-tracker.pages.dev/). The [canonical roasted briefing](https://us-trade-tracker.pages.dev/briefing/) and [green briefing](https://us-trade-tracker.pages.dev/briefing/090111/) now provide matching research links. The first project view briefly retained cached predecessor data after the success screen; one dashboard reload exposed the actual new identity. No duplicate upload or live-verifier retry was needed.
+
+Public acceptance:
+
+- **68/68** bounded payload/header/byte/private-route checks across both origins; **98 requests**. All served bytes match the manifest and existing noindex/nofollow behavior.
+- **Eight briefing handoffs / eight byte-identical CSVs**, both products/directions/periods: actual hydrated controls, reporting windows, world values, annual highlights, dollars ranking, copied URL, reload and native back/forward. Keyboard and 320/375/1120-pixel checks passed; two no-JavaScript journeys retained the explained static Imports/dollars/rolling defaults.
+- **Four profile journeys / 48 monthly values / eight CSV/PNG downloads** passed, including unchanged denominators and sharing/history behavior.
+- **Five Canada sharing journeys / six downloads** passed, including two PNGs and four byte-identical CSVs with historical qualifications intact.
+- No browser page errors or unexpected outside-origin requests. Public desktop/mobile screenshots were visually inspected; link wrapping/order remains usable.
+
+**Zero restorations.** The verified predecessor remains the approved recovery package; recovery execution is not claimed. No data, R2, dependency/service, cost or indexing change occurred.
+
+## Operational closeout
+
+The publication evidence will be closed through a documentation-only reviewed PR with exact-head CI and expected-head merge, then final main tree/runtime/input binding. Its identity and final operational results are recorded in private evidence rather than predicted here. Useful proof is to be copied under `data/backups/briefing-research-links/deployment-20261015-r1`, sealed and read back before native worktree archival. At this documentation checkpoint preservation/archive/readback are pending. Post-seal `completion.json` and archive metadata close those steps only after confirmation, without rewriting the sealed earlier pending records. Broader browser/assistive-technology execution and successive official-release acceptance remain outside this batch.
