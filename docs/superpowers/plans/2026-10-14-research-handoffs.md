@@ -10,7 +10,7 @@
 
 **Spec:** The combined bounded design below, extending the [launch design](../specs/2026-10-08-us-trade-tracker-design.md), [product changes contract](../../validation/pilot-product-changes.md), [portfolio contract](../../validation/coffee-portfolio-briefing.md) and [monthly country movers contract](../../validation/monthly-country-movers.md). A combined written plan is provided because the owner requested several tasks and one permission review.
 
-**Status:** Owner approved all five tasks and the complete permission envelope, including publication and automatic restoration, on October 14, 2026. Planning baseline: main c4adc9a74cbffbb1ef8886ec5793d980a2fb699d, merged PR #91. Execution method remains root implementation with reviewer subagents.
+**Status:** Owner approved all five tasks and the complete permission envelope, including publication and automatic restoration, on October 14, 2026. Implementation, reviewed merge and first-candidate live publication are verified; documentation closeout and private preservation/cleanup are the final execution gates. Planning baseline: main c4adc9a74cbffbb1ef8886ec5793d980a2fb699d, merged PR #91. Execution method remains root implementation with reviewer subagents.
 
 ## Bounded design and recommendation
 
@@ -100,10 +100,10 @@ Before upload, require the current public site to match Production **0a3ccb96-2d
 
 ## Task 5: Review, merge, publish and close out
 
-- [ ] Self-check the design, Review Focus and permission boundaries. Obtain one fresh read-only whole-branch review of exact base/head plus private acceptance evidence. Root resolves findings and explicitly rules on excluded judgments; rerun affected checks for fixes.
-- [ ] Push/create/attach the feature PR; require exact-head Code checks, merge with expected-head protection, synchronize main and prove tree identity. The package runtime source must match reviewed/tested/merged runtime paths; otherwise rebuild and reverify before any upload.
-- [ ] Preflight existing Free project and exact prior production identity/package; authenticate generated ZIP/manifest and original input identities again. Publish only the bound candidate package under the permission envelope. Observe its actual deployment ID/origin and run bounded live hashes/sizes/status/noindex/404 checks plus new handoffs and existing research/download checks. Save a screenshot showing the result.
-- [ ] On regression, restore and verify the pinned previous working site. An in-scope repair may use the second candidate only after affected local checks, renewed independent review and exact-head CI for changed runtime. If safe success cannot be reached within the envelope, retain the verified prior site and report the precise remaining blocker.
+- [x] Self-check the design, Review Focus and permission boundaries. Obtain one fresh read-only whole-branch review of exact base/head plus private acceptance evidence. Root resolves findings and explicitly rules on excluded judgments; rerun affected checks for fixes.
+- [x] Push/create/attach the feature PR; require exact-head Code checks, merge with expected-head protection, synchronize main and prove tree identity. The package runtime source must match reviewed/tested/merged runtime paths; otherwise rebuild and reverify before any upload.
+- [x] Preflight existing Free project and exact prior production identity/package; authenticate generated ZIP/manifest and original input identities again. Publish only the bound candidate package under the permission envelope. Observe its actual deployment ID/origin and run bounded live hashes/sizes/status/noindex/404 checks plus new handoffs and existing research/download checks. Save a screenshot showing the result.
+- [x] On regression, restore and verify the pinned previous working site. An in-scope repair may use the second candidate only after affected local checks, renewed independent review and exact-head CI for changed runtime. If safe success cannot be reached within the envelope, retain the verified prior site and report the precise remaining blocker.
 - [ ] Record actual publication or restoration evidence in README/validation through a reviewed documentation closeout PR if needed; CI/merge are covered by the same approval. Preserve and hash-read-back useful private evidence/packages before archiving task-owned worktrees, confirm main is clean and report actual outcomes. Do not claim successive-release acceptance or newer reporting data.
 
 ## Self review and execution handoff
