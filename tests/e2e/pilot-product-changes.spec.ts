@@ -24,7 +24,7 @@ test('pilot import rankings and product links remain available without JavaScrip
   try{
     await page.goto('/changes/');await page.getByRole('link',{name:'Compare changes across reviewed products',exact:true}).click();
     await expect(page.getByRole('table',{name:'Largest product increases · dollar change'})).toContainText('+$1,800');
-    await expect(page.getByText(/The initial view shows U.S. imports ranked by dollar change over rolling twelve months/)).toBeVisible();
+    await expect(page.getByText(/Product rankings use rolling twelve-month periods/)).toBeVisible();
     await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeDisabled();
     await expect(page.getByLabel('Rank product changes by')).toBeDisabled();
     await expect(page.getByRole('button',{name:'Download product changes CSV'})).toBeDisabled();

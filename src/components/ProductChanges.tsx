@@ -53,7 +53,7 @@ export function ProductChanges({data}:{data:string}){
       <ProductChangesTable products={ranking.increases} movement="increases" metric={metric} direction={direction}/>
       <ProductChangesTable products={ranking.decreases} movement="decreases" metric={metric} direction={direction}/>
       <p className="chart-note">Values are current USD, not seasonally adjusted. Comparisons require both complete, compatible twelve-month periods and the same reporting month. A zero prior value has no growth percentage. The CSV contains the displayed rankings, periods, threshold and each product’s source details.</p>
-      <noscript><p className="chart-note">Enable JavaScript to restore saved filters, change direction or ranking and download a CSV. The initial view shows U.S. imports ranked by dollar change over rolling twelve months.</p></noscript>
+      <noscript><p className="chart-note">Product rankings use rolling twelve-month periods. Enable JavaScript to change direction or ranking and download a CSV.</p></noscript>
     </section>
     <details className="provenance"><summary>Sources for these product comparisons</summary>{view.products.map(product=><div key={product.code}>
       <p><strong>{product.name} · HS {product.code}</strong> · {product.title}</p>
