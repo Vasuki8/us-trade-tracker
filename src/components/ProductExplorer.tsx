@@ -8,6 +8,7 @@ import {profileViewPath,readViewSelection} from '../lib/trade/view-link';
 import {CountryPicker} from './CountryPicker';
 import {SelectedCountryComparison} from './SelectedCountryComparison';
 import {CountryShareHistory} from './CountryShareHistory';
+import {CountryShareHistoryDownload} from './CountryShareHistoryDownload';
 import {buildCountryShareHistory} from '../lib/trade/country-share-history';
 export function ProductExplorer({release}:{release:Release}){
   const [selection,setSelection]=useState<ExplorerSelection>({direction:'imports',months:60,countryCodes:[]});
@@ -43,7 +44,7 @@ export function ProductExplorer({release}:{release:Release}){
     try{await navigator.clipboard.writeText(viewLink);if(generation===linkGeneration.current){setCopied(true);setShowLink(false);}}
     catch{if(generation===linkGeneration.current){setCopied(false);setShowLink(true);}}
   };
-  const svg=useRef<SVGSVGElement>(null);const view=buildProfileView(release,selection);
+  const svg=useRef<SVGSVGElement>(null);const view=buildProfileView(release,selection);const shareHistory=buildCountryShareHistory(release,view);
   const changes=useMemo(()=>buildChangesView(release,direction),[release,direction]);
   const selectedComparison=useMemo(()=>comparisonPeriod==='monthly'?buildMonthlyChangesView(release,direction):changes,[release,direction,comparisonPeriod,changes]);
   const countries=[...view.partners].sort((a,b)=>a.name.localeCompare(b.name));
@@ -76,7 +77,7 @@ export function ProductExplorer({release}:{release:Release}){
     </div><aside className="comparison-card" aria-labelledby="compare-countries-heading"><p className="eyebrow">PARTNER MARKETS</p><h2 id="compare-countries-heading">Compare countries</h2><p>Choose up to three partners. With none selected, the chart shows the U.S. total.</p>
       <CountryPicker key={direction} countries={countries} selectedCodes={countryCodes} ready={Boolean(viewLink)} onChange={codes=>changeSelection({...selection,countryCodes:codes})}/>
     </aside></section>
-    <CountryShareHistory view={buildCountryShareHistory(release,view)}/>
+    <CountryShareHistory view={shareHistory} download={<CountryShareHistoryDownload view={shareHistory}/>}/>
     <SelectedCountryComparison view={selectedComparison} countryCodes={countryCodes} onPeriodChange={period=>changeSelection({...selection,comparisonPeriod:period})}/>
     <TradeChanges view={changes}/>
     {direction==='imports'&&<EstimatedDuties view={buildDutyView(release,countryCodes)} classificationIntervals={release.classificationIntervals}/>}

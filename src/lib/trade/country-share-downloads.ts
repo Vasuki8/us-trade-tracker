@@ -1,0 +1,7 @@
+import type {CountryShareHistoryView} from './country-share-history';
+const csvCell=(value:unknown)=>{let text=String(value??'');if(typeof value==='string'&&/^(?:[=+@]|-(?!$)|[\t\r])/.test(text))text="'"+text;return /[",\r\n]/.test(text)?`"${text.replaceAll('"','""')}"`:text;};
+export function serializeCountryShareHistoryCsv(view:CountryShareHistoryView):string{
+ const headers=['feature','product_code','product_description','direction','partner_code','partner_name','month','country_value_usd','country_value_status','world_value_usd','world_value_status','country_share_percent','numerator_measure','denominator_measure','units','period_start','period_end','classification_verified','classification_break_before','source','retrieved_at','code_version','revised','source_urls'];
+ const rows=view.series.flatMap(s=>s.points.map(p=>['Country share history',view.productCode,view.title,view.direction,s.code,s.name,p.month,p.countryValueUsd,p.countryStatus,p.worldValueUsd,p.worldStatus,p.sharePercent,view.provenance.measure,view.provenance.measure,'current USD, not seasonally adjusted; country shares in percent',view.fromMonth,view.reportingMonth,p.classificationVerified,p.breakBefore,view.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau',view.provenance.retrievedAt,view.provenance.codeVersion,view.provenance.revised,view.provenance.sourceUrls.join(' | ')]));
+ return [headers,...rows].map(row=>row.map(csvCell).join(',')).join('\r\n')+'\r\n';
+}
