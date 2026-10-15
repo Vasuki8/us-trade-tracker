@@ -55,8 +55,9 @@ test('mobile controls work without page overflow and are keyboard accessible',as
 test('missing partner data is unavailable and leaves a chart gap',async({page})=>{
   await openProfile(page);await page.getByRole('checkbox',{name:'CANADA'}).check();
   await expect(page.getByRole('table',{name:'Monthly trade values · current U.S. dollars'}).getByRole('row').filter({hasText:'Jul 2024'})).toContainText('Unavailable');
-  expect(await page.locator('svg:visible circle title').allTextContents()).not.toContain('Jul 2024: $0');
-  await expect(page.locator('svg:visible circle')).toHaveCount(23);
+  const chart=page.locator('.chart-card').filter({has:page.getByRole('heading',{name:'Trade over time'})});
+  expect(await chart.locator('svg:visible circle title').allTextContents()).not.toContain('Jul 2024: $0');
+  await expect(chart.locator('svg:visible circle')).toHaveCount(23);
 });
 test('a PNG failure leaves CSV export usable',async({page})=>{
   await page.addInitScript(()=>{HTMLCanvasElement.prototype.getContext=(()=>null) as typeof HTMLCanvasElement.prototype.getContext;});
