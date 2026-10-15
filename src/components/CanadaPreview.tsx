@@ -4,6 +4,7 @@ import {countryCsvFilename,serializeCountryMonthlyCsv,serializeCountryProductsCs
 import {downloadBlob} from '../lib/trade/downloads';
 import {usd,usdChange,percent,countryShare,percentagePoints,monthLabel} from '../lib/trade/format';
 import {CountryPreviewChart} from './CountryPreviewChart';
+import {CountryChartDownload} from './CountryChartDownload';
 import {CanadaViewLink,useCanadaViewLink} from './CanadaViewLink';
 import {countryTimestampLabel} from '../lib/country-preview/presentation';
 const period=(from:string,to:string)=>`${monthLabel(from)}–${monthLabel(to)}`;
@@ -37,7 +38,7 @@ export function CanadaPreview({data,presentation={kind:'preview'},enableSharing=
     <p className="preview-capture">Source collection captured {profile?<time dateTime={data.captureInterval.startedAt}>{countryTimestampLabel(data.captureInterval.startedAt)}</time>:data.captureInterval.startedAt} to {profile?<time dateTime={data.captureInterval.finishedAt}>{countryTimestampLabel(data.captureInterval.finishedAt)}</time>:data.captureInterval.finishedAt}. Capture times describe the saved files, not observation revision dates.</p>
     <fieldset className="explorer-controls" disabled={!interactive}><legend>Trade direction</legend>{(['imports','exports'] as const).map(d=><label key={d}><input type="radio" name="canada-direction" value={d} checked={direction===d} onChange={()=>{if(enableSharing)sharedView.changeSelection({direction:d});else setDirection(d);setError(null);}}/>{d==='imports'?'Imports':'Exports'}</label>)}</fieldset>
     {enableSharing&&<CanadaViewLink {...sharedView}/>}
-    <noscript><p>Imports are shown below. Saved directions, direction switching and downloads require JavaScript.</p></noscript>
+    <noscript><p>{enableSharing?'Imports are shown below. Saved directions, direction switching and downloads require JavaScript.':'Imports are shown below. Direction switching and CSV downloads require JavaScript.'}</p></noscript>
     <section aria-label="Country overview">
       <h2>{view.title}</h2><p>{view.measure} · {direction==='imports'?'General imports, customs value':'Domestic plus foreign exports, FAS value'} · nominal USD, not seasonally adjusted.</p>
       {(accepted||profileSample)&&direction==='exports'&&<p>Census derives exports to Canada from Canadian import data. <a href="https://www.census.gov/foreign-trade/reference/definitions/index.html">Canadian data exchange definitions</a></p>}
@@ -48,7 +49,7 @@ export function CanadaPreview({data,presentation={kind:'preview'},enableSharing=
         <div><span>All-goods change</span><strong>{usdChange(view.summary.changeUsd)}</strong><small>Growth: {percent(view.summary.growthPercent)}</small></div>
       </div>
     </section>
-    <CountryPreviewChart view={view} source={data.source}/>
+    <CountryPreviewChart view={view} source={data.source} download={enableSharing?<CountryChartDownload data={data} direction={direction} presentation={presentation} ready={interactive}/>:undefined}/>
     <section className="data-card" aria-label={accepted||profileSample?'Selected categories and changes':'Leading products and changes'}>
       <h2>{accepted||profileSample?'Selected categories and changes':'Leading products and changes'}</h2><p>Current: {period(view.summary.current.from,view.summary.current.to)} · Prior: {period(view.summary.prior.from,view.summary.prior.to)}</p>
       <p>These ten selected categories are ordered by current-period reported value and cover a subset of trade. Shares use all U.S. {direction==='imports'?'imports from':'exports to'} Canada as the same-archive denominator; they are not a country’s share of U.S. trade for one product.</p>
