@@ -1,6 +1,6 @@
 # Merchandise download reliability
 
-Prepared October 15, 2026. This record covers the existing roasted and green coffee merchandise downloads and their readiness controls. Local acceptance has passed; independent whole-branch review, GitHub CI, merge, publication and final preservation remain pending at this checkpoint.
+Prepared October 15, 2026. This record covers the existing roasted and green coffee merchandise downloads and their readiness controls. Local acceptance, independent whole-branch review, exact-head GitHub CI, feature merge and public acceptance have passed. Documentation closeout review/CI/merge, final preservation and native archival remain pending at this checkpoint; actual final completion is recorded separately after those gates.
 
 ## Behavior
 
@@ -40,4 +40,19 @@ The largest asset remains roasted profile HTML. The 1,095-byte raw increase cons
 
 Fresh site and withdrawal ZIPs pass create/readback and repeated-byte determinism. Site ZIP: 408,825 bytes, SHA256 `b260bc3aa5dc7eccc553fddd6da2ecec5abb488ca9879e71ec616ecff5c30222`. Manifest: 6,556 bytes, SHA256 `e2fde5e48e55e67bfd3442f390ff0ca3d446e936e716685f5d0540a15305fe43`.
 
-Private evidence is staged for preservation at `data/backups/merchandise-download-reliability/deployment-20261015-r1`. Its final seal, actual publication, docs merge, native worktree archive and clean-main completion will be recorded after they happen. The preceding country-share-history evidence remains unchanged.
+Private evidence will be preserved at `data/backups/merchandise-download-reliability/deployment-20261015-r1`. Its final seal, documentation merge, native worktree archive and clean-main completion will be recorded after they happen. `completion.json` and post-seal finalization/readback records are the actual closeout authority; this earlier checkpoint is retained unchanged. The preceding country-share-history evidence remains unchanged.
+
+
+## Verified public update
+
+[PR #105](https://github.com/Vasuki8/us-trade-tracker/pull/105) merged as `bb6905dcba27db52d18ba2b1cb47352abbf5da85`. The source review covered `63399fdae5b861bed643979af7609ec15fc811aa..c954ff218fe4e0e5fe85a5e630279f28402d958b` and found no Critical, Important or Minor findings. Root subsequently corrected one factual documentation sentence about generated Astro identifier lengths; the final feature head `67b39ac91d153dfb5087a30c5a41bb1fa4bc6aa1` retains identical reviewed runtime/tooling. Both [push CI](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38813421734) and [PR CI](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38813431124) passed for that exact final head. Clean merged main matches its tree and all packaged non-documentation inputs.
+
+Cloudflare showed **Workers Free / Active** on the existing account/project. One candidate upload completed 31/31 assets and reported Success. The refreshed project listing identified actual **Production** deployment `23cbd1b1-5294-4e26-b4b4-8fd626dd6713`, at [23cbd1b1.us-trade-tracker.pages.dev](https://23cbd1b1.us-trade-tracker.pages.dev). The canonical site remains [us-trade-tracker.pages.dev](https://us-trade-tracker.pages.dev/). Continue-to-project initially showed the cached prior listing; one explicit reload exposed the new deployment. No second upload occurred.
+
+The pinned predecessor and candidate each pass **68 manifest-derived logical checks / 98 HTTP requests** across canonical and their respective observed deployment origins. Candidate files, response lengths/hashes, headers and the existing missing/private-route 404 behavior agree with the reviewed package.
+
+Public browser acceptance passes the same **24 merchandise cases / 24 PNG / 24 CSV**, preserving **1,440 rows, 1,336 reported points, 128 zeros and 104 gaps**. CSV bytes, raw observations, SVG geometry/metadata and ordered legends match the predecessor. Four public coexistence cases pass **eight ancillary PNG / six CSV**, exact historical share/duty CSV bindings and raw denominator/coverage/rolling calculations. The independent read-only public capture audit reports zero failures. These overlap historical cases; counts are not distinct source observations.
+
+Both actual products pass public desktop, 320/375-pixel mobile and no-JavaScript readiness checks. Public requests stayed within manifest-listed GET/HEAD paths on the pinned canonical origin, with service workers blocked and no console/page errors. Root inspected saved public green-coffee export PNG, mobile controls and static defaults. The deferred-conversion and rejection probes remain local fixture evidence; public execution did not inject those conditions.
+
+Candidate uploads: **1**. Restorations: **0**. Recovery pins were authenticated but restoration execution was unnecessary and is not claimed. Accepted inputs/protected identities remain unchanged. No data intake, source request, raw replay, R2 operation, dependency/service/access/indexing/paid change or recurring job occurred.
