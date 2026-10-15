@@ -10,7 +10,7 @@
 
 **Spec:** This combined bounded design and plan extends the [launch brief](../specs/2026-10-08-us-trade-tracker-design.md), [Canada pilot presentation](../../validation/canada-pilot-deployment.md), [research handoffs](../../validation/research-handoffs.md) and [live verifier](../../validation/live-site-verification.md). The combined format follows the owner's request for several tasks and one permission review.
 
-**Status:** Owner approved all five tasks and full permission envelope on October 15, 2026. Tasks 1–4 are locally verified; Task 5 independent review, integration, publication and private closeout remain. Baseline main 099e6f25454b40c75e7fe054cfe0c7474716dd08.
+**Status:** Owner approved all five tasks and full permission envelope on October 15, 2026. Tasks 1–4 and Task 5 feature review/CI/merge/publication/live verification passed. Documentation integration and private preservation/native archive remain at this record; actual closeout is recorded in the private completion receipt. Baseline main 099e6f25454b40c75e7fe054cfe0c7474716dd08.
 
 ## Recommendation and alternatives
 
@@ -146,12 +146,12 @@ A required human sign-in/CAPTCHA or new terms decision still requires the human 
 
 **Deliverable:** A reviewed public Canada sharing update, or an accurately recorded failure with the prior verified site restored.
 
-- [ ] Self-review the final branch against the design and permission envelope. Obtain a fresh independent whole-branch review of an immutable base/head range; resolve important findings and record explicit dispositions and limits. Root implements repairs.
-- [ ] Push/create/attach the PR and require existing CI to pass on the exact final reviewed head. Merge under standing permission; synchronize main and verify its tree matches the accepted runtime/source plus classified non-runtime changes. A runtime repair requires fresh affected acceptance/package evidence.
-- [ ] Confirm the current Free project/Production identity and run site:verify against the pinned predecessor. Read back upload/restoration ZIP+manifest hashes, accepted-input identities and actual candidate commit binding immediately before upload.
-- [ ] Publish the verified candidate to the exact existing target. Observe the actual new deployment ID/origin; run site:verify on canonical and that origin. Use the existing redirects, byte/header/private-404 and timeout limits unchanged.
-- [ ] Verify the new public Canada direction links, manual-copy behavior and both PNGs, four unchanged CSVs, historical/revision/synthetic boundaries, 48 monthly/20 category figures and 17/three comparison split. Include mobile/keyboard and a coffee-profile/download smoke check. Block unexpected external requests and record browser errors.
-- [ ] If a candidate regresses, restore the pinned predecessor once and verify payload/header/private-route behavior and prior research. Preserve every failed candidate/run; allow a repaired second candidate only within the envelope and after its required review/CI/acceptance.
+- [x] Self-review the final branch against the design and permission envelope. Obtain a fresh independent whole-branch review of an immutable base/head range; resolve important findings and record explicit dispositions and limits. Root implements repairs.
+- [x] Push/create/attach the PR and require existing CI to pass on the exact final reviewed head. Merge under standing permission; synchronize main and verify its tree matches the accepted runtime/source plus classified non-runtime changes. A runtime repair requires fresh affected acceptance/package evidence.
+- [x] Confirm the current Free project/Production identity and run site:verify against the pinned predecessor. Read back upload/restoration ZIP+manifest hashes, accepted-input identities and actual candidate commit binding immediately before upload.
+- [x] Publish the verified candidate to the exact existing target. Observe the actual new deployment ID/origin; run site:verify on canonical and that origin. Use the existing redirects, byte/header/private-404 and timeout limits unchanged.
+- [x] Verify the new public Canada direction links, manual-copy behavior and both PNGs, four unchanged CSVs, historical/revision/synthetic boundaries, 48 monthly/20 category figures and 17/three comparison split. Include mobile/keyboard and a coffee-profile/download smoke check. Block unexpected external requests and record browser errors.
+- [x] If a candidate regresses, restore the pinned predecessor once and verify payload/header/private-route behavior and prior research. Preserve every failed candidate/run; allow a repaired second candidate only within the envelope and after its required review/CI/acceptance.
 - [ ] Record truthful publication/restoration results, CI/review identities, final source/data/package bindings and limitations. Seal/hash-read-back useful private proof under data/backups/canada-research-sharing/, synchronize main, archive the owned worktree natively, then check preserved proof again. Keep post-seal completion metadata separate from sealed files.
 
 ## Self review and handoff
