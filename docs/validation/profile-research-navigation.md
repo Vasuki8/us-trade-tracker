@@ -4,7 +4,7 @@
 
 The approved batch adds native section navigation to the existing coffee profiles, leading-partner links to annual one-country views, and fragment-aware copied/manual URLs. Product calculations, accepted data, classification rules, CSV contracts, source qualifications, dependencies and provider templates are unchanged.
 
-Local acceptance passed on October 15, 2026 (America/Toronto). Independent whole-branch review, exact-head CI, merge, target preflight, publication and live acceptance remain pending at this record. Publication is already authorized by the approved plan; these are execution gates, not a request for another routine approval.
+Local and public acceptance passed on October 15, 2026 (America/Toronto). Fresh independent whole-branch review found no Critical, Important or Minor findings. Exact-head push and PR Code checks passed, PR #97 was merged with expected-head protection, and main's tree matched the reviewed tree before publication. The exact accepted package is live on the existing Free Production project; no restoration was needed.
 
 ## Behavior checked
 
@@ -52,6 +52,30 @@ Site ZIP: **389,951 bytes**, SHA-256 **7031ac55d7a47f901b31d04e72fbe09e1cab182e8
 
 Site manifest SHA-256: **9e8534b8dc19e7274ea185cd325dbeefad269ae7a50f5f453c3fe68f5a9d4a17**.
 
-The pinned verified predecessor remains the Canada-sharing Production deployment 12603c6a-c46b-40bb-9658-06b81d77b796. Its ZIP and manifest hashes were read back during planning; action-time readback and observed Free/Production identity remain required before upload. Restoration has not been exercised in this batch.
+The pinned verified predecessor is the Canada-sharing Production deployment 12603c6a-c46b-40bb-9658-06b81d77b796. Its ZIP and manifest hashes were read back immediately before upload; canonical and predecessor-origin verification passed 68 logical checks in 98 HTTP attempts. The signed-in dashboard showed Workers Free / Active and the pinned Production main identity. Restoration has not been exercised in this batch.
+
+## Verified public update
+
+| Item | Observed identity / result |
+| --- | --- |
+| Reviewed feature head | 72e175c26b088071c8d77f082c94582eb9dea027 |
+| Reviewed merge | [PR #97](https://github.com/Vasuki8/us-trade-tracker/pull/97), 0aca1abf0bbe3bb8ba76b7b64c28e7a2a3518375 |
+| Exact-head Code checks | [Push 38694693990](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38694693990) and [PR 38694751753](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38694751753), success |
+| Merged/reviewed tree | d5406cb83a1ee901a07198683458eee89846ac27 |
+| Production deployment | fcaf0070-6031-4308-ad9d-ee45e0a84558 |
+| Observed deployment origin | https://fcaf0070.us-trade-tracker.pages.dev |
+| Canonical | https://us-trade-tracker.pages.dev |
+| Candidate uploads / restorations | 1 / 0 |
+| Live package verification | 68 / 68 logical checks, 98 HTTP attempts, both origins |
+
+Immediately before upload, all seven accepted inputs and eleven protected identities matched the authenticated baseline; candidate and restoration ZIP/manifest pins also matched. The merged runtime had no difference from the staged build source. Cloudflare reported all 31 files uploaded and successful deployment; its project page then showed the observed new origin as Production main. The public byte/header/redirect/private-404 verification passed without a retry.
+
+Public browser checks passed both real coffee products and all four product/direction combinations: 40 ordered leading-partner rows/destinations, 48 monthly chart/CSV observations, annual current/prior amounts and official world-share denominators, plus import estimated duties with matching consumption denominators. All four actual CSV/PNG pairs passed. Native section links, current copied/manual URLs, fragment/query history, keyboard, 320/375/1120-pixel layout and explained no-JavaScript defaults passed. Public desktop/mobile screenshots were visually inspected.
+
+Canada's five existing sharing journeys and six downloads passed, including two PNGs and four byte-identical sourced CSVs. Source periods and historical qualifications stayed intact. Both browser harnesses reported no page errors or unexpected outside-origin requests. No candidate regression or restoration occurred.
+
+The source review deliberately did not certify fresh source validity, successive official-release acceptance, browsers or assistive technology beyond the retained Chromium evidence, or unrelated pre-existing controller/download behavior. Root retained these limits. The action-time package/target gates and public journeys above close the deployment portion of that review. Existing historical-data qualifications remain; this batch adds no reporting month. Recovery package integrity was checked, but restoration execution was unnecessary and remains unexercised in this batch.
+
+Useful private proof is being preserved under data/backups/profile-research-navigation/deployment-20261015-r1. Final seal/readback and native archive confirmation are operational closeout steps; any queued archive remains pending until the attachment and path confirm it. Post-seal completion metadata records the final readback separately, without modifying sealed evidence. The prior Canada-sharing worktree's native archive has now been confirmed, its 424 sealed files authenticated, and its separate completion record saved.
 
 No imports, reporting-month/product/country intake, accepted-state replacement, raw replay, R2 operation, new service, indexing change or paid change occurred. Successive-official-release acceptance remains open. Useful private proof, actual publication outcomes and any pending native archival are recorded separately; a queued archive is not confirmed cleanup.
