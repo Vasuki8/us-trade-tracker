@@ -190,3 +190,5 @@ This document is a proposal only. Review the combined design, five tasks and per
 ## Execution checkpoint
 
 Tasks1–4 local acceptance passed:1409unit/161browser/24Python tests,zero type diagnostics;112 unchanged CSVs/projection and six duty CSVs;16share charts/1048points/128zeros/104unavailable/16PNG/17CSV/1164rows independently verified. Candidate31files/1,873,449rawbytes/408,596byte ZIP;publication/review/CI and operational closeout pending Task5. See docs/validation/country-share-history.md.
+
+Task5 reviewed-fix checkpoint: original immutable review d8f1e50..d17d257; root one-pass tiny-axis fix43de076 RED→GREEN and1411unit/164browser/24Python/0diagnostics. Fresh second-stage retained matrix/legacy compatibility pass; final candidate31entries/1,873,448rawbytes/408,591byte ZIP. Initial candidate never uploaded. CI/merge/publication/closeout remain pending.
