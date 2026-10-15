@@ -13,19 +13,27 @@ export function ProductExplorer({release}:{release:Release}){
   const [downloadError,setDownloadError]=useState('');const [busy,setBusy]=useState(false);
   const [viewLink,setViewLink]=useState(''),[linkNotice,setLinkNotice]=useState<string|null>(null);
   const [copied,setCopied]=useState(false),[showLink,setShowLink]=useState(false);
-  const linkGeneration=useRef(0);
+  const linkGeneration=useRef(0),lastSearch=useRef<string|null>(null);
   useEffect(()=>{
     const restore=()=>{
       const restored=readViewSelection(window.location.search,release);
+      lastSearch.current=window.location.search;
       linkGeneration.current++;setSelection(restored.selection);setLinkNotice(restored.notice);setCopied(false);setShowLink(false);setDownloadError('');
       setViewLink(new URL(profileViewPath(release.productCode,restored.selection)+window.location.hash,window.location.origin).href);
     };
-    restore();window.addEventListener('popstate',restore);
-    return ()=>{linkGeneration.current++;window.removeEventListener('popstate',restore);};
+    const navigate=()=>{
+      if(lastSearch.current!==window.location.search){restore();return;}
+      linkGeneration.current++;setCopied(false);
+      const current=readViewSelection(window.location.search,release);
+      setViewLink(new URL(profileViewPath(release.productCode,current.selection)+window.location.hash,window.location.origin).href);
+    };
+    restore();window.addEventListener('popstate',navigate);window.addEventListener('hashchange',navigate);
+    return ()=>{linkGeneration.current++;window.removeEventListener('popstate',navigate);window.removeEventListener('hashchange',navigate);};
   },[release]);
   const changeSelection=(next:ExplorerSelection)=>{
     const path=profileViewPath(release.productCode,next)+window.location.hash;
     window.history.replaceState(window.history.state,'',path);
+    lastSearch.current=window.location.search;
     linkGeneration.current++;setSelection(next);setLinkNotice(null);setCopied(false);setDownloadError('');setViewLink(new URL(path,window.location.origin).href);
   };
   const copyViewLink=async()=>{
