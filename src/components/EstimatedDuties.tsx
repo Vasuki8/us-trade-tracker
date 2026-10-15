@@ -1,3 +1,4 @@
+import {DutyChartDownload} from './DutyChartDownload';
 import type {Release} from '../lib/trade/types';
 import {buildDutyHistoryChart} from '../lib/trade/duty-history';
 import {DutyHistoryChart} from './DutyHistoryChart';
@@ -26,7 +27,7 @@ export function EstimatedDuties({view,classificationIntervals}:{view:DutyView;cl
     {!view.available?<p>This retained release does not include a duty dataset. Estimated duties are unavailable.</p>:<>
       <p className="duty-definition">Calculated duties as share of import value uses imports for consumption (CON_VAL_MO). Monthly shares divide the same month’s calculated duties by its consumption value; rolling shares divide matching totals. Duty history: {monthLabel(view.fromMonth!)}–{monthLabel(view.reportingMonth)}. Country selections follow “Compare countries”; the chart history control does not shorten duty history.</p>
       <p><a href={dutyChangesPath(view.productCode)}>Explore estimated-duty changes across countries</a></p>
-      {(['dollars','share'] as const).map(metric=><DutyHistoryChart key={metric} model={buildDutyHistoryChart(view,classificationIntervals,metric)}/>)}
+      {(['dollars','share'] as const).map(metric=>{const model=buildDutyHistoryChart(view,classificationIntervals,metric);return <DutyHistoryChart key={metric} model={model} download={<DutyChartDownload model={model}/>}/>;})}
       {view.series.map(series=><article className="duty-series" key={series.code}>
         <h3>{series.name}</h3>
         <h4>Latest month · {period(series.latest.current)}</h4>
