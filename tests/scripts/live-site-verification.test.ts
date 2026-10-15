@@ -39,7 +39,7 @@ it('records a local package failure without HTTP or a success receipt',async()=>
 it('follows only the allowed HTML alias and retains its redirect chain',async()=>{
  const f=await liveFixture(),t=transport(f,p=>p==='/nested/index.html'?new Response(null,{status:308,headers:{location:'/nested/'}}):undefined);
  const r=await verifyLiveSite(f,t);expect(r.status).toBe('passed');expect(r.httpAttempts).toBe(18);
- expect(r.checks.find((c:any)=>c.path==='/nested/index.html').redirects).toEqual([{from:'/nested/index.html',to:'/nested/',status:308}]);
+ expect(r.checks.find((c:any)=>c.path==='/nested/index.html')!.redirects).toEqual([{from:'/nested/index.html',to:'/nested/',status:308}]);
 });
 it.each(['https://evil.invalid/?token=secret','http://us-trade-tracker.pages.dev/index','https://user:password@us-trade-tracker.pages.dev/index','/index?token=secret','/index#secret','/elsewhere','/index\\evil'])('rejects a forbidden redirect before another fetch: %s',async location=>{
  const f=await liveFixture(),t=transport(f,()=>new Response(null,{status:302,headers:{location}}));
@@ -122,3 +122,4 @@ it('cancels a response that arrives after a request timeout',async()=>{
  const r=await verifyLiveSite(f,{...t,setTimer:(fn:()=>void,ms:number)=>{if(ms===15000)fire=fn;return ms;},clearTimer:()=>{}});
  expect(r.failure!.code).toBe('live-request-timeout');expect(cancelled).toBe(true);
 });
+

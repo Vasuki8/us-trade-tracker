@@ -34,7 +34,8 @@
     "test:e2e:canada": "playwright test --config playwright.canada-preview.config.ts",
     "test:e2e:canada-pilot": "playwright test --config playwright.canada-pilot.config.ts",
     "site:stage": "node --import tsx scripts/stage-site.ts",
-    "site:prepare": "node --import tsx scripts/prepare-site.ts"
+    "site:prepare": "node --import tsx scripts/prepare-site.ts",
+    "site:verify": "node --import tsx scripts/verify-live-site.ts"
   },
   "dependencies": {
     "@astrojs/react": "7.0.1",
@@ -60,3 +61,4 @@
     "yaml": "2.9.1"
   }
 }
+
