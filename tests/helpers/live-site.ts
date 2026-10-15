@@ -31,4 +31,3 @@ export async function liveFixture(extra:Record<string,string>={}){
 export async function cleanLiveFixtures(){
   for(const root of roots.splice(0)){if(!root.startsWith(resolve('.tmp')+sep))throw Error('Unsafe fixture cleanup');await rm(root,{recursive:true,force:true});}
 }
-

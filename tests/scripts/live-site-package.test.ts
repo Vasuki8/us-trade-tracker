@@ -69,4 +69,3 @@ it('rejects packages whose two-origin check plan exceeds 128 checks',async()=>{
   const f=await liveFixture(Object.fromEntries(Array.from({length:57},(_,i)=>['a'+i+'.js','x'])));
   await expect(loadLiveSitePackage(f)).rejects.toThrow('live-package-policy');
 });
-

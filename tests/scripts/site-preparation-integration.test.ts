@@ -21,4 +21,3 @@ it('both_preparation_manifests_roundtrip_with_the_tracked_packager',async()=>{
   expect(second.sha256).toBe(created.sha256);expect(await readFile(zip)).toEqual(await readFile(resolve(outputRoot,kind+'-copy.zip')));
  }
 }, 15000);
-

@@ -122,4 +122,3 @@ it('cancels a response that arrives after a request timeout',async()=>{
  const r=await verifyLiveSite(f,{...t,setTimer:(fn:()=>void,ms:number)=>{if(ms===15000)fire=fn;return ms;},clearTimer:()=>{}});
  expect(r.failure!.code).toBe('live-request-timeout');expect(cancelled).toBe(true);
 });
-

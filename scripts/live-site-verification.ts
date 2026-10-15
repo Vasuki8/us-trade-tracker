@@ -112,5 +112,3 @@ export async function verifyLiveSite(options:LiveSiteOptions,overrides:Partial<R
   return receipt;
  }finally{if(timer!==undefined)runtime.clearTimer(timer);controller.abort();}
 }
-
-

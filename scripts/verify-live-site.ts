@@ -13,4 +13,3 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).hr
   if(receipt.status!=='passed')process.exitCode=1;
  }).catch(()=>{console.error('Live site verification failed before a verified receipt could be saved; check arguments and fresh owned paths.');process.exitCode=1;});
 }
-

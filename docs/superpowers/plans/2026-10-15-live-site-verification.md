@@ -122,5 +122,3 @@ The owner's preference for R2 usage below 100 GB is retained for future necessar
 Coverage: package identity, request confinement, streamed-response correctness, receipt safety and one real acceptance each have an explicit owning task and test. The plan reuses the existing ZIP and filesystem contracts, leaves research semantics untouched and uses only two already observed public origins. The current package fits all proposed limits. Automated checks remain offline; the separately authorized live run is bounded and read-only.
 
 Root implementation plus independent review is already the selected execution method. Approval covers all five tasks and the full permission envelope without routine permission pauses. September ingestion/successive-release acceptance remains a later decision after the official release is available; this plan neither schedules nor starts that work.
-
-

@@ -70,4 +70,3 @@ export async function loadLiveSitePackage(options:LivePackageOptions,verify:(opt
   for(const path of privatePaths)checks.push({path,allowedPaths:[path],statuses:[404],bytes:error.bytes,sha256:error.sha256,privateRoute:true});
   return freeze({manifest,manifestIdentity:{path:relative(options.workDir,options.manifestPath).split(sep).join('/'),bytes:manifestBody.length,sha256:options.manifestSha256},zip:{path:relative(options.workDir,options.zipPath).split(sep).join('/'),bytes:zipBody.length,sha256:options.zipSha256},checks});
 }
-

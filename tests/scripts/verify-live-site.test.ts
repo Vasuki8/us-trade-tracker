@@ -27,4 +27,3 @@ it('the actual CLI exits nonzero and saves failure proof for a wrong pin without
  try{execFileSync(process.execPath,['--import','tsx','--import','data:text/javascript,globalThis.fetch%3D()%3D%3E%7Bthrow%20Error(%22Network%20disabled%22)%7D',resolve('scripts/verify-live-site.ts'),...cli],{encoding:'utf8',stdio:'pipe'});}catch(e){result=e;}
  try{expect((result as {status:number}).status).toBe(1);const proof=JSON.parse(await readFile(resolve(f.proofRoot,'failed.json'),'utf8'));expect(proof.failure.code).toBe('live-package-input');expect(proof.httpAttempts).toBe(0);}finally{await cleanLiveFixtures();}
 });
-
