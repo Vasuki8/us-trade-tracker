@@ -1,6 +1,6 @@
 # Estimated-duty history charts verification
 
-Local acceptance passed October 15, 2026 (America/Toronto). Both existing coffee profiles now show fixed September 2024–August 2026 monthly estimated duties in current USD and calculated duties as a percentage of imports for consumption. The existing zero-to-three-country selection controls both charts. Merchandise 12/60-month selection does not shorten the duty period. Review, CI, merge and publication are pending at this checkpoint.
+Local acceptance passed October 15, 2026 (America/Toronto). Both existing coffee profiles now show fixed September 2024–August 2026 monthly estimated duties in current USD and calculated duties as a percentage of imports for consumption. The existing zero-to-three-country selection controls both charts. Merchandise 12/60-month selection does not shorten the duty period. The independently reviewed runtime passed exact-head CI, merged in PR #101 and was published and verified on the existing Free Production project. Actual outcomes are below.
 
 The adapter copies existing monthly DutyView values. It changes no calculation, table, CSV schema or byte, data, route, URL controller, dependency or shared image converter. Gaps preserve missing/suppressed observations; zero consumption has no percentage. Connections require consecutive reported values, verified reporting coverage and one common reviewed classification interval. Hollow markers identify RP70/79 affected or unverified points, with overlapping qualification counts explained. No-JavaScript HTML retains default world charts/tables and disabled PNG controls. Legacy releases retain their unavailable message.
 
@@ -41,3 +41,28 @@ Green profile HTML grows 64,647 bytes. New server-rendered charts/export markup 
 Site ZIP: **405,972 bytes**, SHA-256 **1356ba9d9b8ba8354bc59e88abedf0b7ad304c85dd95c6dde30c440bcd90174a**. Manifest SHA-256 **278f298fd4bc6d9d118babc15623708773a16989a73237f93618ce60a0dc9add**. Withdrawal bytes are unchanged. Pinned recovery: Production **6d1e06b1-068a-451e-acf7-9aab8b201ebe**, ZIP **f7ca0478381638b6c36d7f3296b8757b1c32e28401753c46fcc6c692ee2da9fe**, manifest **5c754cb3c4e60f9161238ece0ebdd69a4aebd8ca92bdd9d61365fd667aad7117**.
 
 No import, raw replay, accepted-data replacement/intake, R2, new dependency/service, paid/indexing change or recurring job occurred. Historical-data and successive-official-release limitations remain unchanged. Review/public/operational outcomes will be recorded only after they occur.
+
+## Verified public update
+
+The signed-in dashboard confirmed **Workers Free / Active / Production / us-trade-tracker**, account2e23d873002d29a02a1427e1fa37c5cd, still pointing to pinned6d1e06b1. Fresh predecessor verification passed **68 checks / 98 requests** before upload. Action-time candidate/recovery ZIP and manifest readback, seven staged/primary accepted inputs and eleven protected identities matched.
+
+Fresh independent review of immutable **1b1c461586ffe2a3309e4f43236a6c29d729da4a..610bff85a8d7305da830056a61e00ec14fe379da** found **no Critical or Important issues**. One **deferred minor** remains: dash patterns depend on selection position, so removal of an earlier country changes later patterns. Stable country colors and each current legend remain correct. The persistent dash-identity wording is an acknowledged limitation.
+
+The reviewer inspected all15changed blobs, source/tests, final logs, numerical receipts, package hash and representative images. It did not repeat all tests or predecessor authentication. Root retained four explicit boundaries: accepted historical observations remain the source authority (risk if wrong: a separate source audit is needed); operations remain pending until their gates pass (risk: premature status could hide deployment/proof failure); exercised browser/keyboard/static/mobile cases do not certify every browser/assistive technology (risk: untested usability gaps); separate root+independent444-file/112CSV authentication and fresh replay support the baseline (risk: shared audit error could conceal corruption).
+
+Exact feature-head Code checks passed for [push](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38788870562) and [pull request](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38788916147). [PR #101](https://github.com/Vasuki8/us-trade-tracker/pull/101) merged with expected-head protection to **7bccfcfd5db205a777da3eed5c3be883cc4c581e**. Main tree **c488ed95ee7efb9cd0f33021f325da73a52c7dab** equals the reviewed tree. Packaged sourcef03250b and last runtime67c031 remain unchanged.
+
+Exactly **one candidate upload**, **31/31 assets**, succeeded. Dashboard-observed Production ID: **21ce0245-1c26-4a23-8dff-4a0101922287**, origin [21ce0245.us-trade-tracker.pages.dev](https://21ce0245.us-trade-tracker.pages.dev/). One project reload resolved cached predecessor identity after the success screen; no duplicate upload or verifier retry occurred. The [roasted profile](https://us-trade-tracker.pages.dev/products/090121/#duties-heading) and [green profile](https://us-trade-tracker.pages.dev/products/090111/#duties-heading) now provide both duty history charts and sourced PNGs.
+
+Public verification passed:
+
+- **68/68 payload/header/byte/private-route checks / 98 requests** across canonical and observed deployment origins; manifest bytes and existing noindex/nofollow behavior match.
+- **12 charts / 446 plotted points / 12 actual sourced PNGs / six exact duty CSVs**, independently checked against retained values, source metadata, qualification counts, continuity and geometry. Both figures retain exact snapshots through merchandise12/60, reload and native history. Two no-JavaScript journeys retain world defaults and disabled PNGs.
+- **Eight briefing handoffs/eight exact CSVs**, **four profile journeys/48 monthly values/eight downloads**, and **five Canada sharing journeys/six downloads** pass. Actual keyboard/mobile/copy/history checks pass, with no page errors or unexpected outside requests.
+- Actual public desktop/mobile screenshots and downloaded chart images were visually inspected; qualifications, legends and full source labels remain readable.
+
+**Zero restorations.** Recovery remains available but its execution was unnecessary and is not claimed. No source-data, R2, dependency/service, paid or indexing change occurred.
+
+## Operational closeout
+
+The documentation-only closeout receives independent review, exact-head CI and expected-head merge before final main tree/runtime/input binding. Its actual identities are recorded privately after they occur. Useful proof is preserved under `data/backups/estimated-duty-history-charts/deployment-20261015-r1`, sealed and read back before native archival. At this documentation checkpoint final preservation/archive are pending; post-seal completion/archive metadata closes those steps only after confirmation, without rewriting the sealed earlier pending records. The owned loopback preview is stopped. Historical qualifications and successive-official-release acceptance remain unchanged.
