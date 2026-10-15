@@ -63,11 +63,11 @@ it.each([
   const imports=screen.getByRole('region',{name:'Annual import partner changes'}),exports=screen.getByRole('region',{name:'Annual export partner changes'});
   expect(within(imports).getByRole('link',{name:'Explore twelve-month import changes by country'})).toHaveAttribute('href',importsHref);
   expect(within(exports).getByRole('link',{name:'Explore twelve-month export changes by country'})).toHaveAttribute('href',exportsHref);
-  expect(within(imports).getByRole('link',{name:'CANADA',exact:true})).toHaveAttribute('href',importPartner);
-  expect(within(exports).getByRole('link',{name:'CANADA',exact:true})).toHaveAttribute('href',exportPartner);
+  expect(within(imports).getByRole('link',{name:'CANADA'})).toHaveAttribute('href',importPartner);
+  expect(within(exports).getByRole('link',{name:'CANADA'})).toHaveAttribute('href',exportPartner);
   expect(imports).toHaveTextContent('Largest increase: CANADA · $156');expect(exports).toHaveTextContent('Largest increase: CANADA · $300');
   for(const card of [imports,exports]){expect(card).toHaveTextContent('Jan 2025–Dec 2025 compared with Jan 2024–Dec 2024');expect(card).toHaveTextContent('4 countries with comparable data; 0 unavailable');expect(card).toHaveTextContent('No country decrease among comparable observations.');}
-  expect(screen.queryByRole('link',{name:'See all country changes',exact:true})).toBeNull();
+  expect(screen.queryByRole('link',{name:'See all country changes'})).toBeNull();
 });
 
 // Dollar eligibility survives zero baselines and equal periods, regardless of growth availability.
