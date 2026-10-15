@@ -362,3 +362,30 @@ This changes the page and CSV presentation context without changing the accepted
 Use `main` for reviewed release code and a separate branch for each feature or fix. Save focused commits with clear descriptions, run the relevant checks, and review changes before merging. Review a preview before publishing a website release.
 
 Version data releases separately from code. Each data release should record its reporting period, retrieval date, and processing code version so published results can be checked and reproduced.
+
+## Read-only live site verification
+
+Use `npm run site:verify` after independently reviewing the build/package and observing the authorized deployment origin. It checks the canonical us-trade-tracker.pages.dev origin and one observed eight-hex deployment origin against the pinned existing site ZIP and schema-v1 manifest. It performs anonymous GETs only.
+
+The command reuses the Python packager before making any HTTP request. It checks decoded response lengths/hashes, constrained same-origin redirects, noindex/nofollow headers and the four existing private/missing-route 404s. It does not upload, restore, discover Production assignment, approve a package or validate statistics. Retain the separate browser/numerical acceptance procedure.
+
+From the repository root in PowerShell, supply the existing reviewed files and their independently recorded hashes:
+
+```powershell
+$env:SITE_PACKAGE_PYTHON = Read-Host 'Absolute path to existing Python 3.12+ executable'
+$zipSource = Read-Host 'Path to reviewed site ZIP'
+$manifestSource = Read-Host 'Path to its schema-v1 manifest'
+$zipSha = Read-Host 'Recorded ZIP SHA-256'
+$manifestSha = Read-Host 'Recorded manifest SHA-256'
+$deploymentOrigin = Read-Host 'Previously observed https://<eight-hex>.us-trade-tracker.pages.dev origin'
+$runRoot = Join-Path (Get-Location) ('.tmp/live-verification-' + [guid]::NewGuid().ToString('N'))
+New-Item -ItemType Directory -Path $runRoot | Out-Null
+Copy-Item -LiteralPath $zipSource -Destination (Join-Path $runRoot 'site.zip')
+Copy-Item -LiteralPath $manifestSource -Destination (Join-Path $runRoot 'site-manifest.json')
+npm.cmd run site:verify -- --work-dir $runRoot --manifest (Join-Path $runRoot 'site-manifest.json') --zip (Join-Path $runRoot 'site.zip') --manifest-sha256 $manifestSha --zip-sha256 $zipSha --deployment-origin $deploymentOrigin --proof-root (Join-Path $runRoot 'proof')
+if ($LASTEXITCODE -ne 0) { throw 'Live verification failed; inspect the private failure receipt if one was safely created.' }
+```
+
+A zero exit status requires every check to pass and receipt.json to be saved and read back. Failures exit nonzero; failed.json preserves partial results with safe error codes when an owned proof directory could be created. Unsafe or occupied proof destinations are rejected without overwriting evidence. A mismatch never triggers an upload or automatic restoration.
+
+This pilot verifier accepts site packages only, at most 1,000 entries, 2 MiB total raw payload, a 4 MiB ZIP, a 1 MiB manifest and 128 logical checks across the two origins. It makes sequential requests, permits at most three redirects per check, uses 15-second request/body timeouts and a three-minute overall network deadline, and performs no retries. An overflowing decoded stream is cancelled without retaining the excess chunk; this is not an exact wire-transfer quota. Automated tests use fixtures and mocked HTTP, with no live site access. See the [verification record](docs/validation/live-site-verification.md).
