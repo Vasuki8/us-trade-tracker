@@ -30,3 +30,7 @@
 .duty-changes-controls label{margin-top:8px}.duty-changes .provenance a{overflow-wrap:anywhere}
 .duty-period-labels,.duty-ranking-counts{line-height:1.8}.duty-changes .duties-card{padding:20px}
 
+.profile-navigation{margin:18px 0;padding:12px 0;border-block:1px solid var(--border)}
+.profile-navigation strong{font-size:14px}.profile-navigation ul{display:flex;flex-wrap:wrap;gap:4px 18px;margin:6px 0 0;padding:0;list-style:none}
+.profile-navigation a{display:inline-block;padding:7px 0;text-underline-offset:3px}.profile-navigation a:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
+.profile-navigation~* h2[id]{scroll-margin-top:24px}
