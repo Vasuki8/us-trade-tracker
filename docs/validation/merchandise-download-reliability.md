@@ -36,7 +36,7 @@ All 1,440 retained classification slots are verified with no boundary. Nonreport
 | Roasted profile HTML raw / gzip bytes | 350,466 / 87,624 | 350,573 / 87,632 |
 | Green profile HTML raw / gzip bytes | 294,325 / 69,830 | 294,431 / 69,842 |
 
-The largest asset remains roasted profile HTML. The 1,095-byte raw increase consists of 884 JavaScript bytes, 213 profile HTML bytes and a net -2 elsewhere from build timestamp text. Hydrated profile markup adds 47 bytes for roasted and 46 for green coffee; element counts are unchanged. No loading-speed improvement is claimed. The candidate retains 222,609 bytes beneath the existing 2 MiB raw live-verification cap; no cap was raised. Existing 1,000-entry/25 MiB-asset packaging, 4 MiB ZIP, 1 MiB manifest and 128-check policies remain unchanged. The file-count planning alert remains 15,000.
+The largest asset remains roasted profile HTML. The 1,095-byte raw increase consists of 884 JavaScript bytes, 213 profile HTML bytes and a net -2 across four other HTML files from generated Astro island identifier lengths. Hydrated profile markup adds 47 bytes for roasted and 46 for green coffee; element counts are unchanged. No loading-speed improvement is claimed. The candidate retains 222,609 bytes beneath the existing 2 MiB raw live-verification cap; no cap was raised. Existing 1,000-entry/25 MiB-asset packaging, 4 MiB ZIP, 1 MiB manifest and 128-check policies remain unchanged. The file-count planning alert remains 15,000.
 
 Fresh site and withdrawal ZIPs pass create/readback and repeated-byte determinism. Site ZIP: 408,825 bytes, SHA256 `b260bc3aa5dc7eccc553fddd6da2ecec5abb488ca9879e71ec616ecff5c30222`. Manifest: 6,556 bytes, SHA256 `e2fde5e48e55e67bfd3442f390ff0ca3d446e936e716685f5d0540a15305fe43`.
 
