@@ -22,6 +22,8 @@ The complete browser suite caught a duplicated static-default explanation; the p
 
 One packaging integration case timed out at its five-second test deadline while the full suite, browser suite and staging ran concurrently. It passed in isolation, then the complete final unit suite passed with no concurrent browser/staging jobs. The earlier failures and superseded preparation remain recorded privately; no checks were suppressed or numerical code changed.
 
+Both first exact-head CI runs passed units, types, build and packaging, then caught the same existing mobile keyboard test focusing a disabled control before hydration. A bounded delayed-script reproduction confirmed focus was ignored while disabled and ArrowRight worked after readiness/focus. The test now awaits enabled and focused Imports before its unchanged keyboard, download and scrolling checks; all three affected browser cases passed. This is a test-only correction; the retained package runtime is unchanged. Fresh exact-head CI remains required.
+
 ## Final local acceptance
 
 - 1,184 unit/UI/tool tests in 94 files passed on the corrected runtime.
