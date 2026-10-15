@@ -14,6 +14,8 @@ The [roasted](https://us-trade-tracker.pages.dev/changes/?period=monthly) and [g
 
 This is a fixed pilot, with accepted reporting data through August 2026. It does not promise automatic Canada refresh. A successful update across two successive official releases remains a separate acceptance requirement; initial publication does not close that gate.
 
+The product rankings page now links to the existing monthly portfolio figures with the chosen trade direction. Available portfolio summaries open matching monthly or rolling country rankings. Product rankings retain their annual $10 million growth threshold; these links change no calculations or CSV formats. See the [research handoff validation](docs/validation/research-handoffs.md). This source update awaits its separately recorded publication check.
+
 ## Project direction
 
 The **coffee portfolio briefing** at `/briefing/portfolio/` combines the selected published coffee profiles in one report, keeping their amounts and duty rates separate. Choose products and Imports/Exports, share the selection URL, download sourced summary/partner CSVs or print/save the report as PDF. See the [verification and publication boundary](docs/validation/coffee-portfolio-briefing.md).
