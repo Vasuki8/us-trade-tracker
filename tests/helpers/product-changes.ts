@@ -12,3 +12,16 @@ export function productChangeSample(code:string,name:string,previous:number,curr
   const product:ProductDefinition={code,displayName:name,importable:true,published:true,dutiesAccepted:false};
   return {product,release};
 }
+
+// Deliberately uneven months expose accidental annual/monthly substitution.
+export function monthlyProductChangeSample(code:string,name:string,previous:number,current:number,qualification=12_000_000,exportsPrevious=60,exportsCurrent=30){
+  const result=productChangeSample(code,name,qualification,24_000_000);
+  for(const row of result.release.observations){
+    const prior=row.direction==='imports'?previous:exportsPrevious,next=row.direction==='imports'?current:exportsCurrent;
+    const annual=row.direction==='imports'?qualification:12_000_000;
+    const remainder=annual-prior,base=Math.floor(remainder/11);
+    const value=row.month==='2024-12'?prior:row.month==='2025-12'?next:row.month.startsWith('2024')?base+(row.month==='2024-11'?remainder%11:0):100;
+    row.valueUsd=row.geography==='world'?value:Math.floor(value/4);
+  }
+  return result;
+}
