@@ -22,6 +22,8 @@ The published profiles include On this profile section links, annual one-country
 
 ## Project direction
 
+The approved **briefing research links candidate** adds matching monthly Imports/Exports links and separate twelve-month partner-card links to the existing country rankings. Local acceptance passed 1,312 unit/131 browser/24 packaging tests with zero type diagnostics, all eight real-product handoffs and 112 byte-identical CSV cases. Its prepared site has 31 entries/1,712,596 raw bytes. Independent review, exact-head CI and public acceptance remain pending; see the [briefing-link verification](docs/validation/briefing-research-links.md).
+
 The **coffee portfolio briefing** at `/briefing/portfolio/` combines the selected published coffee profiles in one report, keeping their amounts and duty rates separate. Choose products and Imports/Exports, share the selection URL, download sourced summary/partner CSVs or print/save the report as PDF. See the [verification and publication boundary](docs/validation/coffee-portfolio-briefing.md).
 
 The website uses Astro, TypeScript, and React on Cloudflare Pages. Census observations are processed into prepared pages and chart data. The initial hosting budget is US$0 to US$15 per month, excluding the domain and development work; automatic monthly publishing remains future work.

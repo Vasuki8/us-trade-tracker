@@ -15,7 +15,7 @@ test('coffee briefing links to the research and separates monthly and annual com
   await expect(page.locator('astro-island')).toHaveCount(0);
   await page.getByRole('link',{name:'Explore the full product profile',exact:true}).click();await expect(page).toHaveURL(/\/products\/090121\/$/);
   await page.getByRole('navigation',{name:'Main'}).getByRole('link',{name:'Briefing',exact:true}).click();await expect(page).toHaveURL(/\/briefing\/$/);
-  await page.getByRole('link',{name:'See all country changes',exact:true}).click();await expect(page).toHaveURL(/\/changes\/$/);
+  await page.getByRole('region',{name:'Annual import partner changes'}).getByRole('link',{name:'Explore twelve-month import changes by country',exact:true}).click();await expect(page).toHaveURL(/\/changes\/\?direction=imports&metric=dollars#changes-heading$/);
   await page.goto('/');await page.getByRole('link',{name:'Read the coffee briefing',exact:true}).click();await expect(page).toHaveURL(/\/briefing\/$/);
   expect(errors).toEqual([]);expect(censusRequests).toEqual([]);
 });
@@ -29,7 +29,7 @@ test('briefing research and mobile keyboard navigation work without JavaScript',
     await expect(page.getByRole('region',{name:'Sources and release'})).toContainText('2026-01-01T00:00:00.000Z');
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
     await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'Skip to content'})).toBeFocused();await page.keyboard.press('Enter');await expect(page).toHaveURL(/\/briefing\/#main$/);
-    await page.getByRole('link',{name:'See all country changes',exact:true}).focus();await page.keyboard.press('Enter');await expect(page).toHaveURL(/\/changes\/$/);
+    await page.getByRole('region',{name:'Annual import partner changes'}).getByRole('link',{name:'Explore twelve-month import changes by country',exact:true}).focus();await page.keyboard.press('Enter');await expect(page).toHaveURL(/\/changes\/\?direction=imports&metric=dollars#changes-heading$/);
     await page.goto('/briefing/');await mkdir('test-results/briefing-visual',{recursive:true});await page.screenshot({path:'test-results/briefing-visual/mobile-no-js.png',fullPage:true});
   }finally{await context.close();}
 });
