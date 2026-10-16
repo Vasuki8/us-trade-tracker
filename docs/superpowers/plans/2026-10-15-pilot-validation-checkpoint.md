@@ -99,7 +99,7 @@ Review deliberately:
 
 **Interfaces:** Consume Tasks 1–2, private evidence and unchanged runtime/data identities. Produce reviewed repository materials, a short owner handoff and confirmed operational cleanup. Actual participant findings are not an output of this batch.
 
-- [ ] Self-review all five focus points and check that no factual statement claims sessions occurred. Correct current README metrics/status to the authenticated published 31-entry/1,886,967-byte package and PR110 completion; do not relabel the historical build source or reopen completed cleanup.
+- [x] Self-review all five focus points and check that no factual statement claims sessions occurred. Correct current README metrics/status to the authenticated published 31-entry/1,886,967-byte package and PR110 completion; do not relabel the historical build source or reopen completed cleanup.
 - [ ] Obtain one fresh whole-branch review of the immutable base/head, materials, answer-key checks and scope. Resolve material content/calculation issues; record deferred minors and rulings. Verify corrections directly. No application code fix is included.
 - [ ] Push/create/attach the single PR. Require successful exact-final-head push/PR Code checks, then merge with expected-head protection and synchronize clean main. Prove no changes under `src/`, runtime scripts, deployment configuration/selection, classification inputs, dependencies or workflows.
 - [ ] Give the owner the guide, sourced example and blank scorecard. Recommend a small first set of relevant volunteers as exploratory work within the original broader interview objective. Ask for anonymized observed failures and real task context when available; do not recruit/contact people or infer permission to do so.
@@ -112,3 +112,7 @@ The three tasks produce usable research materials with a numerical check, rather
 After this batch, the next development decision should use observed task failures or the real September release. The owner must supply participant access/observations; the agent cannot substitute a browser rehearsal for people. The November 4 schedule can change and still requires publication/API/classification confirmation before a separately scoped live update.
 
 Review this combined design and three-task permission envelope. Approval authorizes root execution with independent review and reviewed merges, without routine approval pauses, through actual proof/cleanup. It does not authorize the excluded follow-on work.
+
+## Execution checkpoint
+
+Tasks 1–2 and the local documentation self-review are complete at this committed checkpoint. Remaining Task 3 operational boxes are intentionally pending here. Actual independent review, CI, merge, archive, completed logs, cache absence and clean-main results will be preserved in this batch’s private finalization and the single implementation PR description; this avoids a second bookkeeping-only PR. No participant sessions or website deployment are claimed.
