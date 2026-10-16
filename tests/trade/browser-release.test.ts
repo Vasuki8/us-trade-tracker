@@ -95,3 +95,10 @@ it('projects canonical recorded revisions unchanged after compact browser decodi
   expect(view.series[1].points.find(p=>p.month==='2025-01')).toMatchObject({valueUsd:25,recordedRevision:false});
   expect(decoded).toEqual(release);
 });
+it('preserves sparse monthly duty revision attribution after compact transport',()=>{
+ const r=sampleDutyRelease();r.duties.revisedKeys=['imports/090121/2024-02/world/-/CAL_DUT_MO','imports/090121/2025-02/country/1220/coverage'];
+ const decoded=decodeBrowserRelease(encodeBrowserRelease(r));
+ expect(buildDutyView(decoded,[]).monthlyRecordedRevisions).toEqual([{partnerCode:'-',month:'2024-02',inputs:['CAL_DUT_MO']}]);
+ expect(buildDutyView(decoded,['1220']).monthlyRecordedRevisions).toEqual([{partnerCode:'1220',month:'2025-02',inputs:['coverage']}]);
+ expect(buildDutyView(decoded,[])).toEqual(buildDutyView(r,[]));
+});

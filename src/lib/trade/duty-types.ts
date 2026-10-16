@@ -15,8 +15,10 @@ export type DutyPeriod={
 export type DutyChange={comparable:boolean;calculatedDutyUsd:number|null;growthPercent:number|null;dutySharePercentagePoints:number|null};
 export type DutyComparison={current:DutyPeriod;previous:DutyPeriod;change:DutyChange};
 export type DutySeries={code:string;name:string;monthly:DutyPeriod[];latest:DutyComparison;rolling:DutyComparison};
+export type DutyRevisionInput='CAL_DUT_MO'|'CON_VAL_MO'|'DUT_VAL_MO'|'coverage';
+export type DutyMonthlyRevision={partnerCode:string;month:Month;inputs:DutyRevisionInput[]};
 export type DutyView={
-  productCode:string;title:string;reportingMonth:Month;fromMonth:Month|null;available:boolean;series:DutySeries[];
+  productCode:string;title:string;reportingMonth:Month;fromMonth:Month|null;available:boolean;series:DutySeries[];monthlyRecordedRevisions:DutyMonthlyRevision[];
   provenance:{source:'census'|'fixture';retrievedAt:string;codeVersion:string;sourceUrls:string[];revised:boolean};
 };
 export type DutySummary='HS'|'HSCY'|'HSRP'|'HSCYRP';
