@@ -1,5 +1,5 @@
 import type {Release,ValueStatus} from './types';
-import type {DutyView,DutyObservation,DutyPeriod,DutyComparison} from './duty-types';
+import type {DutyView,DutyObservation,DutyPeriod,DutyComparison,DutyRevisionInput} from './duty-types';
 import {shiftMonth} from './metrics';import {validMonth} from './normalize';
 const measures=['calculatedDuty','consumptionValue','dutiableValue'] as const;
 function safeSum(values:number[]):number{let sum=0;for(const value of values){sum+=value;if(!Number.isSafeInteger(sum))throw new Error('Duty total exceeds safe precision');}return sum;}
@@ -7,7 +7,7 @@ export function buildDutyView(release:Release,partnerCodes:string[]):DutyView{
   const codes=[...new Set(partnerCodes)];if(codes.length>3||codes.some(code=>!/^[1-9]\d{3}$/.test(code)))throw new Error('Choose up to three partner countries');
   const metadata={productCode:release.productCode,title:release.observations.find(row=>row.direction==='imports'&&row.geography==='world')?.description??release.productCode,reportingMonth:release.reportingMonth,
     provenance:{source:release.source,retrievedAt:release.retrievedAt,codeVersion:release.codeVersion,sourceUrls:release.sourceUrls.filter(url=>url.includes('/imports/hs')),revised:release.schemaVersion===2&&release.duties.revisedKeys.length>0}};
-  if(release.schemaVersion===1)return {...metadata,fromMonth:null,available:false,series:[]};
+  if(release.schemaVersion===1)return {...metadata,fromMonth:null,available:false,series:[],monthlyRecordedRevisions:[]};
   const rows=release.duties.observations,seen=new Set<string>();
   for(const row of rows){
     if(row.productCode!==release.productCode||!validMonth(row.month)||(row.geography==='world'?row.partnerCode!=='-':row.geography!=='country'||!/^[1-9]\d{3}$/.test(row.partnerCode)))throw new Error('Invalid duty series identity');
@@ -42,5 +42,12 @@ export function buildDutyView(release:Release,partnerCodes:string[]):DutyView{
     return {code,name:code==='-'?'All partner countries':selected.at(-1)?.partnerName??release.observations.find(row=>row.direction==='imports'&&row.partnerCode===code)?.partnerName??code,monthly,
       latest:comparison(monthly.at(-1)!,period(priorEnd,priorEnd)),rolling:comparison(period(shiftMonth(end,-11),end),period(shiftMonth(end,-23),priorEnd))};
   });
-  return {...metadata,fromMonth:months[0],available:true,series};
+  const revisedKeys=new Set(release.duties.revisedKeys);
+  const inputOrder:DutyRevisionInput[]=['CAL_DUT_MO','CON_VAL_MO','DUT_VAL_MO','coverage'];
+  const monthlyRecordedRevisions=series.flatMap(({code})=>months.flatMap(month=>{
+    const prefix=`imports/${release.productCode}/${month}/${code==='-'?'world':'country'}/${code}/`;
+    const inputs=inputOrder.filter(input=>revisedKeys.has(prefix+input));
+    return inputs.length?[{partnerCode:code,month,inputs}]:[];
+  }));
+  return {...metadata,fromMonth:months[0],available:true,series,monthlyRecordedRevisions};
 }

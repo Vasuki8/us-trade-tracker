@@ -4,8 +4,9 @@ import {createHash} from 'node:crypto';
 import {parseCsv} from '../helpers/parse-csv';
 
 const labels={monthly:'Explore latest-month estimated-duty changes by country',rolling:'Explore twelve-month estimated-duty changes by country'};
-// Compatibility pins from the unchanged fixture producers at 95755a3; numerical assertions below are literal fixture expectations.
-const csvPins={monthly:'838d3f703bf4c22a3ef3a63febe6737e24516703028027f06cdf6c79eb33f5bb',roasted:'50c4131a39e65e5263c0b985489d7a43d898976b10be75a19ab4fab96825ce37',second:'a82a9fe8cc5d285ab53ea7d083f25a8cc65084e3efd53e4f11f3151be3c801a1'};
+// Original producer pins at 95755a3; rolling pins now include the four synthetic duty revision keys.
+// Independent before/after verification found only the existing release-wide revised flag changes.
+const csvPins={monthly:'838d3f703bf4c22a3ef3a63febe6737e24516703028027f06cdf6c79eb33f5bb',roasted:'db4ebfc98ade43fd04cdc95960230a1730818480daad2c18502c3f6e5e602477',second:'934fceac916c6347043740f9ef039ff8547b0cadb9c1c6ab0e59986ad9c3a722'};
 async function reachByTab(page:Page,target:Locator){
  const count=await page.locator('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),[tabindex="0"]').count()+1;
  for(let n=0;n<count;n++){await page.keyboard.press('Tab');if(await target.evaluate(el=>el===document.activeElement))return;}
@@ -45,7 +46,7 @@ for(const [code,name,briefing,destination,factor] of [['090121','Roasted coffee'
    const bytes=await readFile((await download.path())!),rows=parseCsv(bytes.toString('utf8'));
    expect(createHash('sha256').update(bytes).digest('hex')).toBe(period==='monthly'?csvPins.monthly:code==='090121'?csvPins.roasted:csvPins.second);
    if(period==='monthly'){expect(rows).toEqual([]);expect(bytes.toString('utf8')).toMatch(/^feature,ranking_metric,movement,rank,product_code,/);await expect(page.locator('.duty-ranking-counts')).toContainText('4 unchanged');}
-   else{expect(rows).toHaveLength(3);expect(rows.map(row=>row.partner_code)).toEqual(['4280','4759','2010']);expect(rows[0]).toMatchObject({product_code:code,direction:'imports',comparison_period:'rolling',ranking_metric:'share',current_period_start:'2025-01',current_period_end:'2025-12',previous_period_start:'2024-01',previous_period_end:'2024-12',current_calculated_duty_usd:String(4*factor),previous_calculated_duty_usd:String(2*factor),current_consumption_value_usd:String(100*factor),previous_consumption_value_usd:String(44*factor),numerator_measure:'CAL_DUT_MO',denominator_measure:'CON_VAL_MO',source:'Development sample data',code_version:'synthetic'});}
+   else{expect(rows.every(row=>row.revised==='true')).toBe(true);expect(rows).toHaveLength(3);expect(rows.map(row=>row.partner_code)).toEqual(['4280','4759','2010']);expect(rows[0]).toMatchObject({product_code:code,direction:'imports',comparison_period:'rolling',ranking_metric:'share',current_period_start:'2025-01',current_period_end:'2025-12',previous_period_start:'2024-01',previous_period_end:'2024-12',current_calculated_duty_usd:String(4*factor),previous_calculated_duty_usd:String(2*factor),current_consumption_value_usd:String(100*factor),previous_consumption_value_usd:String(44*factor),numerator_measure:'CAL_DUT_MO',denominator_measure:'CON_VAL_MO',source:'Development sample data',code_version:'synthetic'});}
    expect(await page.content()).not.toContain('"observations"');await page.reload();await expect(page.getByRole('button',{name:'Copy duty changes link'})).toBeEnabled();await check();
    await page.goBack();await expect(page).toHaveURL(origin+start);await expect(link).toHaveAttribute('href',href);await page.goForward();await expect(page.getByRole('button',{name:'Copy duty changes link'})).toBeEnabled();await check();
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(errors).toEqual([]);expect(outside).toEqual([]);

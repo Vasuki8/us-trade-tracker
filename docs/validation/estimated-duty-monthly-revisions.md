@@ -1,0 +1,32 @@
+# Monthly estimated-duty recorded revisions
+
+Local acceptance: October 16, 2026. Publication and actual cleanup are recorded in the associated pull request and private closeout; this document does not claim them in advance.
+
+The monthly estimated-duty table now attributes the retained duty release's canonical input revision keys to the exact product, selected partner and displayed month. Money cells mark only their own input as **Revised**. Duty share marks a calculated-duty or consumption revision as **Revised input**; reporting coverage marks a coverage or dutiable-value revision. A revised input can leave a derived result unchanged. Zero, suppressed and removed monthly inputs retain attribution without manufacturing amounts.
+
+Attribution remains separate from shared period/comparison payloads. Latest summaries, rolling periods, change figures, rankings, briefings and charts retain their existing meaning. In particular, hollow duty chart symbols continue to describe reporting/classification qualifications. No mark is a finality or never-revised claim; no earlier values, revision dates, causes or cumulative history are supplied.
+
+Only the duty CSV exporter changes. Its complete existing column/value/quote/row prefix is preserved, with three appended fields: `revised_scope` (`estimated_duty_release`), `recorded_revision_scope` (`monthly_inputs` for monthly rows, `not_assessed` for rolling rows), and `recorded_revision_inputs` (matching canonical tokens in CAL_DUT_MO, CON_VAL_MO, DUT_VAL_MO, coverage order, separated by ` | `). The existing `revised` boolean remains release-wide. Consumers requiring a fixed column count may need adjustment.
+
+## Verification
+
+- Focused tests first failed on the missing projection (6 failures) and missing labels/CSV fields (10 failures), then passed: 36 projection/transport tests and 42 table/CSV/calculation tests. Literal rolling amounts remain 30/400 = 7.5% and 10/200 = 5%; comparisons are unchanged when only revision keys differ.
+- Final full local suite: **1,616 tests in 114 files passed**. Astro/TypeScript: zero errors, warnings or hints. The established local 30-second test allowance changes no repository or CI configuration.
+- **19 targeted fixture browser cases passed**: both synthetic products, world/country attribution, zero and absent rows, CSV, direction changes, restored selections, 320/375px keyboard/scroll behavior, static defaults and existing chart/briefing acceptance. Fixtures add only four explicitly synthetic duty keys each; observations, existing merchandise keys and other metadata are unchanged.
+- The new static test initially assumed the existing duty CSV button was disabled without JavaScript. Source and DOM confirmed that assumption was wrong. Acceptance instead checks readable default figures, the existing JavaScript explanation and disabled chart export; application behavior is preserved.
+- Independent replay checked **139 historical CSV identities**. All **ten duty cases** preserve every original byte after removing only the three appended fields at quoted-record boundaries. The other **129 CSV identities** remain byte-identical. The proposal's original four-exception/135-unchanged count omitted six duty-group cases that use the same exporter; this is an accounting correction, not a second exporter change. The separate Canada projection is unchanged. Historical extra28 cases retain their indirect shared-stage/producer-binding qualification; agreement is not fresh source validation.
+- **12 retained-package browser checks** passed, including four real duty CSV selections, both static defaults, both mobile profiles, merchandise/duty-chart/changes/Canada coexistence and private-route 404s. Duty and merchandise PNGs were downloaded and visually inspected. No external requests or page errors occurred in that harness.
+
+## Candidate and protected inputs
+
+Actual package source is `32a25bec5b5dee3e4ea1dafe08bd9f09ad4f3518`; subsequent documentation commits must not relabel it. Staging copies seven accepted processed files totaling **8,186,318 bytes**, below 16 MiB. The seven accepted and eleven protected input identities match the authenticated prior proofs. Both real coffee releases have empty duty revision lists and gain no invented labels; positive labels are tested with synthetic fixtures.
+
+The independently read-back site package has **31 entries / 1,893,129 raw bytes / 409,156 bytes summed gzip**; largest asset is `products/090121/index.html`, **351,334 bytes**. ZIP size is **412,600 bytes**, SHA256 `7d78c9714021a9164799a62e74010716e4d6870c70b05338162a79dc7aad9539`; manifest SHA256 `0c2fc7c4653fd4f9791bac1b76a48c7a471ec8ed79dc20f63cf2bd5673b4eb8f`. Site and withdrawal ZIP recreation is deterministic. Existing file/payload limits and the 15,000-file planning alert remain unchanged; downloads remain generated in the browser.
+
+The authenticated predecessor is deployment `3e956f76-8c0e-42bf-9452-6ec16e5af029`. Its single live verification completed **68 checks / 98 HTTP attempts** across the canonical and observed deployment origins. An initial local preflight lacked the pinned Python setting, failed before any HTTP request, and was preserved before correction.
+
+Private proof is bounded under ignored `data/backups/estimated-duty-monthly-revisions/deployment-20261016-r1`, including original proposal, input audits, logs, compatibility identities, exact-source packages, browser receipts and images. No imports/source requests, accepted-data changes, R2 operations, new dependencies/services, paid/access/indexing changes, outreach or recurring jobs are included. This milestone does not establish new source validity, customer demand or successive-official-release acceptance.
+
+## CI-discovered fixture expectation correction
+
+The first full CI browser run exposed four failures in the existing briefing-duty research links test. The newly added synthetic duty keys correctly change the existing release-wide `revised` flag from false to true in ranking CSVs. Independent before/after calculations recovered both previous SHA256 pins by changing only that flag; every other field and byte is unchanged. Local reproduction failed four cases, then the narrowly updated two hash expectations and explicit true-flag assertion passed all twelve cases. No ranking exporter, application code or accepted data changes. The original deterministic candidate remains valid: only this test and documentation changed after its source commit. Final exact-head CI is required after this correction.
