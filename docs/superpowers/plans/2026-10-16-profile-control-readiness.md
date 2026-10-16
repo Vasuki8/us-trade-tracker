@@ -106,3 +106,7 @@ Current verified predecessor: deployment `eae71877-8b84-43d5-925d-cf6518a583b6`,
 ## Self-review and approval handoff
 
 The plan changes two existing application files and reuses the current readiness signal; it does not introduce another lifecycle or delivery system. Tests exercise misleading static controls, held restoration, first downloads, exclusions, keyboard/mobile and the newly added revision attribution. All 139 CSVs remain exact, and package/publication/rollback/actual-cleanup requirements are explicit. The owner can approve all three tasks and permissions together; root implementation and independent review remain the execution method. No implementation or publication has started for this proposal.
+
+## Execution progress
+
+Task 1 complete. Task 2 local focused/browser/type/package/139-CSV/retained-browser gates passed; the full-suite rerun, independent review and exact-head CI/integration are required before publication. The initial full-suite fallback-test failure and bounded owning-setup correction are preserved. Candidate source remains b77cb8a6d6d69e352123c0e4baf6e8b13381bcf8. Task 3 publication and actual cleanup remain pending; their actual results will be recorded in the same PR/private closeout.
