@@ -109,3 +109,15 @@ it.each(['wrong engine','wrong platform'])('never closes Linux Firefox acceptanc
  const r=completeJourneys();if(failure==='wrong engine')r.engine='webkit';else r.platform='win32';
  expect(()=>assertPublishedFirefoxCompletion(plan,{before:{status:'pass',completedCount:38},after:{status:'pass',completedCount:38},journeys:r})).toThrow('published-incomplete');
 });
+
+import {spawnSync} from 'node:child_process';
+it.each(['waiter-first','click-first'])('preserves failure finalization with default Node rejection handling: %s',order=>{
+ const child=spawnSync(process.execPath,['--import','tsx','--input-type=module','-e',`
+  import {waitForProfileDownload} from './scripts/published-profile-journeys.ts';
+  const order=${JSON.stringify(order)};
+  const page={waitForEvent(){return new Promise((_,reject)=>setTimeout(()=>reject(Error('download-closed')),order==='waiter-first'?0:30));},getByRole(){return {click(){return new Promise((resolve,reject)=>setTimeout(()=>order==='click-first'?reject(Error('click-failed')):resolve(),order==='click-first'?0:30));}};}};
+  try{await waitForProfileDownload(page,'Download');}catch{console.log('caught');}finally{console.log('finalized');}
+  await new Promise(resolve=>setTimeout(resolve,60));
+ `],{encoding:'utf8',timeout:10000});
+ expect(child.status,child.stderr).toBe(0);expect(child.stdout).toBe('caught\nfinalized\n');expect(child.stderr).toBe('');
+});
