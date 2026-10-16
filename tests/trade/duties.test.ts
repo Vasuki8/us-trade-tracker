@@ -93,3 +93,18 @@ it('has no monthly input attribution without duty keys, including legacy views',
  expect(buildDutyView(sampleRelease(),[]).monthlyRecordedRevisions).toEqual([]);
  expect(buildDutyView(sampleDutyRelease(),[]).monthlyRecordedRevisions).toEqual([]);
 });
+it('appends exact monthly revision inputs and explicitly leaves rolling attribution unassessed',()=>{
+ const r=sampleDutyRelease();r.duties.revisedKeys=['coverage','DUT_VAL_MO','CON_VAL_MO','CAL_DUT_MO','coverage'].map(input=>`imports/090121/2025-01/world/-/${input}`);
+ const csv=serializeDutyCsv(buildDutyView(r,[])),lines=csv.trim().split('\r\n');
+ const parse=(line:string)=>line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+ const header=parse(lines[0]);expect(header.slice(-3)).toEqual(['revised_scope','recorded_revision_scope','recorded_revision_inputs']);
+ const rows=lines.slice(1).map(parse);
+ expect(rows.every(row=>row.length===header.length)).toBe(true);
+ const revised=rows.find(row=>row[0]==='monthly'&&row[7]==='2025-01')!;
+ expect(revised.slice(-3)).toEqual(['estimated_duty_release','monthly_inputs','CAL_DUT_MO | CON_VAL_MO | DUT_VAL_MO | coverage']);
+ expect(revised[header.indexOf('revised')]).toBe('true');
+ expect(revised[header.indexOf('calculated_duty_usd')]).toBe('19');
+ expect(rows.find(row=>row[7]==='2024-02')!.slice(-3)).toEqual(['estimated_duty_release','monthly_inputs','']);
+ for(const row of rows.filter(row=>row[0].startsWith('rolling'))){expect(row.slice(-3)).toEqual(['estimated_duty_release','not_assessed','']);expect(row[header.indexOf('revised')]).toBe('true');}
+ expect(serializeDutyCsv(buildDutyView(sampleDutyRelease(),[]))).toContain(',false,');
+});
