@@ -87,11 +87,11 @@ Review deliberately:
 
 **Interfaces:** Consume the authenticated accepted coffee releases and Task 1 task IDs. Produce a sourced example plus private expected-answer records with fields `taskId`, `productCode`, `direction`, `period`, `measure`, `value`, `sourceIdentity`, `supportingPath` and `qualification`. Use separate records for distinct measures and periods.
 
-- [ ] Define the example's bounded questions and reporting windows before calculating. Expected: latest month August 2026 versus August 2025; rolling September 2025–August 2026 versus September 2024–August 2025 where required; existing coffee product identities only.
-- [ ] Derive expected values directly from authenticated processed observations, independently of application calculators. Compute rolling duty shares as matching summed duties divided by summed consumption values. Preserve unavailable comparisons and reported zero; retain coverage/classification qualifications.
-- [ ] Compare the example's figures, country leads, periods and links against the existing prepared views/retained package. Expected: exact integer amounts and comparison identities; documented display rounding only. A genuine mismatch stops that example and becomes a concrete finding, not an authorized product fix.
-- [ ] Write the concise manual briefing with supporting paths, source/retrieval identity and interpretation limits. Keep answer keys private and products separate. Expected: no unsupported profitability, demand, tariff-cause, shipment-liability or combined-portfolio claim.
-- [ ] Run a private numerical/link/content verification against both documents, authenticate the seven/eleven identities again, and commit the sourced example. Preserve the compatibility limitation of the historical extra28 evidence; no fresh source audit is claimed.
+- [x] Define the example's bounded questions and reporting windows before calculating. Expected: latest month August 2026 versus August 2025; rolling September 2025–August 2026 versus September 2024–August 2025 where required; existing coffee product identities only.
+- [x] Derive expected values directly from authenticated processed observations, independently of application calculators. Compute rolling duty shares as matching summed duties divided by summed consumption values. Preserve unavailable comparisons and reported zero; retain coverage/classification qualifications.
+- [x] Compare the example's figures, country leads, periods and links against the existing prepared views/retained package. Expected: exact integer amounts and comparison identities; documented display rounding only. A genuine mismatch stops that example and becomes a concrete finding, not an authorized product fix.
+- [x] Write the concise manual briefing with supporting paths, source/retrieval identity and interpretation limits. Keep answer keys private and products separate. Expected: no unsupported profitability, demand, tariff-cause, shipment-liability or combined-portfolio claim.
+- [x] Run a private numerical/link/content verification against both documents, authenticate the seven/eleven identities again, and commit the sourced example. Preserve the compatibility limitation of the historical extra28 evidence; no fresh source audit is claimed.
 
 ## Task 3: Review, integrate and hand off the owner-run checkpoint
 
