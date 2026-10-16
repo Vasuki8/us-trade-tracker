@@ -77,8 +77,8 @@ export function ProductExplorer({release}:{release:Release}){
     </aside></section>
     <CountryShareHistory view={shareHistory} download={<CountryShareHistoryDownload view={shareHistory}/>}/>
     <SelectedCountryComparison view={selectedComparison} countryCodes={countryCodes} onPeriodChange={period=>changeSelection({...selection,comparisonPeriod:period})}/>
-    <TradeChanges view={changes}/>
-    {direction==='imports'&&<EstimatedDuties view={buildDutyView(release,countryCodes)} classificationIntervals={release.classificationIntervals}/>}
+    <TradeChanges view={changes} controlsReady={Boolean(viewLink)}/>
+    {direction==='imports'&&<EstimatedDuties view={buildDutyView(release,countryCodes)} classificationIntervals={release.classificationIntervals} controlsReady={Boolean(viewLink)}/>}
     <section className="detail-grid"><div className="data-card"><p className="eyebrow">DISPLAYED DATA</p><h2 id="chart-data-heading">The numbers behind the chart</h2><TradeTable view={view}/></div>
       <aside className="partners-card" aria-labelledby="leading-partners-heading"><p className="eyebrow">LATEST TWELVE MONTHS</p><h2 id="leading-partners-heading">Leading partners</h2><p>Share of U.S. {direction} for this product.</p><p>Open a partner to view its latest-twelve-month comparison.</p><ol className="partner-ranks">{view.partners.slice(0,10).map(partner=><li key={partner.code}><a href={profileViewPath(release.productCode,{direction,months:12,countryCodes:[partner.code]})+'#trade-history-heading'}>{partner.name}</a><strong>{usd(partner.valueUsd,true)}</strong><small>{partner.sharePercent===null?'Share unavailable':`${partner.sharePercent.toFixed(1)}% share`}</small></li>)}</ol><p className="chart-note">Ranked by dollar value. Incomplete periods remain unavailable. Export flows describe U.S. sales, not a destination’s total demand.</p></aside>
     </section>

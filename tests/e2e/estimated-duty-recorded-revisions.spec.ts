@@ -34,13 +34,15 @@ for(const code of ['090121','090122']){
  test(`monthly duty revisions ${code} static default remains readable`,async({browser,baseURL})=>{
   const context=await browser.newContext({javaScriptEnabled:false});try{const page=await context.newPage();await page.goto(baseURL+`/products/${code}/?direction=exports&countries=1220`);
    const table=page.getByRole('table',{name:'Monthly estimated duties · All partner countries'});await expect(table.getByRole('row',{name:/Feb 2024/})).toContainText('$0 Revised');
-   await expect(page.getByText(/Without JavaScript|JavaScript is required|Enable JavaScript/).first()).toBeVisible();
+   await expect(page.locator('noscript p').filter({hasText:'Enable JavaScript to select countries, change trade direction or download the estimated duties CSV.'})).toBeVisible();
+   await expect(page.getByRole('button',{name:'Download estimated duties CSV',exact:true})).toBeDisabled();
    await expect(page.getByRole('button',{name:'Download duty amounts chart PNG',exact:true})).toBeDisabled();
   }finally{await context.close();}
  });
 }
 for(const width of [320,375])test(`monthly duty revisions ${width}px keyboard and scroll region`,async({page})=>{
  await page.setViewportSize({width,height:850});await page.goto('/products/090121/?countries=1220');await expect(page.getByRole('button',{name:'Copy view link',exact:true})).toBeEnabled();
+ const csv=page.getByRole('button',{name:'Download estimated duties CSV',exact:true});await expect(csv).toBeEnabled();await csv.focus();await expect(csv).toBeFocused();const pending=page.waitForEvent('download');await page.keyboard.press('Enter');await pending;await expect(csv).toBeFocused();
  const region=page.getByRole('region',{name:'Scrollable monthly estimated duties · CANADA'});await region.focus();await expect(region).toBeFocused();await page.keyboard.press('ArrowRight');
  await expect(region.getByText('Revised',{exact:true})).toHaveCount(1);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
