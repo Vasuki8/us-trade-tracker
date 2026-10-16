@@ -132,3 +132,7 @@ Last verified public predecessor: deployment `3e956f76-8c0e-42bf-9452-6ec16e5af0
 The four tasks address a known original-scope remainder without changing amounts or broadening revision history. Metadata stays outside shared comparisons, derived labels describe inputs, and rolling CSV applicability is explicit. Four synthetic keys cover all input kinds, a real zero and a missing row. Compatibility uses post-PR114 identities; restoration uses the exact last verified public package. Root execution, review, publication/restoration and actual cleanup are covered; imports, accepted-data changes and R2 remain excluded.
 
 Review this combined design, four tasks and full permission envelope. Full approval authorizes execution through reviewed publication and actual cleanup without routine approval pauses.
+
+## Execution correction from authenticated inventory
+
+The retained 139-identity inventory contains ten duty CSV cases: four legacy84 cases and six duty-group world/one/three selections. The original four-exception/135-unchanged count omitted the latter six. The single approved duty serializer necessarily appends the same three columns to all ten; independent verification strips only those fields and requires the original bytes to match in every case. The other 129 identities remain byte-identical. This corrects acceptance accounting and does not add another exporter, data change or feature. The exact approved proposal is preserved privately.
