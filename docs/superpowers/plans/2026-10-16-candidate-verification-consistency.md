@@ -71,10 +71,10 @@ Pause only dependent work for unexplained input drift, integrity failure, unavai
 
 **Interfaces:** Consumes Task 1's decoder. Produces `recoverCandidate` and routes existing CLI `verify` through it. Bare `recoverBundle`/`recover`, options and result shape stay unchanged.
 
-- [ ] Add credential-free CLI regression cases for the same-month key and baseline-reference mismatches using an otherwise valid downloaded pair. Assert rejection, zero provider-factory calls, absent recovery destination/current pointer and unchanged original pair bytes. Expected initially FAIL: current verify accepts the inconsistent pair.
-- [ ] Add `recoverCandidate`, then switch only verify's recovery call. All validation precedes `restoreDecoded`. Expected: mismatches reject before writes; valid pairs recover byte-identical release/raw fixture files and the expected pointer.
-- [ ] Check legacy roasted state normalization, version 1 and duty-enabled version 2 bundles, null-baseline initialization and a second synthetic product using existing test fixtures. Keep reported zeros/missing data untouched. Preserve occupied-destination markers, source/accepted pointers and bare checksum recovery. Do not introduce real product intake or source-validity claims.
-- [ ] Run `npm test -- tests/scripts/archive-workflow.test.ts tests/scripts/archive-release.test.ts tests/scripts/product-archive-release.test.ts tests/scripts/duty-archive.test.ts --maxWorkers=2`. Expected all cases pass, including unchanged workflow backup ordering/candidate-only/conditional-promotion contracts. Commit.
+- [x] Add credential-free CLI regression cases for the same-month key and baseline-reference mismatches using an otherwise valid downloaded pair. Assert rejection, zero provider-factory calls, absent recovery destination/current pointer and unchanged original pair bytes. Expected initially FAIL: current verify accepts the inconsistent pair.
+- [x] Add `recoverCandidate`, then switch only verify's recovery call. All validation precedes `restoreDecoded`. Expected: mismatches reject before writes; valid pairs recover byte-identical release/raw fixture files and the expected pointer.
+- [x] Check legacy roasted state normalization, version 1 and duty-enabled version 2 bundles, null-baseline initialization and a second synthetic product using existing test fixtures. Keep reported zeros/missing data untouched. Preserve occupied-destination markers, source/accepted pointers and bare checksum recovery. Do not introduce real product intake or source-validity claims.
+- [x] Run `npm test -- tests/scripts/archive-workflow.test.ts tests/scripts/archive-release.test.ts tests/scripts/product-archive-release.test.ts tests/scripts/duty-archive.test.ts --maxWorkers=2`. Expected all cases pass, including unchanged workflow backup ordering/candidate-only/conditional-promotion contracts. Commit.
 
 ## Task 3: Verify, review, integrate and clean up
 

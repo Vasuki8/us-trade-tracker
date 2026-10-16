@@ -128,6 +128,9 @@ export async function promoteCandidate(context:ArchiveContext,candidate:ArchiveC
   const outcome={status,reference:candidate.reference};
   try{await writeFile(join(context.runDir,'outcome.json'),JSON.stringify({...outcome,backup}));}catch{throw new PromotionReceiptError(outcome);}return outcome;
 }
+export async function recoverCandidate(bundlePath:string,candidate:ArchiveCandidate,dataDir:string,expectedProductCode:string=DEFAULT_PRODUCT_CODE):Promise<{releaseFile:string}>{
+  const decoded=decodeCandidateBundle(await readLocalFileBounded(bundlePath,LIMITS.bundle),candidate,expectedProductCode);return restoreDecoded(decoded,dataDir);
+}
 export async function recoverBundle(bundlePath:string,expectedSha256:string,dataDir:string,expectedProductCode:string=DEFAULT_PRODUCT_CODE):Promise<{releaseFile:string}>{
   const decoded=unpackBundle(await readLocalFileBounded(bundlePath,LIMITS.bundle),expectedSha256,expectedProductCode);return restoreDecoded(decoded,dataDir);
 }

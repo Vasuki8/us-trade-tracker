@@ -3,7 +3,7 @@ import {join,resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {createR2Store,readR2Config,R2ConfigurationError,type ArchiveStore} from './archive-store';
 import {parseArchiveDispatch} from './archive-inputs';
-import {buildLocalBundle,restoreForImport,stageCandidate,promoteCandidate,recoverBundle,parseRunState,parseCandidateState,readLocalFileBounded,PromotionReceiptError} from './archive-release';
+import {buildLocalBundle,restoreForImport,stageCandidate,promoteCandidate,recoverBundle,recoverCandidate,parseRunState,parseCandidateState,readLocalFileBounded,PromotionReceiptError} from './archive-release';
 import {parseArchiveJson,LIMITS} from './archive-bundle';
 import {DEFAULT_PRODUCT_CODE,getProduct,PRODUCTS,type ProductDefinition} from '../src/lib/trade/product-registry';
 import {productDataPaths} from './product-paths';
@@ -21,7 +21,7 @@ export async function runArchiveCommand(args:string[],env:NodeJS.ProcessEnv,stor
   if(command==='recover')return recoverBundle(options.get('bundle')!,options.get('sha256')!,dataDir,productCode);
   if(command==='verify'){
     const candidate=parseCandidateState(parseArchiveJson(await readLocalFileBounded(join(runDir,'candidate.json'),LIMITS.pointer),LIMITS.pointer),productCode);
-    return recoverBundle(join(runDir,'bundle.json'),candidate.reference.sha256,dataDir,productCode);
+    return recoverCandidate(join(runDir,'bundle.json'),candidate,dataDir,productCode);
   }
   if(command==='pack'){
     const pkg=await buildLocalBundle(dataDir,null,productCode);await mkdir(runDir,{recursive:true});await writeFile(join(runDir,'bundle.json'),pkg.bytes,{flag:'wx'});

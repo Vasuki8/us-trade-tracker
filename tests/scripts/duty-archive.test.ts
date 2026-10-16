@@ -48,6 +48,10 @@ it('stages v2 against v1, verifies its backup without credentials and restores i
  await prepareRelease({productCode:'090121',end:'2026-08',months:60,apiKey:'synthetic',outputDir:join(ctx.dataDir,'processed'),codeVersion:'next',includeDuties:true,classificationIntervals},syntheticDutyFetch());
  const candidate=await stageCandidate(ctx,run);expect(store.pointerPutCalls).toBe(0);
  let calls=0;await runArchiveCommand(['verify','--data-dir',join(root,'offline'),'--run-dir',ctx.runDir],{},()=>{calls++;throw new Error('No credentials');});expect(calls).toBe(0);
+ const decoded=unpackBundle(await readFile(join(ctx.runDir,'bundle.json')),candidate.reference.sha256);
+ expect(await readFile(join(root,'offline/processed/releases',decoded.manifest.releaseId+'.json'))).toEqual(decoded.files.get('release.json'));
+ for(const [path,bytes] of decoded.files)if(path!=='release.json')expect(await readFile(join(root,'offline/raw',decoded.manifest.releaseId,path.slice(4)))).toEqual(bytes);
+
  expect((await promoteCandidate(ctx,candidate,{artifactId:'123',artifactDigest:'e'.repeat(64)})).status).toBe('acknowledged');
  const next={store,dataDir:join(root,'next/data'),runDir:join(root,'next/run')};const nextRun=await restoreForImport(next,{reportingMonth:'2026-08',initialize:false});
  const release=await readCurrentRelease(join(next.dataDir,'processed'));expect(release.schemaVersion).toBe(2);

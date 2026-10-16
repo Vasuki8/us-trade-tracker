@@ -1,12 +1,13 @@
-import {afterAll,expect,it} from 'vitest';
-import {readFile,mkdtemp,writeFile,rm,mkdir,copyFile} from 'node:fs/promises';
+import {afterAll,beforeAll,describe,expect,it} from 'vitest';
+import {readFile,mkdtemp,writeFile,rm,mkdir,copyFile,stat} from 'node:fs/promises';
 import {tmpdir} from 'node:os';import {join} from 'node:path';
 import {parse} from 'yaml';
 import {parseArchiveDispatch} from '../../scripts/archive-inputs';
 import {runArchiveCommand} from '../../scripts/archive-product';
 import {createArchiveFixture,syntheticCensusFetch} from '../helpers/archive';
+import {createProductArchiveFixture} from '../helpers/product-data';
 import {MemoryArchiveStore} from '../helpers/archive-store';
-import {CURRENT_KEY,packBundle,encodePointer} from '../../scripts/archive-bundle';
+import {CURRENT_KEY,packBundle,encodePointer,sha256} from '../../scripts/archive-bundle';
 import {promoteCandidate,parseCandidateState,type ArchiveCandidate} from '../../scripts/archive-release';
 import {prepareRelease,readCurrentRelease} from '../../scripts/prepare-release';
 const valid={REPORTING_MONTH:'2026-08',ARCHIVE_TO_R2:'false',INITIALIZE_ARCHIVE:'false',GITHUB_REF:'refs/heads/main'};
@@ -169,4 +170,73 @@ it('preserves_a_downloaded_exact_candidate_and_baseline_for_offline_recovery_and
  expect(await promoteCandidate({store,dataDir:'unused',runDir:downloaded},parsed,backup)).toMatchObject({status:'acknowledged',reference:staged.reference});
  expect(store.puts.at(-1)?.condition).toEqual({ifMatch:originalETag});expect(store.objects.get(CURRENT_KEY)!.bytes).toEqual(encodePointer(staged.reference));
  expect(await readFile(join(downloaded,'candidate.json'))).toEqual(candidateBytes);
+});
+
+
+describe('offline candidate identity',()=>{
+ let root:string,fixture:Awaited<ReturnType<typeof createArchiveFixture>>,current:ReturnType<typeof packBundle>,initial:ReturnType<typeof packBundle>,baseline:ReturnType<typeof packBundle>,originalPointer:Buffer;
+ function state(initializing=false):ArchiveCandidate{
+  return parseCandidateState({schemaVersion:2,productCode:'090121',run:{schemaVersion:2,productCode:'090121',reportingMonth:'2026-08',baseline:initializing?null:{reference:{...baseline.reference},etag:'"retained-etag"',releaseId:fixture.input.releaseId,releaseSha256:sha256(fixture.input.releaseBytes)}},reference:(initializing?initial:current).reference,bundleFile:'bundle.json'});
+ }
+ async function pair(dir:string,bytes:Buffer,candidate:unknown){
+  await mkdir(dir);const candidateBytes=Buffer.from(JSON.stringify(candidate));
+  await writeFile(join(dir,'candidate.json'),candidateBytes);await writeFile(join(dir,'bundle.json'),bytes);return candidateBytes;
+ }
+ beforeAll(async()=>{
+  fixture=await createArchiveFixture();dirs.push(fixture.dataDir);
+  root=await mkdtemp(join(tmpdir(),'trade-offline-identity-'));dirs.push(root);
+  baseline=packBundle(fixture.input);
+  current=packBundle({...fixture.input,releaseId:'2026-08-00000000-0000-4000-8000-000000000003',previous:baseline.reference});
+  initial=packBundle({...fixture.input,releaseId:'2026-08-00000000-0000-4000-8000-000000000004'});
+  originalPointer=await readFile(join(fixture.dataDir,'processed/current.json'));
+  await pair(join(root,'downloaded'),current.bytes,state());
+ });
+ it.each(['release-key','baseline-checksum','baseline-key','baseline-missing','baseline-unexpected','bundle-bytes'] as const)('rejects %s before offline recovery writes',async kind=>{
+  const candidate=state(kind==='baseline-unexpected'),bytes=kind==='bundle-bytes'?Buffer.from('{}'):kind==='baseline-unexpected'?initial.bytes:current.bytes;
+  if(kind==='release-key')candidate.reference.key=candidate.reference.key.replace(/[^/]+\.json$/,'2026-08-00000000-0000-4000-8000-000000000005.json');
+  if(kind==='baseline-checksum')candidate.run.baseline!.reference.sha256='f'.repeat(64);
+  if(kind==='baseline-key'){
+   const id='2026-08-00000000-0000-4000-8000-000000000006';candidate.run.baseline!.reference.key=candidate.run.baseline!.reference.key.replace(/[^/]+\.json$/,id+'.json');candidate.run.baseline!.releaseId=id;
+  }
+  if(kind==='baseline-missing')candidate.run.baseline=null;
+  if(kind==='baseline-unexpected')candidate.run.baseline=state().run.baseline;
+  expect(()=>parseCandidateState(candidate)).not.toThrow();
+  const run=join(root,kind),target=join(run,'recovered'),candidateBytes=await pair(run,bytes,candidate);let calls=0;
+  await expect(runArchiveCommand(['verify','--data-dir',target,'--run-dir',run],{},()=>{calls++;throw Error('Unexpected offline provider');})).rejects.toThrow();
+  expect(calls).toBe(0);await expect(stat(target)).rejects.toMatchObject({code:'ENOENT'});
+  await expect(readFile(join(target,'processed/current.json'))).rejects.toMatchObject({code:'ENOENT'});
+  expect(await readFile(join(run,'candidate.json'))).toEqual(candidateBytes);expect(await readFile(join(run,'bundle.json'))).toEqual(bytes);
+  expect(await readFile(join(root,'downloaded/candidate.json'))).toEqual(Buffer.from(JSON.stringify(state())));
+  expect(await readFile(join(root,'downloaded/bundle.json'))).toEqual(current.bytes);
+  expect(await readFile(join(fixture.dataDir,'processed/current.json'))).toEqual(originalPointer);
+ });
+ it.each(['baseline-aware','initialization','legacy-state'] as const)('recovers exact original v1 fixture bytes with %s',async kind=>{
+  const initializing=kind!=='baseline-aware',candidate=state(initializing),pkg=initializing?initial:current;
+  const saved=kind==='legacy-state'?{schemaVersion:1,run:{schemaVersion:1,reportingMonth:'2026-08',baseline:null},reference:candidate.reference,bundleFile:'bundle.json'}:candidate;
+  const run=join(root,kind),target=join(run,'recovered'),candidateBytes=await pair(run,pkg.bytes,saved);let calls=0;
+  const outcome=await runArchiveCommand(['verify','--data-dir',target,'--run-dir',run],{},()=>{calls++;throw Error('Unexpected offline provider');});
+  const id=initializing?'2026-08-00000000-0000-4000-8000-000000000004':'2026-08-00000000-0000-4000-8000-000000000003';
+  expect(outcome).toEqual({releaseFile:`releases/${id}.json`});
+  expect(JSON.parse(await readFile(join(target,'processed/current.json'),'utf8'))).toEqual(outcome);
+  expect(await readFile(join(target,'processed/releases',id+'.json'))).toEqual(fixture.input.releaseBytes);
+  for(const [path,bytes] of fixture.input.rawRecords)expect(await readFile(join(target,'raw',id,path.slice(4)))).toEqual(bytes);
+  expect(calls).toBe(0);expect(await readFile(join(run,'candidate.json'))).toEqual(candidateBytes);expect(await readFile(join(run,'bundle.json'))).toEqual(pkg.bytes);
+  expect(await readFile(join(fixture.dataDir,'processed/current.json'))).toEqual(originalPointer);
+ });
+ it('preserves an occupied destination during candidate verification',async()=>{
+  const run=join(root,'occupied'),candidateBytes=await pair(run,current.bytes,state()),target=join(run,'recovered');await mkdir(target);await writeFile(join(target,'marker'),'preserve');let calls=0;
+  await expect(runArchiveCommand(['verify','--data-dir',target,'--run-dir',run],{},()=>{calls++;throw Error('Unexpected offline provider');})).rejects.toThrow(/empty/);
+  expect(await readFile(join(target,'marker'),'utf8')).toBe('preserve');expect(calls).toBe(0);
+  await expect(readFile(join(target,'processed/current.json'))).rejects.toMatchObject({code:'ENOENT'});
+  expect(await readFile(join(run,'candidate.json'))).toEqual(candidateBytes);expect(await readFile(join(run,'bundle.json'))).toEqual(current.bytes);
+ });
+ it('verifies a second synthetic product without constructing a provider',async()=>{
+  const f=await createProductArchiveFixture('090122');dirs.push(f.dataDir);const pkg=packBundle(f.input,'090122'),run=join(root,'second-product'),target=join(run,'recovered');
+  const candidate={schemaVersion:2,productCode:'090122',run:{schemaVersion:2,productCode:'090122',reportingMonth:'2026-08',baseline:null},reference:pkg.reference,bundleFile:'bundle.json'};
+  const candidateBytes=await pair(run,pkg.bytes,candidate);let calls=0;
+  await runArchiveCommand(['verify','--product','090122','--data-dir',target,'--run-dir',run],{},()=>{calls++;throw Error('Unexpected offline provider');},[{code:'090122',displayName:'Synthetic test product',importable:true,published:false,dutiesAccepted:false}]);
+  expect(await readFile(join(target,'processed/releases',f.input.releaseId+'.json'))).toEqual(f.input.releaseBytes);
+  for(const [path,bytes] of f.input.rawRecords)expect(await readFile(join(target,'raw',f.input.releaseId,path.slice(4)))).toEqual(bytes);
+  expect(calls).toBe(0);expect(await readFile(join(run,'candidate.json'))).toEqual(candidateBytes);expect(await readFile(join(run,'bundle.json'))).toEqual(pkg.bytes);
+ });
 });
