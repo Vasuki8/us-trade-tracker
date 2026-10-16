@@ -22,6 +22,8 @@ The published profiles include On this profile section links, annual one-country
 
 ## Project direction
 
+The **briefing estimated-duty research links** have passed local acceptance for both coffee products: world monthly/rolling summaries in product and portfolio briefings open matching Imports/share country comparisons. Existing figures, qualifications and all 139 CSV identities remain unchanged. Verification passed 1,552 unit/184 browser/24 packaging tests; the candidate contains 31 entries/1,886,967 raw bytes. Review, CI, publication and cleanup remain pending at this checkpoint. See the [duty briefing evidence and limits](docs/validation/briefing-duty-research-links.md).
+
 The published **briefing research links** open matching monthly Imports/Exports and separate twelve-month partner-card country rankings for each coffee product. Independent review found no issues; exact-head CI passed and PR #99 was merged before publication. Local acceptance passed 1,312 unit/131 browser/24 packaging tests with zero type diagnostics and 112 byte-identical CSV cases. All eight public handoffs and their matching CSVs passed; the site contains 31 entries/1,712,596 raw bytes. Restoration was unnecessary. See the [briefing-link verification](docs/validation/briefing-research-links.md#verified-public-update).
 
 The **coffee portfolio briefing** at `/briefing/portfolio/` combines the selected published coffee profiles in one report, keeping their amounts and duty rates separate. Choose products and Imports/Exports, share the selection URL, download sourced summary/partner CSVs or print/save the report as PDF. See the [verification and publication boundary](docs/validation/coffee-portfolio-briefing.md).
