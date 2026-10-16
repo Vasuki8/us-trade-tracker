@@ -24,7 +24,7 @@ it.each([
  expect(region.querySelector('.duty-coverage')).toHaveTextContent(`${coverage} of dutiable value`);
 });
 it('shows monthly and rolling amounts, the consumption denominator and coverage qualification',()=>{
- const r=sampleDutyRelease();r.duties.observations[12].coverage.uncalculatedDutiableValueUsd=100;render(<EstimatedDuties view={buildDutyView(r,[])} classificationIntervals={r.classificationIntervals}/>);
+ const r=sampleDutyRelease();r.duties.observations[12].coverage.uncalculatedDutiableValueUsd=100;render(<EstimatedDuties view={buildDutyView(r,[])} classificationIntervals={r.classificationIntervals} controlsReady={true}/>);
  const region=screen.getByRole('region',{name:'Estimated duties'});expect(region).toHaveTextContent('Jan 2025–Dec 2025');expect(region).toHaveTextContent('Jan 2024–Dec 2024');expect(region).toHaveTextContent('7.500%');expect(region).toHaveTextContent('+2.500 pp');expect(region).toHaveTextContent('RP70/79');expect(region).toHaveTextContent('imports for consumption');expect(region).toHaveTextContent('not proof of duty-free trade');
  expect(within(region).getByRole('table',{name:'Monthly estimated duties · All partner countries'})).toBeVisible();expect(within(region).getByRole('button',{name:'Download estimated duties CSV'})).toBeEnabled();
 });
@@ -43,7 +43,7 @@ it('keeps zero-prior growth unavailable and an initial sourced world view in ser
 });
 it('generates the displayed CSV in the browser on keyboard activation',async()=>{
  const create=vi.fn(()=> 'blob:synthetic'),revoke=vi.fn();vi.stubGlobal('URL',Object.assign(class extends URL {},{createObjectURL:create,revokeObjectURL:revoke}));const click=vi.spyOn(HTMLAnchorElement.prototype,'click').mockImplementation(()=>{});
- try{render(<EstimatedDuties view={buildDutyView(sampleDutyRelease(),[])} classificationIntervals={sampleDutyRelease().classificationIntervals}/>);const user=userEvent.setup();screen.getByRole('button',{name:'Download estimated duties CSV'}).focus();await user.keyboard('{Enter}');expect(create).toHaveBeenCalledTimes(1);expect(click).toHaveBeenCalledOnce();await new Promise(resolve=>setTimeout(resolve,1100));expect(revoke).toHaveBeenCalledOnce();}finally{click.mockRestore();vi.unstubAllGlobals();}
+ try{render(<EstimatedDuties view={buildDutyView(sampleDutyRelease(),[])} classificationIntervals={sampleDutyRelease().classificationIntervals} controlsReady={true}/>);const user=userEvent.setup();screen.getByRole('button',{name:'Download estimated duties CSV'}).focus();await user.keyboard('{Enter}');expect(create).toHaveBeenCalledTimes(1);expect(click).toHaveBeenCalledOnce();await new Promise(resolve=>setTimeout(resolve,1100));expect(revoke).toHaveBeenCalledOnce();}finally{click.mockRestore();vi.unstubAllGlobals();}
 });
 it('keeps duty chart countries and fixed history aligned with the profile selection',async()=>{
  render(<ProductExplorer release={sampleDutyRelease()}/>);const user=userEvent.setup();
@@ -94,4 +94,16 @@ it('marks combined revised inputs even when the monthly ratio is unchanged',()=>
  const row=within(screen.getByRole('table',{name:'Monthly estimated duties · All partner countries'})).getByRole('row',{name:/Jan 2025/});
  expect(within(row).getAllByText('Revised')).toHaveLength(3);expect(within(row).getAllByText('Revised input')).toHaveLength(2);
  expect(within(row).getAllByRole('cell')[2]).toHaveTextContent('10.556%');
+});
+
+it.each([undefined,false] as const)('keeps duty CSV inactive when readiness is %s, then follows the parent readiness',controlsReady=>{
+ const release=sampleDutyRelease(),view=buildDutyView(release,[]);
+ const element=controlsReady===undefined?<EstimatedDuties view={view} classificationIntervals={release.classificationIntervals}/>:<EstimatedDuties view={view} classificationIntervals={release.classificationIntervals} controlsReady={false}/>;
+ const {rerender}=render(element),button=()=>screen.getByRole('button',{name:'Download estimated duties CSV'});
+ expect(button()).toBeDisabled();
+ expect(screen.getByRole('table',{name:'Monthly estimated duties · All partner countries'})).toBeVisible();
+ rerender(<EstimatedDuties view={view} classificationIntervals={release.classificationIntervals} controlsReady={true}/>);
+ expect(button()).toBeEnabled();
+ rerender(<EstimatedDuties view={view} classificationIntervals={release.classificationIntervals} controlsReady={false}/>);
+ expect(button()).toBeDisabled();
 });

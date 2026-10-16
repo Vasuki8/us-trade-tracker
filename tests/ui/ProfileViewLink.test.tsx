@@ -128,4 +128,11 @@ it('keeps server rendering on the default view with an explicit no-JavaScript sh
   const html=renderToStaticMarkup(<ProductExplorer release={sampleDutyRelease()}/>);
   expect(html).toContain('The initial view shows U.S. imports');expect(html).toContain('Enable JavaScript to restore saved selections');expect(html).toContain('Copy view link');
   expect(html).toContain('General imports');
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  expect(doc.querySelector<HTMLSelectElement>('.changes-controls select')!.disabled).toBe(true);
+  for(const name of ['Download changes CSV','Download estimated duties CSV']){
+    const button=[...doc.querySelectorAll('button')].find(button=>button.textContent===name)!;
+    expect(button.disabled,name).toBe(true);
+  }
+  expect(doc.querySelector('table[aria-label="Monthly estimated duties · All partner countries"]')).not.toBeNull();
 });
