@@ -55,7 +55,7 @@ it('does not deliver an image after the chart unmounts',async()=>{
 });
 it.each(['reject','empty','wrong-type'] as const)('leaves the real CSV usable after a %s image failure',async kind=>{
  if(kind==='reject')vi.mocked(exportChartPng).mockRejectedValue(new Error('private converter error'));else vi.mocked(exportChartPng).mockResolvedValue(kind==='empty'?new Blob([],{type:'image/png'}):new Blob(['jpeg'],{type:'image/jpeg'}));
- const r=sampleDutyRelease();render(<EstimatedDuties view={buildDutyView(r,[])} classificationIntervals={r.classificationIntervals}/>);
+ const r=sampleDutyRelease();render(<EstimatedDuties view={buildDutyView(r,[])} classificationIntervals={r.classificationIntervals} controlsReady={true}/>);
  await userEvent.click(screen.getByRole('button',{name:'Download duty amounts chart PNG'}));expect(screen.getByRole('alert')).toHaveTextContent('PNG export failed. You can still download the estimated duties CSV.');expect(screen.queryByText(/private converter/)).toBeNull();
  await userEvent.click(screen.getByRole('button',{name:'Download estimated duties CSV'}));expect(downloads.map(d=>d.name)).toEqual(['hs-090121-imports-estimated-duties.csv']);
 });
