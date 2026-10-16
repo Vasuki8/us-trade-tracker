@@ -101,3 +101,7 @@ Conditional restoration: deployment `2b73be66-8477-4f28-98a4-209267b6ef86`, obse
 ## Self-review and handoff
 
 The matrix extends existing behavioral coverage without promising every browser/device. Runtime repairs have reproduced failures and named boundaries; serialization/data/new features are excluded. No-runtime execution skips new packaging/publication; the runtime path includes exact-source proof, restoration and actual cleanup. Counts, source pins, interfaces and preservation bounds were checked. Planning only: no browser installation, code/config edit, test run, CI change, import, R2 operation or deployment has started for this proposal.
+
+## Execution assessment
+
+Task1 matrix collection complete: Chromium24 and WebKit24 pass; Firefox24 fail before launch. Task2 produced WebKit16 retained passes, preserved Firefox host-unavailability evidence and16 unexecuted retained checks, with no runtime edit. Acceptance is partial and remains explicitly open; same-build reinstall did not repair the host, and OS/binary changes are excluded. Task3 review/exact-head CI/integration/actual cleanup remain pending. If those independent gates pass, integrate test tooling with this limitation; publish no site because runtimeChanged=false. Actual results go in the same PR/private closeout.
