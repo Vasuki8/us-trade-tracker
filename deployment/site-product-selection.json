@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "products": [
+    {
+      "code": "090121",
+      "reportingMonth": "2026-08",
+      "pointer": {
+        "path": "data/processed/current.json",
+        "bytes": 76,
+        "sha256": "5098efe55c5d712f097afaef140527c1c3636ebdd7dd0fe48b5521c5cf589bc8"
+      },
+      "release": {
+        "path": "data/processed/releases/2026-08-5f3c2606-06a0-4c96-8fbc-a2332e0428ae.json",
+        "bytes": 2977166,
+        "sha256": "eaa8c1baa86bd3a8880dcda12db3b32625a38c221591c8c0e087b6af6a325727"
+      }
+    },
+    {
+      "code": "090111",
+      "reportingMonth": "2026-08",
+      "pointer": {
+        "path": "data/products/090111/processed/current.json",
+        "bytes": 76,
+        "sha256": "d93e6e11e48c540396fee4699a0a9e58cbde0e6f6a55e20e7ba7056fb3296a39"
+      },
+      "release": {
+        "path": "data/products/090111/processed/releases/2026-08-d6b1ed52-cd6c-4b7d-87ca-d52c9e338cae.json",
+        "bytes": 2234188,
+        "sha256": "ef5d56791ad85b1b7a199829818522389a792e82cee792665be61f8e78cba0f7"
+      }
+    }
+  ]
+}
