@@ -126,3 +126,5 @@ Planning only: no new code/test/config/workflow record, installation, data-sourc
 ## Execution progress
 
 Task1 local checks: public record authenticated (30 served entries/eight CSV identities);94 focused offline tests pass, TypeScript passes after an explicit never-return correction, existing HTTP body and ZIP-gated CLI behavior unchanged. Task2 onward remain pending; no live job or website operation has occurred.
+
+Task2 local checkpoint:127 offline tests and315-file type check pass; final retained WebKit control16journeys/10downloads/122verified responses passes with inspected PNG/mobile output. Preserved diagnosed CRLF, native SVG blob and stale checker PNG filename failures; no application/data changes. Linux live dispatch, review/integration and cleanup remain pending.

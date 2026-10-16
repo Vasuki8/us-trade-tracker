@@ -1,0 +1,34 @@
+name: Published Firefox checkpoint
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps firefox
+      - name: Verify the fixed published pilot in Firefox
+        run: node --import tsx scripts/verify-published-firefox.ts --proof-root .tmp/published-firefox-run
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: always()
+        with:
+          name: published-firefox-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            .tmp/published-firefox-run/receipt.json
+            .tmp/published-firefox-run/hs-090121-imports-estimated-duties-monthly-dollars.png
+            .tmp/published-firefox-run/hs-090121-imports.png
+            .tmp/published-firefox-run/mobile-090121-320.png
+            .tmp/published-firefox-run/failure-trace.zip
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: warn

@@ -4,7 +4,7 @@ export type PublishedFile={path:string;role:'served-asset'|'served-error-page';b
 export type PublishedCsv={case:string;filename:string;bytes:number;sha256:string};
 export type PublishedFirefoxPlan={schemaVersion:1;origin:string;package:{codeCommit:string;zip:{bytes:number;sha256:string};manifest:{bytes:number;sha256:string}};files:PublishedFile[];csvs:PublishedCsv[]};
 const origin='https://2b73be66.us-trade-tracker.pages.dev';
-const recordSha256='64f0ed92b333430f19efd0f0474172a1deb0a4fac7ed858d3dd51b7dd8a24eeb';
+const recordSha256='5ed6eaba6c7a9ed112bc4b763cd0a47de36c4fd9f12849d8fa6200dbb134a296';
 const privatePaths=['/preview/countries/1220/','/preview/accepted/countries/1220/','/countries/9999/','/data/countries/1220/processed/current.json','/data/processed/current.json','/data/backups/','/.env','/.git/config'];
 const fail=():never=>{throw Error('published-plan');};
 function keys(value:unknown,names:string[]):asserts value is Record<string,any>{
