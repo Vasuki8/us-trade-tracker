@@ -53,6 +53,13 @@ async function restoreDecoded(decoded:DecodedBundle,dataDir:string,allowClassifi
   await writeFile(join(dataDir,'processed/current.json'),JSON.stringify({releaseFile}),{flag:'wx'});return {releaseFile};
 }
 function verifyIdentity(decoded:DecodedBundle,ref:BundleReference,productCode:string):void{if(decoded.manifest.productCode!==productCode||decoded.manifest.releaseId!==releaseIdFromKey(ref.key,productCode))throw new Error('Bundle key and release identity differ');}
+export function decodeCandidateBundle(bytes:Buffer,candidate:ArchiveCandidate,expectedProductCode:string=DEFAULT_PRODUCT_CODE):DecodedBundle{
+  candidate=parseCandidateState(candidate,expectedProductCode);
+  const decoded=unpackBundle(bytes,candidate.reference.sha256,expectedProductCode);verifyIdentity(decoded,candidate.reference,expectedProductCode);
+  if(JSON.stringify(decoded.manifest.previous)!==JSON.stringify(candidate.run.baseline?.reference??null))throw new Error('Candidate baseline identity differs');
+  return decoded;
+}
+
 export async function buildLocalBundle(dataDir:string,baseline:ArchiveRunState['baseline'],expectedProductCode:string=DEFAULT_PRODUCT_CODE):Promise<BundlePackage>{
   const {prefix}=productArchiveKeys(expectedProductCode);
   const pointer=object(parseArchiveJson(await readLocalFileBounded(join(dataDir,'processed/current.json'),LIMITS.pointer),LIMITS.pointer),['releaseFile']);
@@ -107,8 +114,7 @@ export async function stageCandidate(context:ArchiveContext,run:ArchiveRunState)
 export async function promoteCandidate(context:ArchiveContext,candidate:ArchiveCandidate,backup:BackupReceipt):Promise<PromotionOutcome>{
   const productCode=context.productCode??DEFAULT_PRODUCT_CODE,{currentKey}=productArchiveKeys(productCode);candidate=parseCandidateState(candidate,productCode);
   if(!backup||typeof backup.artifactId!=='string'||! /^[1-9]\d*$/.test(backup.artifactId)||typeof backup.artifactDigest!=='string'||! /^[a-f0-9]{64}$/.test(backup.artifactDigest))throw new Error('A successful backup artifact receipt is required');
-  const bytes=await readLocalFileBounded(join(context.runDir,'bundle.json'),LIMITS.bundle);const decoded=unpackBundle(bytes,candidate.reference.sha256,productCode);verifyIdentity(decoded,candidate.reference,productCode);
-  if(JSON.stringify(decoded.manifest.previous)!==JSON.stringify(candidate.run.baseline?.reference??null))throw new Error('Candidate baseline identity differs');
+  const bytes=await readLocalFileBounded(join(context.runDir,'bundle.json'),LIMITS.bundle);decodeCandidateBundle(bytes,candidate,productCode);
   const remote=await context.store.get(candidate.reference.key,LIMITS.bundle);if(!remote||!remote.bytes.equals(bytes))throw new Error('Backed-up candidate differs from staged archive');
   const pointer=encodePointer(candidate.reference,productCode);let status:PromotionOutcome['status'];
   try{await context.store.put(currentKey,pointer,candidate.run.baseline?{ifMatch:candidate.run.baseline.etag}:{ifNoneMatch:'*'});status='acknowledged';}
