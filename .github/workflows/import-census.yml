@@ -91,13 +91,21 @@ jobs:
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
         run: npm run data:archive -- stage --product "$PRODUCT_CODE" --data-dir "$DATA_DIR" --run-dir .tmp/archive
+      - name: Require both candidate backup members
+        id: candidate_files
+        if: inputs.archive_to_r2 && github.ref == 'refs/heads/main'
+        run: |
+          test -s .tmp/archive/bundle.json
+          test -s .tmp/archive/candidate.json
       - name: Back up the candidate before promotion
         id: backup
         if: inputs.archive_to_r2
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: census-${{ steps.preflight.outputs.product_code }}-candidate
-          path: .tmp/archive/bundle.json
+          path: |
+            .tmp/archive/bundle.json
+            .tmp/archive/candidate.json
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 7
