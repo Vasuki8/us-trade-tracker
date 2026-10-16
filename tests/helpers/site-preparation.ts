@@ -20,6 +20,11 @@ export function preparationProductRelease(code:string,end='2026-08'):Buffer{
  for(const interval of value.classificationIntervals){interval.from=shiftMonth(interval.from,offset);interval.to=shiftMonth(interval.to,offset);}
  value.duties.fromMonth=shiftMonth(value.duties.fromMonth,offset);
  for(const row of value.duties.observations){row.productCode=code;row.month=shiftMonth(row.month,offset);}
+ for(const world of value.duties.observations.filter(row=>row.geography==='world')){
+  const countries=value.duties.observations.filter(row=>row.geography==='country'&&row.month===world.month);
+  for(const key of ['calculatedDuty','consumptionValue','dutiableValue'] as const)world[key].valueUsd=countries.reduce((sum,row)=>sum+row[key].valueUsd!,0);
+  world.coverage.uncalculatedDutiableValueUsd=countries.reduce((sum,row)=>sum+row.coverage.uncalculatedDutiableValueUsd!,0);
+ }
  return countryJsonBytes(value);
 }
 export async function preparationFixture(options:{months?:[string,string];legacy?:boolean}={}){

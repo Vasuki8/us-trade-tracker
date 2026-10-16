@@ -1,3 +1,5 @@
+import {validateRelease} from './prepare-release';
+import {parseSiteProductSelection,SITE_PRODUCT_SELECTION_PATH,type SiteProductSelection} from './site-product-selection';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {mkdir,lstat,symlink,readdir,realpath} from 'node:fs/promises';
@@ -25,7 +27,7 @@ export async function siteSources(root:string,commit:string):Promise<{identity:S
   offset=newline+1+bytes+1;return{identity:{...entry,...digestCountryBytes(body)},body};
  });if(offset!==batch.length)throw Error('site-git-batch-extra');return result;
 }
-export async function siteData(root:string):Promise<{files:{identity:NamedDataIdentity;body:Buffer}[];country:SiteStageReceipt['country'];products:SiteStageReceipt['products']}>{
+export async function siteData(root:string,selection:SiteProductSelection|null):Promise<{files:{identity:NamedDataIdentity;body:Buffer}[];country:SiteStageReceipt['country'];products:SiteStageReceipt['products']}>{
  await assertLocalPath(root,root);const state=release.stateRoot,pointerPath=state+'/current.json',pointerBody=await readSiteFile(root,resolve(root,pointerPath),release.limits.pointer,archive.selectedPointerDigest),pointer=JSON.parse(pointerBody.toString());
  const pilot=await loadCanadaPilot({workspaceRoot:root,environment:{CANADA_PILOT_MODE:'snapshot',TRADE_DATA_MODE:'census'}});
  if(!pilot||pilot.presentation.kind!=='pilot-snapshot'||pointer.releaseId!==archive.releaseId)throw Error('site-invalid-country-selection');
@@ -36,7 +38,20 @@ export async function siteData(root:string):Promise<{files:{identity:NamedDataId
   const ref=pointer[name],expected='releases/'+archive.releaseId+'/'+(name==='package'?'candidate.json':'acceptance.json');if(ref?.path!==expected)throw Error('site-country-path');
   const path=state+'/'+localName(ref.path),body=await readSiteFile(root,resolve(root,path),name==='package'?release.limits.package:release.limits.record,ref);files.push({identity:{path,...digestCountryBytes(body),kind},body});
  }
- const pins=new Map(release.protectedFiles.map(f=>[f.path,f])),products:SiteStageReceipt['products']=[];
+ const products:SiteStageReceipt['products']=[];
+ if(selection){
+  for(const selected of selection.products){
+   const path=selected.pointer.path,body=await readSiteFile(root,resolve(root,path),release.limits.pointer,selected.pointer),v=JSON.parse(new TextDecoder('utf8',{fatal:true}).decode(body));
+   const base=path.slice(0,-'current.json'.length);
+   if(v?.releaseFile!==selected.release.path.slice(base.length))throw Error('site-product-pointer');
+   const releasePath=selected.release.path,releaseBody=await readSiteFile(root,resolve(root,releasePath),16*1024*1024,selected.release);
+   const value:unknown=JSON.parse(new TextDecoder('utf8',{fatal:true}).decode(releaseBody));validateRelease(value,true);
+   if(value.schemaVersion!==2||value.productCode!==selected.code||value.reportingMonth!==selected.reportingMonth)throw Error('site-product-release-metadata');
+   const a={path,...digestCountryBytes(body)},b={path:releasePath,...digestCountryBytes(releaseBody)};
+   files.push({identity:{...a,kind:'product-pointer',productCode:selected.code},body},{identity:{...b,kind:'product-release',productCode:selected.code},body:releaseBody});products.push({code:selected.code,pointer:a,release:b});
+  }
+ }else{
+ const pins=new Map(release.protectedFiles.map(f=>[f.path,f]));
  for(const [code,base]of [['090121','data/processed'],['090111','data/products/090111/processed']]){
   const path=base+'/current.json',pin=pins.get(path);if(!pin)throw Error('site-product-pin');
   const body=await readSiteFile(root,resolve(root,path),release.limits.pointer,pin),v=JSON.parse(body.toString());
@@ -46,11 +61,15 @@ export async function siteData(root:string):Promise<{files:{identity:NamedDataId
   const a={path,...digestCountryBytes(body)},b={path:releasePath,...digestCountryBytes(releaseBody)};
   files.push({identity:{...a,kind:'product-pointer',productCode:code},body},{identity:{...b,kind:'product-release',productCode:code},body:releaseBody});products.push({code,pointer:a,release:b});
  }
+ }
  return{files,country:{releaseId:pointer.releaseId,reporting:pilot.data.reporting,pointer:digestCountryBytes(pointerBody),projection:release.projection},products};
 }
-export async function stageInformation(sourceRoot:string,dataRoot:string,commit:string):Promise<{receipt:SiteStageReceipt;sources:Awaited<ReturnType<typeof siteSources>>;data:Awaited<ReturnType<typeof siteData>>}>{
+export async function stageInformation(sourceRoot:string,dataRoot:string,commit:string,policy:'require-committed'|'allow-legacy'='require-committed'):Promise<{receipt:SiteStageReceipt;sources:Awaited<ReturnType<typeof siteSources>>;data:Awaited<ReturnType<typeof siteData>>}>{
  if(Number(process.versions.node.split('.')[0])!==24)throw Error('site-node-24-required');
- const sources=await siteSources(sourceRoot,commit),data=await siteData(dataRoot),lock=sources.find(f=>f.identity.path==='package-lock.json')?.identity;
+ const sources=await siteSources(sourceRoot,commit),selected=sources.find(f=>f.identity.path===SITE_PRODUCT_SELECTION_PATH);
+ if(!selected&&policy!=='allow-legacy')throw Error('site-product-selection-required');
+ const selection=selected?parseSiteProductSelection(JSON.parse(new TextDecoder('utf8',{fatal:true}).decode(selected.body))):null;
+ const data=await siteData(dataRoot,selection),lock=sources.find(f=>f.identity.path==='package-lock.json')?.identity;
  if(!lock)throw Error('site-lockfile-required');const dependencyTarget=resolve(sourceRoot,'node_modules');await assertLocalPath(sourceRoot,dependencyTarget);if(!(await lstat(dependencyTarget)).isDirectory())throw Error('site-runtime-directory');
  return{receipt:{schemaVersion:1,status:'staged-for-local-build',codeCommit:commit,sources:sources.map(s=>s.identity),data:data.files.map(f=>f.identity),country:data.country,products:data.products,runtime:{nodeMajor:24,dependencyMode:'shared-existing',dependencyTarget,lock:{path:lock.path,bytes:lock.bytes,sha256:lock.sha256}}},sources,data};
 }
@@ -81,7 +100,7 @@ export async function verifySiteStage(options:{sourceRoot:string;dataRoot:string
  await assertStageScope(sourceRoot,stageRoot);
  const body=await readSiteFile(stageRoot,resolve(stageRoot,'staging-receipt.json'),1024*1024);
  const value=JSON.parse(new TextDecoder('utf8',{fatal:true}).decode(body));if(!countryJsonBytes(value).equals(body))throw Error('site-noncanonical-receipt');
- const info=await stageInformation(sourceRoot,dataRoot,value?.codeCommit);countrySame(value,info.receipt);
+ const info=await stageInformation(sourceRoot,dataRoot,value?.codeCommit,'allow-legacy');countrySame(value,info.receipt);
  const project=resolve(stageRoot,'project'),runtime=resolve(project,'node_modules');await assertLocalPath(stageRoot,project);
  if(!(await lstat(runtime)).isSymbolicLink()||resolve(await realpath(runtime))!==info.receipt.runtime.dependencyTarget)throw Error('site-runtime-link');
  const expected=new Map([...info.sources,...info.data.files].map(f=>[f.identity.path,f.identity])),observed=new Set<string>();
@@ -96,7 +115,7 @@ export async function verifySiteStage(options:{sourceRoot:string;dataRoot:string
   }
  }
  await scan(project);if(observed.size!==expected.size||[...expected.keys()].some(k=>!observed.has(k)))throw Error('site-missing-stage-file');
- const current=await stageInformation(sourceRoot,dataRoot,value.codeCommit);countrySame(current.receipt,info.receipt);
+ const current=await stageInformation(sourceRoot,dataRoot,value.codeCommit,'allow-legacy');countrySame(current.receipt,info.receipt);
  await readSiteFile(stageRoot,resolve(stageRoot,'staging-receipt.json'),1024*1024,digestCountryBytes(body));await assertStageScope(sourceRoot,stageRoot);return info.receipt;
 }
 
