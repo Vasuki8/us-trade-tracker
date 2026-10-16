@@ -6,6 +6,7 @@ import {buildChangesView,rankChanges} from '../lib/trade/changes';
 import {buildDutyView} from '../lib/trade/duties';
 import {shiftMonth} from '../lib/trade/metrics';
 import {monthLabel,usd,percent} from '../lib/trade/format';
+import {dutyChangesPath} from '../lib/trade/duty-changes-link';
 import {profileViewPath,countryChangesViewPath} from '../lib/trade/view-link';
 
 const period=(from:string,to:string)=>from===to?monthLabel(from):`${monthLabel(from)}–${monthLabel(to)}`;
@@ -38,7 +39,7 @@ function PartnerChanges({view}:{view:ChangesView}){
   </section>;
 }
 
-function DutySummary({value,rolling=false}:{value:DutyPeriod;rolling?:boolean}){
+function DutySummary({value,rolling=false,research}:{value:DutyPeriod;rolling?:boolean;research:{href:string;label:string}|null}){
   return <article className="briefing-card" aria-label={rolling?'Rolling estimated duties':'Monthly estimated duties'}>
     <h3>{rolling?'Rolling twelve months':'Latest month'}</h3>
     <p className="briefing-period">{period(value.from,value.to)}</p>
@@ -46,6 +47,7 @@ function DutySummary({value,rolling=false}:{value:DutyPeriod;rolling?:boolean}){
     <p className="chart-note">{value.coverage.status==='unavailable'?'Reporting coverage unavailable.':<>RP70/79 affected dutiable value: {usd(value.coverage.affectedDutiableValueUsd)} · {share(value.coverage.affectedSharePercent)} of dutiable value.{value.coverage.qualified?' Qualified reported figures.':''}</>}</p>
     {!value.classificationCompatible&&<p className="chart-note">Classification continuity is unverified for this period.</p>}
     {!value.complete&&<p className="chart-note">Some figures are missing or suppressed; available reported amounts remain visible.</p>}
+    {research&&<p><a href={research.href}>{research.label}</a></p>}
   </article>;
 }
 
@@ -70,7 +72,10 @@ export function ReleaseBriefing({release}:{release:Release}){
       <h2 id="briefing-duties-heading">Estimated duties</h2>
       {!duties.available?<p>This retained release does not include duty history. Estimated duties are unavailable.</p>:<>
         <p>All partner countries · U.S. imports for consumption. Calculated duties as share of import value uses CAL_DUT_MO / CON_VAL_MO. Rolling shares divide matching sums, rather than averaging monthly percentages.</p>
-        <div className="briefing-grid"><DutySummary value={worldDuty.latest.current}/><DutySummary value={worldDuty.rolling.current} rolling/></div>
+        <div className="briefing-grid">
+          <DutySummary value={worldDuty.latest.current} research={worldDuty.latest.change.comparable&&worldDuty.latest.change.dutySharePercentagePoints!==null?{href:dutyChangesPath(release.productCode,{period:'monthly',metric:'share'},'#duties-changes-heading'),label:'Explore latest-month estimated-duty changes by country'}:null}/>
+          <DutySummary value={worldDuty.rolling.current} rolling research={worldDuty.rolling.change.comparable&&worldDuty.rolling.change.dutySharePercentagePoints!==null?{href:dutyChangesPath(release.productCode,{period:'rolling',metric:'share'},'#duties-changes-heading'),label:'Explore twelve-month estimated-duty changes by country'}:null}/>
+        </div>
         <p className="chart-note">Calculated duties can differ from amounts actually paid and exclude antidumping and countervailing duties. RP70/79 report dutiable value without calculating duties. Reported zero duties do not prove duty-free trade. A zero or missing consumption value has no duty share.</p>
         <p><a href={`/products/${release.productCode}/#duties-heading`}>Explore duty history and comparisons</a></p>
       </>}
