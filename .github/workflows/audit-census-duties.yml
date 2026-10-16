@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
+      SITE_PACKAGE_PYTHON: python3
       PRODUCT_CODE: ${{ inputs.product_code }}
       REPORTING_MONTH: ${{ inputs.reporting_month }}
     steps:

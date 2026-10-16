@@ -36,6 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
+      SITE_PACKAGE_PYTHON: python3
       COUNTRY_CODE: ${{ inputs.country_code }}
       REPORTING_MONTH: ${{ inputs.reporting_month }}
       AUDIT_MODE: ${{ inputs.audit_mode }}
