@@ -24,15 +24,15 @@ it('the initial committed selection identifies the four accepted August files',a
 });
 it.each([null,[],{}, {schemaVersion:2,products:sample().products},{...sample(),extra:true},{schemaVersion:1}, {schemaVersion:1,products:[]}, {schemaVersion:1,products:sample().products.slice(0,1)}, {schemaVersion:1,products:[...sample().products,sample().products[0]]}])('rejects incomplete or unsupported selection %j',value=>expect(()=>parseSiteProductSelection(value)).toThrow());
 it.each([
- ['unknown-product',(v:any)=>v.products[0].code='999999'],['duplicate-product',(v:any)=>v.products[1].code='090121'],
- ['product-field',(v:any)=>v.products[0].extra=true],['missing-month',(v:any)=>delete v.products[0].reportingMonth],
- ['invalid-month',(v:any)=>v.products[0].reportingMonth='2026-13'],['month-mismatch',(v:any)=>v.products[0].reportingMonth='2026-09'],
- ['crossed-pointer',(v:any)=>v.products[0].pointer.path=v.products[1].pointer.path],['wrong-pointer',(v:any)=>v.products[0].pointer.path='data/processed/other.json'],
- ['crossed-release',(v:any)=>v.products[0].release.path=v.products[1].release.path],['escaped-release',(v:any)=>v.products[0].release.path='data/processed/releases/../2026-08-other.json'],
- ['backslash',(v:any)=>v.products[0].release.path='data/processed/releases/2026-08-test\\evil.json'],['wrong-extension',(v:any)=>v.products[0].release.path='data/processed/releases/2026-08-test.js'],
- ['zero-size',(v:any)=>v.products[0].pointer.bytes=0],['fraction',(v:any)=>v.products[0].release.bytes=1.5],['unsafe',(v:any)=>v.products[0].release.bytes=Number.MAX_SAFE_INTEGER+1],
- ['pointer-cap',(v:any)=>v.products[0].pointer.bytes=16385],['release-cap',(v:any)=>v.products[0].release.bytes=16777217],
- ['uppercase-hash',(v:any)=>v.products[0].release.sha256='A'.repeat(64)],['short-hash',(v:any)=>v.products[0].pointer.sha256='a'.repeat(63)],
- ['identity-field',(v:any)=>v.products[0].pointer.extra=true],['missing-hash',(v:any)=>delete v.products[0].release.sha256],
+ ['unknown-product',(v:any):unknown=>v.products[0].code='999999'],['duplicate-product',(v:any):unknown=>v.products[1].code='090121'],
+ ['product-field',(v:any):unknown=>v.products[0].extra=true],['missing-month',(v:any):unknown=>delete v.products[0].reportingMonth],
+ ['invalid-month',(v:any):unknown=>v.products[0].reportingMonth='2026-13'],['month-mismatch',(v:any):unknown=>v.products[0].reportingMonth='2026-09'],
+ ['crossed-pointer',(v:any):unknown=>v.products[0].pointer.path=v.products[1].pointer.path],['wrong-pointer',(v:any):unknown=>v.products[0].pointer.path='data/processed/other.json'],
+ ['crossed-release',(v:any):unknown=>v.products[0].release.path=v.products[1].release.path],['escaped-release',(v:any):unknown=>v.products[0].release.path='data/processed/releases/../2026-08-other.json'],
+ ['backslash',(v:any):unknown=>v.products[0].release.path='data/processed/releases/2026-08-test\\evil.json'],['wrong-extension',(v:any):unknown=>v.products[0].release.path='data/processed/releases/2026-08-test.js'],
+ ['zero-size',(v:any):unknown=>v.products[0].pointer.bytes=0],['fraction',(v:any):unknown=>v.products[0].release.bytes=1.5],['unsafe',(v:any):unknown=>v.products[0].release.bytes=Number.MAX_SAFE_INTEGER+1],
+ ['pointer-cap',(v:any):unknown=>v.products[0].pointer.bytes=16385],['release-cap',(v:any):unknown=>v.products[0].release.bytes=16777217],
+ ['uppercase-hash',(v:any):unknown=>v.products[0].release.sha256='A'.repeat(64)],['short-hash',(v:any):unknown=>v.products[0].pointer.sha256='a'.repeat(63)],
+ ['identity-field',(v:any):unknown=>v.products[0].pointer.extra=true],['missing-hash',(v:any):unknown=>delete v.products[0].release.sha256],
 ] as const)('rejects %s before IO',(_name,change)=>{const v=sample();change(v);expect(()=>parseSiteProductSelection(v)).toThrow();});
 it('accepts the inclusive file bounds',()=>{const v=sample();v.products[0].pointer.bytes=16384;v.products[0].release.bytes=16777216;expect(parseSiteProductSelection(v).products[0].release.bytes).toBe(16777216);});
