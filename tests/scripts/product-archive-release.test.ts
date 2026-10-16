@@ -2,7 +2,7 @@ import {afterAll,beforeAll,expect,it} from 'vitest';
 import {mkdtemp,mkdir,readFile,writeFile,rm,stat} from 'node:fs/promises';import {tmpdir} from 'node:os';import {join} from 'node:path';
 import {createProductArchiveFixture,syntheticProductFetch} from '../helpers/product-data';import {MemoryArchiveStore} from '../helpers/archive-store';
 import {packBundle,encodePointer} from '../../scripts/archive-bundle';import {productArchiveKeys} from '../../scripts/product-paths';
-import {restoreForImport,stageCandidate,promoteCandidate,parseRunState,parseCandidateState,recoverBundle,type ArchiveContext} from '../../scripts/archive-release';import {prepareRelease} from '../../scripts/prepare-release';
+import {restoreForImport,stageCandidate,promoteCandidate,parseRunState,parseCandidateState,recoverBundle,decodeCandidateBundle,type ArchiveContext} from '../../scripts/archive-release';import {prepareRelease} from '../../scripts/prepare-release';
 const dirs:string[]=[];let fixtures:Awaited<ReturnType<typeof createProductArchiveFixture>>[];
 beforeAll(async()=>{fixtures=await Promise.all(['090121','090122'].map(code=>createProductArchiveFixture(code)));dirs.push(...fixtures.map(f=>f.dataDir));},30_000);
 afterAll(async()=>{for(const dir of dirs)await rm(dir,{recursive:true,force:true});});
@@ -51,4 +51,11 @@ it('rejects wrong-product offline recovery before writing and refuses occupied c
 it('allows a legacy coffee candidate to promote after normalization',async()=>{
  const c=await context('090121',undefined,false),staged=await stage(c,false),legacy={schemaVersion:1,run:{schemaVersion:1,reportingMonth:'2026-08',baseline:null},reference:staged.candidate.reference,bundleFile:'bundle.json'};
  expect((await promoteCandidate(c.ctx,parseCandidateState(legacy),receipt)).status).toBe('acknowledged');
+});
+
+it('binds the selected synthetic product when decoding a candidate',async()=>{
+ const c=await context('090122'),staged=await stage(c),bytes=await readFile(join(c.ctx.runDir,'bundle.json'));
+ expect(decodeCandidateBundle(bytes,staged.candidate,'090122').manifest.productCode).toBe('090122');
+ expect(()=>decodeCandidateBundle(bytes,staged.candidate,'090121')).toThrow(/product|identity/i);
+ expect(c.store.pointerPutCalls).toBe(0);
 });

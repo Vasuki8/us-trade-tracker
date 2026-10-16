@@ -4,8 +4,8 @@ import {tmpdir} from 'node:os';import {join} from 'node:path';
 import {createArchiveFixture,syntheticCensusFetch} from '../helpers/archive';
 import {MemoryArchiveStore} from '../helpers/archive-store';
 import {ArchiveStoreError} from '../../scripts/archive-store';
-import {packBundle,unpackBundle,encodePointer,CURRENT_KEY} from '../../scripts/archive-bundle';
-import {restoreForImport,stageCandidate,promoteCandidate,recoverBundle,parseRunState,parseCandidateState,buildLocalBundle,type ArchiveContext} from '../../scripts/archive-release';
+import {packBundle,unpackBundle,encodePointer,sha256,CURRENT_KEY} from '../../scripts/archive-bundle';
+import {restoreForImport,stageCandidate,promoteCandidate,recoverBundle,parseRunState,parseCandidateState,buildLocalBundle,decodeCandidateBundle,type ArchiveContext} from '../../scripts/archive-release';
 import {prepareRelease,readCurrentRelease} from '../../scripts/prepare-release';
 let fixture:Awaited<ReturnType<typeof createArchiveFixture>>;const dirs:string[]=[];
 beforeAll(async()=>{fixture=await createArchiveFixture();});
@@ -96,4 +96,38 @@ it.each([true,false])('rejects forged revision metadata with accepted baseline=%
   const pointer=JSON.parse(await readFile(join(c.ctx.dataDir,'processed/current.json'),'utf8'));const path=join(c.ctx.dataDir,'processed',pointer.releaseFile);
   const release=JSON.parse(await readFile(path,'utf8'));release.revisedKeys=['imports/090121/2026-08/world/-/GEN_VAL_MO'];await writeFile(path,JSON.stringify(release));
   await expect(stageCandidate(c.ctx,run)).rejects.toThrow(/revisions/);expect(c.store.puts).toHaveLength(0);if(initial)unchanged(c.store,c.pointer);else expect(c.store.objects.has(CURRENT_KEY)).toBe(false);
+});
+
+
+it('decodes a candidate only when its release and predecessor identities match',async()=>{
+  const c=await candidate(),bytes=await readFile(join(c.ctx.runDir,'bundle.json'));
+  const decoded=decodeCandidateBundle(bytes,c.staged);
+  expect(decoded).toEqual(unpackBundle(bytes,c.staged.reference.sha256));
+  const changedKey=structuredClone(c.staged);
+  changedKey.reference.key=changedKey.reference.key.replace(/[^/]+\.json$/,'2026-08-00000000-0000-4000-8000-000000000001.json');
+  expect(()=>decodeCandidateBundle(bytes,changedKey)).toThrow(/Bundle key and release identity differ/);
+  for(const kind of ['checksum','reference','missing'] as const){
+    const state=structuredClone(c.staged);
+    if(kind==='missing')state.run.baseline=null;
+    else if(kind==='checksum')state.run.baseline!.reference.sha256='f'.repeat(64);
+    else{
+      const id='2026-08-00000000-0000-4000-8000-000000000002';
+      state.run.baseline!.reference.key=state.run.baseline!.reference.key.replace(/[^/]+\.json$/,id+'.json');
+      state.run.baseline!.releaseId=id;
+    }
+    expect(()=>decodeCandidateBundle(bytes,state),kind).toThrow(/Candidate baseline identity differs/);
+  }
+  expect(()=>decodeCandidateBundle(bytes,c.staged,'090122')).toThrow(/product|identity/i);
+  expect(()=>decodeCandidateBundle(bytes,{...c.staged,bundleFile:'other.json'} as any)).toThrow(/Invalid archive candidate/);
+  expect(()=>decodeCandidateBundle(Buffer.from('{}'),c.staged)).toThrow();
+  expect(()=>decodeCandidateBundle(bytes,{...c.staged,reference:{...c.staged.reference,sha256:'e'.repeat(64)}})).toThrow();
+  unchanged(c.store,c.pointer);expect(c.store.pointerPutCalls).toBe(0);
+});
+it('decodes null-baseline initialization but rejects an unexpected predecessor',async()=>{
+  const c=await candidate(false),bytes=await readFile(join(c.ctx.runDir,'bundle.json'));
+  expect(decodeCandidateBundle(bytes,c.staged).manifest.previous).toBeNull();
+  const state=structuredClone(c.staged);
+  state.run.baseline={reference:c.baseline.reference,etag:'"synthetic"',releaseId:fixture.input.releaseId,releaseSha256:sha256(fixture.input.releaseBytes)};
+  expect(()=>decodeCandidateBundle(bytes,state)).toThrow(/Candidate baseline identity differs/);
+  expect(c.store.pointerPutCalls).toBe(0);
 });
