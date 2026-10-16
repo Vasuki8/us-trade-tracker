@@ -1,6 +1,6 @@
 # Monthly product changes verification
 
-The local retained-data package passed acceptance on October 15, 2026. Independent branch review, GitHub CI/merge, publication and operational closeout are pending at this checkpoint.
+Local acceptance, independent branch review, exact-head GitHub CI, feature merge and public acceptance passed on October 15, 2026. Documentation review/CI/merge, proof sealing and native archival remain pending at this checkpoint; private post-archive records establish final operational completion after those gates.
 
 ## Reader behavior
 
@@ -45,3 +45,18 @@ Site ZIP: 410,401 bytes, SHA256 `2d383eb0268069075d05ed630bb9055a29405b6f358e6a5
 Private evidence is under `data/backups/monthly-product-changes/deployment-20261015-r1`: original approval proposal, predecessor/input authentication, numerical audit, staged compatibility, package/measurement receipts and `local-reader-r5/receipt.json` with screenshots/downloads. Initial environment/private-harness failures are preserved; repaired harness checks are distinguished from runtime defects. The initial package passed reader acceptance, then the saved-link helper text was corrected and the final package restaged and rechecked.
 
 This adds no reporting month, product/country coverage, import/source request, data replacement, R2 operation, dependency/service, paid/access/indexing change or recurring job. Existing historical qualifications remain; the predecessor's extra-28-case indirect producer-binding limitation remains disclosed. This is Chromium coverage, not a broader browser/assistive-technology claim. Clipboard success capture is instrumented at the browser boundary; monthly link payload/restoration and fallback are verified, without claiming an operating-system clipboard compatibility audit. Successive official-release acceptance remains separate. Restoration has not been exercised at this local checkpoint.
+
+
+## Verified public update
+
+[PR #107](https://github.com/Vasuki8/us-trade-tracker/pull/107) merged as `eaee07d2f72c464fcb86b9399a3a54c78dc3d358`. Independent review of `22f97016bc06b53f45ac14d4987d478d268e73ea..e2a6320f99e62fd3098ae64fe4313dd140f77805` reported no Critical, Important or Minor findings and no declined-to-judge behavior. Both exact-head Code workflows passed: [pull_request CI](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38823437721), [push CI](https://github.com/Vasuki8/us-trade-tracker/actions/runs/38823415528). Clean merged main matches that reviewed tree; only documentation differs from the packaged source. Accepted and protected inputs match before and after publication.
+
+The signed-in existing account/project showed **Workers Free / Active**. One upload of the authenticated site ZIP completed 31/31 assets and reported Success. The refreshed project listing identified actual **Production** deployment `cf52de00-46f0-44ae-b1df-36e3319c4389`, at [cf52de00.us-trade-tracker.pages.dev](https://cf52de00.us-trade-tracker.pages.dev). The canonical site is [us-trade-tracker.pages.dev](https://us-trade-tracker.pages.dev/changes/products/?period=monthly). No service, plan, access or indexing change was made.
+
+The predecessor passes 68 logical checks / 98 HTTP requests across canonical and its pinned deployment origin. The candidate passes **68 manifest-derived logical checks / 98 HTTP requests**, checking exact payload lengths/hashes, required headers and existing private/missing-route 404 behavior at canonical and the observed candidate origin. No logical-check count was assumed from the predecessor.
+
+Independent public reader acceptance passes **23 checks**, eight ranking views/eight exact ranking CSVs plus six exact profile merchandise/duty/share CSVs. Matching monthly profile handoffs cover both products and directions, and portfolio handoffs cover both directions. Saved-link copy/reload/history/fallback, 320/375-pixel keyboard/mobile journeys, source details and no-JavaScript defaults passed. All five saved public screenshots were visually inspected with no findings. 234 allowlisted GET/HEAD requests, zero rejected requests and page errors. Local delayed hydration remains local evidence; it was not injected on the public site. Chromium and instrumented clipboard limitations above remain.
+
+Candidate uploads: **1**. Restorations: **0**. Pinned recovery was authenticated and restoration execution was unnecessary; no restoration exercise is claimed. No imports/source requests, data intake/replacement, R2 operation, dependency/service, paid/access/indexing change or recurring job occurred. Successive official-release acceptance remains open.
+
+Private `preservation-manifest.json`, `completion.json` and `post-seal-finalization.json` plus final readback record the actual documentation merge, seal authentication, native archived attachment, checkout absence, owned cache cleanup and clean main after they occur. This earlier checkpoint stays unchanged in the sealed proof.
