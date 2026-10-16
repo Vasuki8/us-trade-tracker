@@ -12,7 +12,7 @@ The [roasted](https://us-trade-tracker.pages.dev/changes/duties/) and [green](ht
 
 The [roasted](https://us-trade-tracker.pages.dev/changes/?period=monthly) and [green](https://us-trade-tracker.pages.dev/changes/090111/?period=monthly) country changes pages now compare the latest month with the same month last year, alongside the existing rolling twelve-month view. Imports/Exports, dollar/share rankings, saved period links, matching country drilldowns and sourced CSVs were verified against retained accepted observations. August 2026 compares with August 2025; this publication adds no reporting month.
 
-Product rankings now offer **Compare latest-month figures** to open the existing portfolio with both reviewed products and the selected direction. Each available portfolio merchandise summary links to matching monthly or rolling country changes by dollars. Methods explains the matching-period world denominators; existing calculations, the annual $10 million product-growth threshold, CSVs and historical coverage are unchanged. See the [verified research journeys](docs/validation/research-handoffs.md#observed-public-update).
+Product rankings now offer **Open portfolio briefing** to open the existing portfolio with both reviewed products and the selected direction. Each available portfolio merchandise summary links to matching monthly or rolling country changes by dollars. Methods explains the matching-period world denominators; existing calculations, the annual $10 million product-growth threshold, CSVs and historical coverage are unchanged. See the [verified research journeys](docs/validation/research-handoffs.md#observed-public-update).
 
 This is a fixed pilot, with accepted reporting data through August 2026. It does not promise automatic Canada refresh. A successful update across two successive official releases remains a separate acceptance requirement; initial publication does not close that gate.
 
@@ -94,6 +94,8 @@ Monthly CSVs identify the comparison in their filename and comparison_period col
 See the [monthly country movers verification](docs/validation/monthly-country-movers.md) for fixture checks, retained-data acceptance, compatibility hashes and measured local package growth. This batch prepares local packages; publication requires a separate package/target decision.
 
 ## Local site preparation
+
+New local stages use the exact reviewed `deployment/site-product-selection.json` from their requested source commit. The initial selection retains both accepted August coffee releases; future selections can name independently accepted months without changing Canada's historical evidence. Missing/invalid selections fail new creation. Historical verification alone retains the old exact August rules. See the [successor tooling verification](docs/validation/successor-release-readiness.md).
 
 The staging tool exports a clean committed checkout and copies only the fixed accepted Canada/coffee state into a fresh ignored preparation directory. Source and data roots are explicit, so an isolated development checkout can read the existing primary checkout's accepted data. Originals remain unchanged. The staged project reuses the source checkout's existing dependency directory through one recorded link; builds may update that runtime's ignored caches.
 
