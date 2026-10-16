@@ -4,6 +4,7 @@ import {selectPortfolioBriefing} from '../lib/trade/portfolio-briefing';
 import {portfolioPath,readPortfolioSelection} from '../lib/trade/portfolio-link';
 import type {DutyComparison,DutyPeriod} from '../lib/trade/duty-types';
 import {usd,usdChange,percent,percentagePoints,monthLabel} from '../lib/trade/format';
+import {dutyChangesPath} from '../lib/trade/duty-changes-link';
 import {profileViewPath,countryChangesViewPath} from '../lib/trade/view-link';
 import type {Direction} from '../lib/trade/types';
 import {downloadBlob,serializePortfolioSummaryCsv,serializePortfolioPartnersCsv} from '../lib/trade/downloads';
@@ -26,11 +27,12 @@ function DutyAmounts({label,period}:{label:string;period:DutyPeriod}){
     <p className="chart-note">RP 70/79 coverage: {period.coverage.status}. {period.coverage.qualified?'Qualified: some dutiable value has no calculated duty. ':''}Affected dutiable value: {usd(period.coverage.affectedDutiableValueUsd)} ({dutyShare(period.coverage.affectedSharePercent)} of {usd(period.dutiableValueUsd)} dutiable value).</p>
   </div>;
 }
-function DutySummary({label,value,id}:{label:string;value:DutyComparison;id:string}){
+function DutySummary({label,value,id,research=null}:{label:string;value:DutyComparison;id:string;research?:{href:string;label:string}|null}){
   return <section aria-labelledby={id} className="portfolio-section portfolio-duties"><h4 id={id}>{label}</h4>
     <DutyAmounts label="Current" period={value.current}/><DutyAmounts label="Prior" period={value.previous}/>
     <p>Duty dollar change: {usdChange(value.change.calculatedDutyUsd)} · Duty growth: {percent(value.change.growthPercent)} · Share change: {percentagePoints(value.change.dutySharePercentagePoints)}</p>
     {!value.change.comparable&&<p>Duty comparison unavailable: complete amounts, verified coverage and compatible classifications are required for both periods.</p>}
+    {research&&<p><a href={research.href}>{research.label}</a></p>}
   </section>;
 }
 function ProductCard({product,direction,reportingMonth}:{product:PortfolioProduct;direction:Direction;reportingMonth:string}){
@@ -49,7 +51,7 @@ function ProductCard({product,direction,reportingMonth}:{product:PortfolioProduc
         <p className="chart-note">Partners with unavailable comparisons: {data.unavailablePartnerCount}. Rankings use dollar change independently of profile chart selections.</p>
       </section>
       {direction==='imports'&&<section className="portfolio-section" aria-labelledby={`${id}-duties`}><h3 id={`${id}-duties`}>Estimated duties</h3><p>Duty share uses calculated duties (CAL_DUT_MO) divided by matching imports for consumption (CON_VAL_MO), rather than general imports. Rolling shares use sums over matching periods.</p>
-        {data.worldDuties?<><DutySummary label="Monthly estimated duties" value={data.worldDuties.latest} id={`${id}-world-monthly-duties`}/><DutySummary label="Rolling estimated duties" value={data.worldDuties.rolling} id={`${id}-world-rolling-duties`}/></>:<p>Estimated-duty data is unavailable for this release.</p>}
+        {data.worldDuties?<><DutySummary label="Monthly estimated duties" value={data.worldDuties.latest} id={`${id}-world-monthly-duties`} research={data.worldDuties.latest.change.comparable&&data.worldDuties.latest.change.dutySharePercentagePoints!==null?{href:dutyChangesPath(product.code,{period:'monthly',metric:'share'},'#duties-changes-heading'),label:'Explore latest-month estimated-duty changes by country'}:null}/><DutySummary label="Rolling estimated duties" value={data.worldDuties.rolling} id={`${id}-world-rolling-duties`} research={data.worldDuties.rolling.change.comparable&&data.worldDuties.rolling.change.dutySharePercentagePoints!==null?{href:dutyChangesPath(product.code,{period:'rolling',metric:'share'},'#duties-changes-heading'),label:'Explore twelve-month estimated-duty changes by country'}:null}/></>:<p>Estimated-duty data is unavailable for this release.</p>}
         <p className="chart-note">Estimated duties may differ from duties paid and exclude antidumping and countervailing duties. A reported zero does not establish duty-free treatment.</p>
       </section>}
       <section className="portfolio-section portfolio-source" aria-labelledby={`${id}-source`}><h3 id={`${id}-source`}>Sources and release</h3><p>Source: {data.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau'} · Reporting month: {monthLabel(product.reportingMonth)} · Measure: <span>{data.provenance.measure}</span> · Current USD, not seasonally adjusted.</p>
