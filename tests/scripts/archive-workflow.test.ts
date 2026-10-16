@@ -1,5 +1,5 @@
 import {afterAll,expect,it} from 'vitest';
-import {readFile,mkdtemp,writeFile,rm} from 'node:fs/promises';
+import {readFile,mkdtemp,writeFile,rm,mkdir,copyFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';import {join} from 'node:path';
 import {parse} from 'yaml';
 import {parseArchiveDispatch} from '../../scripts/archive-inputs';
@@ -7,6 +7,7 @@ import {runArchiveCommand} from '../../scripts/archive-product';
 import {createArchiveFixture,syntheticCensusFetch} from '../helpers/archive';
 import {MemoryArchiveStore} from '../helpers/archive-store';
 import {CURRENT_KEY,packBundle,encodePointer} from '../../scripts/archive-bundle';
+import {promoteCandidate,parseCandidateState,type ArchiveCandidate} from '../../scripts/archive-release';
 import {prepareRelease,readCurrentRelease} from '../../scripts/prepare-release';
 const valid={REPORTING_MONTH:'2026-08',ARCHIVE_TO_R2:'false',INITIALIZE_ARCHIVE:'false',GITHUB_REF:'refs/heads/main'};
 const dirs:string[]=[];afterAll(async()=>{for(const dir of dirs)await rm(dir,{recursive:true,force:true});});
@@ -88,7 +89,7 @@ it('keeps dispatch, credentials, backup ordering and promotion gates explicit in
   expect(restore).toBeGreaterThan(-1);expect(stage).toBeGreaterThan(restore);expect(backup).toBeGreaterThan(stage);expect(promote).toBeGreaterThan(backup);
   for(const step of steps){const credentials=Object.keys(step.env??{}).filter(k=>k.includes('KEY'));if(['restore','stage','promote'].includes(step.id)){expect(credentials.sort()).toEqual(['R2_ACCESS_KEY_ID','R2_SECRET_ACCESS_KEY']);expect(step.if).toContain('inputs.archive_to_r2');expect(step.if).toContain('refs/heads/main');}else expect(credentials).toEqual(step.id==='import'?['CENSUS_API_KEY']:[]);if(step.run)expect(step.run).not.toContain('${{');}
   expect(steps[promote].if).toContain('success()');expect(steps[promote].if).toContain("steps.backup.outcome == 'success'");expect(steps[promote].env.BACKUP_ARTIFACT_ID).toBe('${{ steps.backup.outputs.artifact-id }}');expect(steps[promote].env.BACKUP_ARTIFACT_DIGEST).toBe('${{ steps.backup.outputs.artifact-digest }}');
-  expect(steps[backup].with).toMatchObject({name:'census-${{ steps.preflight.outputs.product_code }}-candidate',path:'.tmp/archive/bundle.json','include-hidden-files':true,'if-no-files-found':'error','retention-days':7});
+  expect(steps[backup].with).toMatchObject({name:'census-${{ steps.preflight.outputs.product_code }}-candidate',path:'.tmp/archive/bundle.json\n.tmp/archive/candidate.json\n','include-hidden-files':true,'if-no-files-found':'error','retention-days':7});
   const receipt=steps.find(s=>s.with?.name==='census-${{ steps.preflight.outputs.product_code }}-promotion');expect(receipt.if).toContain('always()');expect(receipt.if).toContain("hashFiles('.tmp/archive/outcome.json')");expect(receipt.with.path).toBe('.tmp/archive/outcome.json');expect(receipt.with['include-hidden-files']).toBe(true);
   expect(steps.find(s=>s.with?.name==='census-${{ steps.preflight.outputs.product_code }}-release').if).toContain('!inputs.archive_to_r2');
 });
@@ -118,4 +119,54 @@ it('routes candidate-only success to review and never to promotion in the actual
   expect(allowed(ready.if,{...success,candidate:false})).toBe(false);expect(allowed(promote.if,{...success,candidate:false})).toBe(true);
   for(const state of [{...success,archive:false},{...success,main:false},{...success,success:false},...['restore','stage','backup','recovery'].map(failed=>({...success,failed}))])expect(allowed(ready.if,state)).toBe(false);
   for(const failed of ['backup','recovery'])expect(allowed(promote.if,{...success,candidate:false,failed})).toBe(false);
+});
+
+
+it('requires_each_exact_backup_member_after_stage_without_credentials',async()=>{
+ const w=parse(await readFile('.github/workflows/import-census.yml','utf8')),steps=w.jobs.import.steps as any[],index=steps.findIndex(s=>s.id==='candidate_files');
+ expect(index).toBeGreaterThan(steps.findIndex(s=>s.id==='stage'));expect(index).toBeLessThan(steps.findIndex(s=>s.id==='backup'));
+ expect(steps[index].if).toBe("inputs.archive_to_r2 && github.ref == 'refs/heads/main'");expect(steps[index].env).toBeUndefined();
+ expect(steps[index].run).toBe('test -s .tmp/archive/bundle.json\ntest -s .tmp/archive/candidate.json\n');
+ expect(steps.find(s=>s.id==='backup').with.path.trim().split('\n')).toEqual(['.tmp/archive/bundle.json','.tmp/archive/candidate.json']);
+});
+it('preserves_a_downloaded_exact_candidate_and_baseline_for_offline_recovery_and_conditional_review',async()=>{
+ const f=await createArchiveFixture();dirs.push(f.dataDir);const root=await mkdtemp(join(tmpdir(),'trade-downloaded-candidate-'));dirs.push(root);
+ const store=new MemoryArchiveStore(),baseline=packBundle(f.input),pointer=encodePointer(baseline.reference);
+ store.seed(baseline.reference.key,baseline.bytes);store.seed(CURRENT_KEY,pointer);
+ const dataDir=join(root,'data'),runDir=join(root,'run'),env={...valid,ARCHIVE_TO_R2:'true',CANDIDATE_ONLY:'true'};
+ await runArchiveCommand(['restore','--data-dir',dataDir,'--run-dir',runDir],env,()=>store);
+ await prepareRelease({productCode:'090121',end:'2026-08',months:60,apiKey:'synthetic',outputDir:join(dataDir,'processed'),codeVersion:'synthetic-downloaded-handoff'},syntheticCensusFetch({worldDelta:200}));
+ const staged=await runArchiveCommand(['stage','--data-dir',dataDir,'--run-dir',runDir],env,()=>store) as ArchiveCandidate;
+ const candidateBytes=await readFile(join(runDir,'candidate.json')),bundleBytes=await readFile(join(runDir,'bundle.json')),originalETag=staged.run.baseline!.etag;
+ const downloaded=join(root,'downloaded');await mkdir(downloaded);
+ for(const name of ['bundle.json','candidate.json'])await copyFile(join(runDir,name),join(downloaded,name));
+ expect(await readFile(join(downloaded,'candidate.json'))).toEqual(candidateBytes);expect(await readFile(join(downloaded,'bundle.json'))).toEqual(bundleBytes);
+ const parsed=parseCandidateState(JSON.parse(candidateBytes.toString()));expect(parsed).toEqual(staged);expect(parsed.run.baseline!.etag).toBe(originalETag);
+ let providerCalls=0;const offline=()=>{providerCalls++;throw Error('Unexpected offline provider');};
+ await runArchiveCommand(['verify','--data-dir',join(root,'recovered'),'--run-dir',downloaded],{},offline);
+ const recoveredPointer=JSON.parse(await readFile(join(root,'recovered/processed/current.json'),'utf8'));
+ const sourcePointer=JSON.parse(await readFile(join(dataDir,'processed/current.json'),'utf8'));
+ expect(await readFile(join(root,'recovered/processed',recoveredPointer.releaseFile))).toEqual(await readFile(join(dataDir,'processed',sourcePointer.releaseFile)));
+ for(const member of ['bundle.json','candidate.json'])for(const kind of ['missing','empty']){
+  const broken=join(root,member+'-'+kind);await mkdir(broken);
+  for(const name of ['bundle.json','candidate.json'])if(name!==member||kind==='empty')await writeFile(join(broken,name),name===member?Buffer.alloc(0):name==='bundle.json'?bundleBytes:candidateBytes);
+  await expect(runArchiveCommand(['verify','--data-dir',join(broken,'recovered'),'--run-dir',broken],{},offline)).rejects.toThrow();
+  await expect(readFile(join(broken,'recovered/processed/current.json'))).rejects.toMatchObject({code:'ENOENT'});
+ }
+ const backup={artifactId:'3456',artifactDigest:'d'.repeat(64)};
+ for(const kind of ['changed-bundle','swapped-state','changed-baseline'] as const){
+  const broken=join(root,kind);await mkdir(broken);const state=structuredClone(parsed);
+  if(kind==='swapped-state')state.reference.sha256='e'.repeat(64);
+  if(kind==='changed-baseline')state.run.baseline!.reference.sha256='f'.repeat(64);
+  await writeFile(join(broken,'bundle.json'),kind==='changed-bundle'?Buffer.from('{}'):bundleBytes);
+  await expect(promoteCandidate({store,dataDir:'unused',runDir:broken},state,backup)).rejects.toThrow();expect(store.pointerPutCalls).toBe(0);expect(store.objects.get(CURRENT_KEY)!.bytes).toEqual(pointer);
+ }
+ await expect(runArchiveCommand(['promote','--data-dir','unused','--run-dir',downloaded],env,offline)).rejects.toThrow(/Candidate-only/);expect(providerCalls).toBe(0);
+ // A separate synthetic operator authorization exercises the unchanged promotion API.
+ const stale=new MemoryArchiveStore();stale.seed(staged.reference.key,bundleBytes);stale.seed(CURRENT_KEY,Buffer.from('new accepted pointer'));
+ expect(await promoteCandidate({store:stale,dataDir:'unused',runDir:downloaded},parsed,backup)).toMatchObject({status:'conflict'});
+ expect(stale.puts.at(-1)?.condition).toEqual({ifMatch:originalETag});expect(stale.objects.get(CURRENT_KEY)!.bytes.toString()).toBe('new accepted pointer');
+ expect(await promoteCandidate({store,dataDir:'unused',runDir:downloaded},parsed,backup)).toMatchObject({status:'acknowledged',reference:staged.reference});
+ expect(store.puts.at(-1)?.condition).toEqual({ifMatch:originalETag});expect(store.objects.get(CURRENT_KEY)!.bytes).toEqual(encodePointer(staged.reference));
+ expect(await readFile(join(downloaded,'candidate.json'))).toEqual(candidateBytes);
 });
