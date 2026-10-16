@@ -35,7 +35,8 @@ test('pilot import rankings and product links remain available without JavaScrip
 
 test('pilot product controls, table scrolling and download work by keyboard on mobile',async({page})=>{
   await page.setViewportSize({width:375,height:812});await page.goto('/changes/products/');
-  await page.getByRole('radio',{name:'Imports',exact:true}).focus();await page.keyboard.press('ArrowRight');await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeChecked();
+  await expect(page.getByRole('radio',{name:'Imports',exact:true})).toBeEnabled();
+  await page.getByRole('radio',{name:'Imports',exact:true}).focus();await expect(page.getByRole('radio',{name:'Imports',exact:true})).toBeFocused();await page.keyboard.press('ArrowRight');await expect(page.getByRole('radio',{name:'Exports',exact:true})).toBeChecked();
   const table=page.getByRole('region',{name:'Scrollable largest product increases · dollar change'});await table.focus();for(let i=0;i<10;i++)await page.keyboard.press('ArrowRight');await expect.poll(()=>table.evaluate(element=>element.scrollLeft)).toBeGreaterThan(0);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.getByRole('button',{name:'Download product changes CSV'}).focus();const event=page.waitForEvent('download');await page.keyboard.press('Enter');expect((await event).suggestedFilename()).toBe('pilot-products-exports-changes-dollars.csv');
@@ -89,7 +90,8 @@ test('monthly product manual copy, duplicate fallback and static period choices 
   await page.setViewportSize({width:320,height:812});
   await page.addInitScript(()=>Object.defineProperty(navigator,'clipboard',{value:{writeText:async()=>{throw new Error('blocked');}}}));
   await page.goto('/changes/products/?direction=exports&metric=dollars&period=monthly#product-changes-heading');
-  await page.getByRole('button',{name:'Copy changes link',exact:true}).focus();await page.keyboard.press('Enter');
+  await expect(page.getByRole('button',{name:'Copy changes link',exact:true})).toBeEnabled();
+  await page.getByRole('button',{name:'Copy changes link',exact:true}).focus();await expect(page.getByRole('button',{name:'Copy changes link',exact:true})).toBeFocused();await page.keyboard.press('Enter');
   const manual=page.getByLabel('Changes link',{exact:true});await expect(manual).toHaveValue(page.url());
   await page.getByRole('radio',{name:'Latest month',exact:true}).focus();await page.keyboard.press('ArrowLeft');
   await expect(page.getByRole('radio',{name:'Rolling twelve months',exact:true})).toBeChecked();
