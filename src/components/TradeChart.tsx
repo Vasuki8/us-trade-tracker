@@ -16,7 +16,7 @@ function Plot({view,left,right,top,bottom}:{view:ProfileView;left:number;right:n
         const command=connected&&!point.breakBefore?'L':'M';connected=true;return `${command}${x(index)},${y(point.valueUsd)}`;
       }).join(' ');
       return <g key={series.code}><path d={path} fill="none" stroke={seriesColor(series.code)} strokeWidth="3" strokeDasharray={seriesDash(seriesIndex)} strokeLinejoin="round"/>
-        {series.points.map((point,i)=>point.valueUsd===null?null:<circle key={point.month} cx={x(i)} cy={y(point.valueUsd)} r="2.7" fill={seriesColor(series.code)}><title>{`${monthLabel(point.month)}: ${usd(point.valueUsd)}`}</title></circle>)}
+        {series.points.map((point,i)=>point.valueUsd===null?null:<circle key={point.month} cx={x(i)} cy={y(point.valueUsd)} r={point.recordedRevision?4:2.7} fill={point.recordedRevision?'white':seriesColor(series.code)} stroke={point.recordedRevision?seriesColor(series.code):undefined} strokeWidth={point.recordedRevision?2:undefined}><title>{`${monthLabel(point.month)}: ${usd(point.valueUsd)}${point.recordedRevision?' · Recorded revision':''}`}</title></circle>)}
       </g>;
     })}
     {points.length>0&&<><text x={left} y={bottom+25} fontSize="13" fill="#50636b">{monthLabel(points[0].month)}</text><text x={right} y={bottom+25} textAnchor="end" fontSize="13" fill="#50636b">{monthLabel(points.at(-1)!.month)}</text></>}
@@ -35,10 +35,10 @@ export const TradeChart=forwardRef<SVGSVGElement,{view:ProfileView}>(function Tr
       {view.provenance.source==='fixture'&&<text x="34" y="90" fontSize="13" fill="#9a492b">DEVELOPMENT SAMPLE DATA — synthetic observations</text>}
       <Plot view={view} left={80} right={910} top={130} bottom={350}/>
       {view.series.map((series,i)=><g key={series.code}><line x1={34+i*300} x2={54+i*300} y1="407" y2="407" stroke={seriesColor(series.code)} strokeWidth="3" strokeDasharray={seriesDash(i)}/><text x={62+i*300} y="412" fontSize="13" fill="#172e35">{series.name}</text></g>)}
-      <text x="34" y="436" fontSize="11" fill="#50636b">Gaps: unavailable values; lines also break at incompatible or unverified classifications.</text>
+      <text x="34" y="436" fontSize="11" fill="#50636b">Gaps: unavailable values; lines also break at incompatible or unverified classifications. Open circles: recorded revisions.</text>
       <text x="34" y="459" fontSize="12" fill="#50636b">Source: {view.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau'} · {view.provenance.measure} · not seasonally adjusted</text>
       <text x="34" y="480" fontSize="12" fill="#50636b">Period: {points[0]?.month??'Unavailable'} to {points.at(-1)?.month??'Unavailable'} · retrieved {view.provenance.retrievedAt}</text>
-      <text x="34" y="501" fontSize="12" fill="#50636b">Processing version: {view.provenance.codeVersion} · revised observations: {view.provenance.revised?'yes':'no'}</text>
+      <text x="34" y="501" fontSize="12" fill="#50636b">Processing version: {view.provenance.codeVersion} · Merchandise release revisions: {view.provenance.revised?'yes':'no'}</text>
       <text x="34" y="523" fontSize="11" fill="#50636b">Sources: api.census.gov/data/timeseries/intltrade/imports/hs and /exports/hs · us-trade-tracker</text>
     </svg>
     <svg className="mobile-chart" viewBox={`0 0 320 ${mobileHeight}`} role="img" aria-label={label} fontFamily="Segoe UI, Arial, sans-serif">

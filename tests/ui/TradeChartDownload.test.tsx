@@ -39,6 +39,7 @@ it('guards rapid duplicate activation until the first job settles',async()=>{
  act(()=>{button.click();button.click();});expect(exportChartPng).toHaveBeenCalledTimes(1);await resolveJob(job);await begin();expect(exportChartPng).toHaveBeenCalledTimes(2);expect(downloads).toHaveLength(2);
 });
 const changes:[string,(m:ProfileView)=>void][]=[
+ ['recorded point revision',m=>{m.series[0].points[0].recordedRevision=!m.series[0].points[0].recordedRevision;}],
  ['product',m=>{m.productCode='090111';}],['title',m=>{m.title+=' renamed';}],['direction',m=>{m.selection.direction='exports';}],['reporting month',m=>{m.reportingMonth='2026-01';}],
  ['country identity',m=>{m.series[0].code='2010';m.selection.countryCodes=['2010'];}],['country name',m=>{m.series[0].name+=' extended name';}],['point value',m=>{m.series[0].points[0].valueUsd=999;}],['month',m=>{m.series[0].points[0].month='2024-01';}],
  ['classification',m=>{m.series[0].points[0].classificationVerified=false;}],['boundary',m=>{m.series[0].points[1].breakBefore=true;}],['source',m=>{m.provenance.source='census';}],['measure',m=>{m.provenance.measure='ALL_VAL_MO';}],
@@ -79,4 +80,14 @@ it('downloads the current CSV while an obsolete PNG conversion is still settling
 });
 it('keeps keyboard focus while marking a busy PNG action unavailable',async()=>{
  const job=deferred<Blob>();vi.mocked(exportChartPng).mockReturnValueOnce(job.promise);render(<TradeChartDownload view={view()} svgRef={ref()} ready/>);const button=screen.getByRole('button',{name:'Download chart PNG'});button.focus();await userEvent.keyboard('{Enter}');expect(button).toHaveFocus();expect(button).toHaveAttribute('aria-disabled','true');expect(button).not.toBeDisabled();await userEvent.keyboard('{Enter}');expect(exportChartPng).toHaveBeenCalledTimes(1);await resolveJob(job);expect(button).toHaveFocus();expect(button).not.toHaveAttribute('aria-disabled','true');
+});
+
+it('uses the latest recorded point flag for CSV while an earlier PNG is pending',async()=>{
+ const m=view(),r=ref(),job=deferred<Blob>();vi.mocked(exportChartPng).mockReturnValueOnce(job.promise);
+ const mounted=render(<TradeChartDownload view={m} svgRef={r} ready/>);await begin();
+ const next=structuredClone(m);next.series[0].points[0].recordedRevision=true;mounted.rerender(<TradeChartDownload view={next} svgRef={r} ready/>);
+ await userEvent.click(screen.getByRole('button',{name:'Download data CSV'}));
+ const text=await new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result));reader.onerror=reject;reader.readAsText(downloads[0].blob);});
+ expect(text.split('\r\n')[0]).toContain('revised_scope,observation_recorded_revision');expect(text.split('\r\n')[1]).toMatch(/,merchandise_release,true$/);
+ await resolveJob(job);expect(downloads).toHaveLength(1);
 });

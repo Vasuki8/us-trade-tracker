@@ -3,7 +3,7 @@ import type { Direction, Observation } from './types';
 export function validMonth(month: unknown): month is string {
   return typeof month === 'string' && /^(20\d{2})-(0[1-9]|1[0-2])$/.test(month);
 }
-export function observationKey(row: Observation): string {
+export function observationKey(row: Pick<Observation,'direction'|'productCode'|'month'|'geography'|'partnerCode'|'measure'>): string {
   return [row.direction, row.productCode, row.month, row.geography, row.partnerCode, row.measure].join('/');
 }
 export function normalizeCensusResponse(payload: unknown, direction: Direction): Observation[] {

@@ -1,5 +1,6 @@
 import type {Release,ExplorerSelection,ProfileView} from './types';
 import {compareValues,shiftMonth,sumWindow} from './metrics';
+import {observationKey} from './normalize';
 export function buildProfileView(release:Release,selection:ExplorerSelection):ProfileView {
   if(!['imports','exports'].includes(selection.direction)||![12,60].includes(selection.months))throw new Error('Invalid selection');
   const rows=release.observations.filter(r=>r.direction===selection.direction&&r.productCode===release.productCode&&r.measure===(selection.direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO'));
@@ -26,11 +27,13 @@ export function buildProfileView(release:Release,selection:ExplorerSelection):Pr
   }).sort((a,b)=>(b.valueUsd??-1)-(a.valueUsd??-1)||a.name.localeCompare(b.name));
   const earliest=world.map(r=>r.month).sort()[0];
   const months=Array.from({length:selection.months},(_,i)=>shiftMonth(end,i-selection.months+1)).filter(m=>m>=earliest);
+  const revisedKeys=new Set(release.revisedKeys);
   const series=(codes.length?codes:['-']).map(code=>{
     const observations=rows.filter(r=>r.partnerCode===code);
     const byMonth=new Map(observations.map(r=>[r.month,r]));
     return {code,name:code==='-'?'All partner countries':observations[0].partnerName,
       points:months.map((month,index)=>({month,valueUsd:byMonth.get(month)?.valueUsd??null,
+        recordedRevision:revisedKeys.has(observationKey({direction:selection.direction,productCode:release.productCode,month,geography:code==='-'?'world':'country',partnerCode:code,measure:selection.direction==='imports'?'GEN_VAL_MO':'ALL_VAL_MO'})),
         classificationVerified:interval(month)>=0,
         breakBefore:index>0&&!comparable(months[index-1],month)}))};
   });

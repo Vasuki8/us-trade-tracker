@@ -150,3 +150,29 @@ it('server markup disables merchandise controls until saved-view restoration and
  expect([...doc.querySelectorAll('table caption')].some(c=>c.textContent==='Monthly trade values · current U.S. dollars')).toBe(true);
  const note=doc.querySelector('noscript')!.textContent!;for(const word of ['direction','history','PNG','CSV'])expect(note).toContain(word);
 });
+
+it('renders recorded chart points and the export legend without plotting unavailable amounts',()=>{
+ const release=sampleRelease();release.revisedKeys=['imports/090121/2025-01/country/1220/GEN_VAL_MO','imports/090121/2025-02/country/1220/GEN_VAL_MO'];
+ const missing=release.observations.find(r=>r.direction==='imports'&&r.partnerCode==='1220'&&r.month==='2025-02')!;missing.valueUsd=null;missing.status='missing';
+ const view=buildProfileView(release,{direction:'imports',months:12,countryCodes:['1220']});
+ const {container}=render(<TradeChart view={view}/>);
+ for(const svg of container.querySelectorAll('svg')){
+  expect(svg.querySelectorAll('circle')).toHaveLength(11);
+  const revised=[...svg.querySelectorAll('circle')].find(c=>c.querySelector('title')?.textContent==='Jan 2025: $25 · Recorded revision');
+  expect(revised).toHaveAttribute('fill','white');expect(revised).toHaveAttribute('r','4');expect(revised).toHaveAttribute('stroke-width','2');
+  expect(svg.querySelector('circle title')?.textContent).toContain('Recorded revision');
+  const ordinary=[...svg.querySelectorAll('circle')].find(c=>c.querySelector('title')?.textContent==='Mar 2025: $25');expect(ordinary).toHaveAttribute('r','2.7');
+ }
+ expect(container.querySelector('.desktop-chart')).toHaveTextContent('Open circles: recorded revisions');
+ expect(container.querySelector('.desktop-chart')).toHaveTextContent('Merchandise release revisions: yes');
+});
+it('keeps release revision scope separate while country and direction controls change',async()=>{
+ const release=sampleRelease();release.revisedKeys=['imports/090121/2025-01/country/1220/GEN_VAL_MO'];
+ render(<ProductExplorer release={release}/>);const user=userEvent.setup();
+ const table=()=>screen.getByRole('table',{name:'Monthly trade values · current U.S. dollars'});
+ expect(within(table()).queryByText('Revised',{exact:true})).toBeNull();
+ expect(document.querySelector('.provenance')).toHaveTextContent('Merchandise release revisions: yes');
+ await user.click(screen.getByRole('checkbox',{name:'CANADA'}));expect(within(table()).getAllByText('Revised',{exact:true})).toHaveLength(1);
+ await user.click(screen.getByRole('radio',{name:'Exports'}));expect(within(table()).queryByText('Revised',{exact:true})).toBeNull();
+ expect(document.querySelector('.provenance')).toHaveTextContent('Merchandise release revisions: yes');
+});
