@@ -36,7 +36,7 @@ it('preserves changing names, descriptions, ordering, statuses, qualifications a
   release.duties.observations[2].consumptionValue={valueUsd:null,status:'suppressed'};
   release.duties.observations[2].coverage={status:'unavailable',uncalculatedDutiableValueUsd:null};
   release.duties.observations.push({...structuredClone(release.duties.observations[0]),geography:'country',partnerCode:'1220',partnerName:'Canada duty label'});
-  release.revisedKeys=['090121/imports/2025-01/country/1220/GEN_VAL_MO'];
+  release.revisedKeys=['imports/090121/2025-01/country/1220/GEN_VAL_MO'];
   release.duties.revisedKeys=['090121/2024-01/world/-'];
   release.classificationIntervals=[{from:'2024-01',to:'2024-12',evidenceUrl:'https://example.invalid/old'},{from:'2025-01',to:'2025-12',evidenceUrl:'https://example.invalid/new'}];
   release.observations.reverse();release.duties.observations.reverse();
@@ -84,4 +84,14 @@ it('rejects unsupported input measures and product identities before compacting 
   expect(()=>encodeBrowserRelease(release)).toThrow(/browser release/i);
   release.observations[0].measure='GEN_VAL_MO';release.observations[0].productCode='090122';
   expect(()=>encodeBrowserRelease(release)).toThrow(/browser release/i);
+});
+
+it('projects canonical recorded revisions unchanged after compact browser decoding',()=>{
+  const release=sampleRelease();release.revisedKeys=['imports/090121/2025-01/country/1220/GEN_VAL_MO'];
+  release.observations=release.observations.filter(r=>!(r.direction==='imports'&&r.month==='2025-01'&&r.partnerCode==='1220'));
+  const decoded=decodeBrowserRelease(encodeBrowserRelease(release));
+  const view=buildProfileView(decoded,{direction:'imports',months:60,countryCodes:['1220','4759']});
+  expect(view.series[0].points.find(p=>p.month==='2025-01')).toMatchObject({valueUsd:null,recordedRevision:true});
+  expect(view.series[1].points.find(p=>p.month==='2025-01')).toMatchObject({valueUsd:25,recordedRevision:false});
+  expect(decoded).toEqual(release);
 });

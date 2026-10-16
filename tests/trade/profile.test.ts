@@ -45,3 +45,55 @@ it('can calculate the earlier fixture year using integer dollar observations',()
   expect(view.trailingYear.current).toBe(600);
   expect(view.partners.find(p=>p.code==='4280')?.valueUsd).toBe(168);
 });
+
+it.each([
+  ['exact identity','imports/090121/2025-01/country/1220/GEN_VAL_MO',true],
+  ['another product','imports/090111/2025-01/country/1220/GEN_VAL_MO',false],
+  ['another direction','exports/090121/2025-01/country/1220/ALL_VAL_MO',false],
+  ['another measure','imports/090121/2025-01/country/1220/ALL_VAL_MO',false],
+  ['another geography','imports/090121/2025-01/world/1220/GEN_VAL_MO',false],
+  ['another partner','imports/090121/2025-01/country/4759/GEN_VAL_MO',false],
+  ['another month','imports/090121/2024-12/country/1220/GEN_VAL_MO',false],
+] as const)('profile recorded revision matches all identity dimensions: %s',(_case,key,want)=>{
+  const release=sampleRelease();release.revisedKeys=[key];
+  const view=buildProfileView(release,{...selection,countryCodes:['1220','4759']});
+  expect(view.series[0].points.find(p=>p.month==='2025-01')?.recordedRevision).toBe(want);
+  expect(view.series[1].points.find(p=>p.month==='2025-01')?.recordedRevision).toBe(_case==='another partner');
+  expect(view.provenance.revised).toBe(true);
+});
+
+it('keeps world and country revision marks separate across directions and windows',()=>{
+  const release=sampleRelease();release.revisedKeys=[
+    'imports/090121/2024-07/country/1220/GEN_VAL_MO',
+    'exports/090121/2025-01/world/-/ALL_VAL_MO',
+  ];
+  const selected=buildProfileView(release,{...selection,months:12,countryCodes:['1220']});
+  expect(selected.series[0].points.map(p=>p.recordedRevision)).toEqual(Array(12).fill(false));
+  expect(selected.provenance.revised).toBe(true);
+  const world=buildProfileView(release,{...selection,direction:'exports'});
+  expect(world.series[0].points.filter(p=>p.recordedRevision).map(p=>p.month)).toEqual(['2025-01']);
+  const imports=buildProfileView(release,selection);
+  expect(imports.series[0].points.every(p=>p.recordedRevision===false)).toBe(true);
+});
+
+it.each(['removed','missing','suppressed','zero'] as const)('retains a recorded revision for a %s monthly value',status=>{
+  const release=sampleRelease();
+  const row=release.observations.find(r=>r.direction==='imports'&&r.partnerCode==='1220'&&r.month==='2025-01')!;
+  if(status==='removed')release.observations=release.observations.filter(r=>r!==row);
+  else {row.status=status==='zero'?'reported':status;row.valueUsd=status==='zero'?0:null;}
+  release.revisedKeys=['imports/090121/2025-01/country/1220/GEN_VAL_MO'];
+  const point=buildProfileView(release,{...selection,countryCodes:['1220']}).series[0].points.find(p=>p.month==='2025-01');
+  expect(point).toMatchObject({valueUsd:status==='zero'?0:null,recordedRevision:true,classificationVerified:true,breakBefore:false});
+});
+
+it('leaves an empty initial comparison unmarked and preserves calculations when only keys change',()=>{
+  const release=sampleRelease(),before=buildProfileView(release,selection);
+  expect(before.provenance.revised).toBe(false);
+  expect(before.series[0].points.every(p=>p.recordedRevision===false)).toBe(true);
+  release.revisedKeys=['imports/090121/2025-01/world/-/GEN_VAL_MO'];
+  const after=buildProfileView(release,selection);
+  expect(after.latestMonth).toEqual(before.latestMonth);expect(after.trailingYear).toEqual(before.trailingYear);
+  expect(after.partners).toEqual(before.partners);
+  expect(after.series[0].points.map(({recordedRevision,...point})=>point)).toEqual(before.series[0].points.map(({recordedRevision,...point})=>point));
+  expect(after.provenance).toEqual({...before.provenance,revised:true});
+});
