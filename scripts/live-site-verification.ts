@@ -6,13 +6,13 @@ import {assertLiveWorkDir,loadLiveSitePackage,type LivePackageOptions,type Expec
 
 export type LiveSiteOptions=LivePackageOptions&{deploymentOrigin:string;proofRoot:string};
 type Redirect={from:string;to:string;status:number};
-type CheckResult={origin:string;path:string;finalPath:string;allowedPaths:string[];status:number;bytes:number;sha256:string;robots:string[];redirects:Redirect[]};
+export type CheckResult={origin:string;path:string;finalPath:string;allowedPaths:string[];status:number;bytes:number;sha256:string;robots:string[];redirects:Redirect[]};
 export type LiveSiteVerificationReceipt={
  schemaVersion:1;status:'passed'|'failed';startedAt:string;finishedAt:string;origins:string[];
  manifest?:FileIdentity;zip?:FileIdentity;plannedCount:number;completedCount:number;httpAttempts:number;
  checks:CheckResult[];failure?:{code:string;origin?:string;path?:string};
 };
-type Runtime={fetch:typeof globalThis.fetch;now:()=>number;setTimer:(fn:()=>void,ms:number)=>unknown;clearTimer:(timer:unknown)=>void};
+export type Runtime={fetch:typeof globalThis.fetch;now:()=>number;setTimer:(fn:()=>void,ms:number)=>unknown;clearTimer:(timer:unknown)=>void};
 const canonical='https://us-trade-tracker.pages.dev';
 const redirects=new Set([301,302,303,307,308]);
 const codes=new Set(['live-package-input','live-package-changed','live-package-verification','live-package-receipt','live-package-policy','live-work-scope','live-redirect','live-status','live-robots','live-body-length','live-body-hash','live-request-timeout','live-run-timeout','live-proof-write','live-response-url']);
@@ -42,7 +42,7 @@ async function bodyIdentity(response:Response,expected:ExpectedLiveCheck,signal:
  const sha256=hash.digest('hex');if(sha256!==expected.sha256)throw Error('live-body-hash');
  return{bytes,sha256};
 }
-async function requestCheck(origin:string,expected:ExpectedLiveCheck,runtime:Runtime,overall:AbortSignal,attempt:()=>void):Promise<CheckResult>{
+export async function requestCheck(origin:string,expected:ExpectedLiveCheck,runtime:Runtime,overall:AbortSignal,attempt:()=>void):Promise<CheckResult>{
  let path=expected.path;const seen=new Set([path]),chain:Redirect[]=[];
  for(let hop=0;hop<=3;hop++){
   if(overall.aborted)throw overall.reason;

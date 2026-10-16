@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "origin": "https://2b73be66.us-trade-tracker.pages.dev",
+  "package": {
+    "codeCommit": "b77cb8a6d6d69e352123c0e4baf6e8b13381bcf8",
+    "zip": {
+      "bytes": 412614,
+      "sha256": "6e63391ecc9ebe3c22432f69f620bf1e5f6d443dded47600062c92957346a283"
+    },
+    "manifest": {
+      "bytes": 6557,
+      "sha256": "7b57293e1c354c1d384ede45ef9636d73058ab3cb38f48f0e396f8db61f948dd"
+    }
+  },
+  "files": [
+    {
+      "path": "_astro/CanadaPreview.BpKXf7qO.js",
+      "bytes": 26078,
+      "sha256": "5cc126ce7e4b1da10cf55a54c379087e0b7049672518ca5f99d401ce8c238495",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/ChangesViewLink.kXn0svZj.js",
+      "bytes": 3008,
+      "sha256": "642df21e8facb61f5b3beb7dd5e33cf60d8cbe7c4526516b9628bf0eb53feb59",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/client.EoSUrE1U.js",
+      "bytes": 212848,
+      "sha256": "cec3635df6c515d999f234a95043623627f63c33bcf213d035c1f75a525e6e15",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/duty-changes-link.C8bbNe-o.js",
+      "bytes": 1088,
+      "sha256": "a45d14dba7c5dfb6f1bc82dac909ddb6f964c5698efcd175696d40ae25509043",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/DutyChanges.XrK4V1AX.js",
+      "bytes": 11304,
+      "sha256": "d609f006545c6fd8b73ee0b1309eab105305ac5caf3377e43fcb1f36d2fd0930",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/format.CsbIZ3Bl.css",
+      "bytes": 21963,
+      "sha256": "40a8afea6338efd79b0e4c8bbe52b3ec9db6839745e5c6884c268314a69e1b40",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/jsx-runtime.DVhfQL_6.js",
+      "bytes": 26858,
+      "sha256": "ac0e55e6eabf41d3a7e128e32e523ea699f2fcf48cf94bda3c48a782df048295",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/MonthlyChanges.BhvRZjlT.js",
+      "bytes": 2703,
+      "sha256": "991715cb03c31da2aaf59678f667e30364854c6ee4e41afe4d41636fc8ebf454",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/portfolio-link.DSLE7ulH.js",
+      "bytes": 749,
+      "sha256": "0dd477e57779b30207f3c2d916112a64534c217775e7261031da9326ede63415",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/PortfolioBriefing.CxpQRF4y.js",
+      "bytes": 13102,
+      "sha256": "287e5a70e02f43882d644920e719a5826ab7e9646fe7cd069d3fd5f99021bcd7",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/ProductChanges.D-2p-9Yz.js",
+      "bytes": 9778,
+      "sha256": "7bb0be196fa0055b85f3fde8d8900bb2d9c171d243f80fc0497a7d4734b9b74b",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/ProductExplorerClient.DsanQ0r-.js",
+      "bytes": 64492,
+      "sha256": "b53f6aa818cc0bb08c6e4566c5c8d449db56f17757c48ea242f64db4c0c21214",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/react.DJY1zw8Z.js",
+      "bytes": 7899,
+      "sha256": "702812fc9378c73101b63526d0318d087e3d267ac7d54d67bd9c269dd1fcdbb6",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/TradeChanges.CCOgnv9k.js",
+      "bytes": 5549,
+      "sha256": "5ad0eb3bb22dc2c911c54fa0a224c0038be9b489d33c0ab1933f391b531f002f",
+      "role": "served-asset"
+    },
+    {
+      "path": "_astro/view-link.CwRt5Qm3.js",
+      "bytes": 2189,
+      "sha256": "737fe0d12899eb419cf1f7e0b930c68105d3be19fef6ab590a85fb7053a21bbd",
+      "role": "served-asset"
+    },
+    {
+      "path": "404.html",
+      "bytes": 708,
+      "sha256": "9cc9807dec9aca40cfe1ea36e10c11ba3ba0b5dbc5a7724e99c54e6b8eca7ec0",
+      "role": "served-error-page"
+    },
+    {
+      "path": "briefing/090111/index.html",
+      "bytes": 10054,
+      "sha256": "dd552de5c93b87f167df5426f396630d35d1e1f892e146561d3a0ef2e451520c",
+      "role": "served-asset"
+    },
+    {
+      "path": "briefing/index.html",
+      "bytes": 9921,
+      "sha256": "03b8a9590fc20074d8a55c4538174142ee89d9debf78e5ca3f9664f0f6edb981",
+      "role": "served-asset"
+    },
+    {
+      "path": "briefing/portfolio/index.html",
+      "bytes": 59031,
+      "sha256": "514aaaaff1e3aff7d2dfaf3a68944c8618cb681612e1fb8e9c5fa215e3e615b6",
+      "role": "served-asset"
+    },
+    {
+      "path": "changes/090111/index.html",
+      "bytes": 163729,
+      "sha256": "a56b7ca7ffff795f4030b35562d022ee561a4010f49a884fa7ca5ba45b766df8",
+      "role": "served-asset"
+    },
+    {
+      "path": "changes/duties/090111/index.html",
+      "bytes": 119355,
+      "sha256": "932b90f44250f400e577c7c9f66d907dbe18697c8ecc880e7800d9d214352804",
+      "role": "served-asset"
+    },
+    {
+      "path": "changes/duties/index.html",
+      "bytes": 132141,
+      "sha256": "d4ef3773150844cfe6e8691b5a54939655cdf048d205e30c9231a2e6e8edbd53",
+      "role": "served-asset"
+    },
+    {
+      "path": "changes/index.html",
+      "bytes": 181866,
+      "sha256": "6fdaef104a7c0c070ef4285ddbaf85d24effd22cbd2f5ab739aa0f594feefdbb",
+      "role": "served-asset"
+    },
+    {
+      "path": "changes/products/index.html",
+      "bytes": 22800,
+      "sha256": "71d803733ce155daaf059948cdd3468c62b38546d2ef90218b5eece7800da319",
+      "role": "served-asset"
+    },
+    {
+      "path": "countries/1220/index.html",
+      "bytes": 98702,
+      "sha256": "1f89d459a909d05e194220ce62eb62f41fc67ca8ffab57785f4268c84a8320a4",
+      "role": "served-asset"
+    },
+    {
+      "path": "index.html",
+      "bytes": 7895,
+      "sha256": "7a0ed1740284dc2bb8efe727b1e4d3e04c7855b62e85c30ad18121e2720de415",
+      "role": "served-asset"
+    },
+    {
+      "path": "methods/index.html",
+      "bytes": 23052,
+      "sha256": "14a5530d87e04e361b71d5fcbeb9e597ddcab3cd7212a0497e12eac7dfc4f1db",
+      "role": "served-asset"
+    },
+    {
+      "path": "products/090111/index.html",
+      "bytes": 295228,
+      "sha256": "6164c657a3c121b6e694202ef988c00de48771bc1801cba85424559a3a28c7a6",
+      "role": "served-asset"
+    },
+    {
+      "path": "products/090121/index.html",
+      "bytes": 351370,
+      "sha256": "47498292bd3f84292909184ce26daf59620c0cb0a73615666551b239893c2b14",
+      "role": "served-asset"
+    },
+    {
+      "path": "products/index.html",
+      "bytes": 7779,
+      "sha256": "fc8451d8846cf5e2572757455925bf1d42eeb0c1dcff95866c24f2504dbdcb21",
+      "role": "served-asset"
+    }
+  ],
+  "csvs": [
+    {
+      "case": "090121-imports-world-duties.csv",
+      "filename": "hs-090121-imports-estimated-duties.csv",
+      "bytes": 20382,
+      "sha256": "9543162c4f30ad24a0efe670195b99988c62673d6fc06c129cce6241582c6d6a"
+    },
+    {
+      "case": "090121-imports-1220-2010-2050-duties.csv",
+      "filename": "hs-090121-imports-estimated-duties.csv",
+      "bytes": 56457,
+      "sha256": "a9f8bf60955d9f5f2ee49166feb3ed940712c9c30bf76ec68dca6892a10ea281"
+    },
+    {
+      "case": "090111-imports-world-duties.csv",
+      "filename": "hs-090111-imports-estimated-duties.csv",
+      "bytes": 20431,
+      "sha256": "7ffe72e1c7282ee3905f8dca3cb72d810b0aa9a08432b42c56b282cf8e5df969"
+    },
+    {
+      "case": "090111-imports-1220-2010-2050-duties.csv",
+      "filename": "hs-090111-imports-estimated-duties.csv",
+      "bytes": 56245,
+      "sha256": "8841b35af22eee93ad88c3bf1161fefdb11e8092881037833c806149ce04dc16"
+    },
+    {
+      "case": "090121-imports-world-rolling-dollars-changes.csv",
+      "filename": "hs-090121-imports-changes-dollars.csv",
+      "bytes": 11274,
+      "sha256": "6085352b76b45f5be0c3ac216f2760c401ef23931e510d1f7efbe69e7f34d8cf"
+    },
+    {
+      "case": "090121-exports-world-rolling-dollars-changes.csv",
+      "filename": "hs-090121-exports-changes-dollars.csv",
+      "bytes": 11271,
+      "sha256": "f895f0832787d46e3ab65962ad34eae2c9db512a872ee95de19151125794f608"
+    },
+    {
+      "case": "090111-imports-world-rolling-dollars-changes.csv",
+      "filename": "hs-090111-imports-changes-dollars.csv",
+      "bytes": 11386,
+      "sha256": "affcc12801898cf92a6575af8fa2ea685816265fc39c9edd8f8db3bceefe3446"
+    },
+    {
+      "case": "090111-exports-world-rolling-dollars-changes.csv",
+      "filename": "hs-090111-exports-changes-dollars.csv",
+      "bytes": 5874,
+      "sha256": "1bf89d98efb213c7d96c1ea119f24646255a91ad32e233f038ca450ac3d39b04"
+    }
+  ]
+}
