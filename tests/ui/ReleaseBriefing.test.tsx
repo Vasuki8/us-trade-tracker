@@ -176,3 +176,54 @@ it('does not fabricate a duty dataset for a legacy release and distinguishes Cen
   expect(sources).toHaveTextContent('U.S. Census Bureau');expect(sources).toHaveTextContent('2026-01-01T00:00:00.000Z');expect(sources).toHaveTextContent('Merchandise observations revised: 1');expect(sources).toHaveTextContent('Duty revisions: no retained duty history');
   expect(within(sources).getByRole('link',{name:release.sourceUrls[0]})).toHaveAttribute('href',release.sourceUrls[0]);
 });
+
+
+const monthlyDutyResearch='Explore latest-month estimated-duty changes by country';
+const rollingDutyResearch='Explore twelve-month estimated-duty changes by country';
+it.each(['090121','090111'] as const)('briefing_duty_links_keep_product_period_and_share_metric: %s',code=>{
+ render(<ReleaseBriefing release={briefingRelease(code)}/>);
+ const base=code==='090121'?'/changes/duties/':'/changes/duties/090111/';
+ const monthly=within(screen.getByRole('article',{name:'Monthly estimated duties'})),rolling=within(screen.getByRole('article',{name:'Rolling estimated duties'}));
+ expect(monthly.getByRole('link',{name:monthlyDutyResearch})).toHaveAttribute('href',base+'?direction=imports&period=monthly&metric=share#duties-changes-heading');
+ expect(rolling.getByRole('link',{name:rollingDutyResearch})).toHaveAttribute('href',base+'?direction=imports&period=rolling&metric=share#duties-changes-heading');
+ expect(monthly.getByText('Dec 2025')).toBeVisible();expect(monthly.getByText('$1')).toBeVisible();expect(monthly.getByText('$20')).toBeVisible();expect(monthly.getByText('5.000%')).toBeVisible();
+ expect(rolling.getByText('Jan 2025–Dec 2025')).toBeVisible();expect(rolling.getByText('$30')).toBeVisible();expect(rolling.getByText('$400')).toBeVisible();expect(rolling.getByText('7.500%')).toBeVisible();
+ expect(screen.getByRole('link',{name:'Explore duty history and comparisons'})).toHaveAttribute('href',`/products/${code}/#duties-heading`);
+});
+it('zero_share_change_keeps_duty_research',()=>{
+ const release=sampleDutyRelease();release.duties.observations.find(r=>r.month==='2025-12')!.calculatedDuty.valueUsd=0;
+ render(<ReleaseBriefing release={release}/>);expect(screen.getByRole('article',{name:'Monthly estimated duties'})).toHaveTextContent('Duty share: 0.000%');
+ expect(screen.getByRole('link',{name:monthlyDutyResearch})).toBeVisible();
+});
+it('zero_prior_duties_keeps_share_research',()=>{
+ const release=sampleDutyRelease();expect(release.duties.observations.find(r=>r.month==='2024-12')!.calculatedDuty.valueUsd).toBe(0);
+ render(<ReleaseBriefing release={release}/>);expect(screen.getByRole('link',{name:monthlyDutyResearch})).toBeVisible();
+});
+it('qualified_verified_coverage_keeps_research',()=>{
+ const release=sampleDutyRelease(),row=release.duties.observations.find(r=>r.month==='2025-12')!;row.calculatedDuty.valueUsd=0;row.coverage.uncalculatedDutiableValueUsd=5;
+ render(<ReleaseBriefing release={release}/>);expect(screen.getByRole('article',{name:'Monthly estimated duties'})).toHaveTextContent('Qualified reported figures');expect(screen.getByRole('link',{name:monthlyDutyResearch})).toBeVisible();
+});
+it.each(['missing','suppressed','coverage','zero current consumption','zero prior consumption','classification','split classification'] as const)('withholds_unavailable_world_share_research: %s',failure=>{
+ const release=sampleDutyRelease(),row=release.duties.observations.find(r=>r.month===(failure==='zero prior consumption'?'2024-12':'2025-12'))!;
+ if(failure==='missing'||failure==='suppressed'){row.calculatedDuty={valueUsd:null,status:failure};row.coverage={status:'unavailable',uncalculatedDutiableValueUsd:null};}
+ if(failure==='coverage')row.coverage={status:'unavailable',uncalculatedDutiableValueUsd:null};
+ if(failure.startsWith('zero')){for(const key of ['calculatedDuty','consumptionValue','dutiableValue'] as const)row[key].valueUsd=0;row.coverage.uncalculatedDutiableValueUsd=0;}
+ if(failure==='classification')release.classificationIntervals=[];
+ if(failure==='split classification')release.classificationIntervals=[{...release.classificationIntervals[0],to:'2024-12'},{...release.classificationIntervals[0],from:'2025-01'}];
+ render(<ReleaseBriefing release={release}/>);expect(screen.queryByRole('link',{name:monthlyDutyResearch})).toBeNull();
+ // Zero consumption in one month still permits a nonzero rolling denominator.
+ if(failure.startsWith('zero'))expect(screen.getByRole('link',{name:rollingDutyResearch})).toBeVisible();else expect(screen.queryByRole('link',{name:rollingDutyResearch})).toBeNull();
+ expect(screen.getByRole('link',{name:'Explore duty history and comparisons'})).toBeVisible();
+});
+it.each(['unrelated missing month','classification span'] as const)('world_share_research_qualifies_each_period_independently: %s',reason=>{
+ const release=sampleDutyRelease();
+ if(reason==='unrelated missing month')release.duties.observations=release.duties.observations.filter(r=>r.month!=='2024-06');
+ else release.classificationIntervals=[{...release.classificationIntervals[0],from:'2024-12'}];
+ render(<ReleaseBriefing release={release}/>);expect(screen.getByRole('link',{name:monthlyDutyResearch})).toBeVisible();expect(screen.queryByRole('link',{name:rollingDutyResearch})).toBeNull();
+});
+it.each(['no countries','unchanged countries'] as const)('valid_world_research_does_not_depend_on_mover_rows: %s',kind=>{
+ const release=sampleDutyRelease();
+ if(kind==='unchanged countries')release.duties.observations.push(...release.duties.observations.map(r=>({...r,geography:'country' as const,partnerCode:'1220',partnerName:'CANADA',calculatedDuty:{valueUsd:0,status:'reported' as const},consumptionValue:{valueUsd:1,status:'reported' as const},dutiableValue:{valueUsd:1,status:'reported' as const},coverage:{status:'verified' as const,uncalculatedDutiableValueUsd:0}})));
+ render(<ReleaseBriefing release={release}/>);expect(screen.getByRole('link',{name:monthlyDutyResearch})).toBeVisible();expect(screen.getByRole('link',{name:rollingDutyResearch})).toBeVisible();
+});
+it('legacy_briefing_does_not_offer_duty_research',()=>{render(<ReleaseBriefing release={sampleRelease()}/>);expect(screen.queryByRole('link',{name:/estimated-duty changes by country/})).toBeNull();});
