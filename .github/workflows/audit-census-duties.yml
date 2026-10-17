@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       product_code:
-        description: Reviewed HS6 product code (090121 roasted coffee or 090111 green coffee)
+        description: Reviewed HS6 product code (090121, 090111, 090240 or 180100)
         required: true
         type: string
         default: '090121'
