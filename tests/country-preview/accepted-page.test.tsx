@@ -43,8 +43,10 @@ it('discloses exact accepted audit metadata while keeping review limits visible 
   await userEvent.click(screen.getByRole('radio',{name:'Exports'}));expect(details).toHaveAttribute('open');expect(details).toHaveTextContent('101 bytes');expect(details).toHaveTextContent('2'.repeat(64));expect(details).not.toHaveTextContent('1'.repeat(64));
   expect(methods).toHaveTextContent('17 matched; 7 mismatch');expect(JSON.stringify(value)).toBe(original);
 });
-it('keeps accepted-profile capture explanations synthetic and without a real acceptance time',()=>{
+it('keeps accepted-profile capture explanations synthetic and without a real acceptance time',async()=>{
   render(<CanadaPreview data={makeCountryPreviewFixture()} presentation={{kind:'accepted-fixture'}}/>);
+  expect(screen.getByText('11 Oct 2026, 17:01 UTC')).not.toBeVisible();
+  await userEvent.click(screen.getByText('Capture and verification details',{exact:true}));
   expect(screen.getByText('11 Oct 2026, 17:01 UTC')).toBeVisible();
   expect(screen.getByText(/All displayed observations and reference examples are synthetic/)).toBeVisible();
   expect(screen.queryByText(/Local acceptance recorded/)).toBeNull();

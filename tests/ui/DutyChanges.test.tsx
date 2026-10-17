@@ -16,7 +16,7 @@ it.each([['rolling','share','$72','+20.000 pp'],['rolling','dollars','$72','+$60
   expect(screen.getByRole('radio',{name:period==='rolling'?'Rolling twelve months':'Latest month versus the same month last year'})).toBeChecked();
   expect(screen.getByRole('radio',{name:metric==='share'?'Share change in percentage points':'Dollar change'})).toBeChecked();
   const table=screen.getByRole('table',{name:'Largest estimated-duty increases'});expect(table).toHaveTextContent(amount);expect(table).toHaveTextContent(change);expect(table).toHaveTextContent('Canada');
-  expect(screen.getByText(/100 × CAL_DUT_MO/)).toBeVisible();
+  expect(screen.getByText(/Duty share = calculated duties ÷ imports for consumption × 100/)).toBeVisible();
   expect(screen.getByRole('link',{name:'Canada · 1220'})).toHaveAttribute('href',`/products/090121/?direction=imports&months=12&countries=1220${period==='monthly'?'&comparison=monthly':''}#duties-heading`);
 });
 it('pushes edits, resets fallback notice, and restores controls on popstate/hashchange',async()=>{

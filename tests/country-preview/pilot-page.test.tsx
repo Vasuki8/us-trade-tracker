@@ -48,6 +48,7 @@ it('snapshot retains research without preparation or publication claims',async()
   const data=real(),before=JSON.stringify(data);render(<CanadaPreview data={data} presentation={snapshot}/>);
   expect(screen.getByRole('heading',{name:'Canada historical snapshot'})).toBeVisible();
   expect(screen.getByText('24-month accepted historical snapshot')).toBeVisible();expect(screen.getByText('COUNTRY RESEARCH / HISTORICAL SNAPSHOT')).toBeVisible();
+  await userEvent.click(screen.getByText('Capture and verification details',{exact:true}));
   expect(screen.getByText('12 Oct 2026, 23:46 UTC')).toHaveAttribute('datetime',snapshot.acceptedAt);
   expect(screen.getByText(/Snapshot accepted/)).toBeVisible();expect(screen.queryByText(/Prepared for pilot publication|This prepared page does not publish|Website published|Deployment time/)).toBeNull();
   expect(screen.getAllByText('Compatible · accepted snapshot').length).toBeGreaterThan(0);

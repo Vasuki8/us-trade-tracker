@@ -5,7 +5,7 @@ const csv=async(page:Page)=>{const downloaded=page.waitForEvent('download');awai
 
 test('standalone direction, ranking and downloads match the product profile',async({page,context})=>{
   const requests:string[]=[],errors:string[]=[];page.on('request',r=>{if(r.url().includes('api.census.gov'))requests.push(r.url());});page.on('pageerror',e=>errors.push(e.message));
-  await open(page);await expect(page.getByText(/Current pilot coverage: Roasted coffee/)).toContainText('HS 090121');
+  await open(page);await expect(page.locator('.page-heading>p').filter({hasText:'Roasted coffee (HS 090121).'})).toContainText('HS 090121');
   await expect(page.getByRole('region',{name:'What changed?',exact:true})).toContainText('Jan 2025–Dec 2025 compared with Jan 2024–Dec 2024');
   await expect(page.getByText('Development sample data',{exact:true})).toBeVisible();
   const profile=await context.newPage();await profile.goto('/products/090121/');await expect(profile.locator('astro-island[ssr]')).toHaveCount(0);

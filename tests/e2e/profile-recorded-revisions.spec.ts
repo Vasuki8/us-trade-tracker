@@ -42,7 +42,7 @@ for(const width of [320,375])test(`recorded revision labels remain readable at $
  await page.setViewportSize({width,height:812});await page.goto('/products/090121/');await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
  await expect(table(page).getByRole('row',{name:/Jan 2025/})).toContainText('Revised');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
- const control=page.getByLabel('History window');await control.focus();await page.keyboard.press('ArrowDown');await expect(control).toHaveValue('12');await expect(table(page).getByText('Revised',{exact:true})).toHaveCount(1);
+ const control=page.getByLabel('History window');await expect(control).toBeEnabled();await control.focus();await page.keyboard.press('ArrowDown');await expect(control).toHaveValue('12');await expect(table(page).getByText('Revised',{exact:true})).toHaveCount(1);
  await page.getByRole('checkbox',{name:'CANADA',exact:true}).check();await expect(table(page).getByText('Revised',{exact:true})).toHaveCount(0);
  const scroll=page.getByRole('region',{name:'Scrollable monthly data'});await scroll.focus();await expect(scroll).toBeFocused();
 });

@@ -22,6 +22,7 @@ export function MonthlyChanges({data,reportingMonth}:{data:string;reportingMonth
     <ChangesViewLink {...savedView} includePeriod/>
     {direction==='imports'&&<p><a href={dutyChangesPath(view.productCode,period==='monthly'?{period:'monthly',metric:'share'}:undefined)}>Explore estimated-duty changes across countries</a></p>}
     <TradeChanges view={view} context="standalone" metric={metric} controlsReady={ready} onMetricChange={value=>savedView.changeSelection({direction,metric:value,period})}/>
+    <p className="chart-note"><span>{provenance.source==='fixture'?'Development fixtures':'U.S. Census Bureau'}</span> · {provenance.measure} · current USD, not seasonally adjusted.</p>
     <details className="provenance content-details"><summary>Release and source details</summary><p>Source: {provenance.source==='fixture'?'Development fixtures':'U.S. Census Bureau'} · {provenance.measure} · USD · retrieved {provenance.retrievedAt} · processing version {provenance.codeVersion} · revised observations: {provenance.revised?'yes':'no'}</p><p>{provenance.sourceUrls.map(url=><a key={url} href={url} rel="noreferrer">{url}</a>)}</p></details>
   </>;
 }

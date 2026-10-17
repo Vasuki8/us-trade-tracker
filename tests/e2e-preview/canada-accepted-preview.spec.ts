@@ -9,10 +9,10 @@ test('both direction CSVs retain values and blank exclusions with explicit sampl
 test('accepted-profile sample supports mobile keyboard controls and contained tables',async({page})=>{await page.setViewportSize({width:320,height:812});await page.goto(path);const imports=page.getByRole('radio',{name:'Imports'});await expect(imports).toBeEnabled();await imports.focus();await page.keyboard.press('ArrowRight');await expect(page.getByRole('radio',{name:'Exports'})).toBeChecked();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);const table=page.getByRole('region',{name:'Selected country category comparisons'});await table.focus();await expect(table).toBeFocused();expect(await table.evaluate(el=>el.scrollWidth>el.clientWidth)).toBe(true);const download=page.waitForEvent('download');await page.getByRole('button',{name:'Download products CSV'}).focus();await page.keyboard.press('Enter');expect((await download).suggestedFilename()).toContain('exports');});
 test('capture details open by keyboard, retain source context on direction changes and work without JavaScript',async({page,browser,baseURL})=>{
   await page.setViewportSize({width:320,height:812});await page.goto(path);
-  await expect(page.getByText('11 Oct 2026, 17:01 UTC',{exact:true})).toBeVisible();
+  await expect(page.getByText('11 Oct 2026, 17:01 UTC',{exact:true})).toBeHidden();
   const summary=page.getByText('Capture and verification details',{exact:true}),details=summary.locator('..');
   await expect(details).not.toHaveAttribute('open');await expect(details.getByText('synthetic-fixture-v1',{exact:true})).not.toBeVisible();
-  await summary.focus();await expect(summary).toBeFocused();await page.keyboard.press('Enter');await expect(details).toHaveAttribute('open','');
+  await summary.focus();await expect(summary).toBeFocused();await page.keyboard.press('Enter');await expect(details).toHaveAttribute('open','');await expect(page.getByText('11 Oct 2026, 17:01 UTC',{exact:true})).toBeVisible();
   await expect(details.getByText('synthetic-fixture-v1',{exact:true})).toBeVisible();
   await expect(details.locator('time').first()).toHaveAttribute('datetime','2026-10-11T17:01:00.000Z');
   await page.getByRole('radio',{name:'Exports'}).check();await expect(details).toHaveAttribute('open','');
@@ -21,8 +21,8 @@ test('capture details open by keyboard, retain source context on direction chang
   await summary.focus();await page.keyboard.press('Space');await expect(details).not.toHaveAttribute('open');
   const context=await browser.newContext({baseURL,javaScriptEnabled:false,viewport:{width:320,height:812}});
   try{const fallback=await context.newPage();await fallback.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());await fallback.goto(path);
-    await expect(fallback.getByText('11 Oct 2026, 17:01 UTC',{exact:true})).toBeVisible();
-    const disclosure=fallback.getByText('Capture and verification details',{exact:true});await disclosure.focus();await fallback.keyboard.press('Enter');
+    await expect(fallback.getByText('11 Oct 2026, 17:01 UTC',{exact:true})).toBeHidden();
+    const disclosure=fallback.getByText('Capture and verification details',{exact:true});await disclosure.focus();await fallback.keyboard.press('Enter');await expect(fallback.getByText('11 Oct 2026, 17:01 UTC',{exact:true})).toBeVisible();
     await expect(disclosure.locator('..').getByText('synthetic-fixture-v1',{exact:true})).toBeVisible();await expect(fallback.getByRole('radio',{name:'Exports'})).toBeDisabled();
   }finally{await context.close();}
 });

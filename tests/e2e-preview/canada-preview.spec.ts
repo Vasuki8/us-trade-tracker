@@ -16,7 +16,7 @@ test('fixture page shows default research, switches everything and preserves ref
   await expect(page.getByRole('region',{name:'Country overview'})).toContainText('$2,400,000');await expect(page.getByRole('table',{name:'Monthly U.S. imports from Canada · nominal USD'}).getByRole('row')).toHaveCount(25);
   await page.screenshot({path:info.outputPath('desktop.png'),fullPage:true});
   await page.getByRole('radio',{name:'Exports'}).check();await expect(page.getByRole('region',{name:'Country overview'})).toContainText('$4,600,000');await expect(page.getByRole('table',{name:'Selected leading categories · Exports'}).getByRole('row')).toHaveCount(11);
-  await expect(page.getByRole('table',{name:'Selected leading categories · Exports'}).getByRole('row',{name:/880000/})).toContainText('Statistical category');await expect(page.getByRole('table',{name:'Retained reference differences · Exports'}).getByRole('row')).toHaveCount(8);await expect(page.getByRole('region',{name:'Sources and revision differences'})).toContainText('17 matched; 7 mismatch');
+  await expect(page.getByRole('table',{name:'Selected leading categories · Exports'}).getByRole('row',{name:/880000/})).toContainText('Statistical category');await page.getByText('Revision checks and reference differences',{exact:true}).click();await expect(page.getByRole('table',{name:'Retained reference differences · Exports'}).getByRole('row')).toHaveCount(8);await expect(page.getByRole('region',{name:'Sources and revision differences'})).toContainText('17 matched; 7 mismatch');
 });
 test('downloads direction-specific monthly and product values with qualified provenance',async({page})=>{
   await page.goto(route);await page.getByRole('radio',{name:'Exports'}).check();
@@ -29,6 +29,7 @@ test('supports keyboard controls and contained mobile tables',async({page},info)
   await page.setViewportSize({width:375,height:812});await page.goto(route);const imports=page.getByRole('radio',{name:'Imports'});await expect(imports).toBeEnabled();await imports.focus();await expect(imports).toBeFocused();await page.keyboard.press('ArrowRight');await expect(page.getByRole('radio',{name:'Exports'})).toBeChecked();
   const scroll=page.getByRole('region',{name:'Selected country category comparisons'});await scroll.focus();await expect(scroll).toBeFocused();await page.keyboard.press('End');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);expect(await scroll.evaluate(el=>el.scrollWidth>el.clientWidth)).toBe(true);
+  await page.getByText('Revision checks and reference differences',{exact:true}).click();
   const references=page.getByRole('region',{name:'Country reference differences'});
   const monthWidth=await references.getByRole('columnheader',{name:'Month',exact:true}).evaluate(el=>el.getBoundingClientRect().width);
   expect(monthWidth).toBeLessThan(await references.evaluate(el=>el.clientWidth/2));
