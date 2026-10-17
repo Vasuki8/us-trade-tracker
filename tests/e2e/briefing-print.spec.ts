@@ -25,3 +25,17 @@ for(const report of reports){
   await expect(page.getByText('Use your browser’s Print command to print or save a PDF.',{exact:true})).toBeVisible();expect(await page.locator('.briefing').innerText()).toBe(before);
  });
 }
+
+for(const report of reports){
+ test(report.code+' print layout hides navigation and controls while retaining a single sourced report column',async({page})=>{
+  await page.goto(report.path);const before=await page.locator('.briefing').innerText();await expect(page.getByRole('button',{name:'Print / Save PDF',exact:true})).toBeVisible();
+  await page.emulateMedia({media:'print'});for(const selector of ['.site-header','.skip-link','.briefing-products','.briefing-print-controls'])await expect(page.locator(selector)).toBeHidden();
+  await retainedReport(page,report.current);await expect(page.locator('.page-heading')).toContainText('HS '+report.code);await expect(page.locator('.briefing')).toContainText('RP70/79 report dutiable value without calculating duties.');await expect(page.locator('.site-footer')).toContainText('not endorsed or certified by the Census Bureau.');await expect(page.locator('.site-footer p').last()).toBeVisible();
+  const cards=await page.locator('.briefing-grid').first().locator('.briefing-card').evaluateAll(nodes=>nodes.map(n=>({top:n.getBoundingClientRect().top,bottom:n.getBoundingClientRect().bottom})));expect(cards[1].top).toBeGreaterThanOrEqual(cards[0].bottom);
+  expect(await page.locator('.briefing-card p:not(.chart-note)').first().evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThanOrEqual(12);expect(await page.locator('.briefing .provenance>p').first().evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThanOrEqual(10.6);expect(await page.locator('.briefing').innerText()).toBe(before);
+  await page.emulateMedia({media:'screen'});await expect(page.locator('.site-header')).toBeVisible();await expect(page.getByRole('navigation',{name:'Briefing products'})).toBeVisible();await expect(page.getByRole('button',{name:'Print / Save PDF',exact:true})).toBeVisible();expect(await page.locator('.briefing').innerText()).toBe(before);
+ });
+ test(report.code+' static print keeps fixture warning duty qualifications and the Census notice',async({browser,baseURL})=>{
+  const context=await browser.newContext({baseURL,javaScriptEnabled:false});try{const page=await context.newPage();await page.goto(report.path);await page.emulateMedia({media:'print'});await expect(page.locator('.site-header')).toBeHidden();await expect(page.locator('.briefing-print-controls')).toBeHidden();await retainedReport(page,report.current);await expect(page.locator('.briefing')).toContainText('Reported zero duties do not prove duty-free trade.');await expect(page.locator('.site-footer p').last()).toBeVisible();}finally{await context.close();}
+ });
+}
