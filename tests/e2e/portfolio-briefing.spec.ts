@@ -5,14 +5,15 @@ import {parseCsv} from '../helpers/parse-csv';
 test('selected briefing restores history and downloads matching sourced figures',async({page})=>{
   const errors:string[]=[],censusRequests:string[]=[];
   page.on('pageerror',error=>errors.push(error.message));page.on('request',r=>{if(r.url().includes('api.census.gov'))censusRequests.push(r.url());});
-  await page.goto('/briefing/portfolio/');await expect(page.getByRole('heading',{name:'Coffee portfolio briefing'})).toBeVisible();
+  await page.goto('/briefing/portfolio/');await expect(page.getByRole('heading',{name:'Product portfolio briefing'})).toBeVisible();
   await page.getByRole('checkbox',{name:/Synthetic second product/}).uncheck();
   await expect(page.getByRole('checkbox',{name:/Roasted coffee/})).toBeDisabled();
   let downloaded=page.waitForEvent('download');await page.getByRole('button',{name:'Download summary CSV'}).click();
-  const summary=parseCsv(await readFile(await (await downloaded).path(),'utf8'));
+  const summaryDownload=await downloaded;const summary=parseCsv(await readFile(await summaryDownload.path(),'utf8'));
+  expect(summaryDownload.suggestedFilename()).toBe(`product-portfolio-imports-${summary[0].reporting_month}-summary.csv`);
   expect(summary).toHaveLength(2);expect(summary[0]).toMatchObject({product_code:'090121',current_value_usd:'100',previous_value_usd:'50',measure:'GEN_VAL_MO'});expect(summary[1].current_value_usd).toBe('1200');
   downloaded=page.waitForEvent('download');await page.getByRole('button',{name:'Download partner changes CSV'}).click();
-  const partners=parseCsv(await readFile(await (await downloaded).path(),'utf8'));expect(partners.length).toBeGreaterThan(0);expect(partners.every(r=>r.product_code==='090121'&&r.direction==='imports'&&r.ranking_metric==='dollars')).toBe(true);
+  const partnersDownload=await downloaded;const partners=parseCsv(await readFile(await partnersDownload.path(),'utf8'));expect(partnersDownload.suggestedFilename()).toBe(`product-portfolio-imports-${summary[0].reporting_month}-partners.csv`);expect(partners.length).toBeGreaterThan(0);expect(partners.every(r=>r.product_code==='090121'&&r.direction==='imports'&&r.ranking_metric==='dollars')).toBe(true);
   await page.getByRole('radio',{name:'Exports'}).check();await expect(page).toHaveURL(/direction=exports$/);await expect(page.getByRole('heading',{name:'Estimated duties',exact:true})).toHaveCount(0);
   downloaded=page.waitForEvent('download');await page.getByRole('button',{name:'Download summary CSV'}).click();
   expect(parseCsv(await readFile(await (await downloaded).path(),'utf8'))[0]).toMatchObject({current_value_usd:'200',measure:'ALL_VAL_MO',current_duty_calculated_duty_usd:''});

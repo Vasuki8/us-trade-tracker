@@ -1,0 +1,1925 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "2010",
+  "assessmentDate": "2026-10-17",
+  "feasibility": "partial-resource-stop",
+  "validContexts": 26,
+  "stoppedContexts": [
+    "imports-2025-09"
+  ],
+  "unprocessedContexts": 21,
+  "fullFeasibilityEstablished": false,
+  "classificationAccepted": false,
+  "releaseAccepted": false,
+  "sourceManifestSha256": "66acdc59057211575cf8b659f853460e1d279d624677f41fd880da6827865535",
+  "sourceProcessingCommit": "81c05bbd87ddf70100b3426b48c5e97d671ad22b",
+  "reviewedIntakeCommit": "39ce93eea12728b523f8181f50f502994f7fec8d",
+  "maintainedSummarySha256": "37d0403510b33da9c8a9b1392192655320811e29bd7869430109358c70b553e7",
+  "independentSummarySha256": "81eec33eb0802621db7a3beafd8784c8ff6ce70a326afcba46fe42a80f7e09a3",
+  "independentReviewSha256": "e0578d9baa2b2ab415d1f840212ac08e6f2ba7e59f782e9d4d9829d21ee9b1a8",
+  "independentVerification": {
+    "passedContexts": 26,
+    "failedReviewContexts": 0,
+    "exactComparedHS6Rows": 109541,
+    "globalDetailKeys": 42512247,
+    "zeroDetailRecords": 670940,
+    "zeroHS6Rows": 17973,
+    "missingDescriptionRows": 0,
+    "specialRows": 201,
+    "maximumContextSeconds": 22.031,
+    "peakWorkingSetBytes": 393465856,
+    "elapsedSeconds": 265.2030000000086,
+    "generatedRunBytes": 24882729
+  },
+  "maintainedResources": {
+    "elapsedSeconds": 3059.891,
+    "peakWorkingSetBytes": 394158080,
+    "generatedBytes": 24836036,
+    "networkRequests": 0,
+    "sourceBodyCopies": 0,
+    "contextTimeLimitSeconds": 60,
+    "stoppedContextElapsedSeconds": 2828.093,
+    "contextTimeLimitMetForEveryAttempt": false
+  },
+  "contexts": [
+    {
+      "id": "imports-2024-09",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 240025600,
+      "elapsedSeconds": 14.969,
+      "childStopped": true,
+      "source": {
+        "bytes": 156371524,
+        "sha256": "0b749e3af3da7ca6191e0f3f08da7efe10702ff0c16eda1dfa764f26b8aed841",
+        "retrieved_at": "2026-10-11T17:08:24.810529+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2024/Merch/im_m/IMDB2409.ZIP"
+      },
+      "sumUsd": 44000586862,
+      "countryTotalUsd": 44000586862,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "imp_CTY.txt",
+          "bytes": 135024,
+          "records": 232,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "afbcccf1efdd1acb29c73be7108c1444ca2c5b4ea7832bd612ba581c0e2e17d6",
+          "crc32": "6fef1dba",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.txt",
+          "bytes": 1516350210,
+          "records": 2197609,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "7634b557647fa9b21564ba15ec341a002787749353978b49d48ac3188da3ea72",
+          "crc32": "ff50c3c5",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 2197609,
+      "observations": {
+        "archiveMembers": 76,
+        "declaredUncompressedBytes": 1750481857,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 34253,
+          "01": 2,
+          "C ": 529,
+          "K ": 15,
+          "S ": 14630,
+          "S+": 423
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 28637,
+        "zeroHS6Rows": 969,
+        "mexicoDetailRecords": 49852,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 3889
+    },
+    {
+      "id": "exports-2024-09",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 212459520,
+      "elapsedSeconds": 4.5,
+      "childStopped": true,
+      "source": {
+        "bytes": 72005838,
+        "sha256": "10b189273857231d6b822dded6f4a2a68f77fad920308d5696032076c3e79cf2",
+        "retrieved_at": "2026-10-11T17:08:49.170025+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2024/Merch/ex_m/EXDB2409.ZIP"
+      },
+      "sumUsd": 28315082114,
+      "countryTotalUsd": 28315082114,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.txt",
+          "bytes": 65142,
+          "records": 231,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "e55acfda42a6dc7e59fa0131aa15335776ed71bf654485e3ff6c2c1d27fd92d4",
+          "crc32": "c33ac1b7",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.txt",
+          "bytes": 442758550,
+          "records": 1362334,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "500566d95fa90752fd03a20ddeb9ebb4e6e9d32e0d970b835827b2b24aa55e60",
+          "crc32": "0f05f629",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 1362334,
+      "observations": {
+        "archiveMembers": 75,
+        "declaredUncompressedBytes": 588009484,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 32290,
+          "2": 22504
+        },
+        "exportDfTotals": {
+          "1": 20334755211,
+          "2": 7980326903
+        },
+        "zeroDetailRecords": 26338,
+        "zeroHS6Rows": 823,
+        "mexicoDetailRecords": 54794,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 4966
+    },
+    {
+      "id": "imports-2026-08",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 394055680,
+      "elapsedSeconds": 16.359,
+      "childStopped": true,
+      "source": {
+        "bytes": 227480759,
+        "sha256": "78c41b5f75f474f4973c174233c54d6d7cba62ce78bef3ebfb3ef7e3026ffbbd",
+        "retrieved_at": "2026-10-11T17:49:26.339166+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2026/Merch/im_m/IMDB2608.ZIP"
+      },
+      "sumUsd": 60637409823,
+      "countryTotalUsd": 60637409823,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "IMP_CTY.TXT",
+          "bytes": 135024,
+          "records": 232,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "f6de65bbbfb93bb59d7e69da2530d0f87a7c2ff06e34fcab73ba030b01113d4e",
+          "crc32": "55384da4",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.TXT",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.TXT",
+          "bytes": 1832995350,
+          "records": 2656515,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "570be0cee87bae9b20f347cff8fc434f801f6183b2aa863d04bed7db4ff6ed71",
+          "crc32": "b478cd9d",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 2656515,
+      "observations": {
+        "archiveMembers": 68,
+        "declaredUncompressedBytes": 2080988906,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 35690,
+          "01": 435,
+          "C ": 489,
+          "K ": 14,
+          "S ": 33378,
+          "S+": 715
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 42837,
+        "zeroHS6Rows": 845,
+        "mexicoDetailRecords": 70721,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 3780
+    },
+    {
+      "id": "exports-2026-08",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 212488192,
+      "elapsedSeconds": 4.422,
+      "childStopped": true,
+      "source": {
+        "bytes": 123408639,
+        "sha256": "89db9a73dbd85a65d2078e0047c2592b38149d2403cf47425efe291cdf881052",
+        "retrieved_at": "2026-10-11T17:49:43.278254+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2026/Merch/ex_m/EXDB2608.ZIP"
+      },
+      "sumUsd": 33656327154,
+      "countryTotalUsd": 33656327154,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.TXT",
+          "bytes": 64578,
+          "records": 229,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "925f14ede60d5a03a7e1fe75b1245ab3a35502990a46b454a643a39e249e308b",
+          "crc32": "db681a20",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.TXT",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.TXT",
+          "bytes": 416213525,
+          "records": 1280657,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "ff9d15d20cce95da593a2bb3914106b146252e4bf3962ceb3424f0225dcdd697",
+          "crc32": "4c21164b",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 1280657,
+      "observations": {
+        "archiveMembers": 75,
+        "declaredUncompressedBytes": 573324899,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 30114,
+          "2": 20981
+        },
+        "exportDfTotals": {
+          "1": 22284326706,
+          "2": 11372000448
+        },
+        "zeroDetailRecords": 23450,
+        "zeroHS6Rows": 835,
+        "mexicoDetailRecords": 51095,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 4882
+    },
+    {
+      "id": "imports-2024-10",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 248877056,
+      "elapsedSeconds": 11.657,
+      "childStopped": true,
+      "source": {
+        "bytes": 163557597,
+        "sha256": "baf800b92922a28e69b9de91e4e3bbf9835ca1733324f6eb47427744d61b8474",
+        "retrieved_at": "2026-10-11T17:09:15.482207+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2024/Merch/im_m/IMDB2410.ZIP"
+      },
+      "sumUsd": 45214631883,
+      "countryTotalUsd": 45214631883,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "imp_CTY.txt",
+          "bytes": 135024,
+          "records": 232,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "f5524bd0f24f3a830efe53ed9d76e6fadd7745bbd8ee06e5a45dd62519359b4b",
+          "crc32": "6d67abdd",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.txt",
+          "bytes": 1609946640,
+          "records": 2333256,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "8827f5940da6417ebbad408b2199dc1ff35f7fd948e72ea78181c24d0bf0a532",
+          "crc32": "1375ea97",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 2333256,
+      "observations": {
+        "archiveMembers": 76,
+        "declaredUncompressedBytes": 1851384040,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 36078,
+          "01": 3,
+          "C ": 559,
+          "K ": 17,
+          "S ": 15159,
+          "S+": 434
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 30157,
+        "zeroHS6Rows": 973,
+        "mexicoDetailRecords": 52250,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 3938
+    },
+    {
+      "id": "exports-2024-10",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 212459520,
+      "elapsedSeconds": 6.0,
+      "childStopped": true,
+      "source": {
+        "bytes": 74498455,
+        "sha256": "cb70b2948e37b0df92c88ebeeaaafd2177f972ca99160dba64be177c2d74e03e",
+        "retrieved_at": "2026-10-11T17:09:40.911046+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2024/Merch/ex_m/EXDB2410.ZIP"
+      },
+      "sumUsd": 29019928274,
+      "countryTotalUsd": 29019928274,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.txt",
+          "bytes": 65142,
+          "records": 231,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "051088caac8d0b86fab72eb9d85d27752de771ea8bf02d82e1403e42308f9cf5",
+          "crc32": "00121880",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.txt",
+          "bytes": 465615475,
+          "records": 1432663,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "310c713a6e34823a8d511c77ed9c2bc764210841c97159a039195eca3a0c1a42",
+          "crc32": "0129f219",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 1432663,
+      "observations": {
+        "archiveMembers": 75,
+        "declaredUncompressedBytes": 614441365,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 33323,
+          "2": 23158
+        },
+        "exportDfTotals": {
+          "1": 21060169598,
+          "2": 7959758676
+        },
+        "zeroDetailRecords": 26864,
+        "zeroHS6Rows": 800,
+        "mexicoDetailRecords": 56481,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 5001
+    },
+    {
+      "id": "imports-2024-11",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 256270336,
+      "elapsedSeconds": 14.266,
+      "childStopped": true,
+      "source": {
+        "bytes": 168878635,
+        "sha256": "49eb58123594ed5eb7a432e5f7089fcf005b1e9d71fee921988176388838a667",
+        "retrieved_at": "2026-10-11T17:10:34.124536+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2024/Merch/im_m/IMDB2411.ZIP"
+      },
+      "sumUsd": 42084979699,
+      "countryTotalUsd": 42084979699,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "imp_CTY.txt",
+          "bytes": 135024,
+          "records": 232,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "966b2af1f848805a41a3b4e58c727ca6c613abd7381b2d1edf19618934007710",
+          "crc32": "5994b4d7",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.txt",
+          "bytes": 1691265900,
+          "records": 2451110,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "ffeb9be50138f022f631e1e9a884bf220ec5e3dc922c6a53a67a1e65c8d73fc2",
+          "crc32": "3e4a1c95",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 2451110,
+      "observations": {
+        "archiveMembers": 76,
+        "declaredUncompressedBytes": 1939022678,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 37550,
+          "01": 4,
+          "C ": 580,
+          "K ": 18,
+          "S ": 15584,
+          "S+": 442
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 32931,
+        "zeroHS6Rows": 1047,
+        "mexicoDetailRecords": 54178,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 3980
+    },
+    {
+      "id": "exports-2024-11",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 212275200,
+      "elapsedSeconds": 4.922,
+      "childStopped": true,
+      "source": {
+        "bytes": 76728847,
+        "sha256": "ff4fff77a465fb2e805b84d866e8ea5925123346503dd21b9fa186de1109c7d4",
+        "retrieved_at": "2026-10-11T17:10:48.977586+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2024/Merch/ex_m/EXDB2411.ZIP"
+      },
+      "sumUsd": 26891030247,
+      "countryTotalUsd": 26891030247,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.txt",
+          "bytes": 65142,
+          "records": 231,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "72e519ad050416dafdc37475c39acec9f1ddda93ce0da682fe236754eda8ab14",
+          "crc32": "8174885e",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.txt",
+          "bytes": 486786625,
+          "records": 1497805,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "2e13cbcf9570ee1c81c7aa1a69df899ce253f567ecfc72d34e3626fda460c3f1",
+          "crc32": "4c9744bd",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 1497805,
+      "observations": {
+        "archiveMembers": 75,
+        "declaredUncompressedBytes": 638907378,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 34143,
+          "2": 23741
+        },
+        "exportDfTotals": {
+          "1": 19893162863,
+          "2": 6997867384
+        },
+        "zeroDetailRecords": 29378,
+        "zeroHS6Rows": 892,
+        "mexicoDetailRecords": 57884,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 5024
+    },
+    {
+      "id": "imports-2024-12",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 394014720,
+      "elapsedSeconds": 15.281,
+      "childStopped": true,
+      "source": {
+        "bytes": 174664430,
+        "sha256": "92646690747882900a3747b9548d5d72d55e6f002c758aad134002740ab404df",
+        "retrieved_at": "2026-10-11T17:11:47.241746+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2024/Merch/im_m/IMDB2412.ZIP"
+      },
+      "sumUsd": 38981876122,
+      "countryTotalUsd": 38981876122,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "imp_CTY.txt",
+          "bytes": 135024,
+          "records": 232,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "de49abe016e4c7db6548aee00fd691556af3df4895bccd2a1b9c539511d2b815",
+          "crc32": "6a2f51cd",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.txt",
+          "bytes": 1769368380,
+          "records": 2564302,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "2c8dc0d2c4927c3818d3e51c90e1f05813ff3347e5c80204d67f843c1888fb6d",
+          "crc32": "4dccf04e",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 2564302,
+      "observations": {
+        "archiveMembers": 76,
+        "declaredUncompressedBytes": 2023186304,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 39013,
+          "01": 4,
+          "C ": 595,
+          "K ": 18,
+          "S ": 15966,
+          "S+": 454
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 34921,
+        "zeroHS6Rows": 1085,
+        "mexicoDetailRecords": 56050,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 4010
+    },
+    {
+      "id": "exports-2024-12",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 212389888,
+      "elapsedSeconds": 5.531,
+      "childStopped": true,
+      "source": {
+        "bytes": 78410456,
+        "sha256": "04f4df056082b8873af17a8413f7c4900f639ad934b66fe6e63691a1d9666672",
+        "retrieved_at": "2026-10-11T17:12:16.071779+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2024/Merch/ex_m/EXDB2412.ZIP"
+      },
+      "sumUsd": 24518665345,
+      "countryTotalUsd": 24518665345,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.txt",
+          "bytes": 65142,
+          "records": 231,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "b0dbe08f29100f8d72d828461d14e51c6fdcec0488b98e870ab15611aeeab643",
+          "crc32": "2e1850ef",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.txt",
+          "bytes": 505094850,
+          "records": 1554138,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "0b3d9b40889407d8169d8549189eb3e896db063053db0d832af2413d33e05d46",
+          "crc32": "fdb26266",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 1554138,
+      "observations": {
+        "archiveMembers": 75,
+        "declaredUncompressedBytes": 660053427,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 34784,
+          "2": 24245
+        },
+        "exportDfTotals": {
+          "1": 18443362047,
+          "2": 6075303298
+        },
+        "zeroDetailRecords": 31786,
+        "zeroHS6Rows": 993,
+        "mexicoDetailRecords": 59029,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 5043
+    },
+    {
+      "id": "imports-2025-01",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 121540608,
+      "elapsedSeconds": 4.031,
+      "childStopped": true,
+      "source": {
+        "bytes": 138816157,
+        "sha256": "3ef6ae71d00e40398d03482a96a1b8d691df3887bf537392854de1b65c5117ef",
+        "retrieved_at": "2026-10-11T17:13:06.712207+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2501.ZIP"
+      },
+      "sumUsd": 41597114578,
+      "countryTotalUsd": 41597114578,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "imp_CTY.txt",
+          "bytes": 133278,
+          "records": 229,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "bffc0bd63dee1e8d85720c8fcb2443b8d6d1be31bc9a7616d9fc13ac8f6c0018",
+          "crc32": "7e575d13",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.txt",
+          "bytes": 501803190,
+          "records": 727251,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "ac4fb5168f15a70fa7063ced98097f3826f4caeba121eccb647b32034526879d",
+          "crc32": "0627182b",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 727251,
+      "observations": {
+        "archiveMembers": 106,
+        "declaredUncompressedBytes": 726845224,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 13582,
+          "C ": 169,
+          "K ": 5,
+          "S ": 7264,
+          "S+": 203
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 357,
+        "zeroHS6Rows": 21,
+        "mexicoDetailRecords": 21223,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 2909
+    },
+    {
+      "id": "exports-2025-01",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 76750848,
+      "elapsedSeconds": 1.859,
+      "childStopped": true,
+      "source": {
+        "bytes": 108411238,
+        "sha256": "7911606c0190c39cf336070e8a8a4285ee350f4fe38bcf9e0df849892eda3867",
+        "retrieved_at": "2026-10-11T17:13:47.306042+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2501.ZIP"
+      },
+      "sumUsd": 28000902667,
+      "countryTotalUsd": 28000902667,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.txt",
+          "bytes": 63168,
+          "records": 224,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "13830581bcaa861c97d35faec07ad419a3f2746d4d4b115eab5fc0517b8330a8",
+          "crc32": "eaa4a1d2",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.txt",
+          "bytes": 143651950,
+          "records": 442006,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "168c36f689f2ba3b53abff71301eda283bebfca2bd0b42ae8b886951fe03a5e7",
+          "crc32": "1270989e",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 442006,
+      "observations": {
+        "archiveMembers": 113,
+        "declaredUncompressedBytes": 312806023,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 16962,
+          "2": 11138
+        },
+        "exportDfTotals": {
+          "1": 19967082898,
+          "2": 8033819769
+        },
+        "zeroDetailRecords": 0,
+        "zeroHS6Rows": 0,
+        "mexicoDetailRecords": 28100,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 4106
+    },
+    {
+      "id": "imports-2025-02",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 132489216,
+      "elapsedSeconds": 6.89,
+      "childStopped": true,
+      "source": {
+        "bytes": 94295787,
+        "sha256": "38a5245913f727c96b9a243c406efcba9b8980a8d65aa58789977e9a3210c238",
+        "retrieved_at": "2026-10-11T17:14:21.368486+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2502.ZIP"
+      },
+      "sumUsd": 41565516994,
+      "countryTotalUsd": 41565516994,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "imp_CTY.txt",
+          "bytes": 133860,
+          "records": 230,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "291db34c6dc32a2350c2aaafe63c9469a58b0c13eedeec5cb0e3145f5a5afaae",
+          "crc32": "6e6cd3a7",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.txt",
+          "bytes": 722975790,
+          "records": 1047791,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "fce52c82fad5ebb79dd4f4a4e3f1e67aab1ca504433dacf36f18109aaa8b55ce",
+          "crc32": "6d3c89de",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 1047791,
+      "observations": {
+        "archiveMembers": 76,
+        "declaredUncompressedBytes": 892863409,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 17813,
+          "C ": 232,
+          "K ": 7,
+          "S ": 8746,
+          "S+": 262
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 6202,
+        "zeroHS6Rows": 278,
+        "mexicoDetailRecords": 27060,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 3200
+    },
+    {
+      "id": "exports-2025-02",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 121655296,
+      "elapsedSeconds": 2.531,
+      "childStopped": true,
+      "source": {
+        "bytes": 118490027,
+        "sha256": "7668a5aefa439aa65d1e0fa719debcecaffc65b58ef9c1a29969fb3882261385",
+        "retrieved_at": "2026-10-11T17:15:08.393619+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2502.ZIP"
+      },
+      "sumUsd": 26748045349,
+      "countryTotalUsd": 26748045349,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.txt",
+          "bytes": 64014,
+          "records": 227,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "38cf770e38335844c2a6b8cfe56ba28a8a7c191ede2cdf74c83dceb0ec2564ab",
+          "crc32": "d4bb0bad",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.txt",
+          "bytes": 209213550,
+          "records": 643734,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "510b0082cfce4e9fe0f9ececdbc2b9293430e6103cf519d2485090df2005c1df",
+          "crc32": "c69d6084",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 643734,
+      "observations": {
+        "archiveMembers": 113,
+        "declaredUncompressedBytes": 389141113,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 20844,
+          "2": 13933
+        },
+        "exportDfTotals": {
+          "1": 19443949550,
+          "2": 7304095799
+        },
+        "zeroDetailRecords": 6931,
+        "zeroHS6Rows": 326,
+        "mexicoDetailRecords": 34777,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 4415
+    },
+    {
+      "id": "imports-2025-03",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 212803584,
+      "elapsedSeconds": 7.922,
+      "childStopped": true,
+      "source": {
+        "bytes": 184041295,
+        "sha256": "b0bf50cc4c39bb56023d288efc6a6dd022093d3b1b31399cf1e2a3220af3f5a1",
+        "retrieved_at": "2026-10-11T17:16:02.841715+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2503.ZIP"
+      },
+      "sumUsd": 48018160511,
+      "countryTotalUsd": 48018160511,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "imp_CTY.txt",
+          "bytes": 133860,
+          "records": 230,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "7c59733aa5889c43cdf648f3f2c5581c10622cfa342f3cc8fdd4a9834972f30f",
+          "crc32": "c9cb23c9",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.txt",
+          "bytes": 952980390,
+          "records": 1381131,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "153b49ea50d29d76c07d41a23383639ea79b93b921a50f00d14d4df76b1591b1",
+          "crc32": "fd4ece7c",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 1381131,
+      "observations": {
+        "archiveMembers": 106,
+        "declaredUncompressedBytes": 1215240318,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 28711,
+          "01": 1,
+          "C ": 282,
+          "K ": 10,
+          "S ": 23179,
+          "S+": 543
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 16966,
+        "zeroHS6Rows": 415,
+        "mexicoDetailRecords": 52726,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 3389
+    },
+    {
+      "id": "exports-2025-03",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 121843712,
+      "elapsedSeconds": 2.922,
+      "childStopped": true,
+      "source": {
+        "bytes": 125002773,
+        "sha256": "f5e19b295a2288a242c8a37b2420dfaf032627597c6f808c30ad2d2d8054414b",
+        "retrieved_at": "2026-10-11T17:16:50.065955+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2503.ZIP"
+      },
+      "sumUsd": 29396777599,
+      "countryTotalUsd": 29396777599,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.txt",
+          "bytes": 64014,
+          "records": 227,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "39a4bd60f4237115c71b9a425827abb8c4231d9f62671f441bb49369e12182ba",
+          "crc32": "d0c435d9",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.txt",
+          "bytes": 262574325,
+          "records": 807921,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "37efaa8d66721392a75e8f6408a44faf04e0c04d3b8d4ca76ae1546df9cd2296",
+          "crc32": "e4f64cf7",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 807921,
+      "observations": {
+        "archiveMembers": 113,
+        "declaredUncompressedBytes": 451044975,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 23540,
+          "2": 15945
+        },
+        "exportDfTotals": {
+          "1": 20854574499,
+          "2": 8542203100
+        },
+        "zeroDetailRecords": 10908,
+        "zeroHS6Rows": 442,
+        "mexicoDetailRecords": 39485,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 4602
+    },
+    {
+      "id": "imports-2025-04",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 223744000,
+      "elapsedSeconds": 11.141,
+      "childStopped": true,
+      "source": {
+        "bytes": 208290536,
+        "sha256": "035acc164e919fefc45b7ca7b7d85b05a461f527f60da781b7d00ace58906503",
+        "retrieved_at": "2026-10-11T17:18:08.467215+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2504.ZIP"
+      },
+      "sumUsd": 41845110321,
+      "countryTotalUsd": 41845110321,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "imp_CTY.txt",
+          "bytes": 134442,
+          "records": 231,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "f0d5f65f733147a2df11c1c1b24923cc574aed39b17eb2fa9c1ab0522dfdd1a3",
+          "crc32": "50242880",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.txt",
+          "bytes": 1344424980,
+          "records": 1948442,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "4cc5f05e3448bac5582a2e65e3ed4cd43cf20dfbc8f6d1d7e9da5ee31caf0278",
+          "crc32": "b1e4371e",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 1948442,
+      "observations": {
+        "archiveMembers": 106,
+        "declaredUncompressedBytes": 1636728445,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 33846,
+          "01": 3,
+          "C ": 325,
+          "K ": 10,
+          "S ": 26325,
+          "S+": 699
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 34072,
+        "zeroHS6Rows": 577,
+        "mexicoDetailRecords": 61208,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 3497
+    },
+    {
+      "id": "exports-2025-04",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 125341696,
+      "elapsedSeconds": 3.344,
+      "childStopped": true,
+      "source": {
+        "bytes": 129402633,
+        "sha256": "69b02f3c854b46f205282908462f58f17b8932c53def36e91164ab54b9faa7a1",
+        "retrieved_at": "2026-10-11T17:18:57.331334+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2504.ZIP"
+      },
+      "sumUsd": 27759613016,
+      "countryTotalUsd": 27759613016,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.txt",
+          "bytes": 64014,
+          "records": 227,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "d3603f3066b294dbe7a7468cee80e4a38c6c3bdbddc402242ebba6d49abb0494",
+          "crc32": "0fc4a47f",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.txt",
+          "bytes": 302193775,
+          "records": 929827,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "5181699c1be03056e66d108a0d7ad552b8abdda1d32dfc3913f12693a2f1250b",
+          "crc32": "1ededb39",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 929827,
+      "observations": {
+        "archiveMembers": 113,
+        "declaredUncompressedBytes": 496927375,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 25524,
+          "2": 17315
+        },
+        "exportDfTotals": {
+          "1": 19369722581,
+          "2": 8389890435
+        },
+        "zeroDetailRecords": 14485,
+        "zeroHS6Rows": 573,
+        "mexicoDetailRecords": 42839,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 4711
+    },
+    {
+      "id": "imports-2025-05",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 246063104,
+      "elapsedSeconds": 14.359,
+      "childStopped": true,
+      "source": {
+        "bytes": 226816449,
+        "sha256": "24818243d93c889972ae78ec8cdf1c6c581621998d9b83eaf8a169f232ae6fa7",
+        "retrieved_at": "2026-10-11T17:20:14.316442+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2505.ZIP"
+      },
+      "sumUsd": 46113080232,
+      "countryTotalUsd": 46113080232,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "imp_CTY.txt",
+          "bytes": 134442,
+          "records": 231,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "ac8ad469a6d700664b264e9267d8200cffb6e24ebf4e5519e585fc8ccbe46a63",
+          "crc32": "2c5c9202",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.txt",
+          "bytes": 1584006090,
+          "records": 2295661,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "7bfe137d61afaf2065798046845b7528321727456c615e48a66255a6209437e6",
+          "crc32": "5f7c1d51",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 2295661,
+      "observations": {
+        "archiveMembers": 106,
+        "declaredUncompressedBytes": 1894829594,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 37196,
+          "01": 4,
+          "C ": 363,
+          "K ": 12,
+          "S ": 28397,
+          "S+": 804
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 40378,
+        "zeroHS6Rows": 679,
+        "mexicoDetailRecords": 66776,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 3589
+    },
+    {
+      "id": "exports-2025-05",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 132083712,
+      "elapsedSeconds": 3.672,
+      "childStopped": true,
+      "source": {
+        "bytes": 133291860,
+        "sha256": "c4bbee47db7f779246487c51c44724794174dafa649c9664388590ed2326b7ea",
+        "retrieved_at": "2026-10-11T17:20:59.219160+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2505.ZIP"
+      },
+      "sumUsd": 28139980586,
+      "countryTotalUsd": 28139980586,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.txt",
+          "bytes": 64860,
+          "records": 230,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "cd97c315293033f29b48f6739ee2832562cff1e21615c4f3bf94bd545c2115c9",
+          "crc32": "cb6104ea",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.txt",
+          "bytes": 336602500,
+          "records": 1035700,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "6779c86016fc58a99156c93a77d5ce9812c1ff83bc96891e07bfe91407dfd709",
+          "crc32": "8550e656",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 1035700,
+      "observations": {
+        "archiveMembers": 113,
+        "declaredUncompressedBytes": 536730268,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 27150,
+          "2": 18483
+        },
+        "exportDfTotals": {
+          "1": 19863408105,
+          "2": 8276572481
+        },
+        "zeroDetailRecords": 17433,
+        "zeroHS6Rows": 658,
+        "mexicoDetailRecords": 45633,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 4778
+    },
+    {
+      "id": "imports-2025-06",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 394096640,
+      "elapsedSeconds": 14.5,
+      "childStopped": true,
+      "source": {
+        "bytes": 240434788,
+        "sha256": "4a55c8101bdb0810cfaa646da2d9c274d7033e22ab5a3b119c9efe24e270bf13",
+        "retrieved_at": "2026-10-11T17:22:08.337229+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2506.ZIP"
+      },
+      "sumUsd": 44831878204,
+      "countryTotalUsd": 44831878204,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "imp_CTY.txt",
+          "bytes": 134442,
+          "records": 231,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "e5b1c18e47178bc2b8e4493d81d509bc8390c924593f40ebef9f418a1d9e8bbf",
+          "crc32": "31ac9dad",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.txt",
+          "bytes": 1751860320,
+          "records": 2538928,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "435c8abe3b3e0e853bcbe6cd56255594db87cf29b48ed860b16b03942978b73b",
+          "crc32": "7cb41f76",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 2538928,
+      "observations": {
+        "archiveMembers": 106,
+        "declaredUncompressedBytes": 2075701797,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 39890,
+          "01": 5,
+          "C ": 392,
+          "K ": 14,
+          "S ": 30122,
+          "S+": 859
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 45372,
+        "zeroHS6Rows": 763,
+        "mexicoDetailRecords": 71282,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 3665
+    },
+    {
+      "id": "exports-2025-06",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 137224192,
+      "elapsedSeconds": 4.078,
+      "childStopped": true,
+      "source": {
+        "bytes": 135617540,
+        "sha256": "7c86f6b41f9d02d21f0ea2c3c0fef10371d0f6945ee0163145ff3654b1ad4c34",
+        "retrieved_at": "2026-10-11T17:22:56.462492+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2506.ZIP"
+      },
+      "sumUsd": 27718201315,
+      "countryTotalUsd": 27718201315,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.txt",
+          "bytes": 64860,
+          "records": 230,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "766dc27617965cd2281e1f853521dca366f99591e697a68f29e31f8306f6e8ab",
+          "crc32": "30dbd407",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.txt",
+          "bytes": 365673100,
+          "records": 1125148,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "7ff93a6f6d38475305fdc5a3fc22705ac58b8c4d6189bc1c2e61411b2682ff77",
+          "crc32": "39af1794",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 1125148,
+      "observations": {
+        "archiveMembers": 113,
+        "declaredUncompressedBytes": 571574861,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 28504,
+          "2": 19440
+        },
+        "exportDfTotals": {
+          "1": 19872969409,
+          "2": 7845231906
+        },
+        "zeroDetailRecords": 19909,
+        "zeroHS6Rows": 707,
+        "mexicoDetailRecords": 47944,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 4836
+    },
+    {
+      "id": "imports-2025-07",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 394158080,
+      "elapsedSeconds": 21.297,
+      "childStopped": true,
+      "source": {
+        "bytes": 254137265,
+        "sha256": "7d72cf07b9a1696fe8f054d8bbc25ce45bf6fb9ef0b5b8e893c6be9a10c1215a",
+        "retrieved_at": "2026-10-11T17:24:20.071525+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2507.ZIP"
+      },
+      "sumUsd": 45316830950,
+      "countryTotalUsd": 45316830950,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "imp_CTY.txt",
+          "bytes": 134442,
+          "records": 231,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "0fee08bdff9121814aa769d80fe9ad8bc52e9445482a86ff787047afe0eee53e",
+          "crc32": "e1017c09",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.txt",
+          "bytes": 1919310210,
+          "records": 2781609,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "7eb83c3be2570999040e19328687abeb872062590f6e899d84e4db69e48b3f24",
+          "crc32": "192d14f3",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 2781609,
+      "observations": {
+        "archiveMembers": 106,
+        "declaredUncompressedBytes": 2256203194,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 42614,
+          "01": 12,
+          "C ": 423,
+          "K ": 15,
+          "S ": 33168,
+          "S+": 942
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 50248,
+        "zeroHS6Rows": 810,
+        "mexicoDetailRecords": 77174,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 3732
+    },
+    {
+      "id": "exports-2025-07",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 143011840,
+      "elapsedSeconds": 5.265,
+      "childStopped": true,
+      "source": {
+        "bytes": 138533757,
+        "sha256": "3c57a1b8e30d2b137e4385839e8fd23053da1b806e6f8d629b6cc9decea9c5ca",
+        "retrieved_at": "2026-10-11T17:25:12.831752+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2507.ZIP"
+      },
+      "sumUsd": 28946019307,
+      "countryTotalUsd": 28946019307,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.txt",
+          "bytes": 64860,
+          "records": 230,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "c5c377d6c19f3921e6f5d6611f1d0047365d7c9601eea9dbd2859b3b5e8b356c",
+          "crc32": "503dbdcf",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.txt",
+          "bytes": 392603900,
+          "records": 1208012,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "449c38b693fd352dc4a2af59d3dd2d1100fd65d6f912aa6317e2e32450b169db",
+          "crc32": "6b37bcd8",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 1208012,
+      "observations": {
+        "archiveMembers": 113,
+        "declaredUncompressedBytes": 602753631,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 29690,
+          "2": 20355
+        },
+        "exportDfTotals": {
+          "1": 19905592308,
+          "2": 9040426999
+        },
+        "zeroDetailRecords": 21635,
+        "zeroHS6Rows": 740,
+        "mexicoDetailRecords": 50045,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 4888
+    },
+    {
+      "id": "imports-2025-08",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 394006528,
+      "elapsedSeconds": 19.891,
+      "childStopped": true,
+      "source": {
+        "bytes": 264168323,
+        "sha256": "4fd343e4b33fdbe013329db1f46264abe93363e1c04216855fc27fd6f76da022",
+        "retrieved_at": "2026-10-11T17:26:47.106712+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2508.ZIP"
+      },
+      "sumUsd": 45189659508,
+      "countryTotalUsd": 45189659508,
+      "residualUsd": 0,
+      "members": {
+        "IMP_CTY.TXT": {
+          "actualMember": "imp_CTY.txt",
+          "bytes": 134442,
+          "records": 231,
+          "recordWidthExcludingCRLF": 580,
+          "sha256": "a561d97de59224d008f70f1398060a90608138d6e9d0655e07d2fc7ae6be3bf4",
+          "crc32": "cc850542",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "IMP_DETL.TXT": {
+          "actualMember": "IMP_DETL.txt",
+          "bytes": 2058207900,
+          "records": 2982910,
+          "recordWidthExcludingCRLF": 688,
+          "sha256": "62278ecae955c11928fecdfe98afa4fe55b499f8d484bae52dad0c98ea5357c3",
+          "crc32": "03452b61",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 2982910,
+      "observations": {
+        "archiveMembers": 106,
+        "declaredUncompressedBytes": 2405841315,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "00": 45018,
+          "01": 13,
+          "C ": 451,
+          "K ": 15,
+          "S ": 35330,
+          "S+": 1033
+        },
+        "exportDfTotals": {},
+        "zeroDetailRecords": 55001,
+        "zeroHS6Rows": 935,
+        "mexicoDetailRecords": 81860,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 3780
+    },
+    {
+      "id": "exports-2025-08",
+      "valid": true,
+      "state": "validated",
+      "reason": null,
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 212635648,
+      "elapsedSeconds": 6.171,
+      "childStopped": true,
+      "source": {
+        "bytes": 141228868,
+        "sha256": "6728b6afe647f66ca5bc7bd2a022e91b7b8c8de106f4ce0fe99a2aee2143128c",
+        "retrieved_at": "2026-10-11T17:27:34.060840+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/ex_m/EXDB2508.ZIP"
+      },
+      "sumUsd": 29191261417,
+      "countryTotalUsd": 29191261417,
+      "residualUsd": 0,
+      "members": {
+        "EXP_CTY.TXT": {
+          "actualMember": "EXP_CTY.txt",
+          "bytes": 65142,
+          "records": 231,
+          "recordWidthExcludingCRLF": 280,
+          "sha256": "9fdd733fefff681f6403da4e886e921e7532a1e807fc7364e9676eabca225632",
+          "crc32": "8e36bab2",
+          "CRCVerifiedAtEOF": true
+        },
+        "HSDESC.TXT": {
+          "actualMember": "HSDESC.txt",
+          "bytes": 1450800,
+          "records": 6975,
+          "recordWidthExcludingCRLF": 206,
+          "sha256": "16ce1f0beac4bce5f0972be51793ca07502ee356daab89e24db3e421e6e35ace",
+          "crc32": "a4d5f2c3",
+          "CRCVerifiedAtEOF": true
+        },
+        "EXP_DETL.TXT": {
+          "actualMember": "EXP_DETL.txt",
+          "bytes": 417880775,
+          "records": 1285787,
+          "recordWidthExcludingCRLF": 323,
+          "sha256": "e43868763797703cf8a18e38d253c1e9969f90d98fd2b7e19f253bd49da9c22c",
+          "crc32": "0badfe75",
+          "CRCVerifiedAtEOF": true
+        }
+      },
+      "fullKeyCount": 1285787,
+      "observations": {
+        "archiveMembers": 113,
+        "declaredUncompressedBytes": 632017322,
+        "descriptionCountsByCodeLength": {
+          "2": 98,
+          "4": 1243,
+          "6": 5634
+        },
+        "dimensions": {
+          "1": 30795,
+          "2": 21196
+        },
+        "exportDfTotals": {
+          "1": 19452134637,
+          "2": 9739126780
+        },
+        "zeroDetailRecords": 23744,
+        "zeroHS6Rows": 787,
+        "mexicoDetailRecords": 51991,
+        "missingDescriptionCodes": []
+      },
+      "rowCount": 4931
+    },
+    {
+      "id": "imports-2025-09",
+      "valid": false,
+      "state": "stopped",
+      "reason": "worker-deadline",
+      "jobOwnershipVerified": true,
+      "peakWorkingSetBytes": 121364480,
+      "elapsedSeconds": 2828.093,
+      "childStopped": true,
+      "source": {
+        "bytes": 273226744,
+        "sha256": "8d84ce467c4613d1c1d40a64b9c206cd126a65a1f93907cbe0efa585f5352df9",
+        "retrieved_at": "2026-10-11T17:29:16.329504+00:00",
+        "source_url": "https://www.census.gov/trade/downloads/2025/Merch/im_m/IMDB2509.ZIP"
+      }
+    }
+  ],
+  "limitations": [
+    "National originals were retrieved October 11, 2026 and read in place; no new Mexico source request.",
+    "The stopped worker recorded 2828.093 seconds against a 60-second limit. Its late stop is retained; cause is unverified. Independent successful-context verification does not cure this exception.",
+    "Exact same-archive arithmetic does not establish current-reference agreement, code continuity, monthly country-release eligibility or valid product-share comparison.",
+    "No accepted Mexico data, public profile or R2 country copy was created. Existing Canada failures and revision differences are unchanged."
+  ]
+}

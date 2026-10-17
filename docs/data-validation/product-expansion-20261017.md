@@ -1,6 +1,6 @@
 # Tea and cocoa expansion — October 17, 2026
 
-Status: classification reviewed for intake only. No new source import, accepted release, archive initialization or public product page is established by this record.
+Status: classification intake is ready, but source acceptance failed. Tea and cocoa remain unpublished. No accepted new-product release, archive initialization or site publication occurred.
 
 | HS6 | Scope | Reviewed interval | Import classification |
 | --- | --- | --- | --- |
@@ -23,4 +23,23 @@ The historical workbooks were retrieved October 17. The authenticated committee 
 
 Registry flags permit intake only. Publication and duties acceptance remain false. Classification intervals stop at August 2026 even though the historical workbook labels some detail codes “Current.” No September or later import is authorized by these intervals. Existing coffee and Canada accepted inputs remain unchanged.
 
-Next gates: separately authenticated source captures and independent recovery; bounded private R2 initialization and selected-state verification; independently reviewed site integration. Mexico remains a separate offline feasibility assessment and has no accepted release or public profile.
+## Source assessment outcome
+
+| Product | Duty audit | Source import | Decision |
+| --- | --- | --- | --- |
+| Tea 090240 | 23 of 24 months complete; February 2026 incomplete. Its one retry stopped in an existing test before Census retrieval. | Omitted because the separate required audit cannot pass within this batch. | Withhold acceptance and publication. |
+| Cocoa 180100 | All 24 months independently verified, 96 raw records and 784 normalized observations, with no discrepancies. | Both permitted attempts failed during Census retrieval and retained no import artifact. | Withhold acceptance and publication. |
+
+The [tea audit](https://github.com/Vasuki8/us-trade-tracker/actions/runs/39045756732), [cocoa audit](https://github.com/Vasuki8/us-trade-tracker/actions/runs/39046703861) and [cocoa import](https://github.com/Vasuki8/us-trade-tracker/actions/runs/39047019854) ran on reviewed commit `28f761a77c445a87b5a56586b0d20244335cde2e`. The [sanitized evidence record](product-expansion-20261017-evidence.json) binds artifact identities, attempts and independent calculations. Authenticated originals and failure logs were preserved separately.
+
+Independent replay also matched all 1,024 normalized tea observations in its 23 complete months. This verifies the retained arithmetic, not complete coverage. Missing February inputs stay unavailable; captures were not stitched together. Reported zero duties remain explicit zeros. RP70/79 qualifications remain: dutiable value lacking a calculated duty sums to $205,406 across tea's complete months and $5,318,804 across cocoa's 24 months. Neither amount implies duty-free treatment.
+
+Both cocoa import attempts reported “Census request failed or timed out; the current release is unchanged.” Their exact transport cause and failed request identity are unverified. No complete 60-month merchandise artifact exists to replay or recover. The tea retry instead failed an existing `round_trips_exactly_eleven_members` test at its 5,000 ms timeout. No further retries, workflow changes, timeout increases or acceptance exceptions were used.
+
+The five workflow attempts made no R2 write. No canonical new-product data, publication flags or selection pins were installed. Archive initialization/readback, accepted-source recovery, expanded site packaging and publication remain gated. The retained 31-file predecessor package was authenticated, and no upload or restoration was attempted. Existing coffee and Canada accepted inputs remain unchanged.
+
+The generic portfolio wording/CSV filenames and tested 8 MiB aggregate verification ceiling are preparation changes only. They do not establish source acceptance and have not been deployed. The ZIP, manifest, request-count, timeout, hash, same-origin and private-path checks retain their existing limits. Synthetic non-coffee loader tests are fixtures, not official accepted observations.
+
+Mexico's separate [offline feasibility assessment](2010-feasibility.md) independently verified 26 of 48 contexts and retained its resource-stop exception. It establishes no accepted Mexico release or public profile.
+
+Recommended next step: separately scope a retrieval-reliability repair that retains bounded, sanitized failed-request identity and partial capture evidence, then reassess a new intake batch. This report authorizes no additional source request or retry.

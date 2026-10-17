@@ -2,7 +2,7 @@ import {afterEach,expect,it,vi} from 'vitest';
 import {writeFile,readFile,link,rename,mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {loadLiveSitePackage} from '../../scripts/live-site-package';
-import {cleanLiveFixtures,liveFixture,sha} from '../helpers/live-site';
+import {cleanLiveFixtures,liveFixture,liveFixtureWithTotal,sha} from '../helpers/live-site';
 afterEach(async()=>{vi.restoreAllMocks();await cleanLiveFixtures();});
 it('authenticates a real ZIP and plans served and private routes without the control file',async()=>{
   const f=await liveFixture();const result=await loadLiveSitePackage(f);
@@ -62,10 +62,20 @@ it.each([['manifestPath',1048577],['zipPath',4194305]] as const)('rejects oversi
   expect(invoked).toBe(false);
 });
 it('rejects packages above the aggregate byte budget',async()=>{
-  const f=await liveFixture({'large.js':'x'.repeat(2097152)});
+  const f=await liveFixtureWithTotal(8388609);
   await expect(loadLiveSitePackage(f)).rejects.toThrow('live-package-policy');
 });
 it('rejects packages whose two-origin check plan exceeds 128 checks',async()=>{
   const f=await liveFixture(Object.fromEntries(Array.from({length:57},(_,i)=>['a'+i+'.js','x'])));
   await expect(loadLiveSitePackage(f)).rejects.toThrow('live-package-policy');
+});
+
+it('accepts exactly eight MiB of authenticated raw assets while keeping the compressed ZIP limit',async()=>{
+  const f=await liveFixtureWithTotal(8388608);const result=await loadLiveSitePackage(f);
+  expect(result.manifest.totalBytes).toBe(8388608);expect(result.zip.bytes).toBeLessThanOrEqual(4194304);
+  expect(result.checks).toHaveLength(8);
+});
+it('retains all 128 checks at the two-origin boundary',async()=>{
+  const f=await liveFixture(Object.fromEntries(Array.from({length:56},(_,i)=>['a'+i+'.js','x'])));
+  expect((await loadLiveSitePackage(f)).checks.length*2).toBe(128);
 });

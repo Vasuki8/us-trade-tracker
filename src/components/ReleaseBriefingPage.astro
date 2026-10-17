@@ -19,7 +19,7 @@ const description=release.observations.find(row=>row.geography==='world')?.descr
     <p>Latest trade figures, partner changes and estimated duties.</p>
   </div>
   <nav class="briefing-products" aria-label="Briefing products">
-    <p><a href="/briefing/portfolio/">Build a coffee portfolio briefing</a></p>
+    <p><a href="/briefing/portfolio/">Build a product briefing</a></p>
     <p>Product</p>
     <ul>{products.map(option=><li><a href={releaseBriefingPath(option.code)} aria-current={option.code===product.code?'page':undefined}>{option.displayName} · HS {option.code}</a></li>)}</ul>
   </nav>
