@@ -26,3 +26,11 @@ test('capture details open by keyboard, retain source context on direction chang
     await expect(disclosure.locator('..').getByText('synthetic-fixture-v1',{exact:true})).toBeVisible();await expect(fallback.getByRole('radio',{name:'Exports'})).toBeDisabled();
   }finally{await context.close();}
 });
+
+test('closed capture dates remain available in static print and return to collapsed screen state',async({browser,baseURL})=>{
+ const context=await browser.newContext({baseURL,javaScriptEnabled:false});
+ try{const page=await context.newPage();await page.goto(path);const details=page.getByText('Capture and verification details',{exact:true}).locator('..'),date=page.getByText('11 Oct 2026, 17:01 UTC',{exact:true});
+ await expect(details).not.toHaveAttribute('open');await expect(date).toBeHidden();await page.emulateMedia({media:'print'});await expect(date).toBeVisible();
+ await page.emulateMedia({media:'screen'});await expect(date).toBeHidden();await expect(details).not.toHaveAttribute('open');
+ }finally{await context.close();}
+});

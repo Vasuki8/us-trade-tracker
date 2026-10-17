@@ -13,7 +13,7 @@ const views:CountryChangesViews={rolling:{imports:buildChangesView(release,'impo
   <div class="page-heading">
     <p class="eyebrow">MONTHLY RELEASE RESEARCH</p><h1>Monthly changes</h1>
     <p>{product.displayName} (HS {release.productCode}).</p>
-    <details class="content-details product-definition"><summary>Official product description</summary><p class="heading-description">{views.rolling.imports.title}</p></details>
+    <details class="content-details product-definition"><summary>Product description</summary><p class="heading-description">{views.rolling.imports.title}</p></details>
     <p>See which countries gained or lost value or share. Choose monthly or twelve-month comparisons below.</p>
     <a href={`/products/${release.productCode}/`}>View the full product profile</a>
   </div>

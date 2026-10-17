@@ -53,3 +53,9 @@ it('downloads the selected table CSV and restores both period and metric with na
   expect(files.map(f=>f.filename)).toEqual(['hs-090121-imports-estimated-duty-changes-rolling-share.csv','hs-090121-imports-estimated-duty-changes-monthly-dollars.csv','hs-090121-imports-estimated-duty-changes-rolling-share.csv']);
   const rows=await Promise.all(files.map(async f=>parseCsv(await read(f.blob))));expect(rows[0][0].current_calculated_duty_usd).toBe('72');expect(rows[1][0]).toMatchObject({comparison_period:'monthly',ranking_metric:'dollars',current_calculated_duty_usd:'6'});expect(rows[2]).toEqual(rows[0]);
 });
+
+it('identifies the source before optional qualifications are opened',()=>{
+ const release=dutyChangesRelease();release.source='census';const {container}=render(<DutyChanges data={prepareDutyChanges(release)}/>);
+ expect(within(container.querySelector('.release-strip')!).getByText('U.S. Census Bureau',{exact:true})).toBeVisible();
+ expect(container.querySelector('details')).not.toHaveAttribute('open');
+});

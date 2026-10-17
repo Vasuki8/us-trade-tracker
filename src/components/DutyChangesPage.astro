@@ -10,7 +10,7 @@ const {product,release,products}=Astro.props;
 const data=prepareDutyChanges(release);
 ---
 <BaseLayout title={`Estimated-duty changes · ${product.displayName}`} description={`Compare qualified estimated-duty changes for ${product.displayName} by country using monthly and rolling Census figures.`} productCode={release.productCode}>
-  <div class="page-heading"><p class="eyebrow">IMPORT RESEARCH</p><h1>Estimated-duty changes</h1><p>{product.displayName} · HS {product.code}</p><details class="content-details product-definition"><summary>Official product description</summary><p class="heading-description">{data.title}</p></details><p>Compare country changes in estimated duties and duty share. U.S. imports only.</p><a href={`/products/${product.code}/`}>View the full product profile</a></div>
+  <div class="page-heading"><p class="eyebrow">IMPORT RESEARCH</p><h1>Estimated-duty changes</h1><p>{product.displayName} · HS {product.code}</p><details class="content-details product-definition"><summary>Product description</summary><p class="heading-description">{data.title}</p></details><p>Compare country changes in estimated duties and duty share. U.S. imports only.</p><a href={`/products/${product.code}/`}>View the full product profile</a></div>
   <nav class="duty-products" aria-label="Estimated-duty products"><p>Product</p><ul>{products.map(option=><li><a href={dutyChangesPath(option.code)} aria-current={option.code===product.code?'page':undefined}>{option.displayName} · HS {option.code}</a></li>)}</ul><p class="chart-note">Switching products resets the filters to rolling duty-share changes.</p></nav>
   <DutyChanges {data} client:load/>
 </BaseLayout>

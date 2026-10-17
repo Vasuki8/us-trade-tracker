@@ -6,7 +6,7 @@ test('the second product keeps its identity in briefings, figures and research l
   await page.goto('/products/090122/');await page.getByRole('navigation',{name:'Main'}).getByRole('link',{name:'Briefing',exact:true}).click();
   await expect(page).toHaveURL(/\/briefing\/090122\/$/);
   await expect(page.locator('.page-heading>p').filter({hasText:'Synthetic second product (HS 090122).'})).toHaveText('Synthetic second product (HS 090122).');
-  await page.getByText('Official product description',{exact:true}).click();
+  await page.getByText('Product description',{exact:true}).click();
   await expect(page.getByText('SYNTHETIC PRODUCT 090122',{exact:true})).toBeVisible();
   await expect(page.getByText('Development sample data',{exact:true})).toBeVisible();
   await expect(page.getByRole('region',{name:'Monthly imports'})).toContainText('Current value: $300');
