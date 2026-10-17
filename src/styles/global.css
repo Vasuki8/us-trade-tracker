@@ -38,3 +38,36 @@
 .duty-history-chart{margin:24px 0;padding:20px 0;border-top:1px solid var(--border);min-width:0}.duty-history-chart h3{font-size:17px;font-weight:600;margin:0 0 10px}.duty-chart-period,.duty-history-chart figcaption{font-size:11px}.duty-history-chart figcaption p{margin:8px 0;overflow-wrap:anywhere}.duty-history-chart .duty-chart-desktop,.duty-history-chart .duty-chart-mobile{width:100%;height:auto;display:block}.duty-history-chart .duty-chart-mobile{display:none}.duty-chart-legend{display:flex;flex-wrap:wrap;gap:12px 24px;list-style:none;padding:0;margin:8px 0 14px;font-size:12px}.duty-chart-legend li{display:flex;gap:8px;align-items:center;min-width:0;overflow-wrap:anywhere}.duty-chart-legend svg{width:24px;height:8px;flex-shrink:0}@media(max-width:680px){.duty-history-chart .duty-chart-desktop{display:none}.duty-history-chart .duty-chart-mobile{display:block}.duty-chart-legend{flex-direction:column;gap:10px}}
 
 .country-share-history{margin:24px 0;min-width:0}.country-share-history h2{margin-top:0}.share-history-chart{margin:0;min-width:0}.share-history-chart h3{font-size:17px;font-weight:600;margin:16px 0 10px}.share-history-period,.share-history-definition,.share-history-chart figcaption{font-size:11px}.share-history-chart figcaption p,.country-share-history .chart-note{overflow-wrap:anywhere}.share-history-chart .share-history-desktop,.share-history-chart .share-history-mobile{width:100%;height:auto;display:block}.share-history-chart .share-history-mobile{display:none}.share-history-legend{display:flex;flex-wrap:wrap;gap:12px 24px;list-style:none;padding:0;margin:8px 0 14px;font-size:12px}.share-history-legend li{display:flex;gap:8px;align-items:center;min-width:0;overflow-wrap:anywhere}.share-history-legend svg{width:24px;height:8px;flex-shrink:0}.share-history-data{margin:18px 0}.share-history-data summary{cursor:pointer;padding:8px 0}.share-history-data .table-scroll{margin:12px 0}@media(max-width:680px){.share-history-chart .share-history-desktop{display:none}.share-history-chart .share-history-mobile{display:block}.share-history-legend{flex-direction:column;gap:10px}}
+
+@media print {
+  html:has(.release-briefing-page), body:has(.release-briefing-page) { background:#fff; color:#172e35; }
+  body:has(.release-briefing-page) .site-header,
+  body:has(.release-briefing-page) .skip-link,
+  .release-briefing-page .briefing-products,
+  .release-briefing-page .briefing-print-controls { display:none!important; }
+  body:has(.release-briefing-page) main { max-width:none; margin:0; padding:0; }
+  .release-briefing-page .page-heading { max-width:none; padding:0; margin:0 0 12pt; }
+  .release-briefing-page h1 { font-size:24pt; line-height:1.2; }
+  .release-briefing-page .page-heading p { font-size:9pt; }
+  .release-briefing-page .briefing { max-width:none; }
+  .release-briefing-page p { color:inherit; font-size:9pt; line-height:1.5; margin:6pt 0; }
+  .release-briefing-page h2 { font-size:15pt; break-after:avoid; }
+  .release-briefing-page h3 { font-size:12pt; break-after:avoid; }
+  .release-briefing-page .briefing-section { margin:14pt 0; break-inside:avoid; }
+  .release-briefing-page .briefing-section>p:first-of-type { break-after:avoid; }
+  .release-briefing-page .briefing-grid { display:block; }
+  .release-briefing-page .briefing-card+.briefing-card { margin-top:8pt; }
+  .release-briefing-page .briefing-card { padding:10pt; break-inside:avoid; }
+  .release-briefing-page .briefing-card p { font-size:9pt; }
+  .release-briefing-page .briefing-period,
+  .release-briefing-page .chart-note,
+  .release-briefing-page .provenance,
+  .release-briefing-page .provenance>p { font-size:8pt; }
+  .release-briefing-page .release-strip { padding:8pt 0; gap:6pt 14pt; font-size:9pt; }
+  .release-briefing-page .sample-banner { color:inherit; border:1pt solid; padding:8pt; font-size:9pt; break-inside:avoid; }
+  .release-briefing-page a { color:inherit; text-decoration:underline; overflow-wrap:anywhere; }
+  .release-briefing-page .provenance a { font-size:8pt; }
+  body:has(.release-briefing-page) .site-footer { display:block; max-width:none; padding:10pt 0 0; margin:12pt 0 0; font-size:8pt; }
+  body:has(.release-briefing-page) .site-footer>div:first-child { display:none; }
+  body:has(.release-briefing-page) .site-footer p { color:inherit; font-size:8pt; line-height:1.5; }
+}
