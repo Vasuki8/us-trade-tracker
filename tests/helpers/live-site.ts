@@ -5,7 +5,9 @@ import {createHash} from 'node:crypto';
 import type {SiteManifest} from '../../scripts/site-assembly';
 const roots:string[]=[];
 export const sha=(body:Uint8Array|string)=>createHash('sha256').update(body).digest('hex');
-export async function liveFixture(extra:Record<string,string>={}){
+export async function liveFixture(extra:Record<string,string>={}){return makeLiveFixture(extra);}
+export async function liveFixtureWithTotal(totalBytes:number){return makeLiveFixture({},totalBytes);}
+async function makeLiveFixture(extra:Record<string,string>={},totalBytes?:number){
   await mkdir(resolve('.tmp'),{recursive:true});
   const workDir=await mkdtemp(resolve('.tmp/live-verification-test-')); roots.push(workDir);
   const tree=resolve(workDir,'site'); await mkdir(tree);
@@ -17,6 +19,11 @@ export async function liveFixture(extra:Record<string,string>={}){
     'assets/main.js':Buffer.from('export const fixture = true;'),
     ...Object.fromEntries(Object.entries(extra).map(([k,v])=>[k,Buffer.from(v)])),
   };
+  if(totalBytes!==undefined){
+    const otherBytes=Object.entries(bodies).filter(([path])=>path!=='assets/main.js').reduce((n,[,body])=>n+body.length,0);
+    if(!Number.isSafeInteger(totalBytes)||totalBytes<otherBytes)throw Error('Invalid fixture total');
+    bodies['assets/main.js']=Buffer.alloc(totalBytes-otherBytes,'x');
+  }
   const files=Object.entries(bodies).map(([path,body])=>({path,bytes:body.length,sha256:sha(body),role:path==='_headers'?'provider-control' as const:path==='404.html'?'served-error-page' as const:'served-asset' as const}));
   const manifest:SiteManifest={schemaVersion:1,status:'prepared-for-owner-deployment-review',packageKind:'site',codeCommit:'a'.repeat(40),fileCount:files.length,totalBytes:files.reduce((n,f)=>n+f.bytes,0),largestFile:files.reduce((a,b)=>a.bytes>=b.bytes?a:b),planningAlertTriggered:false,files,
     uploadLimits:{dashboard:{maxFiles:1000,maxAssetBytes:26214400,eligible:true}},

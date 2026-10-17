@@ -5,7 +5,7 @@ import {loadPublishedReleases} from '../../lib/trade/load-release';
 import {preparePortfolioBriefing} from '../../lib/trade/portfolio-briefing';
 const data=preparePortfolioBriefing(await loadPublishedReleases());
 ---
-<BaseLayout title="Coffee portfolio briefing" description="Select the published coffee products for a sourced U.S. trade briefing with partner changes and estimated duties.">
-  <div class="page-heading"><p class="eyebrow">COFFEE RESEARCH</p><h1>Coffee portfolio briefing</h1><p>Choose products and a trade direction for one sourced report.</p></div>
+<BaseLayout title="Product portfolio briefing" description="Select the published products for a sourced U.S. trade briefing with partner changes and estimated duties.">
+  <div class="page-heading"><p class="eyebrow">PRODUCT RESEARCH</p><h1>Product portfolio briefing</h1><p>Choose products and a trade direction for one sourced report.</p></div>
   <PortfolioBriefing data={data} client:load/>
 </BaseLayout>

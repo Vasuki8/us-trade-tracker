@@ -60,7 +60,7 @@ export async function loadLiveSitePackage(options:LivePackageOptions,verify:(opt
   const manifest=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(manifestBody)) as SiteManifest;
   const r=receipt as Record<string,unknown>|null;
   if(!r||r.entriesVerified!==true||r.entryCount!==manifest.fileCount||r.bytes!==zipBody.length||r.sha256!==options.zipSha256)throw Error('live-package-receipt');
-  if(manifest.packageKind!=='site'||manifest.totalBytes>2097152||(manifest.files.length-1+privatePaths.length)*2>128)throw Error('live-package-policy');
+  if(manifest.packageKind!=='site'||manifest.totalBytes>8388608||(manifest.files.length-1+privatePaths.length)*2>128)throw Error('live-package-policy');
   const checks:ExpectedLiveCheck[]=manifest.files.filter(f=>f.role!=='provider-control').map(f=>{
     const path='/'+f.path.split('/').map(encodeURIComponent).join('/');
     return{path,allowedPaths:allowedPaths(path),statuses:f.role==='served-error-page'?[200,404]:[200],bytes:f.bytes,sha256:f.sha256,privateRoute:false};
