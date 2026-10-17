@@ -16,7 +16,7 @@ it.each([['rolling','share','$72','+20.000 pp'],['rolling','dollars','$72','+$60
   expect(screen.getByRole('radio',{name:period==='rolling'?'Rolling twelve months':'Latest month versus the same month last year'})).toBeChecked();
   expect(screen.getByRole('radio',{name:metric==='share'?'Share change in percentage points':'Dollar change'})).toBeChecked();
   const table=screen.getByRole('table',{name:'Largest estimated-duty increases'});expect(table).toHaveTextContent(amount);expect(table).toHaveTextContent(change);expect(table).toHaveTextContent('Canada');
-  expect(screen.getByText(/100 × CAL_DUT_MO/)).toBeVisible();
+  expect(screen.getByText(/Duty share = calculated duties ÷ imports for consumption × 100/)).toBeVisible();
   expect(screen.getByRole('link',{name:'Canada · 1220'})).toHaveAttribute('href',`/products/090121/?direction=imports&months=12&countries=1220${period==='monthly'?'&comparison=monthly':''}#duties-heading`);
 });
 it('pushes edits, resets fallback notice, and restores controls on popstate/hashchange',async()=>{
@@ -52,4 +52,10 @@ it('downloads the selected table CSV and restores both period and metric with na
   const read=(blob:Blob)=>new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result));reader.onerror=reject;reader.readAsText(blob);});
   expect(files.map(f=>f.filename)).toEqual(['hs-090121-imports-estimated-duty-changes-rolling-share.csv','hs-090121-imports-estimated-duty-changes-monthly-dollars.csv','hs-090121-imports-estimated-duty-changes-rolling-share.csv']);
   const rows=await Promise.all(files.map(async f=>parseCsv(await read(f.blob))));expect(rows[0][0].current_calculated_duty_usd).toBe('72');expect(rows[1][0]).toMatchObject({comparison_period:'monthly',ranking_metric:'dollars',current_calculated_duty_usd:'6'});expect(rows[2]).toEqual(rows[0]);
+});
+
+it('identifies the source before optional qualifications are opened',()=>{
+ const release=dutyChangesRelease();release.source='census';const {container}=render(<DutyChanges data={prepareDutyChanges(release)}/>);
+ expect(within(container.querySelector('.release-strip')!).getByText('U.S. Census Bureau',{exact:true})).toBeVisible();
+ expect(container.querySelector('details')).not.toHaveAttribute('open');
 });

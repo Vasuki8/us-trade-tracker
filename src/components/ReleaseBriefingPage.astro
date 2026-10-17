@@ -14,13 +14,13 @@ const description=release.observations.find(row=>row.geography==='world')?.descr
   <div class="release-briefing-page">
   <div class="page-heading">
     <p class="eyebrow">MONTHLY RELEASE RESEARCH / HS {release.productCode}</p><h1>{heading}</h1>
-    <p>Current pilot coverage: {product.displayName} (HS {release.productCode}).</p>
-    <p class="heading-description">{description}</p>
-    <p>A factual summary of the latest retained release, with links to the figures behind it.</p>
+    <p>{product.displayName} (HS {release.productCode}).</p>
+    <details class="content-details product-definition"><summary>Product description</summary><p class="heading-description">{description}</p></details>
+    <p>Latest trade figures, partner changes and estimated duties.</p>
   </div>
   <nav class="briefing-products" aria-label="Briefing products">
     <p><a href="/briefing/portfolio/">Build a coffee portfolio briefing</a></p>
-    <p>Choose a reviewed product</p>
+    <p>Product</p>
     <ul>{products.map(option=><li><a href={releaseBriefingPath(option.code)} aria-current={option.code===product.code?'page':undefined}>{option.displayName} · HS {option.code}</a></li>)}</ul>
   </nav>
   <div class="briefing-print-controls">

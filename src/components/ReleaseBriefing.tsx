@@ -60,23 +60,23 @@ export function ReleaseBriefing({release}:{release:Release}){
     <div className="release-strip"><span>Reporting month: <strong>{monthLabel(release.reportingMonth)}</strong></span><span>Retrieved: {release.retrievedAt}</span><a href="/methods/">Sources &amp; methods</a></div>
     <section className="briefing-section" aria-labelledby="monthly-trade-heading">
       <h2 id="monthly-trade-heading">Latest monthly trade</h2>
-      <p>Compare the reporting month with the same month one year earlier. Dollar changes and growth require both reported values and verified classification continuity; a zero prior value has no growth percentage.</p>
+      <p>Same month last year. Missing or incompatible data has no comparison; a zero prior value has no growth percentage.</p>
       <div className="briefing-grid"><MonthlyTrade view={imports}/><MonthlyTrade view={exports}/></div>
     </section>
     <section className="briefing-section" aria-labelledby="partner-movements-heading">
       <h2 id="partner-movements-heading">Partner markets over the latest twelve months</h2>
-      <p>These highlights compare two rolling annual periods. They describe changes in recorded U.S. flows for this product; they do not establish worldwide demand or profitability.</p>
+      <p>Largest country changes across two twelve-month periods. U.S. trade flows do not establish worldwide demand or profitability.</p>
       <div className="briefing-grid"><PartnerChanges view={buildChangesView(release,'imports')}/><PartnerChanges view={buildChangesView(release,'exports')}/></div>
     </section>
     <section className="briefing-section" aria-labelledby="briefing-duties-heading">
       <h2 id="briefing-duties-heading">Estimated duties</h2>
       {!duties.available?<p>This retained release does not include duty history. Estimated duties are unavailable.</p>:<>
-        <p>All partner countries · U.S. imports for consumption. Calculated duties as share of import value uses CAL_DUT_MO / CON_VAL_MO. Rolling shares divide matching sums, rather than averaging monthly percentages.</p>
+        <p>All partner countries · U.S. imports for consumption.</p><details className="content-details"><summary>Duty calculation details</summary><p>All partner countries · U.S. imports for consumption. Calculated duties as share of import value uses CAL_DUT_MO / CON_VAL_MO. Rolling shares divide matching sums, rather than averaging monthly percentages.</p></details>
         <div className="briefing-grid">
           <DutySummary value={worldDuty.latest.current} research={worldDuty.latest.change.comparable&&worldDuty.latest.change.dutySharePercentagePoints!==null?{href:dutyChangesPath(release.productCode,{period:'monthly',metric:'share'},'#duties-changes-heading'),label:'Explore latest-month estimated-duty changes by country'}:null}/>
           <DutySummary value={worldDuty.rolling.current} rolling research={worldDuty.rolling.change.comparable&&worldDuty.rolling.change.dutySharePercentagePoints!==null?{href:dutyChangesPath(release.productCode,{period:'rolling',metric:'share'},'#duties-changes-heading'),label:'Explore twelve-month estimated-duty changes by country'}:null}/>
         </div>
-        <p className="chart-note">Calculated duties can differ from amounts actually paid and exclude antidumping and countervailing duties. RP70/79 report dutiable value without calculating duties. Reported zero duties do not prove duty-free trade. A zero or missing consumption value has no duty share.</p>
+        <p className="chart-note duty-warning">Estimated duties may differ from amounts paid and exclude antidumping and countervailing duties. Reported zero duties do not prove duty-free trade.</p><details className="content-details"><summary>Reporting limitations</summary><p className="chart-note">Calculated duties can differ from amounts actually paid and exclude antidumping and countervailing duties. RP70/79 report dutiable value without calculating duties. Reported zero duties do not prove duty-free trade. A zero or missing consumption value has no duty share.</p></details>
         <p><a href={`/products/${release.productCode}/#duties-heading`}>Explore duty history and comparisons</a></p>
       </>}
     </section>

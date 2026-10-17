@@ -52,7 +52,7 @@ it('shows sourced Census data without a sample banner',()=>{
   const release=sampleRelease();release.source='census';
   render(<MonthlyChanges {...props(release)}/>);
   expect(screen.queryByText('Development sample data')).toBeNull();
-  expect(screen.getByText(/Source: U.S. Census Bureau/)).toBeVisible();
+  expect(screen.getByText('U.S. Census Bureau',{exact:true})).toBeVisible();
   expect(screen.getByRole('link',{name:release.sourceUrls[0]})).toHaveAttribute('href',release.sourceUrls[0]);
 });
 

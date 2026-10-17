@@ -6,7 +6,7 @@ test('the second profile keeps its product in standalone changes, rankings and d
   const requests:string[]=[],errors:string[]=[];page.on('request',r=>{if(r.url().includes('api.census.gov'))requests.push(r.url());});page.on('pageerror',e=>errors.push(e.message));
   await page.goto('/products/090122/');await page.getByRole('navigation',{name:'Main'}).getByRole('link',{name:'Monthly changes',exact:true}).click();
   await expect(page).toHaveURL(/\/changes\/090122\/$/);
-  await expect(page.getByText(/Current pilot coverage:/)).toHaveText('Current pilot coverage: Synthetic second product (HS 090122).');
+  await expect(page.locator('.page-heading>p').filter({hasText:'Synthetic second product (HS 090122).'})).toHaveText('Synthetic second product (HS 090122).');
   await expect(page.getByText('Development sample data',{exact:true})).toBeVisible();
   const products=page.getByRole('navigation',{name:'Changes products'});
   await expect(products.getByRole('link',{name:'Synthetic second product · HS 090122',exact:true})).toHaveAttribute('aria-current','page');
@@ -32,7 +32,7 @@ test('both product changes pages and matching research links work without JavaSc
     await page.getByRole('link',{name:'View the full product profile'}).click();await expect(page).toHaveURL(/\/products\/090122\/$/);
     await page.getByRole('navigation',{name:'Main'}).getByRole('link',{name:'Monthly changes',exact:true}).click();
     await page.getByRole('navigation',{name:'Changes products'}).getByRole('link',{name:'Roasted coffee · HS 090121',exact:true}).click();
-    await expect(page).toHaveURL(/\/changes\/$/);await expect(page.getByText(/Current pilot coverage: Roasted coffee/)).toBeVisible();
+    await expect(page).toHaveURL(/\/changes\/$/);await expect(page.locator('.page-heading>p').filter({hasText:'Roasted coffee (HS 090121).'})).toBeVisible();
     const unsupported=await page.goto('/changes/999999/');expect(unsupported?.status()).toBe(404);
   }finally{await context.close();}
 });

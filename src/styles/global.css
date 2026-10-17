@@ -71,3 +71,25 @@
   body:has(.release-briefing-page) .site-footer>div:first-child { display:none; }
   body:has(.release-briefing-page) .site-footer p { color:inherit; font-size:8pt; line-height:1.5; }
 }
+
+/* Concise pages: native disclosures keep complete reference text available. */
+.content-details { margin:12px 0; border-top:1px solid var(--border); padding:10px 0; min-width:0; }
+.content-details>summary { cursor:pointer; color:var(--teal); font-size:13px; line-height:1.5; padding:4px 0; overflow-wrap:anywhere; }
+.content-details>summary h2 { display:inline; font-size:18px; margin:0; }
+.content-details>p,.content-details li { font-size:12px; overflow-wrap:anywhere; }
+.content-details[open]>summary { margin-bottom:10px; }
+.product-definition { margin:8px 0; border:0; padding:0; }
+.method-basics { margin:24px 0; }
+.method-basics>div { display:grid; grid-template-columns:180px minmax(0,1fr); gap:12px; padding:12px 0; border-bottom:1px solid var(--border); }
+.method-basics dt { font-weight:600; }.method-basics dd { margin:0; color:var(--muted); line-height:1.6; }
+@media(max-width:680px) { .method-basics>div { grid-template-columns:1fr; gap:4px; } }
+@media print {
+ .content-details::details-content { content-visibility:visible!important; display:block!important; height:auto!important; }
+ .content-details> :not(summary) { display:block!important; }
+ .content-details { border:0; padding:0; margin:8pt 0; }
+ .content-details>summary { font-size:9pt; color:inherit; }
+ .content-details>summary h2 { font-size:14pt; }
+ .release-briefing-page .content-details>p,.portfolio-briefing .content-details>p { font-size:8pt; }
+}
+
+@media print { .release-briefing-page .content-details>summary,.portfolio-briefing .content-details>summary { display:none!important; } }

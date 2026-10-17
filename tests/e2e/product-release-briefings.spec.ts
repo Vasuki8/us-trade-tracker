@@ -5,7 +5,8 @@ test('the second product keeps its identity in briefings, figures and research l
   page.on('pageerror',error=>errors.push(error.message));page.on('request',request=>{if(request.url().includes('api.census.gov'))requests.push(request.url());});
   await page.goto('/products/090122/');await page.getByRole('navigation',{name:'Main'}).getByRole('link',{name:'Briefing',exact:true}).click();
   await expect(page).toHaveURL(/\/briefing\/090122\/$/);
-  await expect(page.getByText(/Current pilot coverage:/)).toHaveText('Current pilot coverage: Synthetic second product (HS 090122).');
+  await expect(page.locator('.page-heading>p').filter({hasText:'Synthetic second product (HS 090122).'})).toHaveText('Synthetic second product (HS 090122).');
+  await page.getByText('Product description',{exact:true}).click();
   await expect(page.getByText('SYNTHETIC PRODUCT 090122',{exact:true})).toBeVisible();
   await expect(page.getByText('Development sample data',{exact:true})).toBeVisible();
   await expect(page.getByRole('region',{name:'Monthly imports'})).toContainText('Current value: $300');
