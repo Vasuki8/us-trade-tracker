@@ -17,5 +17,5 @@ test('briefing keeps essential duty warnings visible while full explanation prin
  await page.goto('/briefing/');const details=page.locator('details.content-details').filter({has:page.locator('summary',{hasText:'Duty calculation details'})});
  await expect(details).toHaveCount(1);await expect(details.locator('p').first()).toBeHidden();
  await expect(page.locator('.briefing')).toContainText('Estimated duties');
- await expect(page.locator('.briefing .duty-warning')).toBeVisible();await page.emulateMedia({media:'print'});await expect(details.locator('p').first()).toBeVisible();
+ await expect(page.locator('.briefing .duty-warning')).toBeVisible();await page.emulateMedia({media:'print'});await expect(details.locator('p').first()).toBeVisible();await expect(details.locator('summary')).toBeHidden();
 });

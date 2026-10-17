@@ -16,13 +16,7 @@ const sample=profiles.some(({release})=>release.source==='fixture');
     <div class="home-actions"><a class="primary-button" href="/products/">Find a product <span aria-hidden="true">→</span></a><a class="secondary-button" href="/changes/">See monthly changes</a></div>
     <p class="hero-footnote">{profiles.length} reviewed pilot {profiles.length===1?'profile':'profiles'}. Coverage is limited to the products listed below.</p>
   </section>
-  <section class="home-intro">
-    <div><p class="eyebrow">START WITH A PRODUCT</p><h2>Research tools</h2></div>
-    <div>
-      <p><a href="/changes/products/">Compare product changes</a> across the reviewed pilot products.</p>
-      <p><a href="/briefing/">Read the coffee briefing</a></p><a href="/methods/">Read the methods ↗</a>
-    </div>
-  </section>
+
   <section class="home-profiles" aria-labelledby="home-profiles-heading">
     <p class="eyebrow">AVAILABLE PILOT RESEARCH</p><h2 id="home-profiles-heading">Reviewed product profiles</h2>
     
@@ -36,6 +30,7 @@ const sample=profiles.some(({release})=>release.source==='fixture');
       </article>
     </li>)}</ul></nav>
   </section>
+  <nav class="home-research-links" aria-label="Research tools"><a href="/changes/products/">Compare product changes</a><a href="/briefing/">Read the coffee briefing</a><a href="/methods/">Read the methods ↗</a></nav>
   <p><a href="/briefing/portfolio/">Build a coffee portfolio briefing</a> with your choice of the published products and trade direction.</p>
   {canadaPilot&&<section class="data-card" aria-labelledby="home-country-heading">
     <p class="eyebrow">COUNTRY RESEARCH</p><h2 id="home-country-heading">Country snapshot</h2>
@@ -46,6 +41,7 @@ const sample=profiles.some(({release})=>release.source==='fixture');
   </section>}
 </BaseLayout>
 <style>
+  .home-hero{padding:36px 0 32px}.home-research-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin:16px 0 24px}.home-research-links a{padding:8px 0}
   .home-profiles{padding:30px 0 24px;border-top:1px solid var(--border)}.home-profiles>p:not(.eyebrow){font-size:13px}
   .home-profiles nav{display:block}.profile-links{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:24px 0 0}
   .profile-links li{background:white;border:1px solid var(--border);padding:24px;min-width:0}.profile-links a{overflow-wrap:anywhere}

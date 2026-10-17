@@ -91,3 +91,5 @@
  .content-details>summary h2 { font-size:14pt; }
  .release-briefing-page .content-details>p,.portfolio-briefing .content-details>p { font-size:8pt; }
 }
+
+@media print { .release-briefing-page .content-details>summary,.portfolio-briefing .content-details>summary { display:none!important; } }
