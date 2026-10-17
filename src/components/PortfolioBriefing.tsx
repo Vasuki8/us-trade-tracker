@@ -50,14 +50,14 @@ function ProductCard({product,direction,reportingMonth}:{product:PortfolioProduc
           {duties&&<DutySummary label={`${country.name} rolling estimated duties`} value={duties} id={`${id}-${country.code}-duties`}/>}</div>)}
         <p className="chart-note">Partners with unavailable comparisons: {data.unavailablePartnerCount}. Rankings use dollar change independently of profile chart selections.</p>
       </section>
-      {direction==='imports'&&<section className="portfolio-section" aria-labelledby={`${id}-duties`}><h3 id={`${id}-duties`}>Estimated duties</h3><p>Duty share uses calculated duties (CAL_DUT_MO) divided by matching imports for consumption (CON_VAL_MO), rather than general imports. Rolling shares use sums over matching periods.</p>
+      {direction==='imports'&&<section className="portfolio-section" aria-labelledby={`${id}-duties`}><h3 id={`${id}-duties`}>Estimated duties</h3><details className="content-details"><summary>Duty calculation details</summary><p>Duty share uses calculated duties (CAL_DUT_MO) divided by matching imports for consumption (CON_VAL_MO), rather than general imports. Rolling shares use sums over matching periods.</p></details>
         {data.worldDuties?<><DutySummary label="Monthly estimated duties" value={data.worldDuties.latest} id={`${id}-world-monthly-duties`} research={data.worldDuties.latest.change.comparable&&data.worldDuties.latest.change.dutySharePercentagePoints!==null?{href:dutyChangesPath(product.code,{period:'monthly',metric:'share'},'#duties-changes-heading'),label:'Explore latest-month estimated-duty changes by country'}:null}/><DutySummary label="Rolling estimated duties" value={data.worldDuties.rolling} id={`${id}-world-rolling-duties`} research={data.worldDuties.rolling.change.comparable&&data.worldDuties.rolling.change.dutySharePercentagePoints!==null?{href:dutyChangesPath(product.code,{period:'rolling',metric:'share'},'#duties-changes-heading'),label:'Explore twelve-month estimated-duty changes by country'}:null}/></>:<p>Estimated-duty data is unavailable for this release.</p>}
         <p className="chart-note">Estimated duties may differ from duties paid and exclude antidumping and countervailing duties. A reported zero does not establish duty-free treatment.</p>
       </section>}
-      <section className="portfolio-section portfolio-source" aria-labelledby={`${id}-source`}><h3 id={`${id}-source`}>Sources and release</h3><p>Source: {data.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau'} · Reporting month: {monthLabel(product.reportingMonth)} · Measure: <span>{data.provenance.measure}</span> · Current USD, not seasonally adjusted.</p>
+      <section className="portfolio-section portfolio-source" aria-labelledby={`${id}-source`}><h3 id={`${id}-source`}>Sources and release</h3><details className="content-details"><summary>Release and source details</summary><p>Source: {data.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau'} · Reporting month: {monthLabel(product.reportingMonth)} · Measure: <span>{data.provenance.measure}</span> · Current USD, not seasonally adjusted.</p>
         <p>Retrieved: {data.provenance.retrievedAt} · Processing revision: {data.provenance.codeVersion} · Merchandise revised: {data.provenance.revised?'yes':'no'}{data.dutyProvenance&&` · Duties revised: ${data.dutyProvenance.revised?'yes':'no'}`}</p>
         <ul>{data.provenance.sourceUrls.map(url=><li key={url}><a href={url}>{url}</a></li>)}</ul>
-      </section>
+      </details></section>
     </>}
   </article>;
 }
@@ -83,7 +83,7 @@ export function PortfolioBriefing({data}:{data:PreparedPortfolio}){
     <noscript><p>Enable JavaScript to select products, change direction, restore a saved selection or download CSVs. The default report shows all available products and Imports. You can print this default report using your browser.</p></noscript>
   </div>
     <p className="portfolio-selection">Selected report: {view.products.map(p=>`${p.name} (HS ${p.code})`).join('; ')} · {selection.direction==='imports'?'Imports':'Exports'} · Reporting month: {monthLabel(view.reportingMonth)}.</p>
-    <p>Figures are shown separately for each product. There is no combined portfolio total or averaged duty rate.</p>
+    <p>Separate product figures; no combined total or averaged duty rate.</p>
     {view.products.map(product=><ProductCard key={product.code} product={product} direction={selection.direction} reportingMonth={view.reportingMonth}/>)}
   </div>;
 }

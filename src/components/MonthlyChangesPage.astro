@@ -12,15 +12,15 @@ const views:CountryChangesViews={rolling:{imports:buildChangesView(release,'impo
 <BaseLayout title={`Monthly changes · ${product.displayName}`} description={`Explore changes in U.S. ${product.displayName} imports, exports and partner-country shares using sourced monthly and rolling twelve-month comparisons.`} productCode={release.productCode}>
   <div class="page-heading">
     <p class="eyebrow">MONTHLY RELEASE RESEARCH</p><h1>Monthly changes</h1>
-    <p>Current pilot coverage: {product.displayName} (HS {release.productCode}).</p>
-    <p class="heading-description">{views.rolling.imports.title}</p>
-    <p>Compare the latest month with the same month last year, or the latest rolling twelve months with the preceding twelve months, to see which partner markets are gaining or losing ground.</p>
+    <p>{product.displayName} (HS {release.productCode}).</p>
+    <details class="content-details product-definition"><summary>Official product description</summary><p class="heading-description">{views.rolling.imports.title}</p></details>
+    <p>See which countries gained or lost value or share. Choose monthly or twelve-month comparisons below.</p>
     <a href={`/products/${release.productCode}/`}>View the full product profile</a>
   </div>
   <nav class="changes-products" aria-label="Changes products">
-    <p>Choose a reviewed product</p>
+    <p>Product</p>
     <ul>{products.map(option=><li><a href={monthlyChangesPath(option.code)} aria-current={option.code===product.code?'page':undefined}>{option.displayName} · HS {option.code}</a></li>)}</ul>
-    <p class="product-default-note">Changing product starts with imports over rolling twelve months ranked by dollar change.</p>
+    <p class="product-default-note">Switching products resets the filters to rolling import dollar changes.</p>
     <p><a href="/changes/products/">Compare changes across reviewed products</a></p>
   </nav>
   <MonthlyChanges data={JSON.stringify(views)} reportingMonth={release.reportingMonth} client:load/>

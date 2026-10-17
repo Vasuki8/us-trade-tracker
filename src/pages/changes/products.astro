@@ -8,8 +8,8 @@ const views={rolling:{imports:buildProductChangesView(profiles,'imports'),export
 ---
 <BaseLayout title="Product changes" description="Compare changes in U.S. imports and exports across reviewed pilot products using sourced monthly and rolling twelve-month values.">
   <div class="page-heading"><p class="eyebrow">MONTHLY RELEASE RESEARCH</p><h1>Product changes</h1>
-    <p>Compare the reviewed pilot products by dollar change or percentage growth over two rolling twelve-month periods, or the latest month versus the same month one year earlier.</p>
-    <p>Use each product profile to investigate the partner countries and history behind a change.</p>
+    <p>Rank the published products by dollar change or percentage growth.</p>
+    <p>Choose monthly or twelve-month comparisons, then open a product to investigate.</p>
     <a href="/products/">Browse reviewed product profiles</a>
   </div>
   <ProductChanges data={JSON.stringify(views)} client:load/>

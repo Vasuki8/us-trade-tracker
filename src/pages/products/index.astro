@@ -10,8 +10,8 @@ const profiles=(await loadPublishedReleases()).map(({product,release})=>({
   <div class="page-heading">
     <p class="eyebrow">START WITH A PRODUCT</p>
     <h1>Product research</h1>
-    <p>Browse the reviewed pilot profiles. Find a product by name, description or six-digit HS code, then check its description before opening the profile.</p>
-    <p>Each profile includes U.S. imports and exports, partner comparisons and sourced downloads. Coverage is limited to the profiles listed here.</p>
+    <p>Search published profiles by name, description or six-digit HS code.</p>
+    <p>Imports, exports, country comparisons and downloads. Only the listed products are covered.</p>
   </div>
   {profiles.some(({release})=>release.source==='fixture')&&<div class="sample-banner"><strong>Development sample data</strong><span>These profiles use synthetic observations for development checks.</span></div>}
   <section aria-label="Product search" data-product-directory>
