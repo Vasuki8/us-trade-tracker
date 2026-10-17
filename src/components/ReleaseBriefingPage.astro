@@ -11,6 +11,7 @@ const heading=product.code===DEFAULT_PRODUCT_CODE?'Coffee release briefing':'Rel
 const description=release.observations.find(row=>row.geography==='world')?.description;
 ---
 <BaseLayout title={`${heading} · ${product.displayName} · ${monthLabel(release.reportingMonth)}`} description={`A sourced briefing on U.S. ${product.displayName} imports, exports, partner changes and estimated duties.`} productCode={release.productCode}>
+  <div class="release-briefing-page">
   <div class="page-heading">
     <p class="eyebrow">MONTHLY RELEASE RESEARCH / HS {release.productCode}</p><h1>{heading}</h1>
     <p>Current pilot coverage: {product.displayName} (HS {release.productCode}).</p>
@@ -22,11 +23,29 @@ const description=release.observations.find(row=>row.geography==='world')?.descr
     <p>Choose a reviewed product</p>
     <ul>{products.map(option=><li><a href={releaseBriefingPath(option.code)} aria-current={option.code===product.code?'page':undefined}>{option.displayName} · HS {option.code}</a></li>)}</ul>
   </nav>
+  <div class="briefing-print-controls">
+    <button type="button" class="secondary-button" hidden data-briefing-print>Print / Save PDF</button>
+    <p>Use your browser’s Print command to print or save a PDF.</p>
+    <p role="status" aria-live="polite" data-briefing-print-status></p>
+  </div>
   <ReleaseBriefing release={release}/>
+  </div>
 </BaseLayout>
 <style>
   .briefing-products{display:block;margin:0 0 24px}.briefing-products p{font-size:13px;margin:0 0 10px}
   .briefing-products ul{display:flex;flex-wrap:wrap;gap:12px;list-style:none;margin:0;padding:0}
   .briefing-products a{display:inline-block;padding:12px 16px;background:white;border:1px solid var(--border);border-radius:3px;line-height:1.5;overflow-wrap:anywhere}
   .briefing-products a[aria-current="page"]{border-color:var(--teal);font-weight:600;color:var(--teal)}
+  .briefing-print-controls{margin:0 0 24px}.briefing-print-controls button[hidden]{display:none}.briefing-print-controls p{font-size:12px;margin:8px 0}
 </style>
+<script>
+  const button=document.querySelector<HTMLButtonElement>('[data-briefing-print]');
+  const status=document.querySelector<HTMLElement>('[data-briefing-print-status]');
+  if(button&&typeof window.print==='function'){
+    button.addEventListener('click',()=>{
+      if(status)status.textContent='';
+      try{window.print();}catch{if(status)status.textContent='Printing could not open. Use your browser’s Print command.';}
+    });
+    button.hidden=false;
+  }
+</script>
