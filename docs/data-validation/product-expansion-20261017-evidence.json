@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "assessmentDate": "2026-10-17",
+  "reportingMonth": "2026-08",
+  "sourceCommit": "28f761a77c445a87b5a56586b0d20244335cde2e",
+  "outcome": "source-acceptance-failed-publication-withheld",
+  "dutyAudits": {
+    "090240": {
+      "product": "090240",
+      "run": "39045756732",
+      "artifactSha256": "4efe60c8d669f37e0607e0be6641fefc3e543bc2005eeaf6c3c306527f5b22d9",
+      "artifactBytes": 103659,
+      "authenticatedMembers": 95,
+      "rawRecords": 93,
+      "completeMonths": 23,
+      "incompleteMonths": [
+        {
+          "month": "2026-02",
+          "present": [
+            "HS"
+          ],
+          "missing": [
+            "HSCY",
+            "HSRP",
+            "HSCYRP"
+          ]
+        }
+      ],
+      "normalizedObservationsMatched": 1024,
+      "normalizedReportedZeroCells": 1760,
+      "qualifiedObservations": 10,
+      "worldUncalculatedDutiableValueUsd": 205406,
+      "discrepancies": 0,
+      "auditCompletenessPassed": false,
+      "releaseAccepted": false,
+      "scriptSha256": "4437798cffe42278b42b78f6b59f2ad5bee93dbbf78ab1c12697ee30e903de32"
+    },
+    "180100": {
+      "product": "180100",
+      "run": "39046703861",
+      "artifactSha256": "e498b4f8cd9e72611c404f123b794d9138f0635a74a59889eb5f7524242ccd23",
+      "artifactBytes": 93270,
+      "authenticatedMembers": 98,
+      "rawRecords": 96,
+      "completeMonths": 24,
+      "incompleteMonths": [],
+      "normalizedObservationsMatched": 784,
+      "normalizedReportedZeroCells": 1593,
+      "qualifiedObservations": 28,
+      "worldUncalculatedDutiableValueUsd": 5318804,
+      "discrepancies": 0,
+      "auditCompletenessPassed": true,
+      "releaseAccepted": false,
+      "scriptSha256": "4437798cffe42278b42b78f6b59f2ad5bee93dbbf78ab1c12697ee30e903de32"
+    }
+  },
+  "workflowAttempts": [
+    {
+      "runId": 39045756732,
+      "attempt": 1,
+      "productCode": "090240",
+      "workflow": "audit-census-duties.yml",
+      "outcome": "incomplete-source-capture",
+      "missingMonth": "2026-02"
+    },
+    {
+      "runId": 39045756732,
+      "attempt": 2,
+      "productCode": "090240",
+      "workflow": "audit-census-duties.yml",
+      "outcome": "test-timeout-before-source",
+      "sourceRequests": 0
+    },
+    {
+      "runId": 39046703861,
+      "attempt": 1,
+      "productCode": "180100",
+      "workflow": "audit-census-duties.yml",
+      "outcome": "complete-audit-independently-verified"
+    },
+    {
+      "runId": 39047019854,
+      "attempt": 1,
+      "productCode": "180100",
+      "workflow": "import-census.yml",
+      "outcome": "source-fetch-failure",
+      "retainedArtifactCount": 0
+    },
+    {
+      "runId": 39047019854,
+      "attempt": 2,
+      "productCode": "180100",
+      "workflow": "import-census.yml",
+      "outcome": "source-fetch-failure",
+      "retainedArtifactCount": 0
+    }
+  ],
+  "sourceFailureMessage": "Census request failed or timed out; the current release is unchanged",
+  "transportRootCauseVerified": false,
+  "retryAllowancesExhausted": [
+    "090240 duty audit",
+    "180100 source import"
+  ],
+  "teaSourceImportDispatched": false,
+  "teaSourceImportOmission": "The separate required duty audit cannot pass within this batch; a source import cannot repair that prerequisite.",
+  "sourceReleasesAccepted": [],
+  "offlineSourceRecoveriesPerformed": 0,
+  "archiveInitializationsPerformed": 0,
+  "archiveReadbacksPerformed": 0,
+  "r2BytesWritten": 0,
+  "canonicalNewProductRootsWritten": [],
+  "productsPublished": [],
+  "sitePublicationPerformed": false,
+  "predecessorDeploymentId": "939c5821-40a3-40c2-9433-4353a97f9d00",
+  "predecessorZipSha256": "0c9e7f43877fe654bd8bef5402fb301e4085f4be9d5033ac9229346a38b036aa",
+  "predecessorManifestSha256": "63ceca7f3f5896631ff59a97fead24a673f2b659fcf7d8dbf426684bc207f2ff",
+  "predecessorHandling": "Authenticated retained package; no publication or restoration attempted.",
+  "limitations": [
+    "The completed cocoa duty audit does not accept a 60-month merchandise release.",
+    "Tea February 2026 remains unavailable; captures were not stitched together.",
+    "Import failure logs do not identify the exact failed request or prove a service-wide outage.",
+    "Existing coffee and Canada inputs were not replaced.",
+    "Mexico is a separate partial offline assessment, not an accepted country release."
+  ]
+}
