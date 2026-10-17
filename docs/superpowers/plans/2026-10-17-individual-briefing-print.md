@@ -116,4 +116,8 @@ Planning only: no implementation, installation, worktree creation, build, PDF au
 
 ## Execution progress
 
-Task1 local verification:70 existing briefing/portfolio cases pass;8 new native-control cases observed RED then GREEN;316-file type check clean;both predecessor heading/report/footer texts remain exact with zero islands. Baseline A4 PDF was inspected on all3 pages;cards split from explanatory text. Accepted/protected and separate September plan unchanged. Layout,accepted-data packaging,review/publication and cleanup remain pending.
+Task1 local verification:70 existing briefing/portfolio cases pass;8 new native-control cases observed RED then GREEN;316-file type check clean;both predecessor heading/report/footer texts remain exact with zero islands. Baseline A4 PDF was inspected on all3 pages;cards split from explanatory text. Accepted/protected and separate September plan unchanged. This records the Task1 handoff; later task results follow below.
+
+Task2 complete:26 combined Chromium checks and12 WebKit semantic cases pass;five fixture PDFs/15pages extracted,rendered and visually inspected,including the corrected section break and long-source case.
+
+Task3 complete:1682unit tests;317-file zero-diagnostic check;194ordinary+10Canada-preview+12Canada-pilot browser cases pass. Both accepted reports/link sets and all8CSV hashes match the predecessor. Four real A4/Letter PDFs and the portfolio control were inspected on all14pages. Candidate/restoration packages verify;runtime source a986872,with documentation-only progress thereafter. Independent review,CI,integration,publication/live readback and actual cleanup remain Task4 gates.
