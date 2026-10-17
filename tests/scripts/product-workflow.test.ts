@@ -1,3 +1,4 @@
+import {classificationThrough} from '../../scripts/classification';
 import {afterAll,expect,it} from 'vitest';import {mkdtemp,readFile,writeFile,rm,stat} from 'node:fs/promises';import {join} from 'node:path';import {tmpdir} from 'node:os';import {parse} from 'yaml';
 import {parseArchiveDispatch} from '../../scripts/archive-inputs';import {runArchiveCommand} from '../../scripts/archive-product';import {createProductArchiveFixture} from '../helpers/product-data';import {productDataPaths} from '../../scripts/product-paths';import {PRODUCTS,type ProductDefinition} from '../../src/lib/trade/product-registry';
 const registry:ProductDefinition[]=[...PRODUCTS,{code:'090122',displayName:'Synthetic second product',importable:true,published:false,dutiesAccepted:false},{code:'090123',displayName:'Unavailable',importable:false,published:false,dutiesAccepted:false}];
@@ -31,4 +32,16 @@ it('uses selected product paths and excludes other products from coffee artifact
  const release=steps.find(s=>s.with?.name==='census-${{ steps.preflight.outputs.product_code }}-release');expect(release.with.path.trim().split('\n')).toEqual(['${{ steps.preflight.outputs.processed_dir }}/current.json','${{ steps.preflight.outputs.processed_dir }}/releases/*.json','${{ steps.preflight.outputs.data_dir }}/raw/**/*.json']);
  expect(release.with.path).not.toContain('data/**/*.json');const coffee=productDataPaths('/workspace','090121'),second=productDataPaths('/workspace','090122');expect(second.dataDir.startsWith(`${coffee.dataDir}/raw/`)).toBe(false);
  for(const step of steps)if(step.run)expect(step.run).not.toContain('${{');
+});
+it.each(['090240','180100'])('preflights reviewed intake %s without publishing it or selecting another product',async code=>{
+ const root=await mkdtemp(join(tmpdir(),'trade-new-product-'));dirs.push(root);const output=join(root,'output');
+ expect(parseArchiveDispatch({...valid,PRODUCT_CODE:code}).productCode).toBe(code);
+ const product=PRODUCTS.find(p=>p.code===code);expect(product).toMatchObject({importable:true,published:false,dutiesAccepted:false});
+ await runArchiveCommand(['preflight','--product',code],{...valid,GITHUB_WORKSPACE:root,GITHUB_OUTPUT:output});
+ const paths=productDataPaths(root,code);expect(await readFile(output,'utf8')).toContain(`data_dir=${paths.dataDir}\n`);
+ expect(paths.dataDir).toBe(join(root,'data','products',code));
+ const reviewed=JSON.parse(await readFile(`data/classification/${code}.json`,'utf8'));
+ expect(classificationThrough(reviewed,'2026-08')).toEqual(reviewed);
+ expect(classificationThrough(reviewed,'2026-09')).toEqual(reviewed);
+ expect(reviewed.every((interval:{from:string;to:string})=>interval.from==='2021-09'&&interval.to==='2026-08')).toBe(true);
 });
