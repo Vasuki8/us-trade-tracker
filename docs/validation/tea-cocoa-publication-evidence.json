@@ -1,0 +1,389 @@
+{
+  "schemaVersion": 1,
+  "status": "verified-public-four-product-update",
+  "recordedAt": "2026-10-18T14:35:53.085760+00:00",
+  "canonical": "https://us-trade-tracker.pages.dev",
+  "deploymentId": "86671177-3725-4c05-a83c-a95b68da5d08",
+  "deploymentOrigin": "https://86671177.us-trade-tracker.pages.dev",
+  "project": "us-trade-tracker",
+  "environment": "Production",
+  "branch": "main",
+  "plan": "Free",
+  "sourceMerge": "a5d6e98ee29182790a7d564dd1ba0ba3c78ca44c",
+  "sourceHead": "683aae40452f6440efc3d19b1aaa901559f2c8b5",
+  "sourceTree": "b39d18aab1cb8e9410d6b6d0facb732dbff00787",
+  "package": {
+    "bytes": 570275,
+    "sha256": "e78055997befb0fda0ed9b61a153aaa1a004b84e9fb7fda68eeff452ab9920b1"
+  },
+  "manifest": {
+    "bytes": 8442,
+    "sha256": "9f1053283b99e536db3f1195d6a5ca6c96a4543008dd744c92036f05d0e9e088"
+  },
+  "fileCount": 39,
+  "rawBytes": 2817915,
+  "largestFile": {
+    "path": "products/090121/index.html",
+    "bytes": 352232,
+    "sha256": "88952e73899032bbd6a0ac38a3d25eb3f4130b9e37ef2e4696abfbf2685d513f",
+    "role": "served-asset"
+  },
+  "live": {
+    "receipt": {
+      "bytes": 49828,
+      "sha256": "17e91245ebdfd8e5ab8d76577c518afee0581154239573c21f3bb7dae8bf37cb"
+    },
+    "plannedChecks": 84,
+    "completedChecks": 84,
+    "httpAttempts": 130,
+    "origins": [
+      "https://us-trade-tracker.pages.dev",
+      "https://86671177.us-trade-tracker.pages.dev"
+    ]
+  },
+  "browser": {
+    "receipt": {
+      "bytes": 7946,
+      "sha256": "8d00c822a9ee4e693cff953991723503b56e4b85c2765957cd924d259d85e56c"
+    },
+    "routes": 22,
+    "savedViews": 9,
+    "staticViews": 4,
+    "navigations": 35,
+    "downloadAttempts": 14,
+    "completedDownloads": 14,
+    "pageErrors": 0,
+    "unexpectedExternalRequests": 0
+  },
+  "expandedUploads": 1,
+  "restorationUploads": 0,
+  "restorationNeeded": false,
+  "verifierRunsUsed": 2,
+  "sourceRequests": 0,
+  "reportingMonth": "2026-08",
+  "newProducts": [
+    "090240",
+    "180100"
+  ],
+  "existingProducts": [
+    "090121",
+    "090111"
+  ],
+  "canadaSnapshotUnchanged": true,
+  "predecessor": {
+    "deploymentId": "939c5821-40a3-40c2-9433-4353a97f9d00",
+    "zip": {
+      "bytes": 414782,
+      "sha256": "0c9e7f43877fe654bd8bef5402fb301e4085f4be9d5033ac9229346a38b036aa"
+    },
+    "manifest": {
+      "bytes": 6558,
+      "sha256": "63ceca7f3f5896631ff59a97fead24a673f2b659fcf7d8dbf426684bc207f2ff"
+    }
+  },
+  "archiveEvidence": {
+    "path": "docs/data-validation/tea-cocoa-archive-acceptance-20261018-evidence.json",
+    "bytes": 9039,
+    "sha256": "ad1ee6e8f823d951450d21dddc5718365961448603b794664b493110a593a0b8"
+  },
+  "pullRequests": {
+    "archiveWorkflow": 129,
+    "activation": 130
+  },
+  "activationCi": [
+    {
+      "runId": 39134988429,
+      "jobId": 117697571710,
+      "event": "pull_request",
+      "head": "683aae40452f6440efc3d19b1aaa901559f2c8b5",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "runId": 39134970514,
+      "jobId": 117697517516,
+      "event": "push",
+      "head": "683aae40452f6440efc3d19b1aaa901559f2c8b5",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "local": {
+    "unitFiles": 121,
+    "unitTests": 1764,
+    "typeFiles": 326,
+    "typeErrors": 0,
+    "packagingControls": 24,
+    "workflowControlsLocalPassed": 17,
+    "workflowControlsLocalPosixSkip": 1,
+    "workflowControlsLinuxPassed": 18,
+    "linuxUnitPassed": 1763,
+    "linuxExistingWindowsOnlySkipped": 1,
+    "fixtureBrowserPassed": {
+      "chromium": 197,
+      "canadaPreview": 11,
+      "canadaPilot": 12,
+      "linuxFirefoxAndWebkit": 78,
+      "localWebkit": 39
+    },
+    "routes": 22,
+    "profileViews": 44,
+    "rankingViews": 32,
+    "portfolioSelections": 30,
+    "csvPngDownloads": 196,
+    "chartPngs": 12,
+    "pdfDocuments": 8,
+    "pdfPages": 48,
+    "staticViews": 6,
+    "embeddedRankingComparisons": 8,
+    "preservedViews": 16,
+    "independentCsvFiles": 309,
+    "independentCsvRows": 7811,
+    "independentCsvCells": 228301,
+    "mergedReadback": {
+      "routes": 22,
+      "savedViews": 8,
+      "portfolioSelections": 30,
+      "csvDownloads": 60
+    }
+  },
+  "reviews": {
+    "arithmetic": {
+      "bytes": 108936,
+      "sha256": "319d3604d2e105280c2c787a516cd99afd17a5a25b37277d76eb775530cc23e6"
+    },
+    "wholeChange": {
+      "bytes": 7120,
+      "sha256": "3f23ade4880e51aaed7ceb1efe93cb997e6ef4418a803cb16dcdc9f685ce311e"
+    },
+    "visual": {
+      "bytes": 2604,
+      "sha256": "97073ea154b2bb45ab280984695fd01dbadfe508f3967a2be4d9a93f78c52e22"
+    }
+  },
+  "rebuild": {
+    "byteIdenticalFiles": 23,
+    "htmlWithBuildOnlyIdentifiersOrTimestamps": 16,
+    "sourceTreeUnchanged": true,
+    "dataAndSerializedPropsUnchanged": true,
+    "affectedBrowserChecksRerun": true
+  },
+  "archiveBudget": {
+    "manualAttempts": 6,
+    "replacementAttempts": 0,
+    "reservedArchiveStoreCalls": 16,
+    "reservedPutAttempts": 4,
+    "reservedGrowthBytes": 6117443,
+    "growthCapBytes": 8388608,
+    "observedPreflightStorageGb": 7.98,
+    "projectedTotalBelowGb": 100,
+    "estimatedIncrementalUsd": 0,
+    "incrementalCapUsd": 5,
+    "billingEstimateOnly": true
+  },
+  "qualifications": [
+    "Amounts and missingness retain the accepted sources; missing country months remain unavailable.",
+    "Estimated duties use matching imports for consumption; RP70/79 qualifications remain attached. Zero duties do not establish duty-free treatment or actual payments.",
+    "Fixed Canada snapshot remains September2024\u2013August2026; no Mexico profile, new Census request or later reporting month.",
+    "Existing Letter portfolio source/current-prior blocks can continue onto following pages; all labels, figures and sources remain readable.",
+    "No successful update across successive official releases is claimed."
+  ],
+  "retention": "Private R2 archives and retained owner proof are separate from public-repository Actions artifacts, which are public and expire.",
+  "closeout": "This snapshot records completed publication; its subsequent reviewed evidence merge, native worktree archival and final seal are recorded separately.",
+  "archiveWorkflowIntegration": {
+    "schemaVersion": 1,
+    "pr": 129,
+    "base": "b4cef1361f8965589d02ed4db5da3c1c3eb27609",
+    "head": "a8d24ccee478030d664e246cbd960d8c232b3597",
+    "merge": "da816893c7bdd291bb7b77931b22ee19f301d6ba",
+    "runs": [
+      {
+        "id": 39130114103,
+        "event": "pull_request",
+        "headSha": "a8d24ccee478030d664e246cbd960d8c232b3597",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1
+      },
+      {
+        "id": 39130085129,
+        "event": "push",
+        "headSha": "a8d24ccee478030d664e246cbd960d8c232b3597",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1
+      }
+    ],
+    "linuxPythonTests": 18,
+    "linuxSkipped": 0,
+    "localUnitTests": 1758,
+    "astroFiles": 326,
+    "astroErrors": 0,
+    "astroWarnings": 0,
+    "astroHints": 0,
+    "browserSuitesPassed": [
+      197,
+      11,
+      12,
+      78
+    ],
+    "providerCalls": 0,
+    "sourceRequests": 0
+  },
+  "archiveRuns": [
+    {
+      "productCode": "090240",
+      "phase": "stage",
+      "runId": 39131479562,
+      "attempt": 1,
+      "head": "da816893c7bdd291bb7b77931b22ee19f301d6ba",
+      "workflow": ".github/workflows/accept-retained-census.yml",
+      "branch": "main",
+      "conclusion": "success",
+      "artifacts": [
+        {
+          "id": 12138530279,
+          "name": "census-090240-retained-candidate",
+          "bytes": 214375,
+          "sha256": "96fa12e8e65f89c718cdd52f2435153aede714bd3afb0cc08c0462a0ed1560eb"
+        },
+        {
+          "id": 12137772884,
+          "name": "census-090240-retained-stage-evidence",
+          "bytes": 1780,
+          "sha256": "d25657f3b6f3e5ada6d481f798010e92294daa15021ff1f77760c7a07e457e5b"
+        }
+      ]
+    },
+    {
+      "productCode": "090240",
+      "phase": "promote",
+      "runId": 39132418554,
+      "attempt": 1,
+      "head": "da816893c7bdd291bb7b77931b22ee19f301d6ba",
+      "workflow": ".github/workflows/accept-retained-census.yml",
+      "branch": "main",
+      "conclusion": "success",
+      "artifacts": [
+        {
+          "id": 12138451787,
+          "name": "census-090240-retained-promotion-evidence",
+          "bytes": 1241,
+          "sha256": "14afb217e6291e2d3bd157d05afaf785919e6d4a3ff61346060d53cdfb0cc143"
+        }
+      ]
+    },
+    {
+      "productCode": "090240",
+      "phase": "verify",
+      "runId": 39132819198,
+      "attempt": 1,
+      "head": "da816893c7bdd291bb7b77931b22ee19f301d6ba",
+      "workflow": ".github/workflows/verify-archive.yml",
+      "branch": "main",
+      "conclusion": "success",
+      "artifacts": [
+        {
+          "id": 12139040522,
+          "name": "census-090240-restored",
+          "bytes": 351165,
+          "sha256": "607712efe72e72b68acc9dfbd6927fc5eb83b5d880b03e2b1441e88172e323ec"
+        },
+        {
+          "id": 12138916004,
+          "name": "census-090240-verification",
+          "bytes": 966,
+          "sha256": "65398ad7e4c70438dcbc7276733467c2e911d81d27167c4429bad037df114801"
+        }
+      ]
+    },
+    {
+      "productCode": "180100",
+      "phase": "stage",
+      "runId": 39130972524,
+      "attempt": 1,
+      "head": "da816893c7bdd291bb7b77931b22ee19f301d6ba",
+      "workflow": ".github/workflows/accept-retained-census.yml",
+      "branch": "main",
+      "conclusion": "success",
+      "artifacts": [
+        {
+          "id": 12138325939,
+          "name": "census-180100-retained-stage-evidence",
+          "bytes": 1776,
+          "sha256": "4b17180d3b324395028aa7709998c07c133d90a1858a29f9b0a1a62a0d4ee0b8"
+        },
+        {
+          "id": 12138211672,
+          "name": "census-180100-retained-candidate",
+          "bytes": 137539,
+          "sha256": "5eb536bc5387a170a13e80ea548470d490bff1c93533b8294f3f6efc260b92fb"
+        }
+      ]
+    },
+    {
+      "productCode": "180100",
+      "phase": "promote",
+      "runId": 39131837769,
+      "attempt": 1,
+      "head": "da816893c7bdd291bb7b77931b22ee19f301d6ba",
+      "workflow": ".github/workflows/accept-retained-census.yml",
+      "branch": "main",
+      "conclusion": "success",
+      "artifacts": [
+        {
+          "id": 12137962814,
+          "name": "census-180100-retained-promotion-evidence",
+          "bytes": 1238,
+          "sha256": "28e5c5de566af355b3b4b32ed7cbcd0e2dd1d69ad5c702a8ceccb194f2f87cab"
+        }
+      ]
+    },
+    {
+      "productCode": "180100",
+      "phase": "verify",
+      "runId": 39132166712,
+      "attempt": 1,
+      "head": "da816893c7bdd291bb7b77931b22ee19f301d6ba",
+      "workflow": ".github/workflows/verify-archive.yml",
+      "branch": "main",
+      "conclusion": "success",
+      "artifacts": [
+        {
+          "id": 12138610640,
+          "name": "census-180100-verification",
+          "bytes": 965,
+          "sha256": "369e5082e7854c80cd0e890434c33080e9de2c93be2b92911ce467454563e7fe"
+        },
+        {
+          "id": 12137479690,
+          "name": "census-180100-restored",
+          "bytes": 297923,
+          "sha256": "eed7cc3bcb63fde5bdc13222e188a1f8625a8eb34db0181ce64d6296dca33809"
+        }
+      ]
+    }
+  ],
+  "archiveReviewIdentities": {
+    "phase1-independent-review.md": {
+      "bytes": 6867,
+      "sha256": "50c6c8e6dc1d49fee4620d116ef5258ab354bf0c26ebe4ae9215cfbd2b6ee5ab"
+    },
+    "tea-backup-independent.json": {
+      "bytes": 292634,
+      "sha256": "32b0ecd815bfed2dd1fd9aa2262ef8046ea5711a0d497cf19877370634cb7fb4"
+    },
+    "cocoa-backup-independent.json": {
+      "bytes": 292944,
+      "sha256": "ef6e76352dca91ccaf7922c3abe5d1ba14367562d5478abea3294e721d437f45"
+    },
+    "tea-readback-independent.json": {
+      "bytes": 380928,
+      "sha256": "8f1d94d93e2d58fdeabc4ee7ec3beef1c10275a0ea0801a8dff0c183018636bf"
+    },
+    "cocoa-readback-independent.json": {
+      "bytes": 380902,
+      "sha256": "d8516b84810f1d6637b13a6cf1368f6f3d3244f9bb0d0188a23d8c51a5c5fb90"
+    }
+  }
+}
