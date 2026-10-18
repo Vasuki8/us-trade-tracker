@@ -44,7 +44,7 @@ export function makeMexicoEvidenceFixture():Map<string,Buffer>{
   sumUsd:id.startsWith('imports')?100000:200000,countryTotalUsd:id.startsWith('imports')?100000:200000,
   residualUsd:0,rowCount:i<23?4185:4184,resultIdentity:digest(Buffer.from(id))}));
  put('national-original-manifest.json',{processingCommit:'ed9bff4ce7a880f983eaf341f5b6bf8b5dc91809',
-  requests:contexts.map(c=>({id:c.id,...c.source,kind:'zip',outcome:'complete'}))});
+  requests:[...contexts.map(c=>({id:c.id,context_id:c.id,...c.source,kind:'zip',outcome:'complete'})),{id:'publication-2026-01',context_id:'exports-2026-01',kind:'pdf',outcome:'complete'}]});
  for(const role of ['maintained','independent']){
   const cs=contexts.map(c=>({...c,resultIdentity:digest(Buffer.from(role+c.id))}));
   for(const c of cs)put(role+'-'+c.id+'-receipt.json',c);
@@ -57,15 +57,15 @@ export function makeMexicoEvidenceFixture():Map<string,Buffer>{
   const guard={state:'validated',reason:null,jobOwnershipVerified:true,childStopped:true,ownedTreeStopped:true,
    createdProcessExitCode:0,elapsedSeconds:2,result:terminal};
   put(role+'-outer-guard.json',guard);
-  put(role+'-operator-completion.json',{observedNativeLauncherExitCode:0,invocationGuard:guard,
-   terminal:{outerState:'validated',reason:null,result:terminal}});
+  put(role+'-operator-completion.json',{observedNativeLauncherExitCode:0,invocationGuard:{...guard,result:{nativeExitCode:0,stdoutIdentity:digest(Buffer.from(role+'-stdout'))}},
+   terminal:{outerState:'validated',reason:null,result:terminal,finalizer:{...guard,result:digest(files.get(role+'-outer-guard.json')!)}}});
  }
  const historical={date:'2026-10-17',validContexts:26,stoppedContext:'imports-2025-09',unprocessedContexts:21,
   stoppedContextSeconds:2828.093,executionLimitSeconds:60,preciseOverrunCause:'unverified'};
  put('historical-feasibility-evidence.json',{countryCode:'2010',validContexts:26,classificationAccepted:false,releaseAccepted:false});
  const pubContexts=contexts.map((c,i)=>({...c,month:c.id.slice(8),direction:c.id.slice(0,7),countryCode:'2010',
   measure:c.id.startsWith('imports')?'GEN_VAL_MO':'ALL_VAL_MO',countryControlUsd:c.countryTotalUsd,globalDetailKeys:i<30?1666900:1666899}));
- put('reassessment-public-evidence.json',{countryCode:'2010',period:{from:'2024-09',to:'2026-08'},
+ put('reassessment-public-evidence.json',{countryCode:'2010',period:{start:'2024-09',end:'2026-08',months:24,directions:['imports','exports']},
   validContexts:48,internallyVerifiedCompleteGrid:true,currentReferenceAgreementEstablished:false,
   classificationAccepted:false,releaseAccepted:false,publicMexicoProfile:false,assessmentBaseCommit:sourceCommit,
   sourceManifest:digest(files.get('national-original-manifest.json')!),contexts:pubContexts,
@@ -75,7 +75,7 @@ export function makeMexicoEvidenceFixture():Map<string,Buffer>{
   frozenScripts:frozen,classificationAccepted:false,releaseAccepted:false,
   maintained:{role:'maintained',output:'maintained-run-r1',summaryIdentity:digest(files.get('maintained-summary.json')!),rowCount:200855,fullKeyCount:80011182,validContexts:48},
   independent:{role:'independent',output:'independent-run-r1',summaryIdentity:digest(files.get('independent-summary.json')!),rowCount:200855,fullKeyCount:80011182,validContexts:48}});
- put('reassessment-verifier-correction.json',{status:'review-finding-fixed-red-green',actualPairVerified:true,priorGateChecksAndTotalsUnaffected:true});
+ put('reassessment-verifier-correction.json',{status:'review-finding-fixed-red-green',actualPairVerified:false,priorGateChecksAndTotalsUnaffected:true});
  put('reassessment-lifecycle.json',{status:'passed',sequential:true,nationalSourceReads:0});
  put('classification-cohort.json',{countryCode:'2010',window:['2024-09','2026-08'],classificationAccepted:false,releaseAccepted:false,
   entries:pairs.map(([direction,code])=>({direction,code,special:['980100','988000','880000'].includes(code),...flags})),

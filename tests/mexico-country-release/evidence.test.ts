@@ -35,4 +35,10 @@ it('preserves the literal dotted F.A.S. export column label',()=>{expect(checked
  for(const n of ['reference-matrix.json','reference-public-evidence.json'])edit(f,n,x=>{for(const r of x.rows)if(r.direction==='exports')r.publicationCell.column='exports September 2024; monthly Domestic & Foreign F.A.S. (not YTD or CIF)';});
  edit(f,'reference-review.json',x=>{x.rootMatrixIdentity=digest(f.get('reference-matrix.json')!);});
 })).not.toThrow();});
+it('compares saved JSON fields without depending on object key order',()=>{expect(checked(f=>edit(f,'reference-public-evidence.json',x=>{x.rows=x.rows.map((r:Record<string,unknown>)=>{const {publicationCell,...rest}=r;return {...rest,publicationCell};});}))).not.toThrow();});
+it('compares the public layout attestation with only its private render path removed',()=>{expect(checked(f=>{
+ edit(f,'reference-matrix.json',x=>{x.rows[0].publicationCell.printedLocator='Supplement Exhibit4; printed -7-';x.rows[0].publicationCell.layoutReview={method:'visually read',renderSha256:'d'.repeat(64),reason:'column review',renderPath:'private/render.png'};});
+ edit(f,'reference-public-evidence.json',x=>{x.rows[0].publicationCell.printedLocator='Supplement Exhibit4; printed -7-';x.rows[0].publicationCell.layoutReview={method:'visually read',renderSha256:'d'.repeat(64),reason:'column review'};});
+ edit(f,'reference-review.json',x=>x.rootMatrixIdentity=digest(f.get('reference-matrix.json')!));
+})).not.toThrow();});
 

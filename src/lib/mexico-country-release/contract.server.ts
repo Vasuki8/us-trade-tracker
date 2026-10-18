@@ -1,4 +1,5 @@
 import {createHash} from 'node:crypto';
+import {isDeepStrictEqual} from 'node:util';
 import approved from '../../../docs/superpowers/plans/2026-10-18-mexico-all-goods-acceptance-recovery-inputs.json';
 import type {MexicoIdentity,MexicoSource} from './types';
 export const mexicoContract={
@@ -13,7 +14,7 @@ export function identity(bytes:Buffer):MexicoIdentity{return {bytes:bytes.length
 export function object(x:unknown):Record<string,unknown>{if(!x||typeof x!=='object'||Array.isArray(x))throw Error('mexico-object');return x as Record<string,unknown>;}
 export function array(x:unknown):unknown[]{if(!Array.isArray(x))throw Error('mexico-array');return x;}
 export function usd(x:unknown):number{if(typeof x!=='number'||!Number.isSafeInteger(x)||x<0)throw Error('mexico-safe-integer');return x;}
-export function equal(a:unknown,b:unknown,label='binding'):void{if(JSON.stringify(a)!==JSON.stringify(b))throw Error('mexico-'+label);}
+export function equal(a:unknown,b:unknown,label='binding'):void{if(!isDeepStrictEqual(a,b))throw Error('mexico-'+label);}
 export function keys(x:Record<string,unknown>,names:string[]):void{equal(Object.keys(x).sort(),[...names].sort(),'keys');}
 export function parse(bytes:Buffer):Record<string,unknown>{return object(JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes)));}
 export function json(x:unknown):Buffer{return Buffer.from(JSON.stringify(x)+'\n');}
