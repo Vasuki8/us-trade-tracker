@@ -28,6 +28,7 @@ function validate(candidate:DecodedMexicoCandidate):MexicoAllGoodsProjection{
 }
 export function verifyMexicoCandidate(candidate:DecodedMexicoCandidate):{projection:MexicoAllGoodsProjection;report:MexicoGateReport}{
  // Re-decode the caller's current objects, so mutations after decode cannot bypass validation.
+ validate(candidate);
  const fresh=decodeMexicoCandidate(json(envelope(candidate))),projection=validate(fresh),candidateBytes=json(envelope(fresh));
  const report:MexicoGateReport={schemaVersion:1,policyId:mexicoContract.policyId,countryCode:'2010',candidate:identity(candidateBytes),projection:identity(fresh.files.get('research-data.json')!),source:projection.source,status:projection.source==='fixture'?'fixture-only':'verification-pending',gates:{retainedEvidenceAuthenticated:'passed',allGoodsControlsVerified:'passed',referenceQualificationsPreserved:'passed',productComparisonsWithheld:'passed',projectionVerified:'passed',portableRecoveryVerified:'pending',reviewAndPreservationVerified:'pending'},classificationAccepted:false,releaseAccepted:false,publicMexicoProfile:false,productComparisons:{available:false}};return {projection,report};
 }

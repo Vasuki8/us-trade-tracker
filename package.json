@@ -27,6 +27,7 @@
     "data:prepare-country-release": "node --import tsx scripts/prepare-country-release.ts",
     "data:recover-country-release": "node --import tsx scripts/recover-country-release.ts",
     "data:prepare-mexico-country-release": "node --import tsx scripts/prepare-mexico-country-release.ts",
+    "data:recover-mexico-country-release": "node --import tsx scripts/recover-mexico-country-release.ts",
     "data:country-archive": "node --import tsx scripts/country-archive.ts",
     "data:probe-aggregates": "node --import tsx scripts/probe-country-aggregates.ts",
     "data:probe-totals": "node --import tsx scripts/probe-country-totals.ts",

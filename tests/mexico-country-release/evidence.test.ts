@@ -1,6 +1,6 @@
 import {afterEach,expect,it,vi} from 'vitest';
 import {verifyMexicoAllGoodsEvidence} from '../../src/lib/mexico-country-release/evidence.server';
-import {makeMexicoEvidenceFixture,installMexicoFixture,edit} from '../helpers/mexico-country-release-data';
+import {makeMexicoEvidenceFixture,installMexicoFixture,edit,digest} from '../helpers/mexico-country-release-data';
 afterEach(()=>vi.restoreAllMocks());
 function checked(change?:(files:Map<string,Buffer>)=>void){const f=makeMexicoEvidenceFixture();change?.(f);installMexicoFixture(f);return ()=>verifyMexicoAllGoodsEvidence(f);}
 it('authenticates both complete retained controls without accepting a release',()=>{
@@ -31,4 +31,8 @@ it('rejects changed bytes against external pins even when JSON remains valid',()
 it('preserves large historical metadata as original bytes, not numeric identity claims',()=>{
  const v=checked()();expect(v.files.get('reassessment-frozen-scripts.json')!.toString()).toContain('1792347899539979800');
 });
+it('preserves the literal dotted F.A.S. export column label',()=>{expect(checked(f=>{
+ for(const n of ['reference-matrix.json','reference-public-evidence.json'])edit(f,n,x=>{for(const r of x.rows)if(r.direction==='exports')r.publicationCell.column='exports September 2024; monthly Domestic & Foreign F.A.S. (not YTD or CIF)';});
+ edit(f,'reference-review.json',x=>{x.rootMatrixIdentity=digest(f.get('reference-matrix.json')!);});
+})).not.toThrow();});
 

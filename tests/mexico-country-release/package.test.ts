@@ -27,5 +27,6 @@ it('rejects a forged projection even when all envelope hashes are recomputed',()
 it('reauthenticates mutated evidence, decoded buffers and manifest objects',()=>{
  const p=pack(),d=decodeMexicoCandidate(p.bytes);d.files.get('maintained-summary.json')![0]^=1;expect(()=>verifyMexicoCandidate(d)).toThrow();
  const d2=decodeMexicoCandidate(p.bytes);d2.manifest.countryCode='1220' as '2010';expect(()=>verifyMexicoCandidate(d2)).toThrow();
+ const d3=decodeMexicoCandidate(p.bytes);d3.files.set('extra.json',Buffer.from('{}'));expect(()=>verifyMexicoCandidate(d3)).toThrow();
  const f=makeMexicoEvidenceFixture();installMexicoFixture(f);const e=verifyMexicoAllGoodsEvidence(f);e.files.get('maintained-summary.json')![0]^=1;expect(()=>encodeMexicoCandidate(e,metadata)).toThrow();
 });

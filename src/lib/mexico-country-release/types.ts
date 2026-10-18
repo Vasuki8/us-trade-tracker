@@ -31,3 +31,13 @@ export interface MexicoGateReport {
 export interface DecodedMexicoCandidate {manifest:MexicoManifest;files:Map<string,Buffer>}
 export interface MexicoCandidatePackage extends DecodedMexicoCandidate {bytes:Buffer;digest:MexicoIdentity}
 export interface MexicoPreparedCandidate {package:MexicoCandidatePackage;report:MexicoGateReport}
+export interface MexicoRecoveryReceipt {schemaVersion:1;policyId:string;countryCode:'2010';source:MexicoSource;candidate:MexicoIdentity;projection:MexicoIdentity;status:'verified';historicalPathReads:0;recoveryId:string;recoveredAt:string}
+export interface MexicoVerificationProof {
+ schemaVersion:number;source:MexicoSource;candidate:MexicoIdentity;projection:MexicoIdentity;packagingCommit:string;reviewedCommit:string;
+ runtimeComparison:{from:string;to:string;unchangedRuntime:boolean;documentationOnly:boolean;identity:MexicoIdentity};
+ recoveries:{role:string;receipt:MexicoRecoveryReceipt;identity:MexicoIdentity}[];
+ calculation:{status:string;candidate:MexicoIdentity;projection:MexicoIdentity;observations:number;periodTotals:number;growthResults:number;productComparisonsWithheld:boolean;identity:MexicoIdentity};
+ preservation:{before:{identity:MexicoIdentity;count:number};after:{identity:MexicoIdentity;count:number};unchanged:boolean};
+ review:{status:string;headCommit:string;identity:MexicoIdentity};ci:{status:string;headCommit:string;identity:MexicoIdentity};
+ checks:{unitTests:boolean;typeCheck:boolean;normalBuild:boolean;routeExclusion:boolean;supervisor:boolean};
+}
