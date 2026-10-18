@@ -42,8 +42,8 @@ export async function preparationFixture(options:{months?:[string,string];legacy
  const pointer={schemaVersion:1,countryCode:'1220',releaseId:countryId,package:{path:'releases/'+countryId+'/candidate.json',...digestCountryBytes(candidate)},acceptance:{path:'releases/'+countryId+'/acceptance.json',...digestCountryBytes(record)}};
  const bodies:Record<string,Buffer>={['data/countries/1220/processed/current.json']:countryJsonBytes(pointer),['data/countries/1220/processed/'+pointer.package.path]:candidate,['data/countries/1220/processed/'+pointer.acceptance.path]:record};
  const productPins=[],selection=[];let productIndex=0;
- for(const [code,base]of [['090121','data/processed'],['090111','data/products/090111/processed']]){
-  const month=(options.months??['2026-08','2026-08'])[productIndex++],path=base+'/releases/'+month+'-'+code+'.json';
+ for(const [code,base]of (options.legacy?['090121','090111']:['090121','090111','090240','180100']).map(code=>[code,code==='090121'?'data/processed':`data/products/${code}/processed`])){
+  const month=options.months?.[productIndex++]??'2026-08',path=base+'/releases/'+month+'-'+code+'.json';
   bodies[path]=preparationProductRelease(code,month);bodies[base+'/current.json']=countryJsonBytes({releaseFile:'releases/'+month+'-'+code+'.json'});
   const pointer={path:base+'/current.json',...digestCountryBytes(bodies[base+'/current.json'])},release={path,...digestCountryBytes(bodies[path])};
   productPins.push(pointer,release);selection.push({code,reportingMonth:month,pointer,release});

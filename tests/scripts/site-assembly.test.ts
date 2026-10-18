@@ -22,7 +22,7 @@ it('assembles_site_controls_from_git_templates',async()=>{
  expect(m.totalBytes).toBe(m.files.reduce((n:number,v:any)=>n+v.bytes,0));expect(m.largestFile.path).toBe('404.html');
  for(const s of m.sourceTemplates)expect(s.gitBlob).toMatch(/^[a-f0-9]{40}$/);
  expect(await readFile(resolve(f.outputRoot,'site/_headers'))).toEqual(f.templates['deployment/pages/_headers']);
- expect(m.products.map((v:any)=>v.path)).toEqual(['data/processed/current.json','data/processed/releases/2026-08-090121.json','data/products/090111/processed/current.json','data/products/090111/processed/releases/2026-08-090111.json']);
+ expect(m.products.map((v:any)=>v.path)).toEqual(['data/processed/current.json','data/processed/releases/2026-08-090121.json','data/products/090111/processed/current.json','data/products/090111/processed/releases/2026-08-090111.json','data/products/090240/processed/current.json','data/products/090240/processed/releases/2026-08-090240.json','data/products/180100/processed/current.json','data/products/180100/processed/releases/2026-08-180100.json']);
 });
 it('withdrawal_has_exact_three_entries',async()=>{
  const f=await setup();await prepareSite(f);const m=JSON.parse(await readFile(resolve(f.outputRoot,'withdrawal-manifest.json'),'utf8'));

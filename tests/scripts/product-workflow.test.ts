@@ -33,10 +33,10 @@ it('uses selected product paths and excludes other products from coffee artifact
  expect(release.with.path).not.toContain('data/**/*.json');const coffee=productDataPaths('/workspace','090121'),second=productDataPaths('/workspace','090122');expect(second.dataDir.startsWith(`${coffee.dataDir}/raw/`)).toBe(false);
  for(const step of steps)if(step.run)expect(step.run).not.toContain('${{');
 });
-it.each(['090240','180100'])('preflights reviewed intake %s without publishing it or selecting another product',async code=>{
+it.each(['090240','180100'])('preflights accepted product %s without selecting another product',async code=>{
  const root=await mkdtemp(join(tmpdir(),'trade-new-product-'));dirs.push(root);const output=join(root,'output');
  expect(parseArchiveDispatch({...valid,PRODUCT_CODE:code}).productCode).toBe(code);
- const product=PRODUCTS.find(p=>p.code===code);expect(product).toMatchObject({importable:true,published:false,dutiesAccepted:false});
+ const product=PRODUCTS.find(p=>p.code===code);expect(product).toMatchObject({importable:true,published:true,dutiesAccepted:true});
  await runArchiveCommand(['preflight','--product',code],{...valid,GITHUB_WORKSPACE:root,GITHUB_OUTPUT:output});
  const paths=productDataPaths(root,code);expect(await readFile(output,'utf8')).toContain(`data_dir=${paths.dataDir}\n`);
  expect(paths.dataDir).toBe(join(root,'data','products',code));

@@ -10,7 +10,7 @@ import type {Direction} from '../lib/trade/types';
 import {downloadBlob,serializePortfolioSummaryCsv,serializePortfolioPartnersCsv} from '../lib/trade/downloads';
 
 const range=(period:{from:string;to:string})=>period.from===period.to?monthLabel(period.to):`${monthLabel(period.from)}–${monthLabel(period.to)}`;
-const dutyShare=(value:number|null)=>value===null?'Unavailable':`${value.toFixed(3)}%`;
+const dutyShare=(value:number|null)=>value===null?'Unavailable':value>0&&value<0.001?'<0.001%':`${value.toFixed(3)}%`;
 function TradeSummary({label,trade,id,research}:{label:string;trade:PortfolioTrade;id:string;research:{href:string;label:string}|null}){
   return <section aria-labelledby={id} className="portfolio-section"><h3 id={id}>{label}</h3>
     <p className="briefing-period">{range(trade.periods.current)} compared with {range(trade.periods.previous)}</p>

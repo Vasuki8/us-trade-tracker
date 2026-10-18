@@ -16,7 +16,7 @@ it('allows green coffee intake through the real registry',async()=>{
 });
 
 it('keeps green coffee out of the public profile set until its own evidence is accepted',async()=>{
-  const all=await loadPublishedReleases({mode:'fixture',registry:PRODUCTS.map(product=>product.code==='090111'?{...product,published:false,dutiesAccepted:false}:product)});
+  const all=await loadPublishedReleases({mode:'fixture',registry:PRODUCTS.filter(product=>["090121","090111"].includes(product.code)).map(product=>product.code==='090111'?{...product,published:false,dutiesAccepted:false}:product)});
   expect(all.map(({product})=>product.code)).toEqual(['090121']);
   expect(all[0].release.productCode).toBe('090121');
 });

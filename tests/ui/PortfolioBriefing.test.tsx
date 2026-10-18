@@ -157,3 +157,14 @@ it.each(['no duty countries','unchanged duty countries','no partner highlights']
  if(kind==='no partner highlights')for(const row of sample.release.observations)if(row.geography==='country')row.valueUsd=10;
  render(<PortfolioBriefing data={preparePortfolioBriefing([sample])}/>);expect(screen.getByRole('link',{name:monthlyDutyResearch})).toBeVisible();expect(screen.getByRole('link',{name:rollingDutyResearch})).toBeVisible();
 });
+
+it.each([[1,'<0.001%'],[0,'0.000%'],[null,'Unavailable']] as const)('distinguishes tiny positive estimated duty shares from zero and unavailable: %s', (duty,label)=>{
+ const sample=portfolioSample('180100','Synthetic cocoa');
+ for(const row of sample.release.duties.observations)if(row.geography==='world'){
+  row.calculatedDuty={valueUsd:duty,status:duty===null?'missing':'reported'};
+  row.consumptionValue={valueUsd:1_000_000,status:'reported'};
+ }
+ render(<PortfolioBriefing data={preparePortfolioBriefing([sample])}/>);
+ expect(screen.getByRole('region',{name:'Monthly estimated duties'})).toHaveTextContent(`Duty share: ${label}`);
+ if(duty===1)expect(screen.getByRole('region',{name:'Monthly estimated duties'})).not.toHaveTextContent('Duty share: 0.000%');
+});

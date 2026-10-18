@@ -28,6 +28,34 @@
         "bytes": 2234188,
         "sha256": "ef5d56791ad85b1b7a199829818522389a792e82cee792665be61f8e78cba0f7"
       }
+    },
+    {
+      "code": "090240",
+      "reportingMonth": "2026-08",
+      "pointer": {
+        "path": "data/products/090240/processed/current.json",
+        "bytes": 76,
+        "sha256": "30c72e757df9279c5fe980bb656ef4b3f741b9c2389cfd468082ed761e462b01"
+      },
+      "release": {
+        "path": "data/products/090240/processed/releases/2026-08-b5434067-131b-4337-87c1-b380f2face50.json",
+        "bytes": 1599531,
+        "sha256": "861ba7228fb6f6363445df2c0eb6ef76f946c839df75afdd2dcc07d899b09d51"
+      }
+    },
+    {
+      "code": "180100",
+      "reportingMonth": "2026-08",
+      "pointer": {
+        "path": "data/products/180100/processed/current.json",
+        "bytes": 76,
+        "sha256": "301abc654e1afb60e31c4792d6d8254bcd4bc9ad0ee2776543eeb0aab1171f6e"
+      },
+      "release": {
+        "path": "data/products/180100/processed/releases/2026-08-4b642c26-0e76-4c20-9606-032bd5e0dd01.json",
+        "bytes": 957381,
+        "sha256": "96a51a19b968dc574a8692fe1be02d2974704186960bd97ac697356253b83300"
+      }
     }
   ]
 }

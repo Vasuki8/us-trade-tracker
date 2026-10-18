@@ -42,3 +42,14 @@ it('loads separate non-coffee inputs and excludes a rejected intake member',asyn
  const paths=productDataPaths(workspaceRoot,'180100');await writeFile(join(paths.processedDir,'releases/test.json'),JSON.stringify(forCode('090240')));
  await expect(loadPublishedReleases({workspaceRoot,mode:'census',registry:selected})).rejects.toThrow(/180100/);
 });
+
+it.each(['090240','180100'])('refuses missing, crossed and unaccepted duties for production %s',async code=>{
+ const workspaceRoot=await root(),product=PRODUCTS.find(p=>p.code===code)!;
+ expect(product.published).toBe(true);
+ await expect(loadPublishedReleases({workspaceRoot,mode:'census',registry:[product]})).rejects.toThrow(new RegExp(code));
+ await save(workspaceRoot,code,forCode(code==='090240'?'180100':'090240'));
+ await expect(loadPublishedReleases({workspaceRoot,mode:'census',registry:[product]})).rejects.toThrow(new RegExp(code));
+ await save(workspaceRoot,code,forCode(code));
+ await expect(loadPublishedReleases({workspaceRoot,mode:'census',registry:[{...product,dutiesAccepted:false}]})).rejects.toThrow(/duties/i);
+ expect((await loadPublishedReleases({workspaceRoot,mode:'census',registry:[product]}))[0].release.productCode).toBe(code);
+});

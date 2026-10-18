@@ -19,11 +19,11 @@ it('exports_requested_clean_head',async()=>{
  expect((await lstat(resolve(f.outputRoot,'project/node_modules'))).isSymbolicLink()).toBe(true);
  expect(receipt.runtime.dependencyMode).toBe('shared-existing');expect(receipt.runtime.nodeMajor).toBe(24);
 });
-it('stages_only_seven_named_inputs',async()=>{
+it('stages_only_eleven_named_inputs',async()=>{
  const f=await preparationFixture();await mkdir(resolve(f.dataRoot,'data/backups'),{recursive:true});await writeFile(resolve(f.dataRoot,'.env'),'PRIVATE_DO_NOT_COPY');
  const receipt=await createSiteStage(f);
- expect(receipt.data).toHaveLength(7);expect(receipt.data.map(d=>d.path).sort()).toEqual(Object.keys(f.bodies).sort());
- expect(receipt.products.map(p=>p.code)).toEqual(['090121','090111']);
+ expect(receipt.data).toHaveLength(11);expect(receipt.data.map(d=>d.path).sort()).toEqual(Object.keys(f.bodies).sort());
+ expect(receipt.products.map(p=>p.code)).toEqual(['090121','090111','090240','180100']);
  for(const [path,body]of Object.entries(f.bodies)){expect(await readFile(resolve(f.outputRoot,'project',path))).toEqual(body);expect(await readFile(resolve(f.dataRoot,path))).toEqual(body);}
  expect(await readdir(f.outputRoot)).toEqual(expect.arrayContaining(['project','staging-receipt.json']));
  await expect(lstat(resolve(f.outputRoot,'project/.env'))).rejects.toMatchObject({code:'ENOENT'});
@@ -136,7 +136,7 @@ it.each([['2026-09','2026-09'],['2026-09','2026-08']] as [string,string][])('sta
  const f=await preparationFixture({months:[a,b]}),receipt=await createSiteStage(f);
  expect(receipt.country.reporting).toEqual({from:'2024-09',to:'2026-08',latest:'2026-08'});
  expect(receipt.products[0].release.path).toContain('/'+a+'-090121.json');expect(receipt.products[1].release.path).toContain('/'+b+'-090111.json');
- expect(receipt.data).toHaveLength(7);
+ expect(receipt.data).toHaveLength(11);
  for(const [path,body]of Object.entries(f.bodies)){expect(await readFile(resolve(f.outputRoot,'project',path))).toEqual(body);expect(await readFile(resolve(f.dataRoot,path))).toEqual(body);}
  expect(await verifySiteStage({...f,stageRoot:f.outputRoot})).toEqual(receipt);
 });
