@@ -21,6 +21,8 @@ jobs:
           cache: npm
       - name: Local site packaging checks
         run: python3 -m unittest discover -s tests/packaging -v
+      - name: Retained artifact checks
+        run: python3 -m unittest discover -s tests/workflows -v
       - run: npm ci
       - run: npm test -- --maxWorkers=2
       - run: npm run check
