@@ -17,9 +17,9 @@ const suiteSteps=(await Promise.all(files.map(async file=>{
 }))).flat();
 
 // Removing a manual job's interpreter declaration must fail before a real data run is needed.
-it('discovers the four existing full-unit-suite jobs without an empty or omitted workflow',()=>{
+it('discovers every existing unit-test job without an empty or omitted workflow',()=>{
   expect(suiteSteps.map(step=>step.id).sort()).toEqual([
-    'audit-census-country.yml:audit','audit-census-duties.yml:audit','checks.yml:check','import-census.yml:import',
+    'audit-census-country.yml:audit','audit-census-duties.yml:audit','checks.yml:check','import-census.yml:import','probe-census-cocoa.yml:probe',
   ]);
 });
 it.each(suiteSteps)('$id supplies the packaging interpreter to its unit test process',({environment})=>{
