@@ -1,0 +1,996 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Reviewed planning input allowlist; not a candidate, eligibility report or execution proof",
+  "planningBaseCommit": "c01217697156a9009ce920997e4b24648e6b068d",
+  "countryCode": "2010",
+  "from": "2024-09",
+  "to": "2026-08",
+  "policyId": "mexico-all-goods-release-v1",
+  "sourcePolicyId": "mexico-retained-all-goods-v1",
+  "sourceAssessmentCommit": "52e4157ee5a223716d620804b2a9203fc49cec5c",
+  "memberCount": 120,
+  "decodedEvidenceBytes": 4804241,
+  "largestMemberBytes": 1995590,
+  "members": [
+    {
+      "name": "reassessment-seal.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/final-proof-manifest.json",
+      "bytes": 87723,
+      "sha256": "810da21b17d2fdd85fbdf4a1c1d1e5e4a8a134be3ba48e45a51875f46c90e175",
+      "anchor": "reassessment",
+      "sealedMember": "final-proof-manifest.json"
+    },
+    {
+      "name": "reference-seal.json",
+      "path": "data/backups/mexico-country-audit/reference-classification-20261018-r1/final-proof-manifest.json",
+      "bytes": 290299,
+      "sha256": "30b976120f12159885205fcd3db6218a58ebc6058080532d6012b4099d5b96bb",
+      "anchor": "reference",
+      "sealedMember": "final-proof-manifest.json"
+    },
+    {
+      "name": "reassessment-frozen-scripts.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/frozen-scripts.json",
+      "bytes": 10213,
+      "sha256": "fbb7dd874830561e390c99f19c6f01b31491fcaec627f77c8690ce6eda28e03d",
+      "anchor": "reassessment",
+      "sealedMember": "frozen-scripts.json"
+    },
+    {
+      "name": "reassessment-lifecycle.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/operator-lifecycle-window-check.json",
+      "bytes": 1003,
+      "sha256": "04823e2e9e2a32ac6b7e2ab73c688f99028876eac0bffa36ee39120370b4201f",
+      "anchor": "reassessment",
+      "sealedMember": "operator-lifecycle-window-check.json"
+    },
+    {
+      "name": "reassessment-independent-verification.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/reviews/calculation-readback/task2-completion-readback.json",
+      "bytes": 246491,
+      "sha256": "ca36a5db9732702f5953302741feae95464a601ba18febfa03aa89a6fb6c281e",
+      "anchor": "reassessment",
+      "sealedMember": "reviews/calculation-readback/task2-completion-readback.json"
+    },
+    {
+      "name": "reassessment-verifier-correction.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/reviews/calculation-readback/run-name-correction.json",
+      "bytes": 1512,
+      "sha256": "0cc8262af479a1f52b0311247f04d9c55c8d36110fff78c9c41fa54bf6a3908e",
+      "anchor": "reassessment",
+      "sealedMember": "reviews/calculation-readback/run-name-correction.json"
+    },
+    {
+      "name": "reassessment-public-evidence.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/public-draft/2010-offline-reassessment-evidence.json",
+      "bytes": 149718,
+      "sha256": "7ca2a40159453800acd79e0a1a73fe22f09a7ef20b829121348d53b11a5db812",
+      "anchor": "reassessment",
+      "sealedMember": "public-draft/2010-offline-reassessment-evidence.json"
+    },
+    {
+      "name": "maintained-summary.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/summary.json",
+      "bytes": 122741,
+      "sha256": "026996def2f4aadffd9a86d65c0213bf2b9a82b9b47dafb30011dfedf6584bf2",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/summary.json"
+    },
+    {
+      "name": "maintained-operator-completion.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/operator-completion.json",
+      "bytes": 2740,
+      "sha256": "65c963756667e94dd4710c9aade0dc3604af28089b55f3b6eaadaa7cb16ec278",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/operator-completion.json"
+    },
+    {
+      "name": "maintained-outer-guard.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/outer-guard.json",
+      "bytes": 1118,
+      "sha256": "e9678dc97d2ba0b71c8a5e0b23c7645164c645e91e5ceef7aa075213f7d037f7",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/outer-guard.json"
+    },
+    {
+      "name": "maintained-exports-2024-09-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2024-09-receipt.json",
+      "bytes": 1820,
+      "sha256": "323c3ce6efe6d5e8410a748882c7209ff6ff0d69da27039f0330a26e2b6afbe7",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2024-09-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2024-10-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2024-10-receipt.json",
+      "bytes": 1820,
+      "sha256": "ef4c92d53ba85aef071aecefd59b8cd0455094e7cd861a2d7769590ada78ef8a",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2024-10-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2024-11-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2024-11-receipt.json",
+      "bytes": 1820,
+      "sha256": "e11ba2855bb45260cacd0473fae20e858fb73bc3e3319273bd6412a35a02c076",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2024-11-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2024-12-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2024-12-receipt.json",
+      "bytes": 1822,
+      "sha256": "5c829e392b22ca90d8864d51e65a3ee91732e1b021ba842dc51ab48fea456e52",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2024-12-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2025-01-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2025-01-receipt.json",
+      "bytes": 1794,
+      "sha256": "2f2bb84f3aa50b28e0ccaa5bc2a4c84d0c190b71eb7fbfa3db01d02994a2f746",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2025-01-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2025-02-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2025-02-receipt.json",
+      "bytes": 1819,
+      "sha256": "0f9358f5162881b9114b45590a2d08d06900fe2fe9f3942ab101c852e8ad402f",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2025-02-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2025-03-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2025-03-receipt.json",
+      "bytes": 1823,
+      "sha256": "b87a161fe92d23f84d805eb6cdf9e4b7c84368b88b2dfac34ec7cb6dd377c0ae",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2025-03-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2025-04-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2025-04-receipt.json",
+      "bytes": 1821,
+      "sha256": "93ed27111d11c3f2c286c17923282e337639eee58d0f3b90720029f86400251a",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2025-04-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2025-05-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2025-05-receipt.json",
+      "bytes": 1821,
+      "sha256": "074c7786f8e7ac572268e6e110bdc3459d1cedda4046657d46897142e1fe2ac1",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2025-05-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2025-06-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2025-06-receipt.json",
+      "bytes": 1821,
+      "sha256": "a195d0768de58d0eabbd63186de9226b176647e595c8c78e2e0475a07adf835c",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2025-06-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2025-07-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2025-07-receipt.json",
+      "bytes": 1797,
+      "sha256": "3e1efa53358652a7638ca4486f4f9a31383cf2abfb1babc3c22574fb62b2e312",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2025-07-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2025-08-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2025-08-receipt.json",
+      "bytes": 1797,
+      "sha256": "3a2556a09b84377d68687a3434b6148d0f3c09b57ac18e5de2dc82d55c49f491",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2025-08-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2025-09-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2025-09-receipt.json",
+      "bytes": 1793,
+      "sha256": "b5fb5705b906d915b24c61f0667077d3dc37e5aaca301fa07241f7cf7a799aa2",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2025-09-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2025-10-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2025-10-receipt.json",
+      "bytes": 1820,
+      "sha256": "a04fea74b624e4a500278e55cfa593d428d4a7deedb66d2ddaf6e0f420853f26",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2025-10-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2025-11-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2025-11-receipt.json",
+      "bytes": 1819,
+      "sha256": "225b78a52e7030f68e7695a1d46bf195acd125e98e81998f99e8f8067e0a4a76",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2025-11-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2025-12-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2025-12-receipt.json",
+      "bytes": 1823,
+      "sha256": "d278ca724a920ccc57f2bf878609bf955debc21352e924bf0984a5757eb070dc",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2025-12-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2026-01-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2026-01-receipt.json",
+      "bytes": 1789,
+      "sha256": "52978cf560df5724a4fb8a2293fb431029329c855feec531da61051bd1c33639",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2026-01-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2026-02-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2026-02-receipt.json",
+      "bytes": 1820,
+      "sha256": "a3d007f1e8ea035c59fa93a1a7badfc7c4a76b061581a6df488c0ec327ac2653",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2026-02-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2026-03-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2026-03-receipt.json",
+      "bytes": 1823,
+      "sha256": "efb49118a20958f774a448a8e295b39298669beee2fa95a245570edb069017bb",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2026-03-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2026-04-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2026-04-receipt.json",
+      "bytes": 1823,
+      "sha256": "e121763832bb9eb672d64fa4f1a1dd2e39bb6c2940f5a797597fc62c5b47febf",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2026-04-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2026-05-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2026-05-receipt.json",
+      "bytes": 1769,
+      "sha256": "5061624bfa67a38bff79996d017305fb28b806c84ae44f8853c44cee0a1e79a1",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2026-05-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2026-06-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2026-06-receipt.json",
+      "bytes": 1821,
+      "sha256": "6ab0a1f4f498ad5dc8009716382372f215d422db08f404af8b7a9dd98efc3f19",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2026-06-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2026-07-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2026-07-receipt.json",
+      "bytes": 1821,
+      "sha256": "0f3f37b0164d5436c5bf7855decf2edccc4b4e24676669191f6d8c1cab02daf4",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2026-07-receipt.json"
+    },
+    {
+      "name": "maintained-exports-2026-08-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/exports-2026-08-receipt.json",
+      "bytes": 1797,
+      "sha256": "61079a914819368ab240e9adb1066ec7ca53e780b0f9412e9454766ec1393489",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/exports-2026-08-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2024-09-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2024-09-receipt.json",
+      "bytes": 1792,
+      "sha256": "8691b73a99e6de569ece3480334774cfddd05e8ef19485c9b171d7a8bb5f8430",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2024-09-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2024-10-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2024-10-receipt.json",
+      "bytes": 1792,
+      "sha256": "24b3e74b5d10600ee33b0bb56e69443bcc8e152198febb43692ea7a3d4861dc7",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2024-10-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2024-11-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2024-11-receipt.json",
+      "bytes": 1820,
+      "sha256": "ecd8ff4706bc5e1166cbf11848ad3f8e891cdc189ef1813c7cd18c7cb81f2a9f",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2024-11-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2024-12-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2024-12-receipt.json",
+      "bytes": 1820,
+      "sha256": "64e75696218f73b1d7f2f5c18278f5e8c1c1bc658d43d99275f0bbd8252f0258",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2024-12-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2025-01-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2025-01-receipt.json",
+      "bytes": 1822,
+      "sha256": "2c213c3699846d7419e36abd56bd05cd0fcc22914add8d3f9c622a4146e54086",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2025-01-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2025-02-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2025-02-receipt.json",
+      "bytes": 1818,
+      "sha256": "0ebcbcf9c192d1f836d325c56e94dacd236d3154fd0f107a82e80fa28f98c609",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2025-02-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2025-03-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2025-03-receipt.json",
+      "bytes": 1820,
+      "sha256": "db47abe143e276fe70182e63951b0eac9169e9792ec0a3c03e2075fe523c7a7e",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2025-03-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2025-04-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2025-04-receipt.json",
+      "bytes": 1820,
+      "sha256": "abd19a4fceff594dad2680f0a0f2623d21c4dfe55904bb161e60a664810775a4",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2025-04-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2025-05-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2025-05-receipt.json",
+      "bytes": 1820,
+      "sha256": "2a369038af8d9bf7afa62f7aab1f028f7faf0fe327269e4573f4949a5deaeaae",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2025-05-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2025-06-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2025-06-receipt.json",
+      "bytes": 1822,
+      "sha256": "3ab61cd24027f9c58561d5620688ccf0db6e03a1820298642235ecc664a05b85",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2025-06-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2025-07-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2025-07-receipt.json",
+      "bytes": 1798,
+      "sha256": "e2704201c2c803681987ca18cb4e18b176ce3861addf37860522b94f4a3c8729",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2025-07-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2025-08-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2025-08-receipt.json",
+      "bytes": 1792,
+      "sha256": "72c1551045c3d55f809909a3aae5877a87fe99ed2d1d6cfe8b05a21054e7a7af",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2025-08-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2025-09-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2025-09-receipt.json",
+      "bytes": 1792,
+      "sha256": "68e2f2cb0a599eafd6f1030c0d390b04b6612e570dd809d30d6cbbc485284318",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2025-09-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2025-10-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2025-10-receipt.json",
+      "bytes": 1819,
+      "sha256": "f942af2c8baee6b2339084a806037d9a2245eb3b563ac974a21eaf12bcf63f3e",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2025-10-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2025-11-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2025-11-receipt.json",
+      "bytes": 1820,
+      "sha256": "4aa5b2b88e2521ce7180f0ca063713ede2b282161b756a597975fe914f8d6395",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2025-11-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2025-12-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2025-12-receipt.json",
+      "bytes": 1768,
+      "sha256": "85bca59537476e5aa6d9ab5366dfc894dbad86c13514bbcc92da95bc963cf925",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2025-12-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2026-01-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2026-01-receipt.json",
+      "bytes": 1820,
+      "sha256": "330126946ac6c20a9edd3f394962c64d04b82f371c61ad9e8e9c02fae46ae2d3",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2026-01-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2026-02-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2026-02-receipt.json",
+      "bytes": 1818,
+      "sha256": "ffe91d0eabb8eb6e805715b9dc98d946e453be6a95e954d3991d0e5326ba12bb",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2026-02-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2026-03-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2026-03-receipt.json",
+      "bytes": 1822,
+      "sha256": "45138951a92e0c3292567b18ed453f16c2268ffb15bbd26ee3a39984021346f2",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2026-03-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2026-04-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2026-04-receipt.json",
+      "bytes": 1818,
+      "sha256": "2215d2d4d0e6c06811bb882f9fc8d541e018e9363643093483acc1b3225ebcc8",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2026-04-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2026-05-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2026-05-receipt.json",
+      "bytes": 1820,
+      "sha256": "0ba802686ad99e45c798a8c5f5527d295bcaabce258d2d63930917ae478d8f70",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2026-05-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2026-06-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2026-06-receipt.json",
+      "bytes": 1819,
+      "sha256": "7a33eff29c4a6b22dce3b0fa28f2a9c2d23a4510bc9a39b4b65a1b9b7fbd79ea",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2026-06-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2026-07-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2026-07-receipt.json",
+      "bytes": 1820,
+      "sha256": "d217f53c069652cc8731a0b23e0f14f3822ff7484ce52b5d03453018e2564fac",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2026-07-receipt.json"
+    },
+    {
+      "name": "maintained-imports-2026-08-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/maintained-run-r1/imports-2026-08-receipt.json",
+      "bytes": 1820,
+      "sha256": "09d74a64e10bb09075dbe7db339e6ca54a12f8257673eed8202cdd5fc8d6d5be",
+      "anchor": "reassessment",
+      "sealedMember": "maintained-run-r1/imports-2026-08-receipt.json"
+    },
+    {
+      "name": "independent-summary.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/summary.json",
+      "bytes": 123048,
+      "sha256": "ca207a3cfdfb126a6eb85e66e7299d4b11b4cbfab5c290811326228d03d11cee",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/summary.json"
+    },
+    {
+      "name": "independent-operator-completion.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/operator-completion.json",
+      "bytes": 2725,
+      "sha256": "fce07e08795c4e0bf66845c06bc702f27777b7080da528f6e3127e57a5435b36",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/operator-completion.json"
+    },
+    {
+      "name": "independent-outer-guard.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/outer-guard.json",
+      "bytes": 1114,
+      "sha256": "639c0d4b46debb2520c3db78fef793690b4d1ad5932156de947c34f8c7c0e3f3",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/outer-guard.json"
+    },
+    {
+      "name": "independent-exports-2024-09-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2024-09-receipt.json",
+      "bytes": 1820,
+      "sha256": "0eda943b71d51e5538f89ab29cdca43e7e7bee6d30ba923e27ac74008aa0a99d",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2024-09-receipt.json"
+    },
+    {
+      "name": "independent-exports-2024-10-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2024-10-receipt.json",
+      "bytes": 1822,
+      "sha256": "31f1972e1add563c2c67a884a887d3fda8bda01ed4a2dca5ea4eab847f8c71c7",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2024-10-receipt.json"
+    },
+    {
+      "name": "independent-exports-2024-11-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2024-11-receipt.json",
+      "bytes": 1820,
+      "sha256": "20a3bc2c1b72ca84df8c32ad7c64a8ceac20489c9f6012d01ee13e74a6b97052",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2024-11-receipt.json"
+    },
+    {
+      "name": "independent-exports-2024-12-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2024-12-receipt.json",
+      "bytes": 1796,
+      "sha256": "5107818352768806f2c845589bc62e8abdfd9c02b586b6932cbc3213dc8f8a7a",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2024-12-receipt.json"
+    },
+    {
+      "name": "independent-exports-2025-01-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2025-01-receipt.json",
+      "bytes": 1820,
+      "sha256": "c7b368914b553809dfc08e5f0fc25ac32a6d74c61b181a5967883c6eff875ead",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2025-01-receipt.json"
+    },
+    {
+      "name": "independent-exports-2025-02-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2025-02-receipt.json",
+      "bytes": 1836,
+      "sha256": "f1e5a79852aa0cf204247df1494440f8817355f643c148310f4a217b41ed38f9",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2025-02-receipt.json"
+    },
+    {
+      "name": "independent-exports-2025-03-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2025-03-receipt.json",
+      "bytes": 1821,
+      "sha256": "46a54402f406739e288493974452c3ce22b22dd0dc8a25dbf56f1de7730c3dd2",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2025-03-receipt.json"
+    },
+    {
+      "name": "independent-exports-2025-04-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2025-04-receipt.json",
+      "bytes": 1797,
+      "sha256": "577b75d97646171eedb437567811c4bf126a7276a637b8c45e0a157b26c7df97",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2025-04-receipt.json"
+    },
+    {
+      "name": "independent-exports-2025-05-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2025-05-receipt.json",
+      "bytes": 1823,
+      "sha256": "2438121028e9db715300ba5e2a786f7b0b843be4e9cec94c2938ba13dda9602b",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2025-05-receipt.json"
+    },
+    {
+      "name": "independent-exports-2025-06-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2025-06-receipt.json",
+      "bytes": 1823,
+      "sha256": "bea4fdbcbded0eeceb563f80ecea4d771d8e4e810e5e8f7a7c6f1901a8d2e2f0",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2025-06-receipt.json"
+    },
+    {
+      "name": "independent-exports-2025-07-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2025-07-receipt.json",
+      "bytes": 1819,
+      "sha256": "66f2e123cbbdc4674f8a03809ff3d7a886a9c957f3e6fc857f881eff88def5b1",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2025-07-receipt.json"
+    },
+    {
+      "name": "independent-exports-2025-08-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2025-08-receipt.json",
+      "bytes": 1823,
+      "sha256": "7162e5e1c7ccf00ea5fe42d48be385f08351e9df36738ab360c0881d76bd4e65",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2025-08-receipt.json"
+    },
+    {
+      "name": "independent-exports-2025-09-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2025-09-receipt.json",
+      "bytes": 1819,
+      "sha256": "14baf41dc2217e905bb4b2418cc60d040eaad9206830859a731338198d9767df",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2025-09-receipt.json"
+    },
+    {
+      "name": "independent-exports-2025-10-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2025-10-receipt.json",
+      "bytes": 1792,
+      "sha256": "ed0c096a9bdc6b5124d5760926f86045f3202c96a68f63b126b68be6c8c29bf3",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2025-10-receipt.json"
+    },
+    {
+      "name": "independent-exports-2025-11-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2025-11-receipt.json",
+      "bytes": 1821,
+      "sha256": "6b5a6f81955fc3bbaf1548d60a98890117b5808e929168ac2fdbbfd0eb5c5519",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2025-11-receipt.json"
+    },
+    {
+      "name": "independent-exports-2025-12-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2025-12-receipt.json",
+      "bytes": 1821,
+      "sha256": "1a4dac128c4a40ea29f9a8c7e857e251496da689769dfa8149ec69d690a9bb0e",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2025-12-receipt.json"
+    },
+    {
+      "name": "independent-exports-2026-01-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2026-01-receipt.json",
+      "bytes": 1789,
+      "sha256": "a929be21cead00f68002103d20df801e7dcf4537aceff5e822e486ba52d34ea3",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2026-01-receipt.json"
+    },
+    {
+      "name": "independent-exports-2026-02-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2026-02-receipt.json",
+      "bytes": 1820,
+      "sha256": "9bbb1b8e7eae873b2383fdf5d0fd211c6d471596d5034b59ce4d0744df7f8f46",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2026-02-receipt.json"
+    },
+    {
+      "name": "independent-exports-2026-03-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2026-03-receipt.json",
+      "bytes": 1818,
+      "sha256": "70fe9dd15d60c087b347afe21b2d114f9c61f976a9872638951cf539f304ad4b",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2026-03-receipt.json"
+    },
+    {
+      "name": "independent-exports-2026-04-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2026-04-receipt.json",
+      "bytes": 1821,
+      "sha256": "9f57d17ff062511db0d6b22f395cac5a135baf32dd0784bb3bbd82ff410f9a1a",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2026-04-receipt.json"
+    },
+    {
+      "name": "independent-exports-2026-05-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2026-05-receipt.json",
+      "bytes": 1821,
+      "sha256": "5891e32a6fdca501997c8f5fc3b1ec6c469af7691596cd23975fe055c46829b3",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2026-05-receipt.json"
+    },
+    {
+      "name": "independent-exports-2026-06-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2026-06-receipt.json",
+      "bytes": 1819,
+      "sha256": "aae38610241535b9afbfb3fb8a56a10533e3f3ea25c0a4a5b52879bea427c6bb",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2026-06-receipt.json"
+    },
+    {
+      "name": "independent-exports-2026-07-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2026-07-receipt.json",
+      "bytes": 1793,
+      "sha256": "79930aa0a836356e39e8880628fe24003854f1c78e0d7aa591b454f5cb7ab23d",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2026-07-receipt.json"
+    },
+    {
+      "name": "independent-exports-2026-08-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/exports-2026-08-receipt.json",
+      "bytes": 1819,
+      "sha256": "a820a51a8cc5cb2769123916b8bd7e64e26c2509f6c92a55d2d44c1671255da2",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/exports-2026-08-receipt.json"
+    },
+    {
+      "name": "independent-imports-2024-09-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2024-09-receipt.json",
+      "bytes": 1822,
+      "sha256": "3d8d4a1746435bff90fbbc59b45581d85b1e2d5d66c7898b4b9bf3e9cc477bf6",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2024-09-receipt.json"
+    },
+    {
+      "name": "independent-imports-2024-10-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2024-10-receipt.json",
+      "bytes": 1820,
+      "sha256": "f8c9aa0b8d2080b988b9890aa0a8ca1eb7a6572a19417f70ba912e2a59386225",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2024-10-receipt.json"
+    },
+    {
+      "name": "independent-imports-2024-11-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2024-11-receipt.json",
+      "bytes": 1820,
+      "sha256": "65590732fb3bf0c7915b758f58a3a4ef2bbb843196bb62969f45cb10765555c5",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2024-11-receipt.json"
+    },
+    {
+      "name": "independent-imports-2024-12-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2024-12-receipt.json",
+      "bytes": 1820,
+      "sha256": "9a9106f10c3077a821b9a9971647fb89ff10c4439c466126a61d61a38204d165",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2024-12-receipt.json"
+    },
+    {
+      "name": "independent-imports-2025-01-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2025-01-receipt.json",
+      "bytes": 1819,
+      "sha256": "172bc67798c9101baf043cc3145664d8e8e1eff4871b7e3ed1c6964929124aeb",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2025-01-receipt.json"
+    },
+    {
+      "name": "independent-imports-2025-02-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2025-02-receipt.json",
+      "bytes": 1821,
+      "sha256": "bd4cc5250163989fbefd91717b85d7efa9d0779b45ffc7883b7f16bfbd545742",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2025-02-receipt.json"
+    },
+    {
+      "name": "independent-imports-2025-03-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2025-03-receipt.json",
+      "bytes": 1792,
+      "sha256": "2e74d705f1daafc84362d970c8366d2cbb815b2639880f560226a1feb61dd896",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2025-03-receipt.json"
+    },
+    {
+      "name": "independent-imports-2025-04-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2025-04-receipt.json",
+      "bytes": 1822,
+      "sha256": "4e8bbdfe64163d02d4cbf626f774877ac3c4445a3c9e9cbaa3aa540a9570ea8e",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2025-04-receipt.json"
+    },
+    {
+      "name": "independent-imports-2025-05-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2025-05-receipt.json",
+      "bytes": 1820,
+      "sha256": "3dd4138bfb3b6d8a6be7228df7f1be6703dacecc263ed9b52fd8db6951c61069",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2025-05-receipt.json"
+    },
+    {
+      "name": "independent-imports-2025-06-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2025-06-receipt.json",
+      "bytes": 1820,
+      "sha256": "7ab737c36915b80f75111e1c147d0d9f461240818fe7d60065d047d1ab59162b",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2025-06-receipt.json"
+    },
+    {
+      "name": "independent-imports-2025-07-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2025-07-receipt.json",
+      "bytes": 1820,
+      "sha256": "498b38b3c19c7cd16488de5eba76f21a7b580525fb1b819b793db70398f011ea",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2025-07-receipt.json"
+    },
+    {
+      "name": "independent-imports-2025-08-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2025-08-receipt.json",
+      "bytes": 1820,
+      "sha256": "b3b576ee21adfeae4587a87473918aeba677304230b68321dccb57fb5f82250b",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2025-08-receipt.json"
+    },
+    {
+      "name": "independent-imports-2025-09-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2025-09-receipt.json",
+      "bytes": 1820,
+      "sha256": "23316dbdd9c5fa73f7d3ca67a13256b7ce569ff2ca1299fca256d84a42d5bce0",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2025-09-receipt.json"
+    },
+    {
+      "name": "independent-imports-2025-10-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2025-10-receipt.json",
+      "bytes": 1794,
+      "sha256": "c3dc48020e0d6eb3b4980b9f1447079c3cfe06dff95cc72bc582ee739750bc62",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2025-10-receipt.json"
+    },
+    {
+      "name": "independent-imports-2025-11-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2025-11-receipt.json",
+      "bytes": 1820,
+      "sha256": "a3be382f4608b5357df827e2551ac8c43871c5b1996d6826a85ad29b378a8aab",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2025-11-receipt.json"
+    },
+    {
+      "name": "independent-imports-2025-12-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2025-12-receipt.json",
+      "bytes": 1820,
+      "sha256": "43bee3550aab72d25d073e3b658896ed25878cb3511d8c8907de0e7c832f10d2",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2025-12-receipt.json"
+    },
+    {
+      "name": "independent-imports-2026-01-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2026-01-receipt.json",
+      "bytes": 1820,
+      "sha256": "c3f545631457a819e90025a58c958a0ef21185281a3bfcc0dba22ec895c39856",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2026-01-receipt.json"
+    },
+    {
+      "name": "independent-imports-2026-02-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2026-02-receipt.json",
+      "bytes": 1820,
+      "sha256": "d47d80cf270acc89bef6b798cc8551b86a27549e2e0089bc484f50608974485c",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2026-02-receipt.json"
+    },
+    {
+      "name": "independent-imports-2026-03-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2026-03-receipt.json",
+      "bytes": 1796,
+      "sha256": "fcd33ce0d5df8f597146d397381ba508ddb955582cdd66b77cd5c44f06e04334",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2026-03-receipt.json"
+    },
+    {
+      "name": "independent-imports-2026-04-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2026-04-receipt.json",
+      "bytes": 1820,
+      "sha256": "411f7f52f4d475a543ac1d9962db92ecac876fde9577c779fc36a25a9757781e",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2026-04-receipt.json"
+    },
+    {
+      "name": "independent-imports-2026-05-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2026-05-receipt.json",
+      "bytes": 1798,
+      "sha256": "780b0d696b813a9b8ba7827ec3132a4385de520fd253b640b0e8798aac59482b",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2026-05-receipt.json"
+    },
+    {
+      "name": "independent-imports-2026-06-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2026-06-receipt.json",
+      "bytes": 1822,
+      "sha256": "fdb5bf212ddbb4d64f3142c29cbec9d0908ebe24d6baa3f20da70681ddef3ef5",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2026-06-receipt.json"
+    },
+    {
+      "name": "independent-imports-2026-07-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2026-07-receipt.json",
+      "bytes": 1820,
+      "sha256": "64aa257b78edf77c020aaa761a508c3fb0f4417ed7319a786b5ad2ea88df39b2",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2026-07-receipt.json"
+    },
+    {
+      "name": "independent-imports-2026-08-receipt.json",
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1/independent-run-r1/imports-2026-08-receipt.json",
+      "bytes": 1820,
+      "sha256": "832d34a499273a7be8f81e51af67c9d61699f551fa860b4634a42db1f4184665",
+      "anchor": "reassessment",
+      "sealedMember": "independent-run-r1/imports-2026-08-receipt.json"
+    },
+    {
+      "name": "reference-matrix.json",
+      "path": "data/backups/mexico-country-audit/reference-classification-20261018-r1/reference-matrix.json",
+      "bytes": 141675,
+      "sha256": "2ac249e6a06673daddd0a91bee6902bdd7dadca6ef34d49d59f75f4e4e7789f7",
+      "anchor": "reference",
+      "sealedMember": "reference-matrix.json"
+    },
+    {
+      "name": "classification-ledger.json",
+      "path": "data/backups/mexico-country-audit/reference-classification-20261018-r1/classification-ledger.json",
+      "bytes": 1995590,
+      "sha256": "a1064312859cd9ec648d33d04541aa8e0c3d0c74f8dc7623bc29af99d65b31a7",
+      "anchor": "reference",
+      "sealedMember": "classification-ledger.json"
+    },
+    {
+      "name": "classification-cohort.json",
+      "path": "data/backups/mexico-country-audit/reference-classification-20261018-r1/cohort.json",
+      "bytes": 52289,
+      "sha256": "e70f894b9f8caa3c8a27c5cce3ab02ac81e42dbd4f5745ef0d278ed180a8af18",
+      "anchor": "reference",
+      "sealedMember": "cohort.json"
+    },
+    {
+      "name": "reference-review.json",
+      "path": "data/backups/mexico-country-audit/reference-classification-20261018-r1/reviews/references/report.json",
+      "bytes": 9944,
+      "sha256": "dc8a39680203203d4af48dba758ecc0b436c60f2168cce96e6aed37ee8621d8b",
+      "anchor": "reference",
+      "sealedMember": "reviews/references/report.json"
+    },
+    {
+      "name": "reference-independent-extractions.json",
+      "path": "data/backups/mexico-country-audit/reference-classification-20261018-r1/reviews/references/independent-extractions.json",
+      "bytes": 304422,
+      "sha256": "2eaa1d1a57aadc74a0ed711423aa1f76a87ccaa656e91e1c147e4769a1b85c78",
+      "anchor": "reference",
+      "sealedMember": "reviews/references/independent-extractions.json"
+    },
+    {
+      "name": "reference-current-grids.json",
+      "path": "data/backups/mexico-country-audit/reference-classification-20261018-r1/reviews/references/current-grids.json",
+      "bytes": 85608,
+      "sha256": "5af492506ac2d62b29166b09a7ac9ad4dbe96bc8f328320492f950ff043c2ac0",
+      "anchor": "reference",
+      "sealedMember": "reviews/references/current-grids.json"
+    },
+    {
+      "name": "classification-review.json",
+      "path": "data/backups/mexico-country-audit/reference-classification-20261018-r1/reviews/classification/final-ledger-review-passed.json",
+      "bytes": 3518,
+      "sha256": "abc5f461bda733ec003babd119e8ded6c60da056995d8af67a902bc2871fc31a",
+      "anchor": "reference",
+      "sealedMember": "reviews/classification/final-ledger-review-passed.json"
+    },
+    {
+      "name": "reference-public-evidence.json",
+      "path": "data/backups/mexico-country-audit/reference-classification-20261018-r1/public-projection/2010-reference-vintage-evidence.json",
+      "bytes": 109680,
+      "sha256": "2268c98f5a3cf42ccf21df82b8f1c936bb840f73eefdd56852f8c3096a93c4ba",
+      "anchor": "reference",
+      "sealedMember": "public-projection/2010-reference-vintage-evidence.json"
+    },
+    {
+      "name": "classification-public-evidence.json",
+      "path": "data/backups/mexico-country-audit/reference-classification-20261018-r1/public-projection/2010-classification-review-evidence.json",
+      "bytes": 773779,
+      "sha256": "5053c6226472e28f15dd7aa611ecd51b39f6d1caeeefd5332d81512b0f8c6c62",
+      "anchor": "reference",
+      "sealedMember": "public-projection/2010-classification-review-evidence.json"
+    },
+    {
+      "name": "national-original-manifest.json",
+      "path": "data/backups/canada-country-audit/bulk-diagnostic-2026-10-11-r1/original-manifest.json",
+      "bytes": 51828,
+      "sha256": "66acdc59057211575cf8b659f853460e1d279d624677f41fd880da6827865535",
+      "anchor": "fixed-summary-binding",
+      "sealedMember": null
+    },
+    {
+      "name": "historical-feasibility-evidence.json",
+      "path": "docs/data-validation/2010-feasibility-evidence.json",
+      "bytes": 61319,
+      "sha256": "06de0bdd1d4ece17f7904085695fadfeb9e9dcddeeed701a76d0036ddd72e2a6",
+      "anchor": "planning-main-c012176",
+      "sealedMember": null
+    }
+  ],
+  "additionalProtectedEvidence": [
+    {
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1-seal-readback.json",
+      "bytes": 324291,
+      "sha256": "520a25b9ae49e198319c074c94f2c3a037dc67dbbf457f1e395169b1ebcdd90f",
+      "packaged": false
+    },
+    {
+      "path": "data/backups/mexico-country-audit/reference-classification-20261018-r1-seal-readback.json",
+      "bytes": 1671665,
+      "sha256": "2964b18f9b3f6531abcb9a73e56f86c4f3b540bd3e421afe114f0a74bbc1354b",
+      "packaged": false
+    }
+  ],
+  "excludedBodies": [
+    "national ZIPs",
+    "normalized commodity row arrays",
+    "PDF/HTML/XLSX originals"
+  ],
+  "interpretation": "Source paths and embedded source URLs are provenance only; recovery never follows them. Original bytes, including line endings, are preserved."
+}
