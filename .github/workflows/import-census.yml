@@ -80,6 +80,15 @@ jobs:
           classification_args=()
           if [[ -f "$CLASSIFICATION_FILE" ]]; then classification_args+=(--classification "$CLASSIFICATION_FILE"); fi
           npm run data:import -- --product "$PRODUCT_CODE" --end "$REPORTING_MONTH" --months 60 "${classification_args[@]}" "${duty_args[@]}"
+      - name: Retain bounded evidence for a failed import
+        if: failure() && steps.preflight.outcome == 'success' && steps.import.outcome == 'failure' && steps.import.outputs.failure_evidence_path != ''
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: census-${{ steps.preflight.outputs.product_code }}-import-failure
+          path: ${{ steps.import.outputs.failure_evidence_path }}/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
       - id: validate
         run: npm run data:validate -- --product "$PRODUCT_CODE"
       - name: Upload and verify the immutable candidate

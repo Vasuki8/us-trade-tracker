@@ -1,7 +1,9 @@
 import type {Release} from '../src/lib/trade/types';
 import {mkdir,readFile,writeFile,rename,open,unlink} from 'node:fs/promises';
-import {join,dirname} from 'node:path';import {randomUUID} from 'node:crypto';
+import {join,dirname} from 'node:path';import {randomUUID,createHash} from 'node:crypto';
 import {fetchProductMonth} from './census-client';
+import {CensusRequestError,credentialBearing,type CensusFailureContext} from './census-failure';
+import {writeImportFailureEvidence,type CompletedCapture} from './import-failure-evidence';
 import {fetchDutyMonth} from './census-duty-client';
 import {normalizeDutyMonth} from '../src/lib/trade/duty-normalize';
 import {validateDutyDataset} from '../src/lib/trade/duty-validation';
@@ -12,7 +14,7 @@ import {buildProfileView} from '../src/lib/trade/profile';
 import {validateClassificationIntervals} from './classification';
 import {findRevisedKeys,findDutyRevisedKeys} from '../src/lib/trade/revisions';
 import {assertProductCode,DEFAULT_PRODUCT_CODE} from '../src/lib/trade/product-registry';
-export type PrepareOptions={productCode:string;end:string;months:number;apiKey:string;outputDir:string;codeVersion:string;classificationIntervals?:Release['classificationIntervals'];includeDuties?:boolean};
+export type PrepareOptions={productCode:string;end:string;months:number;apiKey:string;outputDir:string;codeVersion:string;classificationIntervals?:Release['classificationIntervals'];includeDuties?:boolean;failureEvidenceRoot?:string;onFailureEvidence?:(path:string)=>Promise<void>};
 export function validateRelease(value:unknown,requireCensus=false):asserts value is Release {
   if(!value||typeof value!=='object')throw new Error('Invalid release');
   const r=value as Release;
@@ -49,6 +51,7 @@ export async function prepareRelease(options:PrepareOptions,fetchImpl:typeof fet
   await mkdir(options.outputDir,{recursive:true});
   const lockPath=join(options.outputDir,'.import.lock');
   let lock;try{lock=await open(lockPath,'wx');}catch{throw new Error('A data import is already running; current release is unchanged');}
+  let operationFailed=false;
   try{
     let previous:Release|undefined;
     try{previous=await readCurrentRelease(options.outputDir,options.productCode);}catch(error){if((error as NodeJS.ErrnoException).code!=='ENOENT')throw error;}
@@ -56,21 +59,33 @@ export async function prepareRelease(options:PrepareOptions,fetchImpl:typeof fet
     if(previous?.schemaVersion===2&&!options.includeDuties)throw new Error('The accepted release includes duties; continue importing with --duties');
     const retrievedAt=new Date().toISOString();const id=`${options.end}-${randomUUID()}`;
     const rawDir=join(dirname(options.outputDir),'raw',id);await mkdir(rawDir,{recursive:true});
+    const captures:CompletedCapture[]=[];
+    const writeRaw=async(name:string,record:unknown)=>{
+      const bytes=Buffer.from(JSON.stringify(record));
+      if(credentialBearing(bytes.toString('utf8'),options.apiKey))throw new Error('Raw capture contains a credential');
+      await writeFile(join(rawDir,name),bytes);
+      if(options.failureEvidenceRoot)captures.push({name,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')});
+    };
+    const taskContext=(task?:{month:string;direction:'imports'|'exports'|'duties'}):CensusFailureContext=>({productCode:options.productCode,month:task?.month??options.end,direction:task?task.direction==='duties'?'imports':task.direction:null,dataset:task?task.direction==='duties'?'duties':'merchandise':'release',summary:null,requestUrl:null,phase:'validation',attempt:null,httpStatus:null,elapsedMs:null,transportCode:null});
+    let failureContext=taskContext();
+    try{
+
     const tasks:{month:string;direction:'imports'|'exports'|'duties'}[]=Array.from({length:options.months},(_,i)=>shiftMonth(options.end,i-options.months+1)).flatMap(month=>(['imports','exports'] as const).map(direction=>({month,direction})));
     if(options.includeDuties)for(let i=-23;i<=0;i++)tasks.push({month:shiftMonth(options.end,i),direction:'duties'});
     const batches:Release['observations'][]=new Array(tasks.length);const dutyBatches:DutyObservation[][]=new Array(tasks.length);let cursor=0;const controller=new AbortController();
     // allSettled preserves worker order, not the order failures occur.
-    let firstFailure:{reason:unknown}|undefined;
+    let firstFailure:{reason:unknown;context:CensusFailureContext}|undefined;
     await Promise.allSettled(Array.from({length:2},async()=>{
-      try{while(cursor<tasks.length&&!controller.signal.aborted){const index=cursor++;const task=tasks[index];
+      let activeTask:typeof tasks[number]|undefined;
+      try{while(cursor<tasks.length&&!controller.signal.aborted){const index=cursor++;const task=tasks[index];activeTask=task;
         if(task.direction==='duties'){
-          const parts=await fetchDutyMonth({productCode:options.productCode,month:task.month,apiKey:options.apiKey,retrievedAt,signal:controller.signal,onRaw:async({summary,...record})=>{await writeFile(join(rawDir,`duties-${task.month}-${summary}.json`),JSON.stringify(record));}},fetchImpl);
+          const parts=await fetchDutyMonth({productCode:options.productCode,month:task.month,apiKey:options.apiKey,retrievedAt,signal:controller.signal,onRaw:async({summary,...record})=>{await writeRaw(`duties-${task.month}-${summary}.json`,record);}},fetchImpl);
           dutyBatches[index]=normalizeDutyMonth(parts,{productCode:options.productCode,month:task.month});
         }else batches[index]=await fetchProductMonth({...task,direction:task.direction,productCode:options.productCode,apiKey:options.apiKey,signal:controller.signal,
-          onRaw:async(payload,url,httpStatus)=>{const summary=new URL(url).searchParams.get('SUMMARY_LVL2');await writeFile(join(rawDir,`${task.direction}-${task.month}-${summary}.json`),JSON.stringify({retrievedAt,requestUrl:url,httpStatus,payload}));}},fetchImpl);
-      }}catch(error){firstFailure??={reason:error};controller.abort();throw error;}
+          onRaw:async(payload,url,httpStatus)=>{const summary=new URL(url).searchParams.get('SUMMARY_LVL2');await writeRaw(`${task.direction}-${task.month}-${summary}.json`,{retrievedAt,requestUrl:url,httpStatus,payload});}},fetchImpl);
+      }}catch(error){firstFailure??={reason:error,context:error instanceof CensusRequestError?error.requestContext:taskContext(activeTask)};controller.abort();throw error;}
     }));
-    if(firstFailure)throw firstFailure.reason;
+    if(firstFailure){failureContext=firstFailure.context;throw firstFailure.reason;}
     const observations=batches.flat();
     const base={productCode:options.productCode,reportingMonth:options.end,retrievedAt,codeVersion:options.codeVersion,
       source:'census' as const,sourceUrls:['imports','exports'].map(d=>`https://api.census.gov/data/timeseries/intltrade/${d}/hs`),observations,revisedKeys:[],
@@ -79,9 +94,25 @@ export async function prepareRelease(options:PrepareOptions,fetchImpl:typeof fet
     if(release.schemaVersion===2)release.duties.revisedKeys=findDutyRevisedKeys(previous?.schemaVersion===2?previous.duties:undefined,release.duties);
     release.revisedKeys=findRevisedKeys(previous,release);
     validateRelease(release,true);
+    failureContext={...taskContext(),phase:'capture'};
     await mkdir(join(options.outputDir,'releases'),{recursive:true});
     const releaseFile=`releases/${id}.json`;await writeFile(join(options.outputDir,releaseFile),JSON.stringify(release));
     const pending=join(options.outputDir,`current-${id}.tmp`);await writeFile(pending,JSON.stringify({releaseFile}));
     await rename(pending,join(options.outputDir,'current.json'));return release;
-  }finally{await lock.close();await unlink(lockPath);}
+    }catch(error){
+      // Diagnostics wait for settled workers and must never mask the import failure.
+      if(options.failureEvidenceRoot)try{
+        const evidence=await writeImportFailureEvidence({root:options.failureEvidenceRoot,runId:id,productCode:options.productCode,reportingMonth:options.end,codeVersion:options.codeVersion,apiKey:options.apiKey,rawDir,captures,failure:failureContext});
+        await options.onFailureEvidence?.(evidence.path);
+      }catch{/* The original failure remains authoritative; no ready output is emitted. */}
+      throw error;
+    }
+
+  }catch(error){operationFailed=true;throw error;}
+  finally{
+    try{await lock.close();await unlink(lockPath);}catch(error){
+      if(!operationFailed)throw error;
+      console.warn('Import lock cleanup failed; the original import error is unchanged.');
+    }
+  }
 }
