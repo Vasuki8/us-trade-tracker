@@ -33,7 +33,7 @@ jobs:
           node-version: 24
           package-manager-cache: false
       - run: npm ci
-      - run: npm test
+      - run: npm test -- --maxWorkers=2
       - run: npm run check
       - name: Validate the reviewed product and reporting month
         id: preflight
