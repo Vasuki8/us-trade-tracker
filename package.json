@@ -19,6 +19,7 @@
     "data:verify-archive": "node --import tsx scripts/verify-archive.ts",
     "data:audit-duties": "node --import tsx scripts/audit-duties.ts",
     "data:audit-country": "node --import tsx scripts/audit-country.ts",
+    "data:probe-cocoa": "node --import tsx scripts/probe-cocoa.ts",
     "data:probe-country": "node --import tsx scripts/probe-country.ts",
     "data:diagnose-country": "node --import tsx scripts/diagnose-country.ts",
     "data:diagnose-country-bulk": "node --import tsx scripts/diagnose-country-bulk.ts",
