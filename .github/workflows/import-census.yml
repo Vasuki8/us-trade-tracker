@@ -53,7 +53,7 @@ jobs:
           node-version: 24
           package-manager-cache: false
       - run: npm ci
-      - run: npm test
+      - run: npm test -- --maxWorkers=2
       - name: Validate dispatch inputs
         id: preflight
         run: npm run data:archive -- preflight
