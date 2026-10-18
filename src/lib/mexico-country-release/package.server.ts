@@ -1,0 +1,34 @@
+import {array,capture,checkIdentity,equal,identity,json,keys,mexicoContract,object,parse,usd} from './contract.server';
+import {verifyMexicoAllGoodsEvidence} from './evidence.server';
+import {projectMexicoAllGoods} from './project.server';
+import type {DecodedMexicoCandidate,MexicoAllGoodsProjection,MexicoCandidateMetadata,MexicoCandidatePackage,MexicoGateReport,MexicoManifest,VerifiedMexicoEvidence} from './types';
+const manifestKeys=['schemaVersion','countryCode','scope','policyId','sourcePolicyId','source','from','to','measures','sourceAssessmentCommit','captureInterval','releaseId','packagingCommit','preparedAt','members'];
+export function checkMexicoMetadata(m:MexicoCandidateMetadata):void{
+ keys(object(m),['releaseId','packagingCommit','preparedAt']);if(!/^2026-08-[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(m.releaseId)||!/^[a-f0-9]{40}$/.test(m.packagingCommit)||!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(m.preparedAt)||new Date(m.preparedAt).toISOString()!==m.preparedAt)throw Error('mexico-metadata');
+}
+const envelope=(c:DecodedMexicoCandidate)=>({manifest:c.manifest,files:c.manifest.members.map(m=>({name:m.name,base64:c.files.get(m.name)!.toString('base64')}))});
+export function encodeMexicoCandidate(evidence:VerifiedMexicoEvidence,metadata:MexicoCandidateMetadata):MexicoCandidatePackage{
+ checkMexicoMetadata(metadata);const checked=verifyMexicoAllGoodsEvidence(evidence.files),projection=json(projectMexicoAllGoods(checked));if(projection.length>mexicoContract.limits.projection)throw Error('mexico-projection-limit');
+ const files=new Map<string,Buffer>([...checked.files].map(([n,b])=>[n,Buffer.from(b)]));files.set('research-data.json',projection);
+ const manifest:MexicoManifest={schemaVersion:1,countryCode:'2010',scope:'all-goods',policyId:mexicoContract.policyId,sourcePolicyId:mexicoContract.sourcePolicyId,source:checked.source,from:'2024-09',to:'2026-08',measures:{imports:'GEN_VAL_MO',exports:'ALL_VAL_MO'},sourceAssessmentCommit:mexicoContract.sourceAssessmentCommit,captureInterval:{...checked.captureInterval},...metadata,members:[...files].map(([name,b])=>({name,...identity(b)}))};
+ const bytes=json(envelope({manifest,files}));const decoded=decodeMexicoCandidate(bytes);return {...decoded,bytes:Buffer.from(bytes),digest:identity(bytes)};
+}
+export function decodeMexicoCandidate(bytes:Buffer):DecodedMexicoCandidate{
+ if(!Buffer.isBuffer(bytes)||bytes.length>mexicoContract.limits.serialized)throw Error('mexico-package-limit');const v=parse(bytes);keys(v,['manifest','files']);const m=object(v.manifest);keys(m,manifestKeys);if(json(m).length>mexicoContract.limits.manifest)throw Error('mexico-manifest-limit');
+ const names=[...mexicoContract.pins.map(p=>p.name),'research-data.json'],members=array(m.members).map(object),encoded=array(v.files).map(object);equal(members.length,121);equal(encoded.length,121);
+ let total=0;for(let i=0;i<members.length;i++){const d=members[i];keys(d,['name','bytes','sha256']);equal(d.name,names[i],'member-order');const length=usd(d.bytes);if(length<1||length>mexicoContract.limits.member||(i===120&&length>mexicoContract.limits.projection))throw Error('mexico-member-limit');total+=length;if(total>mexicoContract.limits.decoded)throw Error('mexico-decoded-limit');if(typeof d.sha256!=='string'||!/^[a-f0-9]{64}$/.test(d.sha256))throw Error('mexico-member-hash');}
+ const files=new Map<string,Buffer>();for(let i=0;i<encoded.length;i++){const f=encoded[i],d=members[i];keys(f,['name','base64']);equal(f.name,names[i],'encoded-order');if(typeof f.base64!=='string'||f.base64.length!==4*Math.ceil(Number(d.bytes)/3))throw Error('mexico-base64-length');const body=Buffer.from(f.base64,'base64');equal(body.toString('base64'),f.base64,'canonical-base64');checkIdentity(identity(body),{bytes:Number(d.bytes),sha256:String(d.sha256)});files.set(names[i],body);}
+ const candidate={manifest:m as unknown as MexicoManifest,files};equal(json(envelope(candidate)),bytes,'canonical-envelope');validate(candidate);return {manifest:structuredClone(candidate.manifest),files:new Map([...files].map(([n,b])=>[n,Buffer.from(b)]))};
+}
+function validate(candidate:DecodedMexicoCandidate):MexicoAllGoodsProjection{
+ const m=object(candidate.manifest);keys(m,manifestKeys);checkMexicoMetadata({releaseId:String(m.releaseId),packagingCommit:String(m.packagingCommit),preparedAt:String(m.preparedAt)});
+ for(const [key,value]of Object.entries({schemaVersion:1,countryCode:'2010',scope:'all-goods',policyId:mexicoContract.policyId,sourcePolicyId:mexicoContract.sourcePolicyId,source:mexicoContract.source,from:'2024-09',to:'2026-08',sourceAssessmentCommit:mexicoContract.sourceAssessmentCommit,measures:{imports:'GEN_VAL_MO',exports:'ALL_VAL_MO'}}))equal(m[key],value,'manifest-'+key);
+ equal(candidate.files.size,121);const members=array(m.members).map(object),names=[...mexicoContract.pins.map(p=>p.name),'research-data.json'];equal(members.map(x=>x.name),names);for(const p of members){const b=candidate.files.get(String(p.name));if(!b)throw Error('mexico-member-missing');checkIdentity(identity(b),{bytes:usd(p.bytes),sha256:String(p.sha256)});}
+ const original=new Map([...candidate.files].filter(([name])=>name!=='research-data.json')),evidence=verifyMexicoAllGoodsEvidence(original),projection=projectMexicoAllGoods(evidence);equal(m.captureInterval,evidence.captureInterval,'capture-binding');const interval=object(m.captureInterval);capture(interval.startedAt);capture(interval.finishedAt);equal(candidate.files.get('research-data.json'),json(projection),'regenerated-projection');return projection;
+}
+export function verifyMexicoCandidate(candidate:DecodedMexicoCandidate):{projection:MexicoAllGoodsProjection;report:MexicoGateReport}{
+ // Re-decode the caller's current objects, so mutations after decode cannot bypass validation.
+ validate(candidate);
+ const fresh=decodeMexicoCandidate(json(envelope(candidate))),projection=validate(fresh),candidateBytes=json(envelope(fresh));
+ const report:MexicoGateReport={schemaVersion:1,policyId:mexicoContract.policyId,countryCode:'2010',candidate:identity(candidateBytes),projection:identity(fresh.files.get('research-data.json')!),source:projection.source,status:projection.source==='fixture'?'fixture-only':'verification-pending',gates:{retainedEvidenceAuthenticated:'passed',allGoodsControlsVerified:'passed',referenceQualificationsPreserved:'passed',productComparisonsWithheld:'passed',projectionVerified:'passed',portableRecoveryVerified:'pending',reviewAndPreservationVerified:'pending'},classificationAccepted:false,releaseAccepted:false,publicMexicoProfile:false,productComparisons:{available:false}};return {projection,report};
+}
