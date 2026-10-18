@@ -2,6 +2,8 @@
 
 Status: classification intake is ready, but source acceptance failed. Tea and cocoa remain unpublished. No accepted new-product release, archive initialization or site publication occurred.
 
+October 18 follow-up: the separately approved [source-resumption assessment](tea-cocoa-resumption-20261018.md) obtained and verified both complete source candidates. Acceptance and publication remain gated; the October 17 failures below remain the record of that earlier batch.
+
 | HS6 | Scope | Reviewed interval | Import classification |
 | --- | --- | --- | --- |
 | 090240 | Other black and partly fermented tea | September 2021–August 2026 | 0902400000 throughout |
