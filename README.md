@@ -8,7 +8,7 @@ The [public pilot](https://us-trade-tracker.pages.dev/) was updated and verified
 
 The existing [Canada historical snapshot](https://us-trade-tracker.pages.dev/countries/1220/) is unchanged and covers September 2024–August 2026 only. No Mexico profile or automatic Canada refresh is included. Successful updates across successive official releases remain a separate open requirement.
 
-The [Mexico offline reassessment](docs/data-validation/2010-offline-reassessment.md) now independently verifies all 48 retained September 2024–August 2026 contexts. Mexico remains unpublished; its next gate is a [Mexico-specific reference and classification review](docs/data-validation/2010-acceptance-readiness.md). The earlier timing failure remains preserved.
+The [Mexico offline reassessment](docs/data-validation/2010-offline-reassessment.md) verifies all 48 retained contexts. Its [reference review](docs/data-validation/2010-reference-vintage.md) preserves 32 dated-publication differences; the [classification review](docs/data-validation/2010-classification-review.md) leaves all 17 ordinary pairs unverified. Mexico remains unpublished, with [projection/recovery design](docs/data-validation/2010-acceptance-readiness.md) the next proposed gate. The earlier timing failure remains preserved.
 
 The latest verified package has **39 files / 2,817,915 raw bytes**, with 84 exact checks across the canonical and deployment origins plus public browser/download checks. It was published from reviewed merge `a5d6e98ee29182790a7d564dd1ba0ba3c78ca44c` to the existing Free Pages project; restoration was unnecessary. See the [archive acceptance, publication evidence and limits](docs/validation/tea-cocoa-publication.md).
 
