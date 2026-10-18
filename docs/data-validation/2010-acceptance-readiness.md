@@ -1,15 +1,15 @@
 # Mexico acceptance readiness
 
-**Status, October 18, 2026:** the [offline reassessment](2010-offline-reassessment.md) verifies all 48 retained contexts. The [reference review](2010-reference-vintage.md) now verifies current-table agreement while preserving 32 dated-publication differences. The [classification review](2010-classification-review.md) leaves 17 ordinary pairs unverified and three statistical exclusions. Mexico has no accepted dataset, private release archive or public profile; Canada and the four-product releases remain unchanged.
+**Status, October 18, 2026:** the [offline reassessment](2010-offline-reassessment.md) verifies all 48 retained contexts. The [reference review](2010-reference-vintage.md) now verifies current-table agreement while preserving 32 dated-publication differences. The [classification review](2010-classification-review.md) leaves 17 ordinary pairs unverified and three statistical exclusions. The [all-goods candidate](2010-all-goods-candidate.md) has now been prepared and recovered twice with independent calculations. Mexico has no installed accepted dataset, remote release archive or public profile; Canada and the four-product releases remain unchanged.
 
-The recommended next milestone is a **Mexico candidate-projection and recovery design limited to all-goods history**, with explicit reference-vintage qualifications and product comparisons withheld. Classification gaps remain separate gates. This recommendation authorizes no implementation, acceptance, storage operation or publication.
+Candidate preparation and portable recovery are complete for **all-goods history only**. Product comparisons remain withheld. Candidate-specific eligibility follows observed implementation review, exact-head CI and preservation in a separate private operator record. Canonical installation, durable remote preservation and publication remain later decisions.
 
 | Gate | Evidence needed before advancement |
 | --- | --- |
 | Internal arithmetic | Complete: separately calculated rows and country controls match within the measured execution limits. Preserve both fresh runs and the earlier timing failure. |
 | Reference vintage | Review complete: both current grids match all 48 controls; dated PDFs give 16 matches and 32 differences. Exact original-byte vintage and revision causes remain unestablished. An acceptance design must explicitly preserve these qualifications. |
 | Classification continuity | Research complete for the fixed 20 pairs: 17 ordinary unverified; three statistical exclusions. Definitions and notes are documented, but complete effective-date coverage remains open. Ordinary product comparisons stay unavailable. |
-| Candidate projection and recovery | Design Mexico's identity-bound candidate, all-goods history and product comparisons, completeness/unavailable rules, offline recovery and negative controls. Preserve original sources and every review decision. |
+| Candidate projection and recovery | Prepared 121-member candidate; 48 all-goods observations, complete/unavailable period rules and two fresh offline recoveries independently checked. Every product comparison remains unavailable. Preserve original sources and review decisions; candidate verification does not install a release. |
 | Acceptance and archive | Separately approve the acceptance contract, provenance, backup recovery and any private storage operations before installing a canonical Mexico release. |
 | Profile and publication | Only after acceptance, separately review concise profile content, sourced downloads, exact site package, live checks and restoration target. |
 
