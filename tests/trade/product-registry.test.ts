@@ -1,5 +1,5 @@
 import {expect,it} from 'vitest';
-import {getProduct,validateProductRegistry} from '../../src/lib/trade/product-registry';
+import {getProduct,validateProductRegistry,PRODUCTS,DEFAULT_PRODUCT_CODE} from '../../src/lib/trade/product-registry';
 const coffee={code:'090121',displayName:'Roasted coffee',importable:true,published:true,dutiesAccepted:true};
 it('resolves the reviewed coffee and rejects an unreviewed product',()=>{
   expect(getProduct('090121')).toEqual(coffee);
@@ -9,4 +9,10 @@ it.each([null,{},[coffee,coffee],[{...coffee,code:'../data'}],[{...coffee,displa
 it('allows a reviewed product to be importable before publication',()=>{
   const product={code:'090122',displayName:'Synthetic second product',importable:true,published:false,dutiesAccepted:false};
   expect(()=>validateProductRegistry([coffee,product])).not.toThrow();expect(getProduct('090122',[coffee,product])).toEqual(product);
+});
+
+it('publishes all four accepted products with duties while retaining the coffee default',()=>{
+ expect(DEFAULT_PRODUCT_CODE).toBe('090121');
+ expect(PRODUCTS.filter(p=>p.published).map(p=>p.code)).toEqual(['090121','090111','090240','180100']);
+ for(const code of ['090240','180100'])expect(getProduct(code)).toMatchObject({importable:true,published:true,dutiesAccepted:true});
 });
