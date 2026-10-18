@@ -96,7 +96,14 @@
     "mexicoRoutes": 0,
     "privateCandidatePayloads": 0
   },
-  "finalEligibility": "requires separate private operator record after observed review and exact-head CI",
+  "finalEligibility": {
+    "status": "ineligible",
+    "reason": "Reviewed output-handling runtime changed after packaging; no authorized real operation remains to reverify it.",
+    "packagingRuntimeVerifiedBeforeRepair": true,
+    "reviewedOutputRepairRealVerified": false,
+    "additionalRealOperations": 0,
+    "nextRequirement": "Separately authorized bounded real preparation/recovery verification"
+  },
   "acceptedDatasetChanged": false,
   "sitePublished": false
 }

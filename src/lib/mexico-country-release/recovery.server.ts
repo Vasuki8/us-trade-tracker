@@ -1,13 +1,18 @@
 import {randomUUID} from 'node:crypto';import {resolve} from 'node:path';
 import {array,checkIdentity,equal,identity,json,keys,mexicoContract,object,usd} from './contract.server';
 import {decodeMexicoCandidate,verifyMexicoCandidate} from './package.server';
-import {readMexicoBoundedFile,reserveMexicoOutput,writeMexicoExclusiveFile} from './io.server';
+import {readMexicoBoundedFile,reserveMexicoOutput,verifyMexicoOutputFiles,writeMexicoExclusiveFile} from './io.server';
 import type {MexicoGateReport,MexicoRecoveryReceipt,MexicoVerificationProof} from './types';
 export async function recoverMexicoCandidate(opts:{repoRoot:string;candidateFile:string;outputDir:string}):Promise<MexicoRecoveryReceipt>{
  const bytes=await readMexicoBoundedFile(opts.repoRoot,opts.candidateFile,mexicoContract.limits.serialized),candidate=decodeMexicoCandidate(bytes),{report}=verifyMexicoCandidate(candidate);
  // Complete all authentication before reserving output; no retained provenance path is followed.
  const out=await reserveMexicoOutput(opts.repoRoot,opts.outputDir),receipt:MexicoRecoveryReceipt={schemaVersion:1,policyId:mexicoContract.policyId,countryCode:'2010',source:candidate.manifest.source,candidate:identity(bytes),projection:report.projection,status:'verified',historicalPathReads:0,recoveryId:randomUUID(),recoveredAt:new Date().toISOString()};
- await writeMexicoExclusiveFile(opts.repoRoot,resolve(out,'candidate.json'),bytes);await writeMexicoExclusiveFile(opts.repoRoot,resolve(out,'research-data.json'),candidate.files.get('research-data.json')!);await writeMexicoExclusiveFile(opts.repoRoot,resolve(out,'recovery-receipt.json'),json(receipt));return receipt;
+ const projection=candidate.files.get('research-data.json')!;
+ await writeMexicoExclusiveFile(opts.repoRoot,resolve(out.path,'candidate.json'),bytes,out);
+ await writeMexicoExclusiveFile(opts.repoRoot,resolve(out.path,'research-data.json'),projection,out);
+ await verifyMexicoOutputFiles(opts.repoRoot,out,{'candidate.json':bytes,'research-data.json':projection});
+ await writeMexicoExclusiveFile(opts.repoRoot,resolve(out.path,'recovery-receipt.json'),json(receipt),out);
+ return receipt;
 }
 function externalIdentity(x:unknown):void{const r=object(x);keys(r,['bytes','sha256']);if(usd(r.bytes)<1||typeof r.sha256!=='string'||!/^[a-f0-9]{64}$/.test(r.sha256)||/^0+$/.test(r.sha256))throw Error('mexico-external-identity');}
 export function finalizeMexicoEligibility(candidateBytes:Buffer,proof:MexicoVerificationProof):MexicoGateReport{

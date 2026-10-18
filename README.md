@@ -419,6 +419,6 @@ The published **merchandise download reliability** update snapshots PNG work to 
 
 ## Offline Mexico all-goods candidate
 
-Mexico has a [verified offline candidate and two fresh recoveries](docs/data-validation/2010-all-goods-candidate.md) for September 2024–August 2026 all-goods history. All product comparisons remain unavailable (17 ordinary pairs unverified, three statistical exclusions); reference-vintage qualifications remain explicit. This candidate is not installed or published.
+Mexico has a [verified offline candidate and two fresh recoveries](docs/data-validation/2010-all-goods-candidate.md) for September 2024–August 2026 all-goods history. All product comparisons remain unavailable (17 ordinary pairs unverified, three statistical exclusions); reference-vintage qualifications remain explicit. The retained candidate is ineligible pending fresh verification of reviewed output repairs; it is not installed or published.
 
 Use `npm run data:prepare-mexico-country-release -- --output data/backups/mexico-country-release/<fresh-name>` (optional `--preflight`) with the fixed private evidence and an existing output parent. `npm run data:recover-mexico-country-release -- --candidate <candidate.json> --output data/backups/mexico-country-release/<fresh-name>` needs only that package as data. Both require Node 24, reject occupied or linked output paths, and cannot accept or select a release. [Readiness gates](docs/data-validation/2010-acceptance-readiness.md) separate future installation, preservation and publication.

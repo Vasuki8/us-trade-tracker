@@ -12,3 +12,16 @@ it('recovers with no historical paths, reading only candidate data and its own o
 it('rejects invalid package before output creation',async()=>{const f=await setup();await fs.writeFile(f.candidate,'{}');const output=resolve(f.parent,'invalid');await expect(recoverMexicoCandidate({repoRoot:f.root,candidateFile:f.candidate,outputDir:output})).rejects.toThrow();await expect(fs.access(output)).rejects.toThrow();});
 it('interruption cannot leave a verified receipt',async()=>{const f=await setup(),write=io.writeMexicoExclusiveFile;let n=0;vi.spyOn(io,'writeMexicoExclusiveFile').mockImplementation(async(...args)=>{if(++n===2)throw Error('interrupted');return write(...args);});const output=resolve(f.parent,'interrupted');await expect(recoverMexicoCandidate({repoRoot:f.root,candidateFile:f.candidate,outputDir:output})).rejects.toThrow();await expect(fs.access(resolve(output,'recovery-receipt.json'))).rejects.toThrow();});
 it('detects a replaced read target before trusting its bytes',async()=>{const f=await setup(),lstat=fs.lstat;vi.spyOn(fs,'lstat').mockImplementation(async(...args)=>{const s=await lstat(...args);if(String(args[0])===f.candidate)Object.defineProperty(s,'ino',{value:0n});return s;});await expect(io.readMexicoBoundedFile(f.root,f.candidate,24*1024*1024)).rejects.toThrow('race');});
+it.each(['replace-directory','remove-candidate','add-unrelated'] as const)('rejects incomplete recovery after %s',async change=>{
+ const f=await setup(),output=resolve(f.parent,'incomplete'),write=io.writeMexicoExclusiveFile;
+ vi.spyOn(io,'writeMexicoExclusiveFile').mockImplementation(async(...args)=>{
+  await write(...args);
+  if(change==='replace-directory'&&String(args[1]).endsWith('candidate.json')){await fs.rename(output,resolve(f.parent,'moved'));await fs.mkdir(output);}
+  if(String(args[1]).endsWith('research-data.json')){
+   if(change==='remove-candidate')await fs.unlink(resolve(output,'candidate.json'));
+   if(change==='add-unrelated')await fs.writeFile(resolve(output,'unrelated.txt'),'preserve me');
+  }
+ });
+ await expect(recoverMexicoCandidate({repoRoot:f.root,candidateFile:f.candidate,outputDir:output})).rejects.toThrow();
+ await expect(fs.access(resolve(output,'recovery-receipt.json'))).rejects.toThrow();
+});
