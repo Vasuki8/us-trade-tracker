@@ -2,7 +2,7 @@
 
 This is a preparation kit, not a report of research findings. No participant sessions or demand validation are claimed. The owner recruits volunteers and conducts sessions; this document authorizes no outreach, recording, analytics or participant-data collection by an agent.
 
-Use the [current pilot](https://us-trade-tracker.pages.dev/) for an exploratory session of about 20–30 minutes. Its product coverage is two coffee categories, with accepted reporting through August 2026. The Canada page is a fixed September 2024–August 2026 historical snapshot. Check the displayed coverage at the session date; do not imply that a saved view receives automatic monthly updates.
+Use the [current pilot](https://us-trade-tracker.pages.dev/) for an exploratory session of about 20–30 minutes. Its product coverage is roasted coffee (090121), green coffee (090111), tea (090240) and cocoa beans (180100), with accepted reporting through August 2026. The Canada page is a fixed September 2024–August 2026 historical snapshot. Check the displayed coverage at the session date; do not imply that a saved view receives automatic monthly updates.
 
 ## Before the tasks: fit and recent work (about five minutes)
 

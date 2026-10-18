@@ -11,3 +11,5 @@ All originals were retrieved October 11, 2026, and read locally in place. This a
 Same-archive equality establishes internal arithmetic only. It does not establish current-reference agreement, classification continuity, a country release, or comparable product shares. Existing Canada revision differences and failures remain unchanged.
 
 Recommendation: keep Mexico unpublished. A separate Mexico acceptance design should first address the interrupted coverage with a reliable supervised execution environment, then complete and independently verify all 48 contexts and assess Mexico-specific reference/classification evidence. This batch does not authorize a further replay or an automatically enabled country page.
+
+October 18 successor: the [fresh offline reassessment](2010-offline-reassessment.md) independently matched all 48 contexts under measured limits. This historical partial result and timing exception remain unchanged; Mexico still has no accepted release or public profile.
