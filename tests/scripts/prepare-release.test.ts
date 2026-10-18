@@ -63,3 +63,37 @@ it('holds the import lock until a failed worker and its pending sibling have bot
   const pending=prepareRelease({productCode:'090121',end:'2026-06',months:24,apiKey:'test-secret-key',outputDir,codeVersion:'test'},controlled).then(()=>{settled=true;},()=>{settled=true;});
   try{await vi.waitFor(()=>expect(failed).toBe(true));expect(settled).toBe(false);await expect(access(join(outputDir,'.import.lock'))).resolves.toBeUndefined();}finally{unblock();await pending;}
 });
+
+it.each([
+  ['imports','http'],['exports','http'],['imports','validation'],['exports','validation'],
+] as const)('reports the original %s %s failure when cancelling its sibling',async(failedDirection,kind)=>{
+  const workspace=await mkdtemp(join(tmpdir(),'trade-first-error-'));dirs.push(workspace);
+  const outputDir=join(workspace,'processed');
+  const options={productCode:'090121',end:'2026-06',months:24,apiKey:'test-secret-key',outputDir,codeVersion:'test'};
+  const previous=await prepareRelease(options,fetcher());
+  const pointer=await readFile(join(outputDir,'current.json'),'utf8');
+  let siblingReady!:()=>void;let siblingAborted=false;
+  const started=new Promise<void>(resolve=>{siblingReady=resolve;});
+  const requests:URL[]=[];const base=fetcher();
+  const controlled=(async(input:RequestInfo|URL,init?:RequestInit)=>{
+    const url=new URL(String(input));requests.push(url);
+    if(!url.pathname.includes(`/${failedDirection}/`))return new Promise<Response>((_resolve,reject)=>{
+      init!.signal!.addEventListener('abort',()=>{siblingAborted=true;reject(new Error(options.apiKey));},{once:true});
+      siblingReady();
+    });
+    await started;
+    if(kind==='http')return new Response('synthetic bad request',{status:400});
+    const response=await base(input,init);const payload=await response.json() as string[][];
+    payload[1][payload[0].findIndex(header=>header.endsWith('_VAL_MO'))]='invalid';
+    return Response.json(payload);
+  }) as typeof fetch;
+  const error=await prepareRelease(options,controlled).then(()=>null,error=>error as Error);
+  expect(error).toBeInstanceOf(Error);
+  expect(error?.message).toContain(kind==='http'?'Census HTTP 400':'Invalid dollar value');
+  expect(String(error)).not.toContain(options.apiKey);expect(siblingAborted).toBe(true);
+  expect(requests).toHaveLength(kind==='http'?2:3);
+  expect(requests.every(url=>url.searchParams.get('time')==='2024-07')).toBe(true);
+  expect(await readFile(join(outputDir,'current.json'),'utf8')).toBe(pointer);
+  expect(await readCurrentRelease(outputDir)).toEqual(previous);
+  await expect(access(join(outputDir,'.import.lock'))).rejects.toMatchObject({code:'ENOENT'});
+});
