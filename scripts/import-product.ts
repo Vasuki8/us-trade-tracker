@@ -1,7 +1,8 @@
 import {parseArgs} from 'node:util';import {execFileSync} from 'node:child_process';
-import {readFile} from 'node:fs/promises';import {resolve} from 'node:path';import {pathToFileURL} from 'node:url';
+import {readFile} from 'node:fs/promises';import {resolve,join} from 'node:path';import {pathToFileURL} from 'node:url';
 import {prepareRelease,type PrepareOptions} from './prepare-release';import type {Release} from '../src/lib/trade/types';
 import {classificationThrough} from './classification';
+import {emitImportFailureOutput} from './import-failure-evidence';
 import {getProduct,PRODUCTS,type ProductDefinition} from '../src/lib/trade/product-registry';
 import {productDataPaths} from './product-paths';
 export async function resolveImportOptions(args:string[],env:NodeJS.ProcessEnv,workspaceRoot:string,registry:readonly ProductDefinition[]=PRODUCTS):Promise<Omit<PrepareOptions,'codeVersion'>>{
@@ -15,7 +16,8 @@ export async function resolveImportOptions(args:string[],env:NodeJS.ProcessEnv,w
 async function main():Promise<void>{
   const options=await resolveImportOptions(process.argv.slice(2),process.env,process.cwd());
   const codeVersion=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
-  const release=await prepareRelease({...options,codeVersion});
+  const workspaceRoot=process.cwd();
+  const release=await prepareRelease({...options,codeVersion,failureEvidenceRoot:join(workspaceRoot,'.tmp/import-failure'),onFailureEvidence:async path=>{if(process.env.GITHUB_OUTPUT)await emitImportFailureOutput(process.env.GITHUB_OUTPUT,path,workspaceRoot);}});
   console.log(`Validated ${release.productCode} through ${release.reportingMonth}; ${release.observations.length} observations; ${release.revisedKeys.length} revised.`);
   if(!release.classificationIntervals.length)console.log('Classification continuity remains unverified; comparisons across unverified intervals are unavailable.');
 }
