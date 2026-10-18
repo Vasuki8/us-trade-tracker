@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "sourceEvidencePath": "docs/data-validation/tea-cocoa-resumption-20261018-evidence.json",
+  "sourceEvidenceSha256": "6aea40a02a7beb4e5141d6bdf1dd80d1ceefd79d44431649e511cc99e69d7989",
+  "sourceProofSealSha256": "963c4d4c6d24e3934279c9743ae31cb86178622f7a4cf6e1adc4485a98b51877",
+  "products": ["090240", "180100"]
+}

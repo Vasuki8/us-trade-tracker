@@ -1,0 +1,175 @@
+name: Accept reviewed retained Census releases
+on:
+  workflow_dispatch:
+    inputs:
+      phase:
+        description: Stage a retained release or promote its reviewed backup
+        required: true
+        type: choice
+        options: [stage, promote]
+      product_code:
+        description: Exact reviewed retained product
+        required: true
+        type: choice
+        options: ['090240', '180100']
+      backup_run_id:
+        description: Successful stage run ID (promote only)
+        type: string
+      backup_artifact_id:
+        description: Actual stage backup artifact ID (promote only)
+        type: string
+      backup_digest:
+        description: Actual stage backup SHA-256, lowercase hex (promote only)
+        type: string
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: census-data-import
+  cancel-in-progress: false
+env:
+  SITE_PACKAGE_PYTHON: python3
+  PRODUCT_CODE: ${{ inputs.product_code }}
+  REPORTING_MONTH: '2026-08'
+  ARCHIVE_TO_R2: 'true'
+  INITIALIZE_ARCHIVE: 'true'
+  CANDIDATE_ONLY: 'false'
+  INCLUDE_DUTIES: 'true'
+  BACKUP_RUN_ID: ${{ inputs.backup_run_id }}
+  BACKUP_ARTIFACT_ID: ${{ inputs.backup_artifact_id }}
+  BACKUP_ARTIFACT_DIGEST: ${{ inputs.backup_digest }}
+jobs:
+  stage:
+    if: github.ref == 'refs/heads/main' && inputs.phase == 'stage'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci
+      - run: npm test -- --maxWorkers=2
+      - run: python3 -m unittest discover -s tests/workflows -v
+      - name: Authenticate the exact original artifact
+        id: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/retained_product_artifact.py source --product "$PRODUCT_CODE" --output .tmp/retained/source
+      - name: Reproduce the pinned bundle offline
+        id: pack
+        run: |
+          npm run data:archive -- pack --product "$PRODUCT_CODE" --data-dir .tmp/retained/source/files --run-dir .tmp/retained/pack
+          python3 scripts/retained_product_artifact.py check-bundle --product "$PRODUCT_CODE" --bundle .tmp/retained/pack/bundle.json --receipt .tmp/retained/evidence/pack.json
+      - name: Require an absent product pointer
+        id: restore
+        env:
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: npm run data:archive -- restore --product "$PRODUCT_CODE" --data-dir .tmp/retained/data --run-dir .tmp/retained/archive
+      - name: Recover the verified retained bundle offline
+        id: recover
+        run: |
+          bundle_sha=$(python3 -c 'import json; print(json.load(open(".tmp/retained/evidence/pack.json"))["reference"]["sha256"])')
+          npm run data:archive -- recover --product "$PRODUCT_CODE" --bundle .tmp/retained/pack/bundle.json --sha256 "$bundle_sha" --data-dir .tmp/retained/data
+      - name: Stage and read back the immutable bundle
+        id: stage
+        env:
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: npm run data:archive -- stage --product "$PRODUCT_CODE" --data-dir .tmp/retained/data --run-dir .tmp/retained/archive
+      - name: Authenticate both backup members before upload
+        id: pair
+        run: python3 scripts/retained_product_artifact.py check-bundle --product "$PRODUCT_CODE" --bundle .tmp/retained/archive/bundle.json --candidate .tmp/retained/archive/candidate.json --receipt .tmp/retained/evidence/stage-pair.json
+      - name: Retain the exact two-member candidate
+        id: backup
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: census-${{ env.PRODUCT_CODE }}-retained-candidate
+          path: |
+            .tmp/retained/archive/bundle.json
+            .tmp/retained/archive/candidate.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+      - name: Record the actual upload receipt
+        id: receipt
+        env:
+          BACKUP_ARTIFACT_ID: ${{ steps.backup.outputs.artifact-id }}
+          BACKUP_ARTIFACT_DIGEST: ${{ steps.backup.outputs.artifact-digest }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          from scripts.retained_product_artifact import canonical_id, require, receipt_write
+          import re
+          artifact_id = canonical_id(os.environ['BACKUP_ARTIFACT_ID'])
+          digest = os.environ['BACKUP_ARTIFACT_DIGEST']
+          require(bool(re.fullmatch('[a-f0-9]{64}', digest)), 'Invalid upload digest')
+          receipt_write(Path('.tmp/retained/evidence/upload.json'), dict(
+              runId=os.environ['GITHUB_RUN_ID'], runAttempt=os.environ['GITHUB_RUN_ATTEMPT'],
+              headSha=os.environ['GITHUB_SHA'], productCode=os.environ['PRODUCT_CODE'],
+              artifactId=artifact_id, artifactSha256=digest))
+          PY
+      - name: Retain stage evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: census-${{ env.PRODUCT_CODE }}-retained-stage-evidence
+          path: |
+            .tmp/retained/evidence/
+            .tmp/retained/source/metadata/
+            .tmp/retained/archive/run.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 7
+  promote:
+    if: github.ref == 'refs/heads/main' && inputs.phase == 'promote'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci
+      - run: npm test -- --maxWorkers=2
+      - run: python3 -m unittest discover -s tests/workflows -v
+      - name: Authenticate and download the actual stage backup
+        id: backup
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/retained_product_artifact.py backup --product "$PRODUCT_CODE" --output .tmp/retained/backup
+      - name: Verify the downloaded candidate offline
+        id: verify
+        run: npm run data:archive -- verify --product "$PRODUCT_CODE" --data-dir .tmp/retained/recovery --run-dir .tmp/retained/backup/files
+      - name: Conditionally accept the backed-up reference
+        id: promote
+        env:
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: npm run data:archive -- promote --product "$PRODUCT_CODE" --data-dir .tmp/retained/recovery --run-dir .tmp/retained/backup/files
+      - name: Retain promotion evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: census-${{ env.PRODUCT_CODE }}-retained-promotion-evidence
+          path: |
+            .tmp/retained/backup/metadata/
+            .tmp/retained/backup/files/candidate.json
+            .tmp/retained/backup/files/outcome.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 7

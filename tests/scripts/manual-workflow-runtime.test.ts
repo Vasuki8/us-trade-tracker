@@ -19,6 +19,7 @@ const suiteSteps=(await Promise.all(files.map(async file=>{
 // Removing a manual job's interpreter declaration must fail before a real data run is needed.
 it('discovers every existing unit-test job without an empty or omitted workflow',()=>{
   expect(suiteSteps.map(step=>step.id).sort()).toEqual([
+    'accept-retained-census.yml:promote','accept-retained-census.yml:stage',
     'audit-census-country.yml:audit','audit-census-duties.yml:audit','checks.yml:check','import-census.yml:import','probe-census-cocoa.yml:probe',
   ]);
 });
