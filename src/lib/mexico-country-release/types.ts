@@ -16,3 +16,18 @@ export interface MexicoAllGoodsProjection {
  observations:MexicoObservation[];periods:Record<MexicoDirection,{prior:MexicoPeriod;current:MexicoPeriod;growthPercent:number|null}>;
  productComparisons:MexicoQualifications['productComparisons'];qualifications:MexicoQualifications;
 }
+export interface MexicoCandidateMetadata {releaseId:string;packagingCommit:string;preparedAt:string}
+export interface MexicoManifest extends MexicoCandidateMetadata {
+ schemaVersion:1;countryCode:'2010';scope:'all-goods';policyId:string;sourcePolicyId:string;source:MexicoSource;
+ from:'2024-09';to:'2026-08';measures:{imports:'GEN_VAL_MO';exports:'ALL_VAL_MO'};sourceAssessmentCommit:string;
+ captureInterval:{startedAt:string;finishedAt:string};members:({name:string}&MexicoIdentity)[];
+}
+export type MexicoGate='retainedEvidenceAuthenticated'|'allGoodsControlsVerified'|'referenceQualificationsPreserved'|'productComparisonsWithheld'|'projectionVerified'|'portableRecoveryVerified'|'reviewAndPreservationVerified';
+export interface MexicoGateReport {
+ schemaVersion:1;policyId:string;countryCode:'2010';candidate:MexicoIdentity;projection:MexicoIdentity;
+ source:MexicoSource;status:'verification-pending'|'fixture-only'|'eligible'|'ineligible';gates:Record<MexicoGate,'passed'|'pending'|'failed'>;
+ classificationAccepted:false;releaseAccepted:false;publicMexicoProfile:false;productComparisons:{available:false};
+}
+export interface DecodedMexicoCandidate {manifest:MexicoManifest;files:Map<string,Buffer>}
+export interface MexicoCandidatePackage extends DecodedMexicoCandidate {bytes:Buffer;digest:MexicoIdentity}
+export interface MexicoPreparedCandidate {package:MexicoCandidatePackage;report:MexicoGateReport}
