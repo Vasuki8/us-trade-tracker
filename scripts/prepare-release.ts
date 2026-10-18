@@ -59,16 +59,18 @@ export async function prepareRelease(options:PrepareOptions,fetchImpl:typeof fet
     const tasks:{month:string;direction:'imports'|'exports'|'duties'}[]=Array.from({length:options.months},(_,i)=>shiftMonth(options.end,i-options.months+1)).flatMap(month=>(['imports','exports'] as const).map(direction=>({month,direction})));
     if(options.includeDuties)for(let i=-23;i<=0;i++)tasks.push({month:shiftMonth(options.end,i),direction:'duties'});
     const batches:Release['observations'][]=new Array(tasks.length);const dutyBatches:DutyObservation[][]=new Array(tasks.length);let cursor=0;const controller=new AbortController();
-    const workers=await Promise.allSettled(Array.from({length:2},async()=>{
+    // allSettled preserves worker order, not the order failures occur.
+    let firstFailure:{reason:unknown}|undefined;
+    await Promise.allSettled(Array.from({length:2},async()=>{
       try{while(cursor<tasks.length&&!controller.signal.aborted){const index=cursor++;const task=tasks[index];
         if(task.direction==='duties'){
           const parts=await fetchDutyMonth({productCode:options.productCode,month:task.month,apiKey:options.apiKey,retrievedAt,signal:controller.signal,onRaw:async({summary,...record})=>{await writeFile(join(rawDir,`duties-${task.month}-${summary}.json`),JSON.stringify(record));}},fetchImpl);
           dutyBatches[index]=normalizeDutyMonth(parts,{productCode:options.productCode,month:task.month});
         }else batches[index]=await fetchProductMonth({...task,direction:task.direction,productCode:options.productCode,apiKey:options.apiKey,signal:controller.signal,
           onRaw:async(payload,url,httpStatus)=>{const summary=new URL(url).searchParams.get('SUMMARY_LVL2');await writeFile(join(rawDir,`${task.direction}-${task.month}-${summary}.json`),JSON.stringify({retrievedAt,requestUrl:url,httpStatus,payload}));}},fetchImpl);
-      }}catch(error){controller.abort();throw error;}
+      }}catch(error){firstFailure??={reason:error};controller.abort();throw error;}
     }));
-    const failure=workers.find(result=>result.status==='rejected');if(failure?.status==='rejected')throw failure.reason;
+    if(firstFailure)throw firstFailure.reason;
     const observations=batches.flat();
     const base={productCode:options.productCode,reportingMonth:options.end,retrievedAt,codeVersion:options.codeVersion,
       source:'census' as const,sourceUrls:['imports','exports'].map(d=>`https://api.census.gov/data/timeseries/intltrade/${d}/hs`),observations,revisedKeys:[],
