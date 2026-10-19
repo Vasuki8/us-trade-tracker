@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-19T04:42:29.466025+00:00",
+  "countryCode": "2010",
+  "scope": "all-goods",
+  "status": "accepted-private-all-goods-archived-and-locally-installed",
+  "from": "2024-09",
+  "to": "2026-08",
+  "releaseId": "2026-08-d15a1fdc-2f1c-4d39-8532-7bb8451ddf18",
+  "policyId": "mexico-private-all-goods-archive-v1",
+  "acceptancePolicyId": "mexico-private-all-goods-acceptance-v1",
+  "measures": {
+    "currency": "USD",
+    "nominal": true,
+    "integerValues": true,
+    "seasonallyAdjusted": false,
+    "transport": "all",
+    "imports": "GEN_VAL_MO: general-import customs value",
+    "exports": "ALL_VAL_MO: domestic-plus-foreign FAS value"
+  },
+  "state": {
+    "allGoodsAccepted": true,
+    "classificationAccepted": false,
+    "productComparisonsAvailable": false,
+    "publicMexicoProfile": false,
+    "websitePublicationPerformed": false
+  },
+  "historicalCandidateFlagsUnchanged": {
+    "releaseAccepted": false,
+    "classificationAccepted": false,
+    "publicMexicoProfile": false
+  },
+  "candidatePackagingCommit": "d7dbd36a97b8889886c77d4c6aa62b941e94aff1",
+  "verifiedRuntimeCommit": "3ff5cec9804a8e006514e3a8f7b8594323f074c5",
+  "approvedPlan": {
+    "bytes": 44906,
+    "sha256": "76ab3670efa149d6bfb59cb52bec9596ab1e51fdf975f21977dd4b3d5c3224da"
+  },
+  "approvedInputs": {
+    "bytes": 14371,
+    "sha256": "3257a29089893dc24db022d0ba4e1a7bb57b2cedc854b30a5ba1abe8466103f3"
+  },
+  "projection": {
+    "bytes": 9425,
+    "sha256": "a507ead76c0936572c54674b8b0615d7813cd1749eeff95bdec5313eabd07d02"
+  },
+  "archive": {
+    "kind": "retained-all-goods-evidence-archive",
+    "storageClass": "Standard",
+    "publicAccess": false,
+    "candidate": {
+      "key": "trade/v1/countries/2010/private-all-goods/objects/candidate/e9317cfb9269d0641613c0cfda5f97941d66e8cc68b1842f566c2e5b9f426454.json",
+      "identity": {
+        "bytes": 6443203,
+        "sha256": "e9317cfb9269d0641613c0cfda5f97941d66e8cc68b1842f566c2e5b9f426454"
+      }
+    },
+    "evidence": {
+      "key": "trade/v1/countries/2010/private-all-goods/objects/evidence/da972a41c3dc9f92145a79b1afc54ec67bf142e6c79e458fff4c9e9da25d6fde.json",
+      "identity": {
+        "bytes": 1979509,
+        "sha256": "da972a41c3dc9f92145a79b1afc54ec67bf142e6c79e458fff4c9e9da25d6fde"
+      }
+    },
+    "manifest": {
+      "key": "trade/v1/countries/2010/private-all-goods/objects/manifests/6f700b9067695a146f3f233982401b59cd5ad9f5364d957953068363d41b35a0.json",
+      "identity": {
+        "bytes": 1085,
+        "sha256": "6f700b9067695a146f3f233982401b59cd5ad9f5364d957953068363d41b35a0"
+      }
+    },
+    "selectedMarkerKey": "trade/v1/countries/2010/private-all-goods/current.json",
+    "selectedMarkerIdentity": {
+      "bytes": 1355,
+      "sha256": "36fcc241eed959e216359c4178445e1859cfe85d2f3a69aace7f038ad88fead2"
+    },
+    "markerProposedAt": "2026-10-19T04:12:15.203Z",
+    "markerProposedAtIsNotMeasuredPutTime": true,
+    "objectsIncludingMarker": 4,
+    "storedBytesIncludingMarker": 8425152
+  },
+  "retainedCoverage": {
+    "candidateMembers": 121,
+    "retainedOriginalJsonMembers": 120,
+    "retainedOriginalDecodedBytes": 4804241,
+    "additionalEvidenceRecords": 28,
+    "additionalEvidenceDecodedBytes": 1479379,
+    "absentHistoricalBodiesNewlyReverified": false,
+    "fullHistoricalSourceBackup": false,
+    "notIncluded": [
+      "original national trade ZIPs",
+      "normalized commodity rows",
+      "original reference bodies",
+      "other historical proof members"
+    ],
+    "priorPreservationAndReviewRecordsAreAttestations": true
+  },
+  "qualifications": {
+    "observations": 48,
+    "periodTotals": 4,
+    "growthResults": 2,
+    "retainedCurrentReferenceMatches": 48,
+    "datedReferenceMatches": 16,
+    "datedReferenceDifferences": 32,
+    "originalByteVintageEstablished": false,
+    "revisionCausesEstablished": false,
+    "classificationContinuityEstablished": false,
+    "ordinaryPairsUnverified": 17,
+    "statisticalExclusions": 3,
+    "statisticalCategoriesIncludedInCountryTotals": true
+  },
+  "recoveries": {
+    "initialization": {
+      "recoveryId": "bf3c0643-3c35-49e3-9219-84b4b5398ab6",
+      "verificationStage": "prospective",
+      "recoveredAt": "2026-10-19T04:12:20.026Z",
+      "historicalPathReads": 0,
+      "sourceRequests": 0
+    },
+    "freshRemoteSelected": {
+      "recoveryId": "65c3a8bf-ec06-40f2-a28a-cc5f2c6c40ac",
+      "verificationStage": "selected",
+      "recoveredAt": "2026-10-19T04:14:15.078Z",
+      "historicalPathReads": 0,
+      "sourceRequests": 0
+    },
+    "localSelected": {
+      "recoveryId": "7f8518a6-d0ae-41eb-862b-b8800a52d25d",
+      "verificationStage": "selected",
+      "recoveredAt": "2026-10-19T04:21:32.397Z",
+      "historicalPathReads": 0,
+      "sourceRequests": 0
+    },
+    "sameMarkerSelected": true,
+    "distinctRecoveryIds": 3,
+    "initializationRecoveryPrecedesMarkerPut": true
+  },
+  "providerRuns": [
+    {
+      "operation": "encrypted-capabilities",
+      "runId": "39198002594",
+      "jobId": "117884838401",
+      "artifactId": "12162811823",
+      "conclusion": "success"
+    },
+    {
+      "operation": "initialize",
+      "runId": "39198257368",
+      "jobId": "117885620085",
+      "artifactId": "12163155295",
+      "conclusion": "success"
+    },
+    {
+      "operation": "read-only-selected",
+      "runId": "39198421800",
+      "jobId": "117886115824",
+      "artifactId": "12162623131",
+      "conclusion": "success"
+    }
+  ],
+  "installation": {
+    "status": "installed",
+    "currentStateVerified": true,
+    "files": 4,
+    "bytes": 8425152,
+    "protectedFilesUnchanged": 22,
+    "initialCanonicalRootWasAbsent": true
+  },
+  "batch": {
+    "requests": 21,
+    "get": 17,
+    "put": 4,
+    "combinedBodyBytes": 42125887,
+    "requestLimit": 32,
+    "combinedBodyByteLimit": 67108864,
+    "newStorageByteLimit": 16777216,
+    "manualDispatches": 3,
+    "manualDispatchLimit": 4,
+    "realRecoveries": 3,
+    "canonicalInstallations": 1,
+    "replacementAdmissionsUsed": 0,
+    "conservativeStateMilliseconds": 58938,
+    "stateMillisecondLimit": 1200000,
+    "conservativePreparationTransferWallMillisecondsIncludingReviewAndCI": 1707028,
+    "preparationTransferMillisecondLimit": 1800000,
+    "sourceRequests": 0,
+    "codeRepairPrsUsed": 1,
+    "codeRepairPrLimit": 1
+  },
+  "storageCostObservation": {
+    "dashboardAccountGigabytesBefore": 7.98,
+    "dashboardGigabytesAreCoarseNotExactInventory": true,
+    "conservativeProjectedAccountGigabytes": 8.016777216,
+    "accountGigabyteCeiling": 100,
+    "estimatedIncrementalUsdUnderObservedFreeAllowances": 0,
+    "conservativeCrossedBillingUnitEstimateUsd": 4.875,
+    "approvedIncrementalUsdCeiling": 5,
+    "finalInvoiceClaimed": false
+  },
+  "keyDisposal": {
+    "fingerprint": "3c8ae1bef2e145a4932b3805895e237f11185df6f032552a15102b2236446b60",
+    "disposedAt": "2026-10-19T04:22:37.522834+00:00",
+    "capabilityExpiresAt": "2026-10-19T05:09:06.000Z",
+    "ownedKeyFileAbsent": true,
+    "physicalErasureClaimed": false
+  },
+  "validation": {
+    "postInstallUnitTestsPassed": 2035,
+    "postInstallUnitFilesPassed": 142,
+    "checkedFiles": 375,
+    "typeErrors": 0,
+    "typeWarnings": 0,
+    "typeHints": 0,
+    "browserTestsPassed": {
+      "ordinaryFixture": 197,
+      "canadaPreviewFixture": 11,
+      "canadaPilotFixture": 12
+    },
+    "builds": {
+      "fixture": {
+        "fileCount": 28,
+        "totalBytes": 867534,
+        "largestFile": {
+          "path": "_astro/client.EoSUrE1U.js",
+          "bytes": 212848,
+          "sha256": "cec3635df6c515d999f234a95043623627f63c33bcf213d035c1f75a525e6e15"
+        },
+        "planningAlertThreshold": 15000,
+        "planningAlert": false,
+        "noMexicoCountryRoutes": true,
+        "noPrivateArchiveBodiesOrIdentities": true,
+        "productSelectionAndRegistryUnchanged": true,
+        "packageCreated": false,
+        "publicationPerformed": false
+      },
+      "accepted": {
+        "fileCount": 37,
+        "totalBytes": 2817164,
+        "largestFile": {
+          "path": "products/090121/index.html",
+          "bytes": 352232,
+          "sha256": "0bcaaea815d27a4c16044c0f9240e220e5d41b316fd598ff2998f8a2b8b364d7"
+        },
+        "planningAlertThreshold": 15000,
+        "planningAlert": false,
+        "noMexicoCountryRoutes": true,
+        "noPrivateArchiveBodiesOrIdentities": true,
+        "productSelectionAndRegistryUnchanged": true,
+        "packageCreated": false,
+        "publicationPerformed": false
+      }
+    },
+    "independentRecords": [
+      {
+        "record": "task4-prepared-archive-check.md",
+        "bytes": 5628,
+        "sha256": "63c3f08a27784b0099c0f80e09dcc151a64f6a032d6604fff5d4bac641cccec5"
+      },
+      {
+        "record": "task4-remote-recovery-check.md",
+        "bytes": 8159,
+        "sha256": "79d4462e9f29ecfb1e33af648a768418d0ffa4f22e7f55fb229f78c4917d6fee"
+      },
+      {
+        "record": "task5-local-readback-check.md",
+        "bytes": 4149,
+        "sha256": "28f3376e6d7a0d1e9398fae5fff99c52017151b3cad52c5963093dc8d8b2cc5f"
+      },
+      {
+        "record": "task5-canonical-installation-check.md",
+        "bytes": 3182,
+        "sha256": "45e1fe6459de86cabd47b307904825791eaf973552747f9fb3db130d864fd47b"
+      },
+      {
+        "record": "task5-final-build-exclusion-check.md",
+        "bytes": 3143,
+        "sha256": "f58d25b37f03cb682231e67628573e19aac7a30114574c5ce45e15a4baa9f7e7"
+      }
+    ]
+  },
+  "toolingIntegration": {
+    "implementationPr": 136,
+    "implementationReviewedHead": "7b32df30d601063ef5ca68f288db229e8aeab501",
+    "implementationCiRun": "39194841797",
+    "implementationMerge": "ed594594a6cd17947fcacb0bcf120c9afc319175",
+    "sharedRepairPr": 137,
+    "repairReviewedHead": "ba20d9d3d649c2c09235edaade13447d0707016b",
+    "repairCiRun": "39197079544",
+    "repairMerge": "3ff5cec9804a8e006514e3a8f7b8594323f074c5"
+  },
+  "preservedFailures": [
+    "initial archive launcher lacked locked tsx; no application/provider/state operation began",
+    "GitHub manual-form validation rejected the required terminal newline; reviewed PR137 accepts compact canonical JSON with or without one final newline",
+    "initial accepted-data build launcher used an obsolete tool path; no build began",
+    "private build inspector initially missed unlinked Mexico routes and renamed exact private bodies; injected RED controls reproduced both, repaired controls reject both"
+  ],
+  "finalEvidenceIntegrationAndCleanup": "recorded separately after observation; not predicted by this evidence file"
+}
