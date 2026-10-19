@@ -1,0 +1,55 @@
+name: Encrypt private Mexico archive capabilities
+on:
+  workflow_dispatch:
+    inputs:
+      descriptors:
+        description: Exact canonical three-object descriptor JSON (8192 bytes maximum)
+        required: true
+        type: string
+      recipient_public_key:
+        description: Ephemeral recipient X25519 SPKI public key in canonical base64
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: mexico-private-all-goods-2010
+  cancel-in-progress: false
+jobs:
+  capabilities:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      NODE_OPTIONS: --max-old-space-size=512
+      DESCRIPTORS: ${{ inputs.descriptors }}
+      RECIPIENT_PUBLIC_KEY: ${{ inputs.recipient_public_key }}
+      OUTPUT: data/backups/mexico-country-release/private-acceptance-archive-20261018-r1/capabilities-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci
+      - name: Validate fixed descriptors, recipient, actual main head and public artifact scope
+        id: preflight
+        run: npm run data:mexico-archive -- capabilities --descriptors "$DESCRIPTORS" --recipient-public-key "$RECIPIENT_PUBLIC_KEY" --output "$OUTPUT" --preflight
+      - name: Seal exact short-lived object capabilities before writing artifacts
+        env:
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: timeout --signal=TERM --kill-after=3s 300s npm run data:mexico-archive -- capabilities --descriptors "$DESCRIPTORS" --recipient-public-key "$RECIPIENT_PUBLIC_KEY" --output "$OUTPUT"
+      - name: Retain ciphertext and public metadata only
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: mexico-2010-encrypted-capabilities
+          path: |
+            ${{ env.OUTPUT }}/ciphertext.json
+            ${{ env.OUTPUT }}/metadata.json
+          if-no-files-found: error
+          retention-days: 1

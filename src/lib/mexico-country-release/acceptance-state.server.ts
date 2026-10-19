@@ -8,24 +8,25 @@ import {mexicoAcceptanceContract as acceptance} from './acceptance-contract.serv
 import {mexicoArchiveContract as archive} from '../mexico-country-archive/contract.server';
 import {authenticateMexicoArchive,mexicoArchiveKey,parseMexicoAcceptedPointer,parseMexicoArchiveManifest,verifyMexicoPointer} from '../mexico-country-archive/bundle.server';
 import {assertMexicoStateGrant,inspectMexicoStateDirectory,reserveMexicoStateChild,reserveMexicoStateDirectory,writeMexicoStateFile} from './acceptance-io.server';
-import type {MexicoStateGrant} from './acceptance-io.server';
 import type {MexicoAcceptanceMaterial} from './acceptance-types';
-import type {MexicoAcceptedPointer,MexicoAcceptedRecoveryReceipt,MexicoArchiveMaterial,MexicoArchiveReceipt,MexicoInstallationOutcome} from '../mexico-country-archive/types';
+import type {MexicoAcceptedPointer,MexicoAcceptedRecoveryReceipt,MexicoArchiveMaterial,MexicoInstallationOutcome} from '../mexico-country-archive/types';
 
 export class MexicoAcceptedRecoveryReceiptError extends Error {readonly isolatedStateVerified=true;constructor(readonly receipt:MexicoAcceptedRecoveryReceipt,cause:unknown){super('mexico-accepted-recovery-receipt-failed',{cause});}}
-async function archiveFiles(root:string,path:string):Promise<MexicoArchiveMaterial>{
- const grant=await inspectMexicoStateDirectory(root,path);equal((await fs.readdir(path)).sort(),['candidate.json','evidence.json','manifest.json'],'accepted-file-set');
+async function readArchiveSnapshot(root:string,path:string){
+ const observe=async()=>Promise.all(['candidate.json','evidence.json','manifest.json'].map(async name=>{const stat=await fs.lstat(resolve(path,name),{bigint:true});if(!stat.isFile()||stat.isSymbolicLink())throw Error('accepted-file-kind');return {name,dev:stat.dev,ino:stat.ino,size:stat.size,mtime:stat.mtimeNs,ctime:stat.ctimeNs};}));
+ const grant=await inspectMexicoStateDirectory(root,path);const before=await observe();equal((await fs.readdir(path)).sort(),['candidate.json','evidence.json','manifest.json'],'accepted-file-set');
  const candidateBytes=await readMexicoBoundedFile(root,resolve(path,'candidate.json'),archive.limits.candidate),evidenceBytes=await readMexicoBoundedFile(root,resolve(path,'evidence.json'),archive.limits.evidence),manifestBytes=await readMexicoBoundedFile(root,resolve(path,'manifest.json'),archive.limits.manifest),manifest=parseMexicoArchiveManifest(manifestBytes);
- const material={candidateBytes,evidenceBytes,manifestBytes,descriptors:[...manifest.objects,{role:'manifest' as const,key:mexicoArchiveKey('manifest',identity(manifestBytes)),identity:identity(manifestBytes)}]};authenticateMexicoArchive(material);await assertMexicoStateGrant(grant);equal((await fs.readdir(path)).sort(),['candidate.json','evidence.json','manifest.json'],'accepted-file-set-after');return material;
+ const material={candidateBytes,evidenceBytes,manifestBytes,descriptors:[...manifest.objects,{role:'manifest' as const,key:mexicoArchiveKey('manifest',identity(manifestBytes)),identity:identity(manifestBytes)}]};authenticateMexicoArchive(material);const assertUnchanged=async()=>{await assertMexicoStateGrant(grant);equal((await fs.readdir(path)).sort(),['candidate.json','evidence.json','manifest.json'],'accepted-file-set-after');equal(await observe(),before,'accepted-files-changed');};await assertUnchanged();return {material,assertUnchanged};
 }
+export async function readMexicoArchiveDirectory(root:string,path:string):Promise<MexicoArchiveMaterial>{return (await readArchiveSnapshot(root,path)).material;}
 export async function readAcceptedMexicoAllGoodsRelease(repoRoot:string):Promise<{pointer:MexicoAcceptedPointer;material:MexicoAcceptanceMaterial}>{
  const root=resolve(repoRoot),country=resolve(root,'data/countries/2010'),processed=resolve(root,acceptance.stateRoot),countryGrant=await inspectMexicoStateDirectory(root,country),stateGrant=await inspectMexicoStateDirectory(root,processed);
  equal((await fs.readdir(country)).sort(),['processed'],'accepted-country-set');equal((await fs.readdir(processed)).sort(),['current.json','releases'],'accepted-state-set');
  const pointerBytes=await readMexicoBoundedFile(root,resolve(processed,'current.json'),archive.limits.pointer),pointer=parseMexicoAcceptedPointer(pointerBytes),releases=resolve(processed,'releases'),releasesGrant=await inspectMexicoStateDirectory(root,releases);
- equal((await fs.readdir(releases)).sort(),[acceptance.releaseId],'accepted-release-set');const data=await archiveFiles(root,resolve(releases,acceptance.releaseId));verifyMexicoPointer(pointerBytes,data);const material=authenticateMexicoArchive(data);
+ equal((await fs.readdir(releases)).sort(),[acceptance.releaseId],'accepted-release-set');const snapshot=await readArchiveSnapshot(root,resolve(releases,acceptance.releaseId)),data=snapshot.material;verifyMexicoPointer(pointerBytes,data);const material=authenticateMexicoArchive(data);
  for(const grant of [countryGrant,stateGrant,releasesGrant])await assertMexicoStateGrant(grant);
  equal((await fs.readdir(country)).sort(),['processed'],'accepted-country-set-after');equal((await fs.readdir(processed)).sort(),['current.json','releases'],'accepted-state-set-after');equal((await fs.readdir(releases)).sort(),[acceptance.releaseId],'accepted-release-set-after');
- equal(await readMexicoBoundedFile(root,resolve(processed,'current.json'),archive.limits.pointer),pointerBytes,'accepted-pointer-after');return {pointer,material};
+ equal(await readMexicoBoundedFile(root,resolve(processed,'current.json'),archive.limits.pointer),pointerBytes,'accepted-pointer-after');await snapshot.assertUnchanged();return {pointer,material};
 }
 async function writeInitialState(root:string,material:MexicoArchiveMaterial,pointer:MexicoAcceptedPointer):Promise<{pointer:MexicoAcceptedPointer;material:MexicoAcceptanceMaterial}>{
  const country=await reserveMexicoStateDirectory(root,resolve(root,'data/countries/2010')),
@@ -33,7 +34,7 @@ async function writeInitialState(root:string,material:MexicoArchiveMaterial,poin
  releases=await reserveMexicoStateChild(processed,'releases'),
  release=await reserveMexicoStateChild(releases,acceptance.releaseId);
  for(const [name,bytes]of [['candidate.json',material.candidateBytes],['evidence.json',material.evidenceBytes],['manifest.json',material.manifestBytes]] as const)await writeMexicoStateFile(release,name,bytes);
- const restored=await archiveFiles(root,release.path);verifyMexicoPointer(json(pointer),restored);await assertMexicoStateGrant(country);
+ const restored=await readMexicoArchiveDirectory(root,release.path);verifyMexicoPointer(json(pointer),restored);await assertMexicoStateGrant(country);
  await writeMexicoStateFile(processed,'current.json',json(pointer));const after=await readAcceptedMexicoAllGoodsRelease(root);equal(after.pointer,pointer,'accepted-initial-readback');await assertMexicoStateGrant(country);return after;
 }
 export async function recoverMexicoAcceptedState(opts:{repoRoot:string;outputDir:string;material:MexicoArchiveMaterial;pointer:MexicoAcceptedPointer;verificationStage?:'prospective'|'selected'}):Promise<MexicoAcceptedRecoveryReceipt>{
@@ -49,7 +50,7 @@ function privateInputPath(root:string,path:string):string {
  const target=resolve(root,path),batch=resolve(root,archive.backupRoot,'private-acceptance-archive-20261018-r1'),rel=relative(batch,target);
  if(!rel||isAbsolute(rel)||rel==='..'||rel.startsWith('..'+sep))throw Error('mexico-install-private-path');return target;
 }
-function validateInstallationVerification(bytes:Buffer,pointer:MexicoAcceptedPointer,material:MexicoArchiveMaterial):void {
+export function validateMexicoInstallationVerification(bytes:Buffer,pointer:MexicoAcceptedPointer,material:MexicoArchiveMaterial):void {
  const packet=parse(bytes);keys(packet,['schemaVersion','initialization','selected','localReadback']);equal(packet.schemaVersion,1);equal(json(packet),bytes,'installation-verification-canonical');const ids=new Set<string>(),pointerIdentity=identity(json(pointer));
  for(const [field,mode]of [['initialization','initialize'],['selected','selected'],['localReadback','local-readback']] as const){
   const r=object(packet[field]);keys(r,['schemaVersion','policyId','countryCode','mode','status','archiveOutcome','currentStateVerified','pointer','pointerIdentity','recovery']);
@@ -67,7 +68,7 @@ export async function installMexicoAcceptedState(opts:{repoRoot:string;archiveDi
  const root=resolve(opts.repoRoot),archiveDir=privateInputPath(root,opts.archiveDir),pointerFile=privateInputPath(root,opts.pointerFile),verificationFile=privateInputPath(root,opts.verificationFile),outcomeFile=privateInputPath(root,opts.outcomeFile),outParent=dirname(outcomeFile),rel=relative(archiveDir,outcomeFile);
  if(!isAbsolute(rel)&&rel!=='..'&&!rel.startsWith('..'+sep)||outcomeFile===pointerFile||outcomeFile===verificationFile||!/^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$/.test(basename(outcomeFile)))throw Error('mexico-install-outcome-alias');
  const outcomeGrant=await inspectMexicoStateDirectory(root,outParent);try{await fs.lstat(outcomeFile);throw Error('mexico-install-outcome-occupied');}catch(e){if((e as NodeJS.ErrnoException).code!=='ENOENT')throw e;}
- const material=await archiveFiles(root,archiveDir),pointerBytes=await readMexicoBoundedFile(root,pointerFile,archive.limits.pointer),pointer=verifyMexicoPointer(pointerBytes,material),verificationBytes=await readMexicoBoundedFile(root,verificationFile,256*1024);validateInstallationVerification(verificationBytes,pointer,material);await assertMexicoStateGrant(outcomeGrant);
+ const material=await readMexicoArchiveDirectory(root,archiveDir),pointerBytes=await readMexicoBoundedFile(root,pointerFile,archive.limits.pointer),pointer=verifyMexicoPointer(pointerBytes,material),verificationBytes=await readMexicoBoundedFile(root,verificationFile,256*1024);validateMexicoInstallationVerification(verificationBytes,pointer,material);await assertMexicoStateGrant(outcomeGrant);
  const make=(status:MexicoInstallationOutcome['status'],verified:boolean):MexicoInstallationOutcome=>({schemaVersion:1,countryCode:'2010',status,currentStateVerified:verified,pointer:identity(pointerBytes),candidate:identity(material.candidateBytes)});
  const persist=async(outcome:MexicoInstallationOutcome)=>{try{await writeMexicoStateFile(outcomeGrant,basename(outcomeFile),json(outcome));}catch(error){throw new MexicoInstallationReceiptError(outcome,error);}return outcome;};
  const country=resolve(root,'data/countries/2010');let exists=false;try{await fs.lstat(country);exists=true;}catch(e){if((e as NodeJS.ErrnoException).code!=='ENOENT')throw e;}

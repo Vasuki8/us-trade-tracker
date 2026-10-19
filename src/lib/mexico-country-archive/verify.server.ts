@@ -8,7 +8,7 @@ import {recoverMexicoAcceptedState} from '../mexico-country-release/acceptance-s
 import {mexicoArchiveContract as contract} from './contract.server';
 import {authenticateMexicoArchive,mexicoArchiveKey,parseMexicoAcceptedPointer,parseMexicoArchiveManifest,proposeMexicoAcceptedPointer,verifyMexicoPointer} from './bundle.server';
 import type {MexicoIdentity} from '../mexico-country-release/types';
-import type {MexicoAcceptedPointer,MexicoArchiveMaterial,MexicoArchiveReceipt,MexicoArchiveStore,MexicoVerifyOptions} from './types';
+import type {MexicoArchiveMaterial,MexicoArchiveReceipt,MexicoArchiveStore,MexicoVerifyOptions} from './types';
 
 export class MexicoArchiveReceiptError extends Error {constructor(readonly receipt:MexicoArchiveReceipt,cause:unknown){super('mexico-archive-receipt-persistence-failed',{cause});}}
 export function mexicoArchiveOutputPath(root:string,path:string):string {

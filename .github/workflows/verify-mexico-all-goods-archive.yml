@@ -1,0 +1,75 @@
+name: Verify private Mexico all-goods archive
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: First verified private selection, or independent read-only selected recovery
+        required: true
+        type: choice
+        default: verify-selected
+        options:
+          - verify-selected
+          - verify-initialize
+      manifest_sha256:
+        description: Exact manifest SHA-256, initialization only
+        required: false
+        type: string
+      manifest_bytes:
+        description: Exact manifest byte count, initialization only
+        required: false
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: mexico-private-all-goods-2010
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NODE_OPTIONS: --max-old-space-size=512
+      OPERATION: ${{ inputs.operation }}
+      MANIFEST_SHA256: ${{ inputs.manifest_sha256 }}
+      MANIFEST_BYTES: ${{ inputs.manifest_bytes }}
+      OUTPUT: data/backups/mexico-country-release/private-acceptance-archive-20261018-r1/verification-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci
+      - name: Validate mode and identity before loading storage credentials
+        id: preflight
+        run: |
+          case "$OPERATION" in
+            verify-selected) test -z "$MANIFEST_SHA256" && test -z "$MANIFEST_BYTES"; args=(verify-selected) ;;
+            verify-initialize) args=(verify-initialize --manifest-sha256 "$MANIFEST_SHA256" --manifest-bytes "$MANIFEST_BYTES") ;;
+            *) exit 1 ;;
+          esac
+          npm run data:mexico-archive -- "${args[@]}" --output "$OUTPUT" --preflight
+      - name: Authenticate complete bodies and recover isolated accepted state
+        env:
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: |
+          case "$OPERATION" in
+            verify-selected) test -z "$MANIFEST_SHA256" && test -z "$MANIFEST_BYTES"; args=(verify-selected) ;;
+            verify-initialize) args=(verify-initialize --manifest-sha256 "$MANIFEST_SHA256" --manifest-bytes "$MANIFEST_BYTES") ;;
+            *) exit 1 ;;
+          esac
+          timeout --signal=TERM --kill-after=3s 300s npm run data:mexico-archive -- "${args[@]}" --output "$OUTPUT"
+      - name: Retain the bounded allowlisted public summary only
+        if: always() && steps.preflight.outcome == 'success'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: mexico-2010-archive-verification
+          path: ${{ env.OUTPUT }}-public/summary.json
+          if-no-files-found: warn
+          retention-days: 7

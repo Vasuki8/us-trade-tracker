@@ -60,3 +60,9 @@ it('detects a pointer replaced during accepted snapshot reading',async()=>{
  vi.spyOn(fs,'open').mockImplementation(async(path,...args)=>{const h=await open(path,...args);if(String(path)===resolve(release,'candidate.json')&&args[0]==='r'&&!altered){altered=true;await fs.writeFile(current,json({...f.pointer,acceptedAt:'2026-10-19T03:00:01.000Z'}));}return h;});
  await expect(f.api.readAcceptedMexicoAllGoodsRelease(f.root)).rejects.toThrow();expect(altered).toBe(true);
 });
+
+it('detects an archive body replaced after its individual read',async()=>{
+ const f=await setup();await f.api.installMexicoAcceptedState(f.opts);const release=resolve(f.root,'data/countries/2010/processed/releases',f.pointer.releaseId),candidate=resolve(release,'candidate.json'),open=fs.open;let altered=false;
+ vi.spyOn(fs,'open').mockImplementation(async(path,...args)=>{const h=await open(path,...args);if(String(path)===resolve(release,'manifest.json')&&args[0]==='r'&&!altered){altered=true;await fs.writeFile(candidate,'changed after candidate read');}return h;});
+ const error=await f.api.readAcceptedMexicoAllGoodsRelease(f.root).then(()=>null,(e:any)=>e);expect(altered).toBe(true);expect(error).toBeInstanceOf(Error);
+});
