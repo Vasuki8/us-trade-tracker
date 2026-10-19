@@ -2,22 +2,22 @@
   "schemaVersion": 1,
   "countryCode": "2010",
   "scope": "all-goods",
-  "status": "prepared-and-independently-recovered",
+  "status": "repaired-runtime-prepared-and-independently-recovered",
   "from": "2024-09",
   "to": "2026-08",
   "policyId": "mexico-all-goods-release-v1",
   "sourcePolicyId": "mexico-retained-all-goods-v1",
   "sourceAssessmentCommit": "52e4157ee5a223716d620804b2a9203fc49cec5c",
-  "packagingCommit": "d41fa3fa0ed52412b2e0231e5a4cadc6684668c1",
-  "releaseId": "2026-08-3296e808-f864-4913-b206-a12211f2e5a6",
-  "preparedAt": "2026-10-18T20:54:29.101Z",
+  "packagingCommit": "d7dbd36a97b8889886c77d4c6aa62b941e94aff1",
+  "releaseId": "2026-08-d15a1fdc-2f1c-4d39-8532-7bb8451ddf18",
+  "preparedAt": "2026-10-19T01:04:31.607Z",
   "captureInterval": {
     "startedAt": "2026-10-11T17:07:26.408631+00:00",
     "finishedAt": "2026-10-11T17:49:43.278254+00:00"
   },
   "candidate": {
     "bytes": 6443203,
-    "sha256": "d3b1d5261ad931f728431eb1fbf2bae281a8e142d992fad055dc083a3d1db3f2"
+    "sha256": "e9317cfb9269d0641613c0cfda5f97941d66e8cc68b1842f566c2e5b9f426454"
   },
   "projection": {
     "bytes": 9425,
@@ -29,22 +29,6 @@
   "observations": 48,
   "periodTotals": 4,
   "growthResults": 2,
-  "recoveryReceipts": [
-    {
-      "role": "primary",
-      "bytes": 447,
-      "sha256": "2dad5956fb6e46f175894e2261808ff9951a28c43ed0af9df63c7b97830bf76f",
-      "status": "verified",
-      "historicalPathReads": 0
-    },
-    {
-      "role": "independent",
-      "bytes": 447,
-      "sha256": "117c480a93c6b700568c13e6c8e16c4d85c6295353b3ee1bc0d6e10cb841be52",
-      "status": "verified",
-      "historicalPathReads": 0
-    }
-  ],
   "references": {
     "currentBefore": {
       "matched": 48,
@@ -76,17 +60,6 @@
     "globalDetailKeys": 80011182,
     "recalculated": false
   },
-  "operations": {
-    "attempts": 4,
-    "successful": 3,
-    "preEvidenceFailure": 1,
-    "observedNativeSeconds": 3.092999999935273,
-    "sourceRequests": 0,
-    "excludedBodyReads": 0,
-    "r2Operations": 0,
-    "blockedTransportCallsPerSuccessfulInvocation": 2,
-    "transportQualification": "Separate loader-only control reproduced two local named-pipe calls; original operation arguments were not recorded."
-  },
   "normalFixtureBuild": {
     "files": 28,
     "bytes": 867534,
@@ -96,14 +69,184 @@
     "mexicoRoutes": 0,
     "privateCandidatePayloads": 0
   },
-  "finalEligibility": {
-    "status": "ineligible",
-    "reason": "Reviewed output-handling runtime changed after packaging; no authorized real operation remains to reverify it.",
-    "packagingRuntimeVerifiedBeforeRepair": true,
-    "reviewedOutputRepairRealVerified": false,
-    "additionalRealOperations": 0,
-    "nextRequirement": "Separately authorized bounded real preparation/recovery verification"
-  },
   "acceptedDatasetChanged": false,
-  "sitePublished": false
+  "sitePublished": false,
+  "recoveryReceipts": [
+    {
+      "role": "primary",
+      "bytes": 447,
+      "sha256": "6f83a90c57a5040f8b84c870f16d93313be3e3796d910b7b0937518450223cbc",
+      "status": "verified",
+      "historicalPathReads": 0,
+      "recoveryId": "b314fac2-1090-4aac-b04b-2943638b7154",
+      "recoveredAt": "2026-10-19T01:04:46.449Z"
+    },
+    {
+      "role": "independent",
+      "bytes": 447,
+      "sha256": "b33c058c4790e2a2944355f2701888319f9e33889d74835187fd9dc7ae31acb0",
+      "status": "verified",
+      "historicalPathReads": 0,
+      "recoveryId": "868a7419-c8ed-41a0-8e9a-0716e9a7ba9d",
+      "recoveredAt": "2026-10-19T01:05:27.906Z"
+    }
+  ],
+  "frozenRuntime": {
+    "repairCommit": "eefcefbdacfbd4c9c5bc3334406267691a92fd02",
+    "bundleId": "4bc1559b46f4c0be7c78bd523e413dae76783740d4eeca425863f2010674224c",
+    "productionRuntimeChangedInThisMilestone": false
+  },
+  "operations": {
+    "attempts": 3,
+    "successful": 3,
+    "preparationReplacements": 0,
+    "admittedBeforeLaunch": true,
+    "observedNativeSecondsIncludingCleanup": 3.39000000001397,
+    "executionLimitSecondsEach": 300,
+    "cleanupAllowanceSecondsEach": 3,
+    "cumulativeLimitSeconds": 900,
+    "jobMemoryCeilingBytes": 1073741824,
+    "measuredPeakMemoryBytes": null,
+    "sourceRequests": 0,
+    "successfulHistoricalPathReads": 0,
+    "excludedBodyReads": 0,
+    "r2Operations": 0,
+    "ownedTreesStopped": true,
+    "completeInputAndOutputReadbacksVerified": true,
+    "blockedLocalPipeCallsPerSuccessfulInvocation": 2,
+    "unexpectedOutboundAttempts": 0,
+    "transportQualification": "Each actual operation records its non-secret target arguments and classifies the blocked local Windows named pipes; no outbound attempt was observed."
+  },
+  "retainedPreflights": {
+    "attempts": 2,
+    "successful": 1,
+    "firstFailureBeforeEvidenceReads": true,
+    "qualification": "The first check stopped for an absent fresh-output parent. Failure and prior freeze bytes were preserved; the corrected second check authenticated the same120members without creating a candidate. Neither was a real candidate operation."
+  },
+  "independentCalculation": {
+    "status": "passed",
+    "synthetic": false,
+    "observations": 48,
+    "periodTotals": 4,
+    "growthResults": 2,
+    "originalEvidenceByteExact": true,
+    "canonicalProjectionByteExact": true,
+    "comparison": {
+      "bytes": 11202,
+      "sha256": "99a2168b922d0fb4cd532c7986e81c8cf3a82012ed962f1f67b4f3c61fdef992"
+    }
+  },
+  "finalEligibility": {
+    "publicFinalEligibilityClaim": false,
+    "qualification": "The candidate-specific final private decision is issued separately after this record has actual exact-head review, CI and input-preservation evidence. This record claims observed preparation/recovery only; eligibility would not authorize acceptance or publication."
+  },
+  "historicalCandidate": {
+    "schemaVersion": 1,
+    "countryCode": "2010",
+    "scope": "all-goods",
+    "status": "prepared-and-independently-recovered",
+    "from": "2024-09",
+    "to": "2026-08",
+    "policyId": "mexico-all-goods-release-v1",
+    "sourcePolicyId": "mexico-retained-all-goods-v1",
+    "sourceAssessmentCommit": "52e4157ee5a223716d620804b2a9203fc49cec5c",
+    "packagingCommit": "d41fa3fa0ed52412b2e0231e5a4cadc6684668c1",
+    "releaseId": "2026-08-3296e808-f864-4913-b206-a12211f2e5a6",
+    "preparedAt": "2026-10-18T20:54:29.101Z",
+    "captureInterval": {
+      "startedAt": "2026-10-11T17:07:26.408631+00:00",
+      "finishedAt": "2026-10-11T17:49:43.278254+00:00"
+    },
+    "candidate": {
+      "bytes": 6443203,
+      "sha256": "d3b1d5261ad931f728431eb1fbf2bae281a8e142d992fad055dc083a3d1db3f2"
+    },
+    "projection": {
+      "bytes": 9425,
+      "sha256": "a507ead76c0936572c54674b8b0615d7813cd1749eeff95bdec5313eabd07d02"
+    },
+    "members": 121,
+    "originalMembers": 120,
+    "originalDecodedBytes": 4804241,
+    "observations": 48,
+    "periodTotals": 4,
+    "growthResults": 2,
+    "recoveryReceipts": [
+      {
+        "role": "primary",
+        "bytes": 447,
+        "sha256": "2dad5956fb6e46f175894e2261808ff9951a28c43ed0af9df63c7b97830bf76f",
+        "status": "verified",
+        "historicalPathReads": 0
+      },
+      {
+        "role": "independent",
+        "bytes": 447,
+        "sha256": "117c480a93c6b700568c13e6c8e16c4d85c6295353b3ee1bc0d6e10cb841be52",
+        "status": "verified",
+        "historicalPathReads": 0
+      }
+    ],
+    "references": {
+      "currentBefore": {
+        "matched": 48,
+        "mismatch": 0
+      },
+      "currentAfter": {
+        "matched": 48,
+        "mismatch": 0
+      },
+      "dated": {
+        "matched": 16,
+        "mismatch": 32
+      },
+      "vintageRelationship": "not-established",
+      "differenceCause": "not-established",
+      "originalPublicationBytesProven": false,
+      "currentBodyBytesEqual": false
+    },
+    "productComparisons": {
+      "available": false,
+      "ordinaryUnverified": 17,
+      "statisticalExclusions": 3
+    },
+    "classificationAccepted": false,
+    "releaseAccepted": false,
+    "publicMexicoProfile": false,
+    "priorRowVerification": {
+      "rows": 200855,
+      "globalDetailKeys": 80011182,
+      "recalculated": false
+    },
+    "operations": {
+      "attempts": 4,
+      "successful": 3,
+      "preEvidenceFailure": 1,
+      "observedNativeSeconds": 3.092999999935273,
+      "sourceRequests": 0,
+      "excludedBodyReads": 0,
+      "r2Operations": 0,
+      "blockedTransportCallsPerSuccessfulInvocation": 2,
+      "transportQualification": "Separate loader-only control reproduced two local named-pipe calls; original operation arguments were not recorded."
+    },
+    "normalFixtureBuild": {
+      "files": 28,
+      "bytes": 867534,
+      "largestBytes": 212848,
+      "planningAlertAtFiles": 15000,
+      "planningAlert": false,
+      "mexicoRoutes": 0,
+      "privateCandidatePayloads": 0
+    },
+    "finalEligibility": {
+      "status": "ineligible",
+      "reason": "Reviewed output-handling runtime changed after packaging; no authorized real operation remains to reverify it.",
+      "packagingRuntimeVerifiedBeforeRepair": true,
+      "reviewedOutputRepairRealVerified": false,
+      "additionalRealOperations": 0,
+      "nextRequirement": "Separately authorized bounded real preparation/recovery verification"
+    },
+    "acceptedDatasetChanged": false,
+    "sitePublished": false
+  }
 }
