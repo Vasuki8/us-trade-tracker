@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "purpose": "proposed-mexico-private-all-goods-acceptance-and-archive-inputs",
+  "status": "awaiting-owner-review",
+  "baselineCommit": "96f1d2cdbd40bb1f9bc643159de1a95710829f4d",
+  "countryCode": "2010",
+  "scope": "all-goods",
+  "from": "2024-09",
+  "to": "2026-08",
+  "releaseId": "2026-08-d15a1fdc-2f1c-4d39-8532-7bb8451ddf18",
+  "packagingCommit": "d7dbd36a97b8889886c77d4c6aa62b941e94aff1",
+  "candidate": {
+    "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/prepared/candidate.json",
+    "bytes": 6443203,
+    "sha256": "e9317cfb9269d0641613c0cfda5f97941d66e8cc68b1842f566c2e5b9f426454"
+  },
+  "projection": {
+    "bytes": 9425,
+    "sha256": "a507ead76c0936572c54674b8b0615d7813cd1749eeff95bdec5313eabd07d02"
+  },
+  "evidenceMembers": [
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/candidate-eligibility.json",
+      "bytes": 863,
+      "sha256": "a2737930cb8e6c7548694a3eeb44487d4c2081c7e0d9be6230555675fc91f3dd",
+      "archiveName": "prior/candidate-eligibility.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/eligibility-decision.json",
+      "bytes": 723,
+      "sha256": "bcf559f538d02e80d86207beb76c00833d8c7815a2d72d15d0a80de53f7b308a",
+      "archiveName": "prior/eligibility-decision.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/operator-verification-proof.json",
+      "bytes": 3958,
+      "sha256": "43228b26ba7697c553860ff568d7f02bb2f86a3f5db1fa16e376ce2a7f4a9a16",
+      "archiveName": "prior/operator-verification-proof.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/runtime-comparison-final.json",
+      "bytes": 469,
+      "sha256": "2fb8af5ccc55771a42aae7a732a5d77c527c14511745b6036d0c9cc5461c5a54",
+      "archiveName": "prior/runtime-comparison-final.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/input-audit-before.json",
+      "bytes": 39597,
+      "sha256": "fc765d7d700acb8f22ea751dd1632a94107fe96c1ba35b22ce9357c5653aa654",
+      "archiveName": "prior/input-audit-before.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/input-audit-after-native-cleanup.json",
+      "bytes": 39618,
+      "sha256": "35c23ba456ecb7b4217bbafad42b5031cf9c2e04e359d3c1cc1e6fc5a6df7cb0",
+      "archiveName": "prior/input-audit-after-native-cleanup.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/public-document-audit.json",
+      "bytes": 582,
+      "sha256": "9a5b613a0a6106405565035f00c3bb438bb6fa50ad5547f9aec9adec88ab35ac",
+      "archiveName": "prior/public-document-audit.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/native-cleanup.json",
+      "bytes": 1599,
+      "sha256": "9ba2894ef3acba0ccefc7413bd313f5b5650f91955b8768b16074e636ec89d98",
+      "archiveName": "prior/native-cleanup.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/runtime/frozen-bundle.json",
+      "bytes": 25360,
+      "sha256": "4bc1559b46f4c0be7c78bd523e413dae76783740d4eeca425863f2010674224c",
+      "archiveName": "prior/runtime/frozen-bundle.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/github/final-ci-evidence.json",
+      "bytes": 2657,
+      "sha256": "5c6b03ccb08375226101529eac54349dbcc8c1b0509dcc227dc20cec7c0de606",
+      "archiveName": "prior/github/final-ci-evidence.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/github/integration.json",
+      "bytes": 701,
+      "sha256": "63e53121d9a8687870bfb527215d6aea033360c517cc6323728b05cac72e637a",
+      "archiveName": "prior/github/integration.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/github/ci-runs-final.json",
+      "bytes": 25954,
+      "sha256": "60d5d7b66b279cbe5356cd1c738443dcb88db8e1cf5a1ab8d1d45cf43d02e048",
+      "archiveName": "prior/github/ci-runs-final.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/github/push-jobs-final.json",
+      "bytes": 3300,
+      "sha256": "99561fa937660323fceace0888e88f01e87ad6a10196150e6fff26651a672011",
+      "archiveName": "prior/github/push-jobs-final.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/github/pr-jobs-final.json",
+      "bytes": 3300,
+      "sha256": "470125c64a0c2ce8bd508ce40b607e5c8003b715a2431e1ad14cb4266489d714",
+      "archiveName": "prior/github/pr-jobs-final.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/github/push-job-117842439837.log",
+      "bytes": 217589,
+      "sha256": "8aec57b70f7ec3db5509fdb8465d1a584ee2b1cbf4b585b0ff094b30e716fdb7",
+      "archiveName": "prior/github/push-job-117842439837.log"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/github/pr-job-117842493557.log",
+      "bytes": 209145,
+      "sha256": "30b2f30ae854551b85d46673080aab67b9bbf659368ddc25cd38a039ac7d76d1",
+      "archiveName": "prior/github/pr-job-117842493557.log"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/reviews/independent/independent-final-comparison.json",
+      "bytes": 11202,
+      "sha256": "99a2168b922d0fb4cd532c7986e81c8cf3a82012ed962f1f67b4f3c61fdef992",
+      "archiveName": "prior/reviews/independent/independent-final-comparison.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/reviews/independent/independent-expected-report.json",
+      "bytes": 216846,
+      "sha256": "946dafba2ef317cb4f6d61e8e109363345296c650781e33f7fef89ded9c5e75d",
+      "archiveName": "prior/reviews/independent/independent-expected-report.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/reviews/independent/task2-independent-handoff.json",
+      "bytes": 4803,
+      "sha256": "6e20050a97b784894914e2df6f28ebd5f570ba4d87b65be210eb1058053154d2",
+      "archiveName": "prior/reviews/independent/task2-independent-handoff.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/reviews/final-branch/final-review.md",
+      "bytes": 8841,
+      "sha256": "d814e36581367231f9685e1bc3f023f4ed3731a53b4f4f65baaa6baefb524d8f",
+      "archiveName": "prior/reviews/final-branch/final-review.md"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/reviews/final-review-disposition.json",
+      "bytes": 525,
+      "sha256": "fcf5458464f96b27d5a18dc11bdac71783d7617a2da6d2c371960fe92f11bf2f",
+      "archiveName": "prior/reviews/final-review-disposition.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/isolated-primary/data/backups/mexico-country-release/recovered/recovery-receipt.json",
+      "bytes": 447,
+      "sha256": "6f83a90c57a5040f8b84c870f16d93313be3e3796d910b7b0937518450223cbc",
+      "archiveName": "prior/isolated-primary/data/backups/mexico-country-release/recovered/recovery-receipt.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/isolated-independent/data/backups/mexico-country-release/recovered/recovery-receipt.json",
+      "bytes": 447,
+      "sha256": "b33c058c4790e2a2944355f2701888319f9e33889d74835187fd9dc7ae31acb0",
+      "archiveName": "prior/isolated-independent/data/backups/mexico-country-release/recovered/recovery-receipt.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1/final-proof-manifest.json",
+      "bytes": 155502,
+      "sha256": "566b6922f598f0327c9aa6f371552e75729271a7c86ab0907c271f4640280a11",
+      "archiveName": "prior/final-proof-manifest.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1-seal-readback.json",
+      "bytes": 344720,
+      "sha256": "0404c0456bacdbe0cdf3280606df58c2d4d18cc0ac89a5bf881b696d48fe326c",
+      "archiveName": "prior/external/seal-readback.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1-readback-native.json",
+      "bytes": 2377,
+      "sha256": "a9ba0433d3f2b9bf8537cee31751d9b241c752f0b996e701b23863789de36770",
+      "archiveName": "prior/external/readback-native.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1-final-workspace.json",
+      "bytes": 155655,
+      "sha256": "bb2b30bd79048f03565ed7d0b4d28133af48ebd8faa09ca85b888699504e862b",
+      "archiveName": "prior/external/final-workspace.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1-closing-receipt.json",
+      "bytes": 2599,
+      "sha256": "5c6286dadb2f3cab8d4e4761f554cbd549cda10fd71b649e5bf8e80783bb2e3a",
+      "archiveName": "prior/external/closing-receipt.json"
+    }
+  ],
+  "evidenceMembersBytes": 1479379,
+  "protectedFiles": [
+    {
+      "path": "deployment/site-product-selection.json",
+      "bytes": 2076,
+      "sha256": "77f7587659e19ae7d18cd94448b1795448ae16da80ed8d45c59276fffefa2eef"
+    },
+    {
+      "path": "src/lib/trade/product-registry.ts",
+      "bytes": 1971,
+      "sha256": "005e97f56d15cf6ad93982f7f008fdb01dc1937a87b99b0f180242cc0561635e"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-10-17-september-coffee-candidates.md",
+      "bytes": 22422,
+      "sha256": "b60a52102ac4d09cb54ded1d64c993f5d9ff6203da6b71080ab60ac2d949875c"
+    },
+    {
+      "path": "data/processed/current.json",
+      "bytes": 76,
+      "sha256": "5098efe55c5d712f097afaef140527c1c3636ebdd7dd0fe48b5521c5cf589bc8"
+    },
+    {
+      "path": "data/processed/releases/2026-08-5f3c2606-06a0-4c96-8fbc-a2332e0428ae.json",
+      "bytes": 2977166,
+      "sha256": "eaa8c1baa86bd3a8880dcda12db3b32625a38c221591c8c0e087b6af6a325727"
+    },
+    {
+      "path": "data/products/090111/processed/current.json",
+      "bytes": 76,
+      "sha256": "d93e6e11e48c540396fee4699a0a9e58cbde0e6f6a55e20e7ba7056fb3296a39"
+    },
+    {
+      "path": "data/products/090111/processed/releases/2026-08-d6b1ed52-cd6c-4b7d-87ca-d52c9e338cae.json",
+      "bytes": 2234188,
+      "sha256": "ef5d56791ad85b1b7a199829818522389a792e82cee792665be61f8e78cba0f7"
+    },
+    {
+      "path": "data/products/090240/processed/current.json",
+      "bytes": 76,
+      "sha256": "30c72e757df9279c5fe980bb656ef4b3f741b9c2389cfd468082ed761e462b01"
+    },
+    {
+      "path": "data/products/090240/processed/releases/2026-08-b5434067-131b-4337-87c1-b380f2face50.json",
+      "bytes": 1599531,
+      "sha256": "861ba7228fb6f6363445df2c0eb6ef76f946c839df75afdd2dcc07d899b09d51"
+    },
+    {
+      "path": "data/products/180100/processed/current.json",
+      "bytes": 76,
+      "sha256": "301abc654e1afb60e31c4792d6d8254bcd4bc9ad0ee2776543eeb0aab1171f6e"
+    },
+    {
+      "path": "data/products/180100/processed/releases/2026-08-4b642c26-0e76-4c20-9606-032bd5e0dd01.json",
+      "bytes": 957381,
+      "sha256": "96a51a19b968dc574a8692fe1be02d2974704186960bd97ac697356253b83300"
+    },
+    {
+      "path": "data/countries/1220/processed/current.json",
+      "bytes": 466,
+      "sha256": "9ede6a6906b0da7f85e74203d186bee7f6a8e08e37f452fb9f5a99e88e10a399"
+    },
+    {
+      "path": "data/countries/1220/processed/releases/2026-08-2e27b39c-932b-4f3d-b2aa-3b11ca2a3cca/candidate.json",
+      "bytes": 2960916,
+      "sha256": "337d25eeb94c87d9dbfdc4c9a21a20e7e50f416a6599cd0699f028eee0349818"
+    },
+    {
+      "path": "data/countries/1220/processed/releases/2026-08-2e27b39c-932b-4f3d-b2aa-3b11ca2a3cca/acceptance.json",
+      "bytes": 13430,
+      "sha256": "b64cdaf9b33c7604d9b069852351c64759ee713f397c8c087201cd7a09320f75"
+    },
+    {
+      "path": "src/lib/mexico-country-release/types.ts",
+      "bytes": 4584,
+      "sha256": "2cbabe3fc78ae37fafd62d82f1dcb91dd658b1513ea775b4065400344333bd71"
+    },
+    {
+      "path": "src/lib/mexico-country-release/contract.server.ts",
+      "bytes": 3512,
+      "sha256": "4cdecbd0aa8bb0c1cfb274f39bb418078d58e5cc6c09bd1aa5f21937e89c8e2a"
+    },
+    {
+      "path": "src/lib/mexico-country-release/evidence.server.ts",
+      "bytes": 18970,
+      "sha256": "fcc9fb63691861f55ca82e4080f54cdc6360c8f8a3b7cdae2f883ddb7b30680f"
+    },
+    {
+      "path": "src/lib/mexico-country-release/project.server.ts",
+      "bytes": 1844,
+      "sha256": "e6b1776e39c381037200326177c74e3db91e4cc1a5a0be6d1cfc2edffad87a53"
+    },
+    {
+      "path": "src/lib/mexico-country-release/package.server.ts",
+      "bytes": 6690,
+      "sha256": "0db9f5570de8c41b3ff5be105352500552e84019392c5c3615fe50ef0098e7a0"
+    },
+    {
+      "path": "src/lib/mexico-country-release/prepare.server.ts",
+      "bytes": 1174,
+      "sha256": "0222789b93e43868655db63ae44e04c78dc3aa67caa623ea28cc4acdd3adb291"
+    },
+    {
+      "path": "src/lib/mexico-country-release/recovery.server.ts",
+      "bytes": 5961,
+      "sha256": "5dceb953542fb83488c01b13ac9899c4d375de1e8df1e3cb9c31d0eef76863ff"
+    },
+    {
+      "path": "src/lib/mexico-country-release/io.server.ts",
+      "bytes": 6355,
+      "sha256": "35d7aa800884b359cc20fce657e7106d5f1813e636e8e75c4aad92b2d715db5b"
+    }
+  ],
+  "archiveNamespace": "trade/v1/countries/2010/private-all-goods/",
+  "maximumNewR2Bytes": 16777216,
+  "maximumR2Requests": 32,
+  "maximumR2TransferredBytes": 67108864,
+  "maximumNewPrivateProofBytes": 268435456,
+  "initiallyAbsentPaths": [
+    "data/countries/2010"
+  ],
+  "phaseRules": {
+    "beforeTask5": "data/countries/2010 must be absent",
+    "afterConfirmedTask5": "only the exact confirmed batch installation is permitted; compare its complete identity map instead of replaying the historical absence check"
+  }
+}

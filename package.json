@@ -38,7 +38,9 @@
     "test:e2e:canada-pilot": "playwright test --config playwright.canada-pilot.config.ts",
     "site:stage": "node --import tsx scripts/stage-site.ts",
     "site:prepare": "node --import tsx scripts/prepare-site.ts",
-    "site:verify": "node --import tsx scripts/verify-live-site.ts"
+    "site:verify": "node --import tsx scripts/verify-live-site.ts",
+    "data:mexico-archive": "node --import tsx scripts/mexico-archive.ts",
+    "data:accept-mexico-all-goods": "node --import tsx scripts/accept-mexico-all-goods.ts"
   },
   "dependencies": {
     "@astrojs/react": "7.0.1",
