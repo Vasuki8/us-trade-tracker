@@ -1,0 +1,473 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Proposed planning allowlist only; owner approval and new execution evidence are required. Not a candidate, eligibility proof, acceptance or source authorization.",
+  "planningBaseCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+  "requiredRepairCommit": "eefcefbdacfbd4c9c5bc3334406267691a92fd02",
+  "countryCode": "2010",
+  "from": "2024-09",
+  "to": "2026-08",
+  "policyId": "mexico-all-goods-release-v1",
+  "sourcePolicyId": "mexico-retained-all-goods-v1",
+  "originalEvidenceAllowlist": {
+    "path": "docs/superpowers/plans/2026-10-18-mexico-all-goods-acceptance-recovery-inputs.json",
+    "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+    "gitIdentity": {
+      "bytes": 48980,
+      "sha256": "8c06956dcd28ef350b4d403a27016a492ac34456b19c7c0016656f6fbeb4dd01"
+    },
+    "memberCount": 120,
+    "decodedEvidenceBytes": 4804241,
+    "largestMemberBytes": 1995590,
+    "originalSealedDescriptor": {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/approved-inputs.json",
+      "bytes": 49976,
+      "sha256": "79ae13e2d8bf3ccde79a585ca9a09d2674ce23263faaebd712350b9eb84c03f2",
+      "sealedMember": "approved-inputs.json"
+    },
+    "orderedSemanticEqualityRequired": true,
+    "doNotSubstituteLineEndingPins": true
+  },
+  "sourceExternalClosingAnchors": [
+    {
+      "path": "data/backups/mexico-country-audit/reassessment-20261018-r1-seal-readback.json",
+      "bytes": 324291,
+      "sha256": "520a25b9ae49e198319c074c94f2c3a037dc67dbbf457f1e395169b1ebcdd90f"
+    },
+    {
+      "path": "data/backups/mexico-country-audit/reference-classification-20261018-r1-seal-readback.json",
+      "bytes": 1671665,
+      "sha256": "2964b18f9b3f6531abcb9a73e56f86c4f3b540bd3e421afe114f0a74bbc1354b"
+    }
+  ],
+  "previousBatchAnchors": [
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/final-proof-manifest.json",
+      "bytes": 57334,
+      "sha256": "08f1f30a923b39310fd3a3d1c9c7b79e852026623c50c7e4e4e3c42c630d96c3"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1-seal-readback.json",
+      "bytes": 132938,
+      "sha256": "140c69dbc1329466f3ce797be209b6299c6c9e80664636356f816860b5782953"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1-closing-receipt.json",
+      "bytes": 949,
+      "sha256": "add3fa90172d9a1b063b8ec95ca141c2ed13c94abbe5879ef85744e753ad7d14"
+    }
+  ],
+  "previousBatchMembers": [
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/approved-inputs.json",
+      "bytes": 49976,
+      "sha256": "79ae13e2d8bf3ccde79a585ca9a09d2674ce23263faaebd712350b9eb84c03f2",
+      "sealedMember": "approved-inputs.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/input-audit-before.json",
+      "bytes": 34516,
+      "sha256": "68cd6886e0d49b729a044f53edc4ac457cac0e3e0c931ed40c323b154ae86f22",
+      "sealedMember": "input-audit-before.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/runtime-comparison-final.json",
+      "bytes": 1377,
+      "sha256": "a597ca75555cd071c0a3ad0a5ba7069610a1e709c7241b15f468aec7a860edae",
+      "sealedMember": "runtime-comparison-final.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/review-fix-disposition.json",
+      "bytes": 1889,
+      "sha256": "694d15ab5075119c0373282fc1836cde160652cdc5274680f4d0f30011a55222",
+      "sealedMember": "review-fix-disposition.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/eligibility-decision.json",
+      "bytes": 981,
+      "sha256": "8cfe14bfb29005f61e497238e141b11a7add4c7c8a6128a9e29dd3ce51d010bf",
+      "sealedMember": "eligibility-decision.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/candidate-eligibility.json",
+      "bytes": 866,
+      "sha256": "fb8544893e87f6a7cb08d3ae0bfba99b7b39d3f7864c79fbb9ae622ff8b9de17",
+      "sealedMember": "candidate-eligibility.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/reviews/final-branch/final-review.md",
+      "bytes": 11237,
+      "sha256": "58c5ff2d0fd3a520c7d65917a580758ebb17b8704cb07ceafa3507efb4a7313f",
+      "sealedMember": "reviews/final-branch/final-review.md"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/reviews/independent-calculation/independent-final-comparison.json",
+      "bytes": 44264,
+      "sha256": "e7d009aaf943f1ae3a4c48c5b621ac951374b75415bb90ad5bcc34f62d1a4d2d",
+      "sealedMember": "reviews/independent-calculation/independent-final-comparison.json"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/reviews/independent-calculation/independent_expected.py",
+      "bytes": 28812,
+      "sha256": "efa6615dedca816e53f8daaa7d124f1c2810c4c05fd877edc59deaa23e4bf57f",
+      "sealedMember": "reviews/independent-calculation/independent_expected.py"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/reviews/independent-calculation/compare_recovery.py",
+      "bytes": 17531,
+      "sha256": "7017437351c94c9d5f4648ace8fb90285cefe7cb2698fd56631a46d2e6cba478",
+      "sealedMember": "reviews/independent-calculation/compare_recovery.py"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/reviews/independent-calculation/test_independent_seal_readback.py",
+      "bytes": 6676,
+      "sha256": "0924fbd8d8b64e6bd143b65291f0b1bfbea29a15c48e814230fea3330ffdf15c",
+      "sealedMember": "reviews/independent-calculation/test_independent_seal_readback.py"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/tooling/guard.py",
+      "bytes": 8399,
+      "sha256": "32c96da1e2a917d1eddc99adf20e02a7e59bc7e06b64c4f42f20ac02a28cdc66",
+      "sealedMember": "tooling/guard.py"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/tooling/native_operations.py",
+      "bytes": 3700,
+      "sha256": "1ad54e9f43e31b22a48915a4d6362fe51cd47d5f20f24f5bd0d1bdcbac95036d",
+      "sealedMember": "tooling/native_operations.py"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/tooling/offline.mjs",
+      "bytes": 2198,
+      "sha256": "9b39348b7b04a0d957115f4386cbb09e11859d54dd2f5e6f0dcbcc5bb21b9cf0",
+      "sealedMember": "tooling/offline.mjs"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/tooling/run_real.py",
+      "bytes": 2034,
+      "sha256": "2836029231568e73edb0737e4d3f1a9cc543b1585740a29625947b865ced78df",
+      "sealedMember": "tooling/run_real.py"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/tooling/recover_once.ts",
+      "bytes": 313,
+      "sha256": "7cd4cceeae935a5ff22a81249477e8f5d1d60a24e8ea453d90a5675d0f10531d",
+      "sealedMember": "tooling/recover_once.ts"
+    },
+    {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/tooling/independent_seal_readback.py",
+      "bytes": 18448,
+      "sha256": "ff0e4fb0d5c013045ff974494d4c1a45d14603dd7aa3340a58d475e3878272ae",
+      "sealedMember": "tooling/independent_seal_readback.py"
+    }
+  ],
+  "protectedBaseline": {
+    "descriptor": {
+      "path": "data/backups/mexico-country-release/all-goods-candidate-20261018-r1/input-audit-before.json",
+      "bytes": 34516,
+      "sha256": "68cd6886e0d49b729a044f53edc4ac457cac0e3e0c931ed40c323b154ae86f22",
+      "sealedMember": "input-audit-before.json"
+    },
+    "field": "protectedFiles",
+    "count": 21,
+    "separateSeptemberProposal": {
+      "path": "docs/superpowers/plans/2026-10-17-september-coffee-candidates.md",
+      "bytes": 22422,
+      "sha256": "b60a52102ac4d09cb54ded1d64c993f5d9ff6203da6b71080ab60ac2d949875c"
+    }
+  },
+  "trackedRuntimeClosure": [
+    {
+      "path": "docs/superpowers/plans/2026-10-18-mexico-all-goods-acceptance-recovery-inputs.json",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 48980,
+        "sha256": "8c06956dcd28ef350b4d403a27016a492ac34456b19c7c0016656f6fbeb4dd01"
+      }
+    },
+    {
+      "path": "scripts/country-audit-types.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 2702,
+        "sha256": "1808e34d696d49451a3341eb866ba955761fb2b6220ac6b7d3bbe3cebfa48fe5"
+      }
+    },
+    {
+      "path": "scripts/country-publications.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 5322,
+        "sha256": "5816b1960a13d35ed7f74e2395d8f0c18f59fa8c15388fb119622ae370f4867c"
+      }
+    },
+    {
+      "path": "scripts/country-reference.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 1890,
+        "sha256": "31690cbd246ae935631fda640fa24e45d9863498868d5907504f53104ec1fde0"
+      }
+    },
+    {
+      "path": "scripts/country-snapshot-contract.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 1381,
+        "sha256": "579511232b338ce8d80a747409ad11964a45b778ac5fc196c1a614275805fe71"
+      }
+    },
+    {
+      "path": "scripts/country-snapshot-input.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 13881,
+        "sha256": "56525b71b80f0c666140b5adb3cf38a3f22480b72577a35522cb02be82b1dced"
+      }
+    },
+    {
+      "path": "scripts/country-snapshot-types.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 3644,
+        "sha256": "6f7f92fd9ecab3540269bf4f83cf0bb3bd8491d2de4247fb04d8b6254ed6d9f9"
+      }
+    },
+    {
+      "path": "scripts/country_bulk/__init__.py",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 73,
+        "sha256": "c33fa90c1b9d2ee729393714c4643d9ee18813e4c0b23a6e7642bf94cb95ad16"
+      }
+    },
+    {
+      "path": "scripts/country_bulk/contracts.py",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 6101,
+        "sha256": "ab8c49d733c2f7970bb83fd736491c08e049d7d6ee4189a4bd7ce71484aa9df5"
+      }
+    },
+    {
+      "path": "scripts/country_bulk/model.py",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 7241,
+        "sha256": "fcbebb670278b55348b84e4d5d5151e7bac9bffb825837ef190f6ec9bf6b3f88"
+      }
+    },
+    {
+      "path": "scripts/country_bulk/references.py",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 8312,
+        "sha256": "5d275e400a15e66e3782ac9db9d023564d869171ce54329f2b633f01b218a946"
+      }
+    },
+    {
+      "path": "scripts/country_bulk/runner.py",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 24152,
+        "sha256": "4fac3efee2d89abf184d49845702be6f08c7ba95819fbd5a8bed34b97d9216cb"
+      }
+    },
+    {
+      "path": "scripts/country_bulk/sources.py",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 6736,
+        "sha256": "b5e037226588b6af8b1e1364e8881b64cc4c0d4f2469dcd0ea0fe1f45603271a"
+      }
+    },
+    {
+      "path": "scripts/country_bulk/storage.py",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 4900,
+        "sha256": "427a82d3608622fd3b8b3ee8e2d642596a5fce1d6db2baae466c35a277a93087"
+      }
+    },
+    {
+      "path": "scripts/country_bulk/transport.py",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 7902,
+        "sha256": "ba3ffceb229de24d92fe62d33568d37d1e2e3cdf96b8f33fbdc6c9d78cc71ede"
+      }
+    },
+    {
+      "path": "scripts/country_bulk/worker.py",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 2709,
+        "sha256": "c709bd6b54cae06aac267edc22eea0ea2e71eff9a7fcee3e9d882f3175ded832"
+      }
+    },
+    {
+      "path": "scripts/prepare-mexico-country-release.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 2503,
+        "sha256": "accc515c36c3bf3fd2de5ba434273f468cc6d3af2ecdebeca4b68b713c02a774"
+      }
+    },
+    {
+      "path": "scripts/recover-mexico-country-release.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 1477,
+        "sha256": "f066000a26feda8d877a042b1822ef27cb2cac4efc52aae2f52e0cec21304777"
+      }
+    },
+    {
+      "path": "src/lib/mexico-country-release/contract.server.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 3512,
+        "sha256": "4cdecbd0aa8bb0c1cfb274f39bb418078d58e5cc6c09bd1aa5f21937e89c8e2a"
+      }
+    },
+    {
+      "path": "src/lib/mexico-country-release/evidence.server.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 18970,
+        "sha256": "fcc9fb63691861f55ca82e4080f54cdc6360c8f8a3b7cdae2f883ddb7b30680f"
+      }
+    },
+    {
+      "path": "src/lib/mexico-country-release/io.server.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 6355,
+        "sha256": "35d7aa800884b359cc20fce657e7106d5f1813e636e8e75c4aad92b2d715db5b"
+      }
+    },
+    {
+      "path": "src/lib/mexico-country-release/package.server.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 6690,
+        "sha256": "0db9f5570de8c41b3ff5be105352500552e84019392c5c3615fe50ef0098e7a0"
+      }
+    },
+    {
+      "path": "src/lib/mexico-country-release/prepare.server.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 1174,
+        "sha256": "0222789b93e43868655db63ae44e04c78dc3aa67caa623ea28cc4acdd3adb291"
+      }
+    },
+    {
+      "path": "src/lib/mexico-country-release/project.server.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 1844,
+        "sha256": "e6b1776e39c381037200326177c74e3db91e4cc1a5a0be6d1cfc2edffad87a53"
+      }
+    },
+    {
+      "path": "src/lib/mexico-country-release/recovery.server.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 5961,
+        "sha256": "5dceb953542fb83488c01b13ac9899c4d375de1e8df1e3cb9c31d0eef76863ff"
+      }
+    },
+    {
+      "path": "src/lib/mexico-country-release/types.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 4584,
+        "sha256": "2cbabe3fc78ae37fafd62d82f1dcb91dd658b1513ea775b4065400344333bd71"
+      }
+    },
+    {
+      "path": "src/lib/trade/duty-types.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 2426,
+        "sha256": "2d8f8925b16ed7d2307c87891ebf3eb8349563fb2d5649fab462b48ce163d0f4"
+      }
+    },
+    {
+      "path": "src/lib/trade/types.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 1900,
+        "sha256": "4f5088a386b1aebb8b8743457480f01fa062204991ec03f872a27b9cf209d38f"
+      }
+    }
+  ],
+  "runtimePinRule": "Git identities are canonical committed bytes. Authenticate the checked-out clean Git tree and separately freeze actual execution-file bytes after setup; never compare CRLF working bytes to an LF pin as if equal. No runtime/policy/module change is authorized. Trace controls must reject unlisted local imports.",
+  "postPackagingTrackedDiffAllowlist": [
+    "README.md",
+    "docs/data-validation/2010-acceptance-readiness.md",
+    "docs/data-validation/2010-all-goods-candidate.md",
+    "docs/data-validation/2010-all-goods-candidate-evidence.json"
+  ],
+  "historicalCandidate": {
+    "bytes": 6443203,
+    "sha256": "d3b1d5261ad931f728431eb1fbf2bae281a8e142d992fad055dc083a3d1db3f2",
+    "status": "ineligible",
+    "copyOrOpenBody": false
+  },
+  "expectedUnchangedProjection": {
+    "bytes": 9425,
+    "sha256": "a507ead76c0936572c54674b8b0615d7813cd1749eeff95bdec5313eabd07d02"
+  },
+  "newPrivateRoot": "data/backups/mexico-country-release/repaired-runtime-verification-20261018-r1",
+  "permissionsAreProposed": true,
+  "trackedSupportAssets": [
+    {
+      "path": "package.json",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 3250,
+        "sha256": "5d66957a181f34d18315011b85537e1e4ecbe2ca6ba3bdce7682d2dcee046b91"
+      }
+    },
+    {
+      "path": "package-lock.json",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 239377,
+        "sha256": "369164d0c2c70b3bb49bd82195d361bbddf50ef71506d7498098e83e52a89f24"
+      }
+    },
+    {
+      "path": "tsconfig.json",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 240,
+        "sha256": "0d4474d739e2650d525ac83da7a8ae1c29e801d973b4f36552d737919db1c343"
+      }
+    },
+    {
+      "path": "vitest.config.ts",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 145,
+        "sha256": "4212bf4902f5bbd2fd4ef218e14692d34d48f0e744e1cfe634aac4b1185f733a"
+      }
+    },
+    {
+      "path": "astro.config.mjs",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 251,
+        "sha256": "594fd9902d556c708ca2296592b02ac1b40bdd839d1d1cfb7540ea8ebcb1d9f8"
+      }
+    },
+    {
+      "path": ".nvmrc",
+      "gitCommit": "c0ecd0edfe37456fc2e3d250b27362f42087f4fc",
+      "gitIdentity": {
+        "bytes": 3,
+        "sha256": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53"
+      }
+    }
+  ]
+}
