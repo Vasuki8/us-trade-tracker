@@ -2,7 +2,7 @@
 
 This tooling handles only Mexico2010, September2024–August2026, nominal integer USD. Imports are general-import customs GEN_VAL_MO; exports are total domestic-plus-foreign FAS ALL_VAL_MO. Product comparisons, classifications and a public Mexico profile remain unavailable. Statistical exclusions remain included in country totals.
 
-The approved execution authority is the [six-task plan](../superpowers/plans/2026-10-18-mexico-private-acceptance-archive.md) and its exact input companion. This document is an operator contract, not evidence of a completed upload, acceptance or installation.
+The approved execution authority is the [six-task plan](../superpowers/plans/2026-10-18-mexico-private-acceptance-archive.md) and its exact input companion. This operator contract describes the enforced boundaries; the dated outcome below links the separately observed evidence.
 
 ## State and evidence
 
@@ -19,7 +19,7 @@ Use locked Node24 and installed dependencies. The commands accept no repo/countr
 - npm run data:mexico-archive -- keygen --output .tmp/mexico-private-archive-20261018-r1/recipient
 - prepare --input-dir data/backups/mexico-country-release/private-acceptance-archive-20261018-r1/inputs --authorization data/backups/mexico-country-release/private-acceptance-archive-20261018-r1/authorization.json --output data/backups/mexico-country-release/private-acceptance-archive-20261018-r1/prepared
 - upload or readback: --archive-dir, --capability-artifact, --artifact-proof, --key-file, --output
-- capabilities: --descriptors (canonical JSON including final newline), --recipient-public-key (SPKI base64), --output; actual reviewed main workflow only
+- capabilities: --descriptors (compact canonical JSON, with or without one final newline), --recipient-public-key (SPKI base64), --output; actual reviewed main workflow only
 - verify-initialize: --manifest-sha256, --manifest-bytes, --output; actual reviewed main workflow only
 - verify-selected: --output; no identity/initialization override
 - npm run data:accept-mexico-all-goods -- --archive-dir --pointer-file --verification-file --output (each followed by its exact private path)
@@ -56,6 +56,17 @@ A marker is selected only after complete object/member authentication and prospe
 
 ## Current outcome
 
-Implementation and synthetic checks are in progress. No provider write, remote acceptance or canonical installation is reported by this document. Actual sanitized evidence will be added after the approved live gates, preserving every failed or uncertain outcome.
+**October 19, 2026:** private all-goods acceptance, archive verification and first canonical installation are confirmed. [Sanitized evidence](../data-validation/2010-private-acceptance-evidence.json) records the exact object/marker hashes, three recoveries, independent checks and resource use. The immutable candidate retains its historical false flags; the separate selected marker has allGoodsAccepted:true. Every classification/product/public-profile flag remains false.
+
+| Observed stage | Evidence |
+| --- | --- |
+| Encrypted capabilities | [Run 39198002594](https://github.com/Vasuki8/us-trade-tracker/actions/runs/39198002594), reviewed merged runtime 3ff5cec |
+| Initialization | [Run 39198257368](https://github.com/Vasuki8/us-trade-tracker/actions/runs/39198257368), prospective recovery before the sole marker PUT and full selected-marker readback |
+| Fresh read-only verification | [Run 39198421800](https://github.com/Vasuki8/us-trade-tracker/actions/runs/39198421800), distinct runner/recovery, zero PUTs |
+| Local readback and installation | Four GETs, third recovery, then first installation; exact four-file closure and 22 protected pins independently checked |
+
+The closed transfer batch used 21 HTTP attempts (17 GET / 4 PUT), 42,125,887 combined body bytes and 8,425,152 stored bytes, within every approved ceiling. Three dispatches and four real state admissions used no replacement. The shared repair allowance was spent on [PR 137](https://github.com/Vasuki8/us-trade-tracker/pull/137), accepting the GitHub form’s canonical descriptor input with an optional terminal newline. The owned private-key file was disposed after final use and before expiry; no physical-erasure claim is made.
+
+Post-install checks passed 2,035 unit tests, static checks and 220 existing browser tests. The fixture build has 28 files/867,534 bytes; the bounded real four-product/Canada build has 37 files/2,817,164 bytes, largest 352,232 bytes. Both are below the 15,000-file alert and exclude Mexico country routes/private archive output. Existing accepted datasets and product selection remain unchanged. No site package, website upload or public Mexico profile was created. Final evidence integration, preservation and cleanup are recorded separately after observation; this outcome does not preclaim them.
 
 References: [Node crypto](https://nodejs.org/docs/latest-v24.x/api/crypto.html), [R2 presigning](https://developers.cloudflare.com/r2/api/s3/presigned-urls/), [R2 S3 compatibility](https://developers.cloudflare.com/r2/api/s3/api/), [artifact authentication](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/download-workflow-artifacts).
