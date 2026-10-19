@@ -47,7 +47,7 @@ jobs:
         id: preflight
         run: |
           case "$OPERATION" in
-            verify-selected) test -z "$MANIFEST_SHA256" && test -z "$MANIFEST_BYTES"; args=(verify-selected) ;;
+            verify-selected) if [ -n "$MANIFEST_SHA256" ] || [ -n "$MANIFEST_BYTES" ]; then exit 1; fi; args=(verify-selected) ;;
             verify-initialize) args=(verify-initialize --manifest-sha256 "$MANIFEST_SHA256" --manifest-bytes "$MANIFEST_BYTES") ;;
             *) exit 1 ;;
           esac
@@ -60,7 +60,7 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
         run: |
           case "$OPERATION" in
-            verify-selected) test -z "$MANIFEST_SHA256" && test -z "$MANIFEST_BYTES"; args=(verify-selected) ;;
+            verify-selected) if [ -n "$MANIFEST_SHA256" ] || [ -n "$MANIFEST_BYTES" ]; then exit 1; fi; args=(verify-selected) ;;
             verify-initialize) args=(verify-initialize --manifest-sha256 "$MANIFEST_SHA256" --manifest-bytes "$MANIFEST_BYTES") ;;
             *) exit 1 ;;
           esac

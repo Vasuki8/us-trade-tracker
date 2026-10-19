@@ -55,6 +55,8 @@ export async function writeMexicoStateFile(grant:MexicoStateGrant,name:string,by
 
 /** Retain the original parent's identity when extending an owned state tree. */
 export async function reserveMexicoStateChild(parent:MexicoStateGrant,name:string):Promise<MexicoStateGrant>{
- if(!/^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$/.test(name))throw Error('mexico-state-child');await assertMexicoStateGrant(parent);
- const grant=await reserveMexicoStateDirectory(parent.root,resolve(parent.path,name));await assertMexicoStateGrant(parent);return grant;
+ if(!/^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$/.test(name))throw Error('mexico-state-child');const target=scoped(parent.root,resolve(parent.path,name));await assertMexicoStateGrant(parent);await freeSpace(parent.path);await assertMexicoStateGrant(parent);
+ // Parent ownership is already established: do not recreate or recapture its ancestors.
+ await fs.mkdir(target);await assertMexicoStateGrant(parent);const stat=await fs.lstat(target,{bigint:true});if(!stat.isDirectory()||stat.isSymbolicLink())throw Error('mexico-state-directory');
+ const grant=Object.freeze({root:parent.root,path:target,ancestors:Object.freeze([...parent.ancestors,Object.freeze({path:target,dev:stat.dev,ino:stat.ino})])});grants.add(grant);await assertMexicoStateGrant(grant);return grant;
 }
