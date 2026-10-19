@@ -1,3 +1,7 @@
+import {authenticateMexicoAcceptance} from '../../src/lib/mexico-country-release/acceptance.server';
+import {mexicoAcceptanceContract} from '../../src/lib/mexico-country-release/acceptance-contract.server';
+import {buildMexicoArchive,proposeMexicoAcceptedPointer} from '../../src/lib/mexico-country-archive/bundle.server';
+import type {MexicoArchiveMaterial} from '../../src/lib/mexico-country-archive/types';
 import {vi} from 'vitest';
 import approved from '../../docs/superpowers/plans/2026-10-18-mexico-private-acceptance-archive-inputs.json';
 import {mexicoContract,identity,json} from '../../src/lib/mexico-country-release/contract.server';
@@ -32,4 +36,12 @@ export function makeMexicoAcceptanceFixture(contract:Record<string,any>,source:'
  for(const [name,value] of Object.entries({candidate:pack.digest,projection:identity(json(projection)),pins,plan,inputs,packagingCommit,reviewedCommit:head,releaseId:pack.manifest.releaseId})){const frozen=structuredClone(value);vi.spyOn(contract,name,'get').mockImplementation(()=>structuredClone(frozen));}
  const authorization:MexicoAcceptanceAuthorization={schemaVersion:1,policyId:'mexico-private-all-goods-acceptance-v1',actor:'owner',scope:'private-all-goods-acceptance-and-recovery',approvedAt:'2026-10-19T02:00:00.000Z',approvedPlan:plan,approvedInputs:inputs,candidate:pack.digest,eligibility:identity(json(report)),operatorProof:identity(json(proof)),baseline:'absent',instruction:'Owner approves private Mexico all-goods acceptance, retained evidence archiving and isolated recovery; every product comparison and public Mexico profile stay withheld.',classificationAccepted:false,productComparisonsAvailable:false,publicMexicoProfile:false};
  return {input:{candidateBytes:pack.bytes,evidenceFiles,authorization},pack,projection,proof,report,pins};
+}
+
+export function makeMexicoArchiveFixture(){const f=makeMexicoAcceptanceFixture(mexicoAcceptanceContract),acceptance=authenticateMexicoAcceptance(f.input),material=buildMexicoArchive(acceptance),pointer=proposeMexicoAcceptedPointer(material,'2026-10-19T03:00:00.000Z');return {...f,acceptance,material,pointer};}
+export class MemoryMexicoArchiveStore {
+ readonly objects=new Map<string,Buffer>();readonly events:{method:'get'|'put';key:string;maxBytes?:number}[]=[];
+ constructor(material:MexicoArchiveMaterial){for(const d of material.descriptors)this.objects.set(d.key,Buffer.from(material[d.role==='candidate'?'candidateBytes':d.role==='evidence'?'evidenceBytes':'manifestBytes']));}
+ async get(key:string,maxBytes:number){this.events.push({method:'get',key,maxBytes});const bytes=this.objects.get(key);if(!bytes)return null;if(bytes.length>maxBytes)throw Error('oversized object');return {bytes:Buffer.from(bytes),etag:'"metadata-is-not-content-proof"'};}
+ async put(key:string,bytes:Buffer,condition:{ifNoneMatch:'*'}){this.events.push({method:'put',key});if(condition.ifNoneMatch!=='*'||this.objects.has(key))throw Error('conditional conflict');this.objects.set(key,Buffer.from(bytes));}
 }
