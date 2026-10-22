@@ -1,6 +1,6 @@
-import {useEffect,useState} from 'react';
 import type {OverviewProduct} from '../lib/trade/overview';
-import type {ChartSeries,Direction} from '../lib/trade/types';
+import type {ChartSeries} from '../lib/trade/types';
+import {OverviewViewLink,useOverviewViewLink} from './OverviewViewLink';
 import {monthLabel,percent,usd} from '../lib/trade/format';
 import {profileViewPath,monthlyChangesPath,releaseBriefingPath} from '../lib/trade/view-link';
 
@@ -22,8 +22,9 @@ const share=(value:number|null)=>value===null?'Unavailable':value>0&&value<0.1?'
 const deltaClass=(value:number|null)=>value===null?'':value<0?'negative':value>0?'positive':'';
 
 export function TradeOverview({products}:{products:OverviewProduct[]}){
-  const [code,setCode]=useState(products[0].code),[direction,setDirection]=useState<Direction>('imports'),[period,setPeriod]=useState<'monthly'|'annual'>('monthly'),[months,setMonths]=useState<12|60>(60),[ready,setReady]=useState(false);
-  useEffect(()=>setReady(true),[]);
+  const viewLink=useOverviewViewLink(products.map(product=>product.code));
+  const {selection,ready,changeSelection}=viewLink;
+  const {productCode:code,direction,comparisonPeriod:period,months}=selection;
   const product=products.find(item=>item.code===code)!,{view,monthlyPartners,partnerCounts}=product[direction];
   const comparison=period==='monthly'?view.latestMonth:view.trailingYear,partners=period==='monthly'?monthlyPartners:view.partners;
   const availablePartners=partners.filter(row=>row.valueUsd!==null),leading=availablePartners[0],duty=product.duty[period];
@@ -31,12 +32,13 @@ export function TradeOverview({products}:{products:OverviewProduct[]}){
   const periodLabel=period==='monthly'?'Latest month':'Trailing 12 months';
   return <div className="trade-overview">
     <div className="overview-controls">
-      <label className="sr-only" htmlFor="overview-product">Overview product</label><select id="overview-product" value={code} disabled={!ready} onChange={event=>setCode(event.target.value)}>{products.map(item=><option key={item.code} value={item.code}>{item.name} · {item.code}</option>)}</select>
-      <div className="segment" role="group" aria-label="Overview trade direction">{(['imports','exports'] as const).map(value=><button type="button" key={value} disabled={!ready} aria-pressed={direction===value} onClick={()=>setDirection(value)}>{value==='imports'?'Imports':'Exports'}</button>)}</div>
-      <div className="segment" role="group" aria-label="Overview comparison period"><button type="button" disabled={!ready} aria-pressed={period==='monthly'} onClick={()=>setPeriod('monthly')}>Latest month</button><button type="button" disabled={!ready} aria-pressed={period==='annual'} onClick={()=>setPeriod('annual')}>Last 12 months</button></div>
+      <label className="sr-only" htmlFor="overview-product">Overview product</label><select id="overview-product" value={code} disabled={!ready} onChange={event=>changeSelection({...selection,productCode:event.target.value})}>{products.map(item=><option key={item.code} value={item.code}>{item.name} · {item.code}</option>)}</select>
+      <div className="segment" role="group" aria-label="Overview trade direction">{(['imports','exports'] as const).map(value=><button type="button" key={value} disabled={!ready} aria-pressed={direction===value} onClick={()=>changeSelection({...selection,direction:value})}>{value==='imports'?'Imports':'Exports'}</button>)}</div>
+      <div className="segment" role="group" aria-label="Overview comparison period"><button type="button" disabled={!ready} aria-pressed={period==='monthly'} onClick={()=>changeSelection({...selection,comparisonPeriod:'monthly'})}>Latest month</button><button type="button" disabled={!ready} aria-pressed={period==='annual'} onClick={()=>changeSelection({...selection,comparisonPeriod:'annual'})}>Last 12 months</button></div>
       <span className="overview-context">{monthLabel(view.reportingMonth)} · USD</span>
     </div>
-    <noscript><p className="chart-note">Initial view: latest-month imports. Open a product profile for all available data; enable JavaScript to change overview filters.</p></noscript>
+    <OverviewViewLink {...viewLink}/>
+    <noscript><p className="chart-note">Initial view: {products[0].name} imports, latest month, 5Y history. Enable JavaScript to restore or share choices.</p></noscript>
     <div className="overview-kpis" role="region" aria-label="Overview figures">
       <div className="overview-kpi"><span>U.S. {direction} · {periodLabel.toLowerCase()}</span><strong>{usd(comparison.current,true)}</strong><small>{monthLabel(view.reportingMonth)}{period==='annual'?' · 12-month total':''}</small></div>
       <div className="overview-kpi"><span>{period==='monthly'?'Year-over-year change':'Change vs. previous 12 months'}</span><strong className={deltaClass(comparison.changePercent)}>{percent(comparison.changePercent)}</strong><small>{usd(comparison.changeUsd,true)} change · U.S. total</small></div>
@@ -44,7 +46,7 @@ export function TradeOverview({products}:{products:OverviewProduct[]}){
       {direction==='imports'?<div className="overview-kpi"><span>Estimated duty share</span><strong>{share(duty?.dutySharePercent??null)}</strong><small>{duty?.coverage.qualified?'Qualified · RP70/79':duty?.coverage.status!=='verified'?'Coverage unverified':'Calculated / consumption value'}</small></div>:<div className="overview-kpi"><span>Partners with reported values</span><strong>{partnerCounts[period].reported}</strong><small>{periodLabel} · {partnerCounts[period].total} partners in history</small></div>}
     </div>
     <div className="overview-grid">
-      <section className="dashboard-panel" aria-labelledby="overview-history-heading"><div className="panel-heading"><h2 id="overview-history-heading">Monthly trade history</h2><div className="segment" role="group" aria-label="Overview history window">{([12,60] as const).map(value=><button type="button" key={value} disabled={!ready} aria-pressed={months===value} onClick={()=>setMonths(value)}>{value===12?'1Y':'5Y'}</button>)}</div></div>
+      <section className="dashboard-panel" aria-labelledby="overview-history-heading"><div className="panel-heading"><h2 id="overview-history-heading">Monthly trade history</h2><div className="segment" role="group" aria-label="Overview history window">{([12,60] as const).map(value=><button type="button" key={value} disabled={!ready} aria-pressed={months===value} onClick={()=>changeSelection({...selection,months:value})}>{value===12?'1Y':'5Y'}</button>)}</div></div>
         <div className="chart-context"><i aria-hidden="true"></i>{product.name} · U.S. {direction}</div><History points={points}/><History points={points} mobile/>
         <div className="panel-foot"><span>Monthly current USD · {direction==='imports'?'General imports':'Total exports'} · Not seasonally adjusted</span><a href={profileHref+'#chart-data-heading'}>Exact values &amp; downloads →</a></div>
       </section>

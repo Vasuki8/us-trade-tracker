@@ -93,3 +93,4 @@
 }
 
 @media print { .release-briefing-page .content-details>summary,.portfolio-briefing .content-details>summary { display:none!important; } }
+@media print { .overview-view-link { display:none!important; } }
