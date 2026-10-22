@@ -25,4 +25,6 @@ The final local retained-data build contains 39 files / 3,139,597 raw bytes, bef
 
 Independent review found that the homepage's closed Canada coverage disclosure omitted its source and fixed-history qualification in print. The disclosure now uses the existing print-expansion rules. A browser regression failed before the repair and passed afterward; ordinary browsing still uses a native closed disclosure.
 
+The existing Firefox/WebKit check now also selects the four new theme tests: persistent preferences and research state, blocked storage, global search and narrow/print layout. Test discovery confirms eight added cases across both engines while retaining all 78 existing cases. The workflow and dependencies are unchanged; actual execution results remain a separate gate.
+
 A fresh two-worker Windows run passed 2,032 tests and timed out in seven existing filesystem-heavy cases at their unchanged 5,000ms deadline. No assertions or deadlines were weakened, and the timing failures are not claimed fixed. Follow-up verification and integration outcomes are recorded in [PR #139](https://github.com/Vasuki8/us-trade-tracker/pull/139).
