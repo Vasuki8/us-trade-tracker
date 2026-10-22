@@ -1,10 +1,69 @@
 ---
 import '../styles/global.css';
+import '../styles/graphite.css';
 import {monthlyChangesPath,releaseBriefingPath} from '../lib/trade/view-link';
 import {resolveCanadaPilotMode} from '../lib/country-preview/pilot-config';
+import {loadPublishedReleases} from '../lib/trade/load-release';
+import {monthLabel} from '../lib/trade/format';
 const {title,description='Research U.S. goods trade by product and partner country.',productCode,robots}=Astro.props;
 const canadaPilot=resolveCanadaPilotMode(process.env);
+const profiles=await loadPublishedReleases();
+const months=[...new Set(profiles.map(({release})=>release.reportingMonth))];
+const path=Astro.url.pathname;
+const links=[
+  {href:'/',label:'Overview',icon:'overview',active:path==='/'},
+  {href:'/products/',label:'Product research',icon:'search',active:path.startsWith('/products/')},
+  ...(canadaPilot?[{href:'/countries/1220/',label:'Country research',icon:'globe',active:path.startsWith('/countries/')}]:[]),
+  {href:monthlyChangesPath(productCode),label:'Monthly changes',icon:'chart',active:path.startsWith('/changes/')},
+  {href:releaseBriefingPath(productCode),label:'Briefing',icon:'file',active:path.startsWith('/briefing/')},
+  {href:'/methods/',label:'Methods',icon:'info',active:path==='/methods/'},
+];
+const icons:Record<string,string>={overview:'M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z',search:'M21 21l-5-5 M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0',globe:'M3 12h18 M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20 M12 2c-6 6-6 14 0 20 M12 2c6 6 6 14 0 20',chart:'M3 3v18h18 M6 15l5-6 4 3 6-8',file:'M14 2H4v20h16V8z M14 2v6h6 M8 12h8 M8 16h8',info:'M12 11v6 M12 7v1 M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0'};
 ---
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/>{robots&&<meta name="robots" content={robots}/>}<title>{title} · US Trade Tracker</title></head>
-<body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">▥</span>US Trade Tracker</a><nav aria-label="Main"><a href="/products/">Product research</a>{canadaPilot&&<a href="/countries/1220/">Country research</a>}<a href={monthlyChangesPath(productCode)}>Monthly changes</a><a href={releaseBriefingPath(productCode)}>Briefing</a><a href="/methods/">Methods</a><span class="pilot-label">DEVELOPMENT PILOT</span></nav></header>
-<main id="main"><slot/></main><footer class="site-footer"><div><strong>US Trade Tracker</strong><p>U.S. goods trade, with its context attached.</p></div><div><a href="/methods/">Definitions, sources &amp; release information</a><p>This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.</p></div></footer></body></html>
+<!doctype html>
+<html lang="en" data-theme="light"><head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content={description}/>{robots&&<meta name="robots" content={robots}/>}<title>{title} · US Trade Tracker</title>
+  <script is:inline>try{const theme=localStorage.getItem('us-trade-theme');if(theme==='dark'||theme==='light')document.documentElement.dataset.theme=theme;}catch{}</script>
+</head><body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="US Trade Tracker overview"><span class="brand-mark" aria-hidden="true"><b></b><b></b><b></b></span><span>US TRADE<span class="brand-sub">TRACKER</span></span></a>
+    <div class="global-search" data-global-search hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d={icons.search}/></svg>
+      <label class="sr-only" for="global-search">Search products or HS codes</label><input id="global-search" type="search" placeholder="Search products or HS codes" autocomplete="off" aria-controls="global-search-results" aria-describedby="global-search-count"/><span class="sr-only" id="global-search-count" aria-live="polite"></span><kbd aria-hidden="true">Ctrl K</kbd>
+      <section id="global-search-results" class="global-search-results" aria-label="Product search results" hidden><p data-global-empty hidden>No matching reviewed products.</p><ul>{profiles.map(({product,release})=><li data-global-result data-search={`${product.code} ${product.displayName} ${release.observations.find(row=>row.geography==='world')?.description}`}><a href={`/products/${product.code}/`}><span>{product.displayName}</span><small>HS {product.code}</small></a></li>)}</ul><a class="all-products" href="/products/">Browse all reviewed products →</a></section>
+    </div>
+    <span class="header-source"><i aria-hidden="true"></i>CENSUS · MONTHLY</span>
+    <button class="theme-toggle" type="button" role="switch" aria-label="Dark theme" aria-checked="false" data-theme-toggle hidden><svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2 M12 20v2 M2 12h2 M20 12h2 M5 5l1 1 M18 18l1 1 M5 19l1-1 M18 6l1-1"/></svg><svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/></svg><span data-theme-name>Light</span></button>
+  </header>
+  <div class="site-shell"><aside class="site-sidebar"><span class="nav-label">RESEARCH</span>
+    <nav class="main-navigation" aria-label="Main">{links.map(link=><a href={link.href} aria-current={link.active?'page':undefined}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={icons[link.icon]}/></svg>{link.label}</a>)}</nav>
+    <div class="quick-access"><span class="nav-label">QUICK ACCESS</span>{profiles.map(({product})=><a href={`/products/${product.code}/`} aria-current={productCode===product.code&&path.startsWith('/products/')?'page':undefined}><span>{product.displayName}</span><small>HS {product.code}</small></a>)}</div>
+    <div class="sidebar-coverage"><span class="nav-label">PILOT COVERAGE</span><strong>{profiles.length} reviewed products</strong><span>HS 6-digit · United States</span><span>{months.length===1?`Data through ${monthLabel(months[0])}`:'Reporting months vary by product'}</span><span class="pilot-label">DEVELOPMENT PILOT</span></div>
+  </aside><div class="site-content"><main id="main"><slot/></main>
+    <footer class="site-footer"><span>U.S. Census Bureau · Current USD · Not seasonally adjusted</span><div><a href="/methods/">Definitions, sources &amp; release information</a><p>This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.</p></div></footer>
+  </div></div>
+</body></html>
+<script>
+  const toggle=document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  const applyTheme=(theme:'light'|'dark')=>{
+    document.documentElement.dataset.theme=theme;toggle?.setAttribute('aria-checked',String(theme==='dark'));
+    const label=toggle?.querySelector('[data-theme-name]');if(label)label.textContent=theme==='dark'?'Dark':'Light';
+  };
+  if(toggle){
+    applyTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
+    toggle.addEventListener('click',()=>{const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';applyTheme(theme);try{localStorage.setItem('us-trade-theme',theme);}catch{}});toggle.hidden=false;
+    window.addEventListener('storage',event=>{if(event.key==='us-trade-theme')applyTheme(event.newValue==='dark'?'dark':'light');});
+  }
+  const searchBox=document.querySelector<HTMLElement>('[data-global-search]');
+  if(searchBox){
+    const input=searchBox.querySelector<HTMLInputElement>('input')!,results=searchBox.querySelector<HTMLElement>('.global-search-results')!;
+    const entries=[...results.querySelectorAll<HTMLElement>('[data-global-result]')];
+    const filter=()=>{const terms=input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);for(const entry of entries)entry.hidden=!terms.every(term=>entry.dataset.search!.toLowerCase().includes(term));const shown=entries.filter(entry=>!entry.hidden).length;results.querySelector<HTMLElement>('[data-global-empty]')!.hidden=shown>0;results.hidden=terms.length===0;document.querySelector('#global-search-count')!.textContent=terms.length?`${shown} matching products. Tab or press Arrow Down to open a result.`:'';};
+    input.addEventListener('input',filter);input.addEventListener('focus',filter);
+    input.addEventListener('keydown',event=>{if(event.key==='Enter'&&!results.hidden)entries.find(entry=>!entry.hidden)?.querySelector('a')?.click();if(event.key==='ArrowDown'&&!results.hidden){event.preventDefault();entries.find(entry=>!entry.hidden)?.querySelector('a')?.focus();}});
+    searchBox.addEventListener('focusout',event=>{if(!searchBox.contains(event.relatedTarget as Node|null))results.hidden=true;});
+    document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();input.focus();}if(event.key==='Escape'){if(results.contains(document.activeElement))input.focus();results.hidden=true;document.querySelector('#global-search-count')!.textContent='';}});searchBox.hidden=false;
+  }
+</script>

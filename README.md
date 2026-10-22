@@ -14,6 +14,10 @@ The latest verified package has **39 files / 2,817,915 raw bytes**, with 84 exac
 
 Pages/chart data share Cloudflare Pages, downloads are generated in the browser and R2 remains private preservation storage. The public site uses `noindex,nofollow`; that indexing policy does not restrict access. No new Census request, paid upgrade, recurring job or indexing change was made by this expansion.
 
+## Local design preview
+
+The local [Graphite redesign](docs/validation/graphite-redesign.md) implements the approved compact dashboard, numerical overview and persistent light/dark toggle. It preserves the existing research and download flows. This code change has not yet been published to the public pilot.
+
 ## Product profile navigation
 
 The published profiles include On this profile section links, annual one-country links from Leading partners, and copied links that follow native section history while preserving manual-copy/picker/download state. Independent review found no issues; exact-head CI passed and PR #97 was merged before the authenticated package was published to the existing Free Production project. Local acceptance passed 1,297 unit/121 browser/24 packaging tests with zero type diagnostics. Public navigation, partner figures, keyboard/mobile/static defaults and downloads passed; restoration was unnecessary. See the [navigation verification record](docs/validation/profile-research-navigation.md#verified-public-update).

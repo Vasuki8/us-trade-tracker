@@ -15,7 +15,7 @@ function Plot({view,left,right,top,bottom}:{view:ProfileView;left:number;right:n
       const path=series.points.map((point,index)=>{if(point.valueUsd===null){connected=false;return '';}
         const command=connected&&!point.breakBefore?'L':'M';connected=true;return `${command}${x(index)},${y(point.valueUsd)}`;
       }).join(' ');
-      return <g key={series.code}><path d={path} fill="none" stroke={seriesColor(series.code)} strokeWidth="3" strokeDasharray={seriesDash(seriesIndex)} strokeLinejoin="round"/>
+      return <g key={series.code} data-series={seriesIndex}><path d={path} fill="none" stroke={seriesColor(series.code)} strokeWidth="3" strokeDasharray={seriesDash(seriesIndex)} strokeLinejoin="round"/>
         {series.points.map((point,i)=>point.valueUsd===null?null:<circle key={point.month} cx={x(i)} cy={y(point.valueUsd)} r={point.recordedRevision?4:2.7} fill={point.recordedRevision?'white':seriesColor(series.code)} stroke={point.recordedRevision?seriesColor(series.code):undefined} strokeWidth={point.recordedRevision?2:undefined}><title>{`${monthLabel(point.month)}: ${usd(point.valueUsd)}${point.recordedRevision?' · Recorded revision':''}`}</title></circle>)}
       </g>;
     })}
@@ -34,7 +34,7 @@ export const TradeChart=forwardRef<SVGSVGElement,{view:ProfileView}>(function Tr
       <text x="34" y="64" fill="#50636b" fontSize="15">HS {view.productCode} · U.S. {view.selection.direction} · monthly value in current USD</text>
       {view.provenance.source==='fixture'&&<text x="34" y="90" fontSize="13" fill="#9a492b">DEVELOPMENT SAMPLE DATA — synthetic observations</text>}
       <Plot view={view} left={80} right={910} top={130} bottom={350}/>
-      {view.series.map((series,i)=><g key={series.code}><line x1={34+i*300} x2={54+i*300} y1="407" y2="407" stroke={seriesColor(series.code)} strokeWidth="3" strokeDasharray={seriesDash(i)}/><text x={62+i*300} y="412" fontSize="13" fill="#172e35">{series.name}</text></g>)}
+      {view.series.map((series,i)=><g key={series.code} data-series={i}><line x1={34+i*300} x2={54+i*300} y1="407" y2="407" stroke={seriesColor(series.code)} strokeWidth="3" strokeDasharray={seriesDash(i)}/><text x={62+i*300} y="412" fontSize="13" fill="#172e35">{series.name}</text></g>)}
       <text x="34" y="436" fontSize="11" fill="#50636b">Gaps: unavailable values; lines also break at incompatible or unverified classifications. Open circles: recorded revisions.</text>
       <text x="34" y="459" fontSize="12" fill="#50636b">Source: {view.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau'} · {view.provenance.measure} · not seasonally adjusted</text>
       <text x="34" y="480" fontSize="12" fill="#50636b">Period: {points[0]?.month??'Unavailable'} to {points.at(-1)?.month??'Unavailable'} · retrieved {view.provenance.retrievedAt}</text>
@@ -45,7 +45,7 @@ export const TradeChart=forwardRef<SVGSVGElement,{view:ProfileView}>(function Tr
       <rect width="320" height={mobileHeight} fill="white"/>
       <text x="0" y="18" fontSize="13" fill="#50636b">Monthly U.S. {view.selection.direction} · current USD</text>
       <Plot view={view} left={52} right={308} top={40} bottom={202}/>
-      {view.series.map((series,i)=><g key={series.code}><line x1="0" x2="20" y1={249+i*24} y2={249+i*24} stroke={seriesColor(series.code)} strokeWidth="3" strokeDasharray={seriesDash(i)}/><text x="28" y={253+i*24} fontSize="13" fill="#172e35">{series.name}</text></g>)}
+      {view.series.map((series,i)=><g key={series.code} data-series={i}><line x1="0" x2="20" y1={249+i*24} y2={249+i*24} stroke={seriesColor(series.code)} strokeWidth="3" strokeDasharray={seriesDash(i)}/><text x="28" y={253+i*24} fontSize="13" fill="#172e35">{series.name}</text></g>)}
       <text x="0" y={mobileHeight-8} fontSize="12" fill="#50636b">{view.provenance.source==='fixture'?'Development sample data':'U.S. Census Bureau'} · {view.provenance.measure}</text>
     </svg>
   </>;

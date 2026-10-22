@@ -3,6 +3,16 @@ import {readFile,readdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {parseCsv} from '../helpers/parse-csv';
 const path='/countries/1220/';
+
+test('homepage prints the closed Canada snapshot source and fixed-history qualification',async({page})=>{
+  await page.goto('/');
+  const coverage=page.getByRole('region',{name:'Country snapshot',exact:true}).locator('details').filter({has:page.locator('summary',{hasText:'Snapshot coverage'})});
+  await expect(coverage).not.toHaveAttribute('open','');
+  await expect(coverage.locator('p')).toBeHidden();
+  await page.emulateMedia({media:'print'});
+  await expect(coverage.locator('p')).toBeVisible();
+  await expect(coverage).toContainText('Source: Synthetic development data. Fixed historical snapshot; no monthly update schedule.');
+});
 test.use({timezoneId:'Pacific/Honolulu'});
 test.beforeEach(async({page})=>{await page.route('**/*',route=>{const u=new URL(route.request().url());if(u.hostname!=='127.0.0.1'&&u.protocol!=='blob:')throw Error('Unexpected network request');return route.continue();});});
 test('pilot fixtures identify the historical coverage, source and unavailable categories',async({page})=>{
@@ -42,7 +52,7 @@ test('pilot output omits private previews, acceptance packages and private ident
   await scan(resolve('.tmp',matching[0]));
 });
 test('opted-in homepage, Methods and product navigation expose only the fixed country snapshot',async({page})=>{
-  await page.goto('/');const card=page.getByRole('region',{name:'Country snapshot',exact:true});await expect(card).toContainText('September 2024–August 2026');await expect(card).toContainText('Synthetic development data');await expect(page.getByRole('navigation',{name:'Product profiles',exact:true}).getByRole('article')).toHaveCount(2);await expect(page.locator('astro-island')).toHaveCount(0);
+  await page.goto('/');const card=page.getByRole('region',{name:'Country snapshot',exact:true});await expect(card).toContainText('September 2024–August 2026');await expect(card).toContainText('Synthetic development data');await expect(page.getByRole('navigation',{name:'Product profiles',exact:true}).getByRole('article')).toHaveCount(2);await expect(page.getByRole('region',{name:'Overview figures'})).toBeVisible();
   await card.getByRole('link',{name:'Canada historical snapshot',exact:true}).click();await expect(page).toHaveURL(/\/countries\/1220\/$/);
   for(const url of ['/methods/','/products/090121/','/countries/1220/']){await page.goto(url);await expect(page.getByRole('navigation',{name:'Main',exact:true}).getByRole('link',{name:'Country research',exact:true})).toHaveAttribute('href',path);}
   await page.goto('/methods/');const methods=page.getByRole('region',{name:'Canada snapshot',exact:true});await expect(methods).toContainText('Synthetic development data');await expect(methods).toContainText('same captured files');await expect(methods).toContainText('GEN_VAL_MO');await expect(methods).toContainText('ALL_VAL_MO');await expect(methods).toContainText('Statistical categories');await expect(methods).toContainText('monthly Canada updates');await expect(page.locator('astro-island')).toHaveCount(0);
