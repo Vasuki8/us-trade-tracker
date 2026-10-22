@@ -131,3 +131,21 @@ fieldset label{font-size:12px;color:var(--text)}legend,.window-label{font-size:1
   :root,:root[data-theme="dark"]{--bg:#fff;--panel:#fff;--raised:#f2f4f8;--text:#1d293b;--muted:#536176;--primary:#4d5fc5;--on-primary:#fff;--teal:#117e72;--border:#d4dbe7;--grid:#e3e8f0;--selected:#e9edfb;--warning:#895b12;--down:#b53847;--up:#126b58;color-scheme:light}
   html,body{background:#fff!important;color:var(--text)}.site-header,.site-sidebar,.skip-link{display:none!important}.site-shell{display:block;min-height:0}.site-content{display:block}.site-footer{display:block}.site-footer>span{display:none}main{max-width:none;width:auto;margin:0;padding:0}.theme-toggle{display:none!important}
 }
+
+
+/* Printed Canada tables must show the complete captured rows and columns. */
+@media print{
+  .canada-preview .table-scroll{max-height:none;overflow:visible}
+  .canada-preview .table-scroll table{width:100%;min-width:0;table-layout:fixed}
+  .canada-preview .table-scroll th,.canada-preview .table-scroll td{padding:4pt;white-space:normal;overflow-wrap:anywhere}
+  .canada-preview .table-scroll th:first-child,.canada-preview .data-card table th:first-child{position:static;min-width:0;max-width:none}
+  .canada-preview .data-card{padding:8pt}
+  .canada-preview .data-card table th,.canada-preview .data-card table td{padding:4pt 2pt}
+  .canada-preview .data-card table th,.canada-preview .data-card table td,.canada-preview .data-card table small{font-size:7pt;line-height:1.4}
+  .canada-preview .data-card table thead th:first-child{width:16%}
+  .canada-preview .data-card table thead th:nth-child(2),.canada-preview .data-card table thead th:nth-child(3),.canada-preview .data-card table thead th:nth-child(4){width:13.5%}
+  .canada-preview .data-card table thead th:nth-child(5),.canada-preview .data-card table thead th:nth-child(6),.canada-preview .data-card table thead th:nth-child(7){width:6.5%}
+  .canada-preview .data-card table thead th:nth-child(8){width:7.5%}
+  .canada-preview .data-card table thead th:last-child{width:16.5%}
+  .canada-preview table tr{break-inside:avoid}
+}
