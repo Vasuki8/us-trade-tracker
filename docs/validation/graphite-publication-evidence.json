@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "status": "verified-public-graphite-update",
+  "verifiedAt": "2026-10-22T21:21:28.831Z",
+  "canonical": "https://us-trade-tracker.pages.dev",
+  "deploymentId": "509608c8-fb7d-439d-bd6d-4498d8e09035",
+  "deploymentOrigin": "https://509608c8.us-trade-tracker.pages.dev",
+  "project": "us-trade-tracker",
+  "environment": "Production",
+  "branch": "main",
+  "plan": "Free",
+  "sourceMerge": "61cd985cb2040cde985fefc98a2d2c4e36908b06",
+  "reviewedRepairHead": "0fb7dd8b94245967bbec67ac4c02dd485e928502",
+  "sourceTree": "9147be6f4bf6bf8bbab4206ad9ee9412f498dd3f",
+  "repairPr": 140,
+  "package": {
+    "bytes": 635310,
+    "sha256": "3d279c31e50a8db1f0f95de962fc5fe5184eb6b756ba569237c4f875f3733a29"
+  },
+  "manifest": {
+    "bytes": 8757,
+    "sha256": "0fcf5d789b3a8e51f2c80de32be97925a99b1ef3c6986f0211af42d7bab4eff4"
+  },
+  "fileCount": 41,
+  "rawBytes": 3141622,
+  "largestFile": {
+    "path": "products/090121/index.html",
+    "bytes": 358446,
+    "sha256": "c780ba4780bbba743599d774e5cfeedb6ebd16fc22903b1cee0fbb63bdf45ce5",
+    "role": "served-asset"
+  },
+  "build": {
+    "files": 39,
+    "rawBytes": 3140877,
+    "pages": 22
+  },
+  "live": {
+    "plannedChecks": 88,
+    "completedChecks": 88,
+    "httpAttempts": 134,
+    "mexicoPrivateRouteChecks": 8,
+    "receipt": {
+      "bytes": 51732,
+      "sha256": "0f78ee8287e4f11f8ed8d2a0bd2e7715919711ac308fc08591848becead23806"
+    },
+    "finalProductionReadback": "2026-10-22T21:21:28.831Z",
+    "bindingUnchanged": true
+  },
+  "browser": {
+    "routes": 22,
+    "independentOverviewCases": 16,
+    "profileDirectionViews": 8,
+    "navigations": 44,
+    "automatedNavigations": 43,
+    "deliverableNavigations": 1,
+    "downloads": 10,
+    "pageErrors": 0,
+    "unexpectedRequests": 0,
+    "brokenResponses": 0,
+    "receipt": {
+      "bytes": 3729,
+      "sha256": "3ccc61f48cbc3024f377d50f60729eda79408894d0b60dc459cb3540cd7ee165"
+    },
+    "canadaLivePrintPapers": [
+      "A4",
+      "Letter"
+    ],
+    "canadaDisplayedAmountsRetainedPerPaper": 61
+  },
+  "local": {
+    "overviewCases": 16,
+    "directoryCases": 8,
+    "predecessorIdenticalCsvs": 17,
+    "pngExports": 4,
+    "printDocuments": 8,
+    "printPages": 32,
+    "responsiveCases": 60,
+    "widths": [
+      320,
+      390,
+      736,
+      1024,
+      1280
+    ],
+    "staticViews": 7,
+    "stagedSourceFiles": 611,
+    "acceptedStateFiles": 11,
+    "protectedFilesUnchanged": 22,
+    "privateMexicoFilesUnchanged": 4,
+    "independentPackageReview": {
+      "bytes": 29196,
+      "sha256": "195ae4f9450d0d1ea944a60e5661ae37ea91cc0153ec35ba9ce61e766fbba71e"
+    }
+  },
+  "ci": {
+    "run": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/39853700470",
+    "head": "0fb7dd8b94245967bbec67ac4c02dd485e928502",
+    "status": "success",
+    "unitPassed": 2038,
+    "existingPlatformSkips": 1,
+    "compilerFiles": 380,
+    "compilerErrors": 0,
+    "compilerWarnings": 0,
+    "compilerHints": 0,
+    "ordinaryBrowserPassed": 201,
+    "canadaPreviewPassed": 11,
+    "canadaPilotPassed": 14,
+    "firefoxWebkitPassed": 86,
+    "browserTotalPassed": 312,
+    "pythonPackagingPassed": 24,
+    "pythonWorkflowPassed": 18
+  },
+  "windowsQualification": {
+    "unitPassed": 2032,
+    "filesystemTimeouts": 7,
+    "timeoutMs": 5000,
+    "fullSuiteGreen": false,
+    "assertionsDeadlinesOrSkipsWeakened": false
+  },
+  "predecessor": {
+    "deploymentId": "86671177-3725-4c05-a83c-a95b68da5d08",
+    "zipSha256": "e78055997befb0fda0ed9b61a153aaa1a004b84e9fb7fda68eeff452ab9920b1",
+    "manifestSha256": "9f1053283b99e536db3f1195d6a5ca6c96a4543008dd744c92036f05d0e9e088",
+    "fileCount": 39,
+    "rawBytes": 2817915,
+    "freshLiveChecks": 84,
+    "httpAttempts": 130,
+    "mexicoPrivateRouteChecks": 8
+  },
+  "operations": {
+    "candidateUploads": 1,
+    "restorations": 0,
+    "fullVerifierRuns": 2,
+    "sharedTransientRepeats": 0,
+    "runtimeRepairs": 1,
+    "sourceRequests": 0,
+    "r2Operations": 0,
+    "acceptedDataChanges": 0
+  },
+  "scope": {
+    "products": [
+      "090121",
+      "090111",
+      "090240",
+      "180100"
+    ],
+    "productEndMonth": "2026-08",
+    "canada": {
+      "from": "2024-09",
+      "to": "2026-08",
+      "fixedHistoricalSnapshot": true
+    },
+    "mexicoPublicProfile": false,
+    "mexicoProductComparisons": "withheld",
+    "robots": "noindex, nofollow"
+  },
+  "remainingQualifications": [
+    "Dense Canada print tables use seven-point text; narrow unavailable cells and some reference amounts wrap.",
+    "Print acceptance covers Chromium A4/Letter with 12 mm margins; no general printer or Firefox/WebKit print claim.",
+    "Windows filesystem timeout root causes remain unresolved.",
+    "Documentation integration and native cleanup are reported separately from this runtime-package identity."
+  ]
+}
