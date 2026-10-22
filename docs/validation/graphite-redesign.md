@@ -1,0 +1,22 @@
+# Graphite website redesign
+
+Local implementation, October 22, 2026. This record does not claim a public deployment.
+
+The approved Koyfin-inspired sample is implemented in the existing Astro/React app. Shared navigation, search, panels, tables, controls and charts use light and dark theme tokens. Light is the initial theme; a guarded localStorage preference restores the selected theme before rendering. Switching themes preserves research state and works when storage is unavailable. Print uses a light palette.
+
+The homepage now provides product/direction/period controls, four numerical summaries, monthly trade history, leading partner bars, a product monitor and release context. Its summaries reuse the existing profile, monthly-change and duty calculations. Only the five displayed partner leaders are sent to this page, with independent counts retained for all reported and unavailable partners. Reported zero values still count. The directory presents compact product rows with monthly import/export values and growth figures; descriptions and source details remain in native disclosures.
+
+Existing product, changes, briefing, country and methods routes retain their research tools. Screen chart colors follow the theme; serialized PNG SVGs retain their explicit export palette and provenance. Chart layout responds to its panel width. Native source disclosures remain readable without JavaScript and expand in print.
+
+No source-data import, release replacement, country/product expansion, dependency, external service, paid upgrade, public deployment or indexing change is included. The retained-data preview covers the four existing August 2026 products and the fixed Canada historical snapshot. Mexico remains private.
+
+Verification completed:
+
+- Unit suite: 2,039 tests in 143 files passed on the final source. An intervening Windows run had four filesystem/rename failures; all 87 cases in the affected suites passed in isolation, then the complete suite passed after the temporary debug watcher was stopped. No tests were weakened or skipped.
+- Compiler: zero errors, warnings or hints across 379 files. Fixture and retained-data snapshot builds passed.
+- Chromium: 201 ordinary, 11 Canada preview and 12 Canada pilot cases passed. The final directory/theme subset passed again after the neutral treatment of unavailable growth values.
+- WebKit: all 39 configured compatibility cases passed. Firefox failed before assertions because its installed Windows executable could not launch (`spawn UNKNOWN`); no local Firefox compatibility result is claimed. The combined compatibility run was stopped, and the existing Linux CI configuration remains unchanged.
+- Python packaging: 24 tests passed.
+- Real-data browser checks matched the four retained monthly import totals, the small positive cocoa duty share, and filter preservation across theme changes, with zero page errors. Light/dark overview, directory, product and mobile screenshots were inspected. Focused independent review verified print disclosures, Escape focus, directory reflow and chart sizing from 320px to 1280px and reported no remaining findings.
+
+The final local retained-data build contains 39 files / 3,139,597 raw bytes, before adding deployment templates or packaging. Its homepage is 174,975 raw bytes. This is a local build measurement, not a new public package or publication receipt. The real-data preview is served locally on port 4333; fixture verification uses port 4331.

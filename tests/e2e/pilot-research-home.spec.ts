@@ -18,12 +18,12 @@ async function checkProfiles(page:Page){
     await expect(card).toContainText('Source: Development fixtures');
     await expect(card.locator('time')).toHaveAttribute('datetime',release.reportingMonth);
     await expect(card.getByRole('link',{name:`${profile.name} · HS ${profile.code}`,exact:true})).toHaveAttribute('href',`/products/${profile.code}/`);
-    await expect(card.getByRole('link',{name:'Country changes',exact:true})).toHaveAttribute('href',profile.changes);
-    await expect(card.getByRole('link',{name:'Release briefing',exact:true})).toHaveAttribute('href',profile.briefing);
+    await expect(card.getByRole('link',{name:'Country changes',exact:true,includeHidden:true})).toHaveAttribute('href',profile.changes);
+    await expect(card.getByRole('link',{name:'Release briefing',exact:true,includeHidden:true})).toHaveAttribute('href',profile.briefing);
   }
   await expect(page.getByRole('link',{name:'Find a product',exact:true})).toHaveAttribute('href','/products/');
   await expect(page.getByRole('link',{name:'Compare product changes',exact:true})).toHaveAttribute('href','/changes/products/');
-  await expect(page.locator('astro-island')).toHaveCount(0);
+  await expect(page.getByRole('region',{name:'Overview figures'})).toBeVisible();
   await expect(page.getByRole('link',{name:'Country research',exact:true})).toHaveCount(0);
   await expect(page.getByRole('region',{name:'Country snapshot',exact:true})).toHaveCount(0);
 }
@@ -49,9 +49,10 @@ test('home research links retain their products on mobile by keyboard without Ja
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
     await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'Skip to content',exact:true})).toBeFocused();await page.keyboard.press('Enter');
     const card=page.getByRole('article',{name:'Synthetic second product · HS 090122',exact:true});
+    await card.locator('summary').click();
     await card.getByRole('link',{name:'Country changes',exact:true}).focus();await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/\/changes\/090122\/$/);await expect(page.locator('.heading-description')).toHaveText('SYNTHETIC PRODUCT 090122');
-    await page.goto('/');await card.getByRole('link',{name:'Release briefing',exact:true}).focus();await page.keyboard.press('Enter');
+    await page.goto('/');await card.locator('summary').click();await card.getByRole('link',{name:'Release briefing',exact:true}).focus();await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/\/briefing\/090122\/$/);await expect(page.getByRole('heading',{name:'Release briefing',exact:true})).toBeVisible();
     await page.goto('/');await page.getByRole('link',{name:'Find a product',exact:true}).click();await expect(page).toHaveURL(/\/products\/$/);
     await expect(page.getByRole('list',{name:'Available product profiles'}).getByRole('link',{name:'Synthetic second product',exact:true})).toBeVisible();

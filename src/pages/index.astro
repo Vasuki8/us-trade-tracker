@@ -1,54 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import {TradeOverview} from '../components/TradeOverview';
 import {loadPublishedReleases} from '../lib/trade/load-release';
-import {monthLabel} from '../lib/trade/format';
-import {monthlyChangesPath,releaseBriefingPath} from '../lib/trade/view-link';
+import {buildOverviewProduct} from '../lib/trade/overview';
 import {loadCanadaPilot} from '../lib/country-preview/pilot-load.server';
 const profiles=await loadPublishedReleases();
 const canadaPilot=await loadCanadaPilot();
 const sample=profiles.some(({release})=>release.source==='fixture');
 ---
-<BaseLayout title="Follow U.S. goods trade">
+<BaseLayout title="U.S. trade overview">
+  <div class="page-heading overview-heading"><div><p class="eyebrow">UNITED STATES / GOODS TRADE</p><h1>Trade overview</h1><p>Products, partner markets and monthly changes.</p></div><a class="secondary-button" href="/changes/products/">Compare product changes</a></div>
   {sample&&<div class="sample-banner"><strong>Development sample data</strong><span>These profiles use synthetic observations for development checks.</span></div>}
-  <section class="home-hero">
-    <p class="eyebrow">PRODUCTS. PARTNERS. PERSPECTIVE.</p><h1>Follow U.S.<br/>goods trade.</h1>
-    <p>Explore U.S. imports, exports and partner markets using monthly Census data.</p>
-    <div class="home-actions"><a class="primary-button" href="/products/">Find a product <span aria-hidden="true">→</span></a><a class="secondary-button" href="/changes/">See monthly changes</a></div>
-    <p class="hero-footnote">{profiles.length} reviewed pilot {profiles.length===1?'profile':'profiles'}. Coverage is limited to the products listed below.</p>
-  </section>
-
-  <section class="home-profiles" aria-labelledby="home-profiles-heading">
-    <p class="eyebrow">AVAILABLE PILOT RESEARCH</p><h2 id="home-profiles-heading">Reviewed product profiles</h2>
-    
-    <nav aria-label="Product profiles"><ul class="profile-links">{profiles.map(({product,release})=><li>
-      <article aria-labelledby={`home-product-${product.code}`}>
-        <h3 id={`home-product-${product.code}`}><a href={`/products/${product.code}/`}>{product.displayName} · HS {product.code}</a></h3>
-        <p class="description-label">{release.source==='fixture'?'Sample description':'Official description'}</p>
-        <p class="product-description">{release.observations.find(row=>row.geography==='world')!.description}</p>
-        <p class="product-release">Reporting month: <time datetime={release.reportingMonth}>{monthLabel(release.reportingMonth)}</time><br/>Source: {release.source==='fixture'?'Development fixtures':'U.S. Census Bureau'}</p>
-        <div class="profile-research-links"><a href={monthlyChangesPath(product.code)}>Country changes</a><a href={releaseBriefingPath(product.code)}>Release briefing</a></div>
-      </article>
-    </li>)}</ul></nav>
-  </section>
-  <nav class="home-research-links" aria-label="Research tools"><a href="/changes/products/">Compare product changes</a><a href="/briefing/">Read the coffee briefing</a><a href="/methods/">Read the methods ↗</a></nav>
-  <p><a href="/briefing/portfolio/">Build a product briefing</a> with your choice of the published products and trade direction.</p>
-  {canadaPilot&&<section class="data-card" aria-labelledby="home-country-heading">
-    <p class="eyebrow">COUNTRY RESEARCH</p><h2 id="home-country-heading">Country snapshot</h2>
-    <h3><a href="/countries/1220/">Canada historical snapshot</a></h3>
-    <p>September 2024–August 2026 · 24 captured months of U.S. goods trade.</p>
-    <p>Source: {canadaPilot.data.source==='fixture'?'Synthetic development data':'U.S. Census Bureau monthly merchandise files'}.</p>
-    <p>All-goods history and ten selected categories per direction. Fixed historical snapshot; no monthly update schedule.</p>
-  </section>}
+  <TradeOverview products={profiles.map(buildOverviewProduct)} client:load/>
+  <nav class="home-research-links" aria-label="Research tools"><a href="/changes/">See monthly changes</a><a href="/briefing/portfolio/">Build a product briefing</a><a href="/briefing/">Read the coffee briefing</a><a href="/methods/">Read the methods ↗</a></nav>
+  {canadaPilot&&<section class="data-card home-country" aria-labelledby="home-country-heading"><div><p class="eyebrow">COUNTRY RESEARCH</p><h2 id="home-country-heading">Country snapshot</h2><a href="/countries/1220/">Canada historical snapshot</a></div><div><strong>24 months</strong><p>September 2024–August 2026</p></div><div><strong>10 categories / direction</strong><p>All-goods history and selected categories.</p></div><details><summary>Snapshot coverage</summary><p>Source: {canadaPilot.data.source==='fixture'?'Synthetic development data':'U.S. Census Bureau monthly merchandise files'}. Fixed historical snapshot; no monthly update schedule.</p></details></section>}
 </BaseLayout>
-<style>
-  .home-hero{padding:36px 0 32px}.home-research-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin:16px 0 24px}.home-research-links a{padding:8px 0}
-  .home-profiles{padding:30px 0 24px;border-top:1px solid var(--border)}.home-profiles>p:not(.eyebrow){font-size:13px}
-  .home-profiles nav{display:block}.profile-links{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:24px 0 0}
-  .profile-links li{background:white;border:1px solid var(--border);padding:24px;min-width:0}.profile-links a{overflow-wrap:anywhere}
-  .profile-links h3{font-family:Georgia,serif;font-size:27px;font-weight:400;line-height:1.35;margin:0 0 22px}
-  .profile-links h3 a{font-size:inherit;text-decoration:underline}.profile-links p{font-size:12px}
-  .profile-links .description-label{font-size:11px;margin:0 0 6px}.profile-links .product-description{color:#172e35;margin:0 0 22px}
-  .profile-links .product-release{padding:16px 0 0;border-top:1px solid var(--border);line-height:1.8}
-  .profile-research-links{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:18px}.profile-research-links a{padding:10px 0;font-size:12px;text-decoration:underline}
-  @media(max-width:680px){.profile-links{grid-template-columns:1fr;gap:16px}.profile-links li{padding:20px}.profile-links h3{font-size:25px}}
-</style>

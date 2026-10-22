@@ -22,7 +22,7 @@ export function DutyPlotMarks({model,size}:{model:DutyChartModel;size:DutyPlotSi
   {model.series.map((series,si)=>{
    let connected=false;
    const path=series.points.map((p,i)=>{if(p.value===null){connected=false;return '';}const command=connected&&!p.breakBefore?'L':'M';connected=true;return command+x(i)+','+y(p.value);}).join(' ');
-   return <g key={series.code}><path d={path} fill="none" stroke={seriesColor(series.code)} strokeWidth="2.5" strokeDasharray={dutySeriesDash(si)} strokeLinejoin="round"/>
+   return <g key={series.code} data-series={si}><path d={path} fill="none" stroke={seriesColor(series.code)} strokeWidth="2.5" strokeDasharray={dutySeriesDash(si)} strokeLinejoin="round"/>
     {series.points.map((p,i)=>p.value===null?null:<circle key={p.month} cx={x(i)} cy={y(p.value)} r="3.3" fill={p.coverage.qualified||p.coverage.status!=='verified'||!p.classificationVerified?'white':seriesColor(series.code)} stroke={seriesColor(series.code)} strokeWidth="1.8"><title>{dutyPointTitle(model,series,p)}</title></circle>)}
    </g>;
   })}
@@ -38,7 +38,7 @@ export function DutyHistoryChart({model,download}:{model:DutyChartModel;download
    {[['duty-chart-desktop',dutyDesktopSize],['duty-chart-mobile',mobileSize]].map(([className,size])=>{const s=size as DutyPlotSize;return <svg key={className as string} className={className as string} viewBox={`0 0 ${s.width} ${s.height}`} aria-hidden="true" focusable="false" fontFamily="Segoe UI, Arial, sans-serif"><DutyPlotMarks model={model} size={s}/></svg>;})}
   </div>
   {!hasValues&&<p>No reported monthly values are available for this chart metric.</p>}
-  <ul className="duty-chart-legend">{model.series.map((s,i)=><li key={s.code}><svg viewBox="0 0 24 8" aria-hidden="true"><line x1="0" x2="24" y1="4" y2="4" stroke={seriesColor(s.code)} strokeWidth="3" strokeDasharray={dutySeriesDash(i)}/></svg>{s.name} · {s.code}</li>)}</ul>
+  <ul className="duty-chart-legend">{model.series.map((s,i)=><li key={s.code}><svg data-series={i} viewBox="0 0 24 8" aria-hidden="true"><line x1="0" x2="24" y1="4" y2="4" stroke={seriesColor(s.code)} strokeWidth="3" strokeDasharray={dutySeriesDash(i)}/></svg>{s.name} · {s.code}</li>)}</ul>
   <figcaption id={id+'-notes'}><p>Exact values, denominators and reporting details are in the monthly tables below. Hollow markers indicate RP70/79 affected values or unverified coverage/classification. Gaps indicate unavailable values; connections require verified coverage in the same reviewed classification interval.</p>
    {model.series.map(s=><p key={s.code}>{dutyQualificationSummary(s)}</p>)}
    <p>Counts can overlap. Reported zero duties do not prove duty-free trade. Duty-share changes can reflect import mix and reporting coverage as well as tariff changes.</p>

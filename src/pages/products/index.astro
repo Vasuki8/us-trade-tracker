@@ -1,17 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {loadPublishedReleases} from '../../lib/trade/load-release';
-import {monthLabel} from '../../lib/trade/format';
+import {monthLabel,usd,percent} from '../../lib/trade/format';
+import {buildProfileView} from '../../lib/trade/profile';
 const profiles=(await loadPublishedReleases()).map(({product,release})=>({
   product,release,description:release.observations.find(row=>row.geography==='world')!.description,
+  imports:buildProfileView(release,{direction:'imports',months:12,countryCodes:[]}).latestMonth,
+  exports:buildProfileView(release,{direction:'exports',months:12,countryCodes:[]}).latestMonth,
 }));
 ---
 <BaseLayout title="Product research" description="Find reviewed U.S. trade profiles by product name, source description or HS code.">
   <div class="page-heading">
     <p class="eyebrow">START WITH A PRODUCT</p>
     <h1>Product research</h1>
-    <p>Search published profiles by name, description or six-digit HS code.</p>
-    <p>Imports, exports, country comparisons and downloads. Only the listed products are covered.</p>
+    <p>Search by name, description or HS code. Only the listed products are covered.</p>
   </div>
   {profiles.some(({release})=>release.source==='fixture')&&<div class="sample-banner"><strong>Development sample data</strong><span>These profiles use synthetic observations for development checks.</span></div>}
   <section aria-label="Product search" data-product-directory>
@@ -23,16 +25,17 @@ const profiles=(await loadPublishedReleases()).map(({product,release})=>({
     <p class="product-count" role="status" aria-live="polite" aria-atomic="true" data-search-count>Showing {profiles.length} of {profiles.length} profiles.</p>
     <p class="product-empty" data-search-empty hidden>No matching pilot profiles. Try another name or HS code.</p>
     <ul class="product-grid" aria-label="Available product profiles">
-      {profiles.map(({product,release,description})=><li class="product-card" data-product-card data-search={`${product.code} ${product.displayName} ${description}`}>
+      {profiles.map(({product,release,description,imports,exports})=><li class="product-card" data-product-card data-search={`${product.code} ${product.displayName} ${description}`}>
+        <div class="product-identity">
         <p class="eyebrow">HS {product.code}</p>
         <h2><a href={`/products/${product.code}/`}>{product.displayName}</a></h2>
-        <p class="description-label">{release.source==='fixture'?'Sample description':'Official description'}</p>
-        <p class="product-description">{description}</p>
-        <dl>
+        <details class="content-details product-definition"><summary>Product description &amp; source</summary><p class="description-label">{release.source==='fixture'?'Sample description':'Official description'}</p><p class="product-description">{description}</p><p class="product-source">Source: {release.source==='fixture'?'Development fixtures':'U.S. Census Bureau'} · retrieved {release.retrievedAt.slice(0,10)}</p></details>
+        </div>
+        <div class="directory-value"><span>Monthly imports</span><strong>{usd(imports.current,true)}</strong><small class={imports.changePercent===null?'':imports.changePercent<0?'negative':imports.changePercent>0?'positive':''}>{percent(imports.changePercent)} YoY</small></div>
+        <div class="directory-value"><span>Monthly exports</span><strong>{usd(exports.current,true)}</strong><small class={exports.changePercent===null?'':exports.changePercent<0?'negative':exports.changePercent>0?'positive':''}>{percent(exports.changePercent)} YoY</small></div>
+        <dl class="directory-reporting">
           <div><dt>Reporting month</dt><dd><time datetime={release.reportingMonth}>{monthLabel(release.reportingMonth)}</time></dd></div>
-          <div><dt>Retrieved</dt><dd><time datetime={release.retrievedAt}>{release.retrievedAt.slice(0,10)}</time></dd></div>
         </dl>
-        <p class="product-source">Source: {release.source==='fixture'?'Development fixtures':'U.S. Census Bureau'}</p>
       </li>)}
     </ul>
   </section>
@@ -63,21 +66,3 @@ const profiles=(await loadPublishedReleases()).map(({product,release})=>({
     filter();controls.hidden=false;
   }
 </script>
-<style>
-  .product-search{display:flex;align-items:end;gap:16px;margin:28px 0 12px;max-width:720px}
-  .product-search label{flex:1;min-width:0;font-size:14px;color:var(--muted)}
-  .product-search input{display:block;width:100%;height:auto;min-height:44px;margin-top:8px;padding:10px 12px;border:1px solid var(--border);border-radius:3px;background:white;color:#172e35}
-  .product-search button{min-height:44px;white-space:nowrap}
-  .product-count,.product-empty{font-size:13px;margin:16px 0}
-  .product-grid{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:24px 0}
-  .product-card{padding:28px;background:white;border:1px solid var(--border);min-width:0}
-  .product-card h2{font-family:Georgia,serif;font-size:30px;font-weight:400;line-height:1.25;margin:12px 0 24px}
-  .product-card h2 a{color:#172e35}
-  .description-label{font-size:11px;margin:0 0 6px}
-  .product-description{font-size:13px;color:#172e35;margin-bottom:24px}
-  dl{display:flex;flex-wrap:wrap;gap:18px 32px;margin:0}
-  dt{font-size:11px;color:var(--muted);margin-bottom:6px}dd{font-size:13px;margin:0}
-  .product-source{font-size:11px;border-top:1px solid var(--border);padding-top:16px;margin:24px 0 0}
-  .product-card[hidden],.product-search[hidden],.product-empty[hidden],.product-search button[hidden]{display:none}
-  @media(max-width:680px){.product-grid{grid-template-columns:1fr;gap:16px}.product-card{padding:20px}.product-card h2{font-size:26px}.product-search{flex-wrap:wrap}.product-search label{flex-basis:100%}}
-</style>
