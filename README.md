@@ -10,13 +10,13 @@ The existing [Canada historical snapshot](https://us-trade-tracker.pages.dev/cou
 
 Mexico’s September 2024–August 2026 all-goods snapshot is now accepted for **private use**, privately archived and locally installed, with three independently checked recoveries. It remains unpublished; all product comparisons stay withheld. The [acceptance evidence](docs/data-validation/2010-private-acceptance-evidence.json) preserves 17 unverified ordinary classification pairs, three statistical exclusions and 32 dated-reference differences. [Public-profile and publication gates](docs/data-validation/2010-acceptance-readiness.md) remain open.
 
-The latest verified Graphite package has **41 files / 3,141,622 raw bytes**, with 88 exact checks across the canonical and deployment origins plus eight Mexico privacy checks and public browser/download checks. It was published from reviewed merge `61cd985cb2040cde985fefc98a2d2c4e36908b06` to the existing Free Pages project; restoration was unnecessary. See the [Graphite publication evidence and qualifications](docs/validation/graphite-publication.md).
+The latest verified Graphite package has **41 files / 3,145,077 raw bytes**, with 88 exact checks across the canonical and deployment origins plus eight Mexico privacy checks and public browser/download checks. It was published from reviewed merge `72207e06478c75b51e17b642de86aa3219d1cb9c` to the existing Free Pages project; restoration was unnecessary. See the [overview-link verification and qualifications](docs/validation/overview-view-links.md).
 
 Pages/chart data share Cloudflare Pages, downloads are generated in the browser and R2 remains private preservation storage. The public site uses `noindex,nofollow`; that indexing policy does not restrict access. No new Census request, paid upgrade, recurring job or indexing change was made by this expansion.
 
 ## Graphite dashboard
 
-The published [Graphite redesign](docs/validation/graphite-publication.md) provides the compact dashboard, numerical overview and persistent light/dark toggle. Existing research and downloads passed live verification; the publication also fixes Canada print clipping. The [original local record](docs/validation/graphite-redesign.md) remains historical.
+The published [Graphite redesign](docs/validation/graphite-publication.md) provides the compact dashboard, numerical overview and persistent light/dark toggle. [Shareable overview links](docs/validation/overview-view-links.md) now restore product, direction, comparison and history choices, with a manual-copy fallback. Existing research and downloads passed live verification; the original publication also fixes Canada print clipping. The [original local record](docs/validation/graphite-redesign.md) remains historical.
 
 ## Product profile navigation
 

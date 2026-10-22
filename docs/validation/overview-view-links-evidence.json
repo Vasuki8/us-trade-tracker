@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "status": "verified-public-overview-view-links",
+  "verifiedAt": "2026-10-22T23:22:19Z",
+  "canonical": "https://us-trade-tracker.pages.dev",
+  "deploymentId": "253ef0f9-41c9-4078-8d9f-0f782f9cd7b7",
+  "deploymentOrigin": "https://253ef0f9.us-trade-tracker.pages.dev",
+  "project": "us-trade-tracker",
+  "environment": "Production",
+  "branch": "main",
+  "plan": "Free",
+  "sourceMerge": "72207e06478c75b51e17b642de86aa3219d1cb9c",
+  "reviewedHead": "33dcc2c33cf5688c7bb5e6c3e325e83cee937416",
+  "sourceTree": "d4b528e58b704e874e6e4b4b3c419e9090272dbc",
+  "featurePr": 142,
+  "package": {
+    "bytes": 636404,
+    "sha256": "e4a59b3ce6c2dad2fc168718dcecdb562e284a3fc69e22b2e8cbdc73e8e81514"
+  },
+  "manifest": {
+    "bytes": 8757,
+    "sha256": "bad0a3a6ea08d43f429678d6ea00141062af0ef7ab06c4787ecb799c9136f4ba"
+  },
+  "fileCount": 41,
+  "rawBytes": 3145077,
+  "largestFile": {
+    "path": "products/090121/index.html",
+    "bytes": 358447,
+    "sha256": "80387ddacc694a59548709bcbb19349952ebe1156047ef25276ffda96b89c7d6",
+    "role": "served-asset"
+  },
+  "build": {
+    "files": 39,
+    "rawBytes": 3144332,
+    "pages": 22
+  },
+  "live": {
+    "plannedChecks": 88,
+    "completedChecks": 88,
+    "httpAttempts": 134,
+    "mexicoPrivateRouteChecks": 8,
+    "receipt": {
+      "bytes": 51722,
+      "sha256": "44fb7f04ce5431cfb29ef6dff3e43940159340bd74e69f714712d92fe3bb66f4",
+      "retainedPrivately": true
+    },
+    "finalProductionReadback": "2026-10-22T23:22:19Z",
+    "bindingUnchanged": true
+  },
+  "browser": {
+    "routes": 22,
+    "savedOverviewSamples": 8,
+    "automatedNavigations": 44,
+    "deliverableNavigations": 1,
+    "navigations": 45,
+    "downloads": 10,
+    "merchandiseCsvs": 4,
+    "portfolioCsvs": 1,
+    "canadaCsvs": 1,
+    "pngExports": 4,
+    "pageErrors": 0,
+    "unexpectedRequests": 0,
+    "brokenResponses": 0,
+    "receipt": {
+      "bytes": 6418,
+      "sha256": "781bf2a1268d3861c8f9873f7d9cb87098f7867d9df470c171208bdd60f0a732",
+      "retainedPrivately": true
+    }
+  },
+  "local": {
+    "savedOverviewStates": 32,
+    "independentNumericViews": 16,
+    "historyPointsChecked": 480,
+    "numericFieldComparisons": 760,
+    "routes": 22,
+    "navigations": 114,
+    "downloads": 18,
+    "predecessorIdenticalCsvs": 7,
+    "pngExports": 4,
+    "responsiveCases": 60,
+    "printDocuments": 2,
+    "printPages": 6,
+    "allSixFinalPrintRendersIdenticalToControl": true,
+    "stagedSourceFiles": 619,
+    "acceptedStateFiles": 11,
+    "protectedFilesUnchanged": 22,
+    "privateMexicoFilesUnchanged": 4,
+    "freshAcceptanceReceipt": {
+      "bytes": 14408,
+      "sha256": "14fafae4e59c2ae7efe2d672370b2813c6d9b2460d32d8f5e1cc64a39423b332",
+      "retainedPrivately": true
+    },
+    "independentPackageAudit": {
+      "bytes": 173533,
+      "sha256": "057d198acf64968df00c90abe4f849f16c9917c38f54aa72478f71b218000e7a",
+      "retainedPrivately": true
+    },
+    "independentReadiness": {
+      "bytes": 37346,
+      "sha256": "c4495d9a36694edfd7f16a1115fe87d46ca149e69459af0e3862eecdfe6fc435",
+      "retainedPrivately": true
+    },
+    "sourceReview": {
+      "bytes": 7646,
+      "sha256": "e8b9f37d010a06b0b60b9ccdd2deeb4f0f043e9355945cf482c1c3629411b297",
+      "retainedPrivately": true
+    }
+  },
+  "ci": {
+    "run": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/39863767444",
+    "job": "https://github.com/Vasuki8/us-trade-tracker/actions/runs/39863767444/job/120134304977",
+    "attempt": 3,
+    "head": "33dcc2c33cf5688c7bb5e6c3e325e83cee937416",
+    "status": "success",
+    "unitPassed": 2086,
+    "existingPlatformSkips": 1,
+    "browserPassed": 345,
+    "browserSuites": [
+      212,
+      11,
+      14,
+      108
+    ],
+    "pythonPackagingPassed": 24,
+    "pythonWorkflowPassed": 18,
+    "compilerFiles": 384,
+    "compilerDiagnostics": 0,
+    "workflowUnchanged": true,
+    "failedInfrastructureAttemptsRetained": 3,
+    "failedStage": "Browser prerequisite apt downloads; no browser tests executed in failed attempts",
+    "successfulFreshRunner": "centralus;142MB apt archives in9s"
+  },
+  "windows": {
+    "configuredUnitPassed": 2087,
+    "configuredUnitFiles": 144,
+    "initialMisconfiguredRunPassed": 2014,
+    "initialMisconfiguredRunFailures": 73,
+    "initialMissingPythonSettingFailures": 62,
+    "initialFilesystemTimeoutFailures": 11,
+    "initialFailureEvidenceRetained": true,
+    "newChromiumPassed": 11,
+    "newWebKitPassed": 11,
+    "nativeFirefox": "Launch failure before application; unverified. Linux Firefox CI passed."
+  },
+  "publication": {
+    "candidateUploads": 1,
+    "restorations": 0,
+    "restorationNeeded": false,
+    "postmergeApplicationRepairs": 0,
+    "completeVerifierRuns": 2,
+    "zeroHttpVerifierPreflightFailures": 1,
+    "transientRepeats": 0,
+    "predecessorDeployment": "509608c8-fb7d-439d-bd6d-4498d8e09035",
+    "predecessorZipSha256": "3d279c31e50a8db1f0f95de962fc5fe5184eb6b756ba569237c4f875f3733a29",
+    "predecessorManifestSha256": "0fcf5d789b3a8e51f2c80de32be97925a99b1ef3c6986f0211af42d7bab4eff4",
+    "baselineChecks": 88,
+    "baselineMexicoChecks": 8,
+    "finalPackageRebuiltFromActualMerge": true,
+    "controlQaTransferred": false,
+    "controlDifferences": "Sixteen generated island uid attributes and one methods schedule-evaluation build timestamp; fresh full final acceptance run."
+  },
+  "qualifications": [
+    "Native Windows Firefox, arbitrary assistive technology and arbitrary printers are unverified.",
+    "Print acceptance covers Chromium A4/Letter with12mm margins. Existing close monitor links/value-growth cells and page continuations remain readable and unchanged.",
+    "Links restore choices against the latest available accepted data; they do not freeze a release.",
+    "All four products end August2026; Canada stays fixed September2024-August2026; Mexico remains private and every Mexico product comparison remains withheld.",
+    "Later documentation commits and workspace cleanup do not identify different uploaded bytes."
+  ],
+  "scope": {
+    "imports": false,
+    "acceptedDataChanges": false,
+    "r2Operations": false,
+    "newProductsOrCountries": false,
+    "publicMexicoProfile": false,
+    "dependencyServiceWorkflowChanges": false,
+    "paidAccessIndexingChanges": false,
+    "recurringJobs": false,
+    "downloads": "browser-generated",
+    "pageAndChartDelivery": "same static host"
+  }
+}
