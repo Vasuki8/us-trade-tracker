@@ -3,6 +3,16 @@ import {readFile,readdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {parseCsv} from '../helpers/parse-csv';
 const path='/countries/1220/';
+
+test('homepage prints the closed Canada snapshot source and fixed-history qualification',async({page})=>{
+  await page.goto('/');
+  const coverage=page.getByRole('region',{name:'Country snapshot',exact:true}).locator('details').filter({has:page.locator('summary',{hasText:'Snapshot coverage'})});
+  await expect(coverage).not.toHaveAttribute('open','');
+  await expect(coverage.locator('p')).toBeHidden();
+  await page.emulateMedia({media:'print'});
+  await expect(coverage.locator('p')).toBeVisible();
+  await expect(coverage).toContainText('Source: Synthetic development data. Fixed historical snapshot; no monthly update schedule.');
+});
 test.use({timezoneId:'Pacific/Honolulu'});
 test.beforeEach(async({page})=>{await page.route('**/*',route=>{const u=new URL(route.request().url());if(u.hostname!=='127.0.0.1'&&u.protocol!=='blob:')throw Error('Unexpected network request');return route.continue();});});
 test('pilot fixtures identify the historical coverage, source and unavailable categories',async({page})=>{

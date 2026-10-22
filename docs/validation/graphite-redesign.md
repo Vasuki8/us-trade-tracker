@@ -1,6 +1,6 @@
 # Graphite website redesign
 
-Local implementation, October 22, 2026. This record does not claim a public deployment.
+Local implementation at `f390d9e`, October 22, 2026. This record does not claim a public deployment.
 
 The approved Koyfin-inspired sample is implemented in the existing Astro/React app. Shared navigation, search, panels, tables, controls and charts use light and dark theme tokens. Light is the initial theme; a guarded localStorage preference restores the selected theme before rendering. Switching themes preserves research state and works when storage is unavailable. Print uses a light palette.
 
@@ -20,3 +20,9 @@ Verification completed:
 - Real-data browser checks matched the four retained monthly import totals, the small positive cocoa duty share, and filter preservation across theme changes, with zero page errors. Light/dark overview, directory, product and mobile screenshots were inspected. Focused independent review verified print disclosures, Escape focus, directory reflow and chart sizing from 320px to 1280px and reported no remaining findings.
 
 The final local retained-data build contains 39 files / 3,139,597 raw bytes, before adding deployment templates or packaging. Its homepage is 174,975 raw bytes. This is a local build measurement, not a new public package or publication receipt. The real-data preview is served locally on port 4333; fixture verification uses port 4331.
+
+## Review follow-up
+
+Independent review found that the homepage's closed Canada coverage disclosure omitted its source and fixed-history qualification in print. The disclosure now uses the existing print-expansion rules. A browser regression failed before the repair and passed afterward; ordinary browsing still uses a native closed disclosure.
+
+A fresh two-worker Windows run passed 2,032 tests and timed out in seven existing filesystem-heavy cases at their unchanged 5,000ms deadline. No assertions or deadlines were weakened, and the timing failures are not claimed fixed. Follow-up verification and integration outcomes are recorded in [PR #139](https://github.com/Vasuki8/us-trade-tracker/pull/139).
