@@ -8,8 +8,20 @@ import '@testing-library/jest-dom/vitest';
 import {TradeOverview} from '../../src/components/TradeOverview';
 import {buildOverviewProduct} from '../../src/lib/trade/overview';
 import {sampleDutyRelease} from '../helpers/duties';
-afterEach(cleanup);
+afterEach(()=>{cleanup();window.history.replaceState(null,'','/');});
 const product={code:'090121',displayName:'Roasted coffee',published:true,importable:true,dutiesAccepted:true};
+
+it('retains a restored selection when a parent supplies the same products in a new array',async()=>{
+  window.history.replaceState({position:2},'','/?product=090121&direction=exports&comparison=annual&months=12');
+  const data=buildOverviewProduct({product,release:sampleDutyRelease()});
+  const view=render(<TradeOverview products={[data]}/>);
+  await userEvent.click(screen.getByRole('button',{name:'Imports'}));
+  view.rerender(<TradeOverview products={[data]}/>);
+  expect(screen.getByRole('button',{name:'Imports'})).toHaveAttribute('aria-pressed','true');
+  expect(screen.getByRole('button',{name:'Last 12 months'})).toHaveAttribute('aria-pressed','true');
+  expect(screen.getByRole('button',{name:'1Y'})).toHaveAttribute('aria-pressed','true');
+  expect(window.history.state).toEqual({position:2});
+});
 
 it('hydrates the server overview without replacing the sourced initial content',async()=>{
   const products=[buildOverviewProduct({product,release:sampleDutyRelease()})];
