@@ -4,19 +4,19 @@ A commercial research website for understanding U.S. goods trade by product and 
 
 ## Current public pilot
 
-The [public pilot](https://us-trade-tracker.pages.dev/) was updated and verified on **October 18, 2026**. It covers roasted coffee (090121), green coffee (090111), [tea (090240)](https://us-trade-tracker.pages.dev/products/090240/) and [cocoa beans (180100)](https://us-trade-tracker.pages.dev/products/180100/), including reported partner countries, changes, estimated duties and briefings. The [product portfolio](https://us-trade-tracker.pages.dev/briefing/portfolio/) keeps each product’s figures separate. All four products end in August 2026; missing observations remain unavailable.
+The [public pilot](https://us-trade-tracker.pages.dev/) was updated and verified on **October 22, 2026**. It covers roasted coffee (090121), green coffee (090111), [tea (090240)](https://us-trade-tracker.pages.dev/products/090240/) and [cocoa beans (180100)](https://us-trade-tracker.pages.dev/products/180100/), including reported partner countries, changes, estimated duties and briefings. The [product portfolio](https://us-trade-tracker.pages.dev/briefing/portfolio/) keeps each product’s figures separate. All four products end in August 2026; missing observations remain unavailable.
 
 The existing [Canada historical snapshot](https://us-trade-tracker.pages.dev/countries/1220/) is unchanged and covers September 2024–August 2026 only. No Mexico profile or automatic Canada refresh is included. Successful updates across successive official releases remain a separate open requirement.
 
 Mexico’s September 2024–August 2026 all-goods snapshot is now accepted for **private use**, privately archived and locally installed, with three independently checked recoveries. It remains unpublished; all product comparisons stay withheld. The [acceptance evidence](docs/data-validation/2010-private-acceptance-evidence.json) preserves 17 unverified ordinary classification pairs, three statistical exclusions and 32 dated-reference differences. [Public-profile and publication gates](docs/data-validation/2010-acceptance-readiness.md) remain open.
 
-The latest verified package has **39 files / 2,817,915 raw bytes**, with 84 exact checks across the canonical and deployment origins plus public browser/download checks. It was published from reviewed merge `a5d6e98ee29182790a7d564dd1ba0ba3c78ca44c` to the existing Free Pages project; restoration was unnecessary. See the [archive acceptance, publication evidence and limits](docs/validation/tea-cocoa-publication.md).
+The latest verified Graphite package has **41 files / 3,141,622 raw bytes**, with 88 exact checks across the canonical and deployment origins plus eight Mexico privacy checks and public browser/download checks. It was published from reviewed merge `61cd985cb2040cde985fefc98a2d2c4e36908b06` to the existing Free Pages project; restoration was unnecessary. See the [Graphite publication evidence and qualifications](docs/validation/graphite-publication.md).
 
 Pages/chart data share Cloudflare Pages, downloads are generated in the browser and R2 remains private preservation storage. The public site uses `noindex,nofollow`; that indexing policy does not restrict access. No new Census request, paid upgrade, recurring job or indexing change was made by this expansion.
 
-## Local design preview
+## Graphite dashboard
 
-The local [Graphite redesign](docs/validation/graphite-redesign.md) implements the approved compact dashboard, numerical overview and persistent light/dark toggle. It preserves the existing research and download flows. This code change has not yet been published to the public pilot.
+The published [Graphite redesign](docs/validation/graphite-publication.md) provides the compact dashboard, numerical overview and persistent light/dark toggle. Existing research and downloads passed live verification; the publication also fixes Canada print clipping. The [original local record](docs/validation/graphite-redesign.md) remains historical.
 
 ## Product profile navigation
 
@@ -415,7 +415,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Live verification failed; inspect the private 
 
 A zero exit status requires every check to pass and receipt.json to be saved and read back. Failures exit nonzero; failed.json preserves partial results with safe error codes when an owned proof directory could be created. Unsafe or occupied proof destinations are rejected without overwriting evidence. A mismatch never triggers an upload or automatic restoration.
 
-This pilot verifier accepts site packages only, at most 1,000 entries, 2 MiB total raw payload, a 4 MiB ZIP, a 1 MiB manifest and 128 logical checks across the two origins. It makes sequential requests, permits at most three redirects per check, uses 15-second request/body timeouts and a three-minute overall network deadline, and performs no retries. An overflowing decoded stream is cancelled without retaining the excess chunk; this is not an exact wire-transfer quota. Automated tests use fixtures and mocked HTTP, with no live site access. See the [verification record](docs/validation/live-site-verification.md).
+This pilot verifier accepts site packages only, at most 1,000 entries, 8 MiB total raw payload, a 4 MiB ZIP, a 1 MiB manifest and 128 logical checks across the two origins. It makes sequential requests, permits at most three redirects per check, uses 15-second request/body timeouts and a three-minute overall network deadline, and performs no retries. An overflowing decoded stream is cancelled without retaining the excess chunk; this is not an exact wire-transfer quota. Automated tests use fixtures and mocked HTTP, with no live site access. See the [verification record](docs/validation/live-site-verification.md).
 
 The published **country-share history** adds selected-country monthly percentages of matching U.S. totals, exact monthly tables and sourced PNG/CSV downloads to both existing coffee profiles. It follows the existing direction/history/country filters and preserves zeros, gaps and classification boundaries. Independent review, the test-covered tiny-axis fix, exact-head CI, PR #103 merge and public acceptance passed. The site has31entries/1,873,448rawbytes. See the [verified public record](docs/validation/country-share-history.md#verified-public-update).
 

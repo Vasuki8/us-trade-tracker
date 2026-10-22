@@ -28,3 +28,7 @@ Independent review found that the homepage's closed Canada coverage disclosure o
 The existing Firefox/WebKit check now also selects the four new theme tests: persistent preferences and research state, blocked storage, global search and narrow/print layout. Test discovery confirms eight added cases across both engines while retaining all 78 existing cases. The workflow and dependencies are unchanged; actual execution results remain a separate gate.
 
 A fresh two-worker Windows run passed 2,032 tests and timed out in seven existing filesystem-heavy cases at their unchanged 5,000ms deadline. No assertions or deadlines were weakened, and the timing failures are not claimed fixed. Follow-up verification and integration outcomes are recorded in [PR #139](https://github.com/Vasuki8/us-trade-tracker/pull/139).
+
+## Verified public update — October 22, 2026
+
+The Graphite redesign and the scoped Canada print repair were published from reviewed merge `61cd985cb2040cde985fefc98a2d2c4e36908b06`. Live verification passed 88/88 exact checks, eight additional Mexico checks, all 22 public routes and ten downloads; the final Production assignment remained `509608c8-fb7d-439d-bd6d-4498d8e09035`. Restoration was unnecessary. This later result does not revise the local history or resolve the Windows timing gap above. See the [publication evidence, identities and limitations](graphite-publication.md).
