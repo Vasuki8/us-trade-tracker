@@ -43,4 +43,3 @@ test('static overview print exposes research links without JavaScript',async({br
   await expect(page.locator('.monitor-navigation').getByText('Source: Development fixtures',{exact:false}).first()).toBeVisible();
  }finally{await context.close();}
 });
-
