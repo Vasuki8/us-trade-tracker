@@ -22,7 +22,7 @@ A 20-second Windows-only budget allows bounded headroom for the real filesystem/
 
 ## Running the checks
 
-Use Node 24 and the locked dependencies from `npm ci`. Ensure Python 3.12 or newer is available for packaging tests. If the default `python` command is unavailable or opens a launcher, set `SITE_PACKAGE_PYTHON` to a real Python executable in your environment. The verification here uses the existing bundled runtime; no dependency was added.
+Use Node 24 and the locked dependencies from `npm ci`. Before running the suite, always set `SITE_PACKAGE_PYTHON` to the full path of a real Python 3.12 or newer executable, even when the `python` command already works. Packaging integration checks require this variable explicitly; a launcher or command alias is not sufficient. The verification here uses the existing bundled runtime; no dependency was added.
 
 Run the normal full suite and compiler checks; no CLI timeout override is required:
 
