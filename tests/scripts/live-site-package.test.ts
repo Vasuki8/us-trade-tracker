@@ -2,7 +2,7 @@ import {afterEach,expect,it,vi} from 'vitest';
 import {writeFile,readFile,link,rename,mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {loadLiveSitePackage} from '../../scripts/live-site-package';
-import {cleanLiveFixtures,liveFixture,liveFixtureWithTotal,liveMexicoFixture,sha} from '../helpers/live-site';
+import {cleanLiveFixtures,liveFixture,liveFixtureWithTotal,liveMexicoFixture,liveMalformedMexicoSourceFixture,sha} from '../helpers/live-site';
 afterEach(async()=>{vi.restoreAllMocks();await cleanLiveFixtures();});
 it('authenticates a real ZIP and plans served and private routes without the control file',async()=>{
   const f=await liveFixture();const result=await loadLiveSitePackage(f);
@@ -110,4 +110,17 @@ it('selected Mexico retains exactly 128 checks at 57 files and rejects 58',async
  const extra=Object.fromEntries(Array.from({length:51},(_,i)=>['selected'+i+'.js','x']));
  const good=await liveMexicoFixture(extra),result=await loadLiveSitePackage(good);expect(result.manifest.fileCount).toBe(57);expect(result.checks.length*2).toBe(128);
  const bad=await liveMexicoFixture({...extra,'one-too-many.js':'x'});await expect(loadLiveSitePackage(bad)).rejects.toThrow('live-package-policy');
+});
+
+it('rejects selected source commit with a valid legacy ZIP but no Mexico route or binding',async()=>{
+ const selected=await liveMexicoFixture(),legacy=await liveFixture();
+ legacy.manifest.codeCommit=selected.manifest.codeCommit;
+ const body=JSON.stringify(legacy.manifest);await writeFile(legacy.manifestPath,body);
+ await expect(loadLiveSitePackage({...legacy,manifestSha256:sha(body)})).rejects.toThrow('live-package-policy');
+});
+it.each(['unknown','malformed'] as const)('rejects unavailable or malformed source selection instead of treating it as legacy: %s',async kind=>{
+ const f=kind==='malformed'?await liveMalformedMexicoSourceFixture():await liveFixture();
+ if(kind==='unknown')f.manifest.codeCommit='f'.repeat(40);
+ const body=JSON.stringify(f.manifest);await writeFile(f.manifestPath,body);
+ await expect(loadLiveSitePackage({...f,manifestSha256:sha(body)})).rejects.toThrow('live-package-policy');
 });

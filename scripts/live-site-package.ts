@@ -19,15 +19,24 @@ const fixedPrivatePaths=['/preview/countries/1220/','/preview/accepted/countries
 function packagePrivatePaths(manifest:SiteManifest):string[]{
  const route='countries/2010/index.html',selected=manifest.files.some(f=>f.path===route);
  if(manifest.files.some(f=>/^countries\/2010(?:\.html|\/)/.test(f.path)&&f.path!==route))throw Error('live-package-policy');
- if(!selected){if(Object.hasOwn(manifest,'mexico'))throw Error('live-package-policy');return [...fixedPrivatePaths,'/countries/2010/'];}
  try{
-  const value=manifest.mexico;
-  if(!value||!/^[a-f0-9]{40}$/.test(manifest.codeCommit))throw Error('binding');
-  const {selection,...binding}=value,parsed=parseMexicoPublicationSelection({schemaVersion:1,source:'census',...binding});
-  const body=execFileSync('git',['show',manifest.codeCommit+':'+MEXICO_PUBLIC_SELECTION_PATH],{cwd:checkout,timeout:10000,maxBuffer:65536,stdio:['pipe','pipe','pipe']});
+  if(!/^[a-f0-9]{40}$/.test(manifest.codeCommit))throw Error('source');
+  const source=(args:string[])=>execFileSync('git',args,{cwd:checkout,timeout:10000,maxBuffer:65536,stdio:['pipe','pipe','pipe']});
+  if(source(['cat-file','-t',manifest.codeCommit]).toString('utf8').trim()!=='commit')throw Error('source');
+  const entry=source(['ls-tree','-z',manifest.codeCommit,'--',MEXICO_PUBLIC_SELECTION_PATH]).toString('utf8');
+  if(!entry){
+   if(selected||Object.hasOwn(manifest,'mexico'))throw Error('binding');
+   return [...fixedPrivatePaths,'/countries/2010/'];
+  }
+  const match=entry.match(/^(100644|100755) blob ([a-f0-9]{40})\tdeployment\/site-mexico-selection\.json\0$/);
+  if(!match)throw Error('source');
+  const body=source(['show',manifest.codeCommit+':'+MEXICO_PUBLIC_SELECTION_PATH]);
   const expected=parseMexicoPublicationSelection(JSON.parse(new TextDecoder('utf8',{fatal:true}).decode(body)));
+  const value=manifest.mexico;
+  if(!selected||!value)throw Error('binding');
+  const {selection,...binding}=value,parsed=parseMexicoPublicationSelection({schemaVersion:1,source:'census',...binding});
   countrySame(parsed,expected);
-  countrySame(selection,{path:MEXICO_PUBLIC_SELECTION_PATH,bytes:body.length,sha256:digest(body),mode:'100644',gitBlob:createHash('sha1').update(Buffer.from('blob '+body.length+'\0')).update(body).digest('hex')});
+  countrySame(selection,{path:MEXICO_PUBLIC_SELECTION_PATH,bytes:body.length,sha256:digest(body),mode:match[1],gitBlob:match[2]});
  }catch{throw Error('live-package-policy');}
  return [...fixedPrivatePaths];
 }

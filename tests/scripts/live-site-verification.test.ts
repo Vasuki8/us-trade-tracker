@@ -137,3 +137,10 @@ it('selected Mexico succeeds as a positive hashed page while preserving private 
  expect(result.checks.filter(v=>v.path==='/countries/2010/index.html')).toHaveLength(2);
  expect(result.checks.filter(v=>v.path==='/preview/mexico/2010/').every(v=>v.status===404)).toBe(true);
 });
+
+it('rejects selected source with omitted Mexico page and binding before any HTTP',async()=>{
+ const selected=await liveMexicoFixture(),f=await liveFixture();f.manifest.codeCommit=selected.manifest.codeCommit;
+ const body=JSON.stringify(f.manifest);await writeFile(f.manifestPath,body);const t=transport(f);
+ const result=await verifyLiveSite({...f,manifestSha256:sha(body)},t);
+ expect(result).toMatchObject({status:'failed',plannedCount:0,completedCount:0,httpAttempts:0,failure:{code:'live-package-policy'}});expect(t.requests).toHaveLength(0);
+});
