@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "verifiedDate": "2026-10-23",
+  "status": "verified-public-all-goods-snapshot",
+  "countryCode": "2010",
+  "scope": "all-goods-only",
+  "reporting": {
+    "from": "2024-09",
+    "to": "2026-08"
+  },
+  "productComparisonsAvailable": false,
+  "classificationAccepted": false,
+  "runtime": {
+    "implementationPr": 150,
+    "commit": "e8938c33f97e484c8814d989e54393b0afb897a2",
+    "tree": "9d08e1d59ac760204233f90b5269a2c175f430f1",
+    "prHead": "68c909e06ce7c44b7973b6f60a8cd6048f87e533",
+    "prCiRun": 40024557537,
+    "prCiAttempt": 2,
+    "mainCiRun": 40028467181,
+    "mainCiAttempt": 1
+  },
+  "package": {
+    "zip": {
+      "bytes": 655531,
+      "sha256": "af29921140a66b527d68aafba8e652feeb1fc493c9c077ac71ee8ed6c35ad9ea"
+    },
+    "manifest": {
+      "bytes": 10450,
+      "sha256": "d003fabc2af5dc53cd2a4d223c90da6cd97e99130e2aa68f04272d5a39460c71"
+    },
+    "fileCount": 43,
+    "rawBytes": 3215775,
+    "largestFile": {
+      "path": "products/090121/index.html",
+      "bytes": 358446
+    },
+    "planningAlertFiles": 15000,
+    "publicProfile": {
+      "bytes": 14429,
+      "sha256": "16ee47da3087dea5529de1c60fdc5f8fe9d4523203c7fe40a5725408b5149d09"
+    },
+    "selection": {
+      "bytes": 1398,
+      "sha256": "6d1f172dff01b030bb5991d87d013bdbb02ccc31db3f381b57dab2eee3f198de",
+      "gitBlob": "6057c011fe8d1cf64acb69bcc315f2ed4362a836"
+    }
+  },
+  "inputs": {
+    "files": 15,
+    "bytes": 19168534,
+    "changed": false,
+    "companionSha256": "5ff4868dd95f003308bd742c6a92117776a778804426fe61493e535e4eeada37"
+  },
+  "provider": {
+    "project": "us-trade-tracker",
+    "plan": "Free",
+    "environment": "Production",
+    "branch": "main",
+    "deploymentId": "3697e575-0dd7-4b02-8919-e76c5ddd1aa3",
+    "origin": "https://3697e575.us-trade-tracker.pages.dev",
+    "canonical": "https://us-trade-tracker.pages.dev",
+    "assignmentRecheckedAfterBrowserAcceptance": true,
+    "candidateWrites": 1,
+    "restorations": 0,
+    "publicationRepairs": 0
+  },
+  "verification": {
+    "windowsUnit": {
+      "passed": 2325,
+      "files": 152
+    },
+    "linuxUnit": {
+      "passed": 2324,
+      "existingPlatformSkip": 1
+    },
+    "compiler": {
+      "files": 413,
+      "errors": 0
+    },
+    "linuxBrowser": {
+      "passed": 411,
+      "newPublicMexicoThreeEngineCases": 36
+    },
+    "pythonPackaging": 25,
+    "linuxWorkflowChecks": 18,
+    "independentCalculation": {
+      "checks": 1065,
+      "discrepancies": 0,
+      "monthlyValues": 48,
+      "periodTotals": 4,
+      "growthResults": 2
+    },
+    "independentPackageAndLocalBrowser": {
+      "checks": 2503,
+      "discrepancies": 0,
+      "committedSourceFiles": 663,
+      "dataFiles": 15,
+      "reportSha256": "c0621ba606713bf17be923770a22c278f75dab6c67f249ea07e7c5166db91704"
+    },
+    "baselineLive": {
+      "planned": 98,
+      "passed": 98,
+      "httpAttempts": 144
+    },
+    "candidateLive": {
+      "planned": 100,
+      "passed": 100,
+      "httpAttempts": 148,
+      "privateNegativePaths": 8
+    },
+    "liveBrowser": {
+      "contentRoutes": 23,
+      "navigations": 52,
+      "exports": 22,
+      "overviewStates": 4,
+      "monitorJourneys": 2,
+      "existingCsvs": 7,
+      "mexicoCsvDownloads": 6,
+      "requiredDistinctMexicoCsvs": 4,
+      "merchandisePngs": 1,
+      "pdfs": 8,
+      "errors": 0,
+      "outsideRequests": 0
+    },
+    "localOverviewStates": 32,
+    "localPredecessorCsvPairs": 7,
+    "localPredecessorShareAndDutyPngPairs": 2,
+    "localPrintPdfs": 12,
+    "fullVerifierRuns": 2,
+    "sourceRequests": 0,
+    "r2Operations": 0
+  },
+  "qualifications": {
+    "retainedCurrentControlsBefore": 48,
+    "retainedCurrentControlsAfter": 48,
+    "datedPublicationMatches": 16,
+    "datedPublicationDifferences": 32,
+    "ordinaryClassificationPairsUnverified": 17,
+    "statisticalExclusionsInAllGoodsTotals": 3,
+    "latestRevisedSeriesClaim": false,
+    "freshSourceReplay": false,
+    "scheduledRefresh": false,
+    "historicalFailuresPreserved": true
+  },
+  "predecessor": {
+    "commit": "73654c24e2c21909f85d30efb0b9e3df4ea02a2e",
+    "deploymentId": "16b5e4f3-6741-4400-9131-a9c743a12f50",
+    "zipSha256": "a24d330caf67a49826f393a19512d92dbbf47977b0c8d1b5708f871f994e405c",
+    "manifestSha256": "f851b8562ba7010ecbecbc1ce4fd0a2922475f08bd8c5985e691e6f994e875bc",
+    "files": 41,
+    "restorationReadinessChecked": true,
+    "restorationPerformed": false
+  },
+  "limitations": {
+    "windowsFirefox": "Existing launch boundary remains unresolved; Linux three-engine CI passed.",
+    "print": "Overview Letter output can leave the Census attribution alone on a final page; content is retained.",
+    "failedAttempts": "One PR CI attempt timed out during Ubuntu browser prerequisite installation and its diagnosed infrastructure rerun passed. Private harness/checker draft failures and the pre-transmission browser/file-access blockers are retained; no application failure was relabeled infrastructure."
+  },
+  "closeout": {
+    "evidenceMerge": "This documentation records the immutable uploaded runtime; its later documentation commit is not a deployed runtime.",
+    "cleanup": "Owned worktree archival follows reviewed evidence integration and is verified in the private execution closeout; this publication record does not certify archival."
+  }
+}
