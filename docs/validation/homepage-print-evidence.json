@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "status": "verified-public-homepage-print",
+  "verifiedAt": "2026-10-23T02:33:20.266Z",
+  "canonical": "https://us-trade-tracker.pages.dev",
+  "deploymentId": "a5be837a-4599-416b-959b-9b22ad1d1d8b",
+  "deploymentOrigin": "https://a5be837a.us-trade-tracker.pages.dev",
+  "project": "us-trade-tracker",
+  "environment": "Production",
+  "branch": "main",
+  "sourceMerge": "1505d824f130a9ea26a60df81b40a7f6389ce041",
+  "reviewedHead": "043cace4a9ade288e9adff141902feaad5e3b628",
+  "sourceTree": "7c6bdc5ea213daa396bb450ca94fa3018157a34c",
+  "featurePr": 144,
+  "package": {
+    "bytes": 636466,
+    "sha256": "b7ae3afa10c5ee9cc26115ec5995af9e9c96292a712d76caf2d98c1b2470f917"
+  },
+  "manifest": {
+    "bytes": 8757,
+    "sha256": "01f4742d9afb5b118199a7724d503b779a4b2d7d6b0d64ec14af62f86f6239a3"
+  },
+  "fileCount": 41,
+  "rawBytes": 3145298,
+  "largestFile": {
+    "path": "products/090121/index.html",
+    "bytes": 358447,
+    "sha256": "de0752274a66c66e9be36cbddc9e7c4de1b0e48f65d3c94626472453705b0fbb",
+    "role": "served-asset"
+  },
+  "build": {
+    "files": 39,
+    "rawBytes": 3144553,
+    "pages": 22
+  },
+  "local": {
+    "navigations": 31,
+    "downloads": 15,
+    "views": 4,
+    "pdfs": 8,
+    "pdfPages": 24,
+    "completeProductRows": 32,
+    "predecessorIdenticalCsvs": 7,
+    "pixelIdenticalScreens": 4,
+    "receipt": {
+      "bytes": 11595,
+      "sha256": "1136696bb6cc8a1bb630fa819172d73d7e4e8f51b9ee53260ac5e2c058fbd684",
+      "retainedPrivately": true
+    },
+    "pdfReceipt": {
+      "bytes": 6013,
+      "sha256": "f25e718d8038e86a19f140d27fb3f4b4f1fb0510cce64abae6062555575174b4",
+      "retainedPrivately": true
+    }
+  },
+  "ci": {
+    "run": 39887955713,
+    "job": 120200488670,
+    "event": "pull_request",
+    "head": "043cace4a9ade288e9adff141902feaad5e3b628",
+    "base": "886444e6ddf4b3e5bfbbd0c5693f561e5c05eb74",
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "unitPassed": 2086,
+    "unitPlatformSkipped": 1,
+    "browserPassed": 350,
+    "browserSuites": {
+      "main": 217,
+      "canadaPreview": 11,
+      "canadaPilot": 14,
+      "firefoxWebkit": 108
+    },
+    "compilerFiles": 385,
+    "diagnostics": 0,
+    "pythonPackaging": 24,
+    "workflowChecks": 18,
+    "mergedCommit": "1505d824f130a9ea26a60df81b40a7f6389ce041",
+    "mergedTree": "7c6bdc5ea213daa396bb450ca94fa3018157a34c"
+  },
+  "independentReview": {
+    "sourceFiles": 622,
+    "acceptedInputs": 11,
+    "packageMembers": 41,
+    "pdfPages": 24,
+    "completeRowLocalBindings": 32,
+    "researchLinkTargets": 64,
+    "receipt": {
+      "bytes": 1272,
+      "sha256": "011fa7c70445c1394a1cab3e078c4b0252d5da7ff3976c382d245ff3bb4e8c19",
+      "retainedPrivately": true
+    }
+  },
+  "live": {
+    "plannedChecks": 88,
+    "completedChecks": 88,
+    "httpAttempts": 134,
+    "mexicoPrivacyChecks": 8,
+    "automatedNavigations": 17,
+    "deliverableNavigations": 1,
+    "totalNavigations": 18,
+    "downloads": 8,
+    "csvs": 7,
+    "pngs": 1,
+    "views": 4,
+    "pdfs": 8,
+    "pdfPages": 24,
+    "completeProductRows": 32,
+    "pageErrors": 0,
+    "unexpectedRequests": 0,
+    "brokenResponses": 0,
+    "productionReadback": "2026-10-23T02:33:20.266Z",
+    "bindingUnchanged": true,
+    "receipt": {
+      "bytes": 51722,
+      "sha256": "315979a2f5097b286f271288ebbbc1f9fcbc97e5d8d8f8fc4a3d60458ba5eb74",
+      "retainedPrivately": true
+    },
+    "browserReceipt": {
+      "bytes": 11604,
+      "sha256": "a9e9c069c549edfb3cc0b8d4827deaf6df1c4dde4c1585e7e7db29ae61d15c9d",
+      "retainedPrivately": true
+    },
+    "pdfReceipt": {
+      "bytes": 6013,
+      "sha256": "ac1ab2b6eb91172ca24f359243ab09a5d562711b82a1c97e23ce80e4143c28ea",
+      "retainedPrivately": true
+    }
+  },
+  "candidateUploads": 1,
+  "restorations": 0,
+  "protectedInputsUnchanged": 26,
+  "limitations": [
+    "Chromium A4/Letter PDFs with 12mm margins only",
+    "Other sections may continue across pages; oversized rows may flow",
+    "Firefox/WebKit print and arbitrary printers/paper settings unverified",
+    "Existing native Windows Firefox launch limitation unresolved"
+  ],
+  "scope": {
+    "imports": 0,
+    "acceptedDataChanges": 0,
+    "r2Operations": 0,
+    "newDependencies": 0,
+    "indexingChanges": 0,
+    "paidChanges": 0
+  }
+}
