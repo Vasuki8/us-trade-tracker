@@ -1,3 +1,4 @@
+import {windowsIntegrationTimeoutMs} from '../helpers/windows-integration-timeout';
 import {afterEach,beforeEach,expect,it,vi} from 'vitest';
 import fs from 'node:fs/promises';import {tmpdir} from 'node:os';import {resolve} from 'node:path';import {Readable} from 'node:stream';
 import {identity,json} from '../../src/lib/mexico-country-release/contract.server';
@@ -29,7 +30,7 @@ it('resolves a lost immutable acknowledgement by GET without retrying PUT',async
 it('performs an independent selected recovery from four full GETs without PUT',async()=>{
  const f=await setup(),objects=new Map<string,Buffer>(f.material.descriptors.map((d:any)=>[d.key,Buffer.from(f.material[d.role==='candidate'?'candidateBytes':d.role==='evidence'?'evidenceBytes':'manifestBytes'])]));objects.set('trade/v1/countries/2010/private-all-goods/current.json',json(f.pointer));const transport=f.api.createMexicoCapabilityTransport(f.capabilities,{readOnly:true,request:async(c:any)=>response(200,objects.get(c.key))});
  const r=await f.api.transferMexicoArchive({repoRoot:f.root,material:f.material,capabilities:f.capabilities,mode:'readback',outputDir:resolve(f.batch,'readback'),transport});expect(r.status).toBe('readback-verified');expect(r.verification.currentStateVerified).toBe(true);expect(r.verification.recovery.verificationStage).toBe('selected');expect(r.ledger.get).toBe(4);expect(r.ledger.put).toBe(0);expect(await fs.readFile(resolve(f.batch,'readback/archive/candidate.json'))).toEqual(f.material.candidateBytes);
-});
+},windowsIntegrationTimeoutMs);
 it('refuses missing readback content despite a matching metadata-shaped response',async()=>{
  const f=await setup(),transport=f.api.createMexicoCapabilityTransport(f.capabilities,{request:async()=>response(200,Buffer.from('{}'))});const r=await f.api.transferMexicoArchive({repoRoot:f.root,material:f.material,capabilities:f.capabilities,mode:'upload',outputDir:resolve(f.batch,'wrong-body'),transport});expect(r.status).toBe('unconfirmed');expect(r.accepted).toBe(false);expect(r.ledger.put).toBe(1);
 });
