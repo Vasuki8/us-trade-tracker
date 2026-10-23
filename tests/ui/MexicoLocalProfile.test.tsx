@@ -59,3 +59,32 @@ it('renders a gap rather than joining across unavailable monthly values',()=>{
  const paths=[...html.matchAll(/data-monthly-line="true"[^>]*d="([^"]*)"/g)].map(m=>m[1]);
  expect(paths).toHaveLength(2);for(const path of paths)expect(path.match(/M/g)).toHaveLength(2);
 });
+
+it('labels public real snapshots without local or unpublished claims',()=>{
+ const profile={...data(),source:'census' as const,presentation:'public-pilot-snapshot' as const,acceptance:{releaseId:'2026-08-test',acceptedAt:'2026-10-19T04:12:15.203Z',scope:'private-all-goods' as const}};
+ render(<MexicoLocalProfile data={profile}/>);
+ expect(screen.getByText('Historical snapshot · All goods only')).toBeVisible();
+ expect(screen.getByText('COUNTRY RESEARCH / HISTORICAL SNAPSHOT')).toBeVisible();
+ expect(screen.queryByText(/local preview|unpublished/i)).not.toBeInTheDocument();
+ expect(screen.getByText(/private all-goods acceptance/i)).toBeInTheDocument();
+ expect(screen.getByText(/not an official publication or revision date/i)).toBeInTheDocument();
+});
+it('labels the public fixture as synthetic and exports its public scope',async()=>{
+ const profile={...data(),presentation:'public-pilot-fixture' as const};const user=userEvent.setup();render(<MexicoLocalProfile data={profile}/>);
+ expect(screen.getByText('COUNTRY RESEARCH / HISTORICAL SNAPSHOT')).toBeVisible();
+ expect(screen.getByText(/Synthetic development sample · No accepted Mexico release/)).toBeVisible();
+ expect(screen.queryByText(/local preview|unpublished/i)).not.toBeInTheDocument();
+ for(const direction of ['imports','exports'] as const){
+  await user.click(screen.getByRole('radio',{name:direction==='imports'?'Imports':'Exports'}));
+  for(const kind of ['monthly','summary'] as const){
+   await user.click(screen.getByRole('button',{name:'Download '+kind+' CSV'}));
+   const [blob,name]=download.mock.calls.at(-1)!;
+   expect(name).toContain('-public-pilot-fixture-'+kind+'.csv');
+   expect(parseCsv(await blob.text())[0]).toMatchObject({direction,publication_status:'synthetic-public-pilot-fixture',publication_scope:'all-goods-only',product_comparisons_available:'false',acceptance_scope:'synthetic-local'});
+  }
+ }
+ expect(screen.getByLabelText('Latest captured month')).toHaveTextContent('$6,600');
+ expect(screen.getByRole('img',{name:'Monthly U.S. exports to Mexico'})).toBeInTheDocument();
+ expect(screen.getByText(/32 of 48 observations/)).toBeVisible();
+ expect(screen.queryByRole('combobox')).not.toBeInTheDocument();
+});

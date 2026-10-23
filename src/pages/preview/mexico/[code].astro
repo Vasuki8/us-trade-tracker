@@ -2,24 +2,14 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import {MexicoLocalProfile} from '../../../components/MexicoLocalProfile';
 import {loadMexicoLocalProfile} from '../../../lib/mexico-profile/load.server';
+import {mexicoProfileDescription} from '../../../lib/mexico-profile/presentation';
+import '../../../styles/mexico-profile.css';
 export async function getStaticPaths(){
  const profile=await loadMexicoLocalProfile();
  return profile?[{params:{code:'2010'},props:{profile}}]:[];
 }
 const {profile}=Astro.props;
 ---
-<BaseLayout title="Mexico local all-goods preview" description="An unpublished local view of the accepted 24-month Mexico all-goods snapshot." robots="noindex,nofollow">
+<BaseLayout title="Mexico local all-goods preview" description={mexicoProfileDescription(profile)} robots="noindex,nofollow">
  <MexicoLocalProfile data={profile} client:load/>
 </BaseLayout>
-<style is:global>
- .mx-local .mx-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}
- .mx-local .mx-summary>div{background:var(--panel);border:1px solid var(--border);border-radius:5px;padding:14px;min-width:0}
- .mx-local .mx-summary span,.mx-local .mx-summary small{display:block;color:var(--muted)}
- .mx-local .mx-summary strong{display:block;font-size:22px;margin:5px 0;overflow-wrap:anywhere}
- .mx-local .mx-basis{color:var(--muted)}
- .mx-local .mx-chart-desktop,.mx-local .mx-chart-mobile{width:100%;height:auto}
- .mx-local .mx-chart-mobile{display:none}
- .mx-local table{min-width:480px}
- @media(max-width:900px){.mx-local .mx-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
- @media(max-width:600px){.mx-local .mx-summary{grid-template-columns:1fr}.mx-local .mx-chart-desktop{display:none}.mx-local .mx-chart-mobile{display:block}}
-</style>

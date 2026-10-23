@@ -28,3 +28,52 @@ it.each(['build','preview'] as const)('honours termination during %s startup and
  vi.mocked(preview).mockImplementation(async()=>{if(phase==='preview')signals.get('SIGTERM')!();return {port:4410,stop,closed:async()=>{throw Error('Waited after startup interruption');}};});
  await expect(serveMexicoProfileFixture()).rejects.toThrow('startup interrupted');if(phase==='preview')expect(stop).toHaveBeenCalledTimes(1);else expect(preview).not.toHaveBeenCalled();expect(await readdir(resolve(r,'.tmp'))).toEqual([]);
 });
+
+it.each(['local','pilot'] as const)('restores public and private settings for %s with distinct owned outputs',async presentation=>{
+ const r=await root();await mkdir(resolve(r,'dist'));await writeFile(resolve(r,'dist/owner.txt'),'ordinary');
+ const saved={MEXICO_PILOT_MODE:'snapshot',MEXICO_LOCAL_PREVIEW_MODE:'selected',TRADE_DATA_MODE:'census',CANADA_PILOT_MODE:'snapshot',CANADA_PREVIEW_MODE:'retained',CANADA_ACCEPTED_PREVIEW_MODE:'selected'};
+ for(const [k,v] of Object.entries(saved))vi.stubEnv(k,v);
+ vi.stubEnv('PLAYWRIGHT_MEXICO_PILOT_PORT','4417');
+ const port=presentation==='pilot'?4417:4410;
+ vi.mocked(build).mockImplementation(async options=>{
+  expect(process.env.TRADE_DATA_MODE).toBe('fixture');
+  expect(process.env.MEXICO_PILOT_MODE).toBe(presentation==='pilot'?'fixture':undefined);
+  expect(process.env.MEXICO_LOCAL_PREVIEW_MODE).toBe(presentation==='local'?'fixture':undefined);
+  expect(process.env.CANADA_PILOT_MODE).toBe(presentation==='pilot'?'fixture':undefined);
+  for(const k of ['CANADA_PREVIEW_MODE','CANADA_ACCEPTED_PREVIEW_MODE'])expect(process.env[k]).toBeUndefined();
+  expect(resolve(options!.outDir!)).toContain(presentation==='pilot'?'mexico-pilot-':'mexico-profile-');
+  expect(options!.server).toMatchObject({host:'127.0.0.1',port});
+ });
+ const stop=vi.fn(async()=>{});vi.mocked(preview).mockResolvedValue({port,stop,closed:async()=>{}});
+ await serveMexicoProfileFixture({presentation});
+ for(const [k,v] of Object.entries(saved))expect(process.env[k]).toBe(v);
+ expect(await readdir(resolve(r,'.tmp'))).toEqual([]);
+ expect(await readFile(resolve(r,'dist/owner.txt'),'utf8')).toBe('ordinary');expect(stop).toHaveBeenCalledTimes(1);
+});
+it.each(['build','server','port'] as const)('cleans pilot output and restores public flags after %s failure',async failure=>{
+ const r=await root();vi.stubEnv('MEXICO_PILOT_MODE','snapshot');vi.stubEnv('MEXICO_LOCAL_PREVIEW_MODE','selected');const stop=vi.fn(async()=>{});
+ if(failure==='build')vi.mocked(build).mockRejectedValue(Error('build failed'));
+ else if(failure==='server')vi.mocked(preview).mockRejectedValue(Error('occupied loopback port'));
+ else vi.mocked(preview).mockResolvedValue({port:4417,closed:async()=>{},stop});
+ await expect(serveMexicoProfileFixture({presentation:'pilot'})).rejects.toThrow();
+ expect(process.env.MEXICO_PILOT_MODE).toBe('snapshot');expect(process.env.MEXICO_LOCAL_PREVIEW_MODE).toBe('selected');
+ expect(await readdir(resolve(r,'.tmp'))).toEqual([]);if(failure==='port')expect(stop).toHaveBeenCalledTimes(1);
+});
+it('rejects an invalid pilot port before writing or building',async()=>{
+ const r=await root();vi.stubEnv('PLAYWRIGHT_MEXICO_PILOT_PORT','65536');
+ await expect(serveMexicoProfileFixture({presentation:'pilot'})).rejects.toThrow();expect(build).not.toHaveBeenCalled();expect(await readdir(r)).toEqual([]);
+});
+it.each(['build','preview'] as const)('honours pilot termination during %s startup',async phase=>{
+ const r=await root(),signals=new Map<string,()=>void>();
+ vi.spyOn(process,'on').mockImplementation(((name:string,listener:()=>void)=>{if(name==='SIGINT'||name==='SIGTERM')signals.set(name,listener);return process;}) as typeof process.on);
+ const stop=vi.fn(async()=>{});
+ if(phase==='build')vi.mocked(build).mockImplementation(async()=>{signals.get('SIGTERM')!();});
+ vi.mocked(preview).mockImplementation(async()=>{if(phase==='preview')signals.get('SIGTERM')!();return {port:4416,stop,closed:async()=>{throw Error('Waited after interruption');}};});
+ await expect(serveMexicoProfileFixture({presentation:'pilot'})).rejects.toThrow('startup interrupted');
+ if(phase==='preview')expect(stop).toHaveBeenCalledTimes(1);else expect(preview).not.toHaveBeenCalled();
+ expect(await readdir(resolve(r,'.tmp'))).toEqual([]);
+});
+it('rejects pilot output links before writing',async()=>{
+ const r=await root(),target=resolve(r,'target');await mkdir(target);await symlink(target,resolve(r,'.tmp'),process.platform==='win32'?'junction':'dir');
+ await expect(serveMexicoProfileFixture({presentation:'pilot'})).rejects.toThrow();expect(build).not.toHaveBeenCalled();expect(await readdir(target)).toEqual([]);
+});
