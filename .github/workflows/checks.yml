@@ -9,7 +9,7 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       TRADE_DATA_MODE: fixture
       SITE_PACKAGE_PYTHON: python3
@@ -26,10 +26,12 @@ jobs:
       - name: Retained artifact checks
         run: python3 -m unittest discover -s tests/workflows -v
       - run: npm ci
+      - name: Install browser prerequisites
+        timeout-minutes: 3
+        run: npx playwright install --with-deps chromium firefox webkit
       - run: npm test -- --maxWorkers=2
       - run: npm run check
       - run: npm run build
-      - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run test:e2e
       - name: Firefox and WebKit profile compatibility
         run: npx playwright test --config playwright.compatibility.config.ts --retries=0
