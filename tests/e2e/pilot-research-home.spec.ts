@@ -17,8 +17,8 @@ async function checkProfiles(page:Page){
     await expect(card).toContainText(release.observations.find(row=>row.geography==='world')!.description);
     await expect(card).toContainText('Source: Development fixtures');
     await expect(card.locator('time')).toHaveAttribute('datetime',release.reportingMonth);
-    await expect(card.getByRole('link',{name:`${profile.name} · HS ${profile.code}`,exact:true})).toHaveAttribute('href',`/products/${profile.code}/`);
-    await expect(card.getByRole('link',{name:'Country changes',exact:true,includeHidden:true})).toHaveAttribute('href',profile.changes);
+    await expect(card.getByRole('link',{name:`${profile.name} · HS ${profile.code}`,exact:true})).toHaveAttribute('href',`/products/${profile.code}/?direction=imports&months=60&comparison=monthly`);
+    await expect(card.getByRole('link',{name:'Country changes',exact:true,includeHidden:true})).toHaveAttribute('href',profile.changes+'?direction=imports&metric=dollars&period=monthly#changes-heading');
     await expect(card.getByRole('link',{name:'Release briefing',exact:true,includeHidden:true})).toHaveAttribute('href',profile.briefing);
   }
   await expect(page.getByRole('link',{name:'Find a product',exact:true})).toHaveAttribute('href','/products/');
@@ -51,7 +51,7 @@ test('home research links retain their products on mobile by keyboard without Ja
     const card=page.getByRole('article',{name:'Synthetic second product · HS 090122',exact:true});
     await card.locator('summary').click();
     await card.getByRole('link',{name:'Country changes',exact:true}).focus();await page.keyboard.press('Enter');
-    await expect(page).toHaveURL(/\/changes\/090122\/$/);await expect(page.locator('.heading-description')).toHaveText('SYNTHETIC PRODUCT 090122');
+    await expect(page).toHaveURL(new URL('/changes/090122/?direction=imports&metric=dollars&period=monthly#changes-heading',baseURL).href);await expect(page.locator('.heading-description')).toHaveText('SYNTHETIC PRODUCT 090122');
     await page.goto('/');await card.locator('summary').click();await card.getByRole('link',{name:'Release briefing',exact:true}).focus();await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/\/briefing\/090122\/$/);await expect(page.getByRole('heading',{name:'Release briefing',exact:true})).toBeVisible();
     await page.goto('/');await page.getByRole('link',{name:'Find a product',exact:true}).click();await expect(page).toHaveURL(/\/products\/$/);

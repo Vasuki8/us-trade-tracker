@@ -66,3 +66,17 @@ it('counts reported zero-valued partners beyond the five displayed leaders',asyn
   expect(figures).toHaveTextContent('6 partners in history');
   expect(within(screen.getByRole('region',{name:'Leading partner markets'})).getAllByRole('link')).toHaveLength(6);
 });
+
+for(const direction of ['imports','exports'] as const)for(const period of ['monthly','annual'] as const)for(const months of [12,60] as const){
+  it(`keeps each monitor row's ${direction}, ${period} and ${months}-month research context`,()=>{
+    window.history.replaceState(null,'',`/?product=090121&direction=${direction}&comparison=${period}&months=${months}`);
+    const first=buildOverviewProduct({product,release:sampleDutyRelease()});
+    render(<TradeOverview products={[first,{...first,code:'090122',name:'Second product'}]}/>);
+    for(const code of ['090121','090122']){
+      const row=screen.getByRole('article',{name:new RegExp(`HS ${code}$`)});
+      expect(within(row).getByRole('link',{name:new RegExp(`HS ${code}$`)})).toHaveAttribute('href',`/products/${code}/?direction=${direction}&months=${months}${period==='monthly'?'&comparison=monthly':''}`);
+      expect(within(row).getByRole('link',{name:'Country changes',hidden:true})).toHaveAttribute('href',`${code==='090121'?'/changes/':`/changes/${code}/`}?direction=${direction}&metric=dollars${period==='monthly'?'&period=monthly':''}#changes-heading`);
+      expect(within(row).getByRole('link',{name:'Release briefing',hidden:true})).toHaveAttribute('href',code==='090121'?'/briefing/':`/briefing/${code}/`);
+    }
+  });
+}
