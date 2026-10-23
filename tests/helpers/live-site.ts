@@ -6,8 +6,9 @@ import type {SiteManifest} from '../../scripts/site-assembly';
 const roots:string[]=[];
 export const sha=(body:Uint8Array|string)=>createHash('sha256').update(body).digest('hex');
 export async function liveFixture(extra:Record<string,string>={}){return makeLiveFixture(extra);}
+export async function liveMexicoFixture(extra:Record<string,string>={}){return makeLiveFixture({'countries/2010/index.html':'<!doctype html><h1>Selected Mexico all-goods snapshot</h1>',...extra},undefined,true);}
 export async function liveFixtureWithTotal(totalBytes:number){return makeLiveFixture({},totalBytes);}
-async function makeLiveFixture(extra:Record<string,string>={},totalBytes?:number){
+async function makeLiveFixture(extra:Record<string,string>={},totalBytes?:number,mexico=false){
   await mkdir(resolve('.tmp'),{recursive:true});
   const workDir=await mkdtemp(resolve('.tmp/live-verification-test-')); roots.push(workDir);
   const tree=resolve(workDir,'site'); await mkdir(tree);
@@ -28,6 +29,12 @@ async function makeLiveFixture(extra:Record<string,string>={},totalBytes?:number
   const manifest:SiteManifest={schemaVersion:1,status:'prepared-for-owner-deployment-review',packageKind:'site',codeCommit:'a'.repeat(40),fileCount:files.length,totalBytes:files.reduce((n,f)=>n+f.bytes,0),largestFile:files.reduce((a,b)=>a.bytes>=b.bytes?a:b),planningAlertTriggered:false,files,
     uploadLimits:{dashboard:{maxFiles:1000,maxAssetBytes:26214400,eligible:true}},
     sourceTemplates:['_headers','404.html'].map(targetPath=>({sourcePath:'deployment/pages/'+targetPath,targetPath,bytes:bodies[targetPath].length,sha256:sha(bodies[targetPath]),gitBlob:createHash('sha1').update(Buffer.from('blob '+bodies[targetPath].length+'\0')).update(bodies[targetPath]).digest('hex')}))};
+  if(mexico){
+   const path='deployment/site-mexico-selection.json',body=await readFile(resolve(path)),value=JSON.parse(body.toString('utf8'));
+   const {schemaVersion:_schema,source:_source,...binding}=value;
+   manifest.codeCommit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
+   manifest.mexico={...binding,selection:{path,bytes:body.length,sha256:sha(body),mode:'100644',gitBlob:createHash('sha1').update(Buffer.from('blob '+body.length+'\0')).update(body).digest('hex')}};
+  }
   for(const [name,body]of Object.entries(bodies)){await mkdir(resolve(tree,name,'..'),{recursive:true});await writeFile(resolve(tree,name),body);}
   const manifestPath=resolve(workDir,'site-manifest.json'),zipPath=resolve(workDir,'site.zip');
   await writeFile(manifestPath,JSON.stringify(manifest));

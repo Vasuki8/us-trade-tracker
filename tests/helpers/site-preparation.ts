@@ -63,3 +63,32 @@ export async function preparationFixture(options:{months?:[string,string];legacy
 export async function cleanPreparationFixtures(){vi.restoreAllMocks();for(const root of fixtureRoots.splice(0)){if(!root.startsWith(resolve('.tmp')+sep))throw Error('Fixture cleanup escaped');await rm(root,{recursive:true,force:true});}}
 export function blob(body:Buffer){return createHash('sha1').update(Buffer.from('blob '+body.length+'\0')).update(body).digest('hex');}
 
+export async function preparationMexicoFixture(){
+ const f=await preparationFixture();
+ const selected=structuredClone((await import('../../deployment/site-mexico-selection.json')).default);
+ const profile=structuredClone((await import('../fixtures/mexico-local-profile.json')).default) as import('../../src/lib/mexico-profile/types').MexicoLocalProfile;
+ profile.source='census';profile.presentation='accepted-private-local';
+ profile.acceptance={releaseId:selected.releaseId,acceptedAt:'2026-10-19T04:12:15.203Z',scope:'private-all-goods'};
+ profile.qualifications.verificationBasis='prior-reviewed-retained-evidence';
+ for(const d of Object.values(profile.directions))for(const row of d.monthly)row.originalSource={url:'https://www.census.gov/synthetic/'+d.direction+'/'+row.month+'.ZIP',capturedAt:'2026-10-01T00:00:00.000Z',bytes:123,sha256:'c'.repeat(64)};
+ const mexicoProfile={...profile,presentation:'public-pilot-snapshot' as const};
+ selected.publicProfile=digestCountryBytes(Buffer.from(JSON.stringify(mexicoProfile)));
+ for(const [kind,input] of Object.entries(selected.inputs)){
+  const body=countryJsonBytes({syntheticMexicoInput:kind});Object.assign(input,digestCountryBytes(body));
+  f.bodies[input.path]=body;await mkdir(resolve(f.dataRoot,input.path,'..'),{recursive:true});await writeFile(resolve(f.dataRoot,input.path),body);
+ }
+ const path='deployment/site-mexico-selection.json',mexicoSourceBody=countryJsonBytes(selected);
+ await writeFile(resolve(f.sourceRoot,path),mexicoSourceBody);fixtureGit(f.sourceRoot,['add',path]);fixtureGit(f.sourceRoot,['commit','-qm','Synthetic Mexico public selection']);
+ f.commit=fixtureGit(f.sourceRoot,['rev-parse','HEAD']).toString().trim();
+ const {loadMexicoPilot}=await import('../../src/lib/mexico-profile/pilot-load.server');vi.mocked(loadMexicoPilot).mockResolvedValue(mexicoProfile);
+ return {...f,mexicoProfile,mexicoSelection:selected,mexicoSourceBody};
+}
+export function mexicoHydrationHtml(profile:unknown):string{
+ function encode(value:unknown):unknown{
+  if(Array.isArray(value))return [1,value.map(encode)];
+  if(value!==null&&typeof value==='object')return [0,Object.fromEntries(Object.entries(value).map(([key,child])=>[key,encode(child)]))];
+  return [0,value];
+ }
+ const props=JSON.stringify({data:encode(profile)}).replaceAll('&','&amp;').replaceAll('"','&quot;');
+ return '<!doctype html><h1>Mexico — all-goods trade</h1><astro-island component-export="MexicoLocalProfile" props="'+props+'"></astro-island>';
+}

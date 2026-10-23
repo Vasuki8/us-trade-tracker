@@ -6,8 +6,10 @@ import {countryJsonBytes,digestCountryBytes} from '../../src/lib/country-release
 import * as fs from 'node:fs/promises';
 import {readSiteFile,assertLocalPath} from '../../scripts/site-preparation-files';
 import {createSiteStage,verifySiteStage,stageInformation} from '../../scripts/site-staging';
-import {preparationFixture,cleanPreparationFixtures,fixtureGit,blob,preparationProductRelease} from '../helpers/site-preparation';
+import {preparationFixture,cleanPreparationFixtures,fixtureGit,blob,preparationProductRelease,preparationMexicoFixture} from '../helpers/site-preparation';
 vi.mock('../../src/lib/country-preview/pilot-load.server',()=>({loadCanadaPilot:vi.fn()}));
+vi.mock('../../src/lib/mexico-profile/pilot-load.server',()=>({loadMexicoPilot:vi.fn()}));
+import {loadMexicoPilot} from '../../src/lib/mexico-profile/pilot-load.server';
 vi.mock('node:fs/promises',async importOriginal=>{const actual=await importOriginal<typeof import('node:fs/promises')>();return{...actual,open:vi.fn(actual.open)};});
 const originalOpen=vi.mocked(fs.open).getMockImplementation()!;
 afterEach(async()=>{vi.mocked(fs.open).mockImplementation(originalOpen);await cleanPreparationFixtures();});
@@ -191,3 +193,45 @@ it('legacy_readback_rejects_successor_paths_even_if_protected_hashes_match',asyn
  const f=await preparationFixture({legacy:true,months:['2026-09','2026-09']});
  await expect(stageInformation(f.sourceRoot,f.dataRoot,f.commit,'allow-legacy')).rejects.toThrow(/pointer/);
 });
+
+it('selected Mexico stages exactly four authenticated files and binds the committed selection/projection',async()=>{
+ const f=await preparationMexicoFixture(),receipt=await createSiteStage(f),mexico=receipt.data.filter(v=>v.kind.startsWith('mexico-'));
+ expect(receipt.data).toHaveLength(15);expect(mexico).toHaveLength(4);
+ expect(mexico.map(v=>v.path).sort()).toEqual(Object.values(f.mexicoSelection.inputs).map(v=>v.path).sort());
+ expect(receipt.mexico).toEqual({...Object.fromEntries(Object.entries(f.mexicoSelection).filter(([key])=>!['schemaVersion','source'].includes(key))),selection:{path:'deployment/site-mexico-selection.json',...digestCountryBytes(f.mexicoSourceBody),mode:'100644',gitBlob:blob(f.mexicoSourceBody)}});
+ for(const v of mexico)expect(await readFile(resolve(f.outputRoot,'project',v.path))).toEqual(f.bodies[v.path]);
+ expect(await verifySiteStage({...f,stageRoot:f.outputRoot})).toEqual(receipt);
+ expect(receipt.country.reporting).toEqual({from:'2024-09',to:'2026-08',latest:'2026-08'});
+},windowsIntegrationTimeoutMs);
+it('legacy stage does not read Mexico or add optional receipt fields',async()=>{
+ const f=await preparationFixture();vi.mocked(loadMexicoPilot).mockClear();vi.mocked(loadMexicoPilot).mockRejectedValue(Error('must not read Mexico'));
+ const receipt=await createSiteStage(f);expect(loadMexicoPilot).not.toHaveBeenCalled();expect(receipt).not.toHaveProperty('mexico');expect(receipt.data).toHaveLength(11);
+ expect(await verifySiteStage({...f,stageRoot:f.outputRoot})).toEqual(receipt);expect(loadMexicoPilot).not.toHaveBeenCalled();
+},windowsIntegrationTimeoutMs);
+it.each(['changed-input','linked-input','changed-selection','linked-selection','malformed-selection','untracked-selection'] as const)('selected Mexico rejects %s before a success receipt',async kind=>{
+ const f=await preparationMexicoFixture(),path='deployment/site-mexico-selection.json',target=resolve(f.sourceRoot,path),input=resolve(f.dataRoot,f.mexicoSelection.inputs.evidence.path);
+ if(kind==='changed-input')await writeFile(input,'changed');
+ if(kind==='linked-input')await link(input,resolve(f.home,'evidence-link'));
+ if(kind==='changed-selection')await writeFile(target,'{}');
+ if(kind==='linked-selection')await link(target,resolve(f.sourceRoot,'.tmp/selection-link'));
+ if(kind==='malformed-selection'){await writeFile(target,'{}');fixtureGit(f.sourceRoot,['add',path]);fixtureGit(f.sourceRoot,['commit','-qm','Invalid Mexico selector']);f.commit=fixtureGit(f.sourceRoot,['rev-parse','HEAD']).toString().trim();}
+ if(kind==='untracked-selection')fixtureGit(f.sourceRoot,['rm','--cached',path]);
+ await expect(createSiteStage(f)).rejects.toThrow();await expect(lstat(resolve(f.outputRoot,'staging-receipt.json'))).rejects.toMatchObject({code:'ENOENT'});
+},windowsIntegrationTimeoutMs);
+it('selected Mexico rechecks copied and original inputs',async()=>{
+ const f=await preparationMexicoFixture();await createSiteStage(f);
+ await writeFile(resolve(f.outputRoot,'project',f.mexicoSelection.inputs.evidence.path),'changed copy');
+ await expect(verifySiteStage({...f,stageRoot:f.outputRoot})).rejects.toThrow();
+},windowsIntegrationTimeoutMs);
+it('selected Mexico rejects second-read mutation without success receipt',async()=>{
+ const f=await preparationMexicoFixture(),path=resolve(f.dataRoot,f.mexicoSelection.inputs.evidence.path);let reads=0;
+ vi.mocked(fs.open).mockImplementation(async(...args)=>{if(resolve(String(args[0]))===path&&++reads===2)await writeFile(path,'changed second read');return originalOpen(...args);});
+ await expect(createSiteStage(f)).rejects.toThrow();expect(reads).toBe(2);await expect(lstat(resolve(f.outputRoot,'staging-receipt.json'))).rejects.toMatchObject({code:'ENOENT'});
+},windowsIntegrationTimeoutMs);
+it('selected Mexico readback uses committed selector rather than mutable working selection',async()=>{
+ const f=await preparationMexicoFixture(),receipt=await createSiteStage(f);
+ await writeFile(resolve(f.sourceRoot,'deployment/site-mexico-selection.json'),'untracked replacement');
+ expect(await verifySiteStage({...f,stageRoot:f.outputRoot})).toEqual(receipt);
+ await writeFile(resolve(f.outputRoot,'project/deployment/site-mexico-selection.json'),'untracked replacement');
+ await expect(verifySiteStage({...f,stageRoot:f.outputRoot})).rejects.toThrow();
+},windowsIntegrationTimeoutMs);

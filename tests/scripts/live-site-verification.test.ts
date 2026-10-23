@@ -2,7 +2,7 @@ import {afterEach,expect,it,vi} from 'vitest';
 import {mkdir,readFile,writeFile,access} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {verifyLiveSite} from '../../scripts/live-site-verification';
-import {cleanLiveFixtures,liveFixture} from '../helpers/live-site';
+import {cleanLiveFixtures,liveFixture,liveMexicoFixture,sha} from '../helpers/live-site';
 type Fixture=Awaited<ReturnType<typeof liveFixture>>;
 afterEach(async()=>{vi.restoreAllMocks();vi.unstubAllGlobals();await cleanLiveFixtures();});
 function transport(f:Fixture,change?:(path:string,n:number,init:RequestInit)=>Response|Promise<Response|undefined>|undefined){
@@ -21,7 +21,7 @@ function transport(f:Fixture,change?:(path:string,n:number,init:RequestInit)=>Re
 const stored=async(f:Fixture,name='failed.json')=>JSON.parse(await readFile(resolve(f.proofRoot,name),'utf8'));
 it('checks both origins, excludes controls, and saves a verified success receipt',async()=>{
  const f=await liveFixture(),t=transport(f);const r=await verifyLiveSite(f,t);
- expect(r.status).toBe('passed');expect(r.completedCount).toBe(16);expect(r.httpAttempts).toBe(16);
+ expect(r.status).toBe('passed');expect(r.completedCount).toBe(26);expect(r.httpAttempts).toBe(26);
  expect(new Set(t.requests.map(u=>new URL(u).origin))).toEqual(new Set(['https://us-trade-tracker.pages.dev',f.deploymentOrigin]));
  expect(t.requests.some(u=>u.endsWith('/_headers'))).toBe(false);
  expect(await stored(f,'receipt.json')).toEqual(r);await expect(access(resolve(f.proofRoot,'failed.json'))).rejects.toThrow();
@@ -38,7 +38,7 @@ it('records a local package failure without HTTP or a success receipt',async()=>
 });
 it('follows only the allowed HTML alias and retains its redirect chain',async()=>{
  const f=await liveFixture(),t=transport(f,p=>p==='/nested/index.html'?new Response(null,{status:308,headers:{location:'/nested/'}}):undefined);
- const r=await verifyLiveSite(f,t);expect(r.status).toBe('passed');expect(r.httpAttempts).toBe(18);
+ const r=await verifyLiveSite(f,t);expect(r.status).toBe('passed');expect(r.httpAttempts).toBe(28);
  expect(r.checks.find((c:any)=>c.path==='/nested/index.html')!.redirects).toEqual([{from:'/nested/index.html',to:'/nested/',status:308}]);
 });
 it.each(['https://evil.invalid/?token=secret','http://us-trade-tracker.pages.dev/index','https://user:password@us-trade-tracker.pages.dev/index','/index?token=secret','/index#secret','/elsewhere','/index\\evil'])('rejects a forbidden redirect before another fetch: %s',async location=>{
@@ -69,7 +69,7 @@ it('rejects a same-length body with a wrong hash',async()=>{
  const f=await liveFixture(),t=transport(f,p=>p==='/index.html'?new Response('x'.repeat(f.bodies['index.html'].length),{headers:{'x-robots-tag':'noindex,nofollow'}}):undefined);
  expect((await verifyLiveSite(f,t)).failure!.code).toBe('live-body-hash');
 });
-it.each(['/preview/countries/1220/','/preview/accepted/countries/1220/','/countries/9999/','/data/countries/1220/processed/current.json'])('requires the exact private-route 404 for %s',async path=>{
+it.each(['/preview/countries/1220/','/preview/accepted/countries/1220/','/countries/9999/','/data/countries/1220/processed/current.json','/preview/mexico/2010/','/preview/countries/2010/','/preview/accepted/countries/2010/','/data/countries/2010/processed/current.json','/countries/2010/'])('requires the exact private-route 404 for %s',async path=>{
  const f=await liveFixture(),t=transport(f,p=>p===path?new Response(new Uint8Array(f.bodies['404.html']),{status:200,headers:{'x-robots-tag':'noindex,nofollow'}}):undefined);
  const r=await verifyLiveSite(f,t);expect(r.failure).toMatchObject({code:'live-status',path});expect(r.status).toBe('failed');
 });
@@ -121,4 +121,19 @@ it('cancels a response that arrives after a request timeout',async()=>{
  const t=transport(f,()=>{queueMicrotask(()=>fire?.());return new Response(new ReadableStream({cancel(){cancelled=true;}}),{headers:{'x-robots-tag':'noindex,nofollow'}});});
  const r=await verifyLiveSite(f,{...t,setTimer:(fn:()=>void,ms:number)=>{if(ms===15000)fire=fn;return ms;},clearTimer:()=>{}});
  expect(r.failure!.code).toBe('live-request-timeout');expect(cancelled).toBe(true);
+});
+
+it.each(['missing','forged'] as const)('rejects %s Mexico publication binding before any HTTP',async kind=>{
+ const f=await liveMexicoFixture(),m:any=f.manifest;
+ if(kind==='missing')delete m.mexico;else m.mexico.inputs.manifest.sha256='f'.repeat(64);
+ const body=JSON.stringify(m);await writeFile(f.manifestPath,body);const t=transport(f);
+ const result=await verifyLiveSite({...f,manifestSha256:sha(body)},t);
+ expect(result).toMatchObject({status:'failed',httpAttempts:0,completedCount:0,failure:{code:'live-package-policy'}});
+ expect(t.requests).toHaveLength(0);await expect(access(resolve(f.proofRoot,'receipt.json'))).rejects.toThrow();
+});
+it('selected Mexico succeeds as a positive hashed page while preserving private controls',async()=>{
+ const f=await liveMexicoFixture(),t=transport(f),result=await verifyLiveSite(f,t);
+ expect(result.status).toBe('passed');expect(result.plannedCount).toBe(26);expect(result.completedCount).toBe(26);
+ expect(result.checks.filter(v=>v.path==='/countries/2010/index.html')).toHaveLength(2);
+ expect(result.checks.filter(v=>v.path==='/preview/mexico/2010/').every(v=>v.status===404)).toBe(true);
 });
