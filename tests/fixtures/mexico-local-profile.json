@@ -1,0 +1,282 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "2010",
+  "countryName": "Mexico",
+  "from": "2024-09",
+  "to": "2026-08",
+  "source": "fixture",
+  "presentation": "synthetic-local",
+  "acceptance": null,
+  "captureInterval": {
+    "startedAt": "2026-10-01T00:00:00.000Z",
+    "finishedAt": "2026-10-01T01:00:00.000Z"
+  },
+  "directions": {
+    "imports": {
+      "direction": "imports",
+      "measure": "GEN_VAL_MO",
+      "basis": "general-imports-customs-value",
+      "monthly": [
+        {
+          "month": "2024-09",
+          "valueUsd": 1000,
+          "originalSource": null
+        },
+        {
+          "month": "2024-10",
+          "valueUsd": 1100,
+          "originalSource": null
+        },
+        {
+          "month": "2024-11",
+          "valueUsd": 1200,
+          "originalSource": null
+        },
+        {
+          "month": "2024-12",
+          "valueUsd": 1300,
+          "originalSource": null
+        },
+        {
+          "month": "2025-01",
+          "valueUsd": 1400,
+          "originalSource": null
+        },
+        {
+          "month": "2025-02",
+          "valueUsd": 1500,
+          "originalSource": null
+        },
+        {
+          "month": "2025-03",
+          "valueUsd": 1600,
+          "originalSource": null
+        },
+        {
+          "month": "2025-04",
+          "valueUsd": 1700,
+          "originalSource": null
+        },
+        {
+          "month": "2025-05",
+          "valueUsd": 1800,
+          "originalSource": null
+        },
+        {
+          "month": "2025-06",
+          "valueUsd": 1900,
+          "originalSource": null
+        },
+        {
+          "month": "2025-07",
+          "valueUsd": 2000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-08",
+          "valueUsd": 2100,
+          "originalSource": null
+        },
+        {
+          "month": "2025-09",
+          "valueUsd": 2200,
+          "originalSource": null
+        },
+        {
+          "month": "2025-10",
+          "valueUsd": 2300,
+          "originalSource": null
+        },
+        {
+          "month": "2025-11",
+          "valueUsd": 2400,
+          "originalSource": null
+        },
+        {
+          "month": "2025-12",
+          "valueUsd": 2500,
+          "originalSource": null
+        },
+        {
+          "month": "2026-01",
+          "valueUsd": 2600,
+          "originalSource": null
+        },
+        {
+          "month": "2026-02",
+          "valueUsd": 2700,
+          "originalSource": null
+        },
+        {
+          "month": "2026-03",
+          "valueUsd": 2800,
+          "originalSource": null
+        },
+        {
+          "month": "2026-04",
+          "valueUsd": 2900,
+          "originalSource": null
+        },
+        {
+          "month": "2026-05",
+          "valueUsd": 3000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-06",
+          "valueUsd": 3100,
+          "originalSource": null
+        },
+        {
+          "month": "2026-07",
+          "valueUsd": 3200,
+          "originalSource": null
+        },
+        {
+          "month": "2026-08",
+          "valueUsd": 3300,
+          "originalSource": null
+        }
+      ]
+    },
+    "exports": {
+      "direction": "exports",
+      "measure": "ALL_VAL_MO",
+      "basis": "domestic-plus-foreign-exports-fas-value",
+      "monthly": [
+        {
+          "month": "2024-09",
+          "valueUsd": 2000,
+          "originalSource": null
+        },
+        {
+          "month": "2024-10",
+          "valueUsd": 2200,
+          "originalSource": null
+        },
+        {
+          "month": "2024-11",
+          "valueUsd": 2400,
+          "originalSource": null
+        },
+        {
+          "month": "2024-12",
+          "valueUsd": 2600,
+          "originalSource": null
+        },
+        {
+          "month": "2025-01",
+          "valueUsd": 2800,
+          "originalSource": null
+        },
+        {
+          "month": "2025-02",
+          "valueUsd": 3000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-03",
+          "valueUsd": 3200,
+          "originalSource": null
+        },
+        {
+          "month": "2025-04",
+          "valueUsd": 3400,
+          "originalSource": null
+        },
+        {
+          "month": "2025-05",
+          "valueUsd": 3600,
+          "originalSource": null
+        },
+        {
+          "month": "2025-06",
+          "valueUsd": 3800,
+          "originalSource": null
+        },
+        {
+          "month": "2025-07",
+          "valueUsd": 4000,
+          "originalSource": null
+        },
+        {
+          "month": "2025-08",
+          "valueUsd": 4200,
+          "originalSource": null
+        },
+        {
+          "month": "2025-09",
+          "valueUsd": 4400,
+          "originalSource": null
+        },
+        {
+          "month": "2025-10",
+          "valueUsd": 4600,
+          "originalSource": null
+        },
+        {
+          "month": "2025-11",
+          "valueUsd": 4800,
+          "originalSource": null
+        },
+        {
+          "month": "2025-12",
+          "valueUsd": 5000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-01",
+          "valueUsd": 5200,
+          "originalSource": null
+        },
+        {
+          "month": "2026-02",
+          "valueUsd": 5400,
+          "originalSource": null
+        },
+        {
+          "month": "2026-03",
+          "valueUsd": 5600,
+          "originalSource": null
+        },
+        {
+          "month": "2026-04",
+          "valueUsd": 5800,
+          "originalSource": null
+        },
+        {
+          "month": "2026-05",
+          "valueUsd": 6000,
+          "originalSource": null
+        },
+        {
+          "month": "2026-06",
+          "valueUsd": 6200,
+          "originalSource": null
+        },
+        {
+          "month": "2026-07",
+          "valueUsd": 6400,
+          "originalSource": null
+        },
+        {
+          "month": "2026-08",
+          "valueUsd": 6600,
+          "originalSource": null
+        }
+      ]
+    }
+  },
+  "qualifications": {
+    "currentBeforeMatched": 48,
+    "currentAfterMatched": 48,
+    "datedMatched": 16,
+    "datedDifferences": 32,
+    "differenceCause": "not-established",
+    "vintageRelationship": "not-established",
+    "classificationAccepted": false,
+    "productComparisonsAvailable": false,
+    "verificationBasis": "synthetic",
+    "historicalFailuresPreserved": true
+  }
+}
