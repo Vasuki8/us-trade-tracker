@@ -1,3 +1,4 @@
+import {windowsIntegrationTimeoutMs} from '../helpers/windows-integration-timeout';
 import {afterEach,expect,it,vi} from 'vitest';
 import {readFile,writeFile,mkdir,lstat,link,rename} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -23,24 +24,24 @@ it('assembles_site_controls_from_git_templates',async()=>{
  for(const s of m.sourceTemplates)expect(s.gitBlob).toMatch(/^[a-f0-9]{40}$/);
  expect(await readFile(resolve(f.outputRoot,'site/_headers'))).toEqual(f.templates['deployment/pages/_headers']);
  expect(m.products.map((v:any)=>v.path)).toEqual(['data/processed/current.json','data/processed/releases/2026-08-090121.json','data/products/090111/processed/current.json','data/products/090111/processed/releases/2026-08-090111.json','data/products/090240/processed/current.json','data/products/090240/processed/releases/2026-08-090240.json','data/products/180100/processed/current.json','data/products/180100/processed/releases/2026-08-180100.json']);
-});
+},windowsIntegrationTimeoutMs);
 it('withdrawal_has_exact_three_entries',async()=>{
  const f=await setup();await prepareSite(f);const m=JSON.parse(await readFile(resolve(f.outputRoot,'withdrawal-manifest.json'),'utf8'));
  expect(m.files.map((v:any)=>v.path)).toEqual(['_headers','404.html','index.html']);expect(m.fileCount).toBe(3);expect(m.country).toBeUndefined();expect(m.products).toBeUndefined();
  expect(m.sourceTemplates.map((v:any)=>v.sourcePath).sort()).toEqual(['deployment/pages/_headers','deployment/pages/withdrawal/404.html','deployment/pages/withdrawal/index.html'].sort());
  expect((await readFile(resolve(f.outputRoot,'withdrawal/index.html'),'utf8'))).toContain('Pilot temporarily unavailable');
-});
+},windowsIntegrationTimeoutMs);
 it.each(['template','private-path','private-body'] as const)('rejects_changed_templates_and_private_output_%s',async kind=>{
  const f=await setup();
  if(kind==='template')await writeFile(resolve(f.stageRoot,'project/deployment/pages/_headers'),'bad');
  if(kind==='private-path'){await mkdir(resolve(f.buildRoot,'preview'));await writeFile(resolve(f.buildRoot,'preview/index.html'),'private');}
  if(kind==='private-body')await writeFile(resolve(f.buildRoot,'index.html'),'private?X-Amz-Signature=redacted-unit-fixture');
  await expect(prepareSite(f)).rejects.toThrow();await expect(lstat(resolve(f.outputRoot,'preparation-receipt.json'))).rejects.toMatchObject({code:'ENOENT'});
-});
+},windowsIntegrationTimeoutMs);
 it('rejects_rendered_fixture_data_while_client_guard_literals_are_allowed',async()=>{
  const f=await setup();await writeFile(resolve(f.buildRoot,'index.html'),'Development sample data');
  await expect(prepareSite(f)).rejects.toThrow(/fixture/);
-});
+},windowsIntegrationTimeoutMs);
 it.each(['occupied','case','oversize','source-map','hardlink','wrong-build','missing-home'] as const)('refuses_collisions_limits_and_occupied_output_%s',async kind=>{
  const f=await setup();
  if(kind==='occupied'){await mkdir(f.outputRoot);await writeFile(resolve(f.outputRoot,'keep.txt'),'keep');}
@@ -51,7 +52,7 @@ it.each(['occupied','case','oversize','source-map','hardlink','wrong-build','mis
  if(kind==='wrong-build')f.buildRoot=f.stageRoot;
  if(kind==='missing-home'){const fs=await import('node:fs/promises');await fs.unlink(resolve(f.buildRoot,'index.html'));}
  await expect(prepareSite(f)).rejects.toThrow();if(kind==='occupied')expect(await readFile(resolve(f.outputRoot,'keep.txt'),'utf8')).toBe('keep');
-});
+},windowsIntegrationTimeoutMs);
 
 it('rejects_1001_entries_including_both_site_controls',async()=>{
  const f=await setup();for(let i=0;i<997;i++)await writeFile(resolve(f.buildRoot,'p'+i+'.html'),'x');
@@ -65,4 +66,4 @@ it('rejects_relocated_stage_before_assembly_output',async()=>{
  const outputRoot=resolve(stageRoot,'packages');
  await expect(prepareSite({...f,stageRoot,buildRoot:resolve(stageRoot,'real-dist'),outputRoot})).rejects.toThrow(/scope|ignored/);
  await expect(lstat(outputRoot)).rejects.toMatchObject({code:'ENOENT'});
-});
+},windowsIntegrationTimeoutMs);
