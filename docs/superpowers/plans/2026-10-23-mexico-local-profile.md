@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans. Root owns implementation and integration; independent agents perform read-only design, calculation and final code reviews. Execute only after owner approval of this combined design, all five tasks and the permission envelope. Track execution with checkboxes.
 
-**Status:** Owner approved all five tasks and permissions, October 23, 2026. An independent read-only builder check returned “nothing important left”; root also checked task/interface coverage and the permission envelope. Execution is authorized within this local-only envelope; publication remains excluded.
+**Status:** Owner approved all five tasks and permissions, October 23, 2026. An independent read-only builder check returned “nothing important left”; root also checked task/interface coverage and the permission envelope. Tasks 1–4 have local verification evidence; Task 5 requires independent review, exact-head/main CI, guarded merge and actual cleanup. The PR closeout records those final actions; publication remains excluded.
 
 **Goal:** Make the privately accepted Mexico snapshot useful to inspect locally: Imports/Exports, monthly all-goods history, two twelve-month totals, qualified growth and sourced CSVs, with every product comparison withheld.
 
@@ -148,11 +148,11 @@ Reconcile main and input fingerprints before executing. Documentation-only drift
 
 **Interfaces:** `loadMexicoLocalProfile(options?: {workspaceRoot?: string; environment?: Readonly<Record<string,string|undefined>>}): Promise<MexicoLocalProfile|null>`. The adapter calls the unchanged `readAcceptedMexicoAllGoodsRelease(root)`; downstream consumers receive only the explicit presentation schema. Summary functions are supplied by Task 2; final selected period comparison is integrated there.
 
-- [ ] Establish the owned checkout and locked setup, reconcile baseline inputs and retain hashes; copy only the bounded allowlist when needed. Preserve unrelated work.
-- [ ] Write failing tests for absent mode/no reader call; valid fixture/no reader call; invalid/empty/mismatched/Canada-combined modes; wrong country/window/source/status/withheld flag; missing or duplicate source/context; malformed source URL; invalid or oversize DTO; selected errors without fallback. Selected-reader unit tests may mock its return, while real reader failure controls continue to run unchanged in the full suite.
-- [ ] Run `npx vitest run tests/mexico-profile/load.test.ts --maxWorkers=2`; confirm the new assertions fail for the missing adapter.
-- [ ] Implement mode validation, explicit projection, selected provenance join and fixture validation. Keep all accepted-state readers/contracts unchanged. Never ship Node/archive objects to the client.
-- [ ] Re-run the focused tests and existing Mexico release/archive tests; require all to pass and inspect the boundary diff before committing only Task 1 files.
+- [x] Establish the owned checkout and locked setup, reconcile baseline inputs and retain hashes; copy only the bounded allowlist when needed. Preserve unrelated work.
+- [x] Write failing tests for absent mode/no reader call; valid fixture/no reader call; invalid/empty/mismatched/Canada-combined modes; wrong country/window/source/status/withheld flag; missing or duplicate source/context; malformed source URL; invalid or oversize DTO; selected errors without fallback. Selected-reader unit tests may mock its return, while real reader failure controls continue to run unchanged in the full suite.
+- [x] Run `npx vitest run tests/mexico-profile/load.test.ts --maxWorkers=2`; confirm the new assertions fail for the missing adapter.
+- [x] Implement mode validation, explicit projection, selected provenance join and fixture validation. Keep all accepted-state readers/contracts unchanged. Never ship Node/archive objects to the client.
+- [x] Re-run the focused tests and existing Mexico release/archive tests; require all to pass and inspect the boundary diff before committing only Task 1 files.
 
 ### Task 2: Add exact summaries and sourced browser CSVs
 
@@ -160,10 +160,10 @@ Reconcile main and input fingerprints before executing. Documentation-only drift
 
 **Interfaces:** `summarizeMexicoDirection(view: MexicoDirectionProfile): MexicoDirectionSummary`; `serializeMexicoMonthlyCsv(profile: MexicoLocalProfile, direction: MexicoDirection): string`; `serializeMexicoSummaryCsv(profile: MexicoLocalProfile, direction: MexicoDirection): string`; `mexicoCsvFilename(profile, direction, kind: 'monthly'|'summary'): string` with typed profile/direction parameters.
 
-- [ ] Write failing calculation tests for the two exact fixed periods, 12 reported counts, real zeros, one missing month, zero prior, wrong month/direction, unsafe/negative/non-finite values and unsafe sum. Add tests that selected projection discrepancies reject loading.
-- [ ] Run `npx vitest run tests/mexico-profile/summary.test.ts tests/mexico-profile/load.test.ts --maxWorkers=2`; confirm the newly added failure cases before implementing the minimal pure calculation and selected comparison.
-- [ ] Write failing CSV tests: 24 monthly rows/one summary row; both directions; exact numeric values/periods/denominator; null versus zero; all source/qualification fields; fixture cannot claim acceptance; comma/quote/newline and formula-string controls; negative numeric change stays numeric.
-- [ ] Implement serializers and filenames without stored downloads or changes to existing product/Canada exporters. Run all `tests/mexico-profile` checks and require pass before committing.
+- [x] Write failing calculation tests for the two exact fixed periods, 12 reported counts, real zeros, one missing month, zero prior, wrong month/direction, unsafe/negative/non-finite values and unsafe sum. Add tests that selected projection discrepancies reject loading.
+- [x] Run `npx vitest run tests/mexico-profile/summary.test.ts tests/mexico-profile/load.test.ts --maxWorkers=2`; confirm the newly added failure cases before implementing the minimal pure calculation and selected comparison.
+- [x] Write failing CSV tests: 24 monthly rows/one summary row; both directions; exact numeric values/periods/denominator; null versus zero; all source/qualification fields; fixture cannot claim acceptance; comma/quote/newline and formula-string controls; negative numeric change stays numeric.
+- [x] Implement serializers and filenames without stored downloads or changes to existing product/Canada exporters. Run all `tests/mexico-profile` checks and require pass before committing.
 
 ### Task 3: Build the compact local profile
 
@@ -171,10 +171,10 @@ Reconcile main and input fingerprints before executing. Documentation-only drift
 
 **Interfaces:** `<MexicoLocalProfile data={profile}/>` consumes Task 1's DTO and Task 2's summaries/exporters. `<MexicoAllGoodsHistory view={directionView}/>` consumes the monthly presentation only. `getStaticPaths()` produces `[{params:{code:'2010'},props:{profile}}]` only when loading is enabled, otherwise `[]`.
 
-- [ ] Write failing UI tests for concise visible labels, Imports default, disabled-before-ready controls, complete direction switch, qualification counts marked as whole-snapshot, withheld products, export filename/body, and retryable visible download failure.
-- [ ] Implement the specified page with existing BaseLayout/formatting and `downloadBlob`; keep accepted-date versus capture-date meanings separate. Do not refactor Canada or introduce product values/links to this preview elsewhere.
-- [ ] Implement the gap-aware chart and native monthly table/details, with direction-specific accessible names and source anchors; theme colours use existing tokens.
-- [ ] Run `npx vitest run tests/ui/MexicoLocalProfile.test.tsx tests/mexico-profile --maxWorkers=2` and `npm run check`; require pass before committing the UI/route.
+- [x] Write failing UI tests for concise visible labels, Imports default, disabled-before-ready controls, complete direction switch, qualification counts marked as whole-snapshot, withheld products, export filename/body, and retryable visible download failure.
+- [x] Implement the specified page with existing BaseLayout/formatting and `downloadBlob`; keep accepted-date versus capture-date meanings separate. Do not refactor Canada or introduce product values/links to this preview elsewhere.
+- [x] Implement the gap-aware chart and native monthly table/details, with direction-specific accessible names and source anchors; theme colours use existing tokens.
+- [x] Run `npx vitest run tests/ui/MexicoLocalProfile.test.tsx tests/mexico-profile --maxWorkers=2` and `npm run check`; require pass before committing the UI/route.
 
 ### Task 4: Verify fixture behaviour, real values and build privacy
 
@@ -182,14 +182,14 @@ Reconcile main and input fingerprints before executing. Documentation-only drift
 
 **Interfaces:** `serveMexicoProfileFixture(): Promise<void>` builds a fresh owned fixture output and serves loopback; `resolveMexicoProfilePort(value: string|undefined): number` implements the specified range/default. `test:e2e:mexico-profile` runs its dedicated config. Existing `test:e2e` appends this suite after all current suites.
 
-- [ ] Write and run failing lifecycle tests for invalid ports, unexpected alternate port, no server reuse, normal-dist preservation, owned-output containment/non-link checks, signal cleanup and environment restoration. Implement the minimal harness using established Astro APIs.
-- [ ] Add focused fixture browser checks: desktop Imports/Exports figures and CSV readback; keyboard-only switch/download/details; 375px mobile without document overflow; light/dark chart legibility; no-JavaScript Imports/details; pre-hydration disabled controls and download error/retry. Tests await readiness; no arbitrary delay or blanket retries.
-- [ ] Add normal-build boundary checks: `/preview/mexico/2010/` and `/countries/2010/` are absent/404; no Mexico preview navigation/search link; no serialized Mexico fixture observations or real release/acceptance/authorization sentinels in HTML/JS/JSON. Scope numeric leak checks to identifiable records rather than prohibiting a value that legitimately occurs in product partner data. Existing partner-country observations remain allowed.
-- [ ] Verify a selected-mode build from the bounded local installation, with `TRADE_DATA_MODE=census` and every Canada flag absent. Serve only loopback, inspect both directions/mobile/keyboard and read back both CSVs. Retain a sanitized screenshot and export proof privately; no source URL is fetched. Product pages in this preview build continue to use existing accepted product data.
-- [ ] An independent checker reads the authenticated projection and manifest offline, recomputes all 48 observation bindings, four period totals, two growth results and 48 source descriptors, then compares with rendered/CSV values. No policy change, raw-source replay or network verification is claimed. Preserve findings; root resolves defects within scope.
-- [ ] Run the full unit suite with two workers, `npm run check`, normal fixture build, full `npm run test:e2e`, existing Firefox/WebKit compatibility and the existing Python packaging/workflow suites with the real interpreter. Report actual counts/failures; do not weaken existing checks. Run `build:report` on the clean normal output; report count/size/largest file and preserve the 15,000-file planning alert.
-- [ ] Build a normal four-product/Canada snapshot through existing site staging/preparation using the bounded inputs and Mexico mode absent. Verify no Mexico country route or presentation data is present. Exercise existing package rejection of a private-preview path using a tiny synthetic fixture; do not create or upload a real Mexico site package. Hash-check inputs/packages after all builds.
-- [ ] Record reproducible local commands, privacy behaviour, arithmetic/provenance results and limitations in the validation note. Readiness remains private accepted/local preview only; every product comparison and publication gate stays open. Commit the verification additions after focused and full checks pass.
+- [x] Write and run failing lifecycle tests for invalid ports, unexpected alternate port, no server reuse, normal-dist preservation, owned-output containment/non-link checks, signal cleanup and environment restoration. Implement the minimal harness using established Astro APIs.
+- [x] Add focused fixture browser checks: desktop Imports/Exports figures and CSV readback; keyboard-only switch/download/details; 375px mobile without document overflow; light/dark chart legibility; no-JavaScript Imports/details; pre-hydration disabled controls and download error/retry. Tests await readiness; no arbitrary delay or blanket retries.
+- [x] Add normal-build boundary checks: `/preview/mexico/2010/` and `/countries/2010/` are absent/404; no Mexico preview navigation/search link; no serialized Mexico fixture observations or real release/acceptance/authorization sentinels in HTML/JS/JSON. Scope numeric leak checks to identifiable records rather than prohibiting a value that legitimately occurs in product partner data. Existing partner-country observations remain allowed.
+- [x] Verify a selected-mode build from the bounded local installation, with `TRADE_DATA_MODE=census` and every Canada flag absent. Serve only loopback, inspect both directions/mobile/keyboard and read back both CSVs. Retain a sanitized screenshot and export proof privately; no source URL is fetched. Product pages in this preview build continue to use existing accepted product data.
+- [x] An independent checker reads the authenticated projection and manifest offline, recomputes all 48 observation bindings, four period totals, two growth results and 48 source descriptors, then compares with rendered/CSV values. No policy change, raw-source replay or network verification is claimed. Preserve findings; root resolves defects within scope.
+- [x] Run the full unit suite with two workers, `npm run check`, normal fixture build, full `npm run test:e2e`, existing Firefox/WebKit compatibility and the existing Python packaging/workflow suites with the real interpreter. Report actual counts/failures; do not weaken existing checks. Run `build:report` on the clean normal output; report count/size/largest file and preserve the 15,000-file planning alert.
+- [x] Build a normal four-product/Canada snapshot through existing site staging/preparation using the bounded inputs and Mexico mode absent. Verify no Mexico country route or presentation data is present. Exercise existing package rejection of a private-preview path using a tiny synthetic fixture; do not create or upload a real Mexico site package. Hash-check inputs/packages after all builds.
+- [x] Record reproducible local commands, privacy behaviour, arithmetic/provenance results and limitations in the validation note. Readiness remains private accepted/local preview only; every product comparison and publication gate stays open. Commit the verification additions after focused and full checks pass.
 
 ### Task 5: Independently review, merge and actually clean up
 
