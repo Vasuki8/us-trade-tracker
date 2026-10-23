@@ -1,5 +1,6 @@
 import {readFile,lstat} from 'node:fs/promises';
 import {resolve} from 'node:path';
+import {summarizeMexicoDirection} from './summary';
 import {readAcceptedMexicoAllGoodsRelease} from '../mexico-country-release/acceptance-state.server';
 import {decodeMexicoCandidate} from '../mexico-country-release/package.server';
 import {mexicoAcceptanceContract} from '../mexico-country-release/acceptance-contract.server';
@@ -80,6 +81,12 @@ export async function loadMexicoLocalProfile(options:{workspaceRoot?:string;envi
    })}])) as MexicoLocalProfile['directions'],
    qualifications:qualifications(true),
   };
-  return validate(result,true);
+  const checked=validate(result,true);
+  for(const d of directions){
+   const summary=summarizeMexicoDirection(checked.directions[d]),expected=v.periods[d];
+   for(const k of ['prior','current'] as const)assert(summary[k].from===expected[k].from&&summary[k].to===expected[k].to&&summary[k].totalUsd===expected[k].totalUsd);
+   assert(summary.growthPercent===expected.growthPercent);
+  }
+  return checked;
  }catch{throw Error('Mexico local profile unavailable or invalid');}
 }
