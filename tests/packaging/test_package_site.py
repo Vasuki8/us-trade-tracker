@@ -153,7 +153,7 @@ class PackageTests(unittest.TestCase):
             return manifest
         # An ordinary asset with otherwise identical metadata must be accepted.
         self.assertIn("assets/chart.js", pkg.manifest_items(with_asset("assets/chart.js")))
-        for name in ("data/secret.json", "preview/index.html", "functions/index.js", ".git/config.json",
+        for name in ("data/secret.json", "preview/index.html", "preview/mexico/2010/index.html", "functions/index.js", ".git/config.json",
                      "secrets/key.json", ".env.json", "_worker.js", "_WORKER.js", "_redirects",
                      "asset.js.map", "../index.html", "/index.html", "C:/index.html", r"a\index.html",
                      "a//index.html", "a/./index.html", "asset%2ejson", "index.html ", "nul.json"):
