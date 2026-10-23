@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "selectionId": "mexico-all-goods-pilot-v1",
+  "countryCode": "2010",
+  "scope": "all-goods-only",
+  "from": "2024-09",
+  "to": "2026-08",
+  "source": "census",
+  "productComparisonsAvailable": false,
+  "classificationAccepted": false,
+  "releaseId": "2026-08-d15a1fdc-2f1c-4d39-8532-7bb8451ddf18",
+  "inputs": {
+    "pointer": {
+      "path": "data/countries/2010/processed/current.json",
+      "bytes": 1355,
+      "sha256": "36fcc241eed959e216359c4178445e1859cfe85d2f3a69aace7f038ad88fead2"
+    },
+    "candidate": {
+      "path": "data/countries/2010/processed/releases/2026-08-d15a1fdc-2f1c-4d39-8532-7bb8451ddf18/candidate.json",
+      "bytes": 6443203,
+      "sha256": "e9317cfb9269d0641613c0cfda5f97941d66e8cc68b1842f566c2e5b9f426454"
+    },
+    "evidence": {
+      "path": "data/countries/2010/processed/releases/2026-08-d15a1fdc-2f1c-4d39-8532-7bb8451ddf18/evidence.json",
+      "bytes": 1979509,
+      "sha256": "da972a41c3dc9f92145a79b1afc54ec67bf142e6c79e458fff4c9e9da25d6fde"
+    },
+    "manifest": {
+      "path": "data/countries/2010/processed/releases/2026-08-d15a1fdc-2f1c-4d39-8532-7bb8451ddf18/manifest.json",
+      "bytes": 1085,
+      "sha256": "6f700b9067695a146f3f233982401b59cd5ad9f5364d957953068363d41b35a0"
+    }
+  },
+  "publicProfile": {
+    "bytes": 14429,
+    "sha256": "16ee47da3087dea5529de1c60fdc5f8fe9d4523203c7fe40a5725408b5149d09"
+  }
+}

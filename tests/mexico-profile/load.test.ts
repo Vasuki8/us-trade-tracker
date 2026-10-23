@@ -42,3 +42,4 @@ describe('selected Mexico presentation projection',()=>{
 });
 
 it.each(['prior','current','growth','period-window'])('rejects recalculated projection discrepancy: %s',async change=>{const {result}=selected();const periods:any=result.material.projection.periods.imports;if(change==='prior')periods.prior.totalUsd++;if(change==='current')periods.current.totalUsd++;if(change==='growth')periods.growthPercent=0;if(change==='period-window')periods.prior.from='2024-10';await expect(loadMexicoLocalProfile({environment:selectedEnv})).rejects.toThrow('Mexico local profile unavailable or invalid');});
+it.each(['fixture','snapshot',''])('private preview rejects public mixing: %s',async publicMode=>{const root=await fixtureRoot();await expect(loadMexicoLocalProfile({workspaceRoot:root,environment:{...fixtureEnv,MEXICO_PILOT_MODE:publicMode}})).rejects.toThrow();});

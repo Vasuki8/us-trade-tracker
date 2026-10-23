@@ -45,7 +45,7 @@ type Environment=Readonly<Record<string,string|undefined>>;
 function mode(environment:Environment):null|'fixture'|'selected'{
  const m=environment.MEXICO_LOCAL_PREVIEW_MODE;if(m===undefined)return null;
  assert(m==='fixture'||m==='selected');
- assert(['CANADA_PILOT_MODE','CANADA_PREVIEW_MODE','CANADA_ACCEPTED_PREVIEW_MODE'].every(k=>environment[k]===undefined));
+ assert(['CANADA_PILOT_MODE','CANADA_PREVIEW_MODE','CANADA_ACCEPTED_PREVIEW_MODE','MEXICO_PILOT_MODE'].every(k=>environment[k]===undefined));
  assert(environment.TRADE_DATA_MODE===(m==='fixture'?'fixture':'census'));return m as 'fixture'|'selected';
 }
 export async function loadMexicoLocalProfile(options:{workspaceRoot?:string;environment?:Environment}={}):Promise<MexicoLocalProfile|null>{

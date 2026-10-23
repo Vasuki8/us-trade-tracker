@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "status": "proposed-awaiting-owner-approval",
+  "planningMain": "69c0239e35a8f28691f065207a38bf5d363ca2f4",
+  "planningTree": "9766687873c69086afe3f0fc9fecb410334514f6",
+  "dataFiles": [
+    {
+      "path": "data/processed/current.json",
+      "bytes": 76,
+      "sha256": "5098efe55c5d712f097afaef140527c1c3636ebdd7dd0fe48b5521c5cf589bc8"
+    },
+    {
+      "path": "data/processed/releases/2026-08-5f3c2606-06a0-4c96-8fbc-a2332e0428ae.json",
+      "bytes": 2977166,
+      "sha256": "eaa8c1baa86bd3a8880dcda12db3b32625a38c221591c8c0e087b6af6a325727"
+    },
+    {
+      "path": "data/products/090111/processed/current.json",
+      "bytes": 76,
+      "sha256": "d93e6e11e48c540396fee4699a0a9e58cbde0e6f6a55e20e7ba7056fb3296a39"
+    },
+    {
+      "path": "data/products/090111/processed/releases/2026-08-d6b1ed52-cd6c-4b7d-87ca-d52c9e338cae.json",
+      "bytes": 2234188,
+      "sha256": "ef5d56791ad85b1b7a199829818522389a792e82cee792665be61f8e78cba0f7"
+    },
+    {
+      "path": "data/products/090240/processed/current.json",
+      "bytes": 76,
+      "sha256": "30c72e757df9279c5fe980bb656ef4b3f741b9c2389cfd468082ed761e462b01"
+    },
+    {
+      "path": "data/products/090240/processed/releases/2026-08-b5434067-131b-4337-87c1-b380f2face50.json",
+      "bytes": 1599531,
+      "sha256": "861ba7228fb6f6363445df2c0eb6ef76f946c839df75afdd2dcc07d899b09d51"
+    },
+    {
+      "path": "data/products/180100/processed/current.json",
+      "bytes": 76,
+      "sha256": "301abc654e1afb60e31c4792d6d8254bcd4bc9ad0ee2776543eeb0aab1171f6e"
+    },
+    {
+      "path": "data/products/180100/processed/releases/2026-08-4b642c26-0e76-4c20-9606-032bd5e0dd01.json",
+      "bytes": 957381,
+      "sha256": "96a51a19b968dc574a8692fe1be02d2974704186960bd97ac697356253b83300"
+    },
+    {
+      "path": "data/countries/1220/processed/current.json",
+      "bytes": 466,
+      "sha256": "9ede6a6906b0da7f85e74203d186bee7f6a8e08e37f452fb9f5a99e88e10a399"
+    },
+    {
+      "path": "data/countries/1220/processed/releases/2026-08-2e27b39c-932b-4f3d-b2aa-3b11ca2a3cca/candidate.json",
+      "bytes": 2960916,
+      "sha256": "337d25eeb94c87d9dbfdc4c9a21a20e7e50f416a6599cd0699f028eee0349818"
+    },
+    {
+      "path": "data/countries/1220/processed/releases/2026-08-2e27b39c-932b-4f3d-b2aa-3b11ca2a3cca/acceptance.json",
+      "bytes": 13430,
+      "sha256": "b64cdaf9b33c7604d9b069852351c64759ee713f397c8c087201cd7a09320f75"
+    },
+    {
+      "path": "data/countries/2010/processed/current.json",
+      "bytes": 1355,
+      "sha256": "36fcc241eed959e216359c4178445e1859cfe85d2f3a69aace7f038ad88fead2"
+    },
+    {
+      "path": "data/countries/2010/processed/releases/2026-08-d15a1fdc-2f1c-4d39-8532-7bb8451ddf18/candidate.json",
+      "bytes": 6443203,
+      "sha256": "e9317cfb9269d0641613c0cfda5f97941d66e8cc68b1842f566c2e5b9f426454"
+    },
+    {
+      "path": "data/countries/2010/processed/releases/2026-08-d15a1fdc-2f1c-4d39-8532-7bb8451ddf18/evidence.json",
+      "bytes": 1979509,
+      "sha256": "da972a41c3dc9f92145a79b1afc54ec67bf142e6c79e458fff4c9e9da25d6fde"
+    },
+    {
+      "path": "data/countries/2010/processed/releases/2026-08-d15a1fdc-2f1c-4d39-8532-7bb8451ddf18/manifest.json",
+      "bytes": 1085,
+      "sha256": "6f700b9067695a146f3f233982401b59cd5ad9f5364d957953068363d41b35a0"
+    }
+  ],
+  "uniqueDataBytes": 19168534,
+  "maximumMaterializations": 3,
+  "cumulativeDataCopyCapBytes": 67108864,
+  "productSelection": {
+    "path": "deployment/site-product-selection.json",
+    "bytes": 2076,
+    "sha256": "77f7587659e19ae7d18cd94448b1795448ae16da80ed8d45c59276fffefa2eef"
+  },
+  "mexico": {
+    "releaseId": "2026-08-d15a1fdc-2f1c-4d39-8532-7bb8451ddf18",
+    "from": "2024-09",
+    "to": "2026-08",
+    "source": "census",
+    "classificationAccepted": false,
+    "productComparisonsAvailable": false,
+    "privateAcceptanceFlagsRemainUnchanged": true,
+    "publicProjection": {
+      "bytes": 14429,
+      "sha256": "16ee47da3087dea5529de1c60fdc5f8fe9d4523203c7fe40a5725408b5149d09",
+      "derivation": "UTF-8 JSON.stringify({...authenticatedLocalProfile,presentation:\"public-pilot-snapshot\"}), without a trailing newline"
+    }
+  },
+  "predecessor": {
+    "project": "us-trade-tracker",
+    "environment": "Production",
+    "branch": "main",
+    "deploymentId": "16b5e4f3-6741-4400-9131-a9c743a12f50",
+    "origin": "https://16b5e4f3.us-trade-tracker.pages.dev",
+    "sourceMerge": "73654c24e2c21909f85d30efb0b9e3df4ea02a2e",
+    "sourceTree": "8219e718725af4a9ba6ff56b212ee1735b70bc9a",
+    "fileCount": 41,
+    "totalBytes": 3145939,
+    "lastRetainedProviderReadback": "2026-10-23T04:07:59.358Z",
+    "liveConfirmationRequired": true,
+    "artifacts": [
+      {
+        "path": "data/backups/overview-monitor-handoffs/verification-20261022-r1/candidate/site.zip",
+        "bytes": 636517,
+        "sha256": "a24d330caf67a49826f393a19512d92dbbf47977b0c8d1b5708f871f994e405c"
+      },
+      {
+        "path": "data/backups/overview-monitor-handoffs/verification-20261022-r1/candidate/site-manifest.json",
+        "bytes": 8757,
+        "sha256": "f851b8562ba7010ecbecbc1ce4fd0a2922475f08bd8c5985e691e6f994e875bc"
+      },
+      {
+        "path": "data/backups/overview-monitor-handoffs/verification-20261022-r1/candidate-live/receipt.json",
+        "bytes": 51722,
+        "sha256": "233f6f28fa17548f7e86325367943e4822a4948fda5db500a6d1174d29fad46b"
+      },
+      {
+        "path": "data/backups/overview-monitor-handoffs/verification-20261022-r1/candidate-mexico/receipt.json",
+        "bytes": 2784,
+        "sha256": "1b6a6cbc88daa9f24b9a2ca7289e0092e097fb6b0a59369d9d64a4ab17f7481c"
+      },
+      {
+        "path": "data/backups/overview-monitor-handoffs/verification-20261022-r1/provider-final-readback.json",
+        "bytes": 667,
+        "sha256": "092adff96d2f00c5d1c009851a3365a888003f3d46ae882665b1f647e594c59b"
+      },
+      {
+        "path": "data/backups/overview-monitor-handoffs/verification-20261022-r1/live-browser/receipt.json",
+        "bytes": 43294,
+        "sha256": "7dfa53cb0ace05ffad55fc7d81f9232defd6101ddc9c8289bc98ba4a2d0d20cf"
+      },
+      {
+        "path": "data/backups/overview-monitor-handoffs/verification-20261022-r1/public-release-record.json",
+        "bytes": 2129,
+        "sha256": "fb0e3ceaa25ea56462a34baf692c51e67622a549d3de24f8f44ef71ebb8d5216"
+      }
+    ]
+  },
+  "unrelatedSeptemberProposal": {
+    "path": "docs/superpowers/plans/2026-10-17-september-coffee-candidates.md",
+    "sha256": "b60a52102ac4d09cb54ded1d64c993f5d9ff6203da6b71080ab60ac2d949875c"
+  }
+}
