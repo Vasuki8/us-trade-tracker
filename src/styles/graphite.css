@@ -149,3 +149,10 @@ fieldset label{font-size:12px;color:var(--text)}legend,.window-label{font-size:1
   .canada-preview .data-card table thead th:last-child{width:16.5%}
   .canada-preview table tr{break-inside:avoid}
 }
+
+/* Keep homepage research links distinct and complete product rows together on paper. */
+@media print{
+  .trade-overview .monitor-navigation .content-details>.monitor-links{display:flex!important;gap:6pt 12pt}
+  .trade-overview .monitor-navigation tr{break-inside:avoid}
+  .trade-overview .monitor-navigation h3{break-after:avoid}
+}
