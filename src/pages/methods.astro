@@ -4,8 +4,10 @@ import {loadPublishedReleases} from '../lib/trade/load-release';
 import {monthLabel} from '../lib/trade/format';
 import {CENSUS_RELEASE_CALENDAR,nextScheduledRelease} from '../lib/trade/release-schedule';
 import {loadCanadaPilot} from '../lib/country-preview/pilot-load.server';
+import {resolveMexicoPilotMode} from '../lib/mexico-profile/pilot-config';
 const profiles=await loadPublishedReleases();
 const canadaPilot=await loadCanadaPilot();
+const mexicoPilot=resolveMexicoPilotMode(process.env);
 const preparedAt=new Date(),scheduled=nextScheduledRelease(preparedAt);
 const publicationDate=scheduled?new Intl.DateTimeFormat('en-US',{dateStyle:'long',timeZone:'America/New_York'}).format(new Date(scheduled.publishesAt)):null;
 const checkedDate=new Intl.DateTimeFormat('en-US',{dateStyle:'long',timeZone:'UTC'}).format(new Date(`${CENSUS_RELEASE_CALENDAR.checkedOn}T00:00:00Z`));
@@ -32,6 +34,13 @@ const preparedLabel=new Intl.DateTimeFormat('en-US',{dateStyle:'long',timeStyle:
   <p>Imports use GEN_VAL_MO, general imports at customs value. Exports use ALL_VAL_MO, domestic plus foreign exports at reported FAS value; Census derives exports to Canada from Canadian import data. Values are nominal USD, not seasonally adjusted.</p>
   <p>Category shares use the all-goods totals from the same captured files as their product values, separately for imports and exports. These ten selected categories per direction cover a subset of trade. Statistical categories remain in observed totals but have no ordinary-product comparisons.</p>
   <p>Currently revised country totals can differ from this captured collection; it has no uniform or latest-revised claim. Capture times describe saved files, not observation revision dates. Historical audit failures remain failed. {canadaPilot.data.source==='fixture'?'The observations and reference examples here are synthetic.':'Local acceptance applies to the fixed snapshot and qualified comparisons; the page reuses previously reviewed sources without a fresh source audit.'}</p>
+</section>}
+{mexicoPilot&&<section class="release-details" aria-labelledby="mexico-snapshot-heading">
+ <h2 id="mexico-snapshot-heading">Mexico snapshot</h2>
+ <p><a href="/countries/2010/">Mexico all-goods snapshot</a> covers September 2024–August 2026 only. {mexicoPilot==='fixture'?'Synthetic development data; no accepted Mexico release.':'Source: U.S. Census Bureau monthly merchandise files.'} No monthly update schedule.</p>
+ <p>Imports: GEN_VAL_MO, general imports at customs value. Exports: ALL_VAL_MO, domestic plus foreign exports at FAS value. Nominal USD, all transport modes, not seasonally adjusted.</p>
+ <p>32 of 48 dated publication checks differ; causes and original-byte vintage are not established. Retained current grids match 48/48 before and after collection. All 17 ordinary classification pairs remain unverified; three statistical exclusions remain in all-goods totals. Every product comparison is withheld.</p>
+ <p>{mexicoPilot==='fixture'?'Observations and reference checks are synthetic.':'Private all-goods acceptance and public snapshot presentation are separate decisions. The page reuses prior reviewed retained evidence without a fresh source audit; historical failed audits remain failed.'} Capture times are not observation revision dates.</p>
 </section>}
 <h2>Published release information</h2>
 <p>Each published profile uses its own validated release. A failed refresh retains the last validated release and its date. Revision counts compare records with the previous retained release.</p>

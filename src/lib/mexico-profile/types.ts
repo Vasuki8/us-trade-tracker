@@ -23,3 +23,5 @@ export interface MexicoDirectionSummary {
  latest:{month:string;valueUsd:number|null};prior:MexicoSummaryPeriod;current:MexicoSummaryPeriod;
  changeUsd:number|null;growthPercent:number|null;
 }
+export type MexicoPilotProfile=Omit<MexicoLocalProfile,'presentation'>&{presentation:'public-pilot-snapshot'|'public-pilot-fixture'};
+export type MexicoProfileView=MexicoLocalProfile|MexicoPilotProfile;

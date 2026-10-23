@@ -1,5 +1,5 @@
 import {useEffect,useState} from 'react';
-import type {MexicoDirection,MexicoLocalProfile as Profile} from '../lib/mexico-profile/types';
+import type {MexicoDirection,MexicoProfileView as Profile} from '../lib/mexico-profile/types';
 import {summarizeMexicoDirection} from '../lib/mexico-profile/summary';
 import {mexicoCsvFilename,serializeMexicoMonthlyCsv,serializeMexicoSummaryCsv} from '../lib/mexico-profile/downloads';
 import {downloadBlob} from '../lib/trade/downloads';
@@ -10,14 +10,14 @@ const timestamp=(value:string)=>new Intl.DateTimeFormat('en-GB',{dateStyle:'medi
 export function MexicoLocalProfile({data}:{data:Profile}):React.JSX.Element{
  const [direction,setDirection]=useState<MexicoDirection>('imports'),[ready,setReady]=useState(false),[error,setError]=useState<string|null>(null);
  useEffect(()=>setReady(true),[]);
- const view=data.directions[direction],summary=summarizeMexicoDirection(view),real=data.source==='census';
+ const view=data.directions[direction],summary=summarizeMexicoDirection(view),real=data.source==='census',publicView=data.presentation==='public-pilot-snapshot'||data.presentation==='public-pilot-fixture';
  const download=(kind:'monthly'|'summary')=>{
   if(!ready)return;
   try{const text=kind==='monthly'?serializeMexicoMonthlyCsv(data,direction):serializeMexicoSummaryCsv(data,direction);downloadBlob(new Blob([text],{type:'text/csv;charset=utf-8'}),mexicoCsvFilename(data,direction,kind));setError(null);}catch{setError('Download unavailable. Please try again.');}
  };
  return <div className="mx-local">
-  <div className="page-heading"><p className="eyebrow">COUNTRY RESEARCH / LOCAL PREVIEW</p><h1>Mexico — all-goods trade</h1><p>September 2024–August 2026 · Captured U.S. goods trade</p></div>
-  <div className="sample-banner"><strong>{real?'Local preview · Accepted for private all-goods use · Unpublished':'Synthetic development sample · No accepted Mexico release'}</strong><span>{real?'U.S. Census Bureau monthly merchandise files':'All displayed values and reference checks are synthetic.'}</span></div>
+  <div className="page-heading"><p className="eyebrow">{publicView?'COUNTRY RESEARCH / HISTORICAL SNAPSHOT':'COUNTRY RESEARCH / LOCAL PREVIEW'}</p><h1>Mexico — all-goods trade</h1><p>September 2024–August 2026 · Captured U.S. goods trade</p></div>
+  <div className="sample-banner"><strong>{real?(publicView?'Historical snapshot · All goods only':'Local preview · Accepted for private all-goods use · Unpublished'):'Synthetic development sample · No accepted Mexico release'}</strong><span>{real?'U.S. Census Bureau monthly merchandise files':'All displayed values and reference checks are synthetic.'}</span></div>
   <fieldset className="explorer-controls" disabled={!ready}><legend>Trade direction</legend>{(['imports','exports'] as const).map(d=><label key={d}><input type="radio" name="mexico-direction" value={d} checked={direction===d} onChange={()=>{setDirection(d);setError(null);}}/>{d==='imports'?'Imports':'Exports'}</label>)}</fieldset>
   <noscript><p>Imports are shown below. Direction switching and CSV downloads require JavaScript.</p></noscript>
   <p className="mx-basis">{direction==='imports'?'General imports · Customs value · GEN_VAL_MO':'Domestic plus foreign exports · FAS value · ALL_VAL_MO'} · Nominal USD · All transport modes · Not seasonally adjusted</p>
@@ -36,7 +36,7 @@ export function MexicoLocalProfile({data}:{data:Profile}):React.JSX.Element{
     <p>{real?'These captured figures are not a claim to the latest revised Census series.':'All observations and reference examples in this development sample are synthetic.'} The retained current reference grids match 48 of 48 controls before collection and 48 of 48 after. Dated publications have 16 matches and 32 differences. These are whole-snapshot counts across Imports and Exports.</p>
     <p>The 17 ordinary classification pairs remain unverified. Three statistical exclusions remain included in all-goods totals; every product comparison is withheld.</p>
     <p>Collection captured <time dateTime={data.captureInterval.startedAt}>{timestamp(data.captureInterval.startedAt)}</time> to <time dateTime={data.captureInterval.finishedAt}>{timestamp(data.captureInterval.finishedAt)}</time>. Capture times describe saved files, not observation revision dates.</p>
-    {data.acceptance&&<p>Accepted for private all-goods use on <time dateTime={data.acceptance.acceptedAt}>{timestamp(data.acceptance.acceptedAt)}</time>. This local preview is unpublished.</p>}
+    {data.acceptance&&<p>{publicView?'Private all-goods acceptance':'Accepted for private all-goods use'} on <time dateTime={data.acceptance.acceptedAt}>{timestamp(data.acceptance.acceptedAt)}</time>. {publicView?'This is not an official publication or revision date. This fixed historical snapshot has no monthly update schedule.':'This local preview is unpublished.'}</p>}
     <p>{real?'This view reuses prior reviewed retained evidence and performs no fresh raw-source verification. Earlier failed audits remain failed.':'No accepted release, official-source verification or real acceptance date is represented by this synthetic sample.'}</p>
     <p><a href="https://www.census.gov/foreign-trade/reference/definitions/index.html">Census trade definitions and revision methodology</a></p>
    </details>

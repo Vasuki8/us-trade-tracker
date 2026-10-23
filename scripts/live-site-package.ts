@@ -6,6 +6,8 @@ import {createHash} from 'node:crypto';
 import {lstat} from 'node:fs/promises';
 import {assertLocalPath,readSiteFile,type FileIdentity} from './site-preparation-files';
 import type {SiteManifest} from './site-assembly';
+import {MEXICO_PUBLIC_SELECTION_PATH,parseMexicoPublicationSelection} from '../src/lib/mexico-profile/pilot-contract.server';
+import {countrySame} from '../src/lib/country-release/contract.server';
 
 export type LivePackageOptions={workDir:string;manifestPath:string;zipPath:string;manifestSha256:string;zipSha256:string};
 export type ExpectedLiveCheck={path:string;allowedPaths:string[];statuses:number[];bytes:number;sha256:string;privateRoute:boolean};
@@ -13,7 +15,31 @@ export type LiveSitePackage={manifest:SiteManifest;manifestIdentity:FileIdentity
 const checkout=fileURLToPath(new URL('../',import.meta.url));
 const run=promisify(execFile);
 const digest=(body:Buffer)=>createHash('sha256').update(body).digest('hex');
-const privatePaths=['/preview/countries/1220/','/preview/accepted/countries/1220/','/countries/9999/','/data/countries/1220/processed/current.json'];
+const fixedPrivatePaths=['/preview/countries/1220/','/preview/accepted/countries/1220/','/countries/9999/','/data/countries/1220/processed/current.json','/preview/mexico/2010/','/preview/countries/2010/','/preview/accepted/countries/2010/','/data/countries/2010/processed/current.json'];
+function packagePrivatePaths(manifest:SiteManifest):string[]{
+ const route='countries/2010/index.html',selected=manifest.files.some(f=>f.path===route);
+ if(manifest.files.some(f=>/^countries\/2010(?:\.html|\/)/.test(f.path)&&f.path!==route))throw Error('live-package-policy');
+ try{
+  if(!/^[a-f0-9]{40}$/.test(manifest.codeCommit))throw Error('source');
+  const source=(args:string[])=>execFileSync('git',args,{cwd:checkout,timeout:10000,maxBuffer:65536,stdio:['pipe','pipe','pipe']});
+  if(source(['cat-file','-t',manifest.codeCommit]).toString('utf8').trim()!=='commit')throw Error('source');
+  const entry=source(['ls-tree','-z',manifest.codeCommit,'--',MEXICO_PUBLIC_SELECTION_PATH]).toString('utf8');
+  if(!entry){
+   if(selected||Object.hasOwn(manifest,'mexico'))throw Error('binding');
+   return [...fixedPrivatePaths,'/countries/2010/'];
+  }
+  const match=entry.match(/^(100644|100755) blob ([a-f0-9]{40})\tdeployment\/site-mexico-selection\.json\0$/);
+  if(!match)throw Error('source');
+  const body=source(['show',manifest.codeCommit+':'+MEXICO_PUBLIC_SELECTION_PATH]);
+  const expected=parseMexicoPublicationSelection(JSON.parse(new TextDecoder('utf8',{fatal:true}).decode(body)));
+  const value=manifest.mexico;
+  if(!selected||!value)throw Error('binding');
+  const {selection,...binding}=value,parsed=parseMexicoPublicationSelection({schemaVersion:1,source:'census',...binding});
+  countrySame(parsed,expected);
+  countrySame(selection,{path:MEXICO_PUBLIC_SELECTION_PATH,bytes:body.length,sha256:digest(body),mode:match[1],gitBlob:match[2]});
+ }catch{throw Error('live-package-policy');}
+ return [...fixedPrivatePaths];
+}
 
 export async function assertLiveWorkDir(workDir:string):Promise<void>{
   const rel=relative(checkout,resolve(workDir));
@@ -60,6 +86,7 @@ export async function loadLiveSitePackage(options:LivePackageOptions,verify:(opt
   const manifest=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(manifestBody)) as SiteManifest;
   const r=receipt as Record<string,unknown>|null;
   if(!r||r.entriesVerified!==true||r.entryCount!==manifest.fileCount||r.bytes!==zipBody.length||r.sha256!==options.zipSha256)throw Error('live-package-receipt');
+  const privatePaths=packagePrivatePaths(manifest);
   if(manifest.packageKind!=='site'||manifest.totalBytes>8388608||(manifest.files.length-1+privatePaths.length)*2>128)throw Error('live-package-policy');
   const checks:ExpectedLiveCheck[]=manifest.files.filter(f=>f.role!=='provider-control').map(f=>{
     const path='/'+f.path.split('/').map(encodeURIComponent).join('/');

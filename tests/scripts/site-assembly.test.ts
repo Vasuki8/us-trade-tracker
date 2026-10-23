@@ -5,8 +5,9 @@ import {resolve} from 'node:path';
 import * as fs from 'node:fs/promises';
 import {createSiteStage} from '../../scripts/site-staging';
 import {prepareSite} from '../../scripts/site-assembly';
-import {preparationFixture,cleanPreparationFixtures} from '../helpers/site-preparation';
+import {preparationFixture,preparationMexicoFixture,mexicoHydrationHtml,cleanPreparationFixtures} from '../helpers/site-preparation';
 vi.mock('../../src/lib/country-preview/pilot-load.server',()=>({loadCanadaPilot:vi.fn()}));
+vi.mock('../../src/lib/mexico-profile/pilot-load.server',()=>({loadMexicoPilot:vi.fn()}));
 vi.mock('node:fs/promises',async importOriginal=>{const actual=await importOriginal<typeof import('node:fs/promises')>();return{...actual,readdir:vi.fn(actual.readdir)};});
 const originalReaddir=vi.mocked(fs.readdir).getMockImplementation()!;
 afterEach(async()=>{vi.mocked(fs.readdir).mockImplementation(originalReaddir);await cleanPreparationFixtures();});
@@ -66,4 +67,45 @@ it('rejects_relocated_stage_before_assembly_output',async()=>{
  const outputRoot=resolve(stageRoot,'packages');
  await expect(prepareSite({...f,stageRoot,buildRoot:resolve(stageRoot,'real-dist'),outputRoot})).rejects.toThrow(/scope|ignored/);
  await expect(lstat(outputRoot)).rejects.toMatchObject({code:'ENOENT'});
+},windowsIntegrationTimeoutMs);
+
+async function mexicoSetup(){
+ const f=await preparationMexicoFixture();await createSiteStage(f);const buildRoot=resolve(f.outputRoot,'real-dist'),outputRoot=resolve(f.outputRoot,'packages');
+ await mkdir(resolve(buildRoot,'countries/2010'),{recursive:true});await mkdir(resolve(buildRoot,'_astro'));
+ await writeFile(resolve(buildRoot,'index.html'),'<!doctype html><title>Selected countries</title>');
+ await writeFile(resolve(buildRoot,'_astro/app.js'),'const literal="Local preview · Unpublished";');
+ await writeFile(resolve(buildRoot,'countries/2010/index.html'),mexicoHydrationHtml(f.mexicoProfile));
+ return {...f,stageRoot:f.outputRoot,buildRoot,outputRoot};
+}
+it('selected Mexico allows exactly its real public DTO and binds manifest outside uploaded tree',async()=>{
+ const f=await mexicoSetup();await prepareSite(f);
+ const m=JSON.parse(await readFile(resolve(f.outputRoot,'site-manifest.json'),'utf8')),stage=JSON.parse(await readFile(resolve(f.stageRoot,'staging-receipt.json'),'utf8'));
+ expect(m.mexico).toEqual(stage.mexico);expect(m.files.some((v:any)=>v.path==='countries/2010/index.html')).toBe(true);
+ expect(await readFile(resolve(f.outputRoot,'site/countries/2010/index.html'),'utf8')).toContain('public-pilot-snapshot');
+ await expect(lstat(resolve(f.outputRoot,'site/site-manifest.json'))).rejects.toMatchObject({code:'ENOENT'});
+ const withdrawal=JSON.parse(await readFile(resolve(f.outputRoot,'withdrawal-manifest.json'),'utf8'));expect(withdrawal.fileCount).toBe(3);expect(withdrawal).not.toHaveProperty('mexico');
+},windowsIntegrationTimeoutMs);
+it('selected Mexico requires its public route',async()=>{
+ const f=await mexicoSetup();await fs.unlink(resolve(f.buildRoot,'countries/2010/index.html'));
+ await expect(prepareSite(f)).rejects.toThrow(/mexico/);await expect(lstat(f.outputRoot)).rejects.toMatchObject({code:'ENOENT'});
+},windowsIntegrationTimeoutMs);
+it('unselected public Mexico rejects before assembly output',async()=>{
+ const f=await setup();await mkdir(resolve(f.buildRoot,'countries/2010'),{recursive:true});await writeFile(resolve(f.buildRoot,'countries/2010/index.html'),'unselected');
+ await expect(prepareSite(f)).rejects.toThrow(/mexico/);await expect(lstat(f.outputRoot)).rejects.toMatchObject({code:'ENOENT'});
+},windowsIntegrationTimeoutMs);
+it.each(['fixture','extra-prop','changed-value','missing-island','owner-envelope','private-digest','private-path','alternate-route'] as const)('selected Mexico rejects unsafe output %s',async kind=>{
+ const f=await mexicoSetup(),path=resolve(f.buildRoot,'countries/2010/index.html');
+ if(kind==='fixture')await writeFile(path,mexicoHydrationHtml({...f.mexicoProfile,presentation:'public-pilot-fixture'}));
+ if(kind==='extra-prop')await writeFile(path,mexicoHydrationHtml({...f.mexicoProfile,ownerAuthorization:{private:true}}));
+ if(kind==='changed-value'){const changed=structuredClone(f.mexicoProfile);changed.directions.imports.monthly[0].valueUsd=99;await writeFile(path,mexicoHydrationHtml(changed));}
+ if(kind==='missing-island')await writeFile(path,'<h1>Mexico all-goods</h1>');
+ if(kind==='owner-envelope')await writeFile(path,mexicoHydrationHtml(f.mexicoProfile)+'<script type="application/json">{"ownerAuthorization":{"permission":"private"}}</script>');
+ if(kind==='private-digest')await writeFile(resolve(f.buildRoot,'_astro/app.js'),f.mexicoSelection.inputs.evidence.sha256);
+ if(kind==='private-path')await writeFile(resolve(f.buildRoot,'_astro/app.js'),f.mexicoSelection.inputs.evidence.path);
+ if(kind==='alternate-route')await writeFile(resolve(f.buildRoot,'countries/2010.html'),mexicoHydrationHtml(f.mexicoProfile));
+ await expect(prepareSite(f)).rejects.toThrow();await expect(lstat(f.outputRoot)).rejects.toMatchObject({code:'ENOENT'});
+},windowsIntegrationTimeoutMs);
+it.each(['preview/mexico/2010/index.html','preview/countries/2010/index.html','preview/accepted/countries/2010/index.html','data/countries/2010/processed/current.json'])('selected Mexico still rejects private output %s',async path=>{
+ const f=await mexicoSetup();await mkdir(resolve(f.buildRoot,path,'..'),{recursive:true});await writeFile(resolve(f.buildRoot,path),'private');
+ await expect(prepareSite(f)).rejects.toThrow();await expect(lstat(f.outputRoot)).rejects.toMatchObject({code:'ENOENT'});
 },windowsIntegrationTimeoutMs);

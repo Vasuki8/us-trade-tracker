@@ -5,13 +5,17 @@ import {createHash} from 'node:crypto';
 import {mkdir,lstat,symlink,readdir,realpath} from 'node:fs/promises';
 import {resolve,relative,sep} from 'node:path';
 import {loadCanadaPilot} from '../src/lib/country-preview/pilot-load.server';
+import {loadMexicoPilot} from '../src/lib/mexico-profile/pilot-load.server';
+import {MEXICO_PUBLIC_SELECTION_PATH,MEXICO_INPUT_KINDS,parseMexicoPublicationSelection,type MexicoPublicationSelection} from '../src/lib/mexico-profile/pilot-contract.server';
 import {canadaCountryReleaseContract as release,countryJsonBytes,digestCountryBytes,countrySame} from '../src/lib/country-release/contract.server';
 import {countryArchiveContract as archive} from '../src/lib/country-archive/contract.server';
 import {assertLocalPath,localName,readSiteFile,writeSiteFile,type FileIdentity} from './site-preparation-files';
 export type SiteStageOptions={sourceRoot:string;dataRoot:string;outputRoot:string;commit:string};
 export type SourceIdentity=FileIdentity&{mode:'100644'|'100755';gitBlob:string};
-export type NamedDataIdentity=FileIdentity&{kind:'country-pointer'|'country-package'|'country-acceptance'|'product-pointer'|'product-release';productCode?:string};
-export type SiteStageReceipt={schemaVersion:1;status:'staged-for-local-build';codeCommit:string;sources:SourceIdentity[];data:NamedDataIdentity[];country:{releaseId:string;reporting:{from:string;to:string;latest:string};pointer:{bytes:number;sha256:string};projection:{bytes:number;sha256:string}};products:{code:string;pointer:FileIdentity;release:FileIdentity}[];runtime:{nodeMajor:24;dependencyMode:'shared-existing';dependencyTarget:string;lock:FileIdentity}};
+export type NamedDataIdentity=FileIdentity&{kind:'country-pointer'|'country-package'|'country-acceptance'|'product-pointer'|'product-release'|'mexico-pointer'|'mexico-candidate'|'mexico-evidence'|'mexico-manifest';productCode?:string};
+export type MexicoStageData=Omit<MexicoPublicationSelection,'schemaVersion'|'source'>;
+export type SiteMexicoBinding=MexicoStageData&{selection:SourceIdentity};
+export type SiteStageReceipt={schemaVersion:1;status:'staged-for-local-build';codeCommit:string;sources:SourceIdentity[];data:NamedDataIdentity[];country:{releaseId:string;reporting:{from:string;to:string;latest:string};pointer:{bytes:number;sha256:string};projection:{bytes:number;sha256:string}};products:{code:string;pointer:FileIdentity;release:FileIdentity}[];mexico?:SiteMexicoBinding;runtime:{nodeMajor:24;dependencyMode:'shared-existing';dependencyTarget:string;lock:FileIdentity}};
 export function siteGit(root:string,args:string[],input?:Buffer):Buffer{return execFileSync('git',args,{cwd:root,input,maxBuffer:128*1024*1024,stdio:['pipe','pipe','pipe']});}
 export async function siteSources(root:string,commit:string):Promise<{identity:SourceIdentity;body:Buffer}[]>{
  await assertLocalPath(root,root);if(!/^[a-f0-9]{40}$/.test(commit))throw Error('site-invalid-commit');
@@ -27,7 +31,7 @@ export async function siteSources(root:string,commit:string):Promise<{identity:S
   offset=newline+1+bytes+1;return{identity:{...entry,...digestCountryBytes(body)},body};
  });if(offset!==batch.length)throw Error('site-git-batch-extra');return result;
 }
-export async function siteData(root:string,selection:SiteProductSelection|null):Promise<{files:{identity:NamedDataIdentity;body:Buffer}[];country:SiteStageReceipt['country'];products:SiteStageReceipt['products']}>{
+export async function siteData(root:string,selection:SiteProductSelection|null,mexicoSelection?:MexicoPublicationSelection):Promise<{files:{identity:NamedDataIdentity;body:Buffer}[];country:SiteStageReceipt['country'];products:SiteStageReceipt['products'];mexico?:MexicoStageData}>{
  await assertLocalPath(root,root);const state=release.stateRoot,pointerPath=state+'/current.json',pointerBody=await readSiteFile(root,resolve(root,pointerPath),release.limits.pointer,archive.selectedPointerDigest),pointer=JSON.parse(pointerBody.toString());
  const pilot=await loadCanadaPilot({workspaceRoot:root,environment:{CANADA_PILOT_MODE:'snapshot',TRADE_DATA_MODE:'census'}});
  if(!pilot||pilot.presentation.kind!=='pilot-snapshot'||pointer.releaseId!==archive.releaseId)throw Error('site-invalid-country-selection');
@@ -62,16 +66,30 @@ export async function siteData(root:string,selection:SiteProductSelection|null):
   files.push({identity:{...a,kind:'product-pointer',productCode:code},body},{identity:{...b,kind:'product-release',productCode:code},body:releaseBody});products.push({code,pointer:a,release:b});
  }
  }
- return{files,country:{releaseId:pointer.releaseId,reporting:pilot.data.reporting,pointer:digestCountryBytes(pointerBody),projection:release.projection},products};
+ let mexico:MexicoStageData|undefined;
+ if(mexicoSelection){
+  const selected=parseMexicoPublicationSelection(mexicoSelection);
+  const profile=await loadMexicoPilot({workspaceRoot:root,environment:{TRADE_DATA_MODE:'census',CANADA_PILOT_MODE:'snapshot',MEXICO_PILOT_MODE:'snapshot'},selection:selected});
+  if(!profile||profile.presentation!=='public-pilot-snapshot'||profile.source!=='census'||profile.acceptance?.releaseId!==selected.releaseId)throw Error('site-invalid-mexico-selection');
+  countrySame(digestCountryBytes(Buffer.from(JSON.stringify(profile))),selected.publicProfile);
+  for(const kind of MEXICO_INPUT_KINDS){
+   const ref=selected.inputs[kind],body=await readSiteFile(root,resolve(root,ref.path),ref.bytes,ref);
+   files.push({identity:{path:ref.path,...digestCountryBytes(body),kind:('mexico-'+kind) as NamedDataIdentity['kind']},body});
+  }
+  const {schemaVersion:_schema,source:_source,...binding}=selected;mexico=binding;
+ }
+ return{files,country:{releaseId:pointer.releaseId,reporting:pilot.data.reporting,pointer:digestCountryBytes(pointerBody),projection:release.projection},products,...(mexico?{mexico}:{})};
 }
 export async function stageInformation(sourceRoot:string,dataRoot:string,commit:string,policy:'require-committed'|'allow-legacy'='require-committed'):Promise<{receipt:SiteStageReceipt;sources:Awaited<ReturnType<typeof siteSources>>;data:Awaited<ReturnType<typeof siteData>>}>{
  if(Number(process.versions.node.split('.')[0])!==24)throw Error('site-node-24-required');
  const sources=await siteSources(sourceRoot,commit),selected=sources.find(f=>f.identity.path===SITE_PRODUCT_SELECTION_PATH);
  if(!selected&&policy!=='allow-legacy')throw Error('site-product-selection-required');
  const selection=selected?parseSiteProductSelection(JSON.parse(new TextDecoder('utf8',{fatal:true}).decode(selected.body))):null;
- const data=await siteData(dataRoot,selection),lock=sources.find(f=>f.identity.path==='package-lock.json')?.identity;
+ const mexicoSource=sources.find(f=>f.identity.path===MEXICO_PUBLIC_SELECTION_PATH);
+ const mexicoSelection=mexicoSource?parseMexicoPublicationSelection(JSON.parse(new TextDecoder('utf8',{fatal:true}).decode(mexicoSource.body))):undefined;
+ const data=await siteData(dataRoot,selection,mexicoSelection),lock=sources.find(f=>f.identity.path==='package-lock.json')?.identity;
  if(!lock)throw Error('site-lockfile-required');const dependencyTarget=resolve(sourceRoot,'node_modules');await assertLocalPath(sourceRoot,dependencyTarget);if(!(await lstat(dependencyTarget)).isDirectory())throw Error('site-runtime-directory');
- return{receipt:{schemaVersion:1,status:'staged-for-local-build',codeCommit:commit,sources:sources.map(s=>s.identity),data:data.files.map(f=>f.identity),country:data.country,products:data.products,runtime:{nodeMajor:24,dependencyMode:'shared-existing',dependencyTarget,lock:{path:lock.path,bytes:lock.bytes,sha256:lock.sha256}}},sources,data};
+ return{receipt:{schemaVersion:1,status:'staged-for-local-build',codeCommit:commit,sources:sources.map(s=>s.identity),data:data.files.map(f=>f.identity),country:data.country,products:data.products,...(data.mexico?{mexico:{...data.mexico,selection:mexicoSource!.identity}}:{}),runtime:{nodeMajor:24,dependencyMode:'shared-existing',dependencyTarget,lock:{path:lock.path,bytes:lock.bytes,sha256:lock.sha256}}},sources,data};
 }
 async function cleanHead(root:string,commit:string){if(siteGit(root,['rev-parse','HEAD']).toString().trim()!==commit)throw Error('site-commit-not-head');if(siteGit(root,['status','--porcelain','--untracked-files=all']).toString().trim())throw Error('site-clean-checkout-required');}
 async function assertStageScope(sourceRoot:string,stageRoot:string,missing=false):Promise<void>{
@@ -118,4 +136,3 @@ export async function verifySiteStage(options:{sourceRoot:string;dataRoot:string
  const current=await stageInformation(sourceRoot,dataRoot,value.codeCommit,'allow-legacy');countrySame(current.receipt,info.receipt);
  await readSiteFile(stageRoot,resolve(stageRoot,'staging-receipt.json'),1024*1024,digestCountryBytes(body));await assertStageScope(sourceRoot,stageRoot);return info.receipt;
 }
-

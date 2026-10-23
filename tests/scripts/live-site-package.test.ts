@@ -2,13 +2,13 @@ import {afterEach,expect,it,vi} from 'vitest';
 import {writeFile,readFile,link,rename,mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {loadLiveSitePackage} from '../../scripts/live-site-package';
-import {cleanLiveFixtures,liveFixture,liveFixtureWithTotal,sha} from '../helpers/live-site';
+import {cleanLiveFixtures,liveFixture,liveFixtureWithTotal,liveMexicoFixture,liveMalformedMexicoSourceFixture,sha} from '../helpers/live-site';
 afterEach(async()=>{vi.restoreAllMocks();await cleanLiveFixtures();});
 it('authenticates a real ZIP and plans served and private routes without the control file',async()=>{
   const f=await liveFixture();const result=await loadLiveSitePackage(f);
   expect(result.zip).toMatchObject({sha256:f.zipSha256,bytes:f.receipt.bytes});
-  expect(result.checks).toHaveLength(8);
-  expect(result.checks.map((c:any)=>c.path)).toEqual(['/404.html','/index.html','/nested/index.html','/assets/main.js','/preview/countries/1220/','/preview/accepted/countries/1220/','/countries/9999/','/data/countries/1220/processed/current.json']);
+  expect(result.checks).toHaveLength(13);
+  expect(result.checks.map((c:any)=>c.path)).toEqual(['/404.html','/index.html','/nested/index.html','/assets/main.js','/preview/countries/1220/','/preview/accepted/countries/1220/','/countries/9999/','/data/countries/1220/processed/current.json','/preview/mexico/2010/','/preview/countries/2010/','/preview/accepted/countries/2010/','/data/countries/2010/processed/current.json','/countries/2010/']);
   expect(result.checks[2].allowedPaths).toContain('/nested/');
   expect(Object.isFrozen(result.checks[0])).toBe(true);
 });
@@ -73,9 +73,54 @@ it('rejects packages whose two-origin check plan exceeds 128 checks',async()=>{
 it('accepts exactly eight MiB of authenticated raw assets while keeping the compressed ZIP limit',async()=>{
   const f=await liveFixtureWithTotal(8388608);const result=await loadLiveSitePackage(f);
   expect(result.manifest.totalBytes).toBe(8388608);expect(result.zip.bytes).toBeLessThanOrEqual(4194304);
-  expect(result.checks).toHaveLength(8);
+  expect(result.checks).toHaveLength(13);
 });
 it('retains all 128 checks at the two-origin boundary',async()=>{
-  const f=await liveFixture(Object.fromEntries(Array.from({length:56},(_,i)=>['a'+i+'.js','x'])));
+  const f=await liveFixture(Object.fromEntries(Array.from({length:51},(_,i)=>['a'+i+'.js','x'])));
   expect((await loadLiveSitePackage(f)).checks.length*2).toBe(128);
+});
+
+it('old 41-file predecessor plans exactly 98 checks and nine private negatives',async()=>{
+ const f=await liveFixture(Object.fromEntries(Array.from({length:36},(_,i)=>['predecessor'+i+'.js','x']))),result=await loadLiveSitePackage(f);
+ expect(result.manifest.fileCount).toBe(41);expect(result.checks.length*2).toBe(98);expect(result.checks.filter(v=>v.privateRoute)).toHaveLength(9);
+ expect(result.checks.find(v=>v.path==='/countries/2010/')).toMatchObject({statuses:[404],privateRoute:true});
+});
+it('selected Mexico uses eight private negatives and one positive authenticated Mexico asset',async()=>{
+ const f=await liveMexicoFixture(),result=await loadLiveSitePackage(f);
+ expect(result.checks.filter(v=>v.privateRoute)).toHaveLength(8);
+ expect(result.checks.find(v=>v.path==='/countries/2010/index.html')).toMatchObject({statuses:[200],privateRoute:false,sha256:sha(f.bodies['countries/2010/index.html'])});
+ expect(result.checks.some(v=>v.path==='/countries/2010/'&&v.privateRoute)).toBe(false);expect(Object.isFrozen(result.manifest.mexico?.inputs)).toBe(true);
+});
+it.each(['missing','no-route','forged-input','forged-projection','crossed-country','classification','products','selector-digest','selector-blob','extra-field'] as const)('rejects missing/forged/crossed Mexico binding %s',async kind=>{
+ const f=kind==='no-route'?await liveFixture():await liveMexicoFixture(),m:any=f.manifest;
+ if(kind==='missing')delete m.mexico;
+ else if(kind==='no-route')m.mexico=(await liveMexicoFixture()).manifest.mexico;
+ else if(kind==='forged-input')m.mexico.inputs.evidence.sha256='f'.repeat(64);
+ else if(kind==='forged-projection')m.mexico.publicProfile.sha256='f'.repeat(64);
+ else if(kind==='crossed-country')m.mexico.countryCode='1220';
+ else if(kind==='classification')m.mexico.classificationAccepted=true;
+ else if(kind==='products')m.mexico.productComparisonsAvailable=true;
+ else if(kind==='selector-digest')m.mexico.selection.sha256='f'.repeat(64);
+ else if(kind==='selector-blob')m.mexico.selection.gitBlob='f'.repeat(40);
+ else m.mexico.extra=true;
+ const body=JSON.stringify(m);await writeFile(f.manifestPath,body);
+ await expect(loadLiveSitePackage({...f,manifestSha256:sha(body)})).rejects.toThrow('live-package-policy');
+});
+it('selected Mexico retains exactly 128 checks at 57 files and rejects 58',async()=>{
+ const extra=Object.fromEntries(Array.from({length:51},(_,i)=>['selected'+i+'.js','x']));
+ const good=await liveMexicoFixture(extra),result=await loadLiveSitePackage(good);expect(result.manifest.fileCount).toBe(57);expect(result.checks.length*2).toBe(128);
+ const bad=await liveMexicoFixture({...extra,'one-too-many.js':'x'});await expect(loadLiveSitePackage(bad)).rejects.toThrow('live-package-policy');
+});
+
+it('rejects selected source commit with a valid legacy ZIP but no Mexico route or binding',async()=>{
+ const selected=await liveMexicoFixture(),legacy=await liveFixture();
+ legacy.manifest.codeCommit=selected.manifest.codeCommit;
+ const body=JSON.stringify(legacy.manifest);await writeFile(legacy.manifestPath,body);
+ await expect(loadLiveSitePackage({...legacy,manifestSha256:sha(body)})).rejects.toThrow('live-package-policy');
+});
+it.each(['unknown','malformed'] as const)('rejects unavailable or malformed source selection instead of treating it as legacy: %s',async kind=>{
+ const f=kind==='malformed'?await liveMalformedMexicoSourceFixture():await liveFixture();
+ if(kind==='unknown')f.manifest.codeCommit='f'.repeat(40);
+ const body=JSON.stringify(f.manifest);await writeFile(f.manifestPath,body);
+ await expect(loadLiveSitePackage({...f,manifestSha256:sha(body)})).rejects.toThrow('live-package-policy');
 });

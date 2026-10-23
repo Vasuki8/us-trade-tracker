@@ -85,6 +85,22 @@ class PackageTests(unittest.TestCase):
         manifest["country"] = {"releaseId": "retained", "reporting": {"latest": "2026-08"}}
         self.assertEqual(self.operator.create(self.root, manifest, self.out)["entryCount"], 4)
 
+    def test_mexico_metadata_stays_outside_uploaded_entries(self):
+        (self.root / "404.html").write_bytes((REPO / "deployment/pages/404.html").read_bytes())
+        page = self.root / "countries/2010/index.html"
+        page.parent.mkdir(parents=True)
+        page.write_text("<h1>Mexico all-goods snapshot</h1>", encoding="utf-8")
+        manifest = fixture_manifest(self.root, "site")
+        manifest["mexico"] = {"selectionId": "mexico-all-goods-pilot-v1", "countryCode": "2010",
+                              "scope": "all-goods-only", "classificationAccepted": False,
+                              "productComparisonsAvailable": False}
+        receipt = self.operator.create(self.root, manifest, self.out)
+        self.assertEqual(receipt, self.operator.verify(self.out, manifest))
+        with zipfile.ZipFile(self.out) as archive:
+            self.assertIn("countries/2010/index.html", archive.namelist())
+            self.assertNotIn("site-manifest.json", archive.namelist())
+            self.assertFalse(any(name.startswith(("data/", "preview/")) for name in archive.namelist()))
+
     def test_changed_or_extra_input_is_rejected_before_output(self):
         for kind in ("changed", "extra", "missing"):
             with self.subTest(kind=kind):
@@ -403,4 +419,3 @@ class PackageTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

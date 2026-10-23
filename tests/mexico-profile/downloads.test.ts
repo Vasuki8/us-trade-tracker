@@ -15,3 +15,41 @@ describe('Mexico local CSVs',()=>{
  it('keeps negative numeric changes numeric',()=>{const x=profile();for(const p of x.directions.imports.monthly.slice(12))p.valueUsd=1;expect(parseCsv(serializeMexicoSummaryCsv(x,'imports'))[0].change_usd).toBe('-18588');});
  it('names downloads with exact country, window, direction and local context',()=>{expect(mexicoCsvFilename(profile(),'exports','monthly')).toBe('mexico-2010-exports-2024-09-2026-08-synthetic-local-monthly.csv');});
 });
+
+import {createHash} from 'node:crypto';
+import {projectMexicoPilotProfile} from '../../src/lib/mexico-profile/presentation';
+const legacyHashes:Record<string,string>={
+ 'imports-monthly':'3131cc9767c1c00e8832bd7aad5060279de1465455775d2f75d4c0212b70e341',
+ 'imports-summary':'2fb4a2cea42d4f10cdf1336c366244bfc9bf17da3fcf73a9be1b7c861fb42e1f',
+ 'exports-monthly':'dbb29ef9482f697c76e2479f4ec66517364719525035cfd0272844be09812efd',
+ 'exports-summary':'d4653828eb7a29c868f1841e965d5b4050960ea19326100b75619da8fbca2e39',
+};
+function pilotReal(){
+ const p=profile();p.source='census';p.presentation='accepted-private-local';p.acceptance={scope:'private-all-goods',releaseId:'2026-08-d15a1fdc-2f1c-4d39-8532-7bb8451ddf18',acceptedAt:'2026-10-19T04:12:15.203Z'};p.qualifications.verificationBasis='prior-reviewed-retained-evidence';
+ for(const d of ['imports','exports'] as const)for(const row of p.directions[d].monthly)row.originalSource={url:'https://www.census.gov/trade/downloads/'+d+'-'+row.month+'.ZIP',capturedAt:'2026-10-01T00:00:00.000Z',bytes:123,sha256:'a'.repeat(64)};
+ return projectMexicoPilotProfile(p,'snapshot');
+}
+describe('Mexico public CSV context',()=>{
+ it.each(['imports','exports'] as const)('preserves exact existing local CSV bytes: %s',direction=>{
+  for(const kind of ['monthly','summary'] as const){const text=kind==='monthly'?serializeMexicoMonthlyCsv(profile(),direction):serializeMexicoSummaryCsv(profile(),direction);expect(createHash('sha256').update(text).digest('hex')).toBe(legacyHashes[direction+'-'+kind]);}
+ });
+ it.each(['imports','exports'] as const)('publishes both sourced %s CSVs with explicit separate scope',direction=>{
+  const p=pilotReal(),monthly=serializeMexicoMonthlyCsv(p,direction),summary=serializeMexicoSummaryCsv(p,direction);
+  const rows=parseCsv(monthly),s=parseCsv(summary)[0];
+  expect(rows).toHaveLength(24);expect(monthly.split('\r\n')[0].split(',').at(-1)).toBe('publication_scope');expect(summary.split('\r\n')[0].split(',').at(-1)).toBe('publication_scope');
+  expect(rows[0]).toMatchObject({direction,acceptance_scope:'private-all-goods',publication_status:'public-pilot-snapshot',publication_scope:'all-goods-only',product_comparisons_available:'false',classification_accepted:'false',value_usd:direction==='imports'?'1000':'2000',original_source_bytes:'123'});
+  expect(rows[23]).toMatchObject({month:'2026-08',value_usd:direction==='imports'?'3300':'6600'});
+  expect(s).toMatchObject({publication_status:'public-pilot-snapshot',publication_scope:'all-goods-only',prior_total_usd:direction==='imports'?'18600':'37200',current_total_usd:direction==='imports'?'33000':'66000'});
+  expect(JSON.parse(s.original_sources_json)).toHaveLength(24);
+  expect(mexicoCsvFilename(p,direction,'summary')).toBe('mexico-2010-'+direction+'-2024-09-2026-08-public-pilot-snapshot-summary.csv');
+ });
+ it('public fixture cannot claim real acceptance or source identities',()=>{
+  const p=projectMexicoPilotProfile(profile(),'fixture'),rows=parseCsv(serializeMexicoMonthlyCsv(p,'imports'));
+  expect(rows[0]).toMatchObject({publication_status:'synthetic-public-pilot-fixture',publication_scope:'all-goods-only',acceptance_scope:'synthetic-local',release_id:'',accepted_at:'',original_source_url:'',original_source_captured_at:'',original_source_bytes:'',original_source_sha256:''});
+  expect(JSON.parse(parseCsv(serializeMexicoSummaryCsv(p,'exports'))[0].original_sources_json)[0]).toEqual({month:'2024-09'});
+ });
+ it.each(['source','presentation','acceptance','products'])('rejects crossed public CSV semantics: %s',change=>{
+  const p:any=pilotReal();if(change==='source')p.source='fixture';if(change==='presentation')p.presentation='public-pilot-fixture';if(change==='acceptance')p.acceptance.scope='public-products';if(change==='products')p.qualifications.productComparisonsAvailable=true;
+  expect(()=>serializeMexicoMonthlyCsv(p,'imports')).toThrow();expect(()=>serializeMexicoSummaryCsv(p,'exports')).toThrow();
+ });
+});

@@ -6,17 +6,52 @@ import {countryJsonBytes,digestCountryBytes,countrySame} from '../src/lib/countr
 export const SITE_MAX_FILES=1000,SITE_MAX_ASSET_BYTES=26214400;
 type Asset=FileIdentity&{role:'provider-control'|'served-error-page'|'served-asset'};
 type Template={sourcePath:string;targetPath:string;gitBlob:string;bytes:number;sha256:string};
-export type SiteManifest={schemaVersion:1;status:'prepared-for-owner-deployment-review';packageKind:'site'|'withdrawal';codeCommit:string;country?:SiteStageReceipt['country'];products?:FileIdentity[];fileCount:number;totalBytes:number;largestFile:Asset;planningAlertTriggered:boolean;uploadLimits:{dashboard:{maxFiles:1000;maxAssetBytes:26214400;eligible:true}};files:Asset[];sourceTemplates:Template[]};
+export type SiteManifest={schemaVersion:1;status:'prepared-for-owner-deployment-review';packageKind:'site'|'withdrawal';codeCommit:string;country?:SiteStageReceipt['country'];products?:FileIdentity[];mexico?:SiteStageReceipt['mexico'];fileCount:number;totalBytes:number;largestFile:Asset;planningAlertTriggered:boolean;uploadLimits:{dashboard:{maxFiles:1000;maxAssetBytes:26214400;eligible:true}};files:Asset[];sourceTemplates:Template[]};
 export type SitePreparationReceipt={schemaVersion:1;status:'prepared-for-owner-deployment-review';codeCommit:string;site:{tree:string;manifest:FileIdentity;fileCount:number;totalBytes:number;largestFile:Asset};withdrawal:{tree:string;manifest:FileIdentity;fileCount:number;totalBytes:number;largestFile:Asset}};
 const order=(a:{path:string},b:{path:string})=>a.path.localeCompare(b.path,'en');
 const header=Buffer.from('/*\n  X-Robots-Tag: noindex, nofollow\n');
 function assetName(name:string):void{
  localName(name);if(!/^[A-Za-z0-9_./-]+$/.test(name)||!['.html','.js','.css'].includes(extname(name))||name==='404.html'||name.split('/').some(p=>p.startsWith('.')||['preview','functions','data','secrets','node_modules'].includes(p.toLowerCase()))||['_worker.js','_redirects'].includes(name.split('/').at(-1)!.toLowerCase()))throw Error('site-private-or-unsupported-output');
 }
+const mexicoRoute='countries/2010/index.html';
+function decodeMexicoProps(text:string):unknown{
+ const islands=[...text.matchAll(/<astro-island\b[^>]*\bcomponent-export="MexicoLocalProfile"[^>]*>/g)];
+ if(islands.length!==1)throw Error('site-mexico-public-projection');
+ const props=islands[0][0].match(/\bprops="([^"]*)"/)?.[1];
+ if(!props||props.length>131072)throw Error('site-mexico-public-projection');
+ const raw=JSON.parse(props.replaceAll('&quot;','"').replaceAll('&#34;','"').replaceAll('&#x22;','"').replaceAll('&lt;','<').replaceAll('&gt;','>').replaceAll('&amp;','&'));
+ if(!raw||typeof raw!=='object'||Object.keys(raw).length!==1||!Object.hasOwn(raw,'data'))throw Error('site-mexico-public-projection');
+ function unpack(node:unknown,depth=0):unknown{
+  if(depth>16||!Array.isArray(node)||node.length!==2)throw Error('site-mexico-public-projection');
+  const [tag,value]=node;
+  if(tag===1){if(!Array.isArray(value))throw Error('site-mexico-public-projection');return value.map(v=>unpack(v,depth+1));}
+  if(tag!==0)throw Error('site-mexico-public-projection');
+  if(value!==null&&typeof value==='object'){
+   if(Array.isArray(value))throw Error('site-mexico-public-projection');
+   return Object.fromEntries(Object.entries(value).map(([key,v])=>[key,unpack(v,depth+1)]));
+  }
+  if(value===null||typeof value==='string'||typeof value==='number'||typeof value==='boolean')return value;
+  throw Error('site-mexico-public-projection');
+ }
+ return unpack(raw.data);
+}
 function assetContent(name:string,body:Buffer,stage:SiteStageReceipt):void{
  const text=new TextDecoder('utf8',{fatal:true}).decode(body);
  if(/data\/backups|\.superpowers\/|X-Amz-Signature|[?&]key=[^&"\s]+/i.test(text)||text.includes(stage.country.pointer.sha256)||text.includes(stage.data.find(f=>f.kind==='country-package')!.sha256))throw Error('site-private-output');
  if(extname(name)==='.html'&&/Development sample data|Synthetic category 270900|Synthetic second product/.test(text))throw Error('site-rendered-fixture-output');
+ if(stage.mexico){
+  for(const ref of Object.values(stage.mexico.inputs))if(text.includes(ref.sha256)||text.includes(ref.path))throw Error('site-private-mexico-output');
+  if(/(?:"|&quot;)(?:ownerAuthorization|ownerInstructions|authorization)(?:"|&quot;)\s*:|PRIVATE_OWNER_INSTRUCTION/.test(text))throw Error('site-private-mexico-output');
+ }
+ const mexicoPath=/^countries\/2010(?:\.html|\/)/.test(name);
+ if(mexicoPath&&(name!==mexicoRoute||!stage.mexico))throw Error('site-unselected-mexico-route');
+ if(extname(name)==='.html'&&name!==mexicoRoute&&/\bcomponent-export="MexicoLocalProfile"/.test(text))throw Error('site-unselected-mexico-route');
+ if(name===mexicoRoute){
+  if(!stage.mexico)throw Error('site-unselected-mexico-route');
+  const profile=decodeMexicoProps(text) as Record<string,unknown>;
+  if(profile?.source!=='census'||profile.presentation!=='public-pilot-snapshot')throw Error('site-mexico-public-projection');
+  try{countrySame(digestCountryBytes(Buffer.from(JSON.stringify(profile))),stage.mexico.publicProfile);}catch{throw Error('site-mexico-public-projection');}
+ }
 }
 async function buildAssets(root:string,stage:SiteStageReceipt):Promise<Asset[]>{
  await assertLocalPath(root,root);const files:Asset[]=[],folded=new Set<string>();
@@ -29,7 +64,7 @@ async function buildAssets(root:string,stage:SiteStageReceipt):Promise<Asset[]>{
    const body=await readSiteFile(root,path,SITE_MAX_ASSET_BYTES);assetContent(name,body,stage);files.push({path:name,...digestCountryBytes(body),role:'served-asset'});
   }
  }
- await walk(root);if(!files.some(f=>f.path==='index.html'))throw Error('site-missing-homepage');return files.sort(order);
+ await walk(root);if(!files.some(f=>f.path==='index.html'))throw Error('site-missing-homepage');if(stage.mexico&&!files.some(f=>f.path===mexicoRoute))throw Error('site-missing-mexico-route');return files.sort(order);
 }
 async function template(stageRoot:string,stage:SiteStageReceipt,sourcePath:string,targetPath:string):Promise<{item:Template;asset:Asset;body:Buffer}>{
  const source=stage.sources.find(f=>f.path===sourcePath);if(!source)throw Error('site-missing-template-source');
@@ -40,7 +75,7 @@ async function template(stageRoot:string,stage:SiteStageReceipt,sourcePath:strin
 }
 function makeManifest(kind:'site'|'withdrawal',stage:SiteStageReceipt,files:Asset[],templates:Template[]):SiteManifest{
  files.sort(order);if(!files.length||files.length>SITE_MAX_FILES||files.some(f=>f.bytes>SITE_MAX_ASSET_BYTES))throw Error('site-package-limit');
- return{schemaVersion:1,status:'prepared-for-owner-deployment-review',packageKind:kind,codeCommit:stage.codeCommit,...(kind==='site'?{country:stage.country,products:stage.products.flatMap(p=>[p.pointer,p.release])}:{}),fileCount:files.length,totalBytes:files.reduce((n,f)=>n+f.bytes,0),largestFile:files.reduce((a,b)=>b.bytes>a.bytes?b:a),planningAlertTriggered:files.length>=15000,uploadLimits:{dashboard:{maxFiles:SITE_MAX_FILES,maxAssetBytes:SITE_MAX_ASSET_BYTES,eligible:true}},files,sourceTemplates:templates};
+ return{schemaVersion:1,status:'prepared-for-owner-deployment-review',packageKind:kind,codeCommit:stage.codeCommit,...(kind==='site'?{country:stage.country,products:stage.products.flatMap(p=>[p.pointer,p.release]),...(stage.mexico?{mexico:stage.mexico}:{})}:{}),fileCount:files.length,totalBytes:files.reduce((n,f)=>n+f.bytes,0),largestFile:files.reduce((a,b)=>b.bytes>a.bytes?b:a),planningAlertTriggered:files.length>=15000,uploadLimits:{dashboard:{maxFiles:SITE_MAX_FILES,maxAssetBytes:SITE_MAX_ASSET_BYTES,eligible:true}},files,sourceTemplates:templates};
 }
 export async function prepareSite(options:{sourceRoot:string;dataRoot:string;stageRoot:string;buildRoot:string;outputRoot:string}):Promise<SitePreparationReceipt>{
  const stageRoot=resolve(options.stageRoot),buildRoot=resolve(options.buildRoot),outputRoot=resolve(options.outputRoot);
@@ -61,4 +96,3 @@ export async function prepareSite(options:{sourceRoot:string;dataRoot:string;sta
  await writeSiteFile(outputRoot,resolve(outputRoot,'site-manifest.json'),siteBody);await writeSiteFile(outputRoot,resolve(outputRoot,'withdrawal-manifest.json'),withdrawalBody);
  await writeSiteFile(outputRoot,resolve(outputRoot,'preparation-receipt.json'),countryJsonBytes(receipt));return receipt;
 }
-
