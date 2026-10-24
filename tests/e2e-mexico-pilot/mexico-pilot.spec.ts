@@ -33,16 +33,16 @@ test('history uses visible light and dark theme colours',async({page})=>{
  const dark=await line.evaluate(e=>getComputedStyle(e).stroke);expect(dark).not.toBe(light);expect(dark).not.toBe('none');await expect(line).toBeVisible();
 });
 test('no-JavaScript Imports, figures and native details remain readable',async({browser,baseURL})=>{
- const context=await browser.newContext({baseURL,javaScriptEnabled:false});try{const page=await context.newPage();await page.goto(path);
+ const context=await browser.newContext({baseURL,javaScriptEnabled:false});try{const page=await context.newPage();await page.goto(path+'?direction=exports#main');
  await expect(page.getByLabel('Current twelve-month total')).toContainText('$33,000');await expect(page.getByRole('radio',{name:'Imports'})).toBeChecked();await expect(page.getByRole('button',{name:'Download monthly CSV'})).toBeDisabled();
  await page.locator('summary',{hasText:'Monthly values and sources'}).click();await expect(page.getByRole('table')).toBeVisible();await expect(page.getByRole('table').getByRole('row')).toHaveCount(25);
- await expect(page.getByText(/Direction switching and CSV downloads require JavaScript/)).toBeVisible();
+ await expect(page.getByText(/Saved directions, direction switching and CSV downloads require JavaScript/)).toBeVisible();await expect(page.getByRole('button',{name:'Copy view link'})).toBeDisabled();
  }finally{await context.close();}
 });
 test('controls stay disabled before hydration and enable only when ready',async({page})=>{
  let release!:()=>void;const gate=new Promise<void>(r=>{release=r;});await page.route(/\/_astro\/.*\.js(?:\?.*)?$/,async route=>{await gate;await route.continue();});
- try{await page.goto(path,{waitUntil:'commit'});await expect(page.getByRole('heading',{name:'Mexico — all-goods trade'})).toBeVisible();await expect(page.getByRole('radio',{name:'Exports'})).toBeDisabled();await expect(page.getByRole('button',{name:'Download summary CSV'})).toBeDisabled();}finally{release();}
- await expect(page.getByRole('radio',{name:'Exports'})).toBeEnabled();await expect(page.getByRole('button',{name:'Download summary CSV'})).toBeEnabled();
+ try{await page.goto(path+'?direction=exports#main',{waitUntil:'commit'});await expect(page.getByRole('heading',{name:'Mexico — all-goods trade'})).toBeVisible();await expect(page.getByRole('radio',{name:'Imports'})).toBeChecked();await expect(page.getByRole('radio',{name:'Exports'})).toBeDisabled();await expect(page.getByRole('button',{name:'Download summary CSV'})).toBeDisabled();await expect(page.getByRole('button',{name:'Download monthly CSV'})).toBeDisabled();await expect(page.getByRole('button',{name:'Copy view link'})).toBeDisabled();}finally{release();}
+ await expect(page.getByRole('radio',{name:'Exports'})).toBeEnabled();await expect(page.getByRole('button',{name:'Copy view link'})).toBeEnabled();await expect(page.getByRole('radio',{name:'Exports'})).toBeChecked();await expect(page.getByRole('button',{name:'Download summary CSV'})).toBeEnabled();
 });
 test('download failures remain visible and a retry succeeds',async({page})=>{
  await open(page);await page.evaluate(()=>{const original=URL.createObjectURL;let failed=false;URL.createObjectURL=function(blob){if(!failed){failed=true;throw Error('simulated browser denial');}return original.call(this,blob);};});
@@ -71,11 +71,58 @@ test('public synthetic metadata, withheld comparisons and distinct country navig
  for(const privatePath of ['/preview/mexico/2010/','/preview/countries/2010/','/preview/accepted/countries/2010/','/data/countries/2010/processed/current.json'])expect((await page.goto(privatePath))?.status()).toBe(404);
 });
 for(const width of [320,390])for(const theme of ['light','dark'])test('public history and disclosures fit '+width+'px in '+theme,async({page})=>{
- await page.setViewportSize({width,height:812});await open(page);
+ await page.setViewportSize({width,height:812});await page.addInitScript("Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw Error('denied');}}});");await open(page);await page.getByRole('button',{name:'Copy view link'}).click();await expect(page.getByRole('textbox',{name:'View link',exact:true})).toBeVisible();
  if(theme==='dark')await page.getByRole('switch',{name:'Dark theme'}).click();
  await expect(page.locator('html')).toHaveAttribute('data-theme',theme);
  await page.locator('summary',{hasText:'Sources and snapshot qualifications'}).click();
  await page.locator('summary',{hasText:'Monthly values and sources'}).click();
  await expect(page.getByRole('table')).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+});
+
+test('saved Exports reloads and real Back/Forward restores direction with the existing fragment',async({page})=>{
+ await page.goto(path+'?direction=exports&release=omit#main');await expect(page.getByRole('button',{name:'Copy view link'})).toBeEnabled();
+ await expect(page.getByRole('radio',{name:'Exports'})).toBeChecked();await expect(page.getByLabel('Current twelve-month total')).toContainText('$66,000');
+ await page.evaluate(()=>window.history.replaceState({position:3},'',window.location.href));
+ const before=await page.evaluate(()=>history.length);await page.getByRole('radio',{name:'Imports'}).check();
+ await expect(page).toHaveURL(/\?direction=imports#main$/);expect(await page.evaluate(()=>history.state)).toEqual({position:3});
+ await page.getByRole('radio',{name:'Imports'}).check();expect(await page.evaluate(()=>history.length)).toBe(before+1);
+ await page.goBack();await expect(page.getByRole('radio',{name:'Exports'})).toBeChecked();
+ await page.goForward();await expect(page.getByRole('radio',{name:'Imports'})).toBeChecked();
+ await page.goBack();await page.reload();await expect(page.getByRole('button',{name:'Copy view link'})).toBeEnabled();await expect(page.getByRole('radio',{name:'Exports'})).toBeChecked();
+ await expect(page.getByRole('img',{name:'Monthly U.S. exports to Mexico'})).toBeVisible();
+ const monthly=await download(page,'Download monthly CSV'),summary=await download(page,'Download summary CSV');
+ expect(monthly.rows[0]).toMatchObject({direction:'exports',value_usd:'2000'});expect(summary.rows[0]).toMatchObject({direction:'exports',current_total_usd:'66000',product_comparisons_available:'false'});
+});
+test('keyboard copying uses the canonical current view and offers a fully selectable manual fallback',async({page,baseURL})=>{
+ await page.addInitScript("Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async value=>{window.__mexicoCopied=value;}}});");
+ await page.goto(path+'?direction=exports&private=omit#main');await expect(page.getByRole('button',{name:'Copy view link'})).toBeEnabled();
+ await page.getByRole('button',{name:'Download monthly CSV'}).focus();await page.keyboard.press('Tab');await expect(page.getByRole('button',{name:'Download summary CSV'})).toBeFocused();
+ await page.keyboard.press('Tab');await expect(page.getByRole('button',{name:'Copy view link'})).toBeFocused();await page.keyboard.press('Enter');
+ expect(await page.evaluate('window.__mexicoCopied')).toBe(new URL(path+'?direction=exports#main',baseURL).href);await expect(page.getByText('View link copied.')).toBeVisible();
+ await page.evaluate("navigator.clipboard.writeText=async()=>{throw Error('denied');};");await page.getByRole('button',{name:'Copy view link'}).click();
+ const input=page.getByRole('textbox',{name:'View link',exact:true});await expect(input).toHaveValue(new URL(path+'?direction=exports#main',baseURL).href);await input.focus();
+ expect(await input.evaluate((e:HTMLInputElement)=>[e.readOnly,e.selectionStart,e.selectionEnd===e.value.length])).toEqual([true,0,true]);
+ const file=await download(page,'Download summary CSV');expect(file.rows[0].direction).toBe('exports');
+});
+test('invalid saved views fall back to qualified Imports without reflecting rejected input',async({page})=>{
+ for(const search of ['?direction=secret','?direction=Exports','?direction=imports&direction=exports','?direction=exports&x='+'x'.repeat(2028)]){
+  await page.goto(path+search);await expect(page.getByRole('button',{name:'Copy view link'})).toBeEnabled();await expect(page.getByRole('radio',{name:'Imports'})).toBeChecked();
+  await expect(page.getByText('This saved Mexico view could not be restored. Showing Imports.')).toBeVisible();await expect(page.getByLabel('Current twelve-month total')).toContainText('$33,000');
+ }
+ const file=await download(page,'Download monthly CSV');expect(file.rows[0]).toMatchObject({direction:'imports',value_usd:'1000',product_comparisons_available:'false'});
+});
+test('denied address updates keep the requested view and matching CSV usable',async({page})=>{
+ await page.addInitScript("history.pushState=()=>{throw Error('simulated history denial');};");await open(page);
+ await page.getByRole('radio',{name:'Exports'}).check();await expect(page.getByRole('radio',{name:'Exports'})).toBeChecked();
+ await expect(page.getByText('The address could not be updated. Copy the view link to share this direction.')).toBeVisible();
+ expect(new URL(page.url()).search).toBe('');await expect(page.getByLabel('Current twelve-month total')).toContainText('$66,000');
+ const file=await download(page,'Download summary CSV');expect(file.rows[0]).toMatchObject({direction:'exports',current_total_usd:'66000'});
+});
+test('print hides new sharing controls while retaining source and qualification content',async({page})=>{
+ await open(page);await page.getByRole('radio',{name:'Exports'}).check();await page.locator('summary',{hasText:'Sources and snapshot qualifications'}).click();
+ await page.emulateMedia({media:'print'});await expect(page.locator('.mexico-view-link')).toBeHidden();
+ await expect(page.getByRole('heading',{name:'Mexico — all-goods trade'})).toBeVisible();
+ await expect(page.getByText(/Product comparisons are unavailable pending classification verification/)).toBeVisible();
+ await expect(page.getByRole('link',{name:'Census trade definitions and revision methodology'})).toBeVisible();
 });

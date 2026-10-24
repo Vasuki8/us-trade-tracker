@@ -14,7 +14,7 @@ const download=vi.hoisted(()=>vi.fn());
 vi.mock('../../src/lib/trade/downloads',()=>({downloadBlob:download}));
 const data=()=>structuredClone(fixture) as Profile;
 beforeEach(()=>{download.mockReset();vi.stubGlobal('Blob',NodeBlob);});
-afterEach(()=>{cleanup();vi.unstubAllGlobals();});
+afterEach(()=>{cleanup();vi.unstubAllGlobals();vi.restoreAllMocks();window.history.replaceState(null,'','/');});
 it('server renders Imports with disabled controls and meaningful no-JavaScript content',()=>{
  const html=renderToStaticMarkup(<MexicoLocalProfile data={data()}/>);
  expect(html).toContain('Mexico — all-goods trade');expect(html).toContain('Synthetic development sample');expect(html).toContain('No accepted Mexico release');
@@ -87,4 +87,32 @@ it('labels the public fixture as synthetic and exports its public scope',async()
  expect(screen.getByRole('img',{name:'Monthly U.S. exports to Mexico'})).toBeInTheDocument();
  expect(screen.getByText(/32 of 48 observations/)).toBeVisible();
  expect(screen.queryByRole('combobox')).not.toBeInTheDocument();
+});
+
+it('restores public Exports before coupling cards, history, table and CSV selection',async()=>{
+ window.history.replaceState(null,'','/countries/2010/?direction=exports#main');
+ const user=userEvent.setup();render(<MexicoLocalProfile data={{...data(),presentation:'public-pilot-fixture'}}/>);
+ expect(screen.getByRole('radio',{name:'Exports'})).toBeChecked();expect(screen.getByLabelText('Current twelve-month total')).toHaveTextContent('$66,000');
+ expect(screen.getByRole('img',{name:'Monthly U.S. exports to Mexico'})).toBeInTheDocument();
+ expect(screen.getByRole('table',{name:'Monthly U.S. exports to Mexico — nominal USD',hidden:true})).toBeInTheDocument();
+ await user.click(screen.getByRole('button',{name:'Download monthly CSV'}));const [blob,name]=download.mock.calls.at(-1)!;
+ expect(name).toContain('-exports-');expect(parseCsv(await blob.text())[0]).toMatchObject({direction:'exports',value_usd:'2000'});
+});
+it.each(['synthetic-local','accepted-private-local','unrecognized'] as const)('keeps %s presentation local despite public direction query',presentation=>{
+ window.history.replaceState(null,'','/countries/2010/?direction=exports');const push=vi.spyOn(window.history,'pushState');
+ const profile={...data(),presentation} as unknown as Profile;render(<MexicoLocalProfile data={profile}/>);
+ expect(screen.getByRole('radio',{name:'Imports'})).toBeChecked();expect(screen.queryByRole('button',{name:'Copy view link'})).toBeNull();
+ expect(push).not.toHaveBeenCalled();
+});
+it('keeps public SSR Imports truthful and disables saved-view and CSV actions before hydration',()=>{
+ const html=renderToStaticMarkup(<MexicoLocalProfile data={{...data(),presentation:'public-pilot-fixture'}}/>);
+ expect(html).toContain('$33,000');expect(html).toMatch(/<button[^>]*disabled[^>]*>Copy view link/);
+ expect(html).toContain('Saved directions, direction switching and CSV downloads require JavaScript.');
+});
+it('keeps copy failure independent of download failure and retry',async()=>{
+ const user=userEvent.setup();render(<MexicoLocalProfile data={{...data(),presentation:'public-pilot-fixture'}}/>);
+ vi.spyOn(navigator.clipboard,'writeText').mockRejectedValue(Error('denied'));download.mockImplementationOnce(()=>{throw Error('blocked');});
+ await user.click(screen.getByRole('button',{name:'Download monthly CSV'}));expect(screen.getByRole('alert')).toHaveTextContent('Download unavailable');
+ await user.click(screen.getByRole('button',{name:'Copy view link'}));expect(screen.getByLabelText('View link')).toBeVisible();expect(screen.getByRole('alert')).toHaveTextContent('Download unavailable');
+ await user.click(screen.getByRole('button',{name:'Download monthly CSV'}));expect(screen.queryByRole('alert')).toBeNull();expect(screen.getByLabelText('View link')).toBeVisible();
 });

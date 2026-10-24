@@ -8,3 +8,5 @@
  .mx-local table{min-width:480px}
  @media(max-width:900px){.mx-local .mx-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
  @media(max-width:600px){.mx-local .mx-summary{grid-template-columns:1fr}.mx-local .mx-chart-desktop{display:none}.mx-local .mx-chart-mobile{display:block}}
+
+@media print{.mx-local .mexico-view-link{display:none!important}}
