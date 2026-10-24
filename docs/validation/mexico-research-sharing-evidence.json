@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "verifiedDate": "2026-10-23",
+  "status": "verified-public-research-sharing",
+  "countryCode": "2010",
+  "scope": "all-goods-only",
+  "reporting": {
+    "from": "2024-09",
+    "to": "2026-08"
+  },
+  "productComparisonsAvailable": false,
+  "classificationAccepted": false,
+  "runtime": {
+    "implementationPr": 153,
+    "commit": "ec83583d7030366758f0525f043fcc4a9ea1227d",
+    "tree": "12f66510f7a89ee41ec028b9a10f3bf88f3f8781",
+    "prHead": "be3a9689ccb1b5d68aa8ffc515a1f01904e9d164",
+    "prCiRun": 40047018496,
+    "mainCiRun": 40049438334,
+    "prCiAttempt": 1,
+    "mainCiAttempt": 1
+  },
+  "package": {
+    "zip": {
+      "bytes": 656571,
+      "sha256": "aceb0b9f2318b4e6aa6eb1053e1ce94d56a215fe8305f9cf00e5dba876085d3a"
+    },
+    "manifest": {
+      "bytes": 10450,
+      "sha256": "5d1ad99339a9e0075d5031830c42101f859bb6508be0486c917ab06f35305e25"
+    },
+    "fileCount": 43,
+    "rawBytes": 3218912,
+    "increaseBytes": 3137,
+    "largestFile": {
+      "path": "products/090121/index.html",
+      "bytes": 358446
+    },
+    "planningAlertFiles": 15000,
+    "publicMexicoDto": {
+      "bytes": 14429,
+      "sha256": "16ee47da3087dea5529de1c60fdc5f8fe9d4523203c7fe40a5725408b5149d09",
+      "unchanged": true
+    },
+    "singleDataProp": true
+  },
+  "inputs": {
+    "files": 15,
+    "bytes": 19168534,
+    "changed": false,
+    "stagingCopies": 1,
+    "sourceRequests": 0,
+    "r2Operations": 0
+  },
+  "provider": {
+    "observedAtUtc": "2026-10-24T01:38:54.6191558Z",
+    "method": "fresh in-app-browser Production assignment readback",
+    "project": "us-trade-tracker",
+    "plan": "Free",
+    "environment": "Production",
+    "branch": "main",
+    "deploymentId": "fcf692d1-3c40-41d2-a6d9-c3d5872dd432",
+    "deploymentOrigin": "https://fcf692d1.us-trade-tracker.pages.dev",
+    "canonicalOrigin": "https://us-trade-tracker.pages.dev",
+    "finalAssignmentConfirmed": true,
+    "inAppPublicNavigations": 1,
+    "inAppExports": 0
+  },
+  "verification": {
+    "localUnitPassed": 2357,
+    "linuxUnitPassed": 2356,
+    "linuxPlatformSkipped": 1,
+    "compilerFiles": 417,
+    "compilerErrors": 0,
+    "compilerWarnings": 0,
+    "compilerHints": 0,
+    "linuxBrowserChecks": 427,
+    "pythonPackagingChecks": 25,
+    "pythonWorkflowChecks": 18,
+    "windowsWorkflowSkipped": 1,
+    "windowsFirefox": "launch failed before assertions with spawn UNKNOWN; required Linux Firefox passed",
+    "mexicoValuesIdentical": 48,
+    "mexicoCsvIdentical": 4,
+    "otherCsvIdentical": 17,
+    "pngIdentical": 5,
+    "localPrintPagesIdenticalPerPackage": 21,
+    "contentRoutes": 23,
+    "viewportThemeStates": 10,
+    "baselineHttp": {
+      "logicalChecks": 100,
+      "httpAttempts": 148
+    },
+    "candidateHttp": {
+      "logicalChecks": 100,
+      "httpAttempts": 148
+    },
+    "liveBrowser": {
+      "navigations": 40,
+      "automatedNavigations": 39,
+      "inAppNavigations": 1,
+      "exports": 12,
+      "mexicoCsv": 4,
+      "otherExports": 6,
+      "printPages": 6,
+      "pageErrors": 0,
+      "outsideRequests": 0,
+      "errorObservationScope": "automated browser checks"
+    }
+  },
+  "repair": {
+    "sharedPasses": 1,
+    "applicationChanges": false,
+    "packageChanges": false,
+    "privateHarnessFindings": [
+      "Playwright lax text selector skips NOSCRIPT ancestry; scoped paragraph content and visibility verified",
+      "invalid individual-briefing sample URL returned404; invalid samples preserved/excluded and canonical200/title/Print capture verified"
+    ],
+    "freshIndependentReview": "no material findings",
+    "additionalRepairAvailable": false
+  },
+  "restoration": {
+    "needed": false,
+    "writes": 0,
+    "candidateWrites": 1,
+    "predecessorDeploymentId": "3697e575-0dd7-4b02-8919-e76c5ddd1aa3",
+    "predecessorZipSha256": "af29921140a66b527d68aafba8e652feeb1fc493c9c077ac71ee8ed6c35ad9ea",
+    "predecessorManifestSha256": "d003fabc2af5dc53cd2a4d223c90da6cd97e99130e2aa68f04272d5a39460c71",
+    "predecessorFiles": 43
+  },
+  "qualifications": {
+    "ordinaryPairsUnverified": 17,
+    "statisticalExclusionsIncludedInTotals": 3,
+    "currentControlBefore": 48,
+    "currentControlAfter": 48,
+    "datedMatches": 16,
+    "datedDifferences": 32,
+    "referenceVintageEstablished": false,
+    "latestRevisedSeriesClaim": false,
+    "countryUpdateSchedule": false,
+    "inheritedOverviewLetterAttributionPage": true
+  },
+  "closeoutBoundary": "Evidence integrated after runtime publication; no rebuild or republish for documentation. Actual worktree archival is recorded separately in private execution closeout."
+}

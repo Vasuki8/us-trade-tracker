@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans. Root owns implementation, provider operations and integration. Independent agents perform read-only code/package and final-evidence review; no concurrent edits. Execute only after the owner reviews and approves this combined design, all four tasks and the permission envelope. Steps use checkboxes.
 
-**Status:** Owner approved all four tasks and publication, October 23, 2026. A fresh read-only builder check asked when the shared repair allowance starts; Permission 7 now states first real candidate materialization and excludes ordinary Tasks 1–2 development fixes. With that clarification the checker reported nothing important left. Root completed the requirements, interfaces, failure-case, source/package and permission self-review. Execute within the approved limits; the final PR closeout records actual integration, publication and cleanup.
+**Status:** Runtime implemented, independently reviewed, merged and published with verified live sharing. See [release evidence](../../validation/mexico-research-sharing.md). Evidence integration and actual owned-checkout archival follow publication; archival is recorded in the private execution closeout.
 
 **Goal:** Let readers reopen and share the existing Mexico all-goods Imports or Exports view, with matching figures and CSVs, without expanding its data claims.
 
