@@ -5,12 +5,17 @@ import {mexicoCsvFilename,serializeMexicoMonthlyCsv,serializeMexicoSummaryCsv} f
 import {downloadBlob} from '../lib/trade/downloads';
 import {monthLabel,percent,usd,usdChange} from '../lib/trade/format';
 import {MexicoAllGoodsHistory} from './MexicoAllGoodsHistory';
+import {MexicoViewLink,useMexicoViewLink} from './MexicoViewLink';
 const period=(from:string,to:string)=>monthLabel(from)+'–'+monthLabel(to);
 const timestamp=(value:string)=>new Intl.DateTimeFormat('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'UTC'}).format(new Date(value))+' UTC';
 export function MexicoLocalProfile({data}:{data:Profile}):React.JSX.Element{
- const [direction,setDirection]=useState<MexicoDirection>('imports'),[ready,setReady]=useState(false),[error,setError]=useState<string|null>(null);
- useEffect(()=>setReady(true),[]);
- const view=data.directions[direction],summary=summarizeMexicoDirection(view),real=data.source==='census',publicView=data.presentation==='public-pilot-snapshot'||data.presentation==='public-pilot-fixture';
+ const publicView=data.presentation==='public-pilot-snapshot'||data.presentation==='public-pilot-fixture';
+ const sharedView=useMexicoViewLink(publicView);
+ const [localDirection,setLocalDirection]=useState<MexicoDirection>('imports'),[localReady,setLocalReady]=useState(false),[error,setError]=useState<string|null>(null);
+ useEffect(()=>setLocalReady(true),[]);
+ const direction=publicView?sharedView.selection.direction:localDirection,ready=publicView?sharedView.ready:localReady;
+ useEffect(()=>setError(null),[direction]);
+ const view=data.directions[direction],summary=summarizeMexicoDirection(view),real=data.source==='census';
  const download=(kind:'monthly'|'summary')=>{
   if(!ready)return;
   try{const text=kind==='monthly'?serializeMexicoMonthlyCsv(data,direction):serializeMexicoSummaryCsv(data,direction);downloadBlob(new Blob([text],{type:'text/csv;charset=utf-8'}),mexicoCsvFilename(data,direction,kind));setError(null);}catch{setError('Download unavailable. Please try again.');}
@@ -18,8 +23,8 @@ export function MexicoLocalProfile({data}:{data:Profile}):React.JSX.Element{
  return <div className="mx-local">
   <div className="page-heading"><p className="eyebrow">{publicView?'COUNTRY RESEARCH / HISTORICAL SNAPSHOT':'COUNTRY RESEARCH / LOCAL PREVIEW'}</p><h1>Mexico — all-goods trade</h1><p>September 2024–August 2026 · Captured U.S. goods trade</p></div>
   <div className="sample-banner"><strong>{real?(publicView?'Historical snapshot · All goods only':'Local preview · Accepted for private all-goods use · Unpublished'):'Synthetic development sample · No accepted Mexico release'}</strong><span>{real?'U.S. Census Bureau monthly merchandise files':'All displayed values and reference checks are synthetic.'}</span></div>
-  <fieldset className="explorer-controls" disabled={!ready}><legend>Trade direction</legend>{(['imports','exports'] as const).map(d=><label key={d}><input type="radio" name="mexico-direction" value={d} checked={direction===d} onChange={()=>{setDirection(d);setError(null);}}/>{d==='imports'?'Imports':'Exports'}</label>)}</fieldset>
-  <noscript><p>Imports are shown below. Direction switching and CSV downloads require JavaScript.</p></noscript>
+  <fieldset className="explorer-controls" disabled={!ready}><legend>Trade direction</legend>{(['imports','exports'] as const).map(d=><label key={d}><input type="radio" name="mexico-direction" value={d} checked={direction===d} onChange={()=>{if(publicView)sharedView.changeSelection({direction:d});else setLocalDirection(d);setError(null);}}/>{d==='imports'?'Imports':'Exports'}</label>)}</fieldset>
+  <noscript><p>{publicView?'Imports are shown below. Saved directions, direction switching and CSV downloads require JavaScript.':'Imports are shown below. Direction switching and CSV downloads require JavaScript.'}</p></noscript>
   <p className="mx-basis">{direction==='imports'?'General imports · Customs value · GEN_VAL_MO':'Domestic plus foreign exports · FAS value · ALL_VAL_MO'} · Nominal USD · All transport modes · Not seasonally adjusted</p>
   <section className="mx-summary" aria-label="Mexico all-goods overview">
    <div aria-label="Latest captured month"><span>Latest captured month · {monthLabel(summary.latest.month)}</span><strong>{usd(summary.latest.valueUsd)}</strong></div>
@@ -29,6 +34,7 @@ export function MexicoLocalProfile({data}:{data:Profile}):React.JSX.Element{
   </section>
   <MexicoAllGoodsHistory view={view}/>
   <div className="download-actions"><button className="secondary-button" disabled={!ready} onClick={()=>download('monthly')}>Download monthly CSV</button><button className="secondary-button" disabled={!ready} onClick={()=>download('summary')}>Download summary CSV</button></div>
+  {publicView&&<MexicoViewLink {...sharedView}/>}
   {error&&<p role="alert">{error}</p>}
   <section className="data-card" aria-label="Snapshot qualifications">
    <p>Dated publication checks differ in 32 of 48 observations; causes and original-byte vintage are not established. Product comparisons are unavailable pending classification verification.</p>

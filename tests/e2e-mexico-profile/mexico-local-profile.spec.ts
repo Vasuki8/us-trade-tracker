@@ -49,3 +49,10 @@ test('download failures remain visible and a retry succeeds',async({page})=>{
  await page.getByRole('button',{name:'Download monthly CSV'}).click();await expect(page.getByRole('alert')).toContainText('Download unavailable. Please try again.');
  const file=await download(page,'Download monthly CSV');expect(file.rows).toHaveLength(24);await expect(page.getByRole('alert')).toHaveCount(0);
 });
+
+test('private presentation ignores public saved-direction input and exposes no sharing control',async({page})=>{
+ await page.goto(path+'?direction=exports#main');await expect(page.getByRole('button',{name:'Download monthly CSV'})).toBeEnabled();
+ await expect(page.getByRole('radio',{name:'Imports'})).toBeChecked();await expect(page.getByRole('button',{name:'Copy view link'})).toHaveCount(0);
+ await page.getByRole('radio',{name:'Exports'}).check();expect(new URL(page.url()).search).toBe('?direction=exports');
+ const file=await download(page,'Download monthly CSV');expect(file.rows[0]).toMatchObject({direction:'exports',publication_status:'unpublished'});
+});
